@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<tentacle-plugins>
+	<tentacle-plugin>
+		<id>archive</id>
+		<version>1.1.0</version>
+		<status>stable</status>
+	</tentacle-plugin>
+	<tentacle-plugin>
+		<id>backup_restore</id>
+		<version>0.7.3</version>
+		<status>stable</status>
+	</tentacle-plugin>
+</tentacle-plugins>

@@ -1,0 +1,1 @@
+<p class="notice"><?php echo $error['prefix']; ?>: <strong><?php echo $error['message']; ?></strong> In <?php echo $error['file']; ?> At Line <?php echo $error['line']; ?></p>

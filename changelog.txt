@@ -1,0 +1,559 @@
+Changelog for Dingo PHP Framework 0.7.1
+> http://www.dingoframework.com
+
+
+// To Do
+// ------------------------------------------------------------------------------
+- Add length() method to validation library
+- Autoloading models, controllers, and orm classes (http://php.net/manual/en/language.oop5.autoload.php)
+- DB merge option for limit()
+- Configurable DB ports
+- Cache library and drivers
+- Plugins
+- SQLite3 DB driver [requires php 5.3]
+- Email notification of errors
+
+- Scaffolding [?]
+- 404 Error pages for missing or extra arguments in controller methods [Possible?]
+- Move error handling functions into class [?]
+- Perfect XSS Helper [?]
+
+
+// Jul 2010
+// ------------------------------------------------------------------------------
+07/30/2010 - Func > route: controller() added
+           - Func > route: method() added
+           - Func > route: arguments() added
+
+07/25/2010 - Func > bootstrap: run() updated
+           - Func > route: get() updated
+           - Func > load: model() updated
+           - Func > load: orm()
+           - Fixed sub-folder issue with controllers, models, and orms
+           
+
+07/24/2010 - Dingo Framework v0.7.1 now in development
+
+07/23/2010 - Func > ORM Library: paginate() added
+
+07/22/2010 - Func > DingoQuery: paginate() added
+
+07/../2010 - ORM Library added
+           - Move to static
+           - Core simplification
+
+
+// Jun 2010
+// ------------------------------------------------------------------------------
+06/30/2010 - load::file() added
+           - load::driver() added
+           - db( ... )->all() added
+           - db( ... )->total() added
+
+06/29/2010 - Remove all "global" usage
+
+06/../2010 - Make pages once again accessible via index.php?__dingo_page=controller/func/arg - Fixes issue with certain hosts
+           - Multiple database connections
+           - Removed system helpers
+           - Removed plugins
+           - Removed structures
+           - Singular folder names
+           - Extending controllers and models
+           - load::orm() added
+
+
+// May 2010
+// ------------------------------------------------------------------------------
+05/17/2010 - PayPal Helper added
+
+
+// Apr 2010
+// ------------------------------------------------------------------------------
+04/29/2010 - Dingo Framework v0.7.0 now in development
+
+04/23/2010 - Limit added to delete and update queries
+
+04/08/2010 - Func > MySQL DB Driver: execute() updated
+           - Func > PgSQL DB Driver: execute() updated
+           - Func > DB Library > DingoQuery: combine() updated
+           - Limit support for combo queries added
+
+
+// Mar 2010
+// ------------------------------------------------------------------------------
+03/22/2010 - Func > DingoLoad: model() updated
+           - Arguments can now be passed to index() method in models
+
+03/21/2010 - Func > DB Library > DingoQuery: combine() added
+           - Func > MySQL DB Driver: execute() updated
+           - Func > PgSQL DB Driver: execute() updated
+           - Support for Combo DB Select Queries added
+           - Func > DB Library > DingoQuery: on() added
+           - Func > DB Library > DingoQuery: join() added
+           - Func > DB Library > DingoSQL: build_where() updated
+           - Func > DB Library > DingoSQL: build_select() updated
+           - Basic JOIN DB query support added
+           - Func > DingoLoad: model() updated
+           - Models can now be loaded multiple times
+
+03/20/2010 - Func > Image Helper: open() updated
+           - Func > Image Helepr: save() updated
+           - Func > Image Helper: show() updated
+           - Func > Image Helper: compression() added
+           - MIME type used to verify image files instead of EXIF data
+           - Issue working with PNG images fixed
+
+03/18/2010 - Func > File Helper: mime() added
+           - Func > File Helper: download() added
+
+03/17/2010 - Func > Note Library: all() added
+           - Func > Note Library: regular() added
+           - Func > Note Library: error() added
+           - Func > Note Library: warning() added
+           - Func > Note Library: success() added
+
+03/16/2010 - Func > DingoLoad: config() updated
+           - Func > DingoBoot: run() updated
+           - Seperate Development/Deployment configurations
+           - Configuration option added to index.php
+           - BASE_URL, MOD_REWRITE, DEBUG, ERROR_LOGGING, ERROR_LOG_FILE, and timezone moved to config file
+           - Func > DB Library > DingoSQL: build_where() updated
+           - True support for LIKE queries added
+           - Func > DingoRoute: valid() updated
+           - Note Library added
+
+03/12/2010 - Func > DingoBoot: run() updated
+           - Controller support for onload() and unload() added
+
+03/11/2010 - Func > DingoBoot: run() updated
+           - Controller function names containing underscores can be called using dashes instead
+
+
+// Feb 2010
+// ------------------------------------------------------------------------------
+02/08/2010 - Func > DingoLoad: structure() updated
+           - Controller structures added
+
+02/07/2010 - Func > DingoBoot: run() updated
+           - Func > DingoRoute: structure() added
+
+02/06/2010 - Func > DingoLoad: structure() added
+           
+           - Dingo Framework v0.6.0 now in development
+
+
+// Jan 2010
+// ------------------------------------------------------------------------------
+01/29/2010 - Benchmark Helper benchmark class renamed to bench
+
+01/24/2010 - Func > User Library: __construct() updated
+           - Func > User Library: id() added
+           - Func > User Library: email() added
+           - Func > User Library: username() added
+           - Func > User Library: password() added
+           - Func > User Library: data() added
+           - Func > User Library: type() renamed to is_type()
+           - Func > User Library: type() added
+
+01/22/2010 - Func > DB Library: build_where() updated
+           - Func > DB Library: where() updated
+           - Func > MySQL DB Driver: select() updated
+           - Func > PgSQL DB Driver: select() updated
+           - Support for 'LIKE' operator added to WHERE DB statements
+           - Func > Image Helper: resize() updated
+           - Func > Image Helper: dynamic_resize() added
+           - Func > Image Helper: square() added
+           - Func > Image Helper: zone_crop() added
+
+01/17/2010 - Func > Email Helper: attachment() added
+           - Attachments for Email Helper thanks to Scott
+
+01/15/2010 - Func > User Library: type() added
+           - Func > User Library: banned() added
+
+01/13/2010 - Benchmark Helper added
+           - Func > Benchmark Helper: mark() added
+           - Func > Benchmark Helper: time() added
+           - Func > Benchmark Helper: clear() added
+
+01/11/2010 - Func > Validation Helper: username() updated
+           - Func > Validation Helper: email() updated
+           - Func > Validation Helper: phone() updated
+           - Func > User Library > User Update Class: username() added
+           - Func > User Library > User Update Class: __construct() updated
+           - Func > User Library > User Update Class: save() updated
+           - Func > User Library: unique() added
+           - Func > User Library: __construct() updated
+           - Func > User Library: check() updated
+           - Func > User Library: get() updated
+           - Func > User Library: login() updated
+           - Func > User Library: delete() updated
+           - Func > User Library: ban() updated
+
+01/09/2010 - User Authentication Library added
+
+01/08/2010 - Bootstrap restructured
+           - Router seperated from bootstrap
+           - Func > DingoBoot: get_url() removed
+           - Func > DingoBoot: core() removed
+           - Func > DingoBoot: run() updated
+           - system/DingoRoute.php added
+           - Func > DingoRoute: valid() added
+           - Func > DingoRoute: plugin() added
+           - Func > DingoRoute: get() added
+           - Custom routing functionality added, ex $route['one/([a-zA-Z]+)'] = array('controller'=>'one/two','function'=>'func','arguments'=>array());
+           
+
+01/03/2010 - File copyrights updated
+           - DingoConfig class restructured
+           - Func > DingoConfig: set() updated
+           - Func > DingoConfig: get() updated
+           - Func > DingoConfig: remove() updated
+           - Func > DingoConfig: rename() added
+           - Func > Validation Helper: number() added
+           - Func > Validation Helper: int() added
+           - Func > Validation Helper: range() added
+           
+           - Dingo Framework v0.5.0 now in development
+
+
+// Dec 2009
+// ------------------------------------------------------------------------------
+12/18/2009 - Func > XML Helper: parse() updated
+           - Func > Image Helper: __construct() updated
+           - Func > Image Helper: open() updated
+           - Func > Image Helper: type() updated
+           - Func > Image Helper: resize() updated
+           - Func > Image Helper: crop() updated
+
+12/05/2009 - Func > DB Library: select()
+           - Func > DB Library: count()
+           - Func > DB Library: order_by()
+
+
+// Nov 2009
+// ------------------------------------------------------------------------------
+11/25/2009 - Func > Capcha Library: font_file() added
+           - Func > Capcha Library: font_size() added
+           - Func > Capcha Library: font_color() added
+           - Func > Capcha Library: background_color() added
+           - Func > Capcha Library: noise_color() added
+           - Func > Capcha Library: generate() updated
+           - Func > Capcha Library: set() updated
+           - Func > Capcha Library: delete() updated
+
+11/24/2009 - Capcha Library added
+
+11/20/2009 - Dingo Framework v0.4.2 now in development
+           - index.php updated
+           - Func > DingoBoot: run() updated
+           - Func > DingoLoad: theme() removed
+           - Func > DingoLoad: template() removed
+           - Func > URL Helper: page() updated
+           - Func > URL Helper: plugin_page() updated
+           - Func > URL Helper: redirect() updated
+           - $config variable added to index.php to specify config folder
+           - folder_controllers and folder_plugins config keys now work as expected
+           - Javascript version of validation helper now working, includes example
+
+
+// Oct 2009
+// ------------------------------------------------------------------------------
+10/24/2009 - Fixed Mod_Rewrite bug
+           - Func > DingoBoot: run() updated
+           - Func > DingoBoot: get_request_url() added
+
+10/14/2009 - Dingo Framework v0.4.1 now in development
+           - Renameable view, controller, model, helper, plugin, cache, language, and error application sub-folders
+           - Func > DingoBoot: run() updated
+           - Func > DingoLoad: view() updated
+           - Func > DingoLoad: error() updated
+           - Func > DingoLoad: language() updated
+           - Func > DingoLoad: view() updated
+           - Func > DingoLoad: plugin_view() updated
+           - Func > DingoLoad: helper() updated
+           - Func > DingoLoad: plugin_helper() updated
+           - system/DingoError.php dingo_error() updated
+
+10/07/2009 - Cache library added
+           - Dingo class in system/DingoCore.php renamed to DingoCore
+           - system/DingoLoad.php updated
+           - system/DingoBoot.php cleaned up
+           - Func > DingoCore: get_url() removed
+           - Func > bootstrap: get_url() added
+           - Func > config: get() updated
+           - Theme library added
+           - Template functionality merged into views with theme library
+
+10/05/2009 - Moved contents of bootstrap.php into DingoBoot: run()
+
+10/03/2009 - index() autoload function support added to models
+           - Func > DingoLoad: model() updated 
+
+10/02/2009 - Dingo Framework v0.4.0 now in development
+           - Email helper fixed
+
+
+// Sep 2009
+// ------------------------------------------------------------------------------
+09/28/2009 - Insert() updated in DB drivers to return inserted row
+
+09/24/2009 - DB Library > DingoQuery updated
+           - system/core/DingoAccess.php removed
+           - bootstrap.php updated
+           - INSERT for MySQL driver now returns last insert id
+
+09/21/2009 - ACL Library updated to allow ACLs to be easily shared application-wide
+           - ACL Library > acl class renamed to acl_main
+           - ACL Library > acl class added
+           
+           - Dingo Framework v0.3.0 now in development
+           - Fixed ongoing library load issues
+           - bootstrap.php updated
+           - register class added to DingoCore
+           - system/DingoBoot.php added
+           - system/DingoConfig.php added
+           - application/config/config.php updated
+           - All libraries updated to use config::get() and register::library()
+           - Invalid URL segment checker updated
+           
+
+09/20/2009 - File Library changed to Helper
+           - Email Library changed to Helper
+           - Func > File Helper: close() updated
+           - Func > XML Helper: parse() removed $loose argument
+           - Func > XSS Helper: clean() updated
+           - bootstrap.php updated fixed library loading issue
+           - Talk Library fixed
+
+09/16/2009 - Core helpers moved to system/helpers
+           - system/classes folder renamed to system/libraries
+           - $autoload_classes changed to $autoload_libraries in application/config/config.php, bootstrap.php, and all controllers
+           - Copyright URLs in source files now point to http://www.dingoframework.com instead of http://www.dingocode.com/framework
+           - Func > DingoLoad: helper() updated
+           - Func > DingoLoad: library() updated
+           - Func > PostgreSQL driver: count() added
+
+09/08/2009 - Func > Image Helper: crop() added
+           - Func > Image Helper: rotate() added
+           - Func > Image Helper: close() added
+
+09/07/2009 - Image Helper added
+
+09/03/2009 - Offset and limit functionality added to database class
+           - Pagination Helper fixed
+           - Count query support added to mysql driver
+
+09/02/2009 - Pagination Helper added
+
+09/01/2009 - ACL Class added
+
+
+// Aug 2009
+// ------------------------------------------------------------------------------
+08/31/2009 - Func > URL Helper: model() removed
+           - Func > URL Helper: plugin_model() removed
+           - Func > DingoLoad: plugin_model() added
+           - Func > DingoLoad: model() fixed
+
+08/30/2009 - Models now act like they do traditionally in the MVC design pattern: $class = $this->load-model('mymodel');
+           - Func > DingoLoad: model() updated
+           - bootstrap.php model access removed
+
+08/17/2009 - Session Class added
+           - Func > DingoLoad: library() fixed issue causing it not to work correctly
+           - URL Helper cookie functions moved to DingoCore
+           - Func > DingoCore > cookie::set() fixed
+           - Func > DingoCore > cookie::delete() fixed
+           
+08/15/2009 - XSS Helper added
+           - Func > XML Helper: parse_child_nodes() whitespace trim removed from nodes
+
+08/14/2009 - XML Helper added
+
+08/13/2009 - RSS Helper added
+
+08/12/2009 - PostgreSQL database driver added
+           - DB Class modified to work with PostgreSQL and SQLite3 backtick syntax
+
+08/10/2009 - Removed dingo header from bootstrap
+
+08/08/2009 - Exceptions now use errors/exception.php instead of errors/fatal.php
+
+08/07/2009 - Func > URL Helper: safe_mailto() removed
+           - Func > URL Helper: plugin_page() now can return just the plugin URL
+
+08/05/2009 - SELECT ORDER BY fixed in MySQL DB driver
+           - Updated Func > Email Class: to()
+
+08/03/2009 - UPDATE query support added to MySQL DB driver
+           - DELETE query support added to MySQL DB driver
+           - Shorthand MySQL SELECT query support added ($table->select('col','=','value'))
+           - Shorthand MySQL DELETE query support added ($table->delete('col','=','value'))
+           - CREATE TABLE query support added to MySQL DB driver
+           - DROP TABLE query support added to MySQL DB driver
+           - TRUNCATE TABLE query support added to MySQL DB driver
+           - DISTINCT query support added to MySQL DB driver
+           - DINGO definition value changed to 1
+           - DINGO_VERSION defined in bootstrap.php contains version
+
+
+// Jul 2009
+// ------------------------------------------------------------------------------
+07/30/2009 - Class DingoAccess added (experimental)
+           - Class DingoSQL added to DB library
+           - Class DingoQuery added to DB library
+           - Class mysql_table added to MySQL DB driver
+           - Major update to DB library and MySQL driver. Now supports object oriented queries
+
+07/29/2009 - Dingo Framework v0.2.0 now in development
+           - Fixed typo in DingoCore changed $current_template to $current_theme
+
+07/23/2009 - Templates are now called themes and the individual view files for the theme are called templates
+           - Replaced Func > DingoCore: current_template() with Func > DingoLoad: theme()
+           - Updated Func > DingoLoad: template()
+
+07/22/2009 - Multi-lingual support added
+           - Func: DingoLoad > language()
+           - Class: DingoMessage added
+
+
+// Jun 2009
+// ------------------------------------------------------------------------------
+06/15/2009 - Fixed invalid URLs issue involving URLs with a space character
+           - Added $dingo->data class for storing data that can be accessed anywhere in the application
+
+
+// Apr 2009
+// ------------------------------------------------------------------------------
+04/28/2009 - Code clean up and organization
+
+04/21/2009 - Error handling added to MySQL DB Driver query() function
+
+04/20/2009 - Added DB Library
+           - DB Library: MySQL Driver
+
+04/19/2009 - Error logging added
+           - Timezone setting added
+
+04/18/2009 - Reduced number of error files
+
+04/17/2009 - Func > DingoCore: config()
+
+04/16/2009 - Added Error and Exception handling
+           - '$' automatically added to end of dynamic routes
+           - Fixed issue causing dynamic routes not to work with GET URLs
+
+04/14/2009 - Pages can now be accessed via the GET 'page' param. Thus fixing lack of Mod_Rewrite support
+           - GET URL to work with new URLs for Mod_ReWrite
+           - Input class functions updated, replaced '@' error repressors with isset() checks
+
+04/13/2009 - HTTP Header added to show Dingo product and version
+
+04/06/2009 - Fixed another bug causing plugins to not work.
+           - Added template support
+           - Func > DingoLoad: template()
+           - Func > DingoCore: set_template()
+
+04/05/2009 - Regular expressions can be used in routes
+           - Fixed a problem in index.php and the URL Helper causing errors for plugins
+
+04/04/2009 - Moved $dingo model(), error(), view(), helper(), and library() to new $dingo->load class
+           - Shortened function length by removing "dingo" Was: $this->dingo->class->func() Now: $this->class->func()
+           - Now prevents from having the same library loaded twice
+           - Replaced $_SERVER['PATH_INFO'] with $_SERVER['PHP_SELF'] for greater compatibility
+           - Moved all URL Helper functions into the "url" class EX Now: url::page('controller/func')
+
+04/02/2009 - Dingo Framework v0.1.3 now in development
+
+
+// Mar 2009
+// ------------------------------------------------------------------------------
+03/31/2009 - Replaced eval() at end of bootstrap with call_user_func_array()
+           - Some small things like replacing double quotes with single quotes
+
+03/27/2009 - Fixed some syntax causing E-ALL errors
+           - Added critical update to email class
+
+03/24/2009 - Class: Files added
+
+03/23/2009 - License updated
+           - Copyrights updated
+
+03/12/2009 - 404 Error pages for missing function in controller
+
+03/09/2009 - Func > URL Helper: plugin_page_url()
+           - Func > URL Helper: plugin_model_url()
+           - Model support added to Plguins
+
+03/08/2009 - Func: $dingo->plugin_view()
+           - Func: $dingo->plugin_helper()
+           - Added basic plugin support
+
+03/07/2009 - Added ability to change server variable used for finding page path
+           - Updated copyrights and urls
+
+
+// Feb 2009
+// ------------------------------------------------------------------------------
+02/14/2009 - Class: MySQLi wrapper added
+           - Errors: Headers added to 404 error view
+
+02/11/2009 - Auto-loading of helpers and classes can now be done on a controller by controller (or model by model) basis as well as with the global config file
+
+
+// Jan 2009
+// ------------------------------------------------------------------------------
+01/04/2009 - Func: $dingo->files()
+
+
+// Dec 2008
+// ------------------------------------------------------------------------------
+12/21/2008 - Func > MySQL Class: clean()
+
+12/10/2008 - Func > URL Helper: redirect() exit; added after redirect to fix problem in loops
+
+12/06/2008 - Func > Dingo Core Class: helper() updated to allow second argument to pass data to helper
+
+12/05/2008 - Func > Auth Class: check()
+           - Func > Auth Class: login()
+           - Func > Auth Class: logout()
+
+12/03/2008 - URLs now cannot contain invalid characters - EX: Anything other than letters, numbers, %, ~, -, _, ., and :
+           - Func > URL Helper: redirect() 1st argument now optional
+
+12/02/2008 - Func > URL Helper: model_url()
+
+12/01/2008 - Models now act like Controllers and can be accessed by a URL like index.php?model=<model/function/arg1/arg2/ect>
+
+
+// Nov 2008
+// ------------------------------------------------------------------------------
+11/29/2008 - URLs containing only index.php/ (notice trailing slash) no longer give a 404 error
+
+11/28/2008 - Func > Validation Helper: validate()
+
+11/27/2008 - Func > URL Helper: redirect()
+           - Func > URL Helper: safe_mailto()
+           - Func: $dingo->redirect()
+
+11/26/2008 - Outside access to core files blocked
+           - DINGO defined, contains version
+           - Model support added
+           - Func: $dingo->get()
+           - Func: $dingo->post()
+           - Func: $dingo->request()
+           - Func: $dingo->cookie()
+           - Func > URL Helper: set_cookie()
+           - Func > URL Helper: delete_cookie()
+
+11/24/2008 - Created Dingo Logo
+           - Made simple splash web page
+
+11/18/2008 - Errors work like Views
+           - system/core/DingoConfig.php moved to application/config/config.php to allow seperate configurations for seperate applications
+           - BASE_URL and MOD_REWRITE config options added
+           - Func: $dingo->library()
+           - Func > URL Helper: base_url()
+
+11/17/2008 - Dingo Framework v0.1.1 Overhauled, v0.1.2 in development

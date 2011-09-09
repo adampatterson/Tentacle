@@ -1,0 +1,89 @@
+/* Auto Suggest */
+.auto #result {
+  height: 20px;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+  padding: 5px;
+  margin-bottom: 10px;
+  background-color: #FFFF99; }
+
+.auto #country {
+  padding: 3px;
+  border: 1px #CCC solid;
+  font-size: 17px; }
+
+.auto .suggestionsBox {
+  position: absolute;
+  left: 0px;
+  top: 30px;
+  margin: 26px 0px 0px 0px;
+  width: 200px;
+  padding: 0px;
+  background-color: #000;
+  border-top: 3px solid #000;
+  color: #fff;
+  z-index: 9999; }
+
+.auto .suggestionList {
+  margin: -20px 0 5px 0;
+  padding: 0px; }
+
+.auto .suggestionList ul li {
+  list-style: none;
+  margin: 0px;
+  padding: 6px;
+  border-bottom: 1px dotted #666;
+  cursor: pointer; }
+
+.auto .suggestionList ul li:hover {
+  background-color: #FC3;
+  color: #000; }
+
+.auto ul {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #FFF;
+  padding: 0;
+  margin: 0; }
+
+.auto .load {
+  background-image: url(http://papermashup.com/demos/autosuggest/loader.gif);
+  background-position: right;
+  background-repeat: no-repeat; }
+
+.auto #suggest {
+  position: relative; }
+
+/* Username Lookup */
+#username {
+  padding: 3px;
+  font-size: 18px;
+  border: 3px #CCC solid; }
+
+#tick {
+  display: none; }
+
+#cross {
+  display: none; }
+
+/* AJAX CHECK */
+.check #ajax {
+  cursor: pointer; }
+
+.check #ajax span {
+  padding: 3px;
+  background-color: #FFCC66;
+  color: #000; }
+
+.check #ajax span:hover {
+  padding: 3px;
+  background-color: #000;
+  color: #FFF; }
+
+.check #result {
+  display: none;
+  padding: 4px;
+  margin-bottom: 20px;
+  background-color: #FFFF33;
+  border: 1px solid #FFCC00; }

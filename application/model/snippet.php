@@ -1,0 +1,103 @@
+<?
+/*
+    const TABLE_NAME = 'snippet';
+    
+    public $name;
+    public $filter_id;
+    public $content;
+    public $content_html;
+    
+    public $created_on;
+    public $updated_on;
+    public $created_by_id;
+    public $updated_by_id;
+ */
+
+class snippet_model  
+{
+	// Get Snippet
+	//----------------------------------------------------------------------------------------------
+	public function get ( $id='' )
+	{
+		$snippets = db ( 'snippet' );
+
+		if ( $id == '' ) {
+			$get_snippets = $snippets->select( '*' )
+				->order_by ( 'id', 'DESC' )
+				->execute();
+					
+			return $get_snippets;
+		} else {	
+			$get_snippets = $snippets->select( '*' )
+				->where ( 'id', '=', $id )
+				->order_by ( 'id', 'DESC' )
+				->execute();	
+			
+			return $get_snippets[0];
+		}		
+	}
+	
+	// Update Snippet
+	//----------------------------------------------------------------------------------------------
+	public function update ( $id )
+	{
+		$name = input::post ( 'name' );
+		$updated_by = user::id();
+		$snippet_content = input::post ( 'content' );
+		$filter = input::post ( 'filter' );
+	
+		$inflector = new inflector();
+		$slug = $inflector->camelize( $name );
+		$slug = $inflector->underscore( $slug );
+		
+		$snippet = db('snippet');
+
+		$snippet->update(array(
+				'name'=>$name,
+				'slug'=>$slug,
+				'updated_by'=>$updated_by,
+				'content'=>$snippet_content,
+				'filter'=>$filter
+			))
+			->where( 'id', '=', $id )
+			->execute();
+			
+		note::set('success','snippet_update','Snippet Updated!');
+	} 
+
+	// Delete Snippet
+	//----------------------------------------------------------------------------------------------	
+	public function delete ( $id='' ) 
+	{
+		$snippet = db('snippet');
+
+		$snippet->delete( 'id','=',$id );
+	}
+	
+	// Add Snippet
+	//----------------------------------------------------------------------------------------------
+	public function add () 
+	{
+		$name = input::post ( 'name' );
+		$created_by = user::id();
+		$snippet_content = input::post ( 'content' );
+		$filter = input::post ( 'filter' );
+	
+		$inflector = new inflector();
+		$slug = $inflector->camelize($name);
+		$slug = $inflector->underscore($slug);
+
+		$snippet = db('snippet');
+
+		$snippet->insert(array(
+			'name'=>$name,
+			'slug'=>$slug,
+			'created_by'=>$created_by,
+			'content'=>$snippet_content,
+			'filter'=>$filter
+		),FALSE);
+
+		note::set('success','snippet_add','Snippet Added!');
+	}
+
+} // END setting_model

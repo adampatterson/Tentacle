@@ -1,0 +1,1 @@
+<div class="admin-bar">Admin Bar</div>

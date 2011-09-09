@@ -1,0 +1,548 @@
+[3:40 PM Jul 06 2011] Notice: Undefined index: app IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 718
+[3:40 PM Jul 06 2011] Notice: Undefined index: app IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 718
+[2:57 AM Jul 19 2011] Warning: include(../includes/header.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/dashboard.php ON LINE 70
+[2:57 AM Jul 19 2011] Warning: include() [<a href='function.include'>function.include</a>]: Failed opening '../includes/header.php' for inclusion (include_path='.:/Applications/MAMP/bin/php5.3/lib/php') IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/dashboard.php ON LINE 70
+[5:44 AM Jul 20 2011] Notice: Undefined index: id IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 29
+[5:46 AM Jul 20 2011] Warning: Missing argument 1 for dev_controller::ajax() IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 25
+[4:34 AM Jul 25 2011] Warning: include(connect.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/dashboard.php ON LINE 395
+[4:34 AM Jul 25 2011] Warning: include() [<a href='function.include'>function.include</a>]: Failed opening 'connect.php' for inclusion (include_path='.:/Applications/MAMP/bin/php5.3/lib/php') IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/dashboard.php ON LINE 395
+[4:34 AM Jul 25 2011] Warning: mysql_fetch_array() expects parameter 1 to be resource, boolean given IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/dashboard.php ON LINE 398
+[8:05 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[8:05 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[8:10 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[8:13 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[8:19 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[8:20 PM Jul 25 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/admin.php ON LINE 24
+[8:20 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[8:21 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[8:21 PM Jul 25 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/admin.php ON LINE 24
+[8:21 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[8:24 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[8:25 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[8:25 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[8:34 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[8:34 PM Jul 25 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/admin.php ON LINE 26
+[8:34 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[8:34 PM Jul 25 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/admin.php ON LINE 26
+[8:34 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[10:55 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[10:57 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[10:57 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[11:01 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[11:02 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[11:02 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[11:04 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[11:04 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[11:04 PM Jul 25 2011] Warning: The requested view (application/view/admin/lost.php) could not be found. IN current file ON LINE (unknown)
+[11:05 PM Jul 25 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[12:36 AM Jul 26 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/admin.php ON LINE 27
+[12:36 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[12:36 AM Jul 26 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/admin.php ON LINE 27
+[12:36 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[12:43 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[3:57 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[3:57 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[4:57 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[5:00 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[5:12 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[5:32 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[5:32 AM Jul 26 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 32
+[5:32 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[5:34 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[5:34 AM Jul 26 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 32
+[5:34 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[5:34 AM Jul 26 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 32
+[5:34 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[5:35 AM Jul 26 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 32
+[5:35 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[5:35 AM Jul 26 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 32
+[5:35 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[5:35 AM Jul 26 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 32
+[5:35 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[5:41 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[5:42 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[5:43 AM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[3:16 PM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[3:20 PM Jul 26 2011] Notice: Undefined variable: typew IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 99
+[3:42 PM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[3:42 PM Jul 26 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[5:02 AM Jul 27 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[5:02 AM Jul 27 2011] Notice: Use of undefined constant SCAFFOLD - assumed 'SCAFFOLD' IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/bundles/marketing.php ON LINE 12
+[5:21 AM Jul 27 2011] Notice: Undefined variable: users IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 23
+[5:21 AM Jul 27 2011] Warning: Invalid argument supplied for foreach() IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 23
+[5:21 AM Jul 27 2011] Notice: Undefined variable: users IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 23
+[5:21 AM Jul 27 2011] Warning: Invalid argument supplied for foreach() IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 23
+[5:21 AM Jul 27 2011] Notice: Undefined variable: users IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 22
+[5:21 AM Jul 27 2011] Warning: Invalid argument supplied for foreach() IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 22
+[9:28 PM Jul 28 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 15
+[9:30 PM Jul 28 2011] Notice: unserialize() [<a href='function.unserialize'>function.unserialize</a>]: Error at offset 0 of 133 bytes IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 18
+[4:45 AM Jul 29 2011] Notice: Undefined variable: users_table IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 38
+[4:46 AM Jul 29 2011] Notice: Undefined variable: users_table IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 38
+[4:46 AM Jul 29 2011] Notice: Undefined variable: users_table IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 38
+[4:46 AM Jul 29 2011] Notice: Undefined variable: users_table IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 38
+[4:46 AM Jul 29 2011] Notice: Undefined variable: users_table IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 38
+[4:46 AM Jul 29 2011] Notice: Undefined variable: users_table IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 38
+[4:46 AM Jul 29 2011] Notice: Undefined variable: users_table IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 38
+[4:46 AM Jul 29 2011] Notice: Undefined variable: users_table IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 38
+[4:46 AM Jul 29 2011] Notice: Undefined variable: users_table IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 38
+[4:46 AM Jul 29 2011] Notice: Undefined variable: users_table IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 38
+[4:46 AM Jul 29 2011] Notice: Undefined variable: users_table IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 38
+[4:46 AM Jul 29 2011] Notice: Undefined variable: users_table IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 38
+[4:46 AM Jul 29 2011] Notice: Undefined variable: users_table IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 38
+[4:46 AM Jul 29 2011] Notice: Undefined variable: users_table IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 38
+[4:46 AM Jul 29 2011] Notice: Undefined variable: users_table IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 38
+[4:46 AM Jul 29 2011] Notice: Undefined variable: users_table IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 38
+[4:48 AM Jul 29 2011] Notice: Use of undefined constant user - assumed 'user' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 16
+[4:48 AM Jul 29 2011] Notice: Use of undefined constant user - assumed 'user' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 16
+[4:48 AM Jul 29 2011] Notice: Use of undefined constant user - assumed 'user' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 16
+[4:49 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 14
+[4:49 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 20
+[4:49 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 24
+[4:50 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 14
+[4:50 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 20
+[4:50 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 24
+[4:51 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 14
+[4:51 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 20
+[4:51 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 24
+[4:54 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 14
+[4:54 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 20
+[4:54 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 24
+[4:54 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 19
+[4:54 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 23
+[4:55 AM Jul 29 2011] Warning: json_decode() expects parameter 1 to be string, array given IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 15
+[4:55 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 19
+[4:55 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 23
+[4:55 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 14
+[4:55 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 18
+[5:27 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 17
+[5:28 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 14
+[5:28 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 18
+[5:28 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 14
+[5:28 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 18
+[5:28 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 14
+[5:28 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 18
+[5:43 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:43 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:43 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:43 AM Jul 29 2011] Notice: Undefined variable: data IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:44 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:44 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:45 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:45 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:45 AM Jul 29 2011] Notice: Undefined offset: 0 IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 15
+[5:45 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:45 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:45 AM Jul 29 2011] Notice: Undefined variable: data IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:45 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:45 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:45 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:45 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:45 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 16
+[5:48 AM Jul 29 2011] Warning: json_decode() expects parameter 1 to be string, array given IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 35
+[5:48 AM Jul 29 2011] Warning: json_decode() expects parameter 1 to be string, object given IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 35
+[6:07 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 21
+[6:07 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 24
+[6:07 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 28
+[6:07 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 32
+[6:07 AM Jul 29 2011] Notice: Undefined property: dingo::$first_name IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 21
+[6:07 AM Jul 29 2011] Notice: Undefined property: dingo::$last_name IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 24
+[6:07 AM Jul 29 2011] Notice: Undefined property: dingo::$display_name IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 28
+[6:07 AM Jul 29 2011] Notice: Undefined property: dingo::$url IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 32
+[6:07 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 21
+[6:07 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 24
+[6:07 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 28
+[6:07 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 32
+[6:08 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 22
+[6:08 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 25
+[6:08 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 29
+[6:08 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 33
+[6:08 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 22
+[6:08 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 25
+[6:08 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 29
+[6:08 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 33
+[6:08 AM Jul 29 2011] Notice: Undefined property: dingo::$first_name IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 22
+[6:08 AM Jul 29 2011] Notice: Undefined property: dingo::$last_name IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 25
+[6:08 AM Jul 29 2011] Notice: Undefined property: dingo::$display_name IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 29
+[6:08 AM Jul 29 2011] Notice: Undefined property: dingo::$url IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 33
+[6:08 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 22
+[6:08 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 25
+[6:08 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 29
+[6:08 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 33
+[6:09 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 12
+[6:09 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 22
+[6:09 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 25
+[6:09 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 29
+[6:09 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 33
+[6:09 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 22
+[6:09 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 25
+[6:09 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 29
+[6:09 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 33
+[6:10 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 24
+[6:10 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 27
+[6:10 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 31
+[6:10 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 35
+[6:10 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 24
+[6:10 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 27
+[6:10 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 31
+[6:10 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 35
+[6:11 AM Jul 29 2011] Notice: Undefined property: dingo::$first_name IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 21
+[6:11 AM Jul 29 2011] Notice: Undefined property: dingo::$last_name IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 24
+[6:11 AM Jul 29 2011] Notice: Undefined property: dingo::$display_name IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 28
+[6:11 AM Jul 29 2011] Notice: Undefined property: dingo::$url IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 32
+[6:12 AM Jul 29 2011] Notice: Undefined property: dingo::$first_name IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 22
+[6:12 AM Jul 29 2011] Notice: Undefined property: dingo::$last_name IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 25
+[6:12 AM Jul 29 2011] Notice: Undefined property: dingo::$display_name IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 29
+[6:12 AM Jul 29 2011] Notice: Undefined property: dingo::$url IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 33
+[6:12 AM Jul 29 2011] Warning: json_decode() expects parameter 1 to be string, object given IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 35
+[6:12 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 22
+[6:12 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 25
+[6:12 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 29
+[6:12 AM Jul 29 2011] Notice: Trying to get property of non-object IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_edit.php ON LINE 33
+[9:33 PM Jul 29 2011] Notice: Use of undefined constant BASE_IMAGE - assumed 'BASE_IMAGE' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 246
+[9:33 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 275
+[9:33 PM Jul 29 2011] Notice: Use of undefined constant TENTACLE_ROOT - assumed 'TENTACLE_ROOT' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 238
+[9:33 PM Jul 29 2011] Notice: Use of undefined constant BASE_IMAGE - assumed 'BASE_IMAGE' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 246
+[9:33 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 275
+[9:33 PM Jul 29 2011] Notice: Use of undefined constant TENTACLE_ROOT - assumed 'TENTACLE_ROOT' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 238
+[9:33 PM Jul 29 2011] Notice: Use of undefined constant BASE_IMAGE - assumed 'BASE_IMAGE' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 246
+[9:33 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 275
+[9:33 PM Jul 29 2011] Notice: Use of undefined constant BASE_IMAGE - assumed 'BASE_IMAGE' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 245
+[9:33 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 274
+[9:34 PM Jul 29 2011] Notice: Use of undefined constant BASE_IMAGE - assumed 'BASE_IMAGE' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 245
+[9:34 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 274
+[9:36 PM Jul 29 2011] Notice: Use of undefined constant BASE_IMAGE - assumed 'BASE_IMAGE' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 246
+[9:36 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 275
+[9:36 PM Jul 29 2011] Notice: Use of undefined constant BASE_IMAGE - assumed 'BASE_IMAGE' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 247
+[9:36 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 276
+[9:39 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 276
+[9:40 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 276
+[9:40 PM Jul 29 2011] Notice: Use of undefined constant TENTACLE_URL - assumed 'TENTACLE_URL' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 258
+[9:40 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 276
+[9:41 PM Jul 29 2011] Notice: Use of undefined constant TENTACLE_URL - assumed 'TENTACLE_URL' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 258
+[9:41 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 276
+[9:43 PM Jul 29 2011] Notice: Use of undefined constant TENTACLE_URL - assumed 'TENTACLE_URL' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 258
+[9:43 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 276
+[9:43 PM Jul 29 2011] Notice: Use of undefined constant TENTACLE_URL - assumed 'TENTACLE_URL' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 258
+[9:43 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 276
+[9:43 PM Jul 29 2011] Notice: Use of undefined constant TENTACLE_URL - assumed 'TENTACLE_URL' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 258
+[9:43 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 276
+[9:43 PM Jul 29 2011] Notice: Use of undefined constant TENTACLE_URL - assumed 'TENTACLE_URL' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 258
+[9:43 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 276
+[9:43 PM Jul 29 2011] Notice: Use of undefined constant TENTACLE_URL - assumed 'TENTACLE_URL' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 258
+[9:43 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 276
+[9:45 PM Jul 29 2011] Notice: Use of undefined constant TENTACLE_URL - assumed 'TENTACLE_URL' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 258
+[9:45 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 277
+[9:45 PM Jul 29 2011] Notice: Use of undefined constant TENTACLE_URL - assumed 'TENTACLE_URL' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 258
+[9:45 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 277
+[9:46 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 278
+[9:47 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 278
+[9:48 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 278
+[9:48 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 278
+[9:50 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 278
+[9:50 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 278
+[9:50 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 278
+[9:50 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 278
+[9:51 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 278
+[9:52 PM Jul 29 2011] Notice: Use of undefined constant TENTACLE_CSS - assumed 'TENTACLE_CSS' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 264
+[9:52 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 280
+[9:53 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 280
+[9:54 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 280
+[9:54 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 280
+[9:54 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 280
+[9:54 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 280
+[9:54 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 280
+[9:54 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 280
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-header.php ON LINE 11
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-header.php ON LINE 14
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-header.php ON LINE 15
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 11
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 12
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 13
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 14
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 15
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 16
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 23
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 24
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 32
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 33
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 34
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 41
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 42
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 48
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 63
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 64
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 65
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 66
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 67
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 68
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 69
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 70
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 71
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 72
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 80
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 81
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 82
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 95
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 96
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 97
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 98
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 99
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 100
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 101
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 104
+[9:54 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 106
+[10:19 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/login.php ON LINE 19
+[10:25 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/login.php ON LINE 19
+[10:26 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/login.php ON LINE 19
+[10:26 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/login.php ON LINE 19
+[10:26 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/login.php ON LINE 19
+[10:26 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/login.php ON LINE 19
+[10:26 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/login.php ON LINE 19
+[10:26 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/login.php ON LINE 19
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/login.php ON LINE 19
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-header.php ON LINE 11
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-header.php ON LINE 14
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-header.php ON LINE 15
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 11
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 12
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 13
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 14
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 15
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 16
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 23
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 24
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 32
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 33
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 34
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 41
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 42
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 48
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 63
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 64
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 65
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 66
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 67
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 68
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 69
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 70
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 71
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 72
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 80
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 81
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 82
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 95
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 96
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 97
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 98
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 99
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 100
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 101
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 104
+[10:27 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 106
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-header.php ON LINE 14
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-header.php ON LINE 15
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 11
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 12
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 13
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 14
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 15
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 16
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 23
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 24
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 32
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 33
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 34
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 41
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 42
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 48
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 63
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 64
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 65
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 66
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 67
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 68
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 69
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 70
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 71
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 72
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 80
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 81
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 82
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 95
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 96
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 97
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 98
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 99
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 100
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 101
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 104
+[10:28 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 106
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 11
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 12
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 13
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 14
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 15
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 16
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 23
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 24
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 32
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 33
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 34
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 41
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 42
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 48
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 63
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 64
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 65
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 66
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 67
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 68
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 69
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 70
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 71
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 72
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 80
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 81
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 82
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 95
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 96
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 97
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 98
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 99
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 100
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 101
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 104
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-sidebar.php ON LINE 106
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_manage.php ON LINE 27
+[10:29 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_manage.php ON LINE 27
+[10:34 PM Jul 29 2011] Notice: Use of undefined constant ADMIN_BASE - assumed 'ADMIN_BASE' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/template-header.php ON LINE 11
+[10:51 PM Jul 29 2011] Notice: Undefined index: HTTP_REFERER IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 282
+[11:07 PM Jul 29 2011] Notice: Undefined variable: time IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 418
+[11:12 PM Jul 29 2011] Notice: Use of undefined constant BASE_ADMIN - assumed 'BASE_ADMIN' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/login.php ON LINE 19
+[2:06 AM Jul 30 2011] Notice: Undefined variable: f IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 833
+[2:06 AM Jul 30 2011] Notice: Undefined variable: zipped IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 833
+[2:06 AM Jul 30 2011] Warning: fwrite() expects parameter 1 to be resource, null given IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 833
+[2:06 AM Jul 30 2011] Notice: Undefined variable: f IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 834
+[2:06 AM Jul 30 2011] Warning: fclose() expects parameter 1 to be resource, null given IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 834
+[3:35 AM Jul 30 2011] Notice: Undefined variable: f IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 833
+[3:35 AM Jul 30 2011] Notice: Undefined variable: zipped IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 833
+[3:35 AM Jul 30 2011] Warning: fwrite() expects parameter 1 to be resource, null given IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 833
+[3:35 AM Jul 30 2011] Notice: Undefined variable: f IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 834
+[3:35 AM Jul 30 2011] Warning: fclose() expects parameter 1 to be resource, null given IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 834
+[3:35 AM Jul 30 2011] Notice: Undefined variable: appname IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 835
+[3:35 AM Jul 30 2011] Notice: Undefined variable: appname IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 836
+[3:35 AM Jul 30 2011] Warning: unlink(.zip) [<a href='function.unlink'>function.unlink</a>]: No such file or directory IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 836
+[3:36 AM Jul 30 2011] Notice: Undefined variable: f IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 833
+[3:36 AM Jul 30 2011] Notice: Undefined variable: zipped IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 833
+[3:36 AM Jul 30 2011] Warning: fwrite() expects parameter 1 to be resource, null given IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 833
+[3:36 AM Jul 30 2011] Notice: Undefined variable: f IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 834
+[3:36 AM Jul 30 2011] Warning: fclose() expects parameter 1 to be resource, null given IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 834
+[3:36 AM Jul 30 2011] Notice: Undefined variable: appname IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 835
+[3:36 AM Jul 30 2011] Notice: Undefined variable: appname IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 836
+[3:36 AM Jul 30 2011] Warning: unlink(.zip) [<a href='function.unlink'>function.unlink</a>]: No such file or directory IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 836
+[3:46 AM Jul 30 2011] Notice: Undefined variable: f IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 833
+[3:46 AM Jul 30 2011] Notice: Undefined variable: zipped IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 833
+[3:46 AM Jul 30 2011] Warning: fwrite() expects parameter 1 to be resource, null given IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 833
+[3:46 AM Jul 30 2011] Notice: Undefined variable: f IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 834
+[3:46 AM Jul 30 2011] Warning: fclose() expects parameter 1 to be resource, null given IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 834
+[3:46 AM Jul 30 2011] Notice: Undefined variable: appname IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 835
+[3:46 AM Jul 30 2011] Notice: Undefined variable: appname IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 836
+[3:46 AM Jul 30 2011] Warning: unlink(.zip) [<a href='function.unlink'>function.unlink</a>]: No such file or directory IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 836
+[4:28 AM Jul 30 2011] Notice: Undefined variable: f IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 833
+[4:28 AM Jul 30 2011] Notice: Undefined variable: zipped IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 833
+[4:28 AM Jul 30 2011] Warning: fwrite() expects parameter 1 to be resource, null given IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 833
+[4:28 AM Jul 30 2011] Notice: Undefined variable: f IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 834
+[4:28 AM Jul 30 2011] Warning: fclose() expects parameter 1 to be resource, null given IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 834
+[4:28 AM Jul 30 2011] Notice: Undefined variable: appname IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 835
+[4:28 AM Jul 30 2011] Notice: Undefined variable: appname IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 836
+[4:28 AM Jul 30 2011] Warning: unlink(.zip) [<a href='function.unlink'>function.unlink</a>]: No such file or directory IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/dev.php ON LINE 836
+[5:10 AM Jul 30 2011] Notice: Use of undefined constant ADMINL - assumed 'ADMINL' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_profile.php ON LINE 11
+[5:11 AM Jul 30 2011] Notice: Undefined variable: id IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 140
+[5:11 AM Jul 30 2011] Notice: Undefined variable: email IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 46
+[5:11 AM Jul 30 2011] Notice: Undefined variable: user_name IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 47
+[5:11 AM Jul 30 2011] Notice: Undefined variable: type IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 48
+[5:11 AM Jul 30 2011] Notice: Undefined variable: first_name IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 50
+[5:11 AM Jul 30 2011] Notice: Undefined variable: last_name IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 51
+[5:11 AM Jul 30 2011] Notice: Undefined variable: url IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 52
+[5:11 AM Jul 30 2011] Notice: Undefined variable: display_name IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 53
+[5:11 AM Jul 30 2011] Notice: Undefined variable: email IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 56
+[5:12 AM Jul 30 2011] Notice: Undefined variable: id IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 140
+[5:12 AM Jul 30 2011] Notice: Undefined variable: email IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 57
+[5:17 AM Jul 30 2011] Notice: Undefined variable: profile IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 138
+[5:17 AM Jul 30 2011] Notice: Undefined variable: email IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 57
+[5:17 AM Jul 30 2011] Notice: Undefined variable: profile IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 139
+[5:17 AM Jul 30 2011] Notice: Undefined variable: email IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 57
+[5:18 AM Jul 30 2011] Notice: Undefined variable: profile IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 139
+[5:18 AM Jul 30 2011] Notice: Undefined variable: email IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 57
+[5:18 AM Jul 30 2011] Notice: Undefined variable: email IN /Users/adampatterson/Sites/http/dev.tcms.me/application/model/user.php ON LINE 57
+[5:24 AM Jul 30 2011] Notice: Undefined variable: profile IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 128
+[4:02 PM Jul 30 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 40
+[4:02 PM Jul 30 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 40
+[4:03 PM Jul 30 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 40
+[4:04 PM Jul 30 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 40
+[6:52 PM Jul 30 2011] Notice: Undefined variable: profile IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 105
+[6:52 PM Jul 30 2011] Notice: Use of undefined constant ADMINL - assumed 'ADMINL' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_add.php ON LINE 11
+[6:52 PM Jul 30 2011] Notice: Undefined variable: profile IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 105
+[7:00 PM Jul 30 2011] Notice: Undefined variable: profile IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 105
+[7:00 PM Jul 30 2011] Notice: Undefined variable: profile IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 105
+[7:00 PM Jul 30 2011] Notice: Undefined variable: profile IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 105
+[7:00 PM Jul 30 2011] Notice: Undefined variable: profile IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 105
+[11:21 PM Jul 30 2011] Notice: Undefined variable: profile IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 105
+[11:22 PM Jul 30 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 40
+[11:22 PM Jul 30 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 40
+[11:27 PM Jul 30 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 40
+[11:27 PM Jul 30 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 40
+[11:27 PM Jul 30 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 40
+[11:28 PM Jul 30 2011] Notice: Use of undefined constant ADMINL - assumed 'ADMINL' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_add.php ON LINE 11
+[11:28 PM Jul 30 2011] Notice: Use of undefined constant ADMINL - assumed 'ADMINL' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/view/admin/users/users_add.php ON LINE 11
+[11:29 PM Jul 30 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 40
+[11:30 PM Jul 30 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 40
+[11:30 PM Jul 30 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 40
+[11:35 PM Jul 30 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/post.php ON LINE 40
+[5:49 AM Aug 22 2011] Notice: Undefined variable: theme_folder IN /Users/adampatterson/Sites/http/dev.tcms.me/application/helper/tentacle.php ON LINE 92
+[5:49 AM Aug 22 2011] Warning: The requested theme part (/Users/adampatterson/Sites/http/dev.tcms.me/tentacle/themes/part-admin/template-login-footer.php) could not be found. IN current file ON LINE (unknown)
+[5:50 AM Aug 22 2011] Warning: The requested theme part (/Users/adampatterson/Sites/http/dev.tcms.me/tentacle/themes/default/part-admin/template-login-footer.php) could not be found. IN current file ON LINE (unknown)
+[5:50 AM Aug 22 2011] Notice: Undefined variable: data IN /Users/adampatterson/Sites/http/dev.tcms.me/application/helper/tentacle.php ON LINE 98
+[5:51 AM Aug 22 2011] Notice: Undefined variable: data IN /Users/adampatterson/Sites/http/dev.tcms.me/application/helper/tentacle.php ON LINE 98
+[5:54 AM Aug 22 2011] Notice: Undefined variable: title IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/themes/default/part-header.php ON LINE 5
+[5:54 AM Aug 22 2011] Notice: Undefined variable: assets IN /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/themes/default/part-header.php ON LINE 6
+[5:54 AM Aug 22 2011] Warning: Missing argument 2 for load_part(), called in /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/themes/default/home.php on line 14 and defined IN /Users/adampatterson/Sites/http/dev.tcms.me/application/helper/tentacle.php ON LINE 87
+[5:54 AM Aug 22 2011] Notice: Undefined variable: data IN /Users/adampatterson/Sites/http/dev.tcms.me/application/helper/tentacle.php ON LINE 99
+[10:41 PM Aug 23 2011] Notice: Undefined variable: themes IN /Users/adampatterson/Sites/http/dev.tcms.me/application/helper/theme.php ON LINE 242
+[11:02 PM Aug 23 2011] Notice: Undefined index: /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/themes/default/home.php IN /Users/adampatterson/Sites/http/dev.tcms.me/application/helper/theme.php ON LINE 216
+[11:02 PM Aug 23 2011] Notice: Undefined index: template IN /Users/adampatterson/Sites/http/dev.tcms.me/application/helper/theme.php ON LINE 216
+[11:02 PM Aug 23 2011] Notice: Undefined index: /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/themes/default/page-template.php IN /Users/adampatterson/Sites/http/dev.tcms.me/application/helper/theme.php ON LINE 216
+[11:02 PM Aug 23 2011] Notice: Undefined index: template IN /Users/adampatterson/Sites/http/dev.tcms.me/application/helper/theme.php ON LINE 216
+[11:03 PM Aug 23 2011] Notice: Undefined index: /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/themes/default/home.php IN /Users/adampatterson/Sites/http/dev.tcms.me/application/helper/theme.php ON LINE 215
+[11:03 PM Aug 23 2011] Notice: Undefined index: template IN /Users/adampatterson/Sites/http/dev.tcms.me/application/helper/theme.php ON LINE 215
+[11:03 PM Aug 23 2011] Notice: Undefined index: /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/themes/default/page-template.php IN /Users/adampatterson/Sites/http/dev.tcms.me/application/helper/theme.php ON LINE 215
+[11:03 PM Aug 23 2011] Notice: Undefined index: template IN /Users/adampatterson/Sites/http/dev.tcms.me/application/helper/theme.php ON LINE 215
+[2:19 AM Aug 29 2011] Notice: Use of undefined constant NOTE_PASSWORD - assumed 'NOTE_PASSWORD' IN /Users/adampatterson/Sites/http/dev.tcms.me/application/controller/action.php ON LINE 29
