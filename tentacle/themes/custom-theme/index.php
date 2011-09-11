@@ -1,16 +1,4 @@
 <?
-$settings = array(
-    'id'          => 'custom_theme',
-    'title'       => 'Custom Theme',
-    'description' => 'This is the Custom theme for Tentacle.',
-    'version'     => '1.0',
-   	'license'     => 'GPL',
-	'author'      => 'Adam Patterson',
-    'website'     => 'http://www.adampatterson.ca/',
-    'update_url'  => 'http://www.adampatterson.ca/theme-versions.xml',
-    'require_tentacle_version' => '1.0'
-);
-
 
 if (CONFIGURATION == 'deployment'){
 	$resource_assets = array(

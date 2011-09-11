@@ -7,7 +7,9 @@
 			<p>
 				Choose a Template
 			</p>
-			<? clean_out($themes->get_themes()); ?>
+			<? foreach ($themes_list as $theme): 
+				clean_out($theme);
+			 endforeach; ?>
 			<h2>Appearance</h2>
 			<hr />
 			<p>Font type</p>

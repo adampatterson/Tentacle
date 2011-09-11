@@ -22,23 +22,26 @@ function get_themes()
 					$theme_index[0] = NULL;
 				}
 
-				$theme_screenshot = glob(THEMES_URL.'/'.$file.'/screenshot.png');	
+				$theme_screenshot = glob(THEMES_DIR.'/'.$file.'/screenshot.png');	
 				if (empty($theme_screenshot)) {
 					$theme_screenshot = array();
 					$theme_screenshot[0] = NULL;
+				} else {
+					$theme_screenshot[0] = THEMES_URL.'/'.$file.'/screenshot.png';
 				}
 				
-				$theme_style = glob(THEMES_URL.'/'.$file.'/style.css');
+				$theme_style = glob(THEMES_DIR.'/'.$file.'/style.css');
 				if (empty($theme_style)) {
 					$theme_style = array();								
 					$theme_style[0] = NULL;
+				} else {
+					$theme_style[0] = THEMES_URL.'/'.$file.'/style.css';
 				}
 
 				$themes[$file]['index'] = $theme_index[0];
 				$themes[$file]['screenshot'] = $theme_screenshot[0];
 				$themes[$file]['style'] = $theme_style[0];
 				$themes[$file]['theme-name'] = inflector::humanize($file);
-				
 			}
 		}
 		closedir($handle);
@@ -48,34 +51,44 @@ function get_themes()
 	return($themes);
 }// Get Themes
 
-# @todo Consider using the same method of loading template files for themes.
-function get_settings( $index_path = '' )
+
+function get_settings ( $style_path = '' )
 {
+	$style_file = $style_path.'/style.css';
 	
-	$index_file = $index_path.'/index.php';
-	
-	if ( file_exists( $index_file ) ) 
+	if ( file_exists( $style_file ) ) 
 	{
-		# @todo Load the file don't include it.
-		include $index_file;
+		$file = get_data($style_file, 'theme');
 		
-		if ( isset( $settings ) ) 
-		{
-			return $settings;
-		} 
-		else 
-		{
-			return NULL;
-		}
-		
-	} 
-	else 
-	{
-		return NULL;
+		$theme[$style_file]['theme_name'] = $file['Name'];
+		$theme[$style_file]['theme_uri'] = $file['URI'];
+		$theme[$style_file]['theme_description'] = $file['Description'];
+		$theme[$style_file]['theme_author'] = $file['Author'];
+		$theme[$style_file]['theme_version'] = $file['Version'];
+
+		return($theme);
 	}
-	
 } // Get Settings
 
+
+function get_templates ( $theme_folder ) 
+{
+	$php_files = glob($theme_folder.'/*.php');	
+
+	foreach ($php_files as $php_file)
+	{
+		$file = get_data($php_file, 'template');
+	
+		$template[$php_file]['template_name'] = $file['Name'];
+		$template[$php_file]['template_uri'] = $file['URI'];
+		$template[$php_file]['template_description'] = $file['Description'];
+		$template[$php_file]['template_author'] = $file['Author'];
+		$template[$php_file]['template_version'] = $file['Version'];
+	}
+
+	return($template);
+	
+} // Get Templates
 
 function get_resources( $index_path = '' )
 {
@@ -135,27 +148,12 @@ function get_file_data( $file, $default_headers )
 } // get_file_data
 
 
-function get_data( $theme_file, $context = '' ) 
+function get_data( $theme_file) 
 {
 
-	if ( $context = '' ) {
-		
 		$default_headers = array(
-			'Name' => 'Theme Name',
-			'URI' => 'Theme URI',
-			'Description' => 'Description',
-			'Author' => 'Author',
-			'AuthorURI' => 'Author URI',
-			'Version' => 'Version',
-			'Template' => 'Theme',
-			'Status' => 'Status'
-			);
-			
-	} else {
-
-		$default_headers = array(
-			'Name' => 'Template Name',
-			'URI' => 'Template URI',
+			'Name' => 'Name',
+			'URI' => 'URI',
 			'Description' => 'Description',
 			'Author' => 'Author',
 			'AuthorURI' => 'Author URI',
@@ -163,8 +161,6 @@ function get_data( $theme_file, $context = '' )
 			'Template' => 'Template',
 			'Status' => 'Status'
 			);
-	}
-
 
 	$theme_data = get_file_data( $theme_file, $default_headers, 'theme' );
 
@@ -198,22 +194,3 @@ function get_data( $theme_file, $context = '' )
 
 	return $theme_data;
 }// Get Theme Data
-
-
-function get_templates ( $theme_folder ) 
-{
-	$php_files = glob($theme_folder.'/*.php');	
-
-	foreach ($php_files as $php_file)
-	{
-		$file = get_data($php_file, 'template');
-		
-		if ($file['Name'] != '') {
-			$template[$php_file]['template_name'] = $file['Name'];
-			$template[$php_file]['template_author'] = $file['Author'];
-		}
-	}
-
-	return($template);
-	
-} // Get Templates

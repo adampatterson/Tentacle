@@ -1,6 +1,6 @@
 <?
 /*
-Tempalte Name: Custome - Theme page template
+Name: Custome - Theme page template
 */
 
 $resource_assets = array(

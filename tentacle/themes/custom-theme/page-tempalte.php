@@ -1,7 +1,7 @@
 <?
  /*
-Tempalte Name: Default - Cusom page template
-Theme URI: http://tcms.me/
+Name: Default - Cusom page template
+URI: http://tcms.me/
 Description: This is the Tentacle default thgeme.
 Author: Tentacle
 Version: 1.0

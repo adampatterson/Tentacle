@@ -1,8 +1,8 @@
 <?
  /*
-Template Name: Home Page
-Template URI: http://tcms.me/
-Description: This is the Tentacle default thgeme.
+Name: Home Page
+URI: http://tcms.me/
+Description: This is the Tentacle default theme.
 Author: Tentacle
 Version: 1.0
 License: GNU General Public License
