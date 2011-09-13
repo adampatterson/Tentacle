@@ -2,3 +2,4 @@
 /application/config/development
 /log.txt
 /.project
+/tentacle/admin/.sass-cache/
