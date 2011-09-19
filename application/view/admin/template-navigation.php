@@ -4,7 +4,7 @@
 		  <div class="fill">
 			<div class="container-full">
 			  <h3><a href="<?= ADMIN ?>"><img src="<?= TENTACLE_URL.'/admin/images/tentacle_logo_small.png' ?>" alt="" /></a></h3>
-			<ul class="nav">
+			<ul class="nav" data-dropdown="dropdown">
 				<li class="<? if (
 			    CURRENT_PAGE == 'admin/dashboard') echo 'active'; ?>"><a href="<?= ADMIN ?>">Dashboard</a></li>
 				<li class="<? /*if (

@@ -1,6 +1,9 @@
+html, body {
+  height: 100%; }
+
 body {
   font-family: "Arial", Gadget, sans-serif;
-  color: #FFF;
+  color: #000;
   margin: 0;
   padding: 0; }
 
@@ -104,9 +107,11 @@ body {
   color: black; }
 #wrap h1.title {
   margin-bottom: 20px; }
-#wrap a:link, #wrap a:visited {
+#wrap a:link, #wrap a:visited, #wrap a:visited.btn {
   color: black; }
 #wrap a.btn {
+  color: #333; }
+#wrap a.btn.primary, #wrap a.btn.info, #wrap a.btn.success, #wrap a.btn.danger {
   color: #fff; }
 
 .page-details {
@@ -241,7 +246,7 @@ Topbar
 Admin Sidebar
 * ------------------------------------------------------------------------------------------- */
 .has-right-sidebar .has-tabs {
-  padding-top: 58px; }
+  padding-top: 70px; }
 .has-right-sidebar .contet-sidebar {
   display: block;
   margin-top: 50px;
@@ -301,6 +306,8 @@ Table
 #wrap .pagination {
   margin: 0;
   padding: 0; }
+#wrap .pagination ul {
+  border: 0; }
 #wrap .pagination a:link, #wrap .pagination a:visited {
   line-height: 20px;
   padding: 3px 6px;
@@ -576,6 +583,24 @@ Temp
   display: block;
   background: none;
   border-top: 0 none; }
+
+#wrap .popover .inner h3.title, #wrap .popover .inner .content {
+  background-color: #f5f5f5;
+  padding: 9px 15px;
+  line-height: 1;
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+  border-bottom: 1px solid #eee; }
+
+/*
+* Alert
+* ------------------------------------------------------------------------------------------- */
+#wrap .alert-message.error p, #wrap .alert-message.success p, #wrap .alert-message.info p {
+  color: white; }
+
+#wrap .block-message.error p, #wrap .block-message.success p, #wrap .block-message.info p {
+  color: black; }
 
 /*
 * Flash

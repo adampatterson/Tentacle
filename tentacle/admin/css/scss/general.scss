@@ -247,10 +247,6 @@ table th {
 	margin: 0;
 }
 
-a:link, a:visited {
-	color: white;
-}
-
 /*
 * Spice
 * ------------------------------------------------------------------------------------------- */
@@ -373,4 +369,8 @@ hr.space {
 
 #wrap a:link.red, #wrap a:visited.red, .red {
 	color: red;
+}
+
+section > .row {
+margin-bottom: 10px;
 }

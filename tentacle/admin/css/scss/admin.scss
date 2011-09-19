@@ -1,6 +1,9 @@
+html, body {
+	height: 100%;
+}
 body {
 	font-family: "Arial", Gadget, sans-serif;
-	color: #FFF;
+	color: #000;
 	margin: 0;
 	padding: 0;
 }
@@ -148,10 +151,14 @@ body {
 
 	a {
 		&:link, 
-		&:visited {
+		&:visited,
+		&:visited.btn {
 			color: black;
 		}
 		&.btn {
+			color: #333;
+		}
+		&.btn.primary, &.btn.info, &.btn.success, &.btn.danger {
 			color: #fff;
 		}
 	}
@@ -332,7 +339,7 @@ Admin Sidebar
 * ------------------------------------------------------------------------------------------- */
 .has-right-sidebar {
 	.has-tabs {
-		padding-top: 58px;
+		padding-top: 70px;
 	}
 	
 	.contet-sidebar {
@@ -426,6 +433,10 @@ Table
 	
 	margin: 0;
 	padding: 0;
+	
+	ul {
+		border: 0;
+	}
 	
 	a:link,
 	a:visited {
@@ -770,6 +781,34 @@ Temp
 		background: none;
 		border-top: 0 none;
 	}
+}
+
+#wrap .popover .inner h3.title,
+#wrap .popover .inner .content{
+	background-color:#f5f5f5;
+	padding:9px 15px;line-height:1;
+	-webkit-border-radius:3px 3px 0 0;
+	-moz-border-radius:3px 3px 0 0;
+	border-radius:3px 3px 0 0;
+	border-bottom:1px solid #eee;
+}
+
+/*
+* Alert
+* ------------------------------------------------------------------------------------------- */
+#wrap .alert-message {
+	&.error, &.success, &.info {
+		p {
+			color: white;
+		}
+	}
+}
+#wrap .block-message {
+	&.error, &.success, &.info {
+		p {
+			color: black;
+		}
+	}	
 }
 
 /*

@@ -63,60 +63,51 @@
 					</div>
 					<?php endif;?>
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Write a new post</h1>
-					<div class="tab-container">
-						<ul class="tabs container">
-							<li>
-								<a href="#first">Content</a>
-							</li>
-							<li>
-								<a href="#second">Option's</a>
-							</li>
-							<!--<li>
-							<a href="#third">Revisions</a>
-							</li>
-							<li>
-							<a href="#fourth">To-Do's</a>
-							</li>-->
-						</ul>
-						<div id="first" class="tab-body">
-							<input type="text" name="title" placeholder='Title' class="xlarge"/>
+					<ul data-tabs="tabs" class="tabs">
+						<li class="active"><a href="#content">Content</a></li>
+						<li class=""><a href="#options">Options</a></li>
+						<!--<li class=""><a href="#revisions">Revisions</a></li>
+						<li class=""><a href="#tasks">Task's</a></li>-->
+					</ul>
+					<div class="tab-content tab-body" id="my-tab-content">
+						<div id="content" class="active">
+							<input type="text" name="title" placeholder='Title' class='xlarge' />
 							<p>
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>
 							</p>
 							<p>
 								<textarea name="content" cols="40" rows="5" class="markItUp" placeholder='Content'></textarea>
-</p>							<!--<p><label>Custom data</label>
-							<input type="text" /></p>-->
-							<!--<div class="alignleft actions">
-							<input type="submit" value="Save" class="button" /><a href="#" class="red">Cancel</a>
-							<input type="button" value="Save and Close" class="button" /><input type="button" value="Save and Continure Editing" class="button" /><a href="#" class="red">Cancel</a>
-							</div>-->
+							</p>
 							<div class="clear"></div>
 						</div>
-						<div id="second" class="tab-body">
+						<div id="options" class="">
 							<fieldset>
 								<div class="clearfix">
 									<label>Breadcrumb</label>
 									<div class="input">
-										<input type="text" value="Edit title" />
+										<input type="text" placeholder="Edit title" name='bread_crumb' />
+										<span class="help-block">This title will appear in the breadcrumb trail.</span>
 									</div>
 								</div>
 								<div class="clearfix">
-									<label>Keywords</label>
+									<label>Meta Keywords</label>
 									<div class="input">
-										<input type="text" value="Keywords" />
+										<input type="text" placeholder="Keywords" name='meta_keywords' />
+										<span class="help-block">Separate each keyword with a comma ( , )</span>
 									</div>
 								</div>
 								<div class="clearfix">
-									<label>Description</label>
+									<label>Meta Description</label>
 									<div class="input">
-										<textarea name="comments" cols="40" rows="5">Enter your comments here...</textarea>
+										<textarea name="meta_description" cols="40" rows="5">Enter your comments here...</textarea>
+										<span class="help-block">A short summary of the page's content</span>
 									</div>
 								</div>
 								<div class="clearfix">
 									<label>Tags</label>
 									<div class="input">
-										<input type="text" value="Edit title" />
+										<input type="text" placeholder="Edit title" name='content_tags' />
+										<span class="help-block">Separate each keyword with a comma ( , )</span>
 									</div>
 								</div>
 								<div class="clearfix">
@@ -125,12 +116,12 @@
 										<ul class="inputs-list">
 											<li>
 												<label>
-													<input type="checkbox">
+													<input type="checkbox" name='meta_robot[]' value='no_index'>
 													Noindex: Tell search engines not to index this webpage.</label>
 											</li>
 											<li>
 												<label>
-													<input type="checkbox">
+													<input type="checkbox" name='meta_robot[]' value='no_follow'>
 													Nofollow: Tell search engines not to spider this webpage.</label>
 											</li>
 										</ul>
@@ -142,12 +133,12 @@
 										<ul class="inputs-list">
 											<li>
 												<label>
-													<input type="checkbox">
+													<input type="checkbox" name='discussion[]' value='discussion'>
 													Allow comments</label>
 											</li>
 											<li>
 												<label>
-													<input type="checkbox">
+													<input type="checkbox" name='discussion[]' value='trackback'>
 													Allow trackbacks and pingbacks on this page.</label>
 											</li>
 										</ul>
@@ -156,7 +147,7 @@
 							</fieldset>
 							<div class="clear"></div>
 						</div>
-						<div id="third" class="tab-body">
+						<div id="revisions" class="">
 							<h4>Feb 7, 2011</h4>
 							<div class="small-row">
 								<input type="radio" checked="checked" />
@@ -215,16 +206,16 @@
 								<div class="alignright"><img src="<?=ADMIN_URL;?>images/icons/16_roll-back.png" width="16" height="16" alt="Revert" />
 								</div>
 							</div>
-							<div class="alignleft actions">
-								<input type="button" value="Compare revision" class="button" />
+							<div class="actions">
+								<input type="btn medium secondry" value="Compare revision" class="button" />
 							</div>
 							<p class="red">
 								Revision code to be added when a suitable diff has been found.
 							</p>
 							<div class="clear"></div>
 						</div>
-						<div id="fourth" class="tab-body">
-							<h4>To-Do's</h4>
+						<div id="tasks" class="">
+							<h4>Task's</h4>
 							<div class="small-row"><img src="<?=ADMIN_URL;?>images/icons/16_star.png" width="16" height="16" alt="Star" />
 								<input type="checkbox" />
 								#8 Created 14:22 by Adam Patterson
@@ -279,8 +270,10 @@
 							<p class="center">
 								<a href="#"><strong>Show archived tasks</strong></a>
 							</p>
-							<div class="alignleft actions">
-								<input type="button" value="Add Task" class="button" />
+							<div class="actions">
+								<button type="text" class="btn medium secondary">
+									Add Task
+								</button>
 							</div>
 							<div class="clear"></div>
 						</div>

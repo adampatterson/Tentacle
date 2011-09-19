@@ -16,16 +16,9 @@ $(document).ready(function(){
 		
 	//Admin Tabs:
 	// ====================================
-		var tabContainers = $('div.tab-container > div');
-		tabContainers.hide().filter(':first').show();
-
-		$('ul.tabs a').click( function () {
-			tabContainers.hide();
-			tabContainers.filter(this.hash).show();
-			$('ul.tabs a').removeClass('active');
-			$(this).addClass('active');
-			return false;
-		}).filter(':first').click();
+		$(function () {
+			$('.tabs').tabs()
+		})
 
     //Close button:
 	// ====================================
@@ -140,25 +133,39 @@ $(document).ready(function(){
 	});
 	
 	/*  Tags in input fields */
-	$('.tags').tagsInput();
+		$('.tags').tagsInput();
 	
-	/* Dropdown example for topbar nav */
+	
+	/* Dropdown for topbar nav */
 	// ====================================
+	     $('#topbar').dropdown()
 
-	 $("body").bind("click", function (e) {
-	    $('.dropdown-toggle, .menu').parent("li").removeClass("open");
-	  });
-	  $(".dropdown-toggle, .menu").click(function (e) {
-	    var $li = $(this).parent("li").toggleClass('open');
-	    return false;
-	  });
+
+	/* Modal Window */
+	// ====================================
+	$('#my-modal').modal()
+
 
   /* Disable certain links in docs */
   // =============================
-
 	  $('').click(function(e) {
 	    e.preventDefault();
 	  });
-  
+	
+	/* Tooltips */
+  	// =============================
+        $("a[rel=twipsy]").twipsy({
+          live: true
+        })
+
+	/* Popover */
+  	// =============================
+        $("a[rel=popover]")
+          .popover({
+            offset: 10
+          })
+          .click(function(e) {
+            e.preventDefault()
+          })
 
 });

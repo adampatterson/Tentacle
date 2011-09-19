@@ -57,23 +57,15 @@
 						<?= $note['content'];?>
 					</div>
 					<?php endif;?>
-					<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Write a new page</h1>
-					<div class="tab-container">
-						<ul class="tabs container">
-							<li>
-								<a href="#first">Content</a>
-							</li>
-							<li>
-								<a href="#second">Option's</a>
-							</li>
-							<!--<li>
-							<a href="#third">Revisions</a>
-							</li>
-							<li>
-								<a href="#fourth">Task's</a>
-							</li>-->
-						</ul>
-						<div id="first" class="tab-body">
+					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Write a new page</h1>
+					<ul data-tabs="tabs" class="tabs">
+						<li class="active"><a href="#content">Content</a></li>
+						<li class=""><a href="#options">Options</a></li>
+						<!--<li class=""><a href="#revisions">Revisions</a></li>
+						<li class=""><a href="#tasks">Task's</a></li>-->
+					</ul>
+					<div class="tab-content tab-body" id="my-tab-content">
+						<div id="content" class="active">
 							<input type="text" name="title" placeholder='Title' class='xlarge' />
 							<p>
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>
@@ -83,7 +75,7 @@
 							</p>
 							<div class="clear"></div>
 						</div>
-						<div id="second" class="tab-body">
+						<div id="options" class="">
 							<fieldset>
 								<div class="clearfix">
 									<label>Breadcrumb</label>
@@ -150,7 +142,7 @@
 							</fieldset>
 							<div class="clear"></div>
 						</div>
-						<div id="third" class="tab-body">
+						<div id="revisions" class="">
 							<h4>Feb 7, 2011</h4>
 							<div class="small-row">
 								<input type="radio" checked="checked" />
@@ -217,7 +209,7 @@
 							</p>
 							<div class="clear"></div>
 						</div>
-						<div id="fourth" class="tab-body">
+						<div id="tasks" class="">
 							<h4>Task's</h4>
 							<div class="small-row"><img src="<?=ADMIN_URL;?>images/icons/16_star.png" width="16" height="16" alt="Star" />
 								<input type="checkbox" />

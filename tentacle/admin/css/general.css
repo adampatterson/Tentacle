@@ -201,9 +201,6 @@ table th {
   line-height: 1.286em;
   margin: 0; }
 
-a:link, a:visited {
-  color: white; }
-
 /*
 * Spice
 * ------------------------------------------------------------------------------------------- */
@@ -272,12 +269,12 @@ hr.space {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0; }
-  .actions .secondary-action {
-    float: right; }
-    .actions .secondary-action a {
-      line-height: 30px; }
-      .actions .secondary-action a:hover {
-        text-decoration: underline; }
+.actions .secondary-action {
+  float: right; }
+.actions .secondary-action a {
+  line-height: 30px; }
+.actions .secondary-action a:hover {
+  text-decoration: underline; }
 
 .alignright.actions {
   padding: 0; }
@@ -300,3 +297,6 @@ hr.space {
 
 #wrap a:link.red, #wrap a:visited.red, .red {
   color: red; }
+
+section > .row {
+  margin-bottom: 10px; }

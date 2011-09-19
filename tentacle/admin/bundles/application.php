@@ -21,7 +21,13 @@
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>markitup/jquery.markitup.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.inputtags.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>markitup/sets/textile/set.js"></script>
-	<script src="<?=TENTACLE_JS; ?>bootstrap/application.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-tabs.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-alerts.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-dropdown.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-scrollspy.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-modal.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-twipsy.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-popover.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$(".markItUp").markItUp(mySettings);
