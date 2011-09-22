@@ -8,12 +8,14 @@ class themes_model
 	
 	public function get_themes () 
 	{
-		return get_themes();
+		load::helper ('array');
+
+		return arrayToObject(get_themes());
 	}
 	
-	public function theme_settings ( $theme = 'default' )
+	public function theme_settings ( $theme = '' )
 	{
-		return get_settings(THEMES_DIR.'/$theme');
+		return get_settings('/$theme');
 	}
 	
 	public function theme_resources ( $theme = 'default' )

@@ -264,10 +264,9 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		$themes = load::model ( 'themes' );
-		$themes_list = $themes->get_themes();
+		$theme = load::helper ('theme');
 		
-		load::view ('admin/settings/settings_appearance', array( 'themes_list'=>$themes_list));
+		load::view ('admin/settings/settings_appearance', array('theme'=>$theme ));
 	}
 
 	public function settings_comments ()

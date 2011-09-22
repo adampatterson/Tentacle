@@ -1,5 +1,7 @@
 <?php if(!defined('DINGO')){die('External Access to File Denied');}
-	
+
+load::helper ('array');
+
 function _cleanup_header_comment($str) 
 {
 	return trim(preg_replace("/\s*(?:\*\/|\?>).*/", '', $str));
@@ -25,7 +27,7 @@ function get_themes()
 				$theme_screenshot = glob(THEMES_DIR.'/'.$file.'/screenshot.png');	
 				if (empty($theme_screenshot)) {
 					$theme_screenshot = array();
-					$theme_screenshot[0] = NULL;
+					$theme_screenshot[0] = 'http://placehold.it/210x150';
 				} else {
 					$theme_screenshot[0] = THEMES_URL.'/'.$file.'/screenshot.png';
 				}
@@ -41,21 +43,21 @@ function get_themes()
 				$themes[$file]['index'] = $theme_index[0];
 				$themes[$file]['screenshot'] = $theme_screenshot[0];
 				$themes[$file]['style'] = $theme_style[0];
-				$themes[$file]['theme-name'] = inflector::humanize($file);
+				$themes[$file]['theme_name'] = inflector::humanize($file);
+				$themes[$file]['theme_id'] = $file;
 			}
 		}
 		closedir($handle);
 	}
 	asort($themes);
 	
-	return($themes);
+	return(arrayToObject($themes));
 }// Get Themes
 
 
-function get_settings ( $style_path = '' )
+function get_settings ( $style_path = 'default' )
 {
-	$style_file = $style_path.'/style.css';
-	
+	$style_file = THEMES_DIR.'/'.$style_path.'/style.css';
 	if ( file_exists( $style_file ) ) 
 	{
 		$file = get_data($style_file, 'theme');
@@ -65,9 +67,11 @@ function get_settings ( $style_path = '' )
 		$theme[$style_file]['theme_description'] = $file['Description'];
 		$theme[$style_file]['theme_author'] = $file['Author'];
 		$theme[$style_file]['theme_version'] = $file['Version'];
-
-		return($theme);
+	} else {
+		$theme[$style_file]['theme_description'] = 'This theme has a missing style sheet.';
 	}
+	
+	return(arrayToObject($theme));
 } // Get Settings
 
 
@@ -86,7 +90,7 @@ function get_templates ( $theme_folder )
 		$template[$php_file]['template_version'] = $file['Version'];
 	}
 
-	return($template);
+	return(arrayToObject($template));
 	
 } // Get Templates
 

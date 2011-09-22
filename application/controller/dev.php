@@ -217,7 +217,7 @@ class dev_controller {
 			clean_out(get_templates(THEMES_DIR.'/default'));
 		
 		echo '<h2>Themes Settings</h2>';
-			clean_out(get_settings(THEMES_DIR.'/default'));
+			clean_out(get_settings('/default'));
 		
 		echo '<h2>Themes Resources</h2>';
 			clean_out(get_resources(THEMES_DIR.'/default'));
