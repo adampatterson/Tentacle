@@ -1,15 +1,3 @@
-<? if (CONFIGURATION == 'deployment'): ?>
-	<link href="<?=MINIFY; ?>f=tentacle/admin/css/screen_import.css" rel="stylesheet" type="text/css" />
-	<link href="<?=MINIFY; ?>f=tentacle/admin/css/admin.css" rel="stylesheet" type="text/css" />
-	<link href="<?=MINIFY; ?>f=tentacle/admin/css/general.css" rel="stylesheet" type="text/css" />
-	<link href="<?=MINIFY; ?>f=tentacle/admin/css/buttons.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="<?=MINIFY; ?>f=tentacle/admin/js/tentacle-admin.js"></script>
-	<!--[if lt IE 9]>
-	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-<? else: ?>
 	<link href="<?=TENTACLE_CSS; ?>bootstrap-1.3.0.min.css" rel="stylesheet">
 	<link media="screen" type="text/css" rel="stylesheet" href="<?=TENTACLE_JS; ?>markitup/skins/simple/style.css">
 	<link media="screen" type="text/css" rel="stylesheet" href="<?=TENTACLE_JS; ?>markitup/sets/textile/style.css">
@@ -44,4 +32,3 @@
 	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-<? endif;?>

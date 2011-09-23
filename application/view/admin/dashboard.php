@@ -239,24 +239,23 @@ url: "<?= BASE_URL ?>
 										<h2>AJAX Check</h2>
 										<script>
 											$(document).ready(function(){
-$('#ajax').click(function(event){
-jQuery.ajax({
-type: "POST",
-url: "<?= BASE_URL ?>
-	dev / ajax_check",
-	data: 'date=' + 'today',
-	cache: false,
-	success: function(response) {
-		if(response == 1) {
+												$('#ajax').click(function(event){
+												jQuery.ajax({
+												type: "POST",
+												url: "<?= BASE_URL ?>dev/ajax_check",
+													data: 'date=' + 'today',
+													cache: false,
+													success: function(response) {
+														if(response == 1) {
 
-			$('#result').html('This is an ajax request');
-			$('#result').css('display', 'block');
-		}
-	}
-	});
-	});
-	// close DOM
-	});
+															$('#result').html('This is an ajax request');
+															$('#result').css('display', 'block');
+														}
+													}
+													});
+													});
+													// close DOM
+												});
 										</script>
 										<div id="result"></div>
 										<div id="ajax">

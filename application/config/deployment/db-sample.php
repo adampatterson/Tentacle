@@ -17,7 +17,7 @@ config::set('db',array(
     'host'=>'localhost',      // Host
     'username'=>'root',       // Username
     'password'=>'',           // Password
-    'database'=>'addressbook' // Database
+    'database'=>'tentacle' // Database
   )
 ));
 
