@@ -69,3 +69,4 @@ if (DEBUG == TRUE) {
     require_once(TENTACLE_LIB.'/FirePHPCore/FirePHP.class.php');
     ob_start();
 }
+

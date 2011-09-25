@@ -20,5 +20,3 @@ config::set('db',array(
     'database'=>'tentacle' // Database
   )
 ));
-
-?>

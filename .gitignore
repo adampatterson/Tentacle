@@ -3,3 +3,4 @@
 /log.txt
 /.project
 /tentacle/admin/.sass-cache/
+/application/config/deployment/db.php
