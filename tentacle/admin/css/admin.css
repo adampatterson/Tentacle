@@ -43,7 +43,8 @@ body {
   padding: 0 10px; }
 
 .login {
-  background: url("../images/bg_black_denim.png"); }
+  background: url("../images/bg_black_denim.png");
+  height: 100%; }
 .login a:link, .login a:visited {
   color: white; }
 .login #login-logo {
@@ -61,16 +62,6 @@ body {
   height: 320px; }
 .login #login-content input[type="text"], .login #login-content input[type="password"] {
   width: 98%; }
-.login #login-content dl {
-  margin-left: 40px;
-  padding: 0; }
-.login #login-content dt {
-  width: 100px;
-  float: left; }
-.login #login-content dd {
-  width: 220px;
-  float: left;
-  padding: 0; }
 .login #login-content h3 {
   font-size: 1.55em;
   font-weight: bold;
@@ -90,7 +81,8 @@ body {
   padding-top: 20px;
   padding-left: 10px; }
 .login #login-content-message p {
-  font-size: 14px; }
+  font-size: 14px;
+  color: white; }
 .login #login-content-message h3 {
   font-size: 1.55em;
   font-weight: bold;

@@ -52,8 +52,9 @@ body {
 
 
 .login {
-	background: url('../images/bg_black_denim.png');
-
+	background: url('../images/bg_black_denim.png'); 
+	height: 100%;
+	
 	a:link, a:visited {
 		color: white;
 	}
@@ -80,22 +81,6 @@ body {
 		input[type="password"] {
 			width: 98%;
 			}
-
-		dl {
-			margin-left: 40px;
-			padding: 0;
-		}
-
-		dt {
-			width: 100px;
-			float: left;
-		}
-
-		dd {
-			width: 220px;
-			float: left;
-			padding: 0;
-		}
 
 		h3 {
 			font-size: 1.55em;
@@ -125,6 +110,7 @@ body {
 
 		p {
 			font-size: 14px;
+			color: white;
 		}
 
 		 h3 {

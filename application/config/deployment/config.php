@@ -28,7 +28,6 @@ define('ERROR_LOG_FILE','log.txt');
  */
 date_default_timezone_set('UTC');
 
-
 /* Auto Load Libraries */
 config::set( 'autoload_library', array( 'db', 'session', 'user', 'url', 'pagination', 'benchmark', 'image', 'note', 'email' ) );
 
