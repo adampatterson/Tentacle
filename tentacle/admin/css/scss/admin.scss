@@ -82,6 +82,22 @@ body {
 			width: 98%;
 			}
 
+		dl {
+			margin-left: 40px;
+			padding: 0;
+		}
+
+		dt {
+			width: 100px;
+			float: left;
+		}
+
+		dd {
+			width: 220px;
+			float: left;
+			padding: 0;
+		}
+
 		h3 {
 			font-size: 1.55em;
 			font-weight: bold;
@@ -869,4 +885,59 @@ Temp
     .info a {
         color:#205791;
     }
+}
+
+/*
+* Settings - Appearance
+* ------------------------------------------------------------------------------------------- */
+.theme-grid {
+	margin-left: -20px;
+	margin-bottom: 0;
+	zoom: 1;
+
+	&:before, 
+	&:after {
+		display: table;
+		content: "";
+		zoom: 1;
+		*display: inline;
+	}
+	&:after {
+		clear: both;
+	}
+	li {
+		float: left;
+		width: 220px;
+		list-style: none;
+		margin: 0 0 20px 30px;
+
+		strong {
+			line-height: 25px;
+		}
+
+		p { 
+			width: 210px;
+		}
+		a {
+			margin-bottom: 10px;
+			float: left;
+			padding: 4px;
+			border: 1px solid #ddd;
+			-webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			border-radius: 4px;
+			-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+			-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+			box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+		}
+		a img {
+			display: block;
+		}
+		a:hover {
+			border-color: #0069d6;
+			-webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+			-moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+			box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+		}
+	}
 }

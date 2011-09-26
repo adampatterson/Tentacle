@@ -62,6 +62,16 @@ body {
   height: 320px; }
 .login #login-content input[type="text"], .login #login-content input[type="password"] {
   width: 98%; }
+.login #login-content dl {
+  margin-left: 40px;
+  padding: 0; }
+.login #login-content dt {
+  width: 100px;
+  float: left; }
+.login #login-content dd {
+  width: 220px;
+  float: left;
+  padding: 0; }
 .login #login-content h3 {
   font-size: 1.55em;
   font-weight: bold;
@@ -638,3 +648,45 @@ Temp
   color: #264409; }
 .flash .info a {
   color: #205791; }
+
+/*
+* Settings - Appearance
+* ------------------------------------------------------------------------------------------- */
+.theme-grid {
+  margin-left: -20px;
+  margin-bottom: 0;
+  zoom: 1; }
+.theme-grid:before, .theme-grid:after {
+  display: table;
+  content: "";
+  zoom: 1;
+  *display: inline; }
+.theme-grid:after {
+  clear: both; }
+.theme-grid li {
+  float: left;
+  width: 220px;
+  list-style: none;
+  margin: 0 0 20px 30px; }
+.theme-grid li strong {
+  line-height: 25px; }
+.theme-grid li p {
+  width: 210px; }
+.theme-grid li a {
+  margin-bottom: 10px;
+  float: left;
+  padding: 4px;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075); }
+.theme-grid li a img {
+  display: block; }
+.theme-grid li a:hover {
+  border-color: #0069d6;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+  -moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+  box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25); }

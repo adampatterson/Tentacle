@@ -7,14 +7,14 @@
 				Choose a Template
 			</p>
 			<?  ?>
-			<ul class="media-grid">
+			<ul class="theme-grid">
 				<? foreach (get_themes() as $theme):  ?>
 					<li><a href="#">
-							<img src="<?= $theme->screenshot ?>" width="210" height="150" alt="<?= $theme->theme_name ?>" class="thumbnail" /></br>
-							<span><?= $theme->theme_name ?></span>
+							<img src="<?= $theme->screenshot ?>" width="210" height="150" alt="<?= $theme->theme_name ?>" class="thumbnail" />
 						</a>
+						<strong><?= $theme->theme_name ?></strong>
 						<? foreach (get_settings($theme->theme_id) as $setting): ?>
-							<!--p><?= $setting->theme_description; ?></p-->
+							<p><?= $setting->theme_description; ?></p>
 						<? endforeach; ?>
 					</li>
 				 <? endforeach; ?>

@@ -4,7 +4,7 @@ error_reporting(E_STRICT|E_ALL);
 // Application configuration
 //----------------------------------------------------------------------------------------------
 
-require_once('system-variables.php');
+require_once('application/config/system-variables.php');
 
 // Tentacle Version
 require_once('application/config/'.CONFIGURATION.'/version.php');
