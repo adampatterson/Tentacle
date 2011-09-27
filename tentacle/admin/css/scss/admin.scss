@@ -913,12 +913,13 @@ Temp
 
 		strong {
 			line-height: 25px;
+			font-size: 18px;
 		}
 
 		p { 
 			width: 210px;
 		}
-		a {
+		a img {
 			margin-bottom: 10px;
 			float: left;
 			padding: 4px;
@@ -929,15 +930,22 @@ Temp
 			-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
 			-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
 			box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
-		}
-		a img {
 			display: block;
 		}
-		a:hover {
+		a:hover img {
 			border-color: #0069d6;
 			-webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
 			-moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
 			box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
 		}
+		
+		span.notice { margin-left: 5px; }
+		
+		.well {
+			text-align: right;
+			padding: 5px;
+			margin: 10px 0;
+		}
+	
 	}
 }

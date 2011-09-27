@@ -279,8 +279,8 @@ hr.space {
 .alignright.actions {
   padding: 0; }
 
-.actions .button {
-  margin-right: 10px; }
+.actions .btn {
+  margin-right: 5px; }
 
 .actions span a:link {
   padding-left: 5px; }

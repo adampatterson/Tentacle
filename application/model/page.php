@@ -65,7 +65,12 @@ class page_model
 		return 'update';
 	} 
 	
-	public function delete ( $id='' ) 
+	public function soft_delete ( $id='' ) 
+	{
+		return 'delete';
+	}
+	
+	public function is_delete ( $id='' ) 
 	{
 		return 'delete';
 	}

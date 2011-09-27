@@ -33,7 +33,14 @@ class post_model
 	
 	// Delete Post
 	//----------------------------------------------------------------------------------------------
-	public function delete ( $id='' ) 
+	public function soft_delete ( $id='' ) 
+	{
+		return 'delete';
+	}
+	
+	// Delete Post
+	//----------------------------------------------------------------------------------------------
+	public function is_delete ( $id='' ) 
 	{
 		return 'delete';
 	}

@@ -669,10 +669,11 @@ Temp
   list-style: none;
   margin: 0 0 20px 30px; }
 .theme-grid li strong {
-  line-height: 25px; }
+  line-height: 25px;
+  font-size: 18px; }
 .theme-grid li p {
   width: 210px; }
-.theme-grid li a {
+.theme-grid li a img {
   margin-bottom: 10px;
   float: left;
   padding: 4px;
@@ -682,11 +683,16 @@ Temp
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075); }
-.theme-grid li a img {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
   display: block; }
-.theme-grid li a:hover {
+.theme-grid li a:hover img {
   border-color: #0069d6;
   -webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
   -moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
   box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25); }
+.theme-grid li span.notice {
+  margin-left: 5px; }
+.theme-grid li .well {
+  text-align: right;
+  padding: 5px;
+  margin: 10px 0; }
