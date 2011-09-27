@@ -13,7 +13,7 @@ class dev_controller {
 		//echo '<h3>Dev Land</h3>';
 		//echo route::controller().'_'. route::method() .'<br />';
 		
-		echo '<h3>Git pull test</h3>'
+		echo '<h3>Git pull test</h3>';
 		
 		$output = shell_exec('git pull');
 		echo "<pre>$output</pre>";
