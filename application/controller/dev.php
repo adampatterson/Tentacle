@@ -17,10 +17,13 @@ class dev_controller {
 		
 		$output = shell_exec('git pull');
 		echo "<pre>$output</pre>";
-		
-		echo '<p>This was updated.</p>';
+
 	}
 	
+	public function pull()
+	{
+		echo load::helper ('git');
+	}
 	
 	/**
 	* ajax function
