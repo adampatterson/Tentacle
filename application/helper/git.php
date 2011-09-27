@@ -6,7 +6,7 @@
  * @author Adam Patterson
  */
 
-function pull ()
+function pull ($branch = '')
 {
 	return shell_exec('git pull');
 }
