@@ -17,7 +17,9 @@ class dev_controller {
 	
 	public function pull()
 	{
-		echo load::helper ('git');
+		load::helper ('git');
+		
+		echo pull(); 
 	}
 	
 	/**
