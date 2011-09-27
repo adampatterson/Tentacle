@@ -8,5 +8,5 @@
 
 function pull ()
 {
-	return = shell_exec('git pull');
+	return shell_exec('git pull');
 }
