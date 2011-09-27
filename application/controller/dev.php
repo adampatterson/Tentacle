@@ -17,6 +17,8 @@ class dev_controller {
 		
 		$output = shell_exec('git pull');
 		echo "<pre>$output</pre>";
+		
+		echo '<p>This was added as part of a pull test.</p>'
 	}
 	
 	
