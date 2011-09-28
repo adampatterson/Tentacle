@@ -63,10 +63,5 @@ config::set('folder_languages','language');     // Languages
 config::set('folder_errors','error');           // Errors
 config::set('folder_orm','orm');                // ORM
 
-
-if (DEBUG == TRUE) {
-    require_once(TENTACLE_LIB.'/FirePHPCore/fb.php');
-    require_once(TENTACLE_LIB.'/FirePHPCore/FirePHP.class.php');
-    ob_start();
-}
-
+// Tentacle Version
+require_once('version.php');
