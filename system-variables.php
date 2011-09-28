@@ -24,12 +24,13 @@ define('ALLOWED_CHARS','/^[ \!\,\~\&\.\:\+\@\-_a-zA-Z0-9]+$/');
 define('CORE_ROOT', dirname(__FILE__));
 define('APP_PATH', CORE_ROOT);
 
+
+
 /*
  * Added for Tentacle
  */
 
 // Application's Base URL
-
 define('BASE_URI', $_SERVER['REQUEST_URI']);
 
 // @todo BASE_URL may need some testing in other environments

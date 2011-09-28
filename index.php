@@ -6,13 +6,10 @@ error_reporting(E_STRICT|E_ALL);
 
 require_once('system-variables.php');
 
-// Tentacle Version
-require_once('application/config/'.CONFIGURATION.'/version.php');
-
- if (!file_exists('application/config/'.CONFIGURATION.'/db.php')){
+if (!file_exists('application/config/'.CONFIGURATION.'/db.php')){
    header( 'Location: /setup/' ) ;
    exit();
- } 
+} 
 
 // End of configuration
 //----------------------------------------------------------------------------------------------

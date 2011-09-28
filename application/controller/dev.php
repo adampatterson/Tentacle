@@ -12,7 +12,6 @@ class dev_controller {
 	{
 		//echo '<h3>Dev Land</h3>';
 		//echo route::controller().'_'. route::method() .'<br />';
-		
 	}
 	
 	public function pull()
@@ -144,30 +143,6 @@ class dev_controller {
 		}
 	}
 	
-	
-	/**
-	* firephp function
-	*
-	* @return void
-	* @author Adam Patterson
-	**/
-
-	public function firephp()
-	{
-		echo 'Check the Console';
-		
-		$groups = array('contacts'=>'adam');
-	  		
-	  	$firephp = FirePHP::getInstance(TRUE);
-		$firephp->fb('Debugging is enabled!');
-		$firephp->dump('key', 'value');
-		$firephp->log($groups, 'Log Label');
-		$firephp->info($groups, 'Information Label');
-		$firephp->warn($groups, 'Warning Label');
-		$firephp->error($groups, 'Error Label');
-		$firephp->trace('Trace to here');
-	}
-
 	
 	/**
 	* function_test function
