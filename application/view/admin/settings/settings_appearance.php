@@ -15,7 +15,7 @@
 						</a>
 						<strong><?= $theme->theme_name ?></strong><span class="label notice">Notice</span>
 						<div class="well">
-							<a class="btn small primary" href="<?= BASE_URL ?>action/update_appearance/<?= $theme->theme_id ?>">Activate</a>
+							<a class="btn small primary" href="<?= BASE_URL ?>action/update_settings/appearance/<?= $theme->theme_id ?>">Activate</a>
 							<a class="btn small" href="#">Preview</a>
 						</div>
 						<? foreach (get_settings($theme->theme_id) as $setting): ?>

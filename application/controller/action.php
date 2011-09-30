@@ -271,12 +271,12 @@ class action_controller
 	 * 
 	 * 
 	 */
- 	public function update_appearance ()
+ 	public function update_settings ( $key, $value, $autoload = 'yes' )
 	{
 		$setting = load::model ( 'settings' );
 		
-		$update_appearance = $setting->update();
+		$update_appearance = $setting->update( $key, $value, $autoload );
 
-		//url::redirect('admin/settings_appearance');	
+		url::redirect('admin/settings_appearance');	
 	} 
 }
