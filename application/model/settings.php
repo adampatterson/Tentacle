@@ -1,5 +1,5 @@
 <?
-class setting_model  
+class settings_model  
 {
 	/*
 		site_title
@@ -63,26 +63,49 @@ class setting_model
 		
 	*/
 	
-	// Get Settomg
+	// Get Setting
 	//----------------------------------------------------------------------------------------------	
 	public function get ( $key = '' )	
 	{
-	
+		/*
+		if ( get == no ):
+			return $value;
+		else:
+			return false;
+		endif;
+		*/
 	}
 	
-	// Delete Settomg
+	// Delete Setting
 	//----------------------------------------------------------------------------------------------
-	public function delete ()	
+	public function delete ( $key = '' )	
 	{
-	
+		
 	}
 
-	// Add Settomg
+	// Add Setting
 	//----------------------------------------------------------------------------------------------
-	public function add ()	
+	public function add ( $key = '' )	
 	{
-	
+		
 	}
+	
+	// Update Setting
+	//----------------------------------------------------------------------------------------------
+	public function update ( $key = '', $value = '' )	
+	{
+		if ( $this->get( $key ) == false ):
+			$this->add( $key, $value );
+		else:
+			$settings = db('options');
 
+			$settings->update(array(
+					'key'=>$key,
+					'value'=>$value
+				))
+				->where( 'key', '=', $key )
+				->execute();
+		endif;		
+	}
+	
 } // END setting_model
-?>

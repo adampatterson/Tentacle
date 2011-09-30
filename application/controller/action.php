@@ -1,5 +1,6 @@
 <?php
-class action_controller {
+class action_controller 
+{
 	
 	# All actions should return True of False and be treated accordingly.
 	
@@ -258,5 +259,24 @@ class action_controller {
  		
  		url::redirect('admin/content_manage_categories/'); 
   	}
-	 
+
+
+	/*
+	 * 
+	 * 
+	 * 
+	 * ========================= Settings
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+ 	public function update_appearance ()
+	{
+		$setting = load::model ( 'settings' );
+		
+		$update_appearance = $setting->update();
+
+		//url::redirect('admin/settings_appearance');	
+	} 
 }

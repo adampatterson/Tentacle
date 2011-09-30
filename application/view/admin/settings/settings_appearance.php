@@ -8,20 +8,22 @@
 			</p>
 			<?  ?>
 			<ul class="theme-grid">
-				<? foreach (get_themes() as $theme):  ?>
+				<? foreach (get_themes() as $theme):  
+					if ($theme->theme_id != 'empty'): ?>
 					<li><a href="#">
 							<img src="<?= $theme->screenshot ?>" width="210" height="150" alt="<?= $theme->theme_name ?>" class="thumbnail" />
 						</a>
 						<strong><?= $theme->theme_name ?></strong><span class="label notice">Notice</span>
 						<div class="well">
-							<a class="btn small primary" href="#">Activate</a>
+							<a class="btn small primary" href="<?= BASE_URL ?>action/update_appearance/<?= $theme->theme_id ?>">Activate</a>
 							<a class="btn small" href="#">Preview</a>
 						</div>
 						<? foreach (get_settings($theme->theme_id) as $setting): ?>
 							<p><?= $setting->theme_description; ?></p>
 						<? endforeach; ?>
 					</li>
-				 <? endforeach; ?>
+				 <? endif;
+				endforeach; ?>
 			</ul>
 			<!--<h2>Appearance</h2>
 			<hr />
