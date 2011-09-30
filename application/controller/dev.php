@@ -14,11 +14,19 @@ class dev_controller {
 		//echo route::controller().'_'. route::method() .'<br />';
 	}
 	
+	/**
+	* pull function
+	* 
+	* The pull function is triggered by GitHub's Post-Receive URL. 
+	* Every time a push to GitHub is done staging.tcms.me will be updated.
+	*
+	* @return string
+	* @author Adam Patterson
+	*/
+	
 	public function pull()
 	{
 		load::helper ('git');
-		
-		echo pull(); 
 	}
 	
 	/**
