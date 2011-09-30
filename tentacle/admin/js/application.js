@@ -134,7 +134,11 @@ $(document).ready(function(){
 	
 	/*  Tags in input fields */
 		$('.tags').tagsInput();
+
 	
+	/* Alert */
+	// ====================================
+	$(".alert-message").alert()
 	
 	/* Dropdown for topbar nav */
 	// ====================================
