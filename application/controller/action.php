@@ -119,10 +119,10 @@ class action_controller
 		$post = load::model( 'post' );
 		$post_single = $post->add( );
 		// we need the page ID before we can add any meta to the DB.
-		$post_meta = $post->add_meta( $post_id );
+		//$post_meta = $post->add_meta( $post_id );
 		
 		$history = input::post ( 'history' );
-		//url::redirect($history); 
+		url::redirect($history); 
 		
 		// Should post back to edit page
 	}	

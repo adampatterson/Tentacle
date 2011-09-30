@@ -68,6 +68,16 @@ class settings_model
 	public function get ( $key = '' )	
 	{
 		/*
+		$setting = db ( 'options' );
+
+		if ( $key == '' ) {
+			$get_settings = $setting->select( '*' )
+				->order_by ( 'id', 'DESC' )
+				->execute();
+					
+			return $get_settings;
+		
+		
 		if ( get == no ):
 			return $value;
 		else:
@@ -80,7 +90,9 @@ class settings_model
 	//----------------------------------------------------------------------------------------------
 	public function delete ( $key = '' )	
 	{
-		
+		$setting = db('options');
+
+		$setting->delete( 'key','=',$key );
 	}
 
 	// Add Setting
@@ -97,9 +109,9 @@ class settings_model
 		if ( $this->get( $key ) == false ):
 			$this->add( $key, $value );
 		else:
-			$settings = db('options');
+			$setting = db('options');
 
-			$settings->update(array(
+			$setting->update(array(
 					'key'=>$key,
 					'value'=>$value
 				))
