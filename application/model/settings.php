@@ -22,7 +22,7 @@ class settings_model
 				return false;
 			}
 
-			return $get_settings;
+			return $get_settings[0]->value;
 			
 		else:
 		

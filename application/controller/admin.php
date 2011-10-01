@@ -266,6 +266,10 @@ class admin_controller {
 
 		$theme = load::helper ('theme');
 		
+		$options = load::model ( 'settings' );
+		
+		$get = $options->get( 'appearance' );
+		
 		load::view ('admin/settings/settings_appearance', array('theme'=>$theme ));
 	}
 

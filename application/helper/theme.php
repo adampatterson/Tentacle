@@ -7,6 +7,18 @@ function _cleanup_header_comment($str)
 	return trim(preg_replace("/\s*(?:\*\/|\?>).*/", '', $str));
 }
 
+function current_theme( $theme_id = '' ) 
+{
+	$options = load::model ( 'settings' );
+
+	$current_theme = $options->get( 'appearance' );
+	
+	if ( $theme_id == $current_theme )
+	{
+		echo '<span class="label success">Active</span>';
+	}
+}
+
 function get_themes()
 {
   	$themes = array();

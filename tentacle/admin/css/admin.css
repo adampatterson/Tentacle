@@ -696,3 +696,5 @@ Temp
   text-align: right;
   padding: 5px;
   margin: 10px 0; }
+.theme-grid li span.label {
+  padding: 4px 3px; }
