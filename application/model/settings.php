@@ -4,30 +4,28 @@ class settings_model
 	
 	// Get Setting
 	//----------------------------------------------------------------------------------------------	
-	public function get ( $key = '' )	
+	public function get ( $key = '')	
 	{
-
 		$setting = db ( 'options' );
 		
 		$get_settings = '';
 
-		if ( $key != '' ):
-	
+		if ( $key == '' ):
+			return false;
+		else:
+
 			$get_settings = $setting->select( '*' )
 				->where( 'key', '=', $key )
 				->order_by ( 'id', 'DESC' )
 				->execute();
 
-			if ( !isset($get_settings) ) {
-				return false;
+			if ( $get_settings[0]->value == '' ) {
+				
+				return true;
+				
+			} else {
+				return $get_settings[0]->value;
 			}
-
-			return $get_settings[0]->value;
-			
-		else:
-		
-			return false;
-		
 		endif;
 	}
 	
@@ -57,6 +55,8 @@ class settings_model
 	//----------------------------------------------------------------------------------------------
 	public function update ( $key = '', $value = '' )	
 	{
+		// Dont save blank options
+		
 		$autoload = 'yes';
 			
 		if ( $this->get( $key ) == false ):

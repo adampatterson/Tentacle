@@ -278,5 +278,36 @@ class action_controller
 		$update_appearance = $setting->update( $key, $value, $autoload );
 
 		url::redirect('admin/settings_appearance');	
-	} 
+	}
+	
+	public function udpate_settings_post ( )
+	{
+		// get post array and seporate the Key Values.
+		// If they are set then run them through the updator.
+		
+		$setting = load::model ( 'settings' );
+		
+		$autoload = 'yes';
+		$keys = array_keys( $_POST );
+		$values = array_values( $_POST );
+		
+		for (
+		     reset($keys), 
+		     reset($values);
+		     list(, $key ) = each( $keys ) ,
+		     list(, $value ) = each( $values )
+		     ;
+		) {
+
+			if ( $key != 'submit' && $key != 'history' && $key != '') 
+			{
+				$update_settings = $setting->update( $key, $value, $autoload );
+			}
+		}
+		
+		$history = input::post ( 'history' );
+		url::redirect($history);
+		
+		//unset($_POST);
+	}
 }

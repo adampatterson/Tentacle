@@ -2,7 +2,8 @@
 <? load::view('admin/template-sidebar');?>
 <div id="wrap">
 	<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Media settings</h1>
-	<form action="post" class="form-stacked">
+	<form action="<?= BASE_URL ?>action/udpate_settings_post/" method="post" class="form-stacked">
+		<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
 		<div class="one-full">
 			<div class="one-half">
 				<h2>Image sizes</h2>
@@ -15,9 +16,9 @@
 						<label>Thumbnail size</label>
 						<div class="input">
 							<div class="inline-inputs">
-								<input type="text" class="small-text" value="290" name="thumbnail_size_w" id="thumbnail_size_w" />
+								<input type="text" class="small-text" value="290" name="image_thumb_size_w" id="thumbnail_size_w" />
 								x
-								<input type="text" class="small-text" value="290" name="thumbnail_size_h" id="thumbnail_size_h" />
+								<input type="text" class="small-text" value="290" name="image_thumb_size_h" id="thumbnail_size_h" />
 							</div>
 						</div>
 						<div class="input">
@@ -34,9 +35,9 @@
 						<label>Medium size</label>
 						<div class="input">
 							<div class="inline-inputs">
-								<input type="text" class="small-text" value="620" name="medium_size_w" id="medium_size_w" />
+								<input type="text" class="small-text" value="620" name="image_medium_size_w" id="medium_size_w" />
 								x
-								<input type="text" class="small-text" value="9999" name="medium_size_h" id="medium_size_h" />
+								<input type="text" class="small-text" value="9999" name="image_medium_size_h" id="medium_size_h" />
 							</div>
 						</div>
 					</div>
@@ -44,9 +45,9 @@
 						<label>Large size</label>
 						<div class="input">
 							<div class="inline-inputs">
-								<input type="text" class="small-text" value="950" name="large_size_w">
+								<input type="text" class="small-text" value="950" name="image_large_size_w">
 								x
-								<input type="text" class="small-text" value="9999" name="large_size_h">
+								<input type="text" class="small-text" value="9999" name="image_large_size_h">
 							</div>
 						</div>
 					</div>
@@ -58,25 +59,27 @@
 				<div class="clearfix">
 					<label for='upload_path'>Store uploads in this folder</label>
 					<div class="input">
-						<input type="text" class="regular-text code" value="" name="upload_path">
+						<input type="text" class="regular-text code" value="tentacle/storage" name="upload_folder">
 						<span class="help-block">Default is
 							<code>
-								wp-content/uploads
-							</code></span>
+								tentacle/storage
+							</code>
+						</span>
 					</div>
 				</div>
 				<div class="clearfix">
 					<label for="upload_url_path">Full URL path to files</label>
 					<div class="input">
-						<input type="text" class="regular-text code" value="" name="upload_url_path">
+						<input type="text" class="regular-text code" value="http://www.siteurl.com" name="upload_url">
 						<span class="help-block">Configuring this is optional. By default, it should be blank.</span>
 					</div>
 					<div class="input">
 						<ul class="inputs-list">
 							<li>
 								<label for="uploads_use_yearmonth_folders">
-									<input type="checkbox" checked="checked" value="1" name="uploads_use_yearmonth_folders">
-									<span>Organize my uploads into month- and year-based folders</span> </label>
+									<input type="checkbox" checked="checked" value="1" name="upload_organize">
+									<span>Organize my uploads into month- and year-based folders</span>
+								</label>
 							</li>
 						</ul>
 					</div>
