@@ -2,7 +2,7 @@
 <? load::view('admin/template-sidebar');?>
 <div id="wrap">
 	<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> SEO settings</h1>
-	<form action="<?= BASE_URL ?>action/udpate_settings_post/"  class="form-stacked">
+	<form action="<?= BASE_URL ?>action/udpate_settings_post/"  class="form-stacked" method="post">
 		<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
 		<div class="one-full">
 			<div class="one-half">
@@ -20,9 +20,9 @@
 					Enter your meta key "content" value to verify your blog with <a href="https://www.google.com/webmasters/tools/">Google Webmaster Tools</a>, <a href="https://siteexplorer.search.yahoo.com/">Yahoo Site Explorer</a>, and <a href="http://www.bing.com/webmaster">Bing Webmaster Center</a>
 				</p>
 				<div class="clearfix">
-					<label for="verification_services_codes[google]">Google Webmaster Tools</label>
+					<label for="verification_services_google">Google Webmaster Tools</label>
 					<div class="input">
-						<input size="50" name="verification_services_codes[google]" value="" type="text">
+						<input size="50" name="verification_services_google" value="dBw5CvburAxi537Rp9qi5uG2174Vb6JwHwIRwPSLIK8" type="text">
 						<span class="help-block">Example:
 							<code>
 								&lt;meta name='google-site-verification' content='<strong><span class="red">dBw5CvburAxi537Rp9qi5uG2174Vb6JwHwIRwPSLIK8</span></strong>'&gt;
@@ -30,9 +30,9 @@
 					</div>
 				</div>
 				<div class="clearfix">
-					<label for="">Yahoo Site Explorer</label>
+					<label for="verification_services_yahoo">Yahoo Site Explorer</label>
 					<div class="input">
-						<input size="50" name="verification_services_codes[yahoo]" value="" type="text">
+						<input size="50" name="verification_services_yahoo" value="3236dee82aabe064" type="text">
 						<span class="help-block"> Example:
 							<code>
 								&lt;meta name='y_key' content='<strong><span class="red">3236dee82aabe064</span></strong>'&gt;
@@ -40,9 +40,9 @@
 					</div>
 				</div>
 				<div class="clearfix">
-					<label for="">Bing Webmaster Center</label>
+					<label for="verification_services_bing">Bing Webmaster Center</label>
 					<div class="input">
-						<input size="50" name="verification_services_codes[bing]" value="" type="text">
+						<input size="50" name="verification_services_bing" value="12C1203B5086AECE94EB3A3D9830B2E" type="text">
 						<span class="help-block"> Example:
 							<code>
 								&lt;meta name='msvalidate.01' content='<strong><span class="red">12C1203B5086AECE94EB3A3D9830B2E</span></strong>'&gt;
@@ -182,9 +182,8 @@
 		<div class="one-full">
 			<div class="actions">
 				<button class="btn medium primary" type="submit">
-					Save
+					Save changes
 				</button>
-				<a href="#" class="red button-secondary">Cancle</a>
 			</div>
 		</div>
 	</form>

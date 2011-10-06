@@ -70,7 +70,7 @@
 				<div class="clearfix">
 					<label for="upload_url_path">Full URL path to files</label>
 					<div class="input">
-						<input type="text" class="regular-text code" value="http://www.siteurl.com" name="upload_url">
+						<input type="text" class="regular-text code" value="" name="upload_url">
 						<span class="help-block">Configuring this is optional. By default, it should be blank.</span>
 					</div>
 					<div class="input">

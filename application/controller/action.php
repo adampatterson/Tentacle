@@ -281,10 +281,7 @@ class action_controller
 	}
 	
 	public function udpate_settings_post ( )
-	{
-		// get post array and seporate the Key Values.
-		// If they are set then run them through the updator.
-		
+	{	
 		$setting = load::model ( 'settings' );
 		
 		$autoload = 'yes';
@@ -298,8 +295,7 @@ class action_controller
 		     list(, $value ) = each( $values )
 		     ;
 		) {
-
-			if ( $key != 'submit' && $key != 'history' && $key != '') 
+			if ( $key != 'submit' && $key != 'history') 
 			{
 				$update_settings = $setting->update( $key, $value, $autoload );
 			}

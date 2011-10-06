@@ -8,26 +8,23 @@ class settings_model
 	{
 		$setting = db ( 'options' );
 		
-		if ( $key == '' ):
+		$get_settings = $setting->select( '*' )
+			->where( 'key', '=', $key )
+			->order_by ( 'id', 'DESC' )
+			->execute();
+
+		$count = $setting->count()
+			->where( 'key', '=', $key )
+			->execute();
+
+		if ( $count == 0 ):
 			return false;
+		elseif ( $get_settings[0]->value == '' ):
+			return true;
 		else:
-			$get_settings = $setting->select( '*' )
-				->where( 'key', '=', $key )
-				->order_by ( 'id', 'DESC' )
-				->execute();
-
-			$count = $setting->count()
-				->where( 'key', '=', $key )
-				->execute();
-
-			if ( $count == 0 ):
-				return false;
-			else:
-				return $get_settings[0]->value;	
-			endif;
-
+			return $get_settings[0]->value;	
 		endif;
-	}
+}
 	
 	// Delete Setting
 	//----------------------------------------------------------------------------------------------
@@ -54,12 +51,13 @@ class settings_model
 	// Update Setting
 	//----------------------------------------------------------------------------------------------
 	public function update ( $key = '', $value = '' )	
-	{
-		// Dont save blank options
-		
+	{	
 		$autoload = 'yes';
 			
-		if ( $this->get( $key ) == false ):
+		$result = $this->get( $key );
+				
+		if ( $result == false ):
+			echo 'add '.$key.'<br/>';
 			$this->add( $key, $value, $autoload );
 		else:
 			$setting = db('options');
