@@ -7,7 +7,7 @@ class settings_model
 	public function get ( $key = '')	
 	{
 		$setting = db ( 'options' );
-
+		
 		if ( $key == '' ):
 			return false;
 		else:
@@ -22,10 +22,8 @@ class settings_model
 
 			if ( $count == 0 ):
 				return false;
-			elseif ( $count >= 1 ):
-				return true;
 			else:
-				return $get_settings[0]->value;
+				return $get_settings[0]->value;	
 			endif;
 
 		endif;
