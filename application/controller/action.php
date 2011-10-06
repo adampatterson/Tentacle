@@ -304,10 +304,9 @@ class action_controller
 				$update_settings = $setting->update( $key, $value, $autoload );
 			}
 		}
-		
+
 		$history = input::post ( 'history' );
 		url::redirect($history);
-		
 		//unset($_POST);
 	}
 }

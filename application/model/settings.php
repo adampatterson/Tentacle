@@ -16,13 +16,17 @@ class settings_model
 				->order_by ( 'id', 'DESC' )
 				->execute();
 
-			if ( $get_settings[0]->value == '' ) {
-				
+			$count = $setting->count()
+				->where( 'key', '=', $key )
+				->execute();
+
+			if ( $count == 0 ):
+				return false;
+			elseif ( $count >= 1 ):
 				return true;
-				
-			} else {
+			else:
 				return $get_settings[0]->value;
-			}
+			endif;
 
 		endif;
 	}
