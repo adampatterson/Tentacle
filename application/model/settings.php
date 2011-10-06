@@ -13,18 +13,41 @@ class settings_model
 			->order_by ( 'id', 'DESC' )
 			->execute();
 
+
 		$count = $setting->count()
 			->where( 'key', '=', $key )
 			->execute();
 
 		if ( $count == 0 ):
 			return false;
-		elseif ( $get_settings[0]->value == '' ):
-			return true;
 		else:
-			return $get_settings[0]->value;	
+			return $get_settings[0]->value;		
+		endif;			
+	}
+
+
+	// Lookup Setting
+	//----------------------------------------------------------------------------------------------	
+	public function look_up ( $key = '')	
+	{
+		$setting = db ( 'options' );
+		
+		$get_settings = $setting->select( '*' )
+			->where( 'key', '=', $key )
+			->order_by ( 'id', 'DESC' )
+			->execute();
+
+		$count = $setting->count()
+			->where( 'key', '=', $key )
+			->execute();
+
+		if ( $count == 0 ):
+			return false;
+		else:
+			return true;	
 		endif;
-}
+	}
+	
 	
 	// Delete Setting
 	//----------------------------------------------------------------------------------------------
@@ -54,10 +77,9 @@ class settings_model
 	{	
 		$autoload = 'yes';
 			
-		$result = $this->get( $key );
+		$result = $this->look_up( $key );
 				
 		if ( $result == false ):
-			echo 'add '.$key.'<br/>';
 			$this->add( $key, $value, $autoload );
 		else:
 			$setting = db('options');

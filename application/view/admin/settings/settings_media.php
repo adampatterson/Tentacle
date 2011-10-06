@@ -25,6 +25,7 @@
 							<ul class="inputs-list">
 								<li>
 									<label>
+										<input type="hidden" value="0" name="thumbnail_crop">
 										<input type="checkbox" value="1" name="thumbnail_crop">
 										<span>Crop thumbnail to exact dimensions (normally thumbnails are proportional)</span> </label>
 								</li>
@@ -70,14 +71,15 @@
 				<div class="clearfix">
 					<label for="upload_url_path">Full URL path to files</label>
 					<div class="input">
-						<input type="text" class="regular-text code" value="" name="upload_url">
+						<input type="text" class="regular-text code" value="http://www.siteurl.com" name="upload_url">
 						<span class="help-block">Configuring this is optional. By default, it should be blank.</span>
 					</div>
 					<div class="input">
 						<ul class="inputs-list">
 							<li>
 								<label for="uploads_use_yearmonth_folders">
-									<input type="checkbox" checked="checked" value="1" name="upload_organize">
+									<input type="hidden" value="0" name="upload_organize">
+									<input type="checkbox" value="1" name="upload_organize">
 									<span>Organize my uploads into month- and year-based folders</span>
 								</label>
 							</li>

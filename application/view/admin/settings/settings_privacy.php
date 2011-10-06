@@ -13,12 +13,12 @@
 						<ul class="inputs-list">
 							<li>
 								<label>
-									<input type="radio" checked="checked" value="1" name="blog_public">
+									<input type="radio" checked="checked" value="1" name="site_visible">
 									<span>I would like my site to be visible to everyone, including search engines (like Google, Bing, Technorati) and archivers</span> </label>
 							</li>
 							<li>
 								<label>
-									<input type="radio" value="0" name="blog_public">
+									<input type="radio" value="0" name="site_visible">
 									<span>I would like to block search engines, but allow normal visitors</span> </label>
 							</li>
 						</ul>
@@ -33,6 +33,7 @@
 						<ul class="inputs-list">
 							<li>
 								<label>
+									<input type="hidden" value="0" name="blog_public">
 									<input type="checkbox" value="1" name="blog_public">
 									<span>I am performang maintenance on the site and want to display a message.</span> </label>
 							</li>

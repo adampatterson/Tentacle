@@ -302,7 +302,7 @@ class action_controller
 		}
 
 		$history = input::post ( 'history' );
-		url::redirect($history);
+		//url::redirect($history);
 		//unset($_POST);
 	}
 }
