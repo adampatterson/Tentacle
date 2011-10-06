@@ -1,6 +1,5 @@
 <? load::view('admin/template-header', array('title' => 'SEO settings','assets'=>'application')); ?>
 <? load::view('admin/template-sidebar');?>
-
 <div id="wrap">
   <div class="full-content">
     <div id="post-body">

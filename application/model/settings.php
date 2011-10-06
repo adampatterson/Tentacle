@@ -7,13 +7,10 @@ class settings_model
 	public function get ( $key = '')	
 	{
 		$setting = db ( 'options' );
-		
-		$get_settings = '';
 
 		if ( $key == '' ):
 			return false;
 		else:
-
 			$get_settings = $setting->select( '*' )
 				->where( 'key', '=', $key )
 				->order_by ( 'id', 'DESC' )
@@ -26,6 +23,7 @@ class settings_model
 			} else {
 				return $get_settings[0]->value;
 			}
+
 		endif;
 	}
 	

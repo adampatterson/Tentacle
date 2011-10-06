@@ -1,7 +1,8 @@
 <? load::view('admin/template-header', array('title' => 'Export', 'assets' => 'application'));?>
 <? load::view('admin/template-sidebar');?>
 <div id="wrap">
-	<form action="post" class="form-stacked">
+	<form action="<?= BASE_URL ?>action/udpate_settings_post/"  class="form-stacked">
+		<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
 		<div class="one-full">
 			<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Export</h1>
 			<div class="one-half">
