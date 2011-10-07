@@ -34,6 +34,7 @@ class admin_controller {
 		} else {
 			load::view ( 'admin/dashboard' );
 		}
+
 	}
 
 	/*
