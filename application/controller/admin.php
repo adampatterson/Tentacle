@@ -29,7 +29,7 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		if (CONFIGURATION == 'development') {
+		if ($_SERVER["SERVER_NAME"] == 'localhost') {
 			load::view ( 'admin/resource' );
 		} else {
 			load::view ( 'admin/dashboard' );
