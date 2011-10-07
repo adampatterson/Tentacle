@@ -14,6 +14,7 @@
 							<ul class="inputs-list">
 								<li>
 									<label>
+										<input type="hidden" value="0" name="default_pingback_flag">
 										<input type="checkbox" value="1" id="default_pingback_flag" name="default_pingback_flag">
 										<span>Attempt to notify any blogs linked to from the article.</span> </label>
 								</li>
@@ -34,16 +35,19 @@
 							<ul class="inputs-list">
 								<li>
 									<label>
+										<input type="hidden" value="0" name="require_name_email">
 										<input type="checkbox" checked="checked" value="1" id="require_name_email" name="require_name_email">
 										<span>Comment author must fill out name and e-mail</span> </label>
 								</li>
 								<li>
 									<label>
+										<input type="hidden" value="0" name="comment_registration">
 										<input type="checkbox" value="1" id="comment_registration" name="comment_registration">
 										<span>Users must be registered and logged in to comment</span> </label>
 								</li>
 								<li>
 									<label>
+										<input type="hidden" value="0" name="page_comments">
 										<input type="checkbox" value="1" id="page_comments" name="page_comments">
 										<span>Break comments into pages</span> </label>
 								</li>
@@ -59,11 +63,13 @@
 							<ul class="inputs-list">
 								<li>
 									<label>
+										<input type="hidden" value="0" name="comments_notify">
 										<input type="checkbox" checked="checked" value="1" id="comments_notify" name="comments_notify">
 										<span>Anyone posts a comment</span> </label>
 								</li>
 								<li>
 									<label>
+										<input type="hidden" value="0" name="moderation_notify">
 										<input type="checkbox" checked="checked" value="1" id="moderation_notify" name="moderation_notify">
 										<span>A comment is held for moderation</span> </label>
 								</li>
@@ -79,11 +85,13 @@
 							<ul class="inputs-list">
 								<li>
 									<label>
+										<input type="hidden" value="0" name="comment_moderation">
 										<input type="checkbox" value="1" id="comment_moderation" name="comment_moderation">
 										<span>An administrator must always approve the comment</span> </label>
 								</li>
 								<li>
 									<label>
+										<input type="hidden" value="0" name="comment_whitelist">
 										<input type="checkbox" checked="checked" value="1" id="comment_whitelist" name="comment_whitelist">
 										<span>Comment author must have a previously approved comment</span> </label>
 								</li>
@@ -115,13 +123,9 @@
 							<ul class="inputs-list">
 								<li>
 									<label>
-										<input type="radio" value="0" name="show_avatars">
+										<input type="hidden" value="0" name="show_avatars">
+										<input type="checkbox" value="0" name="show_avatars" id='show_avatars'>
 										<span>Don’t show Avatars</span> </label>
-								</li>
-								<li>
-									<label>
-										<input type="radio" value="1" name="show_avatars">
-										<span>Show Avatars</span> </label>
 								</li>
 							</ul>
 						</div>
