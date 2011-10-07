@@ -58,10 +58,10 @@ body {
   font-size: 1.55em;
   font-weight: bold;
   line-height: 1.286em;
-  margin: 1.75em 0 0.2916em;
+  margin: 1.7em 0 0.2916em;
   color: white; }
 .login #login-content {
-  width: 320px;
+  width: 330px;
   padding: 0;
   margin-right: auto;
   margin-left: auto;
@@ -84,7 +84,7 @@ body {
 .login #login-content .actions {
   padding-top: 20px; }
 .login #login-content-message {
-  width: 300px;
+  width: 320px;
   height: 320px;
   margin-right: auto;
   margin-left: auto;
