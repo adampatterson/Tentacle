@@ -1,7 +1,7 @@
 <? load::view('admin/template-header', array('title' => 'Edit category', 'assets' => 'application'));?>
 <? load::view('admin/template-sidebar');?>
 <div id="wrap">
-	<h1><img src="<?=ADMIN_URL;?>images/icon_pages_32.png" alt="" /> Edit category</h1>
+	<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Edit category</h1>
 	<div class="table">
 		<?php if($note = note::get('category_edit')):
 		?>

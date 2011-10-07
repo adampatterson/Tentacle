@@ -124,7 +124,7 @@ class admin_controller {
 		$category = load::model( 'category' );
 		$category_single = $category->get( $id );
 		
-		load::view ('admin/content/content_category_edit', array( 'category'=>$category_single, 'id'=>$id ) );	
+		load::view ('admin/content/content_edit_category', array( 'category'=>$category_single, 'id'=>$id ) );	
 	}
 	
 	public function content_category_delete ( $id = '' )
@@ -134,7 +134,7 @@ class admin_controller {
 		$category = load::model( 'category' );
 		$category_single = $category->get( $id );
 		
-		load::view ('admin/content/content_category_delete', array( 'category'=>$category_single, 'id'=>$id ) );	
+		load::view ('admin/content/content_delete_category', array( 'category'=>$category_single, 'id'=>$id ) );	
 	}
 	
 	/*
