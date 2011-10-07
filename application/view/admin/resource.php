@@ -6,7 +6,7 @@
 				<link href="http://localhost/http/dev.tcms.me/tentacle/admin/css/dashboard.css" rel="stylesheet" type="text/css">
 				<div class="one-full">
 					<div class="title pad-right">
-						<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" />Dashboard</h1>
+						<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" />Resource</h1>
 					</div>
 				</div>
 				<div class="one-full">
