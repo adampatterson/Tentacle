@@ -8,11 +8,16 @@
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Manage User</h1>
 					<div class="span-1-2">
 						<div class="table">
-							<?php if($note = note::get('user_update')):
-							?>
-							<div class='flash success'>
-								<?= $note['content'];?>
-							</div>
+							<?php if($note = note::get('user_updated')): ?>
+								<script type="text/javascript">
+									$(document).ready(function() {
+										jQuery.noticeAdd({
+											text : '<?= $note['content'];?>',
+											stay : false,
+											type : '<?= $note['type']; ?>'
+										});
+									});
+								</script>
 							<?php endif;?>
 							<form id='edit' action="<?= BASE_URL ?>action/update_user" method="post" accept-charset="utf-8">
 								<fieldset>

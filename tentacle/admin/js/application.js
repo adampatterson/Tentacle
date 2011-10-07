@@ -140,6 +140,7 @@ $(document).ready(function(){
 	// ====================================
 	$(".alert-message").alert()
 	
+	
 	/* Dropdown for topbar nav */
 	// ====================================
 	     $('#topbar').dropdown()
@@ -150,14 +151,14 @@ $(document).ready(function(){
 	$('#my-modal').modal()
 
 
-  /* Disable certain links in docs */
-  // =============================
+	/* Disable certain links in docs */
+	// =============================
 	  $('').click(function(e) {
 	    e.preventDefault();
 	  });
 	
 	/* Tooltips */
-  	// =============================
+	// =============================
         $("a[rel=twipsy]").twipsy({
           live: true
         })

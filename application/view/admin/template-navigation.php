@@ -3,7 +3,7 @@
 		<div class="topbar">
 		  <div class="fill">
 			<div class="container-full">
-			  <h3><a href="<?= ADMIN ?>"><img src="<?= TENTACLE_URL.'/admin/images/tentacle_logo_small.png' ?>" alt="" /></a></h3>
+			  <h3><a href="<?= ADMIN ?>"><img src="<?= TENTACLE_URL.'/admin/images/tentacle_logo_small.png' ?>" alt="Tentacle" width="96" height="30px" /></a></h3>
 			<ul class="nav" data-dropdown="dropdown">
 				<li class="<? if (
 			    CURRENT_PAGE == 'admin/dashboard') echo 'active'; ?>"><a href="<?= ADMIN ?>">Dashboard</a></li>
@@ -13,7 +13,7 @@
 			    CURRENT_PAGE == 'admin/content_add_post' OR
 			    CURRENT_PAGE == 'admin/content_manage_posts'OR
 			    CURRENT_PAGE == 'admin/content_manage_comments' OR
-			    CURRENT_PAGE == 'admin/content_manage_categories') echo 'active'; */?>"> <a href="#" class="dropdown-toggle">Content</a>
+			    CURRENT_PAGE == 'admin/content_manage_categories') echo 'active'; */?> dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Content</a>
 				  <ul class="dropdown-menu">
 					<li class="<? current_page('admin/content_add_page'); ?>"><a href="<?= ADMIN ?>content_add_page/">Write a new page</a></li>
 			        <li class="<? current_page('admin/content_manage_pages'); ?>"><a href="<?= ADMIN ?>content_manage_pages/">Manage pages</a></li>
@@ -30,7 +30,7 @@
 				</li>
 				<li class="<?/* if (
 			    CURRENT_PAGE == 'admin/snippets_add' OR 
-			    CURRENT_PAGE == 'admin/snippets_manage') echo 'active'; */?>"> <a href="#" class="dropdown-toggle">Snippets</a>
+			    CURRENT_PAGE == 'admin/snippets_manage') echo 'active'; */?> dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Snippets</a>
 				  <ul class="dropdown-menu">
 					<li class="<? current_page('admin/snippets_add'); ?>"><a href="<?= ADMIN ?>snippets_add/">Add a mew snippet</a></li>
 					<li class="<? current_page('admin/snippets_manage'); ?>"><a href="<?= ADMIN ?>snippets_manage/">Manage snippets</a></li>
@@ -39,7 +39,7 @@
 				<li class="<? /*if (
 			    CURRENT_PAGE == 'admin/users_manage' OR 
 			    CURRENT_PAGE == 'admin/users_add' OR
-			    CURRENT_PAGE == 'admin/users_profile') echo 'active'; */?>"> <a href="#" class="dropdown-toggle">Users</a>
+			    CURRENT_PAGE == 'admin/users_profile') echo 'active'; */?> dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Users</a>
 				  <ul class="dropdown-menu">
 					<li class="<? current_page('admin/users_manage'); ?>"><a href="<?= ADMIN ?>users_manage/">Manage users</a></li>
 					<li class="<? current_page('admin/users_add'); ?>"><a href="<?= ADMIN ?>users_add/">Add a new user</a></li>
@@ -58,7 +58,7 @@
 			    CURRENT_PAGE == 'admin/settings_media' OR
 			    CURRENT_PAGE == 'admin/settings_privacy' OR
 			    CURRENT_PAGE == 'admin/settings_import' OR
-			    CURRENT_PAGE == 'admin/settings_export') echo 'active'; */?>"> <a href="#" class="dropdown-toggle">Settings</a>
+			    CURRENT_PAGE == 'admin/settings_export') echo 'active'; */?> dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Settings</a>
 				  <ul class="dropdown-menu">
 					<li><a class="<? current_page('admin/settings_appearance'); ?>" href="<?= ADMIN ?>settings_appearance/">Appearance</a></li>
 					<li class="<? current_page('admin/settings_general'); ?>"><a href="<?= ADMIN ?>settings_general/">General</a></li>
@@ -76,19 +76,20 @@
 			    CURRENT_PAGE == 'admin/about_system_details') echo 'active'; ?>"><a href="<?= ADMIN ?>about_system_details/">About</a> </li>
 			  </ul>
 			  <!--
-					<form action="">
-						<input type="text" placeholder="Search" />
-					  </form>-->
-		<!--
-			<div class="utility span4">
-				Hello <strong>Adam Patterson</strong><br>
-				You have <a class="messages" href="#message">3 Messages</a>
-			</div>-->
+			<form action="">
+				<input type="text" placeholder="Search" />
+			</form>-->		
 			<ul class="nav secondary-nav">
+				<!--<li>
+					<div class="utility span4">
+						Hello <strong>Adam Patterson</strong><br>
+						You have <a class="messages" href="#message">3 Messages</a>
+					</div></li>-->
 				<li class="<? current_page('admin/users_profile'); ?>"> <a href="<?= ADMIN ?>users_profile/">My Account</a> </li>
-				<li><a href="http://tentacle.kroud.co/" target="blank" class="help_off">Help</a>
-					 <ul class="dropdown-menu">
-						<li><a href="https://tentacle.tenderapp.com/home">Knowledge Base</a></li>
+				<li class="dropdown" data-dropdown="dropdown" >
+					<a href="#" class="dropdown-toggle">Help</a>
+					<ul class="dropdown-menu">
+						<li><a href="https://tentacle.tenderapp.com/home" class="help">Knowledge Base</a></li>
 						<li><a href="https://github.com/adampatterson/Tentacle/issues">Submit an Issue</a></li>
 					</ul>
 				</li>

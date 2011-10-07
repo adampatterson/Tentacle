@@ -29,10 +29,16 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		if ($_SERVER["SERVER_NAME"] == 'localhost') {
+		$id = user::id( );
+
+		$user = load::model( 'user' );
+		$user_single = $user->get( $id );
+		$user_meta = $user->get_meta( $id );		
+		
+		if ($_SERVER["SERVER_NAME"] != 'localhost') {
 			load::view ( 'admin/resource' );
 		} else {
-			load::view ( 'admin/dashboard' );
+			load::view ( 'admin/dashboard', array( 'user'=>$user_single, 'user_meta'=>$user_meta ) );
 		}
 
 	}

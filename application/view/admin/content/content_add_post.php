@@ -57,10 +57,15 @@
 			<div id="post-body">
 				<div id="post-body-content">
 					<?php if($note = note::get('post_add')): ?>
-					<div class="alert-message success" data-alert="alert">
-						<a class="close" href="#">×</a>
-						<p><?= $note['content'];?></p>
-					  </div>
+						<script type="text/javascript">
+							$(document).ready(function() {
+								jQuery.noticeAdd({
+									text : '<?= $note['content'];?>',
+									stay : false,
+									type : '<?= $note['type']; ?>'
+								});
+							});
+						</script>
 					<?php endif;?>
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Write a new post</h1>
 					<ul data-tabs="tabs" class="tabs">
