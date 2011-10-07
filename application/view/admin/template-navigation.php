@@ -86,7 +86,12 @@
 			</div>-->
 			<ul class="nav secondary-nav">
 				<li class="<? current_page('admin/users_profile'); ?>"> <a href="<?= ADMIN ?>users_profile/">My Account</a> </li>
-				<li> <a href="http://tentacle.kroud.co/" target="blank" class="help_off">Help</a> </li>
+				<li><a href="http://tentacle.kroud.co/" target="blank" class="help_off">Help</a>
+					 <ul class="dropdown-menu">
+						<li><a href="https://tentacle.tenderapp.com/home">Knowledge Base</a></li>
+						<li><a href="https://github.com/adampatterson/Tentacle/issues">Submit an Issue</a></li>
+					</ul>
+				</li>
 				<li> <a href="<?= ADMIN ?>logout/">Logout</a> </li>
 			</ul>
 			</div><!-- . container-full -->

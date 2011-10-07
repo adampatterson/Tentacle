@@ -29,7 +29,11 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		load::view ('admin/dashboard');
+		if (CONFIGURATION == 'development') {
+			load::view ( 'admin/resource' );
+		} else {
+			load::view ( 'admin/dashboard' );
+		}
 	}
 
 	/*
