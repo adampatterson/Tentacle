@@ -5,10 +5,10 @@
 		<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
 		<div class="one-full">
 			<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Reading Settings</h1>
-			<div class="one-half">
+			<div class="one-half">				
+				<h2>Front page displays</h2>
+				<hr />
 				<fieldset>
-					<h2>Front page displays</h2>
-					<hr />
 					<div class="clearfix">
 						<div class="input">
 							<ul class="inputs-list">
