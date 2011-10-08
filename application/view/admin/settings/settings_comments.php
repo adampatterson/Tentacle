@@ -20,6 +20,7 @@
 								</li>
 								<li>
 									<label>
+										<input type="hidden" value="closed" name="default_ping_status">
 										<input type="checkbox" checked="checked" value="open" id="default_ping_status" name="default_ping_status">
 										<span>Allow link notifications from other blogs (pingbacks and trackbacks.)</span> </label>
 								</li>

@@ -19,7 +19,8 @@
 							<li>
 								<label>
 									<input type="radio" value="0" name="site_visible">
-									<span>I would like to block search engines, but allow normal visitors</span> </label>
+									<span>I would like to block search engines, but allow normal visitors</span>
+								</label>
 							</li>
 						</ul>
 					</div>
@@ -35,7 +36,8 @@
 								<label>
 									<input type="hidden" value="0" name="blog_public">
 									<input type="checkbox" value="1" name="blog_public">
-									<span>I am performang maintenance on the site and want to display a message.</span> </label>
+									<span>I am performang maintenance on the site and want to display a message.</span>
+								</label>
 							</li>
 						</ul>
 					</div>

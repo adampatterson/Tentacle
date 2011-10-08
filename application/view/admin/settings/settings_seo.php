@@ -57,16 +57,19 @@
 						<ul class="inputs-list">
 							<li>
 								<label for="noodp">
+									<input type="hidden" value="0" id="noodp" name="noodp">
 									<input type="checkbox" value="1" id="noodp" name="noodp">
 									Don’t use this site’s Open Directory description in search results. </label>
 							</li>
 							<li>
 								<label for="noydir">
+									<input type="hidden" value="0" id="noydir" name="noydir">
 									<input type="checkbox" value="1" id="noydir" name="noydir">
 									Don’t use this site’s Yahoo! Directory description in search results. </label>
 							</li>
 							<li>
 								<label for="noarchive">
+									<input type="hidden" value="0" id="noarchive" name="noarchive">
 									<input type="checkbox" value="1" id="noarchive" name="noarchive">
 									Don’t cache or archive this site. </label>
 							</li>
@@ -79,51 +82,61 @@
 						<ul class="inputs-list">
 							<li>
 								<label for="noindex_admin">
+									<input type="hidden" value="0" name="noindex_admin">
 									<input type="checkbox" value="1" name="noindex_admin">
 									Administration back-end pages </label>
 							</li>
 							<li>
 								<label for="noindex_author">
+									<input type="hidden" value="0" name="noindex_author">
 									<input type="checkbox" value="1" name="noindex_author">
 									Author archives </label>
 							</li>
 							<li>
 								<label for="noindex_search">
+									<input type="hidden" value="0" name="noindex_search">
 									<input type="checkbox" value="1" name="noindex_search">
 									Blog search pages </label>
 							</li>
 							<li>
 								<label for="noindex_category">
+									<input type="hidden" value="0" name="noindex_category">
 									<input type="checkbox" value="1" name="noindex_category">
 									Category archives </label>
 							</li>
 							<li>
 								<label for="noindex_comments_feed">
+									<input type="hidden" value="0" name="noindex_comments_feed">
 									<input type="checkbox" value="1" name="noindex_comments_feed">
 									Comment feeds </label>
 							</li>
 							<li>
 								<label for="noindex_cpage">
+									<input type="hidden" value="0" name="noindex_cpage">
 									<input type="checkbox" value="1" name="noindex_cpage">
 									Comment subpages </label>
 							</li>
 							<li>
 								<label for="noindex_date">
+									<input type="hidden" value="0" name="noindex_date">
 									<input type="checkbox" value="1" name="noindex_date">
 									Date-based archives </label>
 							</li>
 							<li>
 								<label for="noindex_home_paged">
+									<input type="hidden" value="0" name="noindex_home_paged">
 									<input type="checkbox" value="1" name="noindex_home_paged">
 									Subpages of the homepage </label>
 							</li>
 							<li>
 								<label for="noindex_tag">
+									<input type="hidden" value="0" name="noindex_tag">
 									<input type="checkbox" value="1" name="noindex_tag">
 									Tag archives </label>
 							</li>
 							<li>
 								<label for="noindex_login">
+									<input type="hidden" value="0" name="noindex_login">
 									<input type="checkbox" value="1" name="noindex_login">
 									User login/registration pages </label>
 							</li>

@@ -30,35 +30,35 @@
 						<div class="input">
 							<select id="page_on_front" name="page_on_front">
 								<option value="0">&mdash; Select &mdash;</option>
-								<option value="2" class="level-0">About Me</option>
-								<option value="6" class="level-0">Blog</option>
-								<option value="2629" class="level-0">Get an Estimate</option>
-								<option value="10" class="level-0">Get In Touch</option>
-								<option selected="selected" value="4" class="level-0">Home</option>
-								<option value="2423" class="level-0">Projects</option>
-								<option value="2482" class="level-1">&nbsp;&nbsp;&nbsp;Addressbook</option>
-								<option value="2544" class="level-1">&nbsp;&nbsp;&nbsp;PHP Collab v3</option>
-								<option value="2483" class="level-1">&nbsp;&nbsp;&nbsp;Spoke Calculator</option>
-								<option value="9" class="level-0">Resume</option>
-								<option value="2528" class="level-0">Scripts</option>
-								<option value="7" class="level-0">Services</option>
-								<option value="8" class="level-0">Work</option>
-								<option value="2730" class="level-1">&nbsp;&nbsp;&nbsp;Alldritt Homes</option>
-								<option value="2657" class="level-1">&nbsp;&nbsp;&nbsp;Alley Kat Brewing</option>
-								<option value="2649" class="level-1">&nbsp;&nbsp;&nbsp;Barr Estate Winery</option>
-								<option value="2401" class="level-1">&nbsp;&nbsp;&nbsp;Britta</option>
-								<option value="2409" class="level-1">&nbsp;&nbsp;&nbsp;Caritas Hospitals Foundation</option>
-								<option value="2652" class="level-1">&nbsp;&nbsp;&nbsp;Champion Pet Foods</option>
-								<option value="2410" class="level-1">&nbsp;&nbsp;&nbsp;Coalition on Prescription Drug Misuse</option>
-								<option value="2660" class="level-1">&nbsp;&nbsp;&nbsp;Fairley Erker</option>
-								<option value="2645" class="level-1">&nbsp;&nbsp;&nbsp;Guinness</option>
-								<option value="2408" class="level-1">&nbsp;&nbsp;&nbsp;LearnAlberta.ca</option>
-								<option value="2407" class="level-1">&nbsp;&nbsp;&nbsp;Leverage Controls</option>
-								<option value="2404" class="level-1">&nbsp;&nbsp;&nbsp;PHP Collab 3.0</option>
-								<option value="2406" class="level-1">&nbsp;&nbsp;&nbsp;Sassy Cakes</option>
-								<option value="2471" class="level-1">&nbsp;&nbsp;&nbsp;SPT Drilling</option>
-								<option value="2405" class="level-1">&nbsp;&nbsp;&nbsp;Valour Place</option>
-								<option value="2443" class="level-1">&nbsp;&nbsp;&nbsp;Vision Creative Inc</option>
+								<option value="2">About Me</option>
+								<option value="6">Blog</option>
+								<option value="2629">Get an Estimate</option>
+								<option value="10">Get In Touch</option>
+								<option selected="selected" value="4">Home</option>
+								<option value="2423">Projects</option>
+								<option value="2482">&nbsp;&nbsp;&nbsp;Addressbook</option>
+								<option value="2544">&nbsp;&nbsp;&nbsp;PHP Collab v3</option>
+								<option value="2483">&nbsp;&nbsp;&nbsp;Spoke Calculator</option>
+								<option value="9">Resume</option>
+								<option value="2528">Scripts</option>
+								<option value="7">Services</option>
+								<option value="8">Work</option>
+								<option value="2730">&nbsp;&nbsp;&nbsp;Alldritt Homes</option>
+								<option value="2657">&nbsp;&nbsp;&nbsp;Alley Kat Brewing</option>
+								<option value="2649">&nbsp;&nbsp;&nbsp;Barr Estate Winery</option>
+								<option value="2401">&nbsp;&nbsp;&nbsp;Britta</option>
+								<option value="2409">&nbsp;&nbsp;&nbsp;Caritas Hospitals Foundation</option>
+								<option value="2652">&nbsp;&nbsp;&nbsp;Champion Pet Foods</option>
+								<option value="2410">&nbsp;&nbsp;&nbsp;Coalition on Prescription Drug Misuse</option>
+								<option value="2660">&nbsp;&nbsp;&nbsp;Fairley Erker</option>
+								<option value="2645">&nbsp;&nbsp;&nbsp;Guinness</option>
+								<option value="2408">&nbsp;&nbsp;&nbsp;LearnAlberta.ca</option>
+								<option value="2407">&nbsp;&nbsp;&nbsp;Leverage Controls</option>
+								<option value="2404">&nbsp;&nbsp;&nbsp;PHP Collab 3.0</option>
+								<option value="2406">&nbsp;&nbsp;&nbsp;Sassy Cakes</option>
+								<option value="2471">&nbsp;&nbsp;&nbsp;SPT Drilling</option>
+								<option value="2405">&nbsp;&nbsp;&nbsp;Valour Place</option>
+								<option value="2443">&nbsp;&nbsp;&nbsp;Vision Creative Inc</option>
 							</select>
 						</div>
 					</div>
@@ -67,35 +67,35 @@
 						<div class="input">
 							<select id="page_for_posts" name="page_for_posts">
 								<option value="0">&mdash; Select &mdash;</option>
-								<option value="2" class="level-0">About Me</option>
-								<option selected="selected" value="6" class="level-0">Blog</option>
-								<option value="2629" class="level-0">Get an Estimate</option>
-								<option value="10" class="level-0">Get In Touch</option>
-								<option value="4" class="level-0">Home</option>
-								<option value="2423" class="level-0">Projects</option>
-								<option value="2482" class="level-1">&nbsp;&nbsp;&nbsp;Addressbook</option>
-								<option value="2544" class="level-1">&nbsp;&nbsp;&nbsp;PHP Collab v3</option>
-								<option value="2483" class="level-1">&nbsp;&nbsp;&nbsp;Spoke Calculator</option>
-								<option value="9" class="level-0">Resume</option>
-								<option value="2528" class="level-0">Scripts</option>
-								<option value="7" class="level-0">Services</option>
-								<option value="8" class="level-0">Work</option>
-								<option value="2730" class="level-1">&nbsp;&nbsp;&nbsp;Alldritt Homes</option>
-								<option value="2657" class="level-1">&nbsp;&nbsp;&nbsp;Alley Kat Brewing</option>
-								<option value="2649" class="level-1">&nbsp;&nbsp;&nbsp;Barr Estate Winery</option>
-								<option value="2401" class="level-1">&nbsp;&nbsp;&nbsp;Britta</option>
-								<option value="2409" class="level-1">&nbsp;&nbsp;&nbsp;Caritas Hospitals Foundation</option>
-								<option value="2652" class="level-1">&nbsp;&nbsp;&nbsp;Champion Pet Foods</option>
-								<option value="2410" class="level-1">&nbsp;&nbsp;&nbsp;Coalition on Prescription Drug Misuse</option>
-								<option value="2660" class="level-1">&nbsp;&nbsp;&nbsp;Fairley Erker</option>
-								<option value="2645" class="level-1">&nbsp;&nbsp;&nbsp;Guinness</option>
-								<option value="2408" class="level-1">&nbsp;&nbsp;&nbsp;LearnAlberta.ca</option>
-								<option value="2407" class="level-1">&nbsp;&nbsp;&nbsp;Leverage Controls</option>
-								<option value="2404" class="level-1">&nbsp;&nbsp;&nbsp;PHP Collab 3.0</option>
-								<option value="2406" class="level-1">&nbsp;&nbsp;&nbsp;Sassy Cakes</option>
-								<option value="2471" class="level-1">&nbsp;&nbsp;&nbsp;SPT Drilling</option>
-								<option value="2405" class="level-1">&nbsp;&nbsp;&nbsp;Valour Place</option>
-								<option value="2443" class="level-1">&nbsp;&nbsp;&nbsp;Vision Creative Inc</option>
+								<option value="2">About Me</option>
+								<option selected="selected" value="6">Blog</option>
+								<option value="2629">Get an Estimate</option>
+								<option value="10">Get In Touch</option>
+								<option value="4">Home</option>
+								<option value="2423">Projects</option>
+								<option value="2482">&nbsp;&nbsp;&nbsp;Addressbook</option>
+								<option value="2544">&nbsp;&nbsp;&nbsp;PHP Collab v3</option>
+								<option value="2483">&nbsp;&nbsp;&nbsp;Spoke Calculator</option>
+								<option value="9">Resume</option>
+								<option value="2528">Scripts</option>
+								<option value="7">Services</option>
+								<option value="8">Work</option>
+								<option value="2730">&nbsp;&nbsp;&nbsp;Alldritt Homes</option>
+								<option value="2657">&nbsp;&nbsp;&nbsp;Alley Kat Brewing</option>
+								<option value="2649">&nbsp;&nbsp;&nbsp;Barr Estate Winery</option>
+								<option value="2401">&nbsp;&nbsp;&nbsp;Britta</option>
+								<option value="2409">&nbsp;&nbsp;&nbsp;Caritas Hospitals Foundation</option>
+								<option value="2652">&nbsp;&nbsp;&nbsp;Champion Pet Foods</option>
+								<option value="2410">&nbsp;&nbsp;&nbsp;Coalition on Prescription Drug Misuse</option>
+								<option value="2660">&nbsp;&nbsp;&nbsp;Fairley Erker</option>
+								<option value="2645">&nbsp;&nbsp;&nbsp;Guinness</option>
+								<option value="2408">&nbsp;&nbsp;&nbsp;LearnAlberta.ca</option>
+								<option value="2407">&nbsp;&nbsp;&nbsp;Leverage Controls</option>
+								<option value="2404">&nbsp;&nbsp;&nbsp;PHP Collab 3.0</option>
+								<option value="2406">&nbsp;&nbsp;&nbsp;Sassy Cakes</option>
+								<option value="2471">&nbsp;&nbsp;&nbsp;SPT Drilling</option>
+								<option value="2405">&nbsp;&nbsp;&nbsp;Valour Place</option>
+								<option value="2443">&nbsp;&nbsp;&nbsp;Vision Creative Inc</option>
 							</select>
 						</div>
 					</div>
@@ -122,7 +122,7 @@
 					<div class="clearfix">
 						<label for="feed_url">Custom Feed URL</label>
 						<div class="input">
-							<input type="text" class="regular-text" value="" id="blog_charset" name="blog_charset">
+							<input type="text" value="" id="feed_url" name="feed_url">
 						</div>
 					</div>
 					<div class="clearfix">
@@ -146,7 +146,7 @@
 					<div class="clearfix">
 						<label for="blog_charset"> Encoding for pages and feeds </label>
 						<div class="input">
-							<input type="text" class="regular-text" value="UTF-8" id="blog_charset" name="blog_charset">
+							<input type="text" value="UTF-8" id="blog_charset" name="blog_charset">
 							<span class="help-block">The <a href="http://codex.wordpress.org/Glossary#Character_set">character encoding</a> of your site (UTF-8 is recommended, if you are adventurous there are some <a href="http://en.wikipedia.org/wiki/Character_set">other encodings</a>)</span>
 						</div>
 					</div>
