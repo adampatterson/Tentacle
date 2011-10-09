@@ -35,12 +35,14 @@ class admin_controller {
 		$user_single = $user->get( $id );
 		$user_meta = $user->get_meta( $id );		
 		
-		if ($_SERVER["SERVER_NAME"] == 'localhost') {
-			load::view ( 'admin/resource' );
-		} else {
-			load::view ( 'admin/dashboard', array( 'user'=>$user_single, 'user_meta'=>$user_meta ) );
-		}
+		load::view ( 'admin/dashboard', array( 'user'=>$user_single, 'user_meta'=>$user_meta ) );
+	}
+	
+	public function resources ()
+	{
+		tentacle::valid_user();
 
+		load::view ( 'admin/resource' );
 	}
 
 	/*
@@ -72,6 +74,7 @@ class admin_controller {
 		$pages = $page->get( );
 		
 		$user = load::model('user'); 
+		$options = load::model ( 'settings' );
 		
 		load::view ('admin/content/content_manage_pages', array( 'pages'=>$pages, 'user'=>$user ) );	
 	}

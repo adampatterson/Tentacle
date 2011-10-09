@@ -89,12 +89,17 @@ function get_settings ( $style_path = 'default' )
 
 function get_templates ( $theme_folder ) 
 {
-	$php_files = glob($theme_folder.'/*.php');	
+	$php_files = glob(THEMES_DIR.'/'.$theme_folder.'/*.php');	
 
 	foreach ($php_files as $php_file)
 	{
 		$file = get_data($php_file, 'template');
-	
+		
+		$file_name = basename( $php_file );
+		
+		$file_id = explode( '.', $file_name );
+		
+		$template[$php_file]['template_id'] = $file_id[0];
 		$template[$php_file]['template_name'] = $file['Name'];
 		$template[$php_file]['template_uri'] = $file['URI'];
 		$template[$php_file]['template_description'] = $file['Description'];
@@ -102,7 +107,7 @@ function get_templates ( $theme_folder )
 		$template[$php_file]['template_version'] = $file['Version'];
 	}
 
-	return(arrayToObject($template));
+	return(arrayToObject( $template ));
 	
 } // Get Templates
 
@@ -167,16 +172,16 @@ function get_file_data( $file, $default_headers )
 function get_data( $theme_file) 
 {
 
-		$default_headers = array(
-			'Name' => 'Name',
-			'URI' => 'URI',
-			'Description' => 'Description',
-			'Author' => 'Author',
-			'AuthorURI' => 'Author URI',
-			'Version' => 'Version',
-			'Template' => 'Template',
-			'Status' => 'Status'
-			);
+	$default_headers = array(
+		'Name' => 'Name',
+		'URI' => 'URI',
+		'Description' => 'Description',
+		'Author' => 'Author',
+		'AuthorURI' => 'Author URI',
+		'Version' => 'Version',
+		'Template' => 'Template',
+		'Status' => 'Status'
+		);
 
 	$theme_data = get_file_data( $theme_file, $default_headers, 'theme' );
 

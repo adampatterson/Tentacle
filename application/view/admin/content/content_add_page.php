@@ -71,6 +71,9 @@
 					</ul>
 					<div class="tab-content tab-body" id="my-tab-content">
 						<div id="content" class="active">
+							<?
+								clean_out( get_templates( get_option( 'appearance' ) ) );
+							?>
 							<input type="text" name="title" placeholder='Title' class='xlarge' />
 							<p>
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>

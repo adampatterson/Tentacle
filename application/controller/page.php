@@ -10,7 +10,6 @@ class page_controller {
 
 		load::library ('file');
 		$scaffold = new Scaffold ();
-		define ('ACTIVE_THEME', '/default');
 		//load::view('admin_view', array( 'scaffold'=>$scaffold, 'data'=>$data));
 		tentacle::render ('home', array ('scaffold' => $scaffold));
                       

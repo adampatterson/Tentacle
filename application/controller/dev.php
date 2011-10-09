@@ -192,16 +192,8 @@ class dev_controller {
 	 **/
 	public function theme()
 	{ 
-		echo '<h2>Themes</h2>';
-		
-		load::helper ('theme');
-		
 		echo '<h2>Detected Themes</h2>';
-		
-		load::helper ('inflector');
-		load::helper ('theme');
-		load::helper ('tentacle');
-		
+			
 		clean_out(get_themes());
 		
 		echo '<h2>Valid Template Files</h2>';
@@ -212,8 +204,6 @@ class dev_controller {
 		
 		echo '<h2>Themes Resources</h2>';
 			clean_out(get_resources(THEMES_DIR.'/default'));
-
-		
 	}
 	
 	

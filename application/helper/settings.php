@@ -8,9 +8,14 @@
  * @return void
  * @author Adam Patterson
  */
-function get_option( $option, $default = false ) {
-	
-	
-	
-	}
+function get_option( $option, $default = false ) 
+{
+	$setting = load::model ( 'settings' );
+
+	if ( isset( $option ) ):
+		return $setting->get( $option );
+	else:
+		return false;
+	endif;
+}
 

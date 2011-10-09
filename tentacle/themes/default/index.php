@@ -13,3 +13,4 @@ if (CONFIGURATION == 'deployment'){
 	);
 }// END if
 ?>
+<h1>Index</h1>
