@@ -34,7 +34,11 @@
 							</dt>
 							<dd>
 								<select id="page_template" name="page_template">
-									<option value="default">Default</option>
+									<? $templates = get_templates( get_option( 'appearance' ) ); 
+									foreach ( $templates as $template ):
+									?>
+										<option value="<?= $template->template_id ?>"><?= $template->template_name ?></option>
+									<? endforeach; ?>
 								</select>
 							</dd>
 							<dt>
@@ -71,9 +75,6 @@
 					</ul>
 					<div class="tab-content tab-body" id="my-tab-content">
 						<div id="content" class="active">
-							<?
-								clean_out( get_templates( get_option( 'appearance' ) ) );
-							?>
 							<input type="text" name="title" placeholder='Title' class='xlarge' />
 							<p>
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>

@@ -197,7 +197,7 @@ class dev_controller {
 		clean_out(get_themes());
 		
 		echo '<h2>Valid Template Files</h2>';
-			clean_out(get_templates(THEMES_DIR.'/default'));
+			clean_out(get_templates('default'));
 		
 		echo '<h2>Themes Settings</h2>';
 			clean_out(get_settings('/default'));

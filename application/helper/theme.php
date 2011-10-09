@@ -87,54 +87,47 @@ function get_settings ( $style_path = 'default' )
 } // Get Settings
 
 
+// @todo Don't show the reserved file names, these should be valid tempalte files with the correct headers.
 function get_templates ( $theme_folder ) 
 {
 	$php_files = glob(THEMES_DIR.'/'.$theme_folder.'/*.php');	
 
-	foreach ($php_files as $php_file)
-	{
+	foreach ($php_files as $php_file):
+	
 		$file = get_data($php_file, 'template');
 		
 		$file_name = basename( $php_file );
-		
 		$file_id = explode( '.', $file_name );
 		
-		$template[$php_file]['template_id'] = $file_id[0];
-		$template[$php_file]['template_name'] = $file['Name'];
-		$template[$php_file]['template_uri'] = $file['URI'];
-		$template[$php_file]['template_description'] = $file['Description'];
-		$template[$php_file]['template_author'] = $file['Author'];
-		$template[$php_file]['template_version'] = $file['Version'];
-	}
+		if ( $file['Name'] != '' ):
+			$template[$php_file]['template_id'] = $file_id[0];
+			$template[$php_file]['template_name'] = $file['Name'];
+			$template[$php_file]['template_uri'] = $file['URI'];
+			$template[$php_file]['template_description'] = $file['Description'];
+			$template[$php_file]['template_author'] = $file['Author'];
+			$template[$php_file]['template_version'] = $file['Version'];
+		endif;
+	endforeach;
 
 	return(arrayToObject( $template ));
 	
 } // Get Templates
 
 function get_resources( $index_path = '' )
-{
-	
+{	
 	$index_file = $index_path.'/index.php';
 	
-	if ( file_exists( $index_file ) ) 
-	{
+	if ( file_exists( $index_file ) ):
 		include $index_file;
 		
-		if ( isset( $resource_assets ) ) 
-		{
+		if ( isset( $resource_assets ) ):
 			return $resource_assets;
-		} 
-		else 
-		{
+		else:
 			return NULL;
-		}
-		
-	} 
-	else 
-	{
+		endif;
+	else:
 		return NULL;
-	}
-	
+	endif;	
 } // Get Resources
 
 
@@ -155,13 +148,13 @@ function get_file_data( $file, $default_headers )
 
 	$all_headers = $default_headers;
 
-	foreach ( $all_headers as $field => $regex ) {
+	foreach ( $all_headers as $field => $regex ):
 		preg_match( '/^[ \t\/*#@]*' . preg_quote( $regex, '/' ) . ':(.*)$/mi', $file_data, ${$field});
 		if ( !empty( ${$field} ) )
 			${$field} = _cleanup_header_comment( ${$field}[1] );
 		else
 			${$field} = '';
-	}
+	endforeach;
 
 	$file_data = compact( array_keys( $all_headers ) );
 
@@ -171,7 +164,6 @@ function get_file_data( $file, $default_headers )
 
 function get_data( $theme_file) 
 {
-
 	$default_headers = array(
 		'Name' => 'Name',
 		'URI' => 'URI',
@@ -186,32 +178,29 @@ function get_data( $theme_file)
 	$theme_data = get_file_data( $theme_file, $default_headers, 'theme' );
 
 	$theme_data['Name'] = $theme_data['Title'] = $theme_data['Name'];
-
 	$theme_data['URI'] = $theme_data['URI'];
-
 	$theme_data['Description'] = $theme_data['Description'];
-
 	$theme_data['AuthorURI'] = $theme_data['AuthorURI'];
-
 	$theme_data['Template'] = $theme_data['Template'];
-
 	$theme_data['Version'] = $theme_data['Version'];
 
-	if ( $theme_data['Status'] == '' )
+	if ( $theme_data['Status'] == '' ):
 		$theme_data['Status'] = 'publish';
-	else
+	else:
 		$theme_data['Status'] = $theme_data['Status'];
+	endif;
 
-	if ( $theme_data['Author'] == '' ) {
+	if ( $theme_data['Author'] == '' ):
 		$theme_data['Author'] = $theme_data['AuthorName'] = 'Anonymous';
-	} else {
+	else:
 		$theme_data['AuthorName'] = $theme_data['Author'];
-		if ( empty( $theme_data['AuthorURI'] ) ) {
+		if ( empty( $theme_data['AuthorURI'] ) ):
 			$theme_data['Author'] = $theme_data['AuthorName'];
-		} else {
+		else:
 			$theme_data['Author'] = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', $theme_data['AuthorURI'], esc_attr__( 'Visit author homepage' ), $theme_data['AuthorName'] );
-		}
-	}
-
+		endif;
+	endif;
+	
+	// need to cean out invalid files.
 	return $theme_data;
 }// Get Theme Data
