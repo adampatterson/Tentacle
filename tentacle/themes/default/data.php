@@ -1,6 +1,6 @@
 <?
  /*
-Name: Default - Data page template
+Name: Default - Data 	page template
 URI: http://tcms.me/
 Description: This is the Tentacle default theme.
 Author: Tentacle

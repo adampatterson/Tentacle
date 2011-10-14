@@ -33,8 +33,8 @@ class category_model
 		$inflector = new inflector( );
 		$term_slug = $inflector->camelize( $term_slug );
 		$term_slug = $inflector->underscore( $term_slug );
-	
-		$category = db( 'terms' );
+		
+		$category  = db( 'terms' );
 		
 		$category->update(array(
 				'name'=>$term_name,
@@ -65,8 +65,8 @@ class category_model
 		$inflector = new inflector( );
 		$term_slug = $inflector->camelize( $term_slug );
 		$term_slug = $inflector->underscore( $term_slug );;
-	
-		$category = db( 'terms' );
+		
+		$category  = db( 'terms' );
 
 		$category->insert(array(
 			'name'=>$term_name,

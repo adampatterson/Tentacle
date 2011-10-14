@@ -44,18 +44,18 @@ class user_model
 	//----------------------------------------------------------------------------------------------
 	public function update ( )
 	{
-		$user_name = input::post ( 'user_name' );
-		$password = input::post ( 'password' );
-		$old_email = input::post ( 'old_email' );
-		$new_email = input::post ( 'email' );
-		$type = input::post ( 'type' );
+		$user_name    = input::post ( 'user_name' );
+		$password     = input::post ( 'password' );
+		$old_email    = input::post ( 'old_email' );
+		$new_email    = input::post ( 'email' );
+		$type         = input::post ( 'type' );
 		
-		$first_name = input::post ( 'first_name' );
-		$last_name = input::post ( 'last_name' );
+		$first_name   = input::post ( 'first_name' );
+		$last_name    = input::post ( 'last_name' );
 		$display_name = input::post ( 'display_name' );
-		$url = input::post ( 'url' );
+		$url          = input::post ( 'url' );
 		
-		$profile = input::post ( 'profile' );
+		$profile      = input::post ( 'profile' );
 		
 		// need to set the users old email address before you update it.
 
@@ -110,15 +110,15 @@ class user_model
 		}
 		*/
 		
-		$user_name = input::post ( 'user_name' );
-	    $password = input::post ( 'password' );
-		$email = input::post ( 'email' );
-		$type = input::post ( 'type' );
-
-		$first_name = input::post ( 'first_name' );
-		$last_name = input::post ( 'last_name' );
+		$user_name    = input::post ( 'user_name' );
+		$password     = input::post ( 'password' );
+		$email        = input::post ( 'email' );
+		$type         = input::post ( 'type' );
+		
+		$first_name   = input::post ( 'first_name' );
+		$last_name    = input::post ( 'last_name' );
 		$display_name = input::post ( 'display_name' );
-		$url = input::post ( 'url' );
+		$url          = input::post ( 'url' );
 		
 		user::create(array(
 			'username'=>$user_name,

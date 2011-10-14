@@ -41,14 +41,14 @@ class snippet_model
 	//----------------------------------------------------------------------------------------------
 	public function update ( $id )
 	{
-		$name = input::post ( 'name' );
-		$updated_by = user::id();
+		$name            = input::post ( 'name' );
+		$updated_by      = user::id();
 		$snippet_content = input::post ( 'content' );
-		$filter = input::post ( 'filter' );
-	
-		$inflector = new inflector();
-		$slug = $inflector->camelize( $name );
-		$slug = $inflector->underscore( $slug );
+		$filter          = input::post ( 'filter' );
+		
+		$inflector       = new inflector();
+		$slug            = $inflector->camelize( $name );
+		$slug            = $inflector->underscore( $slug );
 		
 		$snippet = db('snippet');
 
@@ -78,14 +78,14 @@ class snippet_model
 	//----------------------------------------------------------------------------------------------
 	public function add () 
 	{
-		$name = input::post ( 'name' );
-		$created_by = user::id();
+		$name            = input::post ( 'name' );
+		$created_by      = user::id();
 		$snippet_content = input::post ( 'content' );
-		$filter = input::post ( 'filter' );
-	
-		$inflector = new inflector();
-		$slug = $inflector->camelize($name);
-		$slug = $inflector->underscore($slug);
+		$filter          = input::post ( 'filter' );
+		
+		$inflector       = new inflector();
+		$slug            = $inflector->camelize($name);
+		$slug            = $inflector->underscore($slug);
 
 		$snippet = db('snippet');
 

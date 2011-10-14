@@ -80,24 +80,24 @@ class page_model
 	//----------------------------------------------------------------------------------------------	
 	public function add ( ) 
 	{
-		$title = input::post ( 'title' );
+		$title         = input::post ( 'title' );
 		
-		$slug = sanitize($title);
+		$slug          = sanitize($title);
 		
-		$content = input::post ( 'content' );
+		$content       = input::post ( 'content' );
 		
-		$status = input::post ( 'status' );
-		$visible = input::post ( 'visible' );
-		$published = input::post ( 'published' );
+		$status        = input::post ( 'status' );
+		$visible       = input::post ( 'visible' );
+		$published     = input::post ( 'published' );
 		
-		$parent_page = input::post ( 'parent_page' );
+		$parent_page   = input::post ( 'parent_page' );
 		$post_template = input::post ( 'page_template' );
 		
-		$post_type = 'page';
+		$post_type     = 'page';
 		
-		$post_author = user::id();
-
-		$page = db('posts');
+		$post_author   = user::id();
+		
+		$page          = db('posts');
 
 		$page->insert(array(
 			'title'=>$title,

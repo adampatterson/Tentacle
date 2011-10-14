@@ -6,6 +6,7 @@
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>markitup/jquery.markitup.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.notice.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.inputtags.js"></script>
@@ -17,6 +18,7 @@
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-modal.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-twipsy.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-popover.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>spin.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$(".markItUp").markItUp(mySettings);

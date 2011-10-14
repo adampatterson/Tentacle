@@ -33,7 +33,7 @@
 								<label for="page_template">Page template</label>
 							</dt>
 							<dd>
-								<select id="page_template" name="page_template">
+								<select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
 									<? $templates = get_templates( get_option( 'appearance' ) ); 
 									foreach ( $templates as $template ):
 									?>

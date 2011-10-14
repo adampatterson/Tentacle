@@ -153,25 +153,25 @@
 										<? #@todo update css to reflect the related field and not #country?>
 										<script>
 											function suggest(inputString){
-if(inputString.length == 0) {
-$('#suggestions').fadeOut();
-} else {
-$('#country').addClass('load');
-$.post("<?= BASE_URL ?>
-	dev / suggest", {queryString: ""+inputString+""}, function(data){
-	if(data.length > 0) {
-		$('#suggestions').fadeIn();
-		$('#suggestionsList').html(data);
-		$('#country').removeClass('load');
-	}
-	});
-	}
-	}
+												if(inputString.length == 0) {
+													$('#suggestions').fadeOut();
+												} else {
+													$('#country').addClass('load');
+													$.post("<? = BASE_URL ?>dev/suggest", {queryString: ""+inputString+""}, function(data){
+														if(data.length > 0) {
+															$('#suggestions').fadeIn();
+															$('#suggestionsList').html(data);
+															$('#country').removeClass('load');
+														}
+													});
+												}
+											}
 
-	function fill(thisValue) {
-		$('#country').val(thisValue);
-		setTimeout("$('#suggestions').fadeOut();", 600);
-	}
+											function fill(thisValue) {
+												$('#country').val(thisValue);
+												setTimeout("$('#suggestions').fadeOut();", 600);
+											}
+
 										</script>
 										<form id="form" action="#" method="post">
 											<div id="suggest">

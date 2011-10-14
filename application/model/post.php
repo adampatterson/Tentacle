@@ -49,26 +49,26 @@ class post_model
 	//----------------------------------------------------------------------------------------------
 	public function add ( ) 
 	{
-		$title = input::post ( 'title' );
+		$title         = input::post ( 'title' );
 		
 		load::helper ('string');
-		$slug = sanitize($title);
-
-		$content = input::post ( 'content' );
+		$slug          = sanitize($title);
 		
-		$status = input::post ( 'status' );
-		$visible = input::post ( 'visible' );
-		$published = input::post ( 'published' );
+		$content       = input::post ( 'content' );
 		
-		$parent_page = input::post ( 'parent_page' );
+		$status        = input::post ( 'status' );
+		$visible       = input::post ( 'visible' );
+		$published     = input::post ( 'published' );
+		
+		$parent_page   = input::post ( 'parent_page' );
 		$post_template = input::post ( 'page_template' );
 		$page_category = input::post ( 'page_category');
 		
-		$post_type = 'post';
+		$post_type     = 'post';
 		
-		$post_author = user::id();
-
-		$page = db('posts');
+		$post_author   = user::id();
+		
+		$page          = db('posts');
 
 		$page->insert(array(
 			'title'=>$title,
@@ -90,16 +90,16 @@ class post_model
 	//----------------------------------------------------------------------------------------------
 	public function add_meta ( $post_id ) 
 	{
-		$bread_crumb = input::post ( 'bread_crumb' ); // Text
+		$bread_crumb      = input::post ( 'bread_crumb' ); // Text
 		
 		$bread_crumb_slug = sanitize($bread_crumb);
-
-		$meta_keywords = input::post ( 'meta_keywords' ); // Comma seperated
-		$meta_description = input::post ( 'meta_description' ); // Text
-		$content_tags = input::post ( 'content_tags' ); // Comma seperated
 		
-		$meta_robot = input::post ( 'meta_robot' ); // Array
-		$discussion = input::post ( 'discussion' ); // Array
+		$meta_keywords    = input::post ( 'meta_keywords' ); // Comma seperated
+		$meta_description = input::post ( 'meta_description' ); // Text
+		$content_tags     = input::post ( 'content_tags' ); // Comma seperated
+		
+		$meta_robot       = input::post ( 'meta_robot' ); // Array
+		$discussion       = input::post ( 'discussion' ); // Array
 
 		$page = db('posts_meta');
 /*

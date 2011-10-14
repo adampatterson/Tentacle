@@ -173,4 +173,37 @@ $(document).ready(function(){
             e.preventDefault()
           })
 
+	/* Sprin */
+  	// =============================
+	var opts = {
+		lines: 10, // The number of lines to draw
+		length: 3, // The length of each line
+		width: 2, // The line thickness
+		radius: 7, // The radius of the inner circle
+		color: '#000', // #rgb or #rrggbb
+		speed: 1.5, // Rounds per second
+		trail: 26, // Afterglow percentage
+		shadow: false // Whether to render a shadow
+	};
+
+	$.fn.spin = function(opts) {
+		this.each(function() {
+			var $this = $(this),
+			data = $this.data();
+
+			if (data.spinner) {
+				data.spinner.stop();
+				delete data.spinner;
+			}
+			if (opts !== false) {
+				data.spinner = new Spinner($.extend({color: $this.css('color')}, opts)).spin(this);
+			}
+		});
+		return this;
+	};
+
+	$('#preview').spin(opts);
+
+
 });
+
