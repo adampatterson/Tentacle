@@ -34,6 +34,7 @@
 							</dt>
 							<dd>
 								<select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
+									<option value="">Choose a template</option>
 									<? $templates = get_templates( get_option( 'appearance' ) ); 
 									foreach ( $templates as $template ):
 									?>

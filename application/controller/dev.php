@@ -7,12 +7,12 @@ class dev_controller {
 	* @return void
 	* @author Adam Patterson
 	**/
-
 	public function index()
 	{
 		//echo '<h3>Dev Land</h3>';
 		//echo route::controller().'_'. route::method() .'<br />';
 	}
+	
 	
 	/**
 	* pull function
@@ -23,7 +23,6 @@ class dev_controller {
 	* @return string
 	* @author Adam Patterson
 	*/
-	
 	public function pull()
 	{
 		load::helper ('git');
@@ -31,19 +30,59 @@ class dev_controller {
 		echo pull();
 	}
 	
+	
 	/**
 	* ajax function
 	*
 	* @return void
 	* @author Adam Patterson
 	**/
-
 	public function ajax()
 	{
 		echo "This content is in the Dev controller under Ajax function.";
 	}
 
+
+	/**
+	* jq_load function
+	*
+	* @return html
+	* @author Adam Patterson
+	* 
+	* The purpose of this function is the provide simple HTML for jQuery to load and append to an element.
+	* 
+	**/
+	public function jq_load ()
+	{ ?>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+			    $.get('<?= BASE_URL ?>dev/jq_html', function(data) {
+			        $('#content').append(data);
+			    });
+			});
+		</script>
+		<h1>Content</h1>
+		<div id="content"></div>
+
+<?	}
   
+
+	/**
+	* jq_html function
+	*
+	* @return html
+	* @author Adam Patterson
+	* 
+	* The purpose of this function is the provide simple HTML for jQuery to load and append to an element.
+	* 
+	**/
+	public function jq_html ()
+	{
+		echo '<h3>This content was loaded with jQuery and appended to #content</h3>';
+	}
+
+
 	/**
 	 * mobile function
 	 *
