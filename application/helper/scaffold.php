@@ -47,7 +47,7 @@ class  Scaffold
                         $return_data .= '<div class="clearfix"><label for="'.$input['name'].'">'.$input['name'].'</label><div class="input"><input type="text" class="xlarge" name="'.$input['name'].'" /></div></div>';
                     break;
                     case 'password':
-                    	$return_data .= '<div class="clearfix"><label for="'.$input['name'].'">Password</label><div class="input"><input type="password" class="xlarge" name="'.$input['name'].'" /></div></div>';
+                    	$return_data .= '<div class="clearfix"><label for="'.$input['name'].'``">Password</label><div class="input"><input type="password" class="xlarge" name="'.$input['name'].'" /></div></div>';
                     break;    
 				    case 'button':
 						$return_data .= self::createButton($input['button_name']);
@@ -66,26 +66,23 @@ class  Scaffold
           
         //$firephp->log($input, 'Scaffold array');
         
-        return $return_data;
+        echo $return_data;
         
     } // function process  
     
-   static public function createButton( $name = '' ) 
-   {
-            if (isset($name)){
-                $button =  '<input type="submit" value="'.$name.'" class="btn medium secondary"><br />';   
-            } else {
-                $button =  '<input type="submit" value="Submit" class="btn medium secondary"><br />';   
-            }
-        return $button;
-        }
-    
+	static public function createButton( $name = '' ) 
+	{
+		if (isset($name)):
+			$button =  '<input type="submit" value="'.$name.'" class="btn medium secondary"><br />';   
+		else:
+			$button =  '<input type="submit" value="Submit" class="btn medium secondary"><br />';   
+		endif;
+		
+		return $button;
+	}
+
   static public function destructForm() {
-        $end = '</form>';
-        
-        return $end;
+        echo '</form>';
         }
 } // class scaffold
- 
- 
 ?>

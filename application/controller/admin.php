@@ -56,7 +56,7 @@ class admin_controller {
 	 * 
 	 */
 
-	public function content_add_page ()
+	public function content_add_page ( )
 	{
 		tentacle::valid_user();
 		

@@ -98,24 +98,27 @@ class action_controller
 	 * 
 	 * 
 	 */
-	public function render_admin ( $template = '' )
+	public function render_admin ( $encoded = '' )
 	{
-		define('SCAFFOLD'  , 'TRUE');
+		// @todo: set up some information that will be passed back to content_add_page
+		// @todo: allow for post back to posts as well as pages.
 		
-		if ( $template != '' ) {
-			include(THEMES_DIR.'/default/'.$template.'.php');
-
-
-		load::library ('file');
+		//urlencode(serialize($array));
+		//$array = (isset($_GET['array'])) ? unserialize($_GET['array']) : array();
 		
-		$scaffold = new Scaffold ();
-		echo $scaffold->constructForm();
-		echo $scaffold->processThis($data);
-		echo $scaffold->destructForm();
-		}
-	
+		if ( $encoded == 'default' ):
+			$delete = session::delete ( 'template' );
+		else:
+			if ( session::get( 'template' ) ):
+				session::update( 'template', $encoded );
+			else:
+				session::set( 'template', $encoded );
+			endif;
+		endif;
+		
+		
+		url::redirect( 'admin/content_add_page/' );
 	}
-
 
 
 	/*

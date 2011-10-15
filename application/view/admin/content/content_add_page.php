@@ -34,9 +34,10 @@
 							</dt>
 							<dd>
 								<script type="text/javascript">	
+									/*
 									$(document).ready(function(){
 									    function loadVals() {
-									      var singleValues = $("#page_template").val();
+									      var singleValues = $("#page_templateOFF").val();
 											return singleValues;
 									    }
 
@@ -44,19 +45,21 @@
 
 										function load_content() {
 										    $.get('<?= BASE_URL ?>/action/render_admin/'+loadVals(), function(data) {
-										        $('#scaffold').html(data);
+										        $('#scaffold').append(data);
 										    });
 										}
 
 										load_content();
 									});
+									*/
 								</script>
-								<select id="page_template" name="page_template">
-									<option value="">Choose a template</option>
+								<select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
+									<option></option>
+									<option value="<?= BASE_URL ?>action/render_admin/default">Default</option>
 									<? $templates = get_templates( get_option( 'appearance' ) ); 
 									foreach ( $templates as $template ):
 									?>
-										<option value="<?= $template->template_id ?>"><?= $template->template_name ?></option>
+										<option value="<?= BASE_URL ?>action/render_admin/<?= $template->template_id ?>"><?= $template->template_name ?></option>
 									<? endforeach; ?>
 								</select>
 							</dd>
@@ -107,9 +110,22 @@
 								<textarea name="content" cols="40" rows="5" class="markItUp" placeholder='Content'></textarea>
 							</p>
 							<div class="clear"></div>
-						</div>
-						<div id="scaffold" class="active">
-							<div class="clear"></div>
+							<div id="scaffold">
+								<?
+								define( 'SCAFFOLD' , 'TRUE' );
+
+								if ( session::get( 'template' ) ) {
+
+									include(THEMES_DIR.'/default/'.session::get('template').'.php');
+
+									load::library ( 'file' );
+
+									$scaffold = new Scaffold ();
+									$scaffold->processThis( $data );
+								}
+								?>
+								<div class="clear"></div>
+							</div>
 						</div>
 						<div id="options" class="">
 							<fieldset>
