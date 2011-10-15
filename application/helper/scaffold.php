@@ -44,10 +44,10 @@ class  Scaffold
             if ($input['input'] == 'input') {
                 switch($input['type']) {
                     case 'text':
-                        $return_data .= $input['name'].': <input type="text" name="'.$input['name'].'" /><br />';
+                        $return_data .= '<div class="clearfix"><label for="'.$input['name'].'">'.$input['name'].'</label><div class="input"><input type="text" class="xlarge" name="'.$input['name'].'" /></div></div>';
                     break;
                     case 'password':
-                    	$return_data .= 'Password: <input type="password"  name="'.$input['name'].'" /><br />';
+                    	$return_data .= '<div class="clearfix"><label for="'.$input['name'].'">Password</label><div class="input"><input type="password" class="xlarge" name="'.$input['name'].'" /></div></div>';
                     break;    
 				    case 'button':
 						$return_data .= self::createButton($input['button_name']);
@@ -60,7 +60,7 @@ class  Scaffold
 						}
 					$return_data .= '</select><br />';
                 } elseif ($input['input'] == 'multiline') {
-                    $return_data .= '<textarea></textarea><br />';
+                    $return_data .= '<textarea cols="40" rows="5" class="markItUp"></textarea><br />';
                 }
             } // foreach
           
