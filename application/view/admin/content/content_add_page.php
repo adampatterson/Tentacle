@@ -33,7 +33,25 @@
 								<label for="page_template">Page template</label>
 							</dt>
 							<dd>
-								<select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
+								<script type="text/javascript">	
+									$(document).ready(function(){
+									    function loadVals() {
+									      var singleValues = $("#page_template").val();
+											return singleValues;
+									    }
+
+									    $("select").change(load_content);
+
+										function load_content() {
+										    $.get('<?= BASE_URL ?>/action/render_admin/'+loadVals(), function(data) {
+										        $('#scaffold').html(data);
+										    });
+										}
+
+										load_content();
+									});
+								</script>
+								<select id="page_template" name="page_template">
 									<option value="">Choose a template</option>
 									<? $templates = get_templates( get_option( 'appearance' ) ); 
 									foreach ( $templates as $template ):
@@ -76,6 +94,11 @@
 					</ul>
 					<div class="tab-content tab-body" id="my-tab-content">
 						<div id="content" class="active">
+							<script type="text/javascript">
+								$(document).ready(function(){
+									$(".markItUp").markItUp(mySettings);
+								});
+							</script>
 							<input type="text" name="title" placeholder='Title' class='xlarge' />
 							<p>
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>
@@ -83,6 +106,9 @@
 							<p>
 								<textarea name="content" cols="40" rows="5" class="markItUp" placeholder='Content'></textarea>
 							</p>
+							<div class="clear"></div>
+						</div>
+						<div id="scaffold" class="active">
 							<div class="clear"></div>
 						</div>
 						<div id="options" class="">

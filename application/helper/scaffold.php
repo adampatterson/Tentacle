@@ -3,6 +3,15 @@
  * Process PHP Array and convert it to Forum Input fields.
  * @todo humanize the label name from the input name.
  */
+/*
+<div class="clearfix">
+	<label for="default_role">{ NAME }</label>
+	<div class="input">
+		{ INPUT }
+	</div>
+</div>
+*/
+
 
 class  Scaffold 
 {
@@ -64,9 +73,9 @@ class  Scaffold
    static public function createButton( $name = '' ) 
    {
             if (isset($name)){
-                $button =  '<input type="submit" value="'.$name.'"><br />';   
+                $button =  '<input type="submit" value="'.$name.'" class="btn medium secondary"><br />';   
             } else {
-                $button =  '<input type="submit" value="Submit"><br />';   
+                $button =  '<input type="submit" value="Submit" class="btn medium secondary"><br />';   
             }
         return $button;
         }

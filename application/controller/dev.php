@@ -55,16 +55,38 @@ class dev_controller {
 	public function jq_load ()
 	{ ?>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		<script type="text/javascript">
+		<script type="text/javascript">	
+		
+			
+		
 			$(document).ready(function(){
-			    $.get('<?= BASE_URL ?>dev/jq_html', function(data) {
-			        $('#content').append(data);
-			    });
+
+			
+			    function loadVals() {
+			      var singleValues = $("#select").val();
+					return singleValues;
+			    }
+
+			    $("select").change(load_content);
+			    
+				function load_content() {
+				    $.get(loadVals(), function(data) {
+				        $('#content').html(data);
+				    });
+				}
+			
+				load_content();
 			});
 		</script>
+		
+		  <p></p>
+		
 		<h1>Content</h1>
+		<select name="select" id="select" size="1" <!--onchange="location = this.options[this.selectedIndex].value;"-->>
+			<option value="<?= BASE_URL ?>dev/jq_html">Page One</option>
+			<option value="<?= BASE_URL ?>dev/jq_html_two">Page Two</option>
+		</select>
 		<div id="content"></div>
-
 <?	}
   
 
@@ -80,6 +102,11 @@ class dev_controller {
 	public function jq_html ()
 	{
 		echo '<h3>This content was loaded with jQuery and appended to #content</h3>';
+	}
+	
+	public function jq_html_two ()
+	{
+		echo '<h3>This is some new content that has been appended to #content</h3>';
 	}
 
 

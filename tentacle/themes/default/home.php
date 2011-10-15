@@ -8,6 +8,10 @@ Version: 1.0
 License: GNU General Public License
 License URI: license.txt
 */
+
+$data = array();
+
+if(!defined('SCAFFOLD')):
 ?>
 <? load_part('header',array('title'=>'Welcome to Tentacle','assets'=>'marketing')); ?>
   <div id="login-header"><a href="http://www.adampatterson.ca" target="_blank">http://www.adampatterson.ca</a></div>
@@ -30,4 +34,6 @@ License URI: license.txt
     <!-- #login-content -->
   </div>
   <!-- #login-content -->
-<? load_part('footer'); ?>
+<? load_part('footer'); 
+endif;
+?>

@@ -4,14 +4,9 @@ class page_controller {
         
     public function index($page_name = ""){
         
-        $data = 'index page';
-        $data2 = '';
-        $data3 = '';
-
 		load::library ('file');
 		$scaffold = new Scaffold ();
-		//load::view('admin_view', array( 'scaffold'=>$scaffold, 'data'=>$data));
-		tentacle::render ('contact', array ('scaffold' => $scaffold));
+		tentacle::render ('home', array ('scaffold' => $scaffold));
                       
         }// END index
     

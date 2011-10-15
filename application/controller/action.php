@@ -9,6 +9,17 @@ class action_controller
 		echo 'No direct access';
 	}
 	
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * ========================= Log-in/Out
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 	public function login ()
 	{
 		$username = input::post ( 'username' );
@@ -81,6 +92,36 @@ class action_controller
 	 * 
 	 * 
 	 * 
+	 * ========================= Scaffold
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+	public function render_admin ( $template = '' )
+	{
+		define('SCAFFOLD'  , 'TRUE');
+		
+		if ( $template != '' ) {
+			include(THEMES_DIR.'/default/'.$template.'.php');
+
+
+		load::library ('file');
+		
+		$scaffold = new Scaffold ();
+		echo $scaffold->constructForm();
+		echo $scaffold->processThis($data);
+		echo $scaffold->destructForm();
+		}
+	
+	}
+
+
+
+	/*
+	 * 
+	 * 
+	 * 
 	 * ========================= Pages
 	 * 
 	 * 
@@ -99,6 +140,7 @@ class action_controller
 		
 		// Should post back to edit page
 	}
+	
 	
 	/*
 	 * 

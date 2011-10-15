@@ -8,6 +8,7 @@ Version: 1.0
 License: GNU General Public License
 License URI: license.txt
 */
+
 $data = array(
 	'post_type' => 'Page',
 	'first_name' => array(				
@@ -44,6 +45,8 @@ $data = array(
 		'input' => 'input'
 		),
 	);
+	
+if(!defined('SCAFFOLD')):
 
 /**
 * @todo Make a template header and footer to include, then use the assets() pointing to the themes dundle folder. 
@@ -57,14 +60,12 @@ $resource_assets = array(
 );
 
 load::theme_part('header',array('title'=>'Add a new snippet','assets'=>'application'));
+
 ?>
 <p>This is loaded from what would be a template file, The forms are what would be viewed on the admin page</p>
 <p>Soon the data posted from the forums will show up on this page.</p>
-<?
-// Load the scaffold, see addressbook page_contact and how the textile class was used
-echo $scaffold->constructForm();
-echo $scaffold->processThis($data);
-echo $scaffold->destructForm();
-?>
 
-<?	load::theme_part('footer'); ?>
+<? load::theme_part('footer'); 
+
+endif;
+?>
