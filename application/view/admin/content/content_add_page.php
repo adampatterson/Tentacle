@@ -55,11 +55,11 @@
 								</script>
 								<select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
 									<option></option>
-									<option value="<?= BASE_URL ?>action/render_admin/default">Default</option>
+									<option value="<?= BASE_URL ?>action/render_admin/page/default">Default</option>
 									<? $templates = get_templates( get_option( 'appearance' ) ); 
 									foreach ( $templates as $template ):
 									?>
-										<option value="<?= BASE_URL ?>action/render_admin/<?= $template->template_id ?>"><?= $template->template_name ?></option>
+										<option value="<?= BASE_URL ?>action/render_admin/page/<?= $template->template_id ?>"><?= $template->template_name ?></option>
 									<? endforeach; ?>
 								</select>
 							</dd>

@@ -92,32 +92,26 @@ class action_controller
 	 * 
 	 * 
 	 * 
-	 * ========================= Scaffold
+	 * ========================= Load Scaffold
 	 * 
 	 * 
 	 * 
 	 * 
 	 */
-	public function render_admin ( $encoded = '' )
+	public function render_admin ( $location, $template = '' )
 	{
-		// @todo: set up some information that will be passed back to content_add_page
-		// @todo: allow for post back to posts as well as pages.
 		
-		//urlencode(serialize($array));
-		//$array = (isset($_GET['array'])) ? unserialize($_GET['array']) : array();
-		
-		if ( $encoded == 'default' ):
+		if ( $template == 'default' ):
 			$delete = session::delete ( 'template' );
 		else:
 			if ( session::get( 'template' ) ):
-				session::update( 'template', $encoded );
+				session::update( 'template', $template );
 			else:
-				session::set( 'template', $encoded );
+				session::set( 'template', $template);
 			endif;
 		endif;
 		
-		
-		url::redirect( 'admin/content_add_page/' );
+		url::redirect( 'admin/content_add_'.$location.'/' );
 	}
 
 
