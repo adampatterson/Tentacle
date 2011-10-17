@@ -49,19 +49,18 @@ class post_model
 	//----------------------------------------------------------------------------------------------
 	public function add ( ) 
 	{
-		$title         = input::post ( 'title' );
+		$title         = $_POST['title'];
 		
-		load::helper ('string');
 		$slug          = sanitize($title);
 		
-		$content       = input::post ( 'content' );
+		$content       = $_POST['content'];
 		
-		$status        = input::post ( 'status' );
-		$visible       = input::post ( 'visible' );
-		$published     = input::post ( 'published' );
+		$status        = $_POST['status'];
+		$visible       = $_POST['visible'];
+		$published     = $_POST['published'];
 		
-		$parent_page   = input::post ( 'parent_page' );
-		$post_template = input::post ( 'page_template' );
+		$parent_page   = $_POST['parent_page'];
+		$post_template = $_POST['page_template'];
 		$page_category = input::post ( 'page_category');
 		
 		$post_type     = 'post';

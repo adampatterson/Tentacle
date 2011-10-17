@@ -132,7 +132,8 @@ $(document).ready(function(){
 		}
 	});
 	
-	/*  Tags in input fields */
+	/* Tags */
+	// ====================================
 		$('.tags').tagsInput();
 
 	

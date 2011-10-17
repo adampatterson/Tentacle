@@ -45,7 +45,7 @@ class admin_controller {
 		load::view ( 'admin/resource' );
 	}
 
-	/*
+	/**
 	 * 
 	 * 
 	 * 
@@ -140,7 +140,7 @@ class admin_controller {
 		load::view ('admin/content/content_delete_category', array( 'category'=>$category_single, 'id'=>$id ) );	
 	}
 	
-	/*
+	/**
 	 * 
 	 * 
 	 * 
@@ -165,7 +165,7 @@ class admin_controller {
 		load::view ('admin/menu/menu_manage');
 	}
 
-	/*
+	/**
 	 * 
 	 * 
 	 * 
@@ -197,7 +197,7 @@ class admin_controller {
 		load::view ('admin/media/media_downloads');
 	}
 
-	/*
+	/**
 	 * 
 	 * 
 	 * 
@@ -245,7 +245,7 @@ class admin_controller {
 		load::view ('admin/snippets/snippets_delete', array( 'snippet'=>$snippet_single, 'id'=>$id ) );
 	}
 	
-	/*
+	/**
 	 * 
 	 * 
 	 * 
@@ -263,7 +263,7 @@ class admin_controller {
 		load::view ('admin/addons_install');
 	}
 
-	/*
+	/**
 	 * 
 	 * 
 	 * 
@@ -357,7 +357,7 @@ class admin_controller {
 		load::view ('admin/settings/settings_writing');
 	}
 
-	/*
+	/**
 	 * 
 	 * 
 	 * 
@@ -419,7 +419,7 @@ class admin_controller {
 		load::view ('admin/users/users_delete', array( 'user_meta'=>$user_meta, 'id'=>$id ) );
 	}
 
-	/*
+	/**
 	 * 
 	 * 
 	 * 
@@ -478,7 +478,7 @@ class admin_controller {
 		load::view ('admin/seo/seo_robot');
 	}
 
-	/*
+	/**
 	 * 
 	 * 
 	 * 

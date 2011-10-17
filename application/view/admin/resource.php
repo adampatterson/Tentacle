@@ -133,11 +133,6 @@
 								</div>
 								<div class="one-half">
 									<div class="table">
-										<script type="text/javascript">
-											/*	Tags in input fields */
-											$('.tags').tagsInput();
-
-										</script>
 										<h2>Tags</h2>
 										<section>
 											<label for="tags"> Tags <small>Comma separated</small> </label>
@@ -157,7 +152,7 @@
 													$('#suggestions').fadeOut();
 												} else {
 													$('#country').addClass('load');
-													$.post("<? = BASE_URL ?>dev/suggest", {queryString: ""+inputString+""}, function(data){
+													$.post("<?= BASE_URL ?>dev/suggest", {queryString: ""+inputString+""}, function(data){
 														if(data.length > 0) {
 															$('#suggestions').fadeIn();
 															$('#suggestionsList').html(data);

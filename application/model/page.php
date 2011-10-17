@@ -80,25 +80,30 @@ class page_model
 	//----------------------------------------------------------------------------------------------	
 	public function add ( ) 
 	{
-		$title         = input::post ( 'title' );
+		$title         = $_POST['title'];
 		
 		$slug          = sanitize($title);
 		
-		$content       = input::post ( 'content' );
+		$content       = $_POST['content'];
 		
-		$status        = input::post ( 'status' );
-		$visible       = input::post ( 'visible' );
-		$published     = input::post ( 'published' );
+		$status        = $_POST['status'];
+		/*
+		$visible       = $_POST['visible'];
+		$published     = $_POST['published'];
+		*/
 		
-		$parent_page   = input::post ( 'parent_page' );
-		$post_template = input::post ( 'page_template' );
+		$parent_page   = $_POST['parent_page'];
+		$post_template = $_POST['page_template'];
+		
+		//Capture the post array and remove required inoputs.
 		
 		$post_type     = 'page';
 		
 		$post_author   = user::id();
 		
 		$page          = db('posts');
-
+		
+/* 		Save required information to the posts table
 		$page->insert(array(
 			'title'=>$title,
 			'slug'=>$slug,
@@ -107,9 +112,33 @@ class page_model
 			'author'=>$post_author,
 			'type'=>$post_type,
 			'template'=>$post_template,
-			'parent'=>$parent_page,
-			'visible'=>$visible
-		),FALSE);
+			'parent'=>$parent_page
+		));
+		*/
+		
+		clean_out($_POST);
+		
+		$page_meta      = db('posts_meta');
+		
+// 		Strip out the postts required information.
+
+// 		Clean out any post options that are key values.
+/*		$page->insert(array(
+			'post_id'=>$page->id,
+			'meta_key'=>$meta_key,
+			'meta_value'=>$meta_value
+		));
+		*/
+		
+		/*        
+        mySerialize( $obj ) {
+           return base64_encode(gzcompress(serialize($obj)));
+        }
+        
+        myUnserialize( $txt ) {
+           return unserialize(gzuncompress(base64_decode($txt)));
+        } 
+		*/
 
 		note::set('success','page_add','Page Added!');
 	}

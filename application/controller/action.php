@@ -10,7 +10,7 @@ class action_controller
 	}
 	
 	
-	/*
+	/**
 	 * 
 	 * 
 	 * 
@@ -88,7 +88,7 @@ class action_controller
 	} // END Function Action Login
 
 
-	/*
+	/**
 	 * 
 	 * 
 	 * 
@@ -115,7 +115,7 @@ class action_controller
 	}
 
 
-	/*
+	/**
 	 * 
 	 * 
 	 * 
@@ -133,13 +133,13 @@ class action_controller
 		$page_single = $page->add( );
 		
 		$history = input::post ( 'history' );
-		url::redirect($history); 
-		
+
+		//url::redirect($history); 
 		// Should post back to edit page
 	}
 	
 	
-	/*
+	/**
 	 * 
 	 * 
 	 * 
@@ -166,7 +166,7 @@ class action_controller
 		// Should post back to edit page
 	}	
 	
-	/*
+	/**
 	 * 
 	 * 
 	 * 
@@ -216,7 +216,7 @@ class action_controller
 	}
 	
 	
-	/*
+	/**
 	 * 
 	 * 
 	 * 
@@ -258,7 +258,7 @@ class action_controller
 	}
 	
 	
-	/*
+	/**
 	 * 
 	 * 
 	 * 
@@ -300,7 +300,7 @@ class action_controller
   	}
 
 
-	/*
+	/**
 	 * 
 	 * 
 	 * 

@@ -97,11 +97,6 @@
 					</ul>
 					<div class="tab-content tab-body" id="my-tab-content">
 						<div id="content" class="active">
-							<script type="text/javascript">
-								$(document).ready(function(){
-									$(".markItUp").markItUp(mySettings);
-								});
-							</script>
 							<input type="text" name="title" placeholder='Title' class='xlarge' />
 							<p>
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>
@@ -153,7 +148,7 @@
 								<div class="clearfix">
 									<label>Tags</label>
 									<div class="input">
-										<input type="text" placeholder="Edit title" name='content_tags' />
+										<input type="text" class="tags" name="tags" id="tags" />
 										<span class="help-block">Separate each keyword with a comma ( , )</span>
 									</div>
 								</div>
