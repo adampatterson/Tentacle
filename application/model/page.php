@@ -81,29 +81,17 @@ class page_model
 	public function add ( ) 
 	{
 		$title         = $_POST['title'];
-		
 		$slug          = sanitize($title);
-		
 		$content       = $_POST['content'];
-		
 		$status        = $_POST['status'];
-		/*
-		$visible       = $_POST['visible'];
-		$published     = $_POST['published'];
-		*/
-		
 		$parent_page   = $_POST['parent_page'];
 		$post_template = $_POST['page_template'];
 		
-		//Capture the post array and remove required inoputs.
-		
-		$post_type     = 'page';
+		$post_type     = $_POST['page-or-post'];
 		
 		$post_author   = user::id();
 		
 		$page          = db('posts');
-		
-/* 		Save required information to the posts table
 		$page->insert(array(
 			'title'=>$title,
 			'slug'=>$slug,
@@ -114,31 +102,24 @@ class page_model
 			'template'=>$post_template,
 			'parent'=>$parent_page
 		));
-		*/
+	
 		
-		clean_out($_POST);
+		$scaffold_data = $_POST;
+
+		$remove_keys = array( 'title', 'content', 'status', 'parent_page', 'page_template', 'page-or-post', 'history'  );
+		
+		foreach ( $remove_keys as $remove_key ):
+			unset( $scaffold_data[ $remove_key ] );
+		endforeach;
+	
+		$meta_value = serialize( $scaffold_data );
 		
 		$page_meta      = db('posts_meta');
-		
-// 		Strip out the postts required information.
-
-// 		Clean out any post options that are key values.
-/*		$page->insert(array(
+		$page->insert(array(
 			'post_id'=>$page->id,
-			'meta_key'=>$meta_key,
+			'meta_key'=>'scaffold_data',
 			'meta_value'=>$meta_value
 		));
-		*/
-		
-		/*        
-        mySerialize( $obj ) {
-           return base64_encode(gzcompress(serialize($obj)));
-        }
-        
-        myUnserialize( $txt ) {
-           return unserialize(gzuncompress(base64_decode($txt)));
-        } 
-		*/
 
 		note::set('success','page_add','Page Added!');
 	}

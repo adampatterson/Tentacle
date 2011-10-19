@@ -29,7 +29,7 @@ class dev_controller {
 		
 		echo pull();
 	}
-	
+
 	
 	/**
 	* ajax function

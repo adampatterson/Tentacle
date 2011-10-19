@@ -81,8 +81,9 @@ class  Scaffold
 		return $button;
 	}
 
-  static public function destructForm() {
+
+	static public function destructForm() {
         echo '</form>';
-        }
+    }
 } // class scaffold
 ?>
