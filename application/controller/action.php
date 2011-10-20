@@ -131,13 +131,31 @@ class action_controller
 
 		$page = load::model( 'page' );
 		$page_single = $page->add( );
-		
-		$history = input::post ( 'history' );
+			
+		// Delete the selected tempalte from the session once the Page has been posted.
+		session::delete ( 'template' );
 
-		//url::redirect($history); 
-		// Should post back to edit page
+		url::redirect( 'admin/content_update_page/' );
 	}
 	
+	
+	public function update_page ()
+ 	{
+		$history = input::post ( 'history' );
+		url::redirect($history);
+	}
+	
+	
+	public function soft_delete_page ()
+ 	{
+	
+	}
+	
+	
+	public function delete_page ()
+ 	{
+	
+	}
 	
 	/**
 	 * 
@@ -165,6 +183,24 @@ class action_controller
 		
 		// Should post back to edit page
 	}	
+	
+	
+	public function update_post ()
+ 	{
+	
+	}
+	
+	
+	public function soft_delete_post ()
+ 	{
+	
+	}
+	
+	
+	public function delete_post ()
+ 	{
+	
+	}
 	
 	/**
 	 * 

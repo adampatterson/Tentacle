@@ -49,7 +49,7 @@ class admin_controller {
 	 * 
 	 * 
 	 * 
-	 * ========================= Conent
+	 * ========================= Content
 	 * 
 	 * 
 	 * 
@@ -62,8 +62,15 @@ class admin_controller {
 		
 		$category = load::model( 'category' );
 		$categories = $category->get( );
-		
-		load::view ('admin/content/content_add_page');
+	
+		load::view ('admin/content/content_add_page');		
+	}
+	
+	public function content_update_page ( )
+	{
+		tentacle::valid_user();
+	
+		load::view ('admin/content/content_edit_page');		
 	}
 
 	public function content_manage_pages ()
@@ -120,7 +127,7 @@ class admin_controller {
 		load::view ('admin/content/content_manage_categories', array( 'categories'=>$categories ) );	
 	}
 	
-	public function content_category_edit ( $id = '' )
+	public function content_edit_category ( $id = '' )
 	{
 		tentacle::valid_user();
 		
@@ -130,7 +137,7 @@ class admin_controller {
 		load::view ('admin/content/content_edit_category', array( 'category'=>$category_single, 'id'=>$id ) );	
 	}
 	
-	public function content_category_delete ( $id = '' )
+	public function content_delete_category ( $id = '' )
 	{
 		tentacle::valid_user();
 		

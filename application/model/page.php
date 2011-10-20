@@ -85,14 +85,17 @@ class page_model
 		$content       = $_POST['content'];
 		$status        = $_POST['status'];
 		$parent_page   = $_POST['parent_page'];
-		$post_template = $_POST['page_template'];
+		//$post_template = $_POST['page_template'];
+		$post_template = session::get( 'template' );
+		
 		
 		$post_type     = $_POST['page-or-post'];
 		
 		$post_author   = user::id();
 		
 		$page          = db('posts');
-		$page->insert(array(
+		
+		$row = $page->insert(array(
 			'title'=>$title,
 			'slug'=>$slug,
 			'content'=>$content,
@@ -102,8 +105,8 @@ class page_model
 			'template'=>$post_template,
 			'parent'=>$parent_page
 		));
+
 	
-		
 		$scaffold_data = $_POST;
 
 		$remove_keys = array( 'title', 'content', 'status', 'parent_page', 'page_template', 'page-or-post', 'history'  );
@@ -113,15 +116,24 @@ class page_model
 		endforeach;
 	
 		$meta_value = serialize( $scaffold_data );
-		
+
 		$page_meta      = db('posts_meta');
-		$page->insert(array(
-			'post_id'=>$page->id,
+
+		$page_meta->insert(array(
+			'posts_id'=>$row->id,
 			'meta_key'=>'scaffold_data',
 			'meta_value'=>$meta_value
 		));
 
 		note::set('success','page_add','Page Added!');
+	}
+
+
+	// Update Page
+	//----------------------------------------------------------------------------------------------	
+	public function update ( ) 
+	{
+		note::set('success','page_update','Page Updated!');
 	}
 
 } // END setting_model

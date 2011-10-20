@@ -63,9 +63,9 @@
 									<? endforeach; ?>
 								</select>
 							</dd>
-							<dt>
+							<!--<dt>
 								<a href="#">Select a featured image.</a>
-							</dt>
+							</dt>-->
 						</dl>
 					</fieldset>
 					<input type="hidden" value="admin/content_add_page" name="history">
@@ -77,17 +77,6 @@
 			</div>
 			<div id="post-body">
 				<div id="post-body-content">
-					<?php if($note = note::get('page_add')): ?>
-						<script type="text/javascript">
-							$(document).ready(function() {
-								jQuery.noticeAdd({
-									text : '<?= $note['content'];?>',
-									stay : false,
-									type : '<?= $note['type']; ?>'
-								});
-							});
-						</script>
-					<?php endif;?>
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Write a new page</h1>
 					<ul data-tabs="tabs" class="tabs">
 						<li class="active"><a href="#content">Content</a></li>
@@ -97,7 +86,7 @@
 					</ul>
 					<div class="tab-content tab-body" id="my-tab-content">
 						<div id="content" class="active">
-							<input type="text" name="title" placeholder='Title' class='xlarge' />
+							<input type="text" name="title" placeholder='Title' class='xlarge' required='required' />
 							<p>
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>
 							</p>

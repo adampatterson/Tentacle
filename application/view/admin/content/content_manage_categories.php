@@ -62,7 +62,7 @@
 						?></td>
 						<td><?= $category->id
 						?></td>
-						<td><a href='<?= ADMIN ?>content_category_edit/<?= $category->id  ?>'><img src='<?=ADMIN_URL;?>images/icons/16_edit.png' width='16' height='16' alt='Edit' /></a> <a href='<?= ADMIN ?>content_category_delete/<?= $category->id  ?>'><img src='<?=ADMIN_URL;?>images/icons/16_delete.png' width='16' height='16' alt='Delete' /></a><!--<img src='<?=ADMIN_URL; ?>images/icons/16_add.png' width='15' height='16' alt='Add' />--></td>
+						<td><a href='<?= ADMIN ?>content_edit_category/<?= $category->id  ?>'><img src='<?=ADMIN_URL;?>images/icons/16_edit.png' width='16' height='16' alt='Edit' /></a> <a href='<?= ADMIN ?>content_delete_category/<?= $category->id  ?>'><img src='<?=ADMIN_URL;?>images/icons/16_delete.png' width='16' height='16' alt='Delete' /></a><!--<img src='<?=ADMIN_URL; ?>images/icons/16_add.png' width='15' height='16' alt='Add' />--></td>
 					</tr>
 					<? endforeach;?>
 				</tbody>

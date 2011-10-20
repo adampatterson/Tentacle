@@ -27,7 +27,7 @@ if(!defined('SCAFFOLD')):
 		<!--<p><a href="https://www.wepay.com/donate/151133" class='btn medium primary' target="_blank">Donate</a> or <a href="http://www.adampatterson.ca/contact/" class='btn medium primary' target="_blank">Get in touch!</a></p>-->
 		<form action="http://adampatterson.us1.list-manage2.com/subscribe/post?u=c21d0f4a99a90fdf9c412e45a&amp;id=8b21ce6336" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="form-stacked" target="_blank">
 			<div class="mc-field-group">
-				<input type="email" value="" name="EMAIL" class="email span4" required="required" placeholder="Subscribe to our mailing list" id="mce-EMAIL"> &nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn medium success">
+				<input type="email" value="" name="EMAIL" class="email span4" required="required" placeholder="Subscribe to our mailing list" id="mce-EMAIL"> &nbsp;<input type="submit" value="Notify Me" name="subscribe" id="mc-embedded-subscribe" class="btn medium success">
 			</div>
 		</form>
 	</div>
