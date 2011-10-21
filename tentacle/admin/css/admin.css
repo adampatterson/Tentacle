@@ -1,111 +1,83 @@
 html, body {
-	height: 100%;
-}
+  height: 100%; }
 
 body {
-	font-family: "Arial", Gadget, sans-serif;
-	color: #000;
-	margin: 0;
-	padding: 0;
-}
+  font-family: "Arial", Gadget, sans-serif;
+  color: #000;
+  margin: 0;
+  padding: 0; }
 
 #admin-window {
-	min-width: 960px;
-}
+  min-width: 960px; }
 
 #body-wrapper {
-	clear: both;
-	color: #000000;
-	padding: 0 20px;
-}
+  clear: both;
+  color: #000000;
+  padding: 0 20px; }
 #body-wrapper p {
-	color: #000000;
-}
+  color: #000000; }
 
 #wrap, .container-full, #body-wrapper {
-	max-width: 1850px;
-	min-width: 940px;
-	margin: 0 auto;
-	float: none;
-}
-/*
- * Login Styles
- * ------------------------------------------------------------------------------------------- */
-#login-header {
-	background: #000000;
-	color: #9E9E9E;
-	font-family: Arial, Helvetica, sans-serif;
-	width: 100%;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-	
-	
-	filter: alpha(opacity=50);
-	opacity: 0.5;
-	-khtml-
-padding: 5px 0;
-}
+  max-width: 1850px;
+  min-width: 940px;
+  margin: 0 auto;
+  float: none; }
 
+/*
+* Login Styles
+* ------------------------------------------------------------------------------------------- */
+#login-header {
+  background: #000000;
+  color: #9E9E9E;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  opacity: 0.5;
+  padding: 5px 0; }
 #login-header a:link {
-	color: #9E9E9E;
-	text-decoration: none;
-	padding: 0 10px;
-}
+  color: #9E9E9E;
+  text-decoration: none;
+  padding: 0 10px; }
 
 .login {
-	background: url("../images/bg_black_denim.png");
-	height: 100%;
-}
-
+  background: url("../images/bg_black_denim.png");
+  height: 100%; }
 .login a:link, .login a:visited {
-	color: white;
-}
-
+  color: white; }
 .login #login-logo {
-	text-align: center;
-	padding-top: 100px;
-	padding-bottom: 10px;
-}
-
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 10px; }
 .login label {
-	color: white;
-	line-height: 22px;
-}
-
+  color: white;
+  line-height: 22px; }
 .login h2 {
-	font-size: 1.55em;
-	font-weight: bold;
-	line-height: 1.286em;
-	margin: 1.7em 0 0.2916em;
-	color: white;
-}
-
+  font-size: 1.55em;
+  font-weight: bold;
+  line-height: 1.286em;
+  margin: 1.7em 0 0.2916em;
+  color: white; }
 .login #login-content {
-	width: 330px;
-	padding: 0;
-	margin-right: auto;
-	margin-left: auto;
-	height: 320px;
-}
-
+  width: 330px;
+  padding: 0;
+  margin-right: auto;
+  margin-left: auto;
+  height: 320px; }
 .login #login-content input[type="text"], .login #login-content input[type="password"] {
-	width: 98%;
-}
-
+  width: 98%; }
 .login #login-content dl {
-	margin-left: 40px;
-	padding: 0;
-}
-
+  margin-left: 40px;
+  padding: 0; }
 .login #login-content dt {
-	width: 100px;
-	float: left;
-}
-
+  width: 100px;
+  float: left; }
 .login #login-content dd {
-	width: 220px;
-	float: left;
-	padding: 0;
-}
+  width: 220px;
+  float: left;
+  padding: 0; }
 .login #login-content .login-row {
   clear: both;
   padding-left: 85px; }
@@ -381,8 +353,12 @@ table.nostyle td {
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
   background: #EEEEEE;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #d8d8d8));
+  background: -webkit-linear-gradient(top, #eeeeee 0%, #d8d8d8 100%);
   background: -moz-linear-gradient(top, #eeeeee 0%, #d8d8d8 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #d8d8d8));
+  background: -o-linear-gradient(top, #eeeeee 0%, #d8d8d8 100%);
+  background: -ms-linear-gradient(top, #eeeeee 0%, #d8d8d8 100%);
+  background: linear-gradient(top, #eeeeee 0%, #d8d8d8 100%);
   text-shadow: 0 1px 0 #FFFFFF; }
 
 .table-heading {
@@ -443,11 +419,11 @@ Notifications
   background-color: #222222;
   background-repeat: repeat-x;
   background-image: -khtml-gradient(linear, left top, left bottom, from(#333333), to(#222222));
-  background-image: -moz-linear-gradient(top, #333333, #222222);
-  background-image: -ms-linear-gradient(top, #333333, #222222);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #333333), color-stop(100%, #222222));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#333333), to(#222222));
   background-image: -webkit-linear-gradient(top, #333333, #222222);
+  background-image: -moz-linear-gradient(top, #333333, #222222);
   background-image: -o-linear-gradient(top, #333333, #222222);
+  background-image: -ms-linear-gradient(top, #333333, #222222);
   background-image: linear-gradient(top, #333333, #222222);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
@@ -456,11 +432,11 @@ Notifications
   background-color: #57a957;
   background-repeat: repeat-x;
   background-image: -khtml-gradient(linear, left top, left bottom, from(#62c462), to(#57a957));
-  background-image: -moz-linear-gradient(top, #62c462, #57a957);
-  background-image: -ms-linear-gradient(top, #62c462, #57a957);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #62c462), color-stop(100%, #57a957));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#62c462), to(#57a957));
   background-image: -webkit-linear-gradient(top, #62c462, #57a957);
+  background-image: -moz-linear-gradient(top, #62c462, #57a957);
   background-image: -o-linear-gradient(top, #62c462, #57a957);
+  background-image: -ms-linear-gradient(top, #62c462, #57a957);
   background-image: linear-gradient(top, #62c462, #57a957);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#62c462', endColorstr='#57a957', GradientType=0);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
@@ -470,11 +446,11 @@ Notifications
   background-color: #c43c35;
   background-repeat: repeat-x;
   background-image: -khtml-gradient(linear, left top, left bottom, from(#ee5f5b), to(#c43c35));
-  background-image: -moz-linear-gradient(top, #ee5f5b, #c43c35);
-  background-image: -ms-linear-gradient(top, #ee5f5b, #c43c35);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ee5f5b), color-stop(100%, #c43c35));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ee5f5b), to(#c43c35));
   background-image: -webkit-linear-gradient(top, #ee5f5b, #c43c35);
+  background-image: -moz-linear-gradient(top, #ee5f5b, #c43c35);
   background-image: -o-linear-gradient(top, #ee5f5b, #c43c35);
+  background-image: -ms-linear-gradient(top, #ee5f5b, #c43c35);
   background-image: linear-gradient(top, #ee5f5b, #c43c35);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ee5f5b', endColorstr='#c43c35', GradientType=0);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
@@ -486,8 +462,9 @@ Notifications
 
 .notice-item {
   background: #333;
-  -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
   color: #eee;
   padding: 12px;
   font-family: Arial, Helvetica, sans-serif;
@@ -538,8 +515,9 @@ div.tagsinput {
   height: 100px;
   overflow-y: auto;
   border-radius: 3px;
+  -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
-  -webkit-border-radius: 3px; }
+  border-radius: 3px; }
 div.tagsinput span.tag {
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
@@ -578,6 +556,20 @@ div.tagsinput div {
   clear: both;
   width: 100%;
   height: 0px; }
+
+/* 
+Username Lookup
+* ------------------------------------------------------------------------------------------- */
+#username {
+  padding: 3px;
+  font-size: 18px;
+  border: 3px #CCC solid; }
+
+#tick {
+  display: none; }
+
+#cross {
+  display: none; }
 
 /* 
 Temp 

@@ -18,9 +18,42 @@
 			<form id='validation' action="<?= BASE_URL ?>action/add_user/" method="post">
 				<fieldset>
 					<div class="clearfix">
-						<label for="user_name">Username <span class="description">(required)</span></label>
+						<script type="text/javascript" charset="utf-8">
+							$(document).ready(function(){
+								$('#username').keyup(username_check);
+							});
+
+							function username_check(){
+								var username = $('#username').val();
+								if(username == "" || username.length < 4){
+									$('#username').css('border', '3px #CCC solid');
+									$('#tick').hide();
+								}else{
+
+							jQuery.ajax({
+							type: "POST",
+							url: "<?= BASE_URL ?>dev/username_check/",
+								data: 'username='+ username,
+								cache: false,
+								success: function(response) {
+									if(response == 1) {
+										$('#username').css('border', '3px #C33 solid');
+										$('#tick').hide();
+										$('#cross').fadeIn();
+									} else {
+										$('#cross').hide();
+										$('#tick').fadeIn();
+									}
+								}
+								});
+								}
+								}
+						</script>
+						<label for="username">Username <span class="description">(required)</span></label>
 						<div class="input">
-							<input type="text" aria-required="true" value="" id="user_name" name="user_name">
+							<input type="text" aria-required="true" value="" id="username" name="user_name">
+							<img id="tick" src="http://papermashup.com/demos/check-username/tick.png" width="16" height="16"/>
+							<img id="cross" src="http://papermashup.com/demos/check-username/cross.png" width="16" height="16"/>
 						</div>
 					</div>
 					<div class="clearfix">

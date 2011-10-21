@@ -186,38 +186,9 @@
 								<div class="one-half auto">
 									<div class="table">
 										<h2>Username Lookup</h2>
-										<script>
-											$(document).ready(function(){
-$('#username').keyup(username_check);
-});
+<script>
 
-function username_check(){
-var username = $('#username').val();
-if(username == "" || username.length < 4){
-$('#username').css('border', '3px #CCC solid');
-$('#tick').hide();
-}else{
-
-jQuery.ajax({
-type: "POST",
-url: "<?= BASE_URL ?>
-	dev / username_check / ",
-	data: 'username='+ username,
-	cache: false,
-	success: function(response) {
-		if(response == 1) {
-			$('#username').css('border', '3px #C33 solid');
-			$('#tick').hide();
-			$('#cross').fadeIn();
-		} else {
-			$('#cross').hide();
-			$('#tick').fadeIn();
-		}
-	}
-	});
-	}
-	}
-										</script>
+</script>
 										<form action="#" method="post">
 											<p>
 												Ashley, John, Mark, Paul, Rich, Luke, Simon, Adam

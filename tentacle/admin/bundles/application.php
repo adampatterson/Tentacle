@@ -26,6 +26,11 @@
 	</script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.validate.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>application.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){
+			$('#username').keyup(username_check);
+		});
+	</script>
 	<!--[if lt IE 9]>
 	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
