@@ -19,9 +19,6 @@
 				<fieldset>
 					<div class="clearfix">
 						<script type="text/javascript" charset="utf-8">
-							$(document).ready(function(){
-								$('#username').keyup(username_check);
-							});
 
 							function username_check(){
 								var username = $('#username').val();
@@ -51,7 +48,7 @@
 						</script>
 						<label for="username">Username <span class="description">(required)</span></label>
 						<div class="input">
-							<input type="text" aria-required="true" value="" id="username" name="user_name">
+							<input type="text" aria-required="true" value="" id="username_off" name="user_name">
 							<img id="tick" src="http://papermashup.com/demos/check-username/tick.png" width="16" height="16"/>
 							<img id="cross" src="http://papermashup.com/demos/check-username/cross.png" width="16" height="16"/>
 						</div>

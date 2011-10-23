@@ -106,7 +106,7 @@
 					<div class="clearfix">
 						<label for="blacklist_keys">Black List</label>
 						<div class="input">
-							<textarea cols="50" rows="10" name="blacklist_keys"></textarea>
+							<textarea cols="50" rows="10" name="blacklist_keys"><?= get_option('blacklist_keys'); ?></textarea>
 							<span class="help-block">When a comment contains any of these words in its content, name, URL, e-mail, or IP, it will be marked as spam. One word or IP per line. It will match inside words, so “press” will match “WordPress”.</span>
 						</div>
 					</div>

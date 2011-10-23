@@ -16,9 +16,9 @@
 						<label>Thumbnail size</label>
 						<div class="input">
 							<div class="inline-inputs">
-								<input type="text" value="290" name="image_thumb_size_w" id="thumbnail_size_w" class='span2' />
+								<input type="text" value="<?= get_option('image_thumb_size_w'); ?>" name="image_thumb_size_w" id="thumbnail_size_w" class='span2' />
 								x
-								<input type="text" value="290" name="image_thumb_size_h" id="thumbnail_size_h" class='span2' />
+								<input type="text" value="<?= get_option('image_thumb_size_h'); ?>" id="thumbnail_size_h" class='span2' />
 							</div>
 						</div>
 						<div class="input">
@@ -36,9 +36,9 @@
 						<label>Medium size</label>
 						<div class="input">
 							<div class="inline-inputs">
-								<input type="text" value="620" name="image_medium_size_w" id="medium_size_w" class='span2' />
+								<input type="text" value="<?= get_option('image_medium_size_w'); ?>" name="image_medium_size_w" id="medium_size_w" class='span2' />
 								x
-								<input type="text" value="9999" name="image_medium_size_h" id="medium_size_h" class='span2' />
+								<input type="text" value="<?= get_option('image_medium_size_h'); ?>" name="image_medium_size_h" id="medium_size_h" class='span2' />
 							</div>
 						</div>
 					</div>
@@ -46,9 +46,9 @@
 						<label>Large size</label>
 						<div class="input">
 							<div class="inline-inputs">
-								<input type="text" value="950" name="image_large_size_w" class='span2' />
+								<input type="text" value="<?= get_option('image_large_size_w'); ?>" name="image_large_size_w" class='span2' />
 								x
-								<input type="text" value="9999" name="image_large_size_h" class='span2' />
+								<input type="text" value="<?= get_option('image_large_size_h'); ?>" name="image_large_size_h" class='span2' />
 							</div>
 						</div>
 					</div>
@@ -60,7 +60,7 @@
 				<div class="clearfix">
 					<label for='upload_path'>Store uploads in this folder</label>
 					<div class="input">
-						<input type="text" class="regular-text code" value="tentacle/storage" name="upload_folder" />
+						<input type="text" class="regular-text code" value="<?= get_option('upload_folder'); ?>" name="upload_folder" />
 						<span class="help-block">Default is
 							<code>
 								tentacle/storage
@@ -71,7 +71,7 @@
 				<div class="clearfix">
 					<label for="upload_url_path">Full URL path to files</label>
 					<div class="input">
-						<input type="text" class="regular-text code" value="http://www.siteurl.com" name="upload_url">
+						<input type="text" class="regular-text code" value="<?= get_option('upload_url'); ?>" name="upload_url">
 						<span class="help-block">Configuring this is optional. By default, it should be blank.</span>
 					</div>
 					<div class="input">

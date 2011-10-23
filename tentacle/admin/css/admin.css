@@ -560,11 +560,6 @@ div.tagsinput div {
 /* 
 Username Lookup
 * ------------------------------------------------------------------------------------------- */
-#username {
-  padding: 3px;
-  font-size: 18px;
-  border: 3px #CCC solid; }
-
 #tick {
   display: none; }
 

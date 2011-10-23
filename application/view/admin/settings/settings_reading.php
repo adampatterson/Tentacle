@@ -104,13 +104,13 @@
 					<div class="clearfix">
 						<label for="posts_per_page"> Blog posts per page </label>
 						<div class="input">
-							<input type="text" class="mini" value="7" id="posts_per_page" name="posts_per_page">
+							<input type="text" class="mini" value="<?= get_option('posts_per_page'); ?>" id="posts_per_page" name="posts_per_page">
 						</div>
 					</div>
 					<div class="clearfix">
 						<label for="posts_per_rss"> Syndication items in feed </label>
 						<div class="input">
-							<input type="text" class="mini" value="10" id="posts_per_rss" name="posts_per_rss">
+							<input type="text" class="mini" value="<?= get_option('posts_per_rss'); ?>" id="posts_per_rss" name="posts_per_rss">
 						</div>
 					</div>
 				</fieldset>
@@ -122,7 +122,7 @@
 					<div class="clearfix">
 						<label for="feed_url">Custom Feed URL</label>
 						<div class="input">
-							<input type="text" value="" id="feed_url" name="feed_url">
+							<input type="text" value="<?= get_option('feed_url'); ?>" id="feed_url" name="feed_url">
 						</div>
 					</div>
 					<div class="clearfix">
@@ -146,7 +146,7 @@
 					<div class="clearfix">
 						<label for="blog_charset"> Encoding for pages and feeds </label>
 						<div class="input">
-							<input type="text" value="UTF-8" id="blog_charset" name="blog_charset">
+							<input type="text" value="<?= get_option('blog_charset'); ?>" id="blog_charset" name="blog_charset">
 							<span class="help-block">The <a href="http://codex.wordpress.org/Glossary#Character_set">character encoding</a> of your site (UTF-8 is recommended, if you are adventurous there are some <a href="http://en.wikipedia.org/wiki/Character_set">other encodings</a>)</span>
 						</div>
 					</div>

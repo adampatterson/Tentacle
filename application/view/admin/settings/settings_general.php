@@ -16,32 +16,32 @@
 					<div class="clearfix">
 						<label for="custom_logo">Custom Logo</label>
 						<div class="input">
-							<input type="file" value="" name="custom_logo">
+							<input type="file" name="custom_logo">
 						</div>
 					</div>
 					<div class="clearfix">
 						<label for="custom_favicon">Custom Favicon</label>
 						<div class="input">
-							<input type="file" value="" name="custom_favicon">
+							<input type="file" name="custom_favicon">
 						</div>
 					</div>
 					<div class="clearfix">
 						<label for="blogdescription">Tagline</label>
 						<div class="input">
-							<input type="text" value="Just my website" name="blogdescription">
+							<input type="text" value="<?= get_option('blogdescription'); ?>" name="blogdescription">
 							<span class="help-block">In a few words, explain what this site is about.</span>
 						</div>
 					</div>
 					<div class="clearfix">
 						<label for="siteurl">Base (URL)</label>
 						<div class="input">
-							<input type="text" class="code" value="http://www.adampatterson.ca" name="siteurl">
+							<input type="text" class="code" value="<?= get_option('siteurl'); ?>" name="siteurl">
 						</div>
 					</div>
 					<div class="clearfix">
 						<label for="admin_email">E-mail address</label>
 						<div class="input">
-							<input type="text" value="hello@adampatterson.ca" name="admin_email">
+							<input type="text" value="<?= get_option('admin_email'); ?>" name="admin_email">
 							<span class="help-block">This address is used for admin purposes, like new user notification.</span>
 						</div>
 					</div>

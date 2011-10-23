@@ -10,7 +10,7 @@
 				<hr />
 				<div class="clearfix">
 					<div class="input">
-						<input type="text" value="XX-XXXXX-X" id="ga_uid" name="ga_uid" size="50">
+						<input type="text" value="<?= get_option('ga_uid'); ?>" id="ga_uid" name="ga_uid" size="50">
 						<span class="help-block">The UID is needed for Google Analytics to log your website stats. If you are having trouble finding your UID {click here}.</span>
 					</div>
 				</div>
@@ -22,14 +22,14 @@
 				<div class="clearfix">
 					<label for="verification_services_google">Google Webmaster Tools</label>
 					<div class="input">
-						<input size="50" name="verification_services_google" value="dBw5CvburAxi537Rp9qi5uG2174Vb6JwHwIRwPSLIK8" type="text">
+						<input size="50" name="verification_services_google" value="<?= get_option('verification_services_google'); ?>" type="text">
 						<span class="help-block">Example:
 							<code>
 								&lt;meta name='google-site-verification' content='<strong><span class="red">dBw5CvburAxi537Rp9qi5uG2174Vb6JwHwIRwPSLIK8</span></strong>'&gt;
 							</code></span>
 					</div>
 				</div>
-				<div class="clearfix">
+				<!--<div class="clearfix">
 					<label for="verification_services_yahoo">Yahoo Site Explorer</label>
 					<div class="input">
 						<input size="50" name="verification_services_yahoo" value="3236dee82aabe064" type="text">
@@ -48,7 +48,16 @@
 								&lt;meta name='msvalidate.01' content='<strong><span class="red">12C1203B5086AECE94EB3A3D9830B2E</span></strong>'&gt;
 							</code> </span>
 					</div>
+				</div>-->
+				<h2>Meta Description</h2>
+				<hr />
+				<div class="clearfix">
+					<div class="input">
+						<textarea rows="5" cols="40" name="meta_description" placeholder='Enter your meta description'><?= get_option('meta_description'); ?></textarea>
+					</div>
 				</div>
+			</div>
+			<div class="one-half">
 				<h2>Robots</h2>
 				<hr />
 				<div class="clearfix">
@@ -143,16 +152,7 @@
 						</ul>
 					</div>
 				</div>
-				<h2>Meta Description</h2>
-				<hr />
-				<div class="clearfix">
-					<div class="input">
-						<textarea rows="5" cols="40" name="meta_description" placeholder='Enter your meta description'></textarea>
-					</div>
-				</div>
-			</div>
-			<div class="one-half">
-				<h2>404 Monitor</h2>
+			<!--	<h2>404 Monitor</h2>
 				<hr />
 				<table width="100%" border="0" cellspacing="0" cellpadding="0">
 					<thead class="table-heading">
@@ -189,7 +189,7 @@
 							<td>12</td>
 						</tr>
 					</tbody>
-				</table>
+				</table>-->
 			</div>
 		</div>
 		<div class="one-full">

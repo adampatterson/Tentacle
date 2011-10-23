@@ -26,7 +26,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="one-half">
+			<!--<div class="one-half">
 				<div class="table">
 					<h2>Update Services</h2>
 					<hr />
@@ -87,7 +87,7 @@ http://xping.pubsub.com/ping
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>-->
 			<div class="one-full">
 				<div class="actions">
 					<input type="submit" value="Save Changes" class="btn primary medium" id="submit" name="submit">
