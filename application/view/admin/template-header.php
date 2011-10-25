@@ -15,7 +15,6 @@
 			<div class="topbar">
 			  <div class="fill">
 				<div class="container-full">
-				  <h3><a href="<?= ADMIN ?>"><img src="<?= TENTACLE_URL.'/admin/images/tentacle_logo_small.png' ?>" alt="Tentacle" width="96" height="30px" /></a></h3>
 				<ul class="nav" data-dropdown="dropdown">
 					<li class="<? if (
 				    CURRENT_PAGE == 'admin/dashboard') echo 'active'; ?>"><a href="<?= ADMIN ?>">Dashboard</a></li>
@@ -78,7 +77,7 @@
 							<li><a href="https://github.com/adampatterson/Tentacle/issues">Submit an Issue</a></li>
 						</ul>
 					</li>
-					<li> <a href="<?= ADMIN ?>logout/"><img src="<?= TENTACLE_URL.'/admin/images/log_out.png'; ?>"" alt="Log Out" /></a> </li>
+					<li> <a href="<?= ADMIN ?>logout/"><img src="<?= TENTACLE_URL.'/admin/images/log_out.png'; ?>" alt="Log Out" /></a> </li>
 				</ul>
 				</div><!-- . container-full -->
 			  </div><!-- .fill -->

@@ -90,7 +90,7 @@
 					<a href="#" class="dropdown-toggle">Help</a>
 					<ul class="dropdown-menu">
 						<li><a href="https://tentacle.tenderapp.com/home" class="help">Knowledge Base</a></li>
-						<li><a href="https://github.com/adampatterson/Tentacle/issues">Submit an Issue</a></li>
+						<li><a href="https://github.com/adampatterson/Tentacle/issues" terget="_blank">Submit an Issue</a></li>
 					</ul>
 				</li>
 				<li> <a href="<?= ADMIN ?>logout/">Logout</a> </li>

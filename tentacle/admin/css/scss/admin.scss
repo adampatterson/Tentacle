@@ -1,5 +1,12 @@
+* {
+	margin:0;
+	padding:0;
+}
 html, body {
 	height: 100%;
+}
+html {
+	overflow-y:scroll;
 }
 body {
 	font-family: "Arial", Gadget, sans-serif;
@@ -16,18 +23,44 @@ body {
 	clear: both;
 	color: #000000;
 	padding: 0 20px;
+	margin:0 auto -90px;
+	min-height:100%;
+	height:auto!important;
+	height:100%;
+	max-width: 1850px;
+	min-width: 940px;
+	float: none;
+
 	p {
 		color: #000000;
 	}
 }
 
-#wrap, .container-full, #body-wrapper {
+#wrap, .container-full  {
 	max-width: 1850px;
 	min-width: 940px;
 	margin: 0 auto;
 	float: none;
 }
 
+footer {
+	color: #9E9E9E;
+	height: 30px;
+	overflow:hidden;
+	background-color: whitesmoke;
+	margin-top: 40px;
+	
+	.container-full {
+		padding: 0 20px;
+	}
+	
+	a:link {
+		color: #9E9E9E;
+	}
+	span {
+		color: #1E1E1E;
+	}
+}
 /*
 * Login Styles
 * ------------------------------------------------------------------------------------------- */
@@ -146,7 +179,7 @@ body {
 #wrap {
 	float: left;
 	width: 100%;
-	padding-top: 15px;
+	padding-top: 40px;
 	position: relative;
 
 	p {
@@ -322,7 +355,7 @@ Topbar
 	}
 	
   	.fill {
-		padding: 0 30px;
+		padding: 0 15px 0 15px;
 		background: #222;
 		background-color: #222222;
 		background-repeat: repeat-x;

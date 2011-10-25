@@ -17,4 +17,4 @@
 		</div><!-- .post-body -->
 	</div><!-- .full-content -->
 </div><!-- #wrap -->
-<? load::view('admin/template-login-footer');?> 
+<? load::view('admin/template-footer');?> 
