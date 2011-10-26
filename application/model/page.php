@@ -41,7 +41,7 @@ class page_model
 	public function get ( $id='' )
 	{
 		$pages = db ( 'posts' );
-
+		
 		if ( $id == '' ) {
 			$get_pages = $pages->select( '*' )
 				->where ( 'type', '=', 'page' )
@@ -52,6 +52,7 @@ class page_model
 		} else {	
 			$get_pages = $pages->select( '*' )
 				->where ( 'id', '=', $id )
+				->clause( 'AND' )
 				->where ( 'type', '=', 'page' )
 				->order_by ( 'id', 'DESC' )
 				->execute();	
@@ -59,12 +60,30 @@ class page_model
 			return $get_pages[0];
 		}	
 	}
-/*
-	public function update ( $id = '' )
-	{
-		return 'update';
-	} 
 	
+	
+	// Get Page Meta
+	//----------------------------------------------------------------------------------------------
+	public function get_page_meta ( $id='' )
+	{		
+		$page_meta = db ( 'posts_meta' );
+	
+		$get_page_meta = $page_meta->select( '*' )
+			->where ( 'posts_id', '=', $id )
+			->execute();	
+		
+		return $get_page_meta;
+	}
+
+
+	// Update Page
+	//----------------------------------------------------------------------------------------------	
+	public function update ( ) 
+	{
+		note::set('success','page_update','Page Updated!');
+	}
+	
+/*
 	public function soft_delete ( $id='' ) 
 	{
 		return 'delete';
@@ -127,14 +146,5 @@ class page_model
 
 		note::set('success','page_add','Page Added!');
 	}
-
-
-	// Update Page
-	//----------------------------------------------------------------------------------------------	
-	public function update ( ) 
-	{
-		note::set('success','page_update','Page Updated!');
-	}
-
 } // END setting_model
 ?>

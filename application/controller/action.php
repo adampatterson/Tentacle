@@ -135,13 +135,14 @@ class action_controller
 		// Delete the selected tempalte from the session once the Page has been posted.
 		session::delete ( 'template' );
 
-		url::redirect( 'admin/content_update_page/' );
+		url::redirect( 'admin/content_update_page/'.$id );
 	}
 	
 	
-	public function update_page ()
+	public function update_page ( $page_id )
  	{
 		$history = input::post ( 'history' );
+		
 		url::redirect($history);
 	}
 	

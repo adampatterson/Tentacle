@@ -66,11 +66,16 @@ class admin_controller {
 		load::view ('admin/content/content_add_page');		
 	}
 	
-	public function content_update_page ( )
+	public function content_update_page ( $page_id )
 	{
 		tentacle::valid_user();
 	
-		load::view ('admin/content/content_edit_page');		
+		$page = load::model( 'page' );
+		$get_page = $page->get( $page_id );
+		
+		$get_page_meta = $page->get_page_meta( $page_id );
+	
+		load::view ('admin/content/content_edit_page', array(  'get_page'=>$get_page, 'get_page_meta'=>$get_page_meta ) );		
 	}
 
 	public function content_manage_pages ()

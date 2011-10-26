@@ -23,7 +23,6 @@ body {
   padding: 0 20px;
   margin: 0 auto -90px;
   min-height: 100%;
-  height: auto!important;
   height: 100%;
   max-width: 1850px;
   min-width: 940px;
@@ -40,9 +39,9 @@ body {
 footer {
   color: #9E9E9E;
   height: 30px;
-  overflow: hidden;
-  background-color: whitesmoke;
-  margin-top: 40px; }
+  /*overflow:hidden;*/
+  margin-top: 40px;
+  display: block; }
 footer .container-full {
   padding: 0 20px; }
 footer a:link {

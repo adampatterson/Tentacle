@@ -89,6 +89,10 @@
 						</script>
 					<?php endif; ?>
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Update {page_title}</h1>
+					
+					<? clean_out($get_page) ?>
+					<? clean_out($get_page_meta) ?>
+					
 					<ul data-tabs="tabs" class="tabs">
 						<li class="active"><a href="#content">Content</a></li>
 						<li class=""><a href="#options">Options</a></li>

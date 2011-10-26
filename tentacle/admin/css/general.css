@@ -276,13 +276,18 @@ hr.space {
   border-top: 1px solid #ddd;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
-  border-radius: 0; }
+  border-radius: 0;
+  clear: both;
+  display: block; }
 .actions .secondary-action {
   float: right; }
 .actions .secondary-action a {
   line-height: 30px; }
 .actions .secondary-action a:hover {
   text-decoration: underline; }
+
+.form-stacked .one-full .actions {
+  margin-left: 0; }
 
 .alignright.actions {
   padding: 0; }

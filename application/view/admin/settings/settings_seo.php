@@ -7,15 +7,13 @@
 		<div class="one-full">
 			<div class="one-half">
 					<h2>Google Analytics UID</h2>
-				<hr />
 				<div class="clearfix">
 					<div class="input">
-						<input type="text" value="<?= get_option('ga_uid'); ?>" id="ga_uid" name="ga_uid" size="50">
+						<input type="text" value="<?= get_option('ga_uiddBw5CvburAxi537Rp9qi5uG2174Vb6JwHwIRwPSLIK8'); ?>" id="ga_uid" name="ga_uid" size="50">
 						<span class="help-block">The UID is needed for Google Analytics to log your website stats. If you are having trouble finding your UID {click here}.</span>
 					</div>
 				</div>
 				<h2>Webmaster tools</h2>
-				<hr />
 				<p>
 					Enter your meta key "content" value to verify your blog with <a href="https://www.google.com/webmasters/tools/">Google Webmaster Tools</a>, <a href="https://siteexplorer.search.yahoo.com/">Yahoo Site Explorer</a>, and <a href="http://www.bing.com/webmaster">Bing Webmaster Center</a>
 				</p>
@@ -50,7 +48,6 @@
 					</div>
 				</div>-->
 				<h2>Meta Description</h2>
-				<hr />
 				<div class="clearfix">
 					<div class="input">
 						<textarea rows="5" cols="40" name="meta_description" placeholder='Enter your meta description'><?= get_option('meta_description'); ?></textarea>
@@ -59,7 +56,6 @@
 			</div>
 			<div class="one-half">
 				<h2>Robots</h2>
-				<hr />
 				<div class="clearfix">
 					<label>Spider</label>
 					<div class="input">
