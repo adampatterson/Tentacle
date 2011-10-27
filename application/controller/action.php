@@ -143,6 +143,9 @@ class action_controller
  	{
 		$history = input::post ( 'history' );
 		
+		//	user the same serialize process as in the add page
+		//	uopdate the modified time.
+		
 		url::redirect($history);
 	}
 	

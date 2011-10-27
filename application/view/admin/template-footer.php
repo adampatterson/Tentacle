@@ -2,9 +2,9 @@
 <!-- #body-wrapper -->
 <footer>
 	<div class="container-full">
-		<div class="one-half">Documentation | Freedoms | Feedback | Credits |  version <?= TENTACLE_VERSION; ?></div>
-		<div class="one-half textright"><span>by</<span> <a href="<?= ADMIN ?>"><img src="<?= TENTACLE_URL.'/admin/images/tentacle_logo_footer.png' ?>" alt="Tentacle CMS" /></a></div>
-	</div>	
+		<div class="one-half"><p>Documentation | Freedoms | Feedback | Credits |  version <?= TENTACLE_VERSION; ?></p></div>
+		<div class="one-half textright"><p><span>by</<span> <a href="<?= ADMIN ?>"><img src="<?= TENTACLE_URL.'/admin/images/tentacle_logo_footer.png' ?>" alt="Tentacle CMS" /></a></p></div>
+	</div>
 </footer>
 <script type="text/javascript" charset="utf-8">
   Tender = {
