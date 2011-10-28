@@ -88,7 +88,7 @@
 							});
 						</script>
 					<?php endif; ?>
-					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Update {page_title}</h1>
+					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Update <small><?= $get_page->title; ?></small></h1>
 					
 					<? clean_out($get_page) ?>
 					<? clean_out($get_page_meta) ?>
