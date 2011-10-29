@@ -5,13 +5,10 @@
 		<div id="post-body">
 			<div class="one-full">
 				<div class="title pad-right">
-					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Dashboard</h1>
-					<h2>Welcome <strong><?= $user_meta -> first_name;?> <?= $user_meta -> last_name;?></strong></h2>
-					<span id="spin">You spin me rite round!</span>
-					<!-- spin.js START -->
-						<div id="preview"></div>
-					<!-- spin.js END -->
-					
+					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Welcome <strong><?= $user_meta -> first_name;?> <?= $user_meta -> last_name;?></strong></h1>
+					<p>Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit.</p>
+					<!--<span id="spin">You spin me rite round!</span>
+						<div id="preview"></div>-->
 				</div>
 			</div><!-- .one-full -->
 		</div><!-- .post-body -->
