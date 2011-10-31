@@ -95,8 +95,14 @@
 					
 					Get page Meta
 					
+					stdClass Object
+					(
+					    [bread_crumb] => 
+					    [meta_keywords] => 
+					    [meta_description] => Enter your comments here...
+					    [tags] => 
+					)
 					-->
-					<? clean_out( $get_page_meta )?>
 					<ul data-tabs="tabs" class="tabs">
 						<li class="active"><a href="#content">Content</a></li>
 						<li class=""><a href="#options">Options</a></li>
@@ -133,28 +139,28 @@
 								<div class="clearfix">
 									<label>Breadcrumb title</label>
 									<div class="input">
-										<input type="text" placeholder="Edit title" name='bread_crumb' />
+										<input type="text" placeholder="Edit title" name='bread_crumb' value='<?= $get_page_meta->bread_crumb ?>' />
 										<span class="help-block">This title will appear in the breadcrumb trail.</span>
 									</div>
 								</div>
 								<div class="clearfix">
 									<label>Meta Keywords</label>
 									<div class="input">
-										<input type="text" placeholder="Keywords" name='meta_keywords' />
+										<input type="text" placeholder="Keywords" name='meta_keywords' value='<?= $get_page_meta->meta_keywords ?>' />
 										<span class="help-block">Separate each keyword with a comma ( , )</span>
 									</div>
 								</div>
 								<div class="clearfix">
 									<label>Meta Description</label>
 									<div class="input">
-										<textarea name="meta_description" cols="40" rows="5">Enter your comments here...</textarea>
+										<textarea name="meta_description" cols="40" rows="5"><?= $get_page_meta->meta_description ?></textarea>
 										<span class="help-block">A short summary of the page's content</span>
 									</div>
 								</div>
 								<div class="clearfix">
 									<label>Tags</label>
 									<div class="input">
-										<input type="text" class="tags" name="tags" id="tags" />
+										<input type="text" class="tags" name="tags" id="tags" value='<?= $get_page_meta->tags ?>' />
 										<span class="help-block">Separate each keyword with a comma ( , )</span>
 									</div>
 								</div>
