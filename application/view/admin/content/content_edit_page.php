@@ -17,8 +17,8 @@
 							</dt>
 							<dd>
 								<select name="status" id="status" size="1">
-									<option value="draft">Draft</option>
-									<option value="live">Live</option>
+									<option value="draft" <? if ($get_page->status == 'draft') echo 'selected' ?>>Draft</option>
+									<option value="live" <? if ($get_page->status == 'live') echo 'selected' ?>>Live</option>
 								</select>
 							</dd>
 							<dt>
@@ -34,12 +34,11 @@
 							</dt>
 							<dd>
 								<select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
-									<option></option>
-									<option value="<?= BASE_URL ?>action/render_admin/page/default">Default</option>
+									<option value="<?= BASE_URL ?>action/render_admin/page/default" <? if ($get_page->template == 'default') echo 'selected' ?>>Default</option>
 									<? $templates = get_templates( get_option( 'appearance' ) ); 
 									foreach ( $templates as $template ):
 									?>
-										<option value="<?= BASE_URL ?>action/render_admin/page/<?= $template->template_id ?>"><?= $template->template_name ?></option>
+										<option value="<?= BASE_URL ?>action/render_admin/page/<?= $template->template_id ?>" <? if ($get_page->template == $template->template_id) echo 'selected' ?>><?= $template->template_name ?></option>
 									<? endforeach; ?>
 								</select>
 							</dd>
@@ -65,7 +64,7 @@
 							});
 						</script>
 					<?php endif; ?>
-					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Update <small><?= $get_page->title; ?></small></h1>
+					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Update <small><?= $get_page->title ?></small></h1>
 					
 					<!-- 
 					Get Page
@@ -95,18 +94,9 @@
 					
 					
 					Get page Meta
-					Array
-					(
-					    [0] => dingo Object
-					        (
-					            [id] => 11
-					            [posts_id] => 59
-					            [meta_key] => scaffold_data
-					            [meta_value] => a:4:{s:11:"bread_crumb";s:0:"";s:13:"meta_keywords";s:0:"";s:16:"meta_description";s:27:"Enter your comments here...";s:4:"tags";s:0:"";}
-					        )
-
-					)
+					
 					-->
+					<? clean_out( $get_page_meta )?>
 					<ul data-tabs="tabs" class="tabs">
 						<li class="active"><a href="#content">Content</a></li>
 						<li class=""><a href="#options">Options</a></li>
@@ -115,10 +105,10 @@
 					</ul>
 					<div class="tab-content tab-body" id="my-tab-content">
 						<div id="content" class="active">
-							<input type="text" name="title" placeholder='Title' value='<?= $get_page->title; ?>' class='xlarge' required='required' />
+							<input type="text" name="title" placeholder='Title' value='<?= $get_page->title ?>' class='xlarge' required='required' />
 							<p>Permalink: http://www.sitename/com/path/ <a href="#">Edit</a></p>
 							<p>
-								<textarea name="content" cols="40" rows="5" class="markItUp" placeholder='Content'></textarea>
+								<textarea name="content" cols="40" rows="5" class="markItUp" placeholder='Content'><?= $get_page->content ?></textarea>
 							</p>
 							<div class="clear"></div>
 							<div id="scaffold">
@@ -141,7 +131,7 @@
 						<div id="options" class="">
 							<fieldset>
 								<div class="clearfix">
-									<label>Breadcrumb</label>
+									<label>Breadcrumb title</label>
 									<div class="input">
 										<input type="text" placeholder="Edit title" name='bread_crumb' />
 										<span class="help-block">This title will appear in the breadcrumb trail.</span>

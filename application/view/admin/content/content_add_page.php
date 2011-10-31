@@ -54,7 +54,6 @@
 									*/
 								</script>
 								<select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
-									<option></option>
 									<option value="<?= BASE_URL ?>action/render_admin/page/default">Default</option>
 									<? $templates = get_templates( get_option( 'appearance' ) ); 
 									foreach ( $templates as $template ):
@@ -114,7 +113,7 @@
 						<div id="options" class="">
 							<fieldset>
 								<div class="clearfix">
-									<label>Breadcrumb</label>
+									<label>Breadcrumb title</label>
 									<div class="input">
 										<input type="text" placeholder="Edit title" name='bread_crumb' />
 										<span class="help-block">This title will appear in the breadcrumb trail.</span>

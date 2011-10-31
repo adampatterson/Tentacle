@@ -56,7 +56,7 @@ class page_model
 				->where ( 'type', '=', 'page' )
 				->order_by ( 'id', 'DESC' )
 				->execute();	
-			
+
 			return $get_pages[0];
 		}	
 	}
@@ -68,11 +68,13 @@ class page_model
 	{		
 		$page_meta = db ( 'posts_meta' );
 	
-		$get_page_meta = $page_meta->select( '*' )
+		$dirty_page_meta = $page_meta->select( 'meta_value' )
 			->where ( 'posts_id', '=', $id )
 			->execute();	
 		
-		return $get_page_meta;
+		$clean_page_meta = unserialize( $dirty_page_meta[0]->meta_value );
+
+		return arrayToObject( $clean_page_meta );
 	}
 
 
@@ -105,7 +107,15 @@ class page_model
 		$status        = $_POST['status'];
 		$parent_page   = $_POST['parent_page'];
 		//$post_template = $_POST['page_template'];
-		$post_template = session::get( 'template' );
+		
+		$dirty_template = session::get( 'template' );
+		
+		if ( $dirty_template == '' ) 
+		{
+			$post_template = 'default';
+		} else {
+			$post_template = $dirty_template;
+		}
 		
 		
 		$post_type     = $_POST['page-or-post'];

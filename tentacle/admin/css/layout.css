@@ -219,7 +219,8 @@ Admin Sidebar
 .has-right-sidebar .contet-sidebar {
   margin-top: 50px;
   float: right;
-  width: 281px; }
+  width: 281px;
+  display: inline-block; }
 .has-right-sidebar .contet-sidebar .table {
   margin-bottom: 20px; }
 .has-right-sidebar #post-body {

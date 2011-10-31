@@ -88,7 +88,7 @@
 						<div id="options" class="">
 							<fieldset>
 								<div class="clearfix">
-									<label>Breadcrumb</label>
+									<label>Breadcrumb title</label>
 									<div class="input">
 										<input type="text" placeholder="Edit title" name='bread_crumb' />
 										<span class="help-block">This title will appear in the breadcrumb trail.</span>
