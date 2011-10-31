@@ -5,7 +5,12 @@
 		<h1 class="align-left"><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Manage pages</h1>
 		<a href="<?=ADMIN;?>content_add_page/" class="btn medium primary">Add new page</a>
 		<div class="title-search alignright">
-			<input type="text" name="search" placeholder="Search" />
+			<script type="text/javascript">     
+				function startSearch(event) {       
+					document.getElementById("searchform").submit();     
+				}
+			</script>
+			<input type="text" name="search" placeholder="Search" id="searchform" title="search" x-webkit-speech="" x-webkit-grammar="builtin:search" onwebkitspeechchange="startSearch()" />
 		</div>
 	</div>
 	<div class="page-details">

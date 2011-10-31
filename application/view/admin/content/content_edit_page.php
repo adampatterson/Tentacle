@@ -1,4 +1,4 @@
-<? load::view('admin/template-header', array('title' => 'Edit {page_title}', 'assets' => 'application'));?>
+<? load::view('admin/template-header', array('title' => 'Edit '.$get_page->title, 'assets' => 'application'));?>
 <? load::view('admin/template-sidebar');?>
 <div id="wrap">
 	<form action="<?= BASE_URL ?>action/update_page/" method="post" class="form-stacked">
@@ -33,26 +33,6 @@
 								<label for="page_template">Page template</label>
 							</dt>
 							<dd>
-								<script type="text/javascript">	
-									/*
-									$(document).ready(function(){
-									    function loadVals() {
-									      var singleValues = $("#page_templateOFF").val();
-											return singleValues;
-									    }
-
-									    $("select").change(load_content);
-
-										function load_content() {
-										    $.get('<?= BASE_URL ?>/action/render_admin/'+loadVals(), function(data) {
-										        $('#scaffold').append(data);
-										    });
-										}
-
-										load_content();
-									});
-									*/
-								</script>
 								<select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
 									<option></option>
 									<option value="<?= BASE_URL ?>action/render_admin/page/default">Default</option>
@@ -63,9 +43,6 @@
 									<? endforeach; ?>
 								</select>
 							</dd>
-							<!--<dt>
-								<a href="#">Select a featured image.</a>
-							</dt>-->
 						</dl>
 					</fieldset>
 					<input type="hidden" value="admin/content_update_page" name="history">
@@ -90,9 +67,46 @@
 					<?php endif; ?>
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Update <small><?= $get_page->title; ?></small></h1>
 					
-					<? clean_out($get_page) ?>
-					<? clean_out($get_page_meta) ?>
+					<!-- 
+					Get Page
 					
+					dingo Object
+					(
+					    [id] => 59
+					    [author] => 1
+					    [visible] => public
+					    [date] => 2011-10-25 22:18:33
+					    [title] => new title to edit
+					    [content] => 
+					    [excerpt] => 
+					    [category] => 0
+					    [comment_status] => open
+					    [ping_status] => open
+					    [password] => 
+					    [slug] => new-title-to-edit
+					    [modified] => 0000-00-00 00:00:00
+					    [parent] => 1
+					    [type] => page
+					    [menu_order] => 0
+					    [guid] => 
+					    [status] => draft
+					    [template] => 
+					)
+					
+					
+					Get page Meta
+					Array
+					(
+					    [0] => dingo Object
+					        (
+					            [id] => 11
+					            [posts_id] => 59
+					            [meta_key] => scaffold_data
+					            [meta_value] => a:4:{s:11:"bread_crumb";s:0:"";s:13:"meta_keywords";s:0:"";s:16:"meta_description";s:27:"Enter your comments here...";s:4:"tags";s:0:"";}
+					        )
+
+					)
+					-->
 					<ul data-tabs="tabs" class="tabs">
 						<li class="active"><a href="#content">Content</a></li>
 						<li class=""><a href="#options">Options</a></li>
@@ -101,7 +115,7 @@
 					</ul>
 					<div class="tab-content tab-body" id="my-tab-content">
 						<div id="content" class="active">
-							<input type="text" name="title" placeholder='Title' class='xlarge' required='required' />
+							<input type="text" name="title" placeholder='Title' value='<?= $get_page->title; ?>' class='xlarge' required='required' />
 							<p>Permalink: http://www.sitename/com/path/ <a href="#">Edit</a></p>
 							<p>
 								<textarea name="content" cols="40" rows="5" class="markItUp" placeholder='Content'></textarea>
