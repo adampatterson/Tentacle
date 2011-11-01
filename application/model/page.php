@@ -155,6 +155,7 @@ class page_model
 		));
 
 		note::set('success','page_add','Page Added!');
+		return $row->id;
 	}
 } // END setting_model
 ?>

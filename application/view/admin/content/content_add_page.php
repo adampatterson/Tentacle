@@ -69,8 +69,7 @@
 					</fieldset>
 					<input type="hidden" value="admin/content_add_page" name="history">
 					<div class="textleft actions">
-						<button type="submit" class="btn large primary">Save</button>
-						<a class="red button-secondary" href="#">Move to trash</a><!--<a href="#review">Save for Review</a>-->
+						<button type="submit" class="btn large primary">Save</button><!--<a href="#review">Save for Review</a>-->
 					</div>
 				</div>
 			</div>
@@ -129,7 +128,7 @@
 								<div class="clearfix">
 									<label>Meta Description</label>
 									<div class="input">
-										<textarea name="meta_description" cols="40" rows="5">Enter your comments here...</textarea>
+										<textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'></textarea>
 										<span class="help-block">A short summary of the page's content</span>
 									</div>
 								</div>

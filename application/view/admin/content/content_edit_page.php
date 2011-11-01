@@ -97,10 +97,10 @@
 					
 					stdClass Object
 					(
-					    [bread_crumb] => 
-					    [meta_keywords] => 
-					    [meta_description] => Enter your comments here...
-					    [tags] => 
+					    [bread_crumb] => cewcewc
+						[meta_keywords] => wecewc
+						[meta_description] => ewcewcew
+						[tags] => ewcewcecew,cew,cewcew,c,ecew
 					)
 					-->
 					<ul data-tabs="tabs" class="tabs">
@@ -111,6 +111,7 @@
 					</ul>
 					<div class="tab-content tab-body" id="my-tab-content">
 						<div id="content" class="active">
+							<? //clean_out($get_page_meta ) ?>
 							<input type="text" name="title" placeholder='Title' value='<?= $get_page->title ?>' class='xlarge' required='required' />
 							<p>Permalink: http://www.sitename/com/path/ <a href="#">Edit</a></p>
 							<p>
@@ -153,7 +154,7 @@
 								<div class="clearfix">
 									<label>Meta Description</label>
 									<div class="input">
-										<textarea name="meta_description" cols="40" rows="5"><?= $get_page_meta->meta_description ?></textarea>
+										<textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'><?= $get_page_meta->meta_description ?></textarea>
 										<span class="help-block">A short summary of the page's content</span>
 									</div>
 								</div>
