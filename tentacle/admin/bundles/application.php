@@ -44,3 +44,10 @@
 	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+<!--	
+	<? //if (CONFIGURATION == 'deployment'): ?>
+		<link href="<?=MINIFY; ?>f=tentacle/admin/css/24gs/screen_import.css" rel="stylesheet" type="text/css" />
+	<? //else: ?>
+		<link href="<?=BASE_URL; ?>tentacle/admin/css/24gs/screen_import.css" rel="stylesheet" type="text/css" />
+	<? //endif;?>
+	-->
