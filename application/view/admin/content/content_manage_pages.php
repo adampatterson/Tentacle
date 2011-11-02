@@ -42,7 +42,7 @@ $user_meta = $user->get_meta ( $page->author );
 				<td ><?= $user_meta->first_name?> <?= $user_meta->last_name?></td>
 				<td ><?= $page->id?></td>
 				<td><?= $page->status?></td>
-				<td><a href="<?= ADMIN ?>content_update_page/<?= $page->id;?>"><img src="<?=ADMIN_URL;?>images/icons/16_edit.png" width="16" height="16" alt="Edit" /></a> <img src="<?=ADMIN_URL;?>images/icons/16_delete.png" width="16" height="16" alt="Delete" /> <img src="<?=ADMIN_URL;?>images/icons/16_add.png" width="15" height="16" alt="Add" /></td>
+				<td><a href="<?= ADMIN ?>content_update_page/<?= $page->id;?>"><img src="<?=ADMIN_URL;?>images/icons/16_edit.png" width="16" height="16" alt="Edit" /></a> <img src="<?=ADMIN_URL;?>images/icons/16_delete.png" width="16" height="16" alt="Delete" /> <a href="<?= ADMIN ?>content_add_page/<?= $page->id;?>" title="Add sub-page"><img src="<?=ADMIN_URL;?>images/icons/16_add.png" width="15" height="16" alt="Add" /></a></td>
 			</tr>
 			<? endforeach;?>
 			<!--
