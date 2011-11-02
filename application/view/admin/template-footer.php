@@ -13,6 +13,6 @@
     widgetToggles: $('.help')
   }
 </script>
-<script src="https://adampatterson.tenderapp.com/tender_widget.js" type="text/javascript"></script>
+<script src="https://tentacle.tenderapp.com/tender_widget.js" type="text/javascript"></script>
 </body>
 </html>
