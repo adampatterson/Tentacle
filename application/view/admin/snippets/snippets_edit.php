@@ -26,7 +26,7 @@
 					</div>
 					<div class="clearfix">
 						<div class="input">
-							<textarea name="snippet_content" cols="40" rows="5" name="content"><?= escapeStr($snippet->content); ?></textarea>
+							<textarea name="content" cols="40" rows="5" name="content"><?= escapeStr($snippet->content); ?></textarea>
 						</div>
 					</div>
 					<div class="clearfix">

@@ -3,7 +3,7 @@
 <footer>
 	<div class="container-full">
 		<div class="one-half"><p>Documentation | Freedoms | Feedback | Credits |  version <?= TENTACLE_VERSION; ?></p></div>
-		<div class="one-half textright"><p><span>by</<span> <a href="<?= ADMIN ?>"><img src="<?= TENTACLE_URL.'/admin/images/tentacle_logo_footer.png' ?>" alt="Tentacle CMS" /></a></p></div>
+		<div class="one-half textright"><p><span>Thanks for creating with</<span> <a href="<?= ADMIN ?>"><img src="<?= TENTACLE_URL.'/admin/images/tentacle_logo_footer.png' ?>" alt="Tentacle CMS" /></a></p></div>
 	</div>
 </footer>
 <script type="text/javascript" charset="utf-8">

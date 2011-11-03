@@ -109,10 +109,10 @@ If any of the tests have failed, consult the documentation for more information 
 		</tr>
 		<tr>
 			<th>Storage Directory</th>
-			<?php if (is_dir('../storage/') AND is_writable('../storage/')): ?>
+			<?php if (is_dir('../tentacle/storage/') AND is_writable('../tentacle/storage/')): ?>
 				<td class="pass">/storage/</td>
 			<?php else: $failed = TRUE ?>
-				<td class="fail">The <code>/storeage/</code> directory is not writable.</td>
+				<td class="fail">The <code>/tentacle/storage/</code> directory is not writable.</td>
 			<?php endif ?>
 		</tr>
 		<tr>
@@ -190,7 +190,7 @@ If any of the tests have failed, consult the documentation for more information 
 	</table>
 
 <?php if ($failed === TRUE): ?>
-		<p id="results" class="fail">✘ Addressbook may not work correctly with your environment.</p>
+		<p id="results" class="fail">✘ Tentacle may not work correctly with your environment.</p>
 	<?php else: ?>
 		<p id="results" class="pass">✔ Your environment passed all requirements.<br />
 			Go onto the <a href="?step=2">Next Step</a></p>

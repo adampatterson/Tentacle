@@ -85,11 +85,11 @@
 					<div class="tab-content tab-body" id="my-tab-content">
 						<div id="content" class="active">
 							<input type="text" name="title" placeholder='Title' class='xlarge' required='required' />
-							<p>
+							<!--<p>
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>
-							</p>
+							</p>-->
 							<p>
-								<textarea name="content" cols="40" rows="5" class="markItUp" placeholder='Content'></textarea>
+								<textarea name="content" cols="40" rows="5" class='markItUp' placeholder='Content'></textarea>
 							</p>
 							<div class="clear"></div>
 							<div id="scaffold">

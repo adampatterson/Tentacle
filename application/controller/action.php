@@ -283,6 +283,8 @@ class action_controller
 		
 		$snippet = load::model('snippet');
 		$snippet_single = $snippet->update( $id  );
+		
+		
 
 		url::redirect('admin/snippets_manage/');
 	}
