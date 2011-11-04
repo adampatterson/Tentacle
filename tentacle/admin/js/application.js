@@ -16,9 +16,7 @@ $(document).ready(function(){
 		
 	//Admin Tabs:
 	// ====================================
-		$(function () {
-			$('.tabs').tabs()
-		})
+		$('.tabs').tabs()
 
     //Close button:
 	// ====================================
@@ -173,7 +171,7 @@ $(document).ready(function(){
 	
 	/* Dropdown for topbar nav */
 	// ====================================
-	     $('#topbar').dropdown()
+	$('#topbar').dropdown()
 
 
 	/* Modal Window */
