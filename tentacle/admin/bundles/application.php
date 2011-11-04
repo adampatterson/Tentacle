@@ -1,11 +1,11 @@
-	<link href="<?=TENTACLE_CSS; ?>bootstrap-1.3.0.min.css" rel="stylesheet">
+	<link href="<?=TENTACLE_CSS; ?>bootstrap-1.4.0.min.css" rel="stylesheet">
 	<link media="screen" type="text/css" rel="stylesheet" href="<?=TENTACLE_JS; ?>markitup/skins/simple/style.css">
 	<link media="screen" type="text/css" rel="stylesheet" href="<?=TENTACLE_JS; ?>markitup/sets/textile/style.css">
 	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>general.css">
 	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>admin.css">
 <!--
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
 -->
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.min.js"></script>

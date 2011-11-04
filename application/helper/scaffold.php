@@ -45,10 +45,10 @@ class  Scaffold
                 switch($input['type']) {
                     case 'text':
                         $return_data .= '<div class="clearfix"><label for="'.$input['name'].'">'.$input['name'].'</label><div class="input"><input type="text" class="xlarge" name="'.$input['name'].'" /></div></div>';
-                    break;
-                    case 'password':
-                    	$return_data .= '<div class="clearfix"><label for="'.$input['name'].'``">Password</label><div class="input"><input type="password" class="xlarge" name="'.$input['name'].'" /></div></div>';
-                    break;    
+					break;
+					case 'password':
+ 						$return_data .= '<div class="clearfix"><label for="'.$input['name'].'``">Password</label><div class="input"><input type="password" class="xlarge" name="'.$input['name'].'" /></div></div>';
+					break;    
 				    case 'button':
 						$return_data .= self::createButton($input['button_name']);
                     break;               

@@ -58,7 +58,7 @@
 									<? $templates = get_templates( get_option( 'appearance' ) ); 
 									foreach ( $templates as $template ):
 									?>
-										<option value="<?= BASE_URL ?>action/render_admin/page/<?= $template->template_id ?>"><?= $template->template_name ?></option>
+										<option value="<?= BASE_URL ?>action/render_admin/page/<?= $template->template_id ?>" <? if ( session::get( 'template' ) == $template->template_id ) echo 'selected' ?>><?= $template->template_name ?></option>
 									<? endforeach; ?>
 								</select>
 							</dd>
@@ -78,12 +78,12 @@
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Write a new page</h1>
 					<ul data-tabs="tabs" class="tabs">
 						<li class="active"><a href="#content">Content</a></li>
-						<li class=""><a href="#options">Options</a></li>
+						<li><a href="#options">Options</a></li>
 						<!--<li class=""><a href="#revisions">Revisions</a></li>
 						<li class=""><a href="#tasks">Task's</a></li>-->
 					</ul>
 					<div class="tab-content tab-body" id="my-tab-content">
-						<div id="content" class="active">
+						<div id="content" class="active tab-pane">
 							<input type="text" name="title" placeholder='Title' class='xlarge' required='required' />
 							<!--<p>
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>
@@ -109,7 +109,7 @@
 								<div class="clear"></div>
 							</div>
 						</div>
-						<div id="options" class="">
+						<div id="options" class="tab-pane">
 							<fieldset>
 								<div class="clearfix">
 									<label>Breadcrumb title</label>
@@ -176,7 +176,7 @@
 							</fieldset>
 							<div class="clear"></div>
 						</div>
-						<div id="revisions" class="">
+						<!--<div id="revisions" class="">
 							<h4>Feb 7, 2011</h4>
 							<div class="small-row">
 								<input type="radio" checked="checked" />
@@ -305,7 +305,7 @@
 								</button>
 							</div>
 							<div class="clear"></div>
-						</div>
+						</div>-->
 					</div>
 				</div>
 			</div>

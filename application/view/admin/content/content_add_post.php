@@ -83,11 +83,9 @@
 					<ul data-tabs="tabs" class="tabs">
 						<li class="active"><a href="#content">Content</a></li>
 						<li class=""><a href="#options">Options</a></li>
-						<!--<li class=""><a href="#revisions">Revisions</a></li>
-						<li class=""><a href="#tasks">Task's</a></li>-->
 					</ul>
 					<div class="tab-content tab-body" id="my-tab-content">
-						<div id="content" class="active">
+						<div id="content" class="active tab-pane">
 							<input type="text" name="title" placeholder='Title' class='xlarge' />
 							<p>
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>
@@ -97,7 +95,7 @@
 							</p>
 							<div class="clear"></div>
 						</div>
-						<div id="options" class="">
+						<div id="options" class="tab-pane">
 							<fieldset>
 								<div class="clearfix">
 									<label>Breadcrumb title</label>
@@ -162,136 +160,6 @@
 									</div>
 								</div>
 							</fieldset>
-							<div class="clear"></div>
-						</div>
-						<div id="revisions" class="">
-							<h4>Feb 7, 2011</h4>
-							<div class="small-row">
-								<input type="radio" checked="checked" />
-								<input type="radio" />
-								#8 Created 14:22 by Adam Patterson
-								<div class="alignright"><img src="<?=ADMIN_URL;?>images/icons/16_roll-back.png" width="16" height="16" alt="Revert" />
-								</div>
-							</div>
-							<div class="small-row">
-								<input type="radio" />
-								<input type="radio" />
-								#9 Created 14:22 by Adam Patterson
-								<div class="alignright"><img src="<?=ADMIN_URL;?>images/icons/16_roll-back.png" width="16" height="16" alt="Revert" />
-								</div>
-							</div>
-							<div class="small-row">
-								<input type="radio" />
-								<input type="radio" checked="checked" />
-								#10 Created 14:22 by Adam Patterson
-								<div class="alignright"><img src="<?=ADMIN_URL;?>images/icons/16_roll-back.png" width="16" height="16" alt="Revert" />
-								</div>
-							</div>
-							<div class="small-row last">
-								<input type="radio" />
-								<input type="radio" />
-								#11 Created 14:22 by Adam Patterson
-								<div class="alignright"><img src="<?=ADMIN_URL;?>images/icons/16_roll-back.png" width="16" height="16" alt="Revert" />
-								</div>
-							</div>
-							<h4>Feb 6, 2011</h4>
-							<div class="small-row">
-								<input type="radio" checked="checked" />
-								<input type="radio" />
-								#8 Created 14:22 by Adam Patterson
-								<div class="alignright"><img src="<?=ADMIN_URL;?>images/icons/16_roll-back.png" width="16" height="16" alt="Revert" />
-								</div>
-							</div>
-							<div class="small-row">
-								<input type="radio" />
-								<input type="radio" />
-								#9 Created 14:22 by Adam Patterson
-								<div class="alignright"><img src="<?=ADMIN_URL;?>images/icons/16_roll-back.png" width="16" height="16" alt="Revert" />
-								</div>
-							</div>
-							<div class="small-row">
-								<input type="radio" />
-								<input type="radio" checked="checked" />
-								#10 Created 14:22 by Adam Patterson
-								<div class="alignright"><img src="<?=ADMIN_URL;?>images/icons/16_roll-back.png" width="16" height="16" alt="Revert" />
-								</div>
-							</div>
-							<div class="small-row last">
-								<input type="radio" />
-								<input type="radio" />
-								#11 Created 14:22 by Adam Patterson
-								<div class="alignright"><img src="<?=ADMIN_URL;?>images/icons/16_roll-back.png" width="16" height="16" alt="Revert" />
-								</div>
-							</div>
-							<div class="actions">
-								<input type="btn medium secondry" value="Compare revision" class="button" />
-							</div>
-							<p class="red">
-								Revision code to be added when a suitable diff has been found.
-							</p>
-							<div class="clear"></div>
-						</div>
-						<div id="tasks" class="">
-							<h4>Task's</h4>
-							<div class="small-row"><img src="<?=ADMIN_URL;?>images/icons/16_star.png" width="16" height="16" alt="Star" />
-								<input type="checkbox" />
-								#8 Created 14:22 by Adam Patterson
-								<div class="alignright"><img src="<?=ADMIN_URL;?>images/icons/16_edit.png" width="16" height="16" alt="Edit" /><img src="<?=ADMIN_URL;?>images/icons/16_delete.png" width="16" height="16" alt="Delete" />
-								</div>
-							</div>
-							<div class="small-row"><img src="<?=ADMIN_URL;?>images/icons/16_star.png" width="16" height="16" alt="Star" />
-								<input type="checkbox" />
-								#9 Created 14:22 by Adam Patterson
-								<div class="alignright"><img src="<?=ADMIN_URL;?>images/icons/16_edit.png" width="16" height="16" alt="Edit" /><img src="<?=ADMIN_URL;?>images/icons/16_delete.png" width="16" height="16" alt="Delete" />
-								</div>
-							</div>
-							<div class="small-row"><img src="<?=ADMIN_URL;?>images/icons/16_star.png" width="16" height="16" alt="Star" />
-								<input type="checkbox" />
-								#10 Created 14:22 by Adam Patterson
-								<div class="alignright"><img src="<?=ADMIN_URL;?>images/icons/16_edit.png" width="16" height="16" alt="Edit" /><img src="<?=ADMIN_URL;?>images/icons/16_delete.png" width="16" height="16" alt="Delete" />
-								</div>
-							</div>
-							<div class="small-row last"><img src="<?=ADMIN_URL;?>images/icons/16_star.png" width="16" height="16" alt="Star" />
-								<input type="checkbox" />
-								#11 Created 14:22 by Adam Patterson
-								<div class="alignright"><img src="<?=ADMIN_URL;?>images/icons/16_edit.png" width="16" height="16" alt="Edit" /><img src="<?=ADMIN_URL;?>images/icons/16_delete.png" width="16" height="16" alt="Delete" />
-								</div>
-							</div>
-							<h4>Completed</h4>
-							<div class="completed grey">
-								<div class="small-row">
-									<input type="checkbox" checked="checked" />
-									#8 Created 14:22 by Adam Patterson
-									<div class="alignright"><img src="<?=ADMIN_URL;?>images/icons/16_delete.png" width="16" height="16" alt="Delete" />
-									</div>
-								</div>
-								<div class="small-row ">
-									<input type="checkbox" checked="checked" />
-									#9 Created 14:22 by Adam Patterson
-									<div class="alignright"><img src="<?=ADMIN_URL;?>images/icons/16_delete.png" width="16" height="16" alt="Delete" />
-									</div>
-								</div>
-								<div class="small-row ">
-									<input type="checkbox" checked="checked" />
-									#10 Created 14:22 by Adam Patterson
-									<div class="alignright"><img src="<?=ADMIN_URL;?>images/icons/16_delete.png" width="16" height="16" alt="Delete" />
-									</div>
-								</div>
-								<div class="small-row last ">
-									<input type="checkbox" checked="checked" />
-									#11 Created 14:22 by Adam Patterson
-									<div class="alignright"><img src="<?=ADMIN_URL;?>images/icons/16_delete.png" width="16" height="16" alt="Delete" />
-									</div>
-								</div>
-							</div>
-							<p class="center">
-								<a href="#"><strong>Show archived tasks</strong></a>
-							</p>
-							<div class="actions">
-								<button type="text" class="btn medium secondary">
-									Add Task
-								</button>
-							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
