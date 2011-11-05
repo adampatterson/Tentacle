@@ -23,6 +23,7 @@
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-twipsy.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-popover.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>spin.min.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>sisyphus.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$(".markItUp").markItUp(mySettings);
