@@ -1,7 +1,16 @@
 <? load::view('admin/template-header', array('title' => 'Write a new post', 'assets' => 'application'));?>
 <? load::view('admin/template-sidebar');?>
 <div id="wrap">
-	<form action="<?= BASE_URL ?>action/add_post/" method="post" class="form-stacked">
+	<script type="text/javascript">
+		$(function(){
+			$('#add_post').sisyphus({
+				//onSaveCallback: function() {},
+				//onRestoreCallback: function() {},
+				//onReleaseDataCallback: function() {}
+			});
+		}); 
+	</script>
+	<form action="<?= BASE_URL ?>action/add_post/" method="post" class="form-stacked" id='add_post'>
 		<div class="has-right-sidebar">
 			<div class="contet-sidebar has-tabs">
 				<div class="table-heading">

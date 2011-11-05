@@ -1,7 +1,16 @@
 <? load::view('admin/template-header', array('title' => 'Edit '.$get_page->title, 'assets' => 'application'));?>
 <? load::view('admin/template-sidebar');?>
 <div id="wrap">
-	<form action="<?= BASE_URL ?>action/update_page/" method="post" class="form-stacked">
+	<script type="text/javascript">
+		$(function(){
+			$('#edit_page').sisyphus({
+				//onSaveCallback: function() {},
+				//onRestoreCallback: function() {},
+				//onReleaseDataCallback: function() {}
+			});
+		}); 
+	</script>
+	<form action="<?= BASE_URL ?>action/update_page/" method="post" class="form-stacked" id='edit_page'>
 		<input type="hidden" name="page-or-post" value='page' />
 		<div class="has-right-sidebar">
 			<div class="contet-sidebar has-tabs">
