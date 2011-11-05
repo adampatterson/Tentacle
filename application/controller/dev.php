@@ -966,5 +966,12 @@ class dev_controller {
 		load::view ( 'redesign3' );
 	}
 
+	public function get_remote  ()
+	{
+		load::helper ('get');
+
+		
+		
+	}
 
 }// END Dev

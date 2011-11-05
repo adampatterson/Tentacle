@@ -6,14 +6,36 @@
 			    <div class="one-full">
 			     <h1 class='title'><img src="<?=ADMIN_URL; ?>images/icons/icon_pages_32.png" alt="" /> System Details</h1>
 					<div class="one-half">
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vestibulum ligula eget ipsum gravida eget elementum libero volutpat. Etiam viverra sapien massa, a imperdiet purus. Aliquam porttitor lorem id ante hendrerit vitae commodo erat laoreet. Sed enim risus, lobortis vel semper at, tincidunt a enim. Nam tortor felis, vehicula vel pharetra eu, cursus in dolor. Fusce quis eros vel turpis tristique varius. Curabitur varius feugiat sollicitudin. Donec facilisis turpis eu lorem vestibulum in fermentum augue varius. Cras vitae tortor eget erat sagittis tristique eu nec erat. Mauris in risus id ligula iaculis hendrerit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse accumsan odio vitae tellus fringilla interdum. Cras quis aliquet elit. Donec quis mauris arcu. Curabitur varius sodales quam, sed ultricies nulla auctor in. Donec eget diam lorem. Integer aliquam lacus a nisl gravida congue. Pellentesque quam nisl, hendrerit vitae facilisis nec, consequat sit amet metus.
-						</p>
+						<strong>Server Requirements:</strong>
+						<ul>
+							<li>PHP 5.2</li>
+							<li>MySQL 4.1.2</li>
+							<li>Apache Mod URL</li>
+						</ul>
+						<strong>Browser Support:</strong>
+						<ul>
+							<li>Chrome 4+</li>
+							<li>Firefox 3.5+</li>
+							<li>Opera 10.5+</li>
+							<li>Safari 4+</li>
+							<li>IE 8+</li>
+						</ul>
 					</div>
 					<div class="one-half">
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vestibulum ligula eget ipsum gravida eget elementum libero volutpat. Etiam viverra sapien massa, a imperdiet purus. Aliquam porttitor lorem id ante hendrerit vitae commodo erat laoreet. Sed enim risus, lobortis vel semper at, tincidunt a enim. Nam tortor felis, vehicula vel pharetra eu, cursus in dolor. Fusce quis eros vel turpis tristique varius. Curabitur varius feugiat sollicitudin. Donec facilisis turpis eu lorem vestibulum in fermentum augue varius. Cras vitae tortor eget erat sagittis tristique eu nec erat. Mauris in risus id ligula iaculis hendrerit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse accumsan odio vitae tellus fringilla interdum. Cras quis aliquet elit. Donec quis mauris arcu. Curabitur varius sodales quam, sed ultricies nulla auctor in. Donec eget diam lorem. Integer aliquam lacus a nisl gravida congue. Pellentesque quam nisl, hendrerit vitae facilisis nec, consequat sit amet metus.
-						</p>
+						<strong>Other Libraries used:</strong>
+						<ul>
+							<li>jQuery</li>
+							<li>Dingo Framework</li>
+							<li>Bootstrap, from Twitter</li>
+							<li>markIt Up!</li>
+							<li>HTML5 Shive</li>
+							<li>Sisyphus</li>
+							<li>Spin</li>
+							<li>Modernizer</li>
+							<li>jQuery History</li>
+							<li>jQuery Validate</li>
+							<li>jQuery Input Tags</li>
+						</ul>
 					</div>
 				</div>
 		</div><!-- #post-body -->
