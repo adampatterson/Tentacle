@@ -950,28 +950,5 @@ class dev_controller {
 			->data('display_name','Adam Patterson')
 			->save(); */
 	}
-	
-	public function redesign () 
-	{
-		load::view ( 'redesign' );
-	}
-	
-	public function redesign2 () 
-	{
-		load::view ( 'redesign2' );
-	}
-
-	public function redesign3 () 
-	{
-		load::view ( 'redesign3' );
-	}
-
-	public function get_remote  ()
-	{
-		load::helper ('get');
-
-		
-		
-	}
 
 }// END Dev

@@ -29,40 +29,46 @@ class  Scaffold
        
         $return_data = "";
       
-        foreach ($data as $input) {
-            //print_r($input);
-            /*  
-            echo $input['name'];
-			@todo get the label name by using some of the string functions with the $input['name']
-            echo $input['label_name'];
-            echo $input['input'];
-            echo $input['type'];
-            echo $input['notes'];
-            echo $input['options'];
-            */
-
-            if ($input['input'] == 'input') {
-                switch($input['type']) {
-                    case 'text':
-                        $return_data .= '<div class="clearfix"><label for="'.$input['name'].'">'.$input['name'].'</label><div class="input"><input type="text" class="xlarge" name="'.$input['name'].'" /></div></div>';
-					break;
-					case 'password':
- 						$return_data .= '<div class="clearfix"><label for="'.$input['name'].'``">Password</label><div class="input"><input type="password" class="xlarge" name="'.$input['name'].'" /></div></div>';
-					break;    
-				    case 'button':
-						$return_data .= self::createButton($input['button_name']);
-                    break;               
-                    }// switch 
-                } elseif($input['input'] == 'option') {
-					$return_data .= '<select>';
-						foreach ($input['options'] as $option) {	
-							$return_data .= '<option value="'.$option.'">'.$option.'</option>';
-						}
-					$return_data .= '</select><br />';
-                } elseif ($input['input'] == 'multiline') {
-                    $return_data .= '<textarea cols="40" rows="5" class="markItUp"></textarea><br />';
-                }
-            } // foreach
+        if ( $data[ 'display' ] != 'front' ):
+			foreach ($data as $input):
+	            //print_r($input);
+	            /*  
+	            echo $input['name'];
+				@todo get the label name by using some of the string functions with the $input['name']
+	            echo $input['label_name'];
+	            echo $input['input'];
+	            echo $input['type'];
+	            echo $input['notes'];
+	            echo $input['options'];
+	            */
+			
+	            if ($input['input'] == 'input'):
+	                switch($input['type']) {
+	                    case 'text':
+	                        $return_data .= '<div class="clearfix"><label for="'.$input['name'].'">'.$input['name'].'</label><div class="input"><input type="text" class="xlarge" name="'.$input['name'].'" /></div></div>';
+						break;
+						case 'password':
+	 						$return_data .= '<div class="clearfix"><label for="'.$input['name'].'``">Password</label><div class="input"><input type="password" class="xlarge" name="'.$input['name'].'" /></div></div>';
+						break;    
+					    case 'button':
+							
+							if ( $data[ 'display' ] != 'admin' ):
+								$return_data .= self::createButton($input['button_name']);
+							endif;
+	                    break;               
+	                    }// switch 
+	                elseif($input['input'] == 'option'):
+						$return_data .= '<select>';
+							foreach ($input['options'] as $option) {	
+								$return_data .= '<option value="'.$option.'">'.$option.'</option>';
+							}
+						$return_data .= '</select><br />';
+	                elseif ($input['input'] == 'multiline'):
+	                    $return_data .= '<textarea cols="40" rows="5" class="markItUp"></textarea><br />';
+	                endif;
+	            endforeach;
+	
+			endif;
           
         //$firephp->log($input, 'Scaffold array');
         

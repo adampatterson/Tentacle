@@ -9,7 +9,9 @@ License: GNU General Public License
 License URI: license.txt
 */
 
-$data = array();
+$data = array(
+	'display' => 'admin'
+);
 
 if(!defined('SCAFFOLD')):
 $resource_assets = array(
@@ -18,7 +20,7 @@ $resource_assets = array(
 	'print' => 'dev_print.css:print'
 );
 
-load::theme_part('header',array('title'=>'Add a new snippet','assets'=>'application'));
+load::theme_part('header',array('title'=>'Page Template','assets'=>'application'));
 ?>
 
 <?	load::theme_part('footer'); 

@@ -9,7 +9,9 @@ License: GNU General Public License
 License URI: license.txt
 */
 
-$data = array();
+$data = array(
+	'display' => 'admin'
+);
 
 if(!defined('SCAFFOLD')):
 ?>

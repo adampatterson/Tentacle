@@ -1,6 +1,6 @@
 <?
  /*
-Name: Default - Data 	page template
+Name: Data page template
 URI: http://tcms.me/
 Description: This is the Tentacle default theme.
 Author: Tentacle
@@ -44,7 +44,7 @@ $resource_assets = array(
 //@todo have help text (can be hidden in the admin area)
 
 $data = array(
-	'post_type' => 'Post Type',
+	'display' => 'admin',
 	'paged' => 'Paged',
 	'posts_per_page' => 2,
 	'name' => array(				

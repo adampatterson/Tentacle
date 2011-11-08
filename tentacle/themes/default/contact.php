@@ -10,7 +10,7 @@ License URI: license.txt
 */
 
 $data = array(
-	'post_type' => 'Page',
+	'display' => 'front',
 	'first_name' => array(				
 		'name' => 'First Name',
 		'label_name' => 'First Name', // Humanixe the name

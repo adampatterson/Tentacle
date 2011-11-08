@@ -67,7 +67,7 @@
 									<? $templates = get_templates( get_option( 'appearance' ) ); 
 									foreach ( $templates as $template ):
 									?>
-										<option value="<?= BASE_URL ?>action/render_admin/page/<?= $template->template_id ?>" <? if ( session::get( 'template' ) == $template->template_id ) echo 'selected' ?>><?= $template->template_name ?></option>
+										<option value="<?= BASE_URL ?>action/render_admin/add_page/<?= $template->template_id ?>" <? selected( session::get( 'template' ), $template->template_id ); ?>><?= $template->template_name ?></option>
 									<? endforeach; ?>
 								</select>
 							</dd>

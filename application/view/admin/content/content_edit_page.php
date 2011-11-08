@@ -43,11 +43,11 @@
 							</dt>
 							<dd>
 								<select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
-									<option value="<?= BASE_URL ?>action/render_admin/page/default" <? if ($get_page->template == 'default') echo 'selected' ?>>Default</option>
+									<option value="<?= BASE_URL ?>action/render_admin/update_page/default/<?= $get_page->id ?>" <? if ($get_page->template == 'default') echo 'selected' ?>>Default</option>
 									<? $templates = get_templates( get_option( 'appearance' ) ); 
 									foreach ( $templates as $template ):
 									?>
-										<option value="<?= BASE_URL ?>action/render_admin/page/<?= $template->template_id ?>" <? if ($get_page->template == $template->template_id) echo 'selected' ?>><?= $template->template_name ?></option>
+										<option value="<?= BASE_URL ?>action/render_admin/update_page/<?= $template->template_id ?>/<?= $get_page->id ?>" <? selected( $get_page->template, $template->template_id ); ?>><?= $template->template_name ?></option>
 									<? endforeach; ?>
 								</select>
 							</dd>
@@ -92,7 +92,7 @@
 								define( 'SCAFFOLD' , 'TRUE' );
 
 								if ( session::get( 'template' ) ) {
-
+									// Load the saved template, then if the user changes override the saved template.
 									include(THEMES_DIR.'/default/'.session::get('template').'.php');
 
 									load::library ( 'file' );
