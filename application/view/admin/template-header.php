@@ -69,7 +69,6 @@
 				    CURRENT_PAGE == 'admin/about_system_details') echo 'active'; ?>"><a href="<?= ADMIN ?>about_system_details/">About</a> </li>
 				  </ul>
 				<ul class="nav secondary-nav">
-					<li class="<? current_page('admin/users_profile'); ?>"> <a href="<?= ADMIN ?>users_profile/">My Account</a> </li>
 					<li class="dropdown" data-dropdown="dropdown" >
 						<a href="#" class="dropdown-toggle">Help</a>
 						<ul class="dropdown-menu">
@@ -79,6 +78,7 @@
 					</li>
 					<li> <a href="<?= ADMIN ?>logout/"><img src="<?= TENTACLE_URL.'/admin/images/log_out.png'; ?>" alt="Log Out" /></a> </li>
 				</ul>
+				<p class="pull-right">Welcome <a href="<?= ADMIN ?>users_profile/">username</a></p>
 				</div><!-- . container-full -->
 			  </div><!-- .fill -->
 			</div><!-- .topbar -->
