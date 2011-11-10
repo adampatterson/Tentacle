@@ -236,6 +236,8 @@ Topbar
   right: 0;
   z-index: 10000;
   overflow: visible; }
+.topbar .pull-right {
+  color: white; }
 .topbar h3 {
   margin: 0; }
 .topbar h3 a {
