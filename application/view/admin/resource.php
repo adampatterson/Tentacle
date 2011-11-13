@@ -1,5 +1,4 @@
 <? load::view('admin/template-header', array('title' => 'Resource', 'assets' => 'application'));?>
-<? load::view('admin/template-sidebar');?>
 <div id="wrap">
 	<div class="full-content">
 		<div id="post-body">
@@ -1650,10 +1649,74 @@
 				  </div><!-- /row -->	
 
 				</section>
+				
+				<!-- Twipsy
+				================================================== -->	
+				<section id="popovers">
+				  <div class="page-header">
+					<h1>WYSIWYG</h1>
+				  </div>
+
+					<!-- Twipsy -->
+					  <div class="row">
+						<div class="span4">
+						  <h2>CKEditor</h2>
+						</div>
+						<div class="span12 columns">
+							
+							<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.js"></script>
+							<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/config.js"></script>
+							<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/adapters/jquery.js"></script>
+							<textarea name="cke" id="cke" cols="30" rows="10" class="jquery_ckeditor"></textarea>
+				        </div>
+					  </div><!-- /row -->
+					
+					<!-- Twipsy -->
+					  <div class="row">
+						<div class="span4">
+						  <h2>CodeMirror</h2>
+						</div>
+						<div class="span12 columns">
+							<!--
+							<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/lib/codemirror.css">
+						    <script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/lib/codemirror.js"></script>
+							<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/xml/xml.js"></script>
+							<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/javascript/javascript.js"></script>
+							<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/css/css.js"></script>
+							<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/theme/default.css">
+							<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/htmlmixed/htmlmixed.js"></script>
+							<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/css/docs.css">
+							-->
+							<textarea name="code-mirror" id="code" cols="30" rows="10">
+<html style="color: green">
+  <!-- this is a comment -->
+  <head>
+    <title>Mixed HTML Example</title>
+    <style type="text/css">
+      h1 {font-family: comic sans; color: #f0f;}
+      div {background: yellow !important;}
+      body {
+        max-width: 50em;
+        margin: 1em 2em 1em 5em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Mixed HTML Example</h1>
+    <script>
+      function jsFunc(arg1, arg2) {
+        if (arg1 && arg2) document.body.innerHTML = "achoo";
+      }
+    </script>
+  </body>
+</html>	
+							</textarea>
+				        </div>
+					  </div><!-- /row -->
+				</section>
 			</div>
 	</div><!-- #wrap -->
 </div>
 <!-- #wrapper-admin -->
 </div> <!-- #body-wrappe -->
-<? load::view('admin/template-login-footer');?>
-w
+<? load::view('admin/template-footer');?>
