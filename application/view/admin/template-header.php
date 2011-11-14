@@ -81,7 +81,7 @@
 					</li>
 					<li> <a href="<?= ADMIN ?>logout/"><img src="<?= TENTACLE_URL.'/admin/images/log_out.png'; ?>" alt="Log Out" /></a> </li>
 				</ul>
-				<p class="pull-right">Welcome <a href="<?= ADMIN ?>users_profile/">username</a></p>
+				<p class="pull-right">Welcome <a href="<?= ADMIN ?>users_profile/"><?= user_name(); ?></a></p>
 				</div><!-- . container-full -->
 			  </div><!-- .fill -->
 			</div><!-- .topbar -->

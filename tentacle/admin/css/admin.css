@@ -569,13 +569,17 @@ div.tagsinput input {
   margin: 0px;
   font-family: helvetica;
   font-size: 11px;
-  border: 1px solid transparent;
+  border: 0px solid transparent;
   padding: 5px;
   background: transparent;
   color: #000;
   outline: 0px;
   margin-right: 5px;
   margin-bottom: 5px; }
+div.tagsinput input, div.tagsinput textarea {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: inset none; }
 div.tagsinput div {
   display: block;
   float: left; }
