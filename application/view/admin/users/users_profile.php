@@ -70,11 +70,11 @@
 							<label for="type" class="alignleft">Role</label>
 							<div class="input">
 								<select id="type" name="type">
-									<option value="subscriber" selected="selected">Subscriber</option>
-									<option value="administrator">Admin</option>
-									<option value="editor">Editor</option>
-									<option value="author">Author</option>
-									<option value="contributor">Contributor</option>
+									<option value="subscriber" <? selected( $user->type, 'subscriber' ); ?>>Subscriber</option>
+									<option value="administrator" <? selected( $user->type, 'administrator' ); ?>>Admin</option>
+									<option value="editor" <? selected( $user->type, 'editor' ); ?>>Editor</option>
+									<option value="author" <? selected( $user->type, 'author' ); ?>>Author</option>
+									<option value="contributor" <? selected( $user->type, 'contributor' ); ?>>Contributor</option>
 								</select>
 							</div>
 						</div>
