@@ -142,6 +142,10 @@ span.cke_skin_tentacle {
 .cke_skin_tentacle .cke_resizer_vertical, .cke_skin_tentacle .cke_rtl .cke_resizer_vertical {
 	cursor:n-resize;
 }
+.cke_skin_tentacle .cke_maximized {
+	margin-top: 60px;
+	top: 60px;
+}
 .cke_skin_tentacle .cke_maximized .cke_resizer {
 	display:none;
 }
@@ -357,19 +361,13 @@ a:hover.cke_colorauto, a:hover.cke_colormore, a:focus.cke_colorauto, a:focus.cke
 	display:none;
 }
 .cke_skin_tentacle .cke_toolgroup {
-	-moz-border-radius:5px;
-	-webkit-border-radius:5px;
-	border-radius:5px;
-	background-image:url(images/sprites.png);
-	_background-image:url(images/sprites_ie6.png);
-	background-repeat:repeat-x;
-	background-position:0 -500px;
 	float:left;
 	margin-right:6px;
 	margin-bottom:5px;
 	padding:2px;
 	display:inline;
 }
+
 .cke_skin_tentacle .cke_rtl .cke_toolgroup {
 	float:right;
 	margin-right:0;
@@ -514,6 +512,19 @@ filter:;
 .cke_skin_tentacle .cke_browser_webkit .cke_toolbar {
 	float:left;
 }
+
+.cke_skin_tentacle .cke_top {
+	background-color: #e7e7e7;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	background-image:url(images/sprites.png);
+	_background-image:url(images/sprites_ie6.png);
+	background-repeat:repeat-x;
+	background-position:0 -500px;
+}
+
+
 .cke_skin_tentacle .cke_browser_webkit .cke_rtl .cke_toolbar {
 	float:right;
 }

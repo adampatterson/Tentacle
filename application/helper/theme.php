@@ -113,6 +113,33 @@ function get_templates ( $theme_folder )
 	
 } // Get Templates
 
+
+function get_post_type ( $theme_folder )
+{
+	$php_files = glob(THEMES_DIR.'/'.$theme_folder.'/type-*.php');	
+
+	foreach ($php_files as $php_file):
+	
+		$file = get_data($php_file, 'post_type');
+		
+		$file_name = basename( $php_file );
+		$file_id = explode( '.', $file_name );
+		
+		if ( $file['Name'] != '' ):
+			$template[$php_file]['part_id'] = $file_id[0];
+			$template[$php_file]['part_name'] = $file['Name'];
+			$template[$php_file]['part_uri'] = $file['URI'];
+			$template[$php_file]['part_description'] = $file['Description'];
+			$template[$php_file]['part_author'] = $file['Author'];
+			$template[$php_file]['part_version'] = $file['Version'];
+		endif;
+	endforeach;
+
+	//return(arrayToObject( $template ));	
+	return ($php_files);
+} // Get Post Type
+
+
 function get_resources( $index_path = '' )
 {	
 	$index_file = $index_path.'/index.php';

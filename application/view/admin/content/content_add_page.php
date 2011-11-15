@@ -98,7 +98,7 @@
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>
 							</p>-->
 							<p>
-								<textarea name="content" cols="40" rows="5" class='markItUp' placeholder='Content'></textarea>
+								<textarea name="content" id="cke" cols="40" rows="5" class="jquery_ckeditor" placeholder='Content'></textarea>
 							</p>
 							<div class="clear"></div>
 							<div id="scaffold">

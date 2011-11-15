@@ -37,13 +37,16 @@
 									<div class="clearfix">
 										<div class="input">
 											<ul class="inputs-list">
-												<li><label for="post-format-0"><input type="radio" name="post_format" class="post-format" id="post-format-0" value="0" checked="checked"> <span>Standard</span></label></li>
-												<li><label for="post-format-aside"><input type="radio" name="post_format" class="post-format" id="post-format-aside" value="aside"> <span>Aside</span></label></li>
-												<li><label for="post-format-link"><input type="radio" name="post_format" class="post-format" id="post-format-link" value="link"> <span>Link</span></label></li>
-												<li><label for="post-format-gallery"><input type="radio" name="post_format" class="post-format" id="post-format-gallery" value="gallery"> <span>Gallery</span></label></li>
-												<li><label for="post-format-status"><input type="radio" name="post_format" class="post-format" id="post-format-status" value="status"> <span>Status</span></label></li>
-												<li><label for="post-format-quote"><input type="radio" name="post_format" class="post-format" id="post-format-quote" value="quote"> <span>Quote</span></label></li>
-												<li><label for="post-format-image"><input type="radio" name="post_format" class="post-format" id="post-format-image" value="image"> <span>Image</span></label></li>
+												<?
+													print_r( get_post_type ( get_option( 'appearance' ) ) );
+												?>
+												<li><label for="post-format-0"><input type="radio" name="post_format" class="post-format" value="0" checked="checked"> <span>Standard</span></label></li>
+												<li><label for="post-format-aside"><input type="radio" name="post_format" class="post-format" value="aside"> <span>Aside</span></label></li>
+												<li><label for="post-format-link"><input type="radio" name="post_format" class="post-format" value="link"> <span>Link</span></label></li>
+												<li><label for="post-format-gallery"><input type="radio" name="post_format" class="post-format" value="gallery"> <span>Gallery</span></label></li>
+												<li><label for="post-format-status"><input type="radio" name="post_format" class="post-format" value="status"> <span>Status</span></label></li>
+												<li><label for="post-format-quote"><input type="radio" name="post_format" class="post-format" value="quote"> <span>Quote</span></label></li>
+												<li><label for="post-format-image"><input type="radio" name="post_format" class="post-format" value="image"> <span>Image</span></label></li>
 											</ul>
 										</div>
 									</div>
@@ -100,7 +103,7 @@
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>
 							</p>
 							<p>
-								<textarea name="content" cols="40" rows="5" class="markItUp" placeholder='Content'></textarea>
+								<textarea name="content" id="cke" cols="40" rows="5" class="jquery_ckeditor" placeholder='Content'></textarea>
 							</p>
 							<div class="clear"></div>
 						</div>

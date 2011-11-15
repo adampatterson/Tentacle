@@ -1664,9 +1664,7 @@
 						</div>
 						<div class="span12 columns">
 							
-							<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.js"></script>
-							<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/config.js"></script>
-							<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/adapters/jquery.js"></script>
+							
 							<textarea name="cke" id="cke" cols="30" rows="10" class="jquery_ckeditor"></textarea>
 				        </div>
 					  </div><!-- /row -->

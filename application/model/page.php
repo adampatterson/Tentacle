@@ -82,6 +82,8 @@ class page_model
 	//----------------------------------------------------------------------------------------------	
 	public function update ( ) 
 	{
+		
+		
 		note::set('success','page_update','Page Updated!');
 	}
 	

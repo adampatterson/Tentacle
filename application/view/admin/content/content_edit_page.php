@@ -53,7 +53,7 @@
 							</dd>
 						</dl>
 					</fieldset>
-					<input type="hidden" value="admin/content_update_page" name="history">
+					<input type="hidden" value="admin/content_update_page/<?= $get_page->id ?>" name="history">
 					<div class="textleft actions">
 						<button type="submit" class="btn large primary">Save</button>
 						<a class="red button-secondary" href="#">Move to trash</a><!--<a href="#review">Save for Review</a>-->
@@ -82,9 +82,9 @@
 						<div id="content" class="active tab-pane">
 							<? //clean_out($get_page_meta ) ?>
 							<input type="text" name="title" placeholder='Title' value='<?= $get_page->title ?>' class='xlarge' required='required' />
-							<p>Permalink: http://www.sitename/com/path/ <a href="#">Edit</a></p>
+							<!--<p>Permalink: http://www.sitename/com/path/ <a href="#">Edit</a></p>-->
 							<p>
-								<textarea name="content" cols="40" rows="5" class="markItUp" placeholder='Content'><?= $get_page->content ?></textarea>
+								<textarea name="content" id="cke" cols="40" rows="5" class="jquery_ckeditor" placeholder='Content'><?= $get_page->content ?></textarea>
 							</p>
 							<div class="clear"></div>
 							<div id="scaffold">

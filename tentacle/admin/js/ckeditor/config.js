@@ -12,16 +12,20 @@
 				['PasteFromWord'],
 				['Format', 'Table','HorizontalRule'],
 				['atd-ckeditor'],
-				['Source']
+				['Source', 'Maximize']
 			],
 			skin : 'tentacle',
 			width: '99%',
 			height: 400,
 			uiColor: 'white',
 			removePlugins: 'elementspath',
+			toolbarCanCollapse : false,
 			extraPlugins : 'autogrow',
 			extraPlugins : 'stylesheetparser',
 			extraPlugins : 'tableresize',
+			extraPlugins : 'stylesheetparser',
+			extraPlugins : 'autogrow',
+			autoGrow_maxHeight : 800,
 			extraPlugins : 'atd-ckeditor',
 			atd_api_key  : 'WPORG-dkfjhds'
 		}

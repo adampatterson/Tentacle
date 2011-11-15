@@ -11,7 +11,11 @@
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.min.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>modernizr-2.0.6.min.js"></script>
 	
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>markitup/jquery.markitup.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/config.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/adapters/jquery.js"></script>
+	
+	<!--<script type="text/javascript" src="<?=TENTACLE_JS; ?>markitup/jquery.markitup.js"></script>-->
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.notice.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.inputtags.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>markitup/sets/textile/set.js"></script>
