@@ -12,7 +12,8 @@
 				['PasteFromWord'],
 				['Format', 'Table','HorizontalRule'],
 				['atd-ckeditor'],
-				['Source', 'Maximize']
+				//['Source', 'Maximize']
+				['Source']
 			],
 			skin : 'tentacle',
 			width: '99%',

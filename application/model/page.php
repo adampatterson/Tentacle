@@ -124,17 +124,19 @@ class page_model
 		
 		$post_author   = user::id();
 		
+		// Run content through HTMLawd and Samrty Text
+		
 		$page          = db('posts');
 		
 		$row = $page->insert(array(
-			'title'=>$title,
-			'slug'=>$slug,
-			'content'=>$content,
-			'status'=>$status,
-			'author'=>$post_author,
-			'type'=>$post_type,
-			'template'=>$post_template,
-			'parent'=>$parent_page
+			'title'		=>$title,
+			'slug'		=>$slug,
+			'content'	=>$content,
+			'status'	=>$status,
+			'author'	=>$post_author,
+			'type'		=>$post_type,
+			'template'	=>$post_template,
+			'parent'	=>$parent_page
 		));
 
 	
