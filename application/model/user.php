@@ -55,6 +55,8 @@ class user_model
 		$display_name = input::post ( 'display_name' );
 		$url          = input::post ( 'url' );
 		
+		$editor       = input::post ( 'editor' );
+		
 		$profile      = input::post ( 'profile' );
 		
 		// need to set the users old email address before you update it.
@@ -67,6 +69,7 @@ class user_model
 			->data('first_name',$first_name)
 			->data('last_name',$last_name)
 			->data('url',$url)
+			->data('editor',$editor)
 			->data('display_name',$display_name)
 			->save();
 		
@@ -120,6 +123,8 @@ class user_model
 		$display_name = input::post ( 'display_name' );
 		$url          = input::post ( 'url' );
 		
+		$editor       = input::post ( 'editor' );
+	
 		user::create(array(
 			'username'=>$user_name,
 			'email'=>$email,
@@ -132,6 +137,7 @@ class user_model
 	        ->data('last_name',$last_name)
 			->data('activity_key','activation_key')
 			->data('url',$url)
+			->data('editor',$editor)
 			->data('display_name',$display_name)
 			->save();
 			

@@ -26,8 +26,9 @@
      *     $val2 - Second value.
      *     $return - Return @ selected="selected"@ instead of outputting it
      */
-    function selected($val1, $val2, $return = false) {
-        if ($val1 == $val2)
+    function selected( $val1, $val2, $return = false ) 
+	{
+        if ( $val1 == $val2 )
             if ($return)
                 return ' selected="selected"';
             else
@@ -42,8 +43,13 @@
      * Parameters:
      *     $val - Value to check.
      */
-    function checked($val) {
-        if ($val == 1) echo ' checked="checked"';
+    function checked( $val1, $val2, $return = false ) 
+	{
+        if ( $val1 == $val2 )
+			if ($return)
+				return ' checked="checked"';
+			else
+				echo ' checked="checked"';
     }
 	 
 	

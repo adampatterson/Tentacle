@@ -246,8 +246,8 @@ class action_controller
 	{
 		tentacle::valid_user();
 
-		$user = load::model('user');
-		$user_single = $user->update();
+		$user 				= load::model('user');
+		$user_single 		= $user->update();
 		
 		$history = input::post ( 'history' );
 

@@ -82,6 +82,23 @@
 												</select>
 											</div>
 										</div>
+										<div class="clearfix">
+											<label for="editor" class="alignleft">Editor</label>
+											<div class="input">
+												<ul class="inputs-list">
+													<li>
+														<label title="wysiwyg">
+															<input type="radio" <? checked( $user_meta -> editor, 'wysiwyg' ); ?> value="wysiwyg" name="editor">
+															<span>WYSIWYG</span> </label>
+													</li>
+													<li>
+														<label title="html">
+															<input type="radio" <? checked( $user_meta -> editor, 'html' ); ?> value="html" name="editor">
+															<span>HTML</span> </label>
+													</li>
+												</ul>
+											</div>
+										</div>
 										<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
 										<input type="hidden" name='profile' value='true' />
 								</fieldset>

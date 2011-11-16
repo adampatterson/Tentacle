@@ -70,12 +70,29 @@
 							<label for="type" class="alignleft">Role</label>
 							<div class="input">
 								<select id="type" name="type">
-									<option value="subscriber" <? selected( $user->type, 'subscriber' ); ?>>Subscriber</option>
-									<option value="administrator" <? selected( $user->type, 'administrator' ); ?>>Admin</option>
+									<option value="subscriber" <? selected( $user_meta -> first_name, 'subscriber' ); ?>>Subscriber</option>
+									<option value="administrator" <? selected( $user->type, 'administrator' ); ?>>Administrator</option>
 									<option value="editor" <? selected( $user->type, 'editor' ); ?>>Editor</option>
 									<option value="author" <? selected( $user->type, 'author' ); ?>>Author</option>
 									<option value="contributor" <? selected( $user->type, 'contributor' ); ?>>Contributor</option>
 								</select>
+							</div>
+						</div>
+						<div class="clearfix">
+							<label for="editor" class="alignleft">Editor</label>
+							<div class="input">
+								<ul class="inputs-list">
+									<li>
+										<label title="wysiwyg">
+											<input type="radio" <? checked( $user_meta -> editor, 'wysiwyg' ); ?> value="wysiwyg" name="editor">
+											<span>WYSIWYG</span> </label>
+									</li>
+									<li>
+										<label title="html">
+											<input type="radio" <? checked( $user_meta -> editor, 'html' ); ?> value="html" name="editor">
+											<span>HTML</span> </label>
+									</li>
+								</ul>
 							</div>
 						</div>
 						<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>

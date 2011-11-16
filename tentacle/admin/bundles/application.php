@@ -28,11 +28,13 @@
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-popover.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>spin.min.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>sisyphus.min.js"></script>
+<!--
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$(".markItUp").markItUp(mySettings);
 		});
 	</script>
+	-->
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.validate.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>application.js"></script>
 	<!-- <script type="text/javascript" charset="utf-8">

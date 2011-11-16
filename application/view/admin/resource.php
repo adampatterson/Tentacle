@@ -1675,40 +1675,100 @@
 						  <h2>CodeMirror</h2>
 						</div>
 						<div class="span12 columns">
-							<!--
+
 							<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/lib/codemirror.css">
-						    <script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/lib/codemirror.js"></script>
+						   <script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/lib/codemirror.js"></script>
 							<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/xml/xml.js"></script>
 							<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/javascript/javascript.js"></script>
 							<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/css/css.js"></script>
 							<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/theme/default.css">
 							<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/htmlmixed/htmlmixed.js"></script>
-							<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/css/docs.css">
-							-->
-							<textarea name="code-mirror" id="code" cols="30" rows="10">
-<html style="color: green">
-  <!-- this is a comment -->
-  <head>
-    <title>Mixed HTML Example</title>
-    <style type="text/css">
-      h1 {font-family: comic sans; color: #f0f;}
-      div {background: yellow !important;}
-      body {
-        max-width: 50em;
-        margin: 1em 2em 1em 5em;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Mixed HTML Example</h1>
-    <script>
-      function jsFunc(arg1, arg2) {
-        if (arg1 && arg2) document.body.innerHTML = "achoo";
-      }
-    </script>
-  </body>
-</html>	
-							</textarea>
+						    <style type="text/css">
+						      .CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
+						      .activeline {background: #f0fcff !important;}
+						    </style>
+
+							    <form>
+				<textarea id="code" name="code">
+				<html style="color: green">
+				<!-- this is a comment -->
+				<head>
+				<title>Mixed HTML Example</title>
+				<style type="text/css">
+				h1 {font-family: comic sans; color: #f0f;}
+				div {background: yellow !important;}
+				body {
+				max-width: 50em;
+				margin: 1em 2em 1em 5em;
+				}
+				</style>
+				</head>
+				<body>
+				<h1>Mixed HTML Example</h1>
+				<script>
+				function jsFunc(arg1, arg2) {
+				if (arg1 && arg2) document.body.innerHTML = "achoo";
+				}
+				</script>
+				</body>
+				</html>
+				</textarea></form>
+							<script>
+							      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+							        lineNumbers: true,
+							        theme: "default",
+									mode: "text/html",
+									onCursorActivity: function() {
+									    editor.setLineClass(hlLine, null);
+									    hlLine = editor.setLineClass(editor.getCursor().line, "activeline");
+									  },
+							        onKeyEvent: function(cm, e) {
+							          // Hook into ctrl-space
+							          if (e.keyCode == 32 && (e.ctrlKey || e.metaKey) && !e.altKey) {
+							            e.stop();
+							            return CodeMirror.simpleHint(cm, CodeMirror.javascriptHint);
+							          }
+							        }
+							      });
+							var hlLine = editor.setLineClass(0, "activeline");
+							    </script>
+
+								<script>
+
+								(function () {
+
+								    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+								        lineNumbers: true,
+								        theme: "night",
+								        onKeyEvent: function(i, e) {
+								          // Hook into F11
+								          if ((e.keyCode == 122 || e.keyCode == 27) && e.type == 'keydown') {
+								            e.stop();
+								            return toggleFullscreenEditing();
+								          }
+								        }
+								    });
+
+								    function toggleFullscreenEditing()
+								    {
+								        var editorDiv = $('.CodeMirror-scroll');
+								        if (!editorDiv.hasClass('fullscreen')) {
+								            toggleFullscreenEditing.beforeFullscreen = { height: editorDiv.height(), width: editorDiv.width() }
+								            editorDiv.addClass('fullscreen');
+								            editorDiv.height('100%');
+								            editorDiv.width('100%');
+								            editor.refresh();
+								        }
+								        else {
+								            editorDiv.removeClass('fullscreen');
+								            editorDiv.height(toggleFullscreenEditing.beforeFullscreen.height);
+								            editorDiv.width(toggleFullscreenEditing.beforeFullscreen.width);
+								            editor.refresh();
+								        }
+								    }
+
+								})();
+								</script>
 				        </div>
 					  </div><!-- /row -->
 				</section>
