@@ -969,8 +969,8 @@ class dev_controller {
 				
 				editor.getSession().setUseWrapMode(true);
 				editor.setHighlightActiveLine(true);
-						
 				editor.getSession().setTabSize(4);
+				editor.setShowPrintMargin(false);
 					
 				editor.getSession().setValue($("div#editor_content").html());
 		
