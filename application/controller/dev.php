@@ -951,6 +951,51 @@ class dev_controller {
 			->save(); */
 	}
 	
+	public function ace ()
+	{
+		?>
+		<script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
+		<script src="<?=TENTACLE_JS; ?>ace/ace.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<?=TENTACLE_JS; ?>ace/theme-textmate.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<?=TENTACLE_JS; ?>ace/mode-html.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+		window.onload = function() {
+		    var editor = ace.edit("editor");
+		
+				editor.setTheme("ace/theme/textmate");
+			
+			var JavaScriptMode = require("ace/mode/html").Mode;
+				editor.getSession().setMode(new JavaScriptMode());
+				
+				editor.getSession().setUseWrapMode(true);
+				editor.setHighlightActiveLine(true);
+						
+				editor.getSession().setTabSize(4);
+					
+				editor.getSession().setValue($("div#editor_content").html());
+		
+		};
+
+		</script>
+
+		
+<div id="editor_content" style="display: none;"><!DOCTYPE html>
+<html lang="en"> 
+<head>
+<meta charset="utf-8"> 
+<title>Untitled Document</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
+</head>
+<body>
+
+</body>
+</html></div>
+		
+		<div id="editor" style="height: 500px; width: 700px"></div>
+		<?		
+	}
+	
 	public function mirror ()
 	{
 		?>
