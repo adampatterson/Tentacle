@@ -96,7 +96,6 @@
 							      .CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
 							      .activeline {background: #f0fcff !important;}
 							    </style>
-
 								<p><textarea id="code" name="content" cols="40" rows="5" placeholder='Content'></textarea></p>
 
 								<script>
