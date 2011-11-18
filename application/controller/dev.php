@@ -959,40 +959,26 @@ class dev_controller {
 		<script src="<?=TENTACLE_JS; ?>ace/theme-textmate.js" type="text/javascript" charset="utf-8"></script>
 		<script src="<?=TENTACLE_JS; ?>ace/mode-html.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" charset="utf-8">
-		window.onload = function() {
-		    var editor = ace.edit("editor");
+			window.onload = function() {
+			    var editor = ace.edit("editor");
 		
-				editor.setTheme("ace/theme/textmate");
+					editor.setTheme("ace/theme/textmate");
 			
-			var JavaScriptMode = require("ace/mode/html").Mode;
-				editor.getSession().setMode(new JavaScriptMode());
+				var JavaScriptMode = require("ace/mode/html").Mode;
+					editor.getSession().setMode(new JavaScriptMode());
 				
-				editor.getSession().setUseWrapMode(true);
-				editor.setHighlightActiveLine(true);
-				editor.getSession().setTabSize(4);
-				editor.setShowPrintMargin(false);
+					editor.getSession().setUseWrapMode(true);
+					editor.setHighlightActiveLine(true);
+					editor.getSession().setTabSize(4);
+					editor.setShowPrintMargin(false);
 					
-				editor.getSession().setValue($("div#editor_content").html());
+					editor.getSession().setValue($("div#editor_content").html());
 		
-		};
-
+			};
 		</script>
-
-		
-<div id="editor_content" style="display: none;"><!DOCTYPE html>
-<html lang="en"> 
-<head>
-<meta charset="utf-8"> 
-<title>Untitled Document</title>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
-</head>
-<body>
-
-</body>
-</html></div>
-		
-		<div id="editor" style="height: 500px; width: 700px"></div>
+	
+<div id="editor_content" style="display: none;"></div>
+<div id="editor" style="height: 500px; width: 700px"></div>
 		<?		
 	}
 	
@@ -1012,30 +998,7 @@ class dev_controller {
 		    </style>
 
 			    <form>
-<textarea id="code" name="code">
-<html style="color: green">
-<!-- this is a comment -->
-<head>
-<title>Mixed HTML Example</title>
-<style type="text/css">
-h1 {font-family: comic sans; color: #f0f;}
-div {background: yellow !important;}
-body {
-max-width: 50em;
-margin: 1em 2em 1em 5em;
-}
-</style>
-</head>
-<body>
-<h1>Mixed HTML Example</h1>
-<script>
-function jsFunc(arg1, arg2) {
-if (arg1 && arg2) document.body.innerHTML = "achoo";
-}
-</script>
-</body>
-</html>
-</textarea></form>
+<textarea id="code" name="code"></textarea></form>
 			<script>
 			      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
 			        lineNumbers: true,

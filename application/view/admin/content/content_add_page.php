@@ -3,7 +3,7 @@
 <div id="wrap">
 	<script type="text/javascript">
 		$(function(){
-			$('#add_page').sisyphus({
+			$('form#add_page').sisyphus({
 				//onSaveCallback: function() {},
 				//onRestoreCallback: function() {},
 				//onReleaseDataCallback: function() {}
@@ -42,26 +42,6 @@
 								<label for="page_template">Page template</label>
 							</dt>
 							<dd>
-								<script type="text/javascript">	
-									/*
-									$(document).ready(function(){
-									    function loadVals() {
-									      var singleValues = $("#page_templateOFF").val();
-											return singleValues;
-									    }
-
-									    $("select").change(load_content);
-
-										function load_content() {
-										    $.get('<?= BASE_URL ?>/action/render_admin/'+loadVals(), function(data) {
-										        $('#scaffold').append(data);
-										    });
-										}
-
-										load_content();
-									});
-									*/
-								</script>
 								<select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
 									<option value="<?= BASE_URL ?>action/render_admin/page/default">Default</option>
 									<? $templates = get_templates( get_option( 'appearance' ) ); 
@@ -97,9 +77,48 @@
 							<!--<p>
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>
 							</p>-->
-							<p>
-								<textarea name="content" id="cke" cols="40" rows="5" class="jquery_ckeditor" placeholder='Content'></textarea>
-							</p>
+							<? if (user_editor() == 'wysiwyg'): ?>
+								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.js"></script>
+								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/config.js"></script>
+								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/adapters/jquery.js"></script>
+								<p>
+									<textarea name="content" id="cke" cols="40" rows="5" class="jquery_ckeditor" placeholder='Content'></textarea>
+								</p>
+							<? else: ?>
+								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/lib/codemirror.css">
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/lib/codemirror.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/xml/xml.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/javascript/javascript.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/css/css.js"></script>
+								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/theme/default.css">
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/htmlmixed/htmlmixed.js"></script>
+							    <style type="text/css">
+							      .CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
+							      .activeline {background: #f0fcff !important;}
+							    </style>
+
+								<p><textarea id="code" name="content" cols="40" rows="5" placeholder='Content'></textarea></p>
+
+								<script>
+								      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+								        lineNumbers: true,
+								        theme: "default",
+										mode: "text/html",
+										onCursorActivity: function() {
+										    editor.setLineClass(hlLine, null);
+										    hlLine = editor.setLineClass(editor.getCursor().line, "activeline");
+										  },
+								        onKeyEvent: function(cm, e) {
+								          // Hook into ctrl-space
+								          if (e.keyCode == 32 && (e.ctrlKey || e.metaKey) && !e.altKey) {
+								            e.stop();
+								            return CodeMirror.simpleHint(cm, CodeMirror.javascriptHint);
+								          }
+								        }
+								      });
+								var hlLine = editor.setLineClass(0, "activeline");
+								    </script>
+							<? endif; ?>
 							<div class="clear"></div>
 							<div id="scaffold">
 								<?
