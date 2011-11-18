@@ -73,6 +73,7 @@ b {color:#c00}
 .topNote {background: #ff9; display:inline-block; padding:.5em .6em; margin:0 0 1em;}
 .topWarning {background:#c00; color:#fff; padding:.5em .6em; margin:0 0 1em;}
 .topWarning a {color:#fff;}
+input { width: 300px;}
 </style>
 <body>
 <?php if ($symlinkOption): ?>
