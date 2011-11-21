@@ -50,6 +50,18 @@
 			<div class="one-half">
 				<fieldset>
 					<div class="clearfix">
+						<label for="default_category">Default Post Category</label>
+						<div class="input">
+							<select class="postform" id="default_category" name="default_category">
+								<? foreach ($categories as $category): ?>
+									<option id="category-<?= $category->id  ?>" value="<?= $category->id  ?>"> <?= $category->name  ?></option>
+								<? endforeach;?>
+							</select>
+						</div>
+					</div>
+				</fieldset>
+				<!--<fieldset>
+					<div class="clearfix">
 						<label>Membership</label>
 						<div class="input">
 							<ul class="inputs-list">
@@ -95,9 +107,9 @@
 						<div class="input">
 							<ul class="inputs-list">
 								<li>
-									<label> <label title="F j, Y">
-											<input type="radio" checked="checked" value="F j, Y" name="date_format">
-											<span>April 4, 2011</span> </label> </label>
+									<label title="F j, Y">
+										<input type="radio" checked="checked" value="F j, Y" name="date_format">
+										<span>April 4, 2011</span> </label>
 								</li>
 								<li>
 									<label title="Y/m/d">
@@ -155,7 +167,7 @@
 							</select>
 						</div>
 					</div>
-				</fieldset>
+				</fieldset>-->
 			</div>
 		</div>
 		<div class="one-full">

@@ -13,14 +13,9 @@
 						<label for="default_category">Default Post Category</label>
 						<div class="input">
 							<select class="postform" id="default_category" name="default_category">
-								<option value="21" class="level-0">Accessibility</option>
-								<option value="22" class="level-0">Best Of</option>
-								<option value="23" class="level-0">Biking</option>
-								<option value="3" class="level-0">Books</option>
-								<option selected="selected" value="1" class="level-0">Uncategorized</option>
-								<option value="46" class="level-0">Usability</option>
-								<option value="10" class="level-0">Web</option>
-								<option value="47" class="level-0">Wordpress</option>
+								<? foreach ($categories as $category): ?>
+									<option id="category-<?= $category->id  ?>" value="<?= $category->id  ?>"> <?= $category->name  ?></option>
+								<? endforeach;?>
 							</select>
 						</div>
 					</div>

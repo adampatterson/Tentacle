@@ -366,8 +366,12 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 	
-		load::view ('admin/settings/settings_writing');
+		$category = load::model( 'category' );
+		$categories = $category->get( );
+	
+		load::view ('admin/settings/settings_writing', array( 'categories'=>$categories ) );
 	}
+
 
 	/**
 	 * 

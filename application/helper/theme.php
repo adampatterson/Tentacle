@@ -225,6 +225,9 @@ function get_data( $theme_file, $data_type )
 			endif;
 		endif;
 			
+		// need to cean out invalid files.
+		return $theme_data;
+		
 	} elseif ( $data_type == 'post_type' ) {
 		
 		$default_headers = array(
@@ -235,10 +238,8 @@ function get_data( $theme_file, $data_type )
 
 		$theme_data['Type'] = $theme_data['Type'];
 		
+		// need to cean out invalid files.
+		return $theme_data;
 	}
 
-
-	
-	// need to cean out invalid files.
-	return $theme_data;
 }// Get Theme Data

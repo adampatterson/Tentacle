@@ -112,12 +112,11 @@ class page_model
 		
 		$dirty_template = session::get( 'template' );
 		
-		if ( $dirty_template == '' ) 
-		{
+		if ( $dirty_template == '' ):
 			$post_template = 'default';
-		} else {
+		else:
 			$post_template = $dirty_template;
-		}
+		endif;
 		
 		
 		$post_type     = $_POST['page-or-post'];
