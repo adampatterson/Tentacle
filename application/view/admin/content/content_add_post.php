@@ -37,16 +37,11 @@
 									<div class="clearfix">
 										<div class="input">
 											<ul class="inputs-list">
-												<?
-													print_r( get_post_type ( get_option( 'appearance' ) ) );
-												?>
-												<li><label for="post-format-0"><input type="radio" name="post_format" class="post-format" value="0" checked="checked"> <span>Standard</span></label></li>
-												<li><label for="post-format-aside"><input type="radio" name="post_format" class="post-format" value="aside"> <span>Aside</span></label></li>
-												<li><label for="post-format-link"><input type="radio" name="post_format" class="post-format" value="link"> <span>Link</span></label></li>
-												<li><label for="post-format-gallery"><input type="radio" name="post_format" class="post-format" value="gallery"> <span>Gallery</span></label></li>
-												<li><label for="post-format-status"><input type="radio" name="post_format" class="post-format" value="status"> <span>Status</span></label></li>
-												<li><label for="post-format-quote"><input type="radio" name="post_format" class="post-format" value="quote"> <span>Quote</span></label></li>
-												<li><label for="post-format-image"><input type="radio" name="post_format" class="post-format" value="image"> <span>Image</span></label></li>
+												<?  $post_types = get_post_type ( get_option( 'appearance' ) );
+												
+													foreach ($post_types as $post_type ) { ?>
+														<li><label for="<?= $post_type['part_id']; ?>"><input type="radio" name="post_type" class="post-format" value="0"> <span><?= $post_type['part_name']; ?></span></label></li>
+												<?	} ?>
 											</ul>
 										</div>
 									</div>

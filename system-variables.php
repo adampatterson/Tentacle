@@ -54,7 +54,7 @@ define('TENTACLE_LIB'  , CORE_ROOT.'/tentacle/admin/lib');
 define('TENTACLE_JS'   , ADMIN_URL.'js/');
 define('TENTACLE_CSS'  , ADMIN_URL.'css/');
 
-define ('ACTIVE_THEME' , '/default');
+define ('ACTIVE_THEME' , '/marketing');
 
 // http://code.google.com/p/minify/
 define('MINIFY'        ,ADMIN_URL.'lib/min/');

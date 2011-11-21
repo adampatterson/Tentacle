@@ -125,18 +125,13 @@ function get_post_type ( $theme_folder )
 		$file_name = basename( $php_file );
 		$file_id = explode( '.', $file_name );
 		
-		if ( $file['Name'] != '' ):
+		if ( $file['Type'] != '' ):
 			$template[$php_file]['part_id'] = $file_id[0];
-			$template[$php_file]['part_name'] = $file['Name'];
-			$template[$php_file]['part_uri'] = $file['URI'];
-			$template[$php_file]['part_description'] = $file['Description'];
-			$template[$php_file]['part_author'] = $file['Author'];
-			$template[$php_file]['part_version'] = $file['Version'];
+			$template[$php_file]['part_name'] = $file['Type'];
 		endif;
 	endforeach;
-
-	//return(arrayToObject( $template ));	
-	return ($php_files);
+	
+	return( $template );
 } // Get Post Type
 
 
@@ -189,44 +184,60 @@ function get_file_data( $file, $default_headers )
 } // get_file_data
 
 
-function get_data( $theme_file) 
+function get_data( $theme_file, $data_type ) 
 {
-	$default_headers = array(
-		'Name' => 'Name',
-		'URI' => 'URI',
-		'Description' => 'Description',
-		'Author' => 'Author',
-		'AuthorURI' => 'Author URI',
-		'Version' => 'Version',
-		'Template' => 'Template',
-		'Status' => 'Status'
-		);
+	if ( $data_type == 'template' ) {
 
-	$theme_data = get_file_data( $theme_file, $default_headers, 'theme' );
+		$default_headers = array(
+			'Name' => 'Name',
+			'URI' => 'URI',
+			'Description' => 'Description',
+			'Author' => 'Author',
+			'AuthorURI' => 'Author URI',
+			'Version' => 'Version',
+			'Template' => 'Template',
+			'Status' => 'Status'
+			);
+			
+		$theme_data = get_file_data( $theme_file, $default_headers );
 
-	$theme_data['Name'] = $theme_data['Title'] = $theme_data['Name'];
-	$theme_data['URI'] = $theme_data['URI'];
-	$theme_data['Description'] = $theme_data['Description'];
-	$theme_data['AuthorURI'] = $theme_data['AuthorURI'];
-	$theme_data['Template'] = $theme_data['Template'];
-	$theme_data['Version'] = $theme_data['Version'];
+		$theme_data['Name'] = $theme_data['Title'] = $theme_data['Name'];
+		$theme_data['URI'] = $theme_data['URI'];
+		$theme_data['Description'] = $theme_data['Description'];
+		$theme_data['AuthorURI'] = $theme_data['AuthorURI'];
+		$theme_data['Template'] = $theme_data['Template'];
+		$theme_data['Version'] = $theme_data['Version'];
 
-	if ( $theme_data['Status'] == '' ):
-		$theme_data['Status'] = 'publish';
-	else:
-		$theme_data['Status'] = $theme_data['Status'];
-	endif;
-
-	if ( $theme_data['Author'] == '' ):
-		$theme_data['Author'] = $theme_data['AuthorName'] = 'Anonymous';
-	else:
-		$theme_data['AuthorName'] = $theme_data['Author'];
-		if ( empty( $theme_data['AuthorURI'] ) ):
-			$theme_data['Author'] = $theme_data['AuthorName'];
+		if ( $theme_data['Status'] == '' ):
+			$theme_data['Status'] = 'publish';
 		else:
-			$theme_data['Author'] = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', $theme_data['AuthorURI'], esc_attr__( 'Visit author homepage' ), $theme_data['AuthorName'] );
+			$theme_data['Status'] = $theme_data['Status'];
 		endif;
-	endif;
+
+		if ( $theme_data['Author'] == '' ):
+			$theme_data['Author'] = $theme_data['AuthorName'] = 'Anonymous';
+		else:
+			$theme_data['AuthorName'] = $theme_data['Author'];
+			if ( empty( $theme_data['AuthorURI'] ) ):
+				$theme_data['Author'] = $theme_data['AuthorName'];
+			else:
+				$theme_data['Author'] = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', $theme_data['AuthorURI'], esc_attr__( 'Visit author homepage' ), $theme_data['AuthorName'] );
+			endif;
+		endif;
+			
+	} elseif ( $data_type == 'post_type' ) {
+		
+		$default_headers = array(
+			'Type' => 'Type'
+			);	
+			
+		$theme_data = get_file_data( $theme_file, $default_headers );
+
+		$theme_data['Type'] = $theme_data['Type'];
+		
+	}
+
+
 	
 	// need to cean out invalid files.
 	return $theme_data;

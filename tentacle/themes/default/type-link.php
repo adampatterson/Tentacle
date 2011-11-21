@@ -1,4 +1,4 @@
 <?
- /*
-Type: Photo
+/*
+Type: Link
 */
