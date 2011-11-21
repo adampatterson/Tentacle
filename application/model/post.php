@@ -60,7 +60,7 @@ class post_model
 		$published     = $_POST['published'];
 		
 		$parent_page   = $_POST['parent_page'];
-		$post_template = $_POST['page_template'];
+		$post_type 		= $_POST['post_type'];
 		$page_category = input::post ( 'page_category');
 		
 		$post_type     = 'post';
@@ -77,7 +77,7 @@ class post_model
 			'status'=>$status,
 			'author'=>$post_author,
 			'type'=>$post_type,
-			'template'=>$post_template,
+			'template'=>$post_type,
 			'parent'=>$parent_page,
 			'visible'=>$visible
 		),FALSE);
