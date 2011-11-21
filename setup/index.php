@@ -14,6 +14,20 @@ This script is designed to let users create a config.php file used to connect
 to a MySQL DB and install the default MySQL into the DB.
 */
 
+error_reporting(E_STRICT|E_ALL);
+
+// Application configuration
+//----------------------------------------------------------------------------------------------
+
+require_once('system-variables.php');
+
+// End of configuration
+//----------------------------------------------------------------------------------------------
+define('DINGO',1);
+require_once(SYSTEM.'/dingo.php');
+bootstrap::run();
+
+
 if (!is_writable('../application/config/deployment/')) die("Sorry, I can't write to the directory. You'll have to either change the permissions on your installation directory or create your config.php manually.");
 
 if (isset($_GET['step']))

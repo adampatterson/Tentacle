@@ -27,7 +27,8 @@
 							<li>jQuery</li>
 							<li>Dingo Framework</li>
 							<li>Bootstrap, from Twitter</li>
-							<li>markIt Up!</li>
+							<li>CKEditor</li>
+							<li>Code Mirror</li>
 							<li>HTML5 Shive</li>
 							<li>Sisyphus</li>
 							<li>Spin</li>
