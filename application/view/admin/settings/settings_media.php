@@ -21,7 +21,7 @@
 								<input type="text" value="<?= get_option('image_thumb_size_h'); ?>" id="thumbnail_size_h" class='span2' />
 							</div>
 						</div>
-						<div class="input">
+						<!--<div class="input">
 							<ul class="inputs-list">
 								<li>
 									<label>
@@ -30,7 +30,7 @@
 										<span>Crop thumbnail to exact dimensions (normally thumbnails are proportional)</span> </label>
 								</li>
 							</ul>
-						</div>
+						</div>-->
 					</div>
 					<div class="clearfix">
 						<label>Medium size</label>
@@ -55,7 +55,7 @@
 				</fieldset>
 			</div>
 			<div class="one-half">
-				<h2>Uploading Files</h2>
+				<!--<h2>Uploading Files</h2>
 				<hr />
 				<div class="clearfix">
 					<label for='upload_path'>Store uploads in this folder</label>
@@ -85,7 +85,7 @@
 							</li>
 						</ul>
 					</div>
-				</div>
+				</div>-->
 			</div>
 		</div>
 		<div class="one-full">

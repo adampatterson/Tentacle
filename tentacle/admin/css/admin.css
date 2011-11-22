@@ -127,6 +127,14 @@ footer span {
   color: white; }
 .login #login-content-message a.secondary {
   color: black; }
+.login #login-content-message a:link, .login #login-content-message a:visited {
+  color: #0069d6;
+  text-decoration: none;
+  line-height: inherit;
+  font-weight: inherit; }
+.login #login-content-message a:hover {
+  color: #00438a;
+  text-decoration: underline; }
 
 #wrap {
   float: left;

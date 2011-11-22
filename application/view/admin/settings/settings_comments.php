@@ -6,7 +6,7 @@
 		<div class="one-full">
 			<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Comment settings</h1>
 			<div class="one-half">
-				<h2>Default article settings</h2>
+			<!--	<h2>Default article settings</h2>
 				<hr />
 				<fieldset>
 					<div class="clearfix">
@@ -77,7 +77,7 @@
 							</ul>
 						</div>
 					</div>
-				</fieldset>
+				</fieldset>-->
 				<h2>Before a comment appears</h2>
 				<hr />
 				<fieldset>
@@ -100,7 +100,7 @@
 						</div>
 					</div>
 				</fieldset>
-				<h2>Comment Blacklist</h2>
+			<!--	<h2>Comment Blacklist</h2>
 				<hr />
 				<fieldset>
 					<div class="clearfix">
@@ -110,7 +110,7 @@
 							<span class="help-block">When a comment contains any of these words in its content, name, URL, e-mail, or IP, it will be marked as spam. One word or IP per line. It will match inside words, so “press” will match “WordPress”.</span>
 						</div>
 					</div>
-				</fieldset>
+				</fieldset>-->
 			</div>
 			<div class="one-half">
 				<h2>Avatars</h2>
@@ -132,7 +132,7 @@
 						</div>
 					</div>
 				</fieldset>
-				<h3>Maximum Rating</h3>
+				<!--<h3>Maximum Rating</h3>
 				<fieldset>
 					<div class="clearfix">
 						<div class="input">
@@ -160,7 +160,7 @@
 							</ul>
 						</div>
 					</div>
-				</fieldset>
+				</fieldset>-->
 				<h3>Default Avatar</h3>
 				<fieldset>
 					<p>
