@@ -1,10 +1,10 @@
-<? load::view('template-header', array('title' => ''));?>
+<? load::view('template-header', array('title' => '- License'));?>
   <div class="content">
     <div class="page-header">
-      <h1>Lisence</small></h1>
+      <h1>License</small></h1>
     </div>
 	<ul class="breadcrumb">
-		<li class="active"><a href='#'>Lisence</a><span class="divider">/</span></li>
+		<li class="active"><a href='#'>License</a><span class="divider">/</span></li>
 		<li>Overview<span class="divider">/</span></li>
 		<li>System Check<span class="divider">/</span></li>
 		<li>Database Information<span class="divider">/</span></li>
