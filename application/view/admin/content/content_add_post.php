@@ -39,9 +39,9 @@
 											<ul class="inputs-list">
 												<?  $post_types = get_post_type ( get_option( 'appearance' ) );
 												
-													foreach ($post_types as $post_type ) { ?>
-														<li><label for="<?= $post_type['part_id']; ?>"><input type="radio" name="post_type" class="post-format" value="0"> <span><?= $post_type['part_name']; ?></span></label></li>
-												<?	} ?>
+													foreach ($post_types as $post_type ): ?>
+														<li><label><input type="radio" name="post_type" class="post-format" value="0"> <span><?= $post_type['part_name']; ?></span></label></li>
+												<?	endforeach; ?>
 											</ul>
 										</div>
 									</div>
