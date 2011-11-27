@@ -91,7 +91,7 @@
 		</nav>
 	</header>
 	<div id="body-wrapper">
-		<? if (setup == true && CONFIGURATION != 'development'): ?>
+		<? if ( SETUP == true && CONFIGURATION != 'development' ): ?>
 			<script type="text/javascript">
 				$(document).ready(function() {
 					jQuery.noticeAdd({

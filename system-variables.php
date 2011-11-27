@@ -4,26 +4,26 @@
 */
 
 // Configuration
-if ($_SERVER["SERVER_NAME"] == 'localhost') {
-define('CONFIGURATION' ,'development');
-} else {
-define('CONFIGURATION' ,'deployment');
-}
+if ( $_SERVER["SERVER_NAME"] == 'localhost' ):
+	define( 'CONFIGURATION' ,'development' );
+else:
+	define( 'CONFIGURATION' ,'deployment' );
+endif;
 
 // Dingo Location
-define('SYSTEM'        ,'system');
+define( 'SYSTEM'        ,'system' );
 
 // Application Location
-define('APPLICATION'   ,'application');
+define( 'APPLICATION'   ,'application' );
 
 // Config Directory Location (in relation to application location)
-define('CONFIG'        ,'config');
+define( 'CONFIG'        ,'config' );
 
 // Allowed Characters in URL
-define('ALLOWED_CHARS' ,'/^[ \!\,\~\&\.\:\+\@\-_a-zA-Z0-9]+$/');
+define( 'ALLOWED_CHARS' ,'/^[ \!\,\~\&\.\:\+\@\-_a-zA-Z0-9]+$/');
 
-define('CORE_ROOT'     , dirname(__FILE__));
-define('APP_PATH'      , CORE_ROOT);
+define( 'CORE_ROOT'     , dirname(__FILE__) );
+define( 'APP_PATH'      , CORE_ROOT );
 	
 	
 	
@@ -35,11 +35,11 @@ define('APP_PATH'      , CORE_ROOT);
 define('BASE_URI'      , $_SERVER['REQUEST_URI']);
 
 // @todo BASE_URL may need some testing in other environments
-if ($_SERVER["SERVER_NAME"] == 'localhost') {
-define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].'/http/dev.tcms.me/' );
-} else {
-define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].'/' );
-}
+if ($_SERVER["SERVER_NAME"] == 'localhost'):
+	define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].'/http/dev.tcms.me/' );
+else:
+	define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].'/' );
+endif;
 
 // Application's Base Application URL
 define('TENTACLE_URL'  , BASE_URL.'tentacle');

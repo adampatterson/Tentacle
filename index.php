@@ -6,12 +6,16 @@ error_reporting(E_STRICT|E_ALL);
 
 require_once('system-variables.php');
 
-if (!file_exists('application/config/'.CONFIGURATION.'/db.php')){
+if (!file_exists('application/config/'.CONFIGURATION.'/db.php')):
    header( 'Location: /setup/' ) ;
    exit();
-} else {
-	define( 'setup'   ,true );
-}
+else:
+	if ($_SERVER["SERVER_NAME"] != 'staging.tentaclecms.com'):
+		define( 'SETUP'   	,true );
+	else:
+		define( 'SETUP' 	, false );
+	endif;
+endif;
 
 // End of configuration
 //----------------------------------------------------------------------------------------------
