@@ -9,7 +9,9 @@ require_once('system-variables.php');
 if (!file_exists('application/config/'.CONFIGURATION.'/db.php')){
    header( 'Location: /setup/' ) ;
    exit();
-} 
+} else {
+	define( 'setup'   ,true );
+}
 
 // End of configuration
 //----------------------------------------------------------------------------------------------

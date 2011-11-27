@@ -21,7 +21,7 @@
 		<p>Go to your admin screen</p>
 
 		<div class="one-half">
-			<a href="<?= BASE_URL; ?>setup/install/step5/" class="btn medium secondary">Back</a>
+			&nbsp;
 		</div>
 		<div class="textright one-half">
 			&nbsp;
