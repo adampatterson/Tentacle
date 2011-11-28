@@ -97,18 +97,27 @@
 								</p>
 							<? else: ?>
 								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/lib/codemirror.css">
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/lib/codemirror.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/xml/xml.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/javascript/javascript.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/css/css.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/codemirror-compressed.js"></script>
 								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/theme/default.css">
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/htmlmixed/htmlmixed.js"></script>
 							    <style type="text/css">
-							      .CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
-							      .activeline {background: #f0fcff !important;}
+								      .CodeMirror-scroll {
+										height: auto;
+										overflow-y: hidden;
+										overflow-x: auto;
+										width: 100%;
+									}
+
+									.CodeMirror {
+										border-top: 1px solid black; 
+										border-bottom: 1px solid black;
+									}
+
+									.activeline {
+										background: #f0fcff !important;
+									}
 							    </style>
 
-								<p><textarea id="code" name="content" cols="40" rows="5" placeholder='Content'><?= stripslashes($get_page->content) ?></textarea></p>
+								<p><textarea id="code" name="content" cols="40" rows="5" placeholder='Content' class='CodeMirror-scroll'><?= stripslashes($get_page->content) ?></textarea></p>
 
 								<script>
 								      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
