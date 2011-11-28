@@ -93,6 +93,8 @@
 								<style type="text/css">
 								      .CodeMirror-scroll {
 										height: auto;
+										min-height: 450px;
+										max-height: 900px;
 										overflow-y: hidden;
 										overflow-x: auto;
 										width: 100%;
