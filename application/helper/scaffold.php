@@ -29,8 +29,13 @@ class  Scaffold
        
         $return_data = "";
       
+		$inflector = new inflector();
+
         if ( $data[ 'display' ] != 'front' ):
 			foreach ($data as $input):
+			
+				$input_name =$inflector->underscore( $inflector->camelize( $input['name']) );
+				
 	            //print_r($input);
 	            /*  
 	            echo $input['name'];
@@ -45,10 +50,10 @@ class  Scaffold
 	            if ($input['input'] == 'input'):
 	                switch($input['type']) {
 	                    case 'text':
-	                        $return_data .= '<div class="clearfix"><label for="'.$input['name'].'">'.$input['name'].'</label><div class="input"><input type="text" class="xlarge" name="'.$input['name'].'" /></div></div>';
+	                        $return_data .= '<div class="clearfix"><label for="'.$input_name.'">'.$input['name'].'</label><div class="input"><input type="text" class="xlarge" name="'.$input_name.'" /></div></div>';
 						break;
 						case 'password':
-	 						$return_data .= '<div class="clearfix"><label for="'.$input['name'].'``">Password</label><div class="input"><input type="password" class="xlarge" name="'.$input['name'].'" /></div></div>';
+	 						$return_data .= '<div class="clearfix"><label for="'.$input_name.'">'.$input['name'].'</label><div class="input"><input type="password" class="xlarge" name="'.$input_name.'" /></div></div>';
 						break;    
 					    case 'button':
 							
@@ -64,7 +69,7 @@ class  Scaffold
 							}
 						$return_data .= '</select><br />';
 	                elseif ($input['input'] == 'multiline'):
-	                    $return_data .= '<textarea cols="40" rows="5" class="markItUp"></textarea><br />';
+	                    $return_data .= '<div class="clearfix"><label for="'.$input_name.'">'.$input['name'].'</label><div class="input"><textarea cols="40" rows="5" name="'.$input_name.'"></textarea></div></div>';
 	                endif;
 	            endforeach;
 	
@@ -76,6 +81,52 @@ class  Scaffold
         
     } // function process  
     
+    static public function populateThis( $data, $get_page_meta )
+    {
+	if ( $page_id = '' )
+		return false;
+
+        $return_data = "";
+
+		$inflector = new inflector();
+		
+        if ( $data[ 'display' ] != 'front' ):
+			foreach ($data as $input):
+			
+				$input_name =$inflector->underscore( $inflector->camelize( $input['name']) );
+				
+	            if ($input['input'] == 'input'):
+	                switch($input['type']) {
+	                    case 'text':
+	                        $return_data .= '<div class="clearfix"><label for="'.$input_name.'">'.$input['name'].'</label><div class="input"><input type="text" class="xlarge" name="'.$input_name.'" value="'.$get_page_meta->$input_name.'"/></div></div>';
+						break;
+						case 'password':
+	 						$return_data .= '<div class="clearfix"><label for="'.$input['name'].'">'.$input['name'].'</label><div class="input"><input type="password" class="xlarge" name="'.$input['name'].'" value="'.$get_page_meta->$input_name.'"/></div></div>';
+						break;    
+					    case 'button':
+							
+							if ( $data[ 'display' ] != 'admin' ):
+								$return_data .= self::createButton($input['button_name']);
+							endif;
+	                    break;               
+	                    }// switch 
+	                elseif($input['input'] == 'option'):
+						$return_data .= '<select>';
+							foreach ($input['options'] as $option) {	
+								$return_data .= '<option value="'.$option.'">'.$option.'</option>';
+							}
+						$return_data .= '</select><br />';
+	                elseif ($input['input'] == 'multiline'):
+	                    $return_data .= '<div class="clearfix"><label for="'.$input_name.'">'.$input['name'].'</label><div class="input"><textarea cols="40" rows="5" name="'.$input_name.'">'.$get_page_meta->message.'</textarea></div></div>';
+	                endif;
+	            endforeach;
+	
+			endif;
+        
+        echo $return_data;
+        
+    } // function populate
+
 	static public function createButton( $name = '' ) 
 	{
 		if (isset($name)):

@@ -54,7 +54,7 @@ $data = array(
 		'type' => 'text',
 		'notes' => 'This is a note'
 		),
-	'password' => array(				
+/*	'password' => array(				
 		'name' => 'Password',
 		#'label_name' => 'password', // Humanize the name
 		'input' => 'input',
@@ -67,7 +67,7 @@ $data = array(
         'input' => 'option',
         'notes' => 'Option notes.',
         'options' => array ('Canada', 'USA', 'Mexico', 'UK', 'Japan')
-        ),
+        ), */
 	'message' => array(				
 		'name' => 'Message',
 		#'label_name' => 'message', // Humanixe the name
@@ -75,11 +75,12 @@ $data = array(
 		'type' => 'text',
         'notes' => 'Yes, more notes.'
 		),
-	'button' => array(				
+	/*'button' => array(				
 		'button_name' => 'Button Name',
 		'type' => 'button',
 		'input' => 'input'
 		),
+		*/
 	);
 if(!defined('SCAFFOLD')):
 ?>

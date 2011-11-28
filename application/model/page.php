@@ -77,13 +77,10 @@ class page_model
 		return arrayToObject( $clean_page_meta );
 	}
 
-
 	// Update Page
 	//----------------------------------------------------------------------------------------------	
 	public function update ( ) 
 	{
-		
-		
 		note::set('success','page_update','Page Updated!');
 	}
 	

@@ -35,6 +35,7 @@
 							</dt>
 							<dd>
 								<select id="parent_page" name="parent_page">
+									<option value="0">None</option>
 									<? foreach ($pages as $page): 
 									// @todo Set the active sub page if there is one.
 									?>
@@ -107,7 +108,7 @@
 							      .activeline {background: #f0fcff !important;}
 							    </style>
 
-								<p><textarea id="code" name="content" cols="40" rows="5" placeholder='Content'><?= $get_page->content ?></textarea></p>
+								<p><textarea id="code" name="content" cols="40" rows="5" placeholder='Content'><?= stripslashes($get_page->content) ?></textarea></p>
 
 								<script>
 								      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
@@ -134,14 +135,15 @@
 								<?
 								define( 'SCAFFOLD' , 'TRUE' );
 
-								if ( session::get( 'template' ) ) {
-									// Load the saved template, then if the user changes override the saved template.
-									include(THEMES_DIR.'/default/'.session::get('template').'.php');
+								if ( session::get( 'template' ) || $get_page->template != '' ) {
 
-									load::library ( 'file' );
+									// Load the saved template, then if the user changes override the saved template.
+									include(THEMES_DIR.'/default/'.$get_page->template.'.php');
+
+									//load::library ( 'file' );
 
 									$scaffold = new Scaffold ();
-									$scaffold->processThis( $data );
+									$scaffold->populateThis( $data, $get_page_meta );
 								}
 								?>
 								<div class="clear"></div>

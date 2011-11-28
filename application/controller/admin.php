@@ -56,7 +56,7 @@ class admin_controller {
 	 * 
 	 */
 
-	public function content_add_page ( $parent_page_id )
+	public function content_add_page ( $parent_page_id='' )
 	{
 		tentacle::valid_user();
 		
@@ -77,7 +77,7 @@ class admin_controller {
 		
 		$get_page_meta = $page->get_page_meta( $page_id );
 	
-		load::view ('admin/content/content_edit_page', array(  'get_page'=>$get_page, 'get_page_meta'=>$get_page_meta, 'pages' => $pages ) );		
+		load::view ('admin/content/content_edit_page', array(  'get_page'=>$get_page, 'get_page_meta'=>$get_page_meta, 'pages' => $pages, 'page_id' => $page_id ) );		
 	}
 
 	public function content_manage_pages ()
