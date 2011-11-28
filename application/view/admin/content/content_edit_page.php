@@ -35,7 +35,11 @@
 							</dt>
 							<dd>
 								<select id="parent_page" name="parent_page">
-									<option value="1">Select</option>
+									<? foreach ($pages as $page): 
+									// @todo Set the active sub page if there is one.
+									?>
+										<option value="<?= $page->id?>"><?= $page->title;?></option>
+									<? endforeach;?>
 								</select>
 							</dd>
 							<dt>
