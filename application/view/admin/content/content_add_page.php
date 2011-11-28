@@ -35,8 +35,9 @@
 							</dt>
 							<dd>
 								<select id="parent_page" name="parent_page">
+									<option value="0">None</option>
 									<? foreach ($pages as $page): ?>
-										<option value="<?= $page->id?>"><?= $page->title;?></option>
+										<option value="<?= $page->id?>" <? selected( $page->id, $parent_page_id ); ?>><?= $page->title;?></option>
 									<? endforeach;?>
 								</select>
 							</dd>
