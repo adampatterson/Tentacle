@@ -94,9 +94,9 @@
 					<div class="tab-content tab-body" id="my-tab-content">
 						<div id="content" class="active tab-pane">
 							<input type="text" name="title" placeholder='Title' class='xlarge' />
-							<p>
+							<!--<p>
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>
-							</p>
+							</p>-->
 							<? if (user_editor() == 'wysiwyg'): ?>
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.js"></script>
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/config.js"></script>
@@ -105,7 +105,7 @@
 									<textarea name="content" id="cke" cols="40" rows="5" class="jquery_ckeditor" placeholder='Content'></textarea>
 								</p>
 							<? else: ?>
-								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/lib/codemirror.css">
+								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/codemirror.css">
 								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/codemirror-compressed.js"></script>
 								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/theme/default.css">
 								<style type="text/css">

@@ -87,7 +87,7 @@
 									<textarea name="content" id="cke" cols="40" rows="5" class="jquery_ckeditor" placeholder='Content'></textarea>
 								</p>
 							<? else: ?>
-								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/lib/codemirror.css">
+								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/codemirror.css">
 								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/codemirror-compressed.js"></script>
 								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/theme/default.css">
 								<style type="text/css">
