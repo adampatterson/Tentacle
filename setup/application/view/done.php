@@ -18,7 +18,7 @@
         <h2>Done</h2>
 
 		<p>Delete this folder</p>
-		<p>Go to your admin screen</p>
+		<p>Go to your <a href="<?= BASE_URL ?>admin/">admin screen</a></p>
 
 		<div class="one-half">
 			&nbsp;
