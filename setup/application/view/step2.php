@@ -57,14 +57,6 @@
 					<?php endif ?>
 				</tr>
 				<tr>
-					<th>Cache Directory</th>
-					<?php if (is_dir('../application/cache/') AND is_writable('../application/cache/')): ?>
-						<td class="pass">/application/cache/</td>
-					<?php else: $failed = TRUE ?>
-						<td class="fail">The <code>/application/cache/'</code> directory is not writable.</td>
-					<?php endif ?>
-				</tr>
-				<tr>
 					<th>Config Directory</th>
 					<?php if (is_dir('../application/config/deployment/') AND is_writable('../application/config/deployment/')): ?>
 						<td class="pass">/application/config/deployment/</td>
@@ -78,14 +70,6 @@
 						<td class="pass">The <code>db.php</code> file has not been created yet.</td>
 					<?php else: $failed = TRUE ?>
 						<td class="fail"><p>The file <code>db.php</code> already exists. If you need to reset any of the configuration items in this file, please delete it first.</p></td>
-					<?php endif ?>
-				</tr>
-				<tr>
-					<th>Data</th>
-					<?php if (file_exists('install.sql') AND file_exists('data.sql')): ?>
-						<td class="pass">The <code>install.sql</code> file exists.</td>
-					<?php else: $failed = TRUE ?>
-						<td class="fail">The instalation files are missing. Please make sure that <code>install.sql</code> and <code>data.sql</code> are in the setup folder. </p></td>
 					<?php endif ?>
 				</tr>
 				<tr>
