@@ -584,7 +584,7 @@
 		        </div>
 		      </div>
 		    </div>
-			<form action="<?= BASE_URL; ?>setup/install/step1/">
+			<form action="<?= BASE_URL; ?>setup/action/agree/" method="get">
 				<div style="background: #F7F7F7; border: 1px solid #DDDDDD; padding: 10px; margin-bottom: 15px; text-align: right;">I agree to the license
 					<input type="checkbox" name="agree" id="agree">
 					<script type="text/javascript">

@@ -3,6 +3,11 @@
 class action_controller
 {
 	
+	public function agree()
+	{
+		url::redirect('setup/install/step1');
+	}
+	
 	public function database()
 	{
 				
