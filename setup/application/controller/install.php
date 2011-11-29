@@ -232,6 +232,13 @@ class install_controller
 									(5,'Music',0,'music'),
 									(7,'Bikes',0,'bikes'),
 									(0,'Default',0,'default')" );
+							
+				# Build Data
+				# ------------------------------------------------------------		
+				$build = $pdo->exec( "INSERT INTO `options` (`key`, `value`, `autoload`)
+										VALUES
+										('db_version', '1', 'yes')" );
+									
 
 		load::view ('step5');
 	}

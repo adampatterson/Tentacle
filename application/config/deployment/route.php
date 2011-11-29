@@ -75,25 +75,29 @@ route::set('admin',array(
     'function'=>'index'
 	));
 
-// post index
+// Actoin
 route::set('action',array(
     'controller'=>'action',
     'function'=>'index'
 	));
 
-// post route
 route::set('action/([-_a-zA-Z0-9]+)',array(
     'controller'=>'action',
     'function'=>'$1'
 	));
-	
-// post route
+
 route::set('action/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
     'controller'=>'action',
     'function'=>'$1',
 	'arguments'=>array('$2')
 	));
-		
+	
+route::set('action/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)//([-_a-zA-Z0-9]+)',array(
+    'controller'=>'action',
+    'function'=>'$1',
+	'arguments'=>array('$2','$3')
+	));
+
 // dev route
 route::set('dev/([-_a-zA-Z0-9]+)',array(
     'controller'=>'dev',
@@ -120,5 +124,3 @@ route::set('default_route','page/index');
  * visiting /blog/5 would call BlogController::post(5)
  * visiting /blog/5/comment/42/delete would call BlogController::deleteComment(5,42)
  */
-
-?>

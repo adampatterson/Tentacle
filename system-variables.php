@@ -57,7 +57,7 @@ define('TENTACLE_CSS'  , ADMIN_URL.'css/');
 define ('ACTIVE_THEME' , '/marketing');
 
 // http://code.google.com/p/minify/
-define('MINIFY'        ,ADMIN_URL.'lib/min/');
+define('MINIFY'        , ADMIN_URL.'lib/min/');
 
 // Image Size
 define('GRAVATAR_SIZE' , "60" );

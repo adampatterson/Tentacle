@@ -48,9 +48,6 @@ config::set('notes',array('path'=>'/','expire'=>'+90 minutes'));
  *  Tentacle
  */
 
-// Set messages.
-define('NOTE_SESSION','<strong>Sorry</strong>: Your session has times out. Please log back in for security reasons.');
-
 /* Application Folder Locations */
 config::set('folder_views','view');             // Views
 config::set('folder_controllers','controller'); // Controllers
@@ -62,6 +59,3 @@ config::set('folder_cache','cache');            // Cache
 config::set('folder_languages','language');     // Languages
 config::set('folder_errors','error');           // Errors
 config::set('folder_orm','orm');                // ORM
-
-// Tentacle Version
-require_once('version.php');

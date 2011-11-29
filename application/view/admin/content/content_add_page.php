@@ -46,7 +46,7 @@
 							</dt>
 							<dd>
 								<select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
-									<option value="<?= BASE_URL ?>action/render_admin/page/default">Default</option>
+									<option value="<?= BASE_URL ?>action/render_admin/add_page/default">Default</option>
 									<? $templates = get_templates( get_option( 'appearance' ) ); 
 									foreach ( $templates as $template ): ?>
 										<option value="<?= BASE_URL ?>action/render_admin/add_page/<?= $template->template_id ?>" <? selected( session::get( 'template' ), $template->template_id ); ?>><?= $template->template_name ?></option>

@@ -43,6 +43,8 @@
 									<? endforeach;?>
 								</select>
 							</dd>
+							<!--
+							@todo Figure out a way to change templates after one has been saved.
 							<dt>
 								<label for="page_template">Page template</label>
 							</dt>
@@ -55,7 +57,7 @@
 										<option value="<?= BASE_URL ?>action/render_admin/update_page/<?= $template->template_id ?>/<?= $get_page->id ?>" <? selected( $get_page->template, $template->template_id ); ?>><?= $template->template_name ?></option>
 									<? endforeach; ?>
 								</select>
-							</dd>
+							</dd>-->
 						</dl>
 					</fieldset>
 					<input type="hidden" value="admin/content_update_page/<?= $get_page->id ?>" name="history">
