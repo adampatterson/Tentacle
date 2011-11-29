@@ -9,7 +9,6 @@
 		<li>System Check<span class="divider">/</span></li>
 		<li>Database Information<span class="divider">/</span></li>
 		<li>Testing the config file<span class="divider">/</span></li>
-		<li>Build Database<span class="divider">/</span></li>
 		<li>Create User<span class="divider">/</span></li>
 		<li>Done</li>
 	</ul>
@@ -585,19 +584,33 @@
 		        </div>
 		      </div>
 		    </div>
-			<form action="http://localhost/http/_lab/opencart/install/index.php?route=step_1" method="post" enctype="multipart/form-data" id="form">
-			      <div style="background: #F7F7F7; border: 1px solid #DDDDDD; padding: 10px; margin-bottom: 15px; text-align: right;">I agree to the license
-			        <input type="checkbox" name="agree">
-			      </div>
-			      
+			<form action="<?= BASE_URL; ?>setup/install/step1/">
+				<div style="background: #F7F7F7; border: 1px solid #DDDDDD; padding: 10px; margin-bottom: 15px; text-align: right;">I agree to the license
+					<input type="checkbox" name="agree" id="agree">
+					<script type="text/javascript">
+				        $(document).ready(function() {
+				            $("#agree-button").attr("disabled", "disabled");
+
+				            $("#agree").click(function() {
+				                var checked_status = this.checked;
+				                if (checked_status == true) {
+				                    $("#agree-button").removeAttr("disabled");
+				                }
+				                else {
+				                    $("#agree-button").attr("disabled", "disabled");
+				                }
+				            });
+				        });
+					</script>
+			    </div>  
 				<div class="one-half">
 					&nbsp;
 				</div>
 				<div class="textright one-half">
-					<a href="<?= BASE_URL; ?>setup/install/step1/" class="btn medium primary">let's go!</a>
+					<input name="submit" id="agree-button" type="submit" value="let's go!" class="btn medium primary"/>
 				</div>
 			</form>
-      </div>
-    </div>
-  </div>
+		</div>
+	</div>
+</div>
 <? load::view('template-footer');?>

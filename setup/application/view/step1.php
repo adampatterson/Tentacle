@@ -9,7 +9,6 @@
 		<li>System Check<span class="divider">/</span></li>
 		<li>Database Information<span class="divider">/</span></li>
 		<li>Testing the config file<span class="divider">/</span></li>
-		<li>Build Database<span class="divider">/</span></li>
 		<li>Create User<span class="divider">/</span></li>
 		<li>Done</li>
 	</ul>

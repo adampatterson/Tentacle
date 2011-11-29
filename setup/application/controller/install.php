@@ -235,17 +235,12 @@ class install_controller
 							
 				# Build Data
 				# ------------------------------------------------------------		
-				$build = $pdo->exec( "INSERT INTO `options` (`key`, `value`, `autoload`)
+				$build = $pdo->exec( "INSERT INTO `options` (`id`, `key`, `value`, `autoload`)
 										VALUES
-										('db_version', '1', 'yes')" );
+										(1'db_version', '1', 'yes')" );
 									
 
 		load::view ('step5');
-	}
-	
-	public function step6 ( $step )
-	{
-		load::view ( 'step6' );	
 	}
 	
 	public function done ( $step )

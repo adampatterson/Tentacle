@@ -4,4 +4,13 @@
 </footer>
 </div> <!-- /container -->
 </body>
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function(){
+	  // Disable certain links in docs
+	  // =============================
+	  $('a.disabled').click(function (e) {
+	    e.preventDefault()
+	  })
+	});
+</script>
 </html>

@@ -18,19 +18,6 @@
 		<link type="text/css" rel="stylesheet" href="<?= TENTACLE_CSS ?>admin.css">
 		<link type="text/css" rel="stylesheet" href="<?= TENTACLE_CSS ?>setup.css">
 		
-		<script type="text/javascript" charset="utf-8">
-			$(document).ready(function(){
-			  // Disable certain links in docs
-			  // =============================
-			  // Please do not carry these styles over to your projects, it's merely here to prevent button clicks form taking you away from your spot on page
-
-			  $('a.disabled').click(function (e) {
-			    e.preventDefault()
-			  })
-
-			});
-		</script>
-
 	    <!-- Le fav and touch icons -->
 	    <link rel="shortcut icon" href="images/favicon.ico">
 	    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">

@@ -12,12 +12,9 @@ class action_controller
 		$this->password 	= input::post ( 'db_password' );
 		$this->database 	= input::post ( 'db_name' );
 		
-		try
-		{
+		try {
 			$this->con = new pdo("{$this->driver}:dbname={$this->database};host={$this->host}",$this->username,$this->password);
-		}
-		catch(PDOException $e)
-		{
+		} catch(PDOException $e) {
 			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
 		}
 

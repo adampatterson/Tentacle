@@ -9,7 +9,6 @@
 		<li><a href='#'>System Check</a><span class="divider">/</span></li>
 		<li class="active"><a href='#'>Database Information</a><span class="divider">/</span></li>
 		<li>Testing the config file<span class="divider">/</span></li>
-		<li>Build Database<span class="divider">/</span></li>
 		<li>Create User<span class="divider">/</span></li>
 		<li>Done</li>
 	</ul>
@@ -51,7 +50,7 @@
 				<a href="<?= BASE_URL; ?>setup/install/step2/" class="btn medium secondary">Back</a>
 			</div>
 			<div class="textright one-half">
-				<input name="submit" id= "fsubmit" type="submit" value="Submit" class="btn medium primary"/>
+				<input name="submit" id="submit" type="submit" value="Submit" class="btn medium primary"/>
 			</div>
 		</form>
       </div>

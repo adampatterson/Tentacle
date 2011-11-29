@@ -9,7 +9,6 @@
 		<li class="active"><a href='#'>System Check</a><span class="divider">/</span></li>
 		<li>Database Information<span class="divider">/</span></li>
 		<li>Testing the config file<span class="divider">/</span></li>
-		<li>Build Database<span class="divider">/</span></li>
 		<li>Create User<span class="divider">/</span></li>
 		<li>Done</li>
 	</ul>
@@ -25,10 +24,10 @@
 		<table cellspacing="0">
 				<tr>
 					<th>PHP Version</th>
-					<?php if (version_compare(PHP_VERSION, '5.2.3', '>=')): ?>
+					<?php if (version_compare(PHP_VERSION, '6.2.3', '>=')): ?>
 						<td class="pass"><?php echo PHP_VERSION ?></td>
 					<?php else: $failed = TRUE ?>
-						<td class="fail">Kohana requires PHP 5.2.3 or newer, this version is <?php echo PHP_VERSION ?>.</td>
+						<td class="fail">Tentacle requires PHP 5.2.3 or newer, this version is <?php echo PHP_VERSION ?>.</td>
 					<?php endif ?>
 				</tr>
 
@@ -85,7 +84,7 @@
 					<?php if (extension_loaded('curl')): ?>
 						<td class="pass">Pass</td>
 					<?php else: ?>
-						<td class="fail">Kohana requires <a href="http://php.net/curl">cURL</a> for the Remote class.</td>
+						<td class="fail">Tentacle requires <a href="http://php.net/curl">cURL</a> for the Remote class.</td>
 					<?php endif ?>
 				</tr>
 				<tr>

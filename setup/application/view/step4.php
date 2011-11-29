@@ -9,7 +9,6 @@
 		<li><a href='#'>System Check</a><span class="divider">/</span></li>
 		<li><a href='#'>Database Information</a><span class="divider">/</span></li>
 		<li class="active"><a href='#'>Testing the config file</a><span class="divider">/</span></li>
-		<li>Build Database<span class="divider">/</span></li>
 		<li>Create User<span class="divider">/</span></li>
 		<li>Done</li>
 	</ul>
