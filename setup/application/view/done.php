@@ -14,16 +14,21 @@
 	</ul>
     <div class="row">
       <div class="span14">
-        <h2>Done</h2>
-
-		<p>Delete this folder</p>
-		<p>Go to your <a href="<?= BASE_URL ?>admin/">admin screen</a></p>
-
-		<div class="one-half">
-			&nbsp;
+        <h2>Congratulations!</h2>
+		<div class="alert-message block-message success">
+			<h3>You have successfully installed Tentacle CMS.</h3>
+			<ul>
+				<li>Documentation</li>
+				<li>Freedoms</li>
+				<li>Feedback</li>
+				<li>Credits</li>
+			</ul>		
+			<div class="alert-actions">
+		    	<a class="btn large success" href="<?= BASE_URL ?>admin/">Login</a>
+		  </div>
 		</div>
-		<div class="textright one-half">
-			&nbsp;
+		<div class="alert-message error">
+		  <p>Make sure to delete the <strong>Setup</strong> folder!</p>
 		</div>
       </div>
     </div>

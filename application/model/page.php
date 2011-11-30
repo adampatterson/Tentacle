@@ -81,6 +81,8 @@ class page_model
 	//----------------------------------------------------------------------------------------------	
 	public function update ( ) 
 	{
+		// create a new version of the content.
+		
 		note::set('success','page_update','Page Updated!');
 	}
 	
