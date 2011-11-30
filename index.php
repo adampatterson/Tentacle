@@ -10,10 +10,10 @@ if (!file_exists('application/config/'.CONFIGURATION.'/db.php')):
    header( 'Location: /setup/' ) ;
    exit();
 else:
-	if ($_SERVER["SERVER_NAME"] != 'staging.tentaclecms.com'):
-		define( 'SETUP'   	,true );
+	if ($_SERVER["SERVER_NAME"] == 'staging.tentaclecms.com'):
+		define( 'SETUP'   	, false );
 	else:
-		define( 'SETUP' 	, false );
+		define( 'SETUP' 	, true );
 	endif;
 endif;
 

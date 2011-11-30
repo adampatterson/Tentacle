@@ -19,12 +19,11 @@
 		The following tests have been run to determine if <strong>Tentacle CMS</strong> will work in your environment.
 		If any of the tests have failed, consult the documentation for more information on how to correct the problem.
 		</p>
-
 		<?php $failed = FALSE ?>
 		<table cellspacing="0">
 				<tr>
 					<th>PHP Version</th>
-					<?php if (version_compare(PHP_VERSION, '6.2.3', '>=')): ?>
+					<?php if (version_compare(PHP_VERSION, '5.2.3', '>=')): ?>
 						<td class="pass"><?php echo PHP_VERSION ?></td>
 					<?php else: $failed = TRUE ?>
 						<td class="fail">Tentacle requires PHP 5.2.3 or newer, this version is <?php echo PHP_VERSION ?>.</td>
