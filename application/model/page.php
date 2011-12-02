@@ -83,6 +83,9 @@ class page_model
 	{
 		// create a new version of the content.
 		
+		//'date' => time(),
+		//'modified' => time()
+		
 		note::set('success','page_update','Page Updated!');
 	}
 	
@@ -134,7 +137,8 @@ class page_model
 			'author'	=>$post_author,
 			'type'		=>$post_type,
 			'template'	=>$post_template,
-			'parent'	=>$parent_page
+			'parent'	=>$parent_page,
+			'date' => time()
 		));
 
 	

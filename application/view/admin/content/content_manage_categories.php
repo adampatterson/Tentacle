@@ -43,14 +43,13 @@
 						<input type='checkbox' class='check-all' />
 						Name</th>
 						<th>Slug</th>
-						<th>Posts</th>
+						<!-- <th>Posts</th> -->
 						<th>ID</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
-					<? foreach ($categories as $category):
-					?>
+					<? foreach ( $categories as $category ): ?>
 					<tr>
 						<td>
 						<input type='checkbox' value='<?= $category->id ?>' />
@@ -58,8 +57,8 @@
 						?></td>
 						<td><?= $category->slug
 						?></td>
-						<td><?= $category->count
-						?></td>
+						<!-- <td><?//= ->count
+						?></td> -->
 						<td><?= $category->id
 						?></td>
 						<td><a href='<?= ADMIN ?>content_edit_category/<?= $category->id  ?>'><img src='<?=ADMIN_URL;?>images/icons/16_edit.png' width='16' height='16' alt='Edit' /></a> <a href='<?= ADMIN ?>content_delete_category/<?= $category->id  ?>'><img src='<?=ADMIN_URL;?>images/icons/16_delete.png' width='16' height='16' alt='Delete' /></a><!--<img src='<?=ADMIN_URL; ?>images/icons/16_add.png' width='15' height='16' alt='Add' />--></td>

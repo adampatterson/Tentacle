@@ -11,7 +11,6 @@ class category_model
 			$get_categories = $categories->select( '*' )
 				->order_by ( 'id', 'DESC' )
 				->execute();
-					
 			return $get_categories;
 		} else {	
 			$get_category = $categories->select( '*' )
@@ -38,7 +37,7 @@ class category_model
 		
 		$category->update(array(
 				'name'=>$term_name,
-				'slug'=>$term_slug
+				'slug'=>$term_slug,
 			))
 			->where( 'id', '=', $id )
 			->execute();
@@ -68,9 +67,17 @@ class category_model
 		
 		$category  = db( 'terms' );
 
-		$category->insert(array(
+		$category_id = $category->insert(array(
 			'name'=>$term_name,
 			'slug'=>$term_slug
+		));
+
+
+		$term_taxonomy  = db( 'term_taxonomy' );
+
+		$term_taxonomy->insert(array(
+			'taxonomy'=>'category',
+			'term_id'=>$category_id->id
 		),FALSE);
 
 		note::set('success','category_add','Category Added!');		

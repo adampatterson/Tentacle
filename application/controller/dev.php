@@ -9,7 +9,7 @@ class dev_controller {
 	**/
 	public function index()
 	{
-
+		echo time();
 	}
 	
 	

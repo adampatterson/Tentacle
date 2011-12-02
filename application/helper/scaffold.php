@@ -50,10 +50,22 @@ class  Scaffold
 	            if ($input['input'] == 'input'):
 	                switch($input['type']) {
 	                    case 'text':
-	                        $return_data .= '<div class="clearfix"><label for="'.$input_name.'">'.$input['name'].'</label><div class="input"><input type="text" class="xlarge" name="'.$input_name.'" /></div></div>';
+	                        $return_data .= '<div class="clearfix">
+												<label for="'.$input_name.'">'.$input['name'].'</label>
+												<div class="input">
+													<input type="text" class="xlarge" name="'.$input_name.'" />
+													<span class="help-block">'.$input['notes'].'</span>
+												</div>
+											</div>';
 						break;
 						case 'password':
-	 						$return_data .= '<div class="clearfix"><label for="'.$input_name.'">'.$input['name'].'</label><div class="input"><input type="password" class="xlarge" name="'.$input_name.'" /></div></div>';
+	 						$return_data .= '<div class="clearfix">
+												<label for="'.$input_name.'">'.$input['name'].'</label>
+												<div class="input">
+													<input type="password" class="xlarge" name="'.$input_name.'" />
+													<span class="help-block">'.$input['notes'].'</span>
+												</div>
+											</div>';
 						break;    
 					    case 'button':
 							
@@ -69,7 +81,13 @@ class  Scaffold
 							}
 						$return_data .= '</select><br />';
 	                elseif ($input['input'] == 'multiline'):
-	                    $return_data .= '<div class="clearfix"><label for="'.$input_name.'">'.$input['name'].'</label><div class="input"><textarea cols="40" rows="5" name="'.$input_name.'"></textarea></div></div>';
+	                    $return_data .= '<div class="clearfix">
+											<label for="'.$input_name.'">'.$input['name'].'</label>
+											<div class="input">
+												<textarea cols="40" rows="5" name="'.$input_name.'" class="xxlarge"></textarea>
+												<span class="help-block">'.$input['notes'].'</span>
+											</div>
+										</div>';
 	                endif;
 	            endforeach;
 	
