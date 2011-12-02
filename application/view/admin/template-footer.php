@@ -14,5 +14,12 @@
   }
 </script>
 <script src="https://tentacle.tenderapp.com/tender_widget.js" type="text/javascript"></script>
+<!-- 
+<?
+if ( CONFIGURATION == 'development') {
+	echo shell_exec('git status'); 
+}
+?>
+-->
 </body>
 </html>
