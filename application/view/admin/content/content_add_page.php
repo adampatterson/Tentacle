@@ -16,7 +16,7 @@
 			<div class="contet-sidebar has-tabs">
 				<div class="table-heading">
 					<h3 class="regular">Page Settings</h3>
-					<input type="button" value="Preview" class="btn small primary alignright" />
+					<input type="button" value="Preview" class="btn small primary alignright" name='preview' />
 				</div>
 				<div class="table-content">
 					<fieldset>
@@ -46,7 +46,7 @@
 							</dt>
 							<dd>
 								<select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
-									<option value="<?= BASE_URL ?>action/render_admin/add_page/index" selected='selected'>Default</option>
+									<option value="<?= BASE_URL ?>action/render_admin/add_page/default" selected='selected'>Default</option>
 									<? $templates = get_templates( get_option( 'appearance' ) ); 
 									foreach ( $templates as $template ): ?>
 										<option value="<?= BASE_URL ?>action/render_admin/add_page/<?= $template->template_id ?>" <? selected( session::get( 'template' ), $template->template_id ); ?>><?= $template->template_name ?></option>
@@ -60,7 +60,7 @@
 					</fieldset>
 					<input type="hidden" value="admin/content_add_page" name="history">
 					<div class="textleft actions">
-						<button type="submit" class="btn large primary">Save</button><!--<a href="#review">Save for Review</a>-->
+						<button type="submit" class="btn large primary" name='save'>Save</button><!--<a href="#review">Save for Review</a>-->
 					</div>
 				</div>
 			</div>

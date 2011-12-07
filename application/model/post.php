@@ -70,16 +70,18 @@ class post_model
 		$page          = db('posts');
 
 		$page->insert(array(
-			'title'=>$title,
-			'slug'=>$slug,
-			'content'=>$content,
-			'category'=>$page_category,
-			'status'=>$status,
-			'author'=>$post_author,
-			'type'=>$post_type,
-			'template'=>$post_type,
-			'parent'=>$parent_page,
-			'visible'=>$visible
+			'title'		=>$title,
+			'slug'		=>$slug,
+			'content'	=>$content,
+			'category'	=>$page_category,
+			'status'	=>$status,
+			'author'	=>$post_author,
+			'type'		=>$post_type,
+			'template'	=>$post_type,
+			'parent'	=>$parent_page,
+			'visible'	=>$visible,
+			'date'		=>time(),
+			'modified'	=>time()
 		),FALSE);
 
 		note::set('success','post_add','Post Added!');

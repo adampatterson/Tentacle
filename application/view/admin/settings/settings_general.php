@@ -10,7 +10,7 @@
 					<div class="clearfix">
 						<label for="blogname">Site Title</label>
 						<div class="input">
-							<input type="text" value="Adam Patterson - Edmonton Graphic and Web Design" name="blogname">
+							<input type="text" value="<?= get_option('blogname'); ?>" name="blogname">
 						</div>
 					</div>
 					<div class="clearfix">

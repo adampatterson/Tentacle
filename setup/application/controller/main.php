@@ -6,4 +6,5 @@ class main_controller
 	{
 		load::view ('index');
 	}
+	
 }

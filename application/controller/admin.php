@@ -45,6 +45,21 @@ class admin_controller {
 		load::view ( 'admin/resource' );
 	}
 
+
+	public function sortable ()
+	{
+		
+		tentacle::valid_user();
+		
+		$page = load::model( 'page' );
+		$pages = $page->get( );
+		
+		$user = load::model('user'); 
+		$options = load::model ( 'settings' );
+
+		load::view ( 'admin/sortable', array( 'pages'=>$pages, 'user'=>$user ) );
+	}
+
 	/**
 	 * 
 	 * 

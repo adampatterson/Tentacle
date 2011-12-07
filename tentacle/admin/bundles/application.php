@@ -1,4 +1,4 @@
-<? //if (CONFIGURATION == 'deployment'): ?>
+<? if (CONFIGURATION == 'deployment'): ?>
 <!--
 	<link type="text/css" rel="stylesheet" href="<?=MINIFY; ?>b=http/dev.tcms.me/tentacle/admin/css&f=bootstrap-1.4.0.min.css,general.css,admin.css" />
 
@@ -19,12 +19,13 @@
 
 	<script type="text/javascript" src="<?=MINIFY; ?>b=http/dev.tcms.me/tentacle/admin/js&f=spin.min.js,sisyphus.min.js,jquery.validate.js,application.js"></script>
 -->
-<? //else: ?>
+<? else: ?>
 	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>bootstrap-1.4.0.min.css">
 	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>general.css">
 	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>admin.css">
 	
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.min.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery-ui-1.8.16.custom.min.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>modernizr-2.0.6.min.js"></script>
 	
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.notice.js"></script>
@@ -44,7 +45,7 @@
 	
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>application.js"></script>
 	
-<? //endif;?>
+<? endif;?>
 	<!-- <script type="text/javascript" charset="utf-8">
 		$(document).ready(function(){
 			$('#username').keyup(username_check);

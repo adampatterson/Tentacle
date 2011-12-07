@@ -18,7 +18,7 @@
 							<div class="inline-inputs">
 								<input type="text" value="<?= get_option('image_thumb_size_w'); ?>" name="image_thumb_size_w" id="thumbnail_size_w" class='span2' />
 								x
-								<input type="text" value="<?= get_option('image_thumb_size_h'); ?>" id="thumbnail_size_h" class='span2' />
+								<input type="text" value="<?= get_option('image_thumb_size_h'); ?>" name="image_thumb_size_h" id="thumbnail_size_h" class='span2' />
 							</div>
 						</div>
 						<!--<div class="input">

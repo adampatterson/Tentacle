@@ -148,7 +148,7 @@
 								<?
 								define( 'SCAFFOLD' , 'TRUE' );
 
-								if ( $get_page->template != '' && $get_page->template != 'index' ) {
+								if ( $get_page->template != '' && $get_page->template != 'default' ) {
 
 									// Load the saved template, then if the user changes override the saved template.
 									include(THEMES_DIR.'/default/'.$get_page->template.'.php');

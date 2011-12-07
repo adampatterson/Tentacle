@@ -20,6 +20,8 @@ class install_controller
 	}
 	public function step5 ( $step )
 	{
+		// CREATE DATABASE database_name
+		
 		load::config('db');
 			
 		$config = config::get('db');
@@ -127,8 +129,8 @@ class install_controller
 									  `menu_order` int(11) NOT NULL DEFAULT '0',
 									  `guid` varchar(255) NOT NULL,
 									  `status` varchar(20) NOT NULL DEFAULT 'draft',
-									  `template` varchar(100) NOT NULL DEFAULT 'index.php',
-									  PRIMARY KEY (`id`),
+									  `template` varchar(100) NOT NULL DEFAULT 'default',
+									  PRIMARY KEY (`id`,`parent`),
 									  FULLTEXT KEY `content` (`content`,`title`,`excerpt`)
 									) ENGINE=MyISAM DEFAULT CHARSET=utf8" );
 

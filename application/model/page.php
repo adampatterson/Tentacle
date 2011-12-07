@@ -45,7 +45,7 @@ class page_model
 		if ( $id == '' ) {
 			$get_pages = $pages->select( '*' )
 				->where ( 'type', '=', 'page' )
-				->order_by ( 'id', 'DESC' )
+				->order_by ( 'id', 'ASC' )
 				->execute();
 					
 			return $get_pages;
@@ -59,6 +59,22 @@ class page_model
 
 			return $get_pages[0];
 		}	
+	}
+	
+	// Menu
+	//----------------------------------------------------------------------------------------------
+	public function menu ( $id='' )
+	{
+		$pages = db ( 'posts' );
+	
+		$get_pages = $pages->select( '*' )
+			->where ( 'id', '=', $id )
+			->clause( 'AND' )
+			->where ( 'type', '=', 'page' )
+			->order_by ( 'id', 'DESC' )
+			->execute();	
+
+		return $get_pages[0];
 	}
 	
 	
@@ -138,7 +154,8 @@ class page_model
 			'type'		=>$post_type,
 			'template'	=>$post_template,
 			'parent'	=>$parent_page,
-			'date' => time()
+			'date'		=>time(),
+			'modified'	=> time()
 		));
 
 	
