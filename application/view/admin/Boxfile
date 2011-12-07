@@ -1,6 +1,6 @@
 web1:
   name: tentacle
-  document_root: /
+  document_root: /tentacle
   php_version: 5.3.5
   php_extensions:
     - mysql
