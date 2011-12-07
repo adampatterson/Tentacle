@@ -6,3 +6,9 @@ web1:
     - mysql
     - gd
     - eaccelerator
+	- pdo_mysql
+    - pdo
+    - pdo_sqlite
+    - pdo_mysql
+    - apc
+    - mcrypt
