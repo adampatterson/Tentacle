@@ -569,12 +569,12 @@ class dev_controller {
 		
 		load::helper ('array');
 
-		$object = arrayToObject ( $array );
+		$object = array_to_object ( $array );
 		echo '<h2>Array to Object</h2><pre>';
 			print_r($object);
 		echo '</pre>';
 		
-		$array = objectToArray ( $object );
+		$array = object_to_array ( $object );
 		echo '<h2>Array to Object</h2><pre>';
 			print_r($array);
 		echo '</pre>';

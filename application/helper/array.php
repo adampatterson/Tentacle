@@ -30,7 +30,7 @@
 
 	    foreach ($array as $key => $value) {
 	        if (is_array($value)) {
-	            $tmp->$key = arrayToObject($value);
+	            $tmp->$key = array_to_object($value);
 	        } else {
 	            if (is_numeric($key)) {
 	                exit('Cannot turn numeric arrays into objects!');
