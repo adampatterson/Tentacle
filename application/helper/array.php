@@ -24,7 +24,7 @@
 * @param  $array
 */
 
-	function arrayToObject($array = array())
+	function array_to_object($array = array())
 	{
 	    $tmp = new stdClass;
 
@@ -48,7 +48,7 @@
 * @param  $object Object
 */
 
-	function objectToArray($object)
+	function object_to_array($object)
 	{
 	    $array = array();
 

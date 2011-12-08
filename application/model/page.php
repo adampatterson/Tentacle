@@ -90,7 +90,7 @@ class page_model
 		
 		$clean_page_meta = unserialize( $dirty_page_meta[0]->meta_value );
 
-		return arrayToObject( $clean_page_meta );
+		return array_to_object( $clean_page_meta );
 	}
 
 	// Update Page

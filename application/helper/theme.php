@@ -63,7 +63,7 @@ function get_themes()
 	}
 	asort($themes);
 	
-	return(arrayToObject($themes));
+	return(array_to_object($themes));
 }// Get Themes
 
 
@@ -83,7 +83,7 @@ function get_settings ( $style_path = 'default' )
 		$theme[$style_file]['theme_description'] = 'This theme has a missing style sheet.';
 	}
 	
-	return(arrayToObject($theme));
+	return(array_to_object($theme));
 } // Get Settings
 
 
@@ -109,7 +109,7 @@ function get_templates ( $theme_folder )
 		endif;
 	endforeach;
 
-	return(arrayToObject( $template ));
+	return(array_to_object( $template ));
 	
 } // Get Templates
 

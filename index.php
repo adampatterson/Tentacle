@@ -7,7 +7,7 @@ error_reporting(E_STRICT|E_ALL);
 require_once('system-variables.php');
 
 if (!file_exists('application/config/'.CONFIGURATION.'/db.php')):
-   header( 'Location: /setup/' ) ;
+   header( 'Location: /setup/' );
    exit();
 else:
 	if ($_SERVER["SERVER_NAME"] == 'staging.tentaclecms.com'):
@@ -16,6 +16,10 @@ else:
 		define( 'SETUP' 	, true );
 	endif;
 endif;
+
+if ( CONFIGURATION == 'deployment' && is_dir( 'setup' ) )
+    rmdir( 'setup' );
+
 
 // End of configuration
 //----------------------------------------------------------------------------------------------

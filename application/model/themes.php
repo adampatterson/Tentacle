@@ -10,7 +10,7 @@ class themes_model
 	{
 		load::helper ('array');
 
-		return arrayToObject(get_themes());
+		return array_to_object(get_themes());
 	}
 	
 	public function theme_settings ( $theme = '' )
