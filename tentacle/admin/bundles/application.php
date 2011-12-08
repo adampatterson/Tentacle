@@ -1,4 +1,28 @@
 <? if (CONFIGURATION == 'deployment'): ?>
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>bootstrap-1.4.0.min.css">
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>general.css">
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>admin.css">
+
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.min.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery-ui-1.8.16.custom.min.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>modernizr-2.0.6.min.js"></script>
+
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.notice.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.inputtags.js"></script>
+
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-tabs.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-alerts.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-dropdown.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-scrollspy.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-modal.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-twipsy.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-popover.js"></script>
+
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>spin.min.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>sisyphus.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.validate.js"></script>
+
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>application.js"></script>
 <!--
 	<link type="text/css" rel="stylesheet" href="<?=MINIFY; ?>b=http/dev.tcms.me/tentacle/admin/css&f=bootstrap-1.4.0.min.css,general.css,admin.css" />
 
