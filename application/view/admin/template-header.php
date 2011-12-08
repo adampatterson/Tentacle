@@ -97,14 +97,3 @@
 		</nav>
 	</header>
 	<div id="body-wrapper">
-		<? if ( SETUP == true && CONFIGURATION != 'development' ): ?>
-			<script type="text/javascript">
-				$(document).ready(function() {
-					jQuery.noticeAdd({
-						text : 'Please delete the <strong>/setup/</strong> folder!',
-						stay : true,
-						type : 'error'
-					});
-				});
-			</script>
-		<? endif; ?>

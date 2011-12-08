@@ -10,15 +10,10 @@ if (!file_exists('application/config/'.CONFIGURATION.'/db.php')):
    header( 'Location: /setup/' );
    exit();
 else:
-	if ($_SERVER["SERVER_NAME"] == 'staging.tentaclecms.com'):
-		define( 'SETUP'   	, false );
-	else:
-		define( 'SETUP' 	, true );
-	endif;
+	if ( is_dir( 'setup' ) && CONFIGURATION != 'development' )
+	    rmdir( 'setup' );
 endif;
 
-if ( CONFIGURATION == 'deployment' && is_dir( 'setup' ) )
-    rmdir( 'setup' );
 
 
 // End of configuration
