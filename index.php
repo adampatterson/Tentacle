@@ -10,8 +10,8 @@ if (!file_exists('application/config/'.CONFIGURATION.'/db.php')):
    header( 'Location: /setup/' );
    exit();
 else:
-	if ( is_dir( 'setup' ) && CONFIGURATION != 'development' )
-	    rmdir( 'setup' );
+	//if ( is_dir( 'setup' ) && CONFIGURATION != 'development' )
+	    //rmdir( 'setup' );
 endif;
 
 
