@@ -143,7 +143,7 @@ class user_model
 			
 		$users  = db( 'users' );
 		
-		$user->update(array(
+		$users->update(array(
 				'registered'=> time()
 			))
 			->where( 'email', '=', $email )
