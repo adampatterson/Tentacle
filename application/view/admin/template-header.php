@@ -41,7 +41,7 @@
 					</li>
 					<li class="dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Snippets</a>
 					  <ul class="dropdown-menu">
-						<li class="<? current_page('admin/snippets_add'); ?>"><a href="<?= ADMIN ?>snippets_add/">Add a mew snippet</a></li>
+						<li class="<? current_page('admin/snippets_add'); ?>"><a href="<?= ADMIN ?>snippets_add/">Add a new snippet</a></li>
 						<li class="<? current_page('admin/snippets_manage'); ?>"><a href="<?= ADMIN ?>snippets_manage/">Manage snippets</a></li>
 					  </ul>
 					</li>
