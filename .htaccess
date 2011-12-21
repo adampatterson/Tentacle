@@ -3,6 +3,14 @@ RewriteEngine on
 RewriteCond $1 !^(index\.php|assets|tentacle|storage|themes|_reference|favicon\.ico|apple_icon\.png|setup)
 RewriteRule ^(.*)$ index.php?__dingo_page=$1 [L]
 
+# Modified wordpress .htaccess
+#RewriteEngine On
+#RewriteBase /http/dev.tcms.me/
+#RewriteRule ^index\.php$ - [L]
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond $1 !^(index\.php|assets|tentacle|storage|themes|_reference|favicon\.ico|apple_icon\.png|setup)
+#RewriteRule ^(.*)$ /http/dev.tcms.me/index.php?__dingo_page=$1 [L]
 
 # 5 weeks
 #<FilesMatch "\.(ico|png|gif|js|css)$">
