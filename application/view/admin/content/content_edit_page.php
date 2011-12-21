@@ -1,6 +1,7 @@
 <? load::view('admin/template-header', array('title' => 'Edit '.$get_page->title, 'assets' => 'application'));?>
 <? load::view('admin/template-sidebar');?>
 <div id="wrap">
+	<!--
 	<script type="text/javascript">
 		$(function(){
 			$('form#edit_page').sisyphus({
@@ -10,6 +11,7 @@
 			});
 		}); 
 	</script>
+	-->
 	<form action="<?= BASE_URL ?>action/update_page/" method="post" class="form-stacked" id='edit_page'>
 		<input type="hidden" name="page-or-post" value='page' />
 		<div class="has-right-sidebar">
@@ -93,7 +95,7 @@
 							<? if (user_editor() == 'wysiwyg'): ?>
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.js"></script>
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/config.js"></script>
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/adapters/jquery.js"></script>
+								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.utils.js"></script>
 								<p>
 									<textarea name="content" id="cke" cols="40" rows="5" class="jquery_ckeditor" placeholder='Content'><?= $get_page->content ?></textarea>
 								</p>

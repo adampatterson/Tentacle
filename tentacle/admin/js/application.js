@@ -161,7 +161,7 @@ $(document).ready(function(){
 	
 	/* Tags */
 	// ====================================
-		$('.tags').tagsInput();
+	$('.tags').tagsInput();
 
 	
 	/* Alert */

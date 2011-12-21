@@ -1,6 +1,7 @@
 <? load::view('admin/template-header', array('title' => 'Write a new post', 'assets' => 'application'));?>
 <? load::view('admin/template-sidebar');?>
 <div id="wrap">
+	<!--
 	<script type="text/javascript">
 		$(function(){
 			$('#add_post').sisyphus({
@@ -10,6 +11,7 @@
 			});
 		}); 
 	</script>
+	-->
 	<form action="<?= BASE_URL ?>action/add_post/" method="post" class="form-stacked" id='add_post'>
 		<div class="has-right-sidebar">
 			<div class="contet-sidebar has-tabs">
@@ -100,7 +102,7 @@
 							<? if (user_editor() == 'wysiwyg'): ?>
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.js"></script>
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/config.js"></script>
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/adapters/jquery.js"></script>
+								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.utils.js"></script>
 								<p>
 									<textarea name="content" id="cke" cols="40" rows="5" class="jquery_ckeditor" placeholder='Content'></textarea>
 								</p>

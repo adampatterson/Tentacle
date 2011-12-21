@@ -1,38 +1,40 @@
 ﻿//<![CDATA[
-
-	$(function()
-	{
-		var config = {
-			toolbar: [
-				['Bold','Italic','StrikeThrough'],
-				['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-				['NumberedList', 'BulletedList'],
-				['Outdent','Indent','Blockquote'],
-				['Link','Unlink'],
-				['PasteFromWord'],
-				['Format', 'Table','HorizontalRule'],
-				['atd-ckeditor'],
-				//['Source', 'Maximize']
-			],
-			skin : 'tentacle',
-			width: '99%',
-			height: 400,
-			uiColor: 'white',
-			removePlugins: 'elementspath',
-			toolbarCanCollapse : false,
-			extraPlugins : 'autogrow',
-			extraPlugins : 'stylesheetparser',
-			extraPlugins : 'tableresize',
-			extraPlugins : 'stylesheetparser',
-			extraPlugins : 'autogrow',
-			autoGrow_maxHeight : 800,
-			extraPlugins : 'atd-ckeditor',
-			atd_api_key  : 'WPORG-dkfjhds'
+	ckeditorSettings = { 	
+		"textarea_id": "cke",  
+		"autostart": true, 
+		"outputFormat": { 
+			"indent": true, 
+			"breakBeforeOpen": true, 
+			"breakAfterOpen": false, 
+			"breakBeforeClose": false, 
+			"breakAfterClose": true 
+		}, 
+		"externalPlugins": { 
+			"wpmore": "plugins/wpmore/",
+			"atd-ckeditor": "plugins/atd-ckeditor/",
+			"autogrow": "plugins/autogrow/",
+			"tableresize": "plugins/tableresize/",
+			//"stylesheetparser": "plugins/stylesheetparser/",
+		},
+		"configuration": {
+			"height": "300px", 
+			"skin": "tentacle", 
+			"toolbar": "tentacle", 
+			"removePlugins": "elementspath",
+			"autoGrow_maxHeight": 800,
+			"autoGrow_minHeight": 400,
+			"customConfig": "ckeditor.config.js"
+		},
+		"additionalButtons": [ "WPMore" ] 
+	}
+	CKEDITOR.on('instanceReady', function (ev) {
+		if(ev.editor.name == 'tentacle-editor'){
+			ckeditorOn();
 		}
-
-		// Initialize the editor.
-		// Callback function can be passed and executed after full instance creation.
-		$('.jquery_ckeditor').ckeditor(config);
 	});
-
-	//]]>
+	window.edInsertContent = function (myField, myValue) {
+		if(typeof(CKEDITOR) != 'undefined' && typeof(CKEDITOR.instances[ckeditorSettings.textarea_id]) != 'undefined'){
+			CKEDITOR.instances[ckeditorSettings.textarea_id].insertHtml(myValue);
+		}
+	}
+//]]>
