@@ -46,12 +46,9 @@
 					<img src="<?=ADMIN_URL;?>images/icons/24_paper.png" width="24" height="24" alt="Page" /><strong class="title"><?= $post -> title;?></strong></td>
 					<td>
 						<?
-						/*
-						   foreach( $list as $item ):
-				            	echo $category->get( $item )->name.' '; 
-				        	endforeach;
-						*/
-						?>
+						foreach( $relations = $category->get_relations( $post->id ) as $relation ): ?>
+				            	 <a href="#<?=$relation->slug ?>"><?= $relation->name ?></a>
+				        <? endforeach; ?>
 					</td>
 					<td ><img src="<?=ADMIN_URL; ?>images/icons/16_note-dis.png" width="16" height="16" alt="Notes" /></td>
 					<td ><?= $user_meta -> first_name;?> <?= $user_meta -> last_name;?></td>

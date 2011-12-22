@@ -105,7 +105,7 @@ class category_model
 	}
 	
 	
-	// Set the Category relations with blog posts.
+	// Set the Category relations for a blog post.
 	//----------------------------------------------------------------------------------------------	
 	public function relations ( $post_id = '', $categories = '' ) 
 	{	
@@ -118,5 +118,45 @@ class category_model
 				'term_id'		=> $term_id
 			),FALSE);
 		}
+	}
+	
+	
+	// Get the Category relations of a blog post.
+	//----------------------------------------------------------------------------------------------	
+	/*
+	[id] => 1
+	            [name] => Default
+	            [slug] => default
+	            [taxonomy] => category
+	            [description] => 
+	            [parent] => 0
+	            [count] => 0
+	            [page_id] => 79
+	            [term_order] =>
+	*/
+	public function get_relations ( $post_id = '' ) 
+	{	
+		
+		$term_relations = db::query("SELECT
+										terms.id,
+										terms.name,
+										terms.slug,
+										term_taxonomy.taxonomy,
+										term_taxonomy.description,
+										term_taxonomy.parent,
+										term_taxonomy.`count`,
+										term_relationships.page_id,
+										term_relationships.term_order
+									FROM
+										terms terms,
+										term_taxonomy term_taxonomy,
+										term_relationships term_relationships
+									WHERE
+										terms.id = term_taxonomy.term_id AND
+										terms.id = term_relationships.term_id AND
+										term_taxonomy.taxonomy = 'category' AND
+										term_relationships.page_id = 79");
+			
+		return $term_relations;
 	}
 }
