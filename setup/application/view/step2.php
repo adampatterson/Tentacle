@@ -113,22 +113,25 @@
 			</table>
  
 			<?php if ($failed === TRUE): ?>
-				<p id="results" class="fail">✘ Tentacle may not work correctly with your environment.</p>
+				<div class="alert-message block-message error">
+					<p><strong>✘</strong> Tentacle may not work correctly with your environment.</p>
+				</div>
 				<div class="one-half">
 					<a href="<?= BASE_URL; ?>setup/" class="btn medium danger">Back</a>
 				</div>
 				<div class="textright one-half">
 					<a href="#" class="btn medium primary disabled">Next</a>
 				</div>
-				
 			<?php else: ?>
-				<p id="results" class="pass">✔ Your environment passed all requirements.</p>
-					<div class="one-half">
-						<a href="<?= BASE_URL; ?>setup/install/step1" class="btn medium secondary">Back</a>
-					</div>
-					<div class="textright one-half">
-						<a href="<?= BASE_URL; ?>setup/install/step3/" class="btn medium primary">Next</a>
-					</div>
+				<div class="alert-message block-message success">
+					<p><strong>✔</strong> Your environment passed all requirements.</p>
+				</div>
+				<div class="one-half">
+					<a href="<?= BASE_URL; ?>setup/install/step1" class="btn medium secondary">Back</a>
+				</div>
+				<div class="textright one-half">
+					<a href="<?= BASE_URL; ?>setup/install/step3/" class="btn medium primary">Next</a>
+				</div>
 			<?php endif ?>
       </div>
     </div>

@@ -20,11 +20,22 @@ class install_controller
 	}
 	public function step5 ( $step )
 	{
+		// CREATE DATABASE database_name
+
+		load::config('db');
+
+		$config = config::get('db');
+
+		try {
+			$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
+		} catch(PDOException $e) {
+			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
+		}
+
 		# Build Schema
 		# ------------------------------------------------------------
-		load::library('db');
 
-		$build = db::query( "CREATE TABLE IF NOT EXISTS `comments` (
+		$build = $pdo->exec( "CREATE TABLE IF NOT EXISTS `comments` (
 		 						 `id` bigint(20) NOT NULL AUTO_INCREMENT,
 								  `post_id` bigint(20) NOT NULL DEFAULT '0',
 								  `author` text NOT NULL,
