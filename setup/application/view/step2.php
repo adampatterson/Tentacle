@@ -113,7 +113,7 @@
 			</table>
  
 			<?php if ($failed === TRUE): ?>
-				<div class="alert-message block-message error">
+				<div class="alert-message error">
 					<p><strong>✘</strong> Tentacle may not work correctly with your environment.</p>
 				</div>
 				<div class="one-half">
@@ -123,7 +123,7 @@
 					<a href="#" class="btn medium primary disabled">Next</a>
 				</div>
 			<?php else: ?>
-				<div class="alert-message block-message success">
+				<div class="alert-message success">
 					<p><strong>✔</strong> Your environment passed all requirements.</p>
 				</div>
 				<div class="one-half">

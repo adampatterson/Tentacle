@@ -16,7 +16,7 @@
       <div class="span14">
         <h2>Testing the config file</h2>
 		<? if (file_exists('../application/config/deployment/db.php')): ?>
-			<div class="alert-message block-message success">
+			<div class="alert-message success">
 				<p><strong>✔</strong> All right everything is ready to roll, Lets install the MySQL!</p>
 			</div>
 			<div class="one-half">
@@ -26,7 +26,7 @@
 				<a href="<?= BASE_URL; ?>setup/install/step5/" class="btn medium primary">Next</a>
 			</div>
 		<? else: ?>
-			<div class="alert-message block-message error">
+			<div class="alert-message error">
 				<p><strong>✘</strong> Something went wrong.</p>
 			</div>
 			<div class="one-half">
