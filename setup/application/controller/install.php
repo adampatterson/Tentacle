@@ -22,6 +22,7 @@ class install_controller
 	{
 		# Build Schema
 		# ------------------------------------------------------------
+		load::library('db');
 
 		$build = db::query( "CREATE TABLE IF NOT EXISTS `comments` (
 		 						 `id` bigint(20) NOT NULL AUTO_INCREMENT,
