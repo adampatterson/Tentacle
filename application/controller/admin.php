@@ -51,13 +51,30 @@ class admin_controller {
 		
 		tentacle::valid_user();
 		
+	load::library('benchmark');
+	bench::mark('start');
+		
 		$page = load::model( 'page' );
 		$pages = $page->get( );
 		
 		$user = load::model('user'); 
 		$options = load::model ( 'settings' );
+		
+		$walker = load::helper ('walker');
 
-		load::view ( 'admin/sortable', array( 'pages'=>$pages, 'user'=>$user ) );
+
+		$con = mysql_connect('localhost', 'root', 'root');
+		mysql_select_db('personal_dev_tentacle', $con);
+
+		$walker = new walker($con);
+		echo '<pre>';
+			print_r($walker->loadResults("SELECT * FROM posts  WHERE (type = 'page' AND status = 'published')")->trace()->returnTraced());
+		echo '</pre>';
+		bench::mark('end');
+
+		echo bench::time('start','end');
+
+		//load::view ( 'admin/sortable', array( 'pages'=>$pages, 'user'=>$user ) );
 	}
 
 	/**

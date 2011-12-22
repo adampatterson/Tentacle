@@ -8,8 +8,8 @@ class dev_controller {
 	* @author Adam Patterson
 	**/
 	public function index()
-	{
-		echo time();
+	{		
+		echo __DIR__;
 	}
 	
 	

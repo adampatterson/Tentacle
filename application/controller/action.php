@@ -189,13 +189,15 @@ class action_controller
 			
 		$post = load::model( 'post' );
 		$post_single = $post->add( );
+		
+		$page_categories = input::post( 'post_category' );
+		$category = load::model( 'category' );
+		$category_relations = $category->relations( $post_single->id, $page_categories );
 		// we need the page ID before we can add any meta to the DB.
-		//$post_meta = $post->add_meta( $post_id );
+		//$post_meta = $post->add_meta( $post_single );
 		
-		$history = input::post ( 'history' );
-		url::redirect($history); 
-		
-		// Should post back to edit page
+		note::set('success','post_add','Post Added!');
+		url::redirect( input::post ( 'history' ) );
 	}	
 	
 	

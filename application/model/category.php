@@ -21,6 +21,24 @@ class category_model
 			return $get_category[0];
 		}
 	}
+
+
+    // Get Category List
+    // @todo: return a comma seporated list ( with links )
+    //----------------------------------------------------------------------------------------------
+    public function get_list ( $list = array() )
+    {
+        $categories = db ( 'terms' );
+
+        foreach( $list as $item ){
+            
+				$this->get( $item )->name; 
+				
+        }
+		  
+		  return $get_category[0];
+    }
+	
 	
 	// Update Category
 	//----------------------------------------------------------------------------------------------
@@ -45,6 +63,7 @@ class category_model
 		note::set('success','snippet_update','Snippet Updated!');
 	} 
 
+
 	// Delete Category
 	//----------------------------------------------------------------------------------------------
 	public function delete ( $id ) 
@@ -53,6 +72,7 @@ class category_model
 
 		$category->delete( 'id','=',$id );
 	}
+	
 	
 	// Add Category
 	//----------------------------------------------------------------------------------------------
@@ -72,7 +92,6 @@ class category_model
 			'slug'=>$term_slug
 		));
 
-
 		$term_taxonomy  = db( 'term_taxonomy' );
 
 		$term_taxonomy->insert(array(
@@ -80,6 +99,24 @@ class category_model
 			'term_id'=>$category_id->id
 		),FALSE);
 
-		note::set('success','category_add','Category Added!');		
+		note::set('success','category_add','Category Added!');
+		
+		return $category_id;		
+	}
+	
+	
+	// Set the Category relations with blog posts.
+	//----------------------------------------------------------------------------------------------	
+	public function relations ( $post_id = '', $categories = '' ) 
+	{	
+		$terms         = db('term_relations');
+
+		foreach ( $categories as $term_id ) 
+		{
+			$terms->insert(array(
+				'page_id'		=> $post_id,
+				'term_id'		=> $term_id
+			),FALSE);
+		}
 	}
 }

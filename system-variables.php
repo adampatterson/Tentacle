@@ -22,7 +22,7 @@ define( 'CONFIG'        ,'config' );
 // Allowed Characters in URL
 define( 'ALLOWED_CHARS' ,'/^[ \!\,\~\&\.\:\+\@\-_a-zA-Z0-9]+$/');
 
-define( 'CORE_ROOT'     , dirname(__FILE__) );
+define( 'CORE_ROOT'     , __DIR__ );
 define( 'APP_PATH'      , CORE_ROOT );
 	
 	

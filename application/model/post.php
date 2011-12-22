@@ -49,42 +49,32 @@ class post_model
 	//----------------------------------------------------------------------------------------------
 	public function add ( ) 
 	{
-		$title         = $_POST['title'];
+		$title         = input::post ( 'title' );
 		
 		$slug          = sanitize($title);
 		
-		$content       = $_POST['content'];
+		$content       = input::post ( 'content' );
 		
-		$status        = $_POST['status'];
-		$visible       = $_POST['visible'];
-		$published     = $_POST['published'];
-		
-		$parent_page   = $_POST['parent_page'];
-		$post_type 		= $_POST['post_type'];
-		$page_category = input::post ( 'page_category');
-		
-		$post_type     = 'post';
+		$status        = input::post ( 'status' );
+		//$visible       = input::post ( 'visible' );
+		//$published     = input::post ( 'published' );
 		
 		$post_author   = user::id();
 		
 		$page          = db('posts');
 
-		$page->insert(array(
+		$page_id = $page->insert(array(
 			'title'		=>$title,
 			'slug'		=>$slug,
 			'content'	=>$content,
-			'category'	=>$page_category,
 			'status'	=>$status,
 			'author'	=>$post_author,
-			'type'		=>$post_type,
-			'template'	=>$post_type,
-			'parent'	=>$parent_page,
-			'visible'	=>$visible,
+			'type'		=>'post',
 			'date'		=>time(),
 			'modified'	=>time()
-		),FALSE);
+		));
 
-		note::set('success','post_add','Post Added!');
+		return $page_id;
 	}
 	
 	// Add Post Meta

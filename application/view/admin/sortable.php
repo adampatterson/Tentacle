@@ -41,8 +41,7 @@
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Threaded</h1>
 					<?
 					// http://www.jongales.com/blog/2009/01/27/php-class-for-threaded-comments/
-					
-					
+
 					class Threaded_comments
 					{
 

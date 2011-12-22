@@ -44,16 +44,25 @@
 					<td>
 					<input type="checkbox" />
 					<img src="<?=ADMIN_URL;?>images/icons/24_paper.png" width="24" height="24" alt="Page" /><strong class="title"><?= $post -> title;?></strong></td>
-					<td><?= $category->get( $post->category )->name; ?></td>
+					<td>
+						<?
+						/*
+						   foreach( $list as $item ):
+				            	echo $category->get( $item )->name.' '; 
+				        	endforeach;
+						*/
+						?>
+					</td>
 					<td ><img src="<?=ADMIN_URL; ?>images/icons/16_note-dis.png" width="16" height="16" alt="Notes" /></td>
 					<td ><?= $user_meta -> first_name;?> <?= $user_meta -> last_name;?></td>
 					<td ><?= $post -> id;?></td>
 					<td><?= $post -> status;?></td>
-					<td><img src="<?=ADMIN_URL;?>images/icons/16_edit.png" width="16" height="16" alt="Edit" /> <img src="<?=ADMIN_URL;?>images/icons/16_delete.png" width="16" height="16" alt="Delete" /></td>
+					<td><a href="<?= ADMIN ?>content_update_post/<?= $post -> id;?>" class="btn small">Edit</a> <a href="#" class="btn small danger">Delete</a></td>
 				</tr>
 				<? endforeach;?>
 			</tbody>
 		</table>
+		<!--
 		<div class="actions">
 			<form name="form" id="form" action="post">
 				<select name="jumpMenu" id="jumpMenu">
@@ -71,6 +80,7 @@
 				<input type="button" value="Filter" class="btn medium" />
 			</form>
 		</div>
+		-->
 	</div>
 </div>
 <!-- #wrap -->
