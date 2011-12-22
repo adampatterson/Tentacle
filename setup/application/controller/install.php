@@ -20,22 +20,10 @@ class install_controller
 	}
 	public function step5 ( $step )
 	{
-		// CREATE DATABASE database_name
-
-		load::config('db');
-
-		$config = config::get('db');
-
-		try {
-			$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
-		} catch(PDOException $e) {
-			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
-		}
-
 		# Build Schema
 		# ------------------------------------------------------------
 
-		$build = $pdo->exec( "CREATE TABLE IF NOT EXISTS `comments` (
+		$build = db::query( "CREATE TABLE IF NOT EXISTS `comments` (
 		 						 `id` bigint(20) NOT NULL AUTO_INCREMENT,
 								  `post_id` bigint(20) NOT NULL DEFAULT '0',
 								  `author` text NOT NULL,
@@ -167,11 +155,13 @@ class install_controller
 								) ENGINE=MyISAM DEFAULT CHARSET=utf8" );
 
 
-		$build = $pdo->exec( "CREATE TABLE IF NOT EXISTS `term_relations` (
-								  `page_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-								  `term_id` bigint(20) unsigned NOT NULL,
-								  PRIMARY KEY (`page_id`)
-								) ENGINE=MyISAM  DEFAULT CHARSET=utf8" );
+		$build = $pdo->exec( "CREATE TABLE `term_relationships` (
+								  `page_id` bigint(20) unsigned NOT NULL DEFAULT '0',
+								  `term_id` bigint(20) unsigned NOT NULL DEFAULT '0',
+								  `term_order` int(11) DEFAULT NULL,
+								  PRIMARY KEY (`page_id`,`term_id`),
+								  KEY `term_id` (`term_id`)
+								) ENGINE=InnoDB DEFAULT CHARSET=utf8;" );
 
 
 		$build = $pdo->exec( "CREATE TABLE IF NOT EXISTS `term_taxonomy` (
