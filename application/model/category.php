@@ -155,7 +155,7 @@ class category_model
 										terms.id = term_taxonomy.term_id AND
 										terms.id = term_relationships.term_id AND
 										term_taxonomy.taxonomy = 'category' AND
-										term_relationships.page_id = 79");
+										term_relationships.page_id = ".$post_id);
 			
 		return $term_relations;
 	}
