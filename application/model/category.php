@@ -109,17 +109,19 @@ class category_model
 	//----------------------------------------------------------------------------------------------	
 	public function relations ( $post_id = '', $categories = '' ) 
 	{	
-		$terms         = db('term_relations');
+		$term         = db('term_relationships');
 
 		foreach ( $categories as $term_id ) 
 		{
-			$terms->insert(array(
+			$term->insert(array(
 				'page_id'		=> $post_id,
-				'term_id'		=> $term_id
+				'term_id'		=> $term_id,
 			),FALSE);
+			
+			print_r($term);
 		}
 	}
-	
+
 	
 	// Get the Category relations of a blog post.
 	//----------------------------------------------------------------------------------------------	
@@ -155,7 +157,7 @@ class category_model
 										terms.id = term_taxonomy.term_id AND
 										terms.id = term_relationships.term_id AND
 										term_taxonomy.taxonomy = 'category' AND
-										term_relationships.page_id = ".$post_id);
+										term_relationships.page_id = ".$post_id );
 			
 		return $term_relations;
 	}
