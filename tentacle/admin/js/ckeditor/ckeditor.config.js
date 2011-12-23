@@ -29,9 +29,9 @@ CKEDITOR.editorConfig = function(config) {
 			['Outdent','Indent','Blockquote'],
 			['Link','Unlink'],
 			//['PasteFromWord'],
-			['Table','HorizontalRule','WPMore'],
-			['Maximize'],
-			['atd-ckeditor']
+			['Table','HorizontalRule'],
+			//['Maximize'],
+			//['atd-ckeditor', 'WPMore']
 		 ];
 
 	// mediaembed plugin
