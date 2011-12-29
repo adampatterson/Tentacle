@@ -317,6 +317,13 @@ class admin_controller {
 		load::view ('admin/settings/settings_export');
 	}
 
+	public function settings_templates ()
+	{
+		tentacle::valid_user();
+
+		load::view ('admin/settings/settings_templates');
+	}
+
 	public function settings_general ()
 	{
 		tentacle::valid_user();
