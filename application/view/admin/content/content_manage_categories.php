@@ -61,11 +61,12 @@
 						?></td> -->
 						<td><?= $category->id
 						?></td>
-						<td><a href='<?= ADMIN ?>content_edit_category/<?= $category->id  ?>'><img src='<?=ADMIN_URL;?>images/icons/16_edit.png' width='16' height='16' alt='Edit' /></a> <a href='<?= ADMIN ?>content_delete_category/<?= $category->id  ?>'><img src='<?=ADMIN_URL;?>images/icons/16_delete.png' width='16' height='16' alt='Delete' /></a><!--<img src='<?=ADMIN_URL; ?>images/icons/16_add.png' width='15' height='16' alt='Add' />--></td>
+						<td><a href='<?= ADMIN ?>content_edit_category/<?= $category->id  ?>' class="btn small">Edit</a> <a href='<?= ADMIN ?>content_delete_category/<?= $category->id  ?>' class="btn small danger">Delete</a><!--<img src='<?=ADMIN_URL; ?>images/icons/16_add.png' width='15' height='16' alt='Add' />--></td>
 					</tr>
 					<? endforeach;?>
 				</tbody>
 			</table>
+			<!--
 			<div class='actions'>
 				<form name='form' id='form'>
 					<select name='jumpMenu' id='jumpMenu'>
@@ -76,6 +77,7 @@
 					<input type='button' value='Apply' class='btn medium secondary' />
 				</form>
 			</div>
+			-->
 		</div>
 	</div>
 </div>

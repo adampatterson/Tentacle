@@ -1,4 +1,7 @@
-<?php if($note = note::get('page_add')): ?>
+<?php 
+// create a function that takes the note key nad sets the type as well as the message.
+
+if($note = note::get('page_add')): ?>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			jQuery.noticeAdd({

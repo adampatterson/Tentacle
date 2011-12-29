@@ -180,7 +180,7 @@
 								<div class="clearfix">
 									<label>Tags</label>
 									<div class="input">
-										<input type="text" placeholder="Edit title" name='content_tags' />
+										<input type="text" class="tags" name="tags" id="tags" />
 										<span class="help-block">Separate each keyword with a comma ( , )</span>
 									</div>
 								</div>

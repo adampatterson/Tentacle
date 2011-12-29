@@ -1,5 +1,4 @@
 <?php
-
 /**
  * ELF PHP:	Extra Light php Framework
  *
