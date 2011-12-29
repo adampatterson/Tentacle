@@ -37,6 +37,7 @@ class admin_controller {
 		
 		load::view ( 'admin/dashboard', array( 'user'=>$user_single, 'user_meta'=>$user_meta ) );
 	}
+
 	
 	public function resources ()
 	{
@@ -45,37 +46,6 @@ class admin_controller {
 		load::view ( 'admin/resource' );
 	}
 
-
-	public function sortable ()
-	{
-		
-		tentacle::valid_user();
-		
-	load::library('benchmark');
-	bench::mark('start');
-		
-		$page = load::model( 'page' );
-		$pages = $page->get( );
-		
-		$user = load::model('user'); 
-		$options = load::model ( 'settings' );
-		
-		$walker = load::helper ('walker');
-
-
-		$con = mysql_connect('localhost', 'root', 'root');
-		mysql_select_db('personal_dev_tentacle', $con);
-
-		$walker = new walker($con);
-		echo '<pre>';
-			print_r($walker->loadResults("SELECT * FROM posts  WHERE (type = 'page' AND status = 'published')")->trace()->returnTraced());
-		echo '</pre>';
-		bench::mark('end');
-
-		echo bench::time('start','end');
-
-		//load::view ( 'admin/sortable', array( 'pages'=>$pages, 'user'=>$user ) );
-	}
 
 	/**
 	 * 
@@ -350,8 +320,11 @@ class admin_controller {
 	public function settings_general ()
 	{
 		tentacle::valid_user();
+		
+		$category = load::model( 'category' );
+		$categories = $category->get( );
 
-		load::view ('admin/settings/settings_general');
+		load::view ('admin/settings/settings_general', array( 'categories'=>$categories ) );
 	}
 
 	public function settings_seo ()
