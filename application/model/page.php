@@ -45,6 +45,8 @@ class page_model
 		if ( $id == '' ) {
 			$get_pages = $pages->select( '*' )
 				->where ( 'type', '=', 'page' )
+				->clause('AND')
+				->where ( 'status', '=', 'published' )
 				->order_by ( 'id', 'ASC' )
 				->execute();
 					
@@ -60,6 +62,112 @@ class page_model
 			return $get_pages[0];
 		}	
 	}
+	
+
+	// Get Page Meta
+	//----------------------------------------------------------------------------------------------
+	public function get_page_meta ( $id='' )
+	{		
+		$page_meta = db ( 'posts_meta' );
+	
+		$dirty_page_meta = $page_meta->select( 'meta_value' )
+			->where ( 'posts_id', '=', $id )
+			->execute();	
+		
+		$clean_page_meta = unserialize( $dirty_page_meta[0]->meta_value );
+
+		return array_to_object( $clean_page_meta );
+	}
+	
+	
+	public function get_parent_uri( $parent_id )
+	{
+		$pages = db ( 'posts' );
+	
+		$get_parent_uri = $pages->select( 'uri' )
+			->where ( 'id', '=', $parent_id )
+			->clause ( 'AND' )
+			->where ( 'type', '=', 'page' )
+			->execute();
+		
+		if ( $parent_id ):
+			return $get_parent_uri[0]->uri;
+		else:
+			return false;
+		endif;
+	}
+	
+	
+	public function get_by_uri( $uri )
+	{
+		$pages = db ( 'posts' );
+	
+		$get_parent_uri = $pages->select( '*' )
+			->where ( 'uri', '=', $uri )
+			->execute();
+		
+		if ( $uri ):
+			return $get_parent_uri[0]->uri;
+		else:
+			return false;
+		endif;
+	}
+	
+
+	public function get_home( )
+	{
+		// Find the home ID under the options.
+		
+		// Return the page opbject
+	}
+	
+
+	public function get_descendant_ids( $id, $id_array = array() )
+	{
+		$id_array[] = $id;
+
+		$children = $this->db->select('id, title')
+			->where('parent_id', $id)
+			->get('pages')->result();
+
+		$has_children = !empty($children);
+
+		if ($has_children)
+		{
+			// Loop through all of the children and run this function again
+			foreach ($children as $child)
+			{
+				$id_array = $this->get_descendant_ids($child->id, $id_array);
+			}
+		}
+
+		return $id_array;
+	}
+	
+
+	public function get_page_tree( $page_dirty )
+	{	
+		$pages = array();		
+		
+		foreach ($page_dirty as $page) {
+			$pages[$page->id] = (array) $page;
+		}	
+			
+		// build a multidimensional array of parent > children
+		foreach ($pages as $row):
+			if (array_key_exists($row['parent'], $pages))
+				// add this page to the children array of the parent page
+				$pages[$row['parent']]['children'][] =& $pages[$row['id']];
+			
+			// this is a root page
+			if ($row['parent'] == 0)
+				$page_array[] =& $pages[$row['id']];
+			
+		endforeach;
+		
+		return $page_array;
+	}
+	
 	
 	// Menu
 	//----------------------------------------------------------------------------------------------
@@ -77,21 +185,6 @@ class page_model
 		return $get_pages[0];
 	}
 	
-	
-	// Get Page Meta
-	//----------------------------------------------------------------------------------------------
-	public function get_page_meta ( $id='' )
-	{		
-		$page_meta = db ( 'posts_meta' );
-	
-		$dirty_page_meta = $page_meta->select( 'meta_value' )
-			->where ( 'posts_id', '=', $id )
-			->execute();	
-		
-		$clean_page_meta = unserialize( $dirty_page_meta[0]->meta_value );
-
-		return array_to_object( $clean_page_meta );
-	}
 
 	// Update Page
 	//----------------------------------------------------------------------------------------------	
@@ -101,6 +194,8 @@ class page_model
 		
 		//'date' => time(),
 		//'modified' => time()
+		
+		//$uri 			= $this->get_parent_uri( $parent_page ).$slug.'/';
 		
 		note::set('success','page_update','Page Updated!');
 	}
@@ -141,8 +236,9 @@ class page_model
 		
 		$post_author   = user::id();
 		
-		// Run content through HTMLawd and Samrty Text
+		$uri 			= $this->get_parent_uri( $parent_page ).$slug.'/';
 		
+		// Run content through HTMLawd and Samrty Text
 		$page          = db('posts');
 		
 		$row = $page->insert(array(
@@ -154,6 +250,7 @@ class page_model
 			'type'		=>$post_type,
 			'template'	=>$post_template,
 			'parent'	=>$parent_page,
+			'uri'		=>$uri,
 			'date'		=>time(),
 			'modified'	=> time()
 		));
@@ -180,5 +277,21 @@ class page_model
 		note::set('success','page_add','Page Added!');
 		return $row->id;
 	}
+	
+	
+	// Children
+	//----------------------------------------------------------------------------------------------
+	/**
+	 * Does the page have children?
+	 *
+	 * @access public
+	 * @param int $parent_id The ID of the parent page
+	 * @return mixed
+	 */
+	public function has_children( $parent_id )
+	{
+		// Query the DB looking for parent_id
+	}
+	
 } // END setting_model
 ?>
