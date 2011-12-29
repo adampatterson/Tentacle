@@ -29,6 +29,23 @@ class dev_controller {
 		echo pull();
 	}
 
+
+	public function sortable ()
+	{		
+		tentacle::valid_user();
+
+		
+		$page = load::model( 'page' );
+		$pages = $page->get( );
+		
+		$walker = load::helper ('walker');
+		$relations = new page();
+		
+		clean_out($relations->get_page_tree( $pages ));
+
+		//load::view ( 'admin/sortable', array( 'pages'=>$pages, 'user'=>$user ) );
+	}
+
 	
 	/**
 	* ajax function
