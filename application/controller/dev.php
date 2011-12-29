@@ -38,10 +38,9 @@ class dev_controller {
 		$page = load::model( 'page' );
 		$pages = $page->get( );
 		
-		$walker = load::helper ('walker');
-		$relations = new page();
+		$pages = $page->get_page_tree( $pages );
 		
-		clean_out($relations->get_page_tree( $pages ));
+		clean_out($pages);
 
 		//load::view ( 'admin/sortable', array( 'pages'=>$pages, 'user'=>$user ) );
 	}
