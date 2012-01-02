@@ -5,43 +5,43 @@
 class cache
 {
 	
-	function __construct()
+	public function __construct()
 	{
 		# code...
 	}
 	
 	
-	function add( $key, $data, $group, $expire )
+	public function add( $key, $data, $group, $expire )
 	{
 		
 	}
 	
 	
-	function set( $key, $data, $group, $expire )
+	public function set( $key, $data, $group, $expire )
 	{
 		
 	}
 	
 	
-	function get( $key, $group )
+	public function get( $key, $group )
 	{
 		
 	}
 	
 	
-	function delete( $id, $group ) 
+	public function delete( $id, $group ) 
 	{
 		
 	}
 	
 	
-	function replace( $key, $data, $group, $expire )
+	public function replace( $key, $data, $group, $expire )
 	{
 		
 	}
 	
 	
-	function flush() 
+	public function flush() 
 	{
 		
 	}

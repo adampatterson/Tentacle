@@ -28,7 +28,7 @@
 							<dd>
 								<select name="status" id="status" size="1">
 									<option value="draft">Draft</option>
-									<option value="live">Live</option>
+									<option value="published">Published</option>
 								</select>
 							</dd>
 							<dt>

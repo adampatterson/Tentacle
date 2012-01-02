@@ -32,17 +32,62 @@ class dev_controller {
 
 	public function sortable ()
 	{		
-		tentacle::valid_user();
-
-		
 		$page = load::model( 'page' );
 		$pages = $page->get( );
 		
 		$pages = $page->get_page_tree( $pages );
 		
-		clean_out($pages);
+		clean_out( $pages );
+	}
+	
+	public function hiarchy () 
+	{
+		$page = load::model( 'page' );
+		
+		$pages = $page->get( );
+		
+		$page_tree = $page->get_page_tree( $pages );
+		
+		
+		
+		function do_offset($level){
+		    $offset = "";             // offset for subarry 
+		    for ($i=1; $i<$level;$i++){
+		    $offset = $offset . "<td></td>";
+		    }
+		    return $offset;
+		}
+		
+		function RecursiveWrite( $pages, $level = 0 ) {
+				// build a multidimensional array of parent > children
+				foreach ($pages as $key => $value ):
+					$type = is_array($key);
+				
+					echo '+ '.$value['title'].'</br>';
+					
+					if ( array_key_exists( 'children', $value ) ) {
+						RecursiveWrite($value['children']);
+					}
+				endforeach;
+		}	
 
-		//load::view ( 'admin/sortable', array( 'pages'=>$pages, 'user'=>$user ) );
+		RecursiveWrite( (array)$page_tree["children"], 0 );
+	/*		
+		echo '<hr />';	
+		clean_out( $page_tree );
+	
+		echo '<hr />';
+
+		clean_out($page->get_page_children( 3, $pages ));
+		
+		echo '<hr />';
+		
+		clean_out($page->get_page_hierarchy( $pages ));
+		
+		echo '<hr />';
+		
+		clean_out($page->get_descendant_ids( 3 ));
+		*/
 	}
 
 	

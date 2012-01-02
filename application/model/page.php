@@ -121,14 +121,22 @@ class page_model
 		// Return the page opbject
 	}
 	
+	public function get_breadcrumbs( )
+	{
+		
+	}
 
 	public function get_descendant_ids( $id, $id_array = array() )
 	{
 		$id_array[] = $id;
 
-		$children = $this->db->select('id, title')
-			->where('parent_id', $id)
-			->get('pages')->result();
+		$pages = db ( 'posts' );
+		
+		$children = $pages->select( 'id', 'title' )
+			->where ( 'parent', '=', $id )
+			->clause ( 'AND' )
+			->where ( 'type', '=', 'page' )
+			->execute();
 
 		$has_children = !empty($children);
 
@@ -145,7 +153,7 @@ class page_model
 	}
 	
 
-	public function get_page_tree( $page_dirty )
+	public function get_page_tree ( $page_dirty )
 	{	
 		$pages = array();		
 		
@@ -161,13 +169,54 @@ class page_model
 			
 			// this is a root page
 			if ($row['parent'] == 0)
-				$page_array[] =& $pages[$row['id']];
+				$page_array['children'][] =& $pages[$row['id']];
 			
 		endforeach;
 		
 		return $page_array;
 	}
 	
+	
+	public function &get_page_children($page_id, $pages) {
+		$page_list = array();
+		foreach ( (array) $pages as $page ) {
+			if ( $page->parent == $page_id ) {
+				$page_list[] = $page;
+				if ( $children = $this->get_page_children($page->id, $pages) )
+					$page_list = array_merge($page_list, $children);
+			}
+		}
+		return $page_list;
+	}
+
+
+	public function &get_page_hierarchy( &$pages, $page_id = 0 ) {
+		if ( empty( $pages ) ) {
+			$result = array();
+			return $result;
+		}
+
+		$children = array();
+		foreach ( (array) $pages as $p ) {
+			$parent_id = intval( $p->parent );
+			$children[ $parent_id ][] = $p;
+		}
+
+		$result = array();
+		$this->_page_traverse_name( $page_id, $children, $result );
+
+		return $result;
+	}
+
+
+	public function _page_traverse_name( $page_id, &$children, &$result ){
+		if ( isset( $children[ $page_id ] ) ){
+			foreach( (array)$children[ $page_id ] as $child ) {
+				$result[ $child->id ] = $child->slug;
+				$this->_page_traverse_name( $child->id, $children, $result );
+			}
+		}
+	}
 	
 	// Menu
 	//----------------------------------------------------------------------------------------------

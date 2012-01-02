@@ -29,7 +29,7 @@
 							<dd>
 								<select name="status" id="status" size="1">
 									<option value="draft" <? if ($get_page->status == 'draft') echo 'selected' ?>>Draft</option>
-									<option value="live" <? if ($get_page->status == 'live') echo 'selected' ?>>Live</option>
+									<option value="published" <? if ($get_page->status == 'published') echo 'selected' ?>>Published</option>
 								</select>
 							</dd>
 							<dt>
