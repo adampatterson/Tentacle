@@ -30,14 +30,15 @@ class dev_controller {
 	}
 
 
-	public function sortable ()
+	public function walkable ()
 	{		
 		$page = load::model( 'page' );
 		$pages = $page->get( );
 		
-		$pages = $page->get_page_tree( $pages );
+		load::helper ('walker');
+
 		
-		clean_out( $pages );
+		
 	}
 	
 	public function hiarchy () 
@@ -48,34 +49,24 @@ class dev_controller {
 		
 		$page_tree = $page->get_page_tree( $pages );
 		
-		
-		
-		function do_offset($level){
-		    $offset = "";             // offset for subarry 
-		    for ($i=1; $i<$level;$i++){
-		    $offset = $offset . "<td></td>";
-		    }
-		    return $offset;
-		}
-		
 		function RecursiveWrite( $pages, $level = 0 ) {
 				// build a multidimensional array of parent > children
 				foreach ($pages as $key => $value ):
 					$type = is_array($key);
 				
-					echo '+ '.$value['title'].'</br>';
+					echo $level.'+ '.$value['title'].'</br>';
 					
 					if ( array_key_exists( 'children', $value ) ) {
-						RecursiveWrite($value['children']);
+						RecursiveWrite($value['children'], $level+1);
 					}
 				endforeach;
 		}	
 
 		RecursiveWrite( (array)$page_tree["children"], 0 );
-	/*		
+		
 		echo '<hr />';	
 		clean_out( $page_tree );
-	
+		/*
 		echo '<hr />';
 
 		clean_out($page->get_page_children( 3, $pages ));
