@@ -47,7 +47,7 @@ class page_model
 				->where ( 'type', '=', 'page' )
 				->clause('AND')
 				->where ( 'status', '=', 'published' )
-				->order_by ( 'id', 'ASC' )
+				->order_by ( 'menu_order', 'ASC' )
 				->execute();
 					
 			return $get_pages;
