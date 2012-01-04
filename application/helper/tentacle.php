@@ -76,6 +76,37 @@ class tentacle
     } // END render	
 } // END class
 
+// offset
+// ---------------------------------------------------------------------------
+function offset( $i = 1 ){
+	// switch ( $i ) {
+	//     case 0:
+	//         echo 'offset-one';
+	//         break;
+	//     case 1:
+	//         echo 'offset-two';
+	//         break;
+	//     case 2:
+	//         echo 'offset-three';
+	//         break;
+	// 	default:
+	// 		echo 'offset-four';
+	// }
+	
+	switch ( $i ) {
+	    case 1:
+	        echo '+ ';
+	        break;
+	    case 2:
+	        echo '+ + ';
+	        break;
+	    case 3:
+	        echo '+ + + ';
+	        break;
+		default:
+			echo '+ + + + ';
+	}
+}
 
 /**
 * render function
