@@ -33,14 +33,17 @@
 			</tr>
 		</thead>
 		<tbody>
-			<? foreach ($pages as $page):
+			<? foreach ($pages as $page_array):
+			
+			$page = (object)$page_array;
+			
 $user_meta = $user->get_meta ( $page->author );
 			?>
 			<tr>
 				<td>
-					<? if ($page->parent != '0'): ?> <div class="sub-page"> <? endif; ?>
+					<div class="<?= offset($page->level); ?>">
 					<img src="<?=ADMIN_URL;?>images/icons/24_paper.png" width="24" height="24" alt="Page" /><strong class="title"><a href="<?= ADMIN ?>content_update_page/<?= $page->id;?>"><?= $page->title ?></a></strong>
-					<? if ($page->parent != '0'): ?> </div> <? endif; ?>
+					</div> 
 				</td>
 				<td ><!--img src="<?=ADMIN_URL; ?>images/icons/16_note-dis.png" width="16" height="16" alt="Notes" /--></td>
 				<td ><?= $user_meta->first_name?> <?= $user_meta->last_name?></td>

@@ -76,35 +76,31 @@ class tentacle
     } // END render	
 } // END class
 
-// offset
-// ---------------------------------------------------------------------------
+
+/**
+* For use with hierarchal data
+*
+* This is used to return a CSS class that can be used on generated tables and lists.
+*
+* @return string
+* @author Adam Patterson
+**/
 function offset( $i = 1 ){
-	// switch ( $i ) {
-	//     case 0:
-	//         echo 'offset-one';
-	//         break;
-	//     case 1:
-	//         echo 'offset-two';
-	//         break;
-	//     case 2:
-	//         echo 'offset-three';
-	//         break;
-	// 	default:
-	// 		echo 'offset-four';
-	// }
-	
 	switch ( $i ) {
+		case 0:
+	        echo '';
+	        break;
 	    case 1:
-	        echo '+ ';
+	        echo 'sub-page';
 	        break;
 	    case 2:
-	        echo '+ + ';
+	        echo 'sub-sub-page';
 	        break;
 	    case 3:
-	        echo '+ + + ';
+	        echo 'sub-sub-sub-page';
 	        break;
 		default:
-			echo '+ + + + ';
+			echo 'sub-sub-sub-sub-page';
 	}
 }
 
@@ -139,7 +135,12 @@ function load_part( $part, $data = '' )
 } // END render
 
 
-// Dev function
+/**
+* render pre tags around data
+*
+* @return html
+* @author Adam Patterson
+**/
 function clean_out($data) {
 	echo '<pre>';
 	print_r($data);

@@ -1,41 +1,6 @@
 <?
 class page_model  
-{
-	/*
-    const TABLE_NAME = 'posts';
-    
-    const STATUS_DRAFT = 'publish';
-    const STATUS_REVIEWED = 50;
-    const STATUS_PUBLISHED = 100;
-    const STATUS_HIDDEN = 101;
-
-    const LOGIN_NOT_REQUIRED = 0;
-    const LOGIN_REQUIRED = 1;
-    const LOGIN_INHERIT = 2;
-    
-    public $title;
-    public $slug;
-    public $breadcrumb;
-    public $keywords;
-    public $description;
-    public $content;
-    public $parent_id;
-    public $layout_id;
-    public $behavior_id;
-    public $status_id;
-    public $comment_status;
-    
-    public $created_on;
-    public $published_on;
-    public $updated_on;
-    public $created_by_id;
-    public $updated_by_id;
-    public $position;
-    public $is_protected;
-    public $needs_login;
-    */
-
-	
+{	
 	// Get Page
 	//----------------------------------------------------------------------------------------------
 	public function get ( $id='' )
@@ -176,18 +141,23 @@ class page_model
 		return $page_array;
 	}
 	
-	
-	public function &get_page_children($page_id, $pages) {
-		$page_list = array();
-		foreach ( (array) $pages as $page ) {
-			if ( $page->parent == $page_id ) {
-				$page_list[] = $page;
-				if ( $children = $this->get_page_children($page->id, $pages) )
-					$page_list = array_merge($page_list, $children);
-			}
-		}
-		return $page_list;
-	}
+
+	public function &get_page_children($page_id, $pages, $level = 0 ) {
+        $page_list = array();
+        foreach ( (array) $pages as $key => $page ):
+            if ( $page->parent == $page_id ):
+                $page_list[$key] = (array)$page;
+				$page_list[$key]['level'] = $level;
+				
+			//	$page_list = array_merge($page_list, $page_list_two);
+
+                if ( $children = $this->get_page_children($page->id, $pages, $level+1) )
+                	$page_list = array_merge($page_list, $children);
+            endif;
+        endforeach;
+		
+        return $page_list;
+    }
 
 
 	public function &get_page_hierarchy( &$pages, $page_id = 0 ) {

@@ -13,6 +13,24 @@ class dev_controller {
 	}
 	
 	
+	public function RecursiveWrite( $pages, $level = 0 ) 
+	{
+		$page_flat_hiarchy = array();
+
+		// build a multidimensional array of parent > children
+		foreach ($pages as $key => $value ):
+			$type = is_array($key);
+
+			$page_flat_hiarchy[$key] = /*$level*/$value;
+			//$page_flat_hiarchy[$key] = $level;
+
+			if ( array_key_exists( 'children', $value ) )
+				RecursiveWrite($value['children'], $level+1);
+		endforeach;
+
+		return $page_flat_hiarchy;
+	}
+	
 	/**
 	* pull function
 	* 
@@ -29,56 +47,28 @@ class dev_controller {
 		echo pull();
 	}
 
-
-	public function walkable ()
-	{		
-		$page = load::model( 'page' );
-		$pages = $page->get( );
-		
-		load::helper ('walker');
-
-		
-		
-	}
 	
 	public function hiarchy () 
 	{
 		$page = load::model( 'page' );
+		load::helper( 'page' );
 		
 		$pages = $page->get( );
-		
 		$page_tree = $page->get_page_tree( $pages );
-		
-		function RecursiveWrite( $pages, $level = 0 ) {
-				// build a multidimensional array of parent > children
-				foreach ($pages as $key => $value ):
-					$type = is_array($key);
-				
-					echo $level.'+ '.$value['title'].'</br>';
-					
-					if ( array_key_exists( 'children', $value ) ) {
-						RecursiveWrite($value['children'], $level+1);
-					}
-				endforeach;
-		}	
 
-		RecursiveWrite( (array)$page_tree["children"], 0 );
+		clean_out( RecursiveWrite( (array)$page_tree["children"], 1 ) );
 		
-		echo '<hr />';	
-		clean_out( $page_tree );
-		/*
-		echo '<hr />';
-
-		clean_out($page->get_page_children( 3, $pages ));
+		//echo '<hr /><h3>Page Tree</h3>';	
+		//clean_out( $page_tree );
 		
-		echo '<hr />';
+		echo '<hr /><h3>get_page_children</h3>';
+		clean_out($page->get_page_children( 0, $pages ));
 		
+		echo '<hr /><h3>get_page_hierarchy</h3>';
 		clean_out($page->get_page_hierarchy( $pages ));
 		
-		echo '<hr />';
-		
+		echo '<hr /><h3>get_descendant_ids</h3>';
 		clean_out($page->get_descendant_ids( 3 ));
-		*/
 	}
 
 	

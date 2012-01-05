@@ -263,6 +263,9 @@ input[type="text"].small-text {
 .sub-sub-page {
   padding-left: 54px; }
 
+.sub-sub-sub-page {
+  padding-left: 81px; }
+
 hr.space {
   background: #fff;
   color: #fff;

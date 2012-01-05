@@ -89,10 +89,12 @@ class admin_controller {
 		$page = load::model( 'page' );
 		$pages = $page->get( );
 		
+		$page_hiarchy = $page->get_page_children( 0, $pages );
+		
 		$user = load::model('user'); 
 		$options = load::model ( 'settings' );
 		
-		load::view ('admin/content/content_manage_pages', array( 'pages'=>$pages, 'user'=>$user ) );	
+		load::view ('admin/content/content_manage_pages', array( 'pages'=>$page_hiarchy, 'user'=>$user ) );	
 	}
 
 	public function content_add_post ()
