@@ -37,7 +37,7 @@
 			
 			$page = (object)$page_array;
 			
-$user_meta = $user->get_meta ( $page->author );
+			$user_meta = $user->get_meta ( $page->author );
 			?>
 			<tr>
 				<td>

@@ -3,15 +3,15 @@ class page_model
 {	
 	// Get Page
 	//----------------------------------------------------------------------------------------------
-	public function get ( $id='' )
+	public function get ( $id='', $status='' )
 	{
 		$pages = db ( 'posts' );
 		
 		if ( $id == '' ) {
 			$get_pages = $pages->select( '*' )
 				->where ( 'type', '=', 'page' )
-				->clause('AND')
-				->where ( 'status', '=', 'published' )
+				// ->clause('AND')
+				// ->where ( 'status', '=', 'published' )
 				->order_by ( 'menu_order', 'ASC' )
 				->execute();
 					

@@ -85,22 +85,42 @@ class tentacle
 * @return string
 * @author Adam Patterson
 **/
-function offset( $i = 1 ){
-	switch ( $i ) {
-		case 0:
-	        echo '';
-	        break;
-	    case 1:
-	        echo 'sub-page';
-	        break;
-	    case 2:
-	        echo 'sub-sub-page';
-	        break;
-	    case 3:
-	        echo 'sub-sub-sub-page';
-	        break;
-		default:
-			echo 'sub-sub-sub-sub-page';
+function offset( $i = 1, $output = 'class' ){
+	
+	if ( $output == 'list') {
+		switch ( $i ) {
+			case 0:
+		        echo '';
+		        break;
+		    case 1:
+		        echo '- ';
+		        break;
+		    case 2:
+		        echo '-- ';
+		        break;
+		    case 3:
+		        echo '--- ';
+		        break;
+			default:
+				echo '---- ';
+		}
+	} elseif ( $output == 'class' ) {
+		switch ( $i ) {
+			case 0:
+		        echo '';
+		        break;
+		    case 1:
+		        echo 'sub-page';
+		        break;
+		    case 2:
+		        echo 'sub-sub-page';
+		        break;
+		    case 3:
+		        echo 'sub-sub-sub-page';
+		        break;
+			default:
+				echo 'sub-sub-sub-sub-page';
+		}
 	}
 }
 

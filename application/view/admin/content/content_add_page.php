@@ -38,8 +38,9 @@
 							<dd>
 								<select id="parent_page" name="parent_page">
 									<option value="0">None</option>
-									<? foreach ($pages as $page): ?>
-										<option value="<?= $page->id?>" <? selected( $page->id, $parent_page_id ); ?>><?= $page->title;?></option>
+									<? foreach ($pages as $page_array): 
+										$page = (object)$page_array; ?>
+										<option value="<?= $page->id?>" <? selected( $page->id, $parent_page_id ); ?>><?= offset($page->level, 'list').$page->title;?></option>
 									<? endforeach;?>
 								</select>
 							</dd>

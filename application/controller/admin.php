@@ -64,8 +64,10 @@ class admin_controller {
 		
 		$page = load::model ( 'page' );
 		$pages = $page->get( );
+		
+		$page_hiarchy = $page->get_page_children( 0, $pages );
 
-		load::view ( 'admin/content/content_add_page', array( 'pages' => $pages, 'parent_page_id'=>$parent_page_id ) );		
+		load::view ( 'admin/content/content_add_page', array( 'pages' => $page_hiarchy, 'parent_page_id'=>$parent_page_id ) );		
 	}
 	
 	public function content_update_page ( $page_id )
