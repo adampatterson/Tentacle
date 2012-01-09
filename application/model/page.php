@@ -3,15 +3,39 @@ class page_model
 {	
 	// Get Page
 	//----------------------------------------------------------------------------------------------
-	public function get ( $id='', $status='' )
+	public function get ( $id='' )
 	{
 		$pages = db ( 'posts' );
 		
 		if ( $id == '' ) {
 			$get_pages = $pages->select( '*' )
 				->where ( 'type', '=', 'page' )
-				// ->clause('AND')
-				// ->where ( 'status', '=', 'published' )
+				->order_by ( 'menu_order', 'ASC' )
+				->execute();
+					
+			return $get_pages;
+		} else {	
+			$get_pages = $pages->select( '*' )
+				->where ( 'id', '=', $id )
+				->order_by ( 'id', 'DESC' )
+				->execute();	
+
+			return $get_pages[0];
+		}	
+	}
+	
+	
+	// Get Page by Status
+	//----------------------------------------------------------------------------------------------
+	public function get_by_status ( $id='', $status='' )
+	{
+		$pages = db ( 'posts' );
+		
+		if ( $id == '' ) {
+			$get_pages = $pages->select( '*' )
+				->where ( 'type', '=', 'page' )
+			 	->clause('AND')
+				->where ( 'status', '=', 'published' )
 				->order_by ( 'menu_order', 'ASC' )
 				->execute();
 					
@@ -81,9 +105,13 @@ class page_model
 
 	public function get_home( )
 	{
-		// Find the home ID under the options.
-		
-		// Return the page opbject
+		$pages = db ( 'posts' );
+				
+		$home = $pages->select( '*' )
+			->where ( 'menu_order', '=', '1' )
+			->execute();
+			
+			return $home;
 	}
 	
 	public function get_breadcrumbs( )
@@ -142,7 +170,23 @@ class page_model
 	}
 	
 
-	public function &get_page_children($page_id, $pages, $level = 0 ) {
+	// Children
+	//----------------------------------------------------------------------------------------------
+	/**
+	 * Does the page have children?
+	 *
+	 * @access public
+	 * @param int $parent_id The ID of the parent page
+	 * @return mixed
+	 */
+	public function has_children( $parent_id )
+	{
+		// Query the DB looking for parent_id
+	}
+	
+	
+	public function &get_page_children( $page_id, $pages, $level = 0 ) 
+	{
         $page_list = array();
         foreach ( (array) $pages as $key => $page ):
             if ( $page->parent == $page_id ):
@@ -151,8 +195,8 @@ class page_model
 				
 			//	$page_list = array_merge($page_list, $page_list_two);
 
-                if ( $children = $this->get_page_children($page->id, $pages, $level+1) )
-                	$page_list = array_merge($page_list, $children);
+                if ( $children = $this->get_page_children($page->id, $pages, $level+1 ) )
+                	$page_list = array_merge( $page_list, $children );
             endif;
         endforeach;
 		
@@ -160,7 +204,22 @@ class page_model
     }
 
 
-	public function &get_page_hierarchy( &$pages, $page_id = 0 ) {
+	public function get_page_level ( $pages, $depth = 0 )
+	{
+		$page_list = array();
+     
+   		foreach ( (array) $pages as $page ):
+            if ( $page['level'] == $depth ):
+                $page_list[] = (array)$page;
+            endif;
+        endforeach;
+
+        return $page_list;
+	}
+
+
+	public function &get_flat_page_hierarchy( &$pages, $page_id = 0 )
+	{
 		if ( empty( $pages ) ) {
 			$result = array();
 			return $result;
@@ -179,29 +238,14 @@ class page_model
 	}
 
 
-	public function _page_traverse_name( $page_id, &$children, &$result ){
+	public function _page_traverse_name( $page_id, &$children, &$result )
+	{
 		if ( isset( $children[ $page_id ] ) ){
 			foreach( (array)$children[ $page_id ] as $child ) {
 				$result[ $child->id ] = $child->slug;
 				$this->_page_traverse_name( $child->id, $children, $result );
 			}
 		}
-	}
-	
-	// Menu
-	//----------------------------------------------------------------------------------------------
-	public function menu ( $id='' )
-	{
-		$pages = db ( 'posts' );
-	
-		$get_pages = $pages->select( '*' )
-			->where ( 'id', '=', $id )
-			->clause( 'AND' )
-			->where ( 'type', '=', 'page' )
-			->order_by ( 'id', 'DESC' )
-			->execute();	
-
-		return $get_pages[0];
 	}
 	
 
@@ -295,21 +339,6 @@ class page_model
 
 		note::set('success','page_add','Page Added!');
 		return $row->id;
-	}
-	
-	
-	// Children
-	//----------------------------------------------------------------------------------------------
-	/**
-	 * Does the page have children?
-	 *
-	 * @access public
-	 * @param int $parent_id The ID of the parent page
-	 * @return mixed
-	 */
-	public function has_children( $parent_id )
-	{
-		// Query the DB looking for parent_id
 	}
 	
 } // END setting_model

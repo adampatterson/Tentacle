@@ -9,7 +9,7 @@ class dev_controller {
 	**/
 	public function index()
 	{		
-		echo __DIR__;
+		//echo __DIR__;
 	}
 	
 	
@@ -48,27 +48,59 @@ class dev_controller {
 	}
 
 	
-	public function hiarchy () 
+	
+	public function navigation ()
 	{
+		echo '<h1>Navigation</h1>';
+		
 		$page = load::model( 'page' );
-		load::helper( 'page' );
 		
 		$pages = $page->get( );
 		$page_tree = $page->get_page_tree( $pages );
 
-		clean_out( RecursiveWrite( (array)$page_tree["children"], 1 ) );
+		$page_object = $page->get_page_children( 0, $pages );
+
+		//clean_out( RecursiveWrite( (array)$page_tree["children"], 1 ) );
 		
 		//echo '<hr /><h3>Page Tree</h3>';	
 		//clean_out( $page_tree );
+
+		echo '<hr /><h3>get_page_level</h3>';
+		clean_out( $page->get_page_level( $page_object, 2 ) );
 		
-		echo '<hr /><h3>get_page_children</h3>';
-		clean_out($page->get_page_children( 0, $pages ));
+		echo '<hr /><h3>get_home</h3>';
+		clean_out( $page->get_home( ) );
 		
-		echo '<hr /><h3>get_page_hierarchy</h3>';
-		clean_out($page->get_page_hierarchy( $pages ));
+		echo '<hr /><h3>get_flat_page_hierarchy</h3>';
+		clean_out( $page->get_flat_page_hierarchy( $pages ) );
 		
-		echo '<hr /><h3>get_descendant_ids</h3>';
-		clean_out($page->get_descendant_ids( 3 ));
+		echo '<hr /><h3>get_descendant_ids ID3</h3>';
+		clean_out( $page->get_descendant_ids( 3 ) );
+		
+		echo '<hr /><h3>get_page_children ID 0</h3>';
+		clean_out( $page->get_page_children( 0, $pages ) );
+	}
+	
+	public function system ()
+	{
+		echo '<h3>$_SERVER</h3><hr />';
+			var_dump($_SERVER);
+		echo '<h3>$GLOBALS</h3><hr />';
+			var_dump($GLOBALS);
+		echo '<h3>$_GET</h3><hr />';
+			var_dump($_GET);
+		echo '<h3>$_POST</h3><hr />';
+			var_dump($_POST);
+		echo '<h3>$_REQUEST</h3><hr />';
+			var_dump($_REQUEST);
+		echo '<h3>$_SESSION</h3><hr />';
+			var_dump($_SESSION);
+		echo '<h3>$_ENV</h3><hr />';
+			var_dump($_ENV);
+		echo '<h3>$HTTP_RAW_POST_DATA</h3><hr />';
+			var_dump($HTTP_RAW_POST_DATA);
+		echo '<h3>$argv</h3><hr />';
+			var_dump($argv);	
 	}
 
 	

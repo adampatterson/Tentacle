@@ -10,7 +10,6 @@ class page_controller {
                       
         }// END index
     
-    
     public function article($page_name = "", $subpage_name = "", $subpage_name2 = ""){
         
         echo '<h1>Page article controller</h1>';

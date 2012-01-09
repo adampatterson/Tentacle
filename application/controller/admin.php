@@ -78,10 +78,11 @@ class admin_controller {
 		$get_page = $page->get( $page_id );
 		
 		$pages = $page->get( );
+		$page_hiarchy = $page->get_page_children( 0, $pages );
 		
 		$get_page_meta = $page->get_page_meta( $page_id );
-	
-		load::view ('admin/content/content_edit_page', array(  'get_page'=>$get_page, 'get_page_meta'=>$get_page_meta, 'pages' => $pages, 'page_id' => $page_id ) );		
+		
+		load::view ('admin/content/content_edit_page', array(  'get_page'=>$get_page, 'get_page_meta'=>$get_page_meta, 'pages' => $page_hiarchy, 'page_id' => $page_id ) );		
 	}
 
 	public function content_manage_pages ()
