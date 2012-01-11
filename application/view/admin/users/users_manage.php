@@ -22,11 +22,9 @@
 					<td class="user"><a href="<?= ADMIN ?>users_edit/<?= $user->id ?>"> <?php echo get_gravatar($user -> email, 32);?>
 					<strong><?= $user->username
 					?></strong></a></td>
-					<td><?= $user->email
-					?></td>
-					<td><?= $user->type
-					?></td>
-					<td><a href="<?= ADMIN ?>users_edit/<?= $user->id ?>"><img src="<?=ADMIN_URL;?>images/icons/16_edit.png" width="16" height="16" alt="Edit" /></a> <a href="<?= ADMIN ?>users_delete/<?= $user->id ?>"><img src="<?=ADMIN_URL;?>images/icons/16_delete.png" width="16" height="16" alt="Delete" /></a></td>
+					<td><?= $user->email ?></td>
+					<td><?= $user->type ?></td>
+					<td><a href="<?= ADMIN ?>users_edit/<?= $user->id ?>"class="btn small">Edit</a> <a href="<?= ADMIN ?>users_delete/<?= $user->id ?>" class="btn small danger">Delete</a></td>
 				</tr>
 				<? endforeach;?>
 			</tbody>

@@ -50,10 +50,11 @@ class post_model
 	public function add ( ) 
 	{
 		$title         = input::post ( 'title' );
-		
 		$slug          = sanitize($title);
 		
 		$content       = input::post ( 'content' );
+		
+		$post_template = input::post ( 'post_type' );
 		
 		$status        = input::post ( 'status' );
 		//$visible       = input::post ( 'visible' );
@@ -70,6 +71,7 @@ class post_model
 			'status'	=>$status,
 			'author'	=>$post_author,
 			'type'		=>'post',
+			'template'	=>$post_template,
 			'date'		=>time(),
 			'modified'	=>time()
 		));
