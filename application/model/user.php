@@ -10,7 +10,7 @@ class user_model
 		if ($id=='') {
 			// Get Comments Database
 			$users = $users_table->select( '*' )
-				->order_by ( 'id', 'DESC' )
+				->order_by ( 'username', 'DESC' )
 				->execute ();
 				
 			return $users;
