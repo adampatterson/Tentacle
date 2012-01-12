@@ -132,7 +132,7 @@
 				</fieldset>
 				<div class="actions">
 					<input type="submit" value="Save" class="btn medium primary" />
-					<a href="#" class="red">Cancel</a>
+					<a href="<?=ADMIN;?>users_manage/" class="red">Cancel</a>
 				</div>
 			</form>
 		</div>

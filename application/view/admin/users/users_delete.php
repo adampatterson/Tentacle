@@ -7,10 +7,10 @@
 				<div class="one-full">
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Add a new user</h1>
 					<div class="one-half">
-						<form action="<?= BASE_URL ?>action/delete_snippet/<?= $id ?>" method="post">
+						<form action="<?= BASE_URL ?>action/delete_user/<?= $id ?>" method="post">
 							<fieldset>
 								<p>
-									You have chosen to delete <strong><?= $user_meta -> display_name;?>:</strong>
+									You have chosen to delete <strong><?= $user_meta->display_name;?>:</strong>
 								</p>
 								<p>
 									<label>
@@ -21,7 +21,7 @@
 							</fieldset>
 							<div class="actions">
 								<input type="submit" value="Delete User" class="btn primary medium" />
-								<a href="#" class="red">Cancel</a>
+								<a href="<?=ADMIN;?>users_manage/" class="red">Cancel</a>
 							</div>
 						</form>
 					</div>

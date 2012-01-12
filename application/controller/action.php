@@ -240,7 +240,8 @@ class action_controller
 		// Check for return True.
 		// Log error
 
-		url::redirect($history); 
+		//url::redirect($history); 
+		url::redirect('admin/users_manage/');
 
 	}
 	

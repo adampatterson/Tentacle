@@ -104,7 +104,7 @@
 								</fieldset>
 								<div class="actions">
 									<input type="submit" value="Update" class="btn primary medium" />
-									<a href="#" class="red">Cancel</a>
+									<a href="<?=ADMIN;?>users_manage/" class="red">Cancel</a>
 								</div>
 							</form>
 						</div>
