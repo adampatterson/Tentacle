@@ -28,11 +28,11 @@ define('ALLOWED_CHARS','/^[ \!\,\~\&\.\:\+\@\-_a-zA-Z0-9]+$/');
 define('BASE_URI'      , $_SERVER['REQUEST_URI']);
 
 // @todo BASE_URL may need some testing in other environments
-if ($_SERVER["SERVER_NAME"] == 'localhost') {
-define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].'/http/dev.tcms.me/' );
-} else {
+//if ($_SERVER["SERVER_NAME"] == 'localhost') {
+//define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].'/http/dev.tcms.me/' );
+//} else {
 define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].'/' );
-}
+//}
 
 // Application's Base URL
 
