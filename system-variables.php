@@ -35,11 +35,11 @@ define( 'APP_PATH'      , CORE_ROOT );
 define('BASE_URI'      , $_SERVER['REQUEST_URI']);
 
 // @todo BASE_URL may need some testing in other environments
-if ($_SERVER["SERVER_NAME"] == 'localhost'):
-	define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].'/http/dev.tcms.me/' );
-else:
+//if ($_SERVER["SERVER_NAME"] == 'localhost'):
+//	define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].'/http/dev.tcms.me/' );
+//else:
 	define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].'/' );
-endif;
+//endif;
 
 // Application's Base Application URL
 define('TENTACLE_URL'  , BASE_URL.'tentacle');
