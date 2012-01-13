@@ -29,7 +29,7 @@
 		<div class="topbar">
 		  <div class="fill">
 		    <div class="container">
-		      <a class="brand" href="#">Tentacle CMS</a>
+		      <a class="brand" href="http://tentaclecms.com">Tentacle CMS</a>
 		      <ul class="nav">
 		        <li class="active"><a href="#">Home</a></li>
 		        <li><a href="#about">About</a></li>
