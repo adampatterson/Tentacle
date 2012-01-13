@@ -4,11 +4,11 @@
 */
 
 // Configuration
-if ( $_SERVER["SERVER_NAME"] == 'localhost' ):
-	define( 'CONFIGURATION' ,'development' );
-else:
+//if ( $_SERVER["SERVER_NAME"] == 'localhost' ):
+//	define( 'CONFIGURATION' ,'development' );
+//else:
 	define( 'CONFIGURATION' ,'deployment' );
-endif;
+//endif;
 
 // Dingo Location
 define( 'SYSTEM'        ,'system' );
