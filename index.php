@@ -7,7 +7,7 @@ error_reporting(E_STRICT|E_ALL);
 require_once('system-variables.php');
 
 if (!file_exists('application/config/'.CONFIGURATION.'/db.php')):
-   header( 'Location: /setup/' );
+   header( 'Location: '.BASE_URI.'/setup/' );
    exit();
 endif;
 
