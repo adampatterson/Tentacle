@@ -15,7 +15,7 @@
     <div class="row">
       <div class="span14">
         <h2>Database Information</h2>
-		<form method="post" action="<?= BASE_URL; ?>setup/action/database">
+		<form method="post" action="<?= BASE_URL; ?>action/database">
 		  <p>Below you should enter your database connection details. If you're not sure about these, contact your host.</p>
 		  
 			<div class="clearfix">
