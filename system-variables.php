@@ -30,15 +30,25 @@ define( 'APP_PATH'      , CORE_ROOT );
 /*
 * Added for Tentacle
 */
+if ($_SERVER["SERVER_PORT"] != '80' ) {
+	$port = $_SERVER["SERVER_PORT"].':';
+} else {
+	$port = '';
+}
 	
 // Application's Base URL
-define('BASE_URI'      , $_SERVER['REQUEST_URI']);
+define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port.'/' );
 
 // @todo BASE_URL may need some testing in other environments
 //if ($_SERVER["SERVER_NAME"] == 'localhost'):
 //	define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].'/http/dev.tcms.me/' );
 //else:
-	define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].'/' );
+define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.'/' );
+//endif;
+// Application's Base URL
+
+define('ROOT'      , BASE_URL );
+
 //endif;
 
 // Application's Base Application URL

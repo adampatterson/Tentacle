@@ -25,18 +25,22 @@ define('ALLOWED_CHARS','/^[ \!\,\~\&\.\:\+\@\-_a-zA-Z0-9]+$/');
 * Added for Tentacle
 */
 // Application's Base URL
-define('BASE_URI'      , $_SERVER['REQUEST_URI']);
+if ($_SERVER["SERVER_PORT"] == '80' ) {
+	$port = ':'.$_SERVER["SERVER_PORT"];
+} else {
+	$port = '';
+}
+// Application's Base URL
+define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port);
 
 // @todo BASE_URL may need some testing in other environments
 //if ($_SERVER["SERVER_NAME"] == 'localhost') {
-//define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].'/http/dev.tcms.me/' );
+//define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.'/http/dev.tcms.me/' );
 //} else {
-define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].'/' );
+define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.'/' );
 //}
 
-// Application's Base URL
-
-define('ROOT'      ,'http://'.$_SERVER["SERVER_NAME"].'/' );
+define('ROOT'      ,'http://'.$_SERVER["SERVER_NAME"].$port.'/' );
 
 
 // Application's Base Application URL
