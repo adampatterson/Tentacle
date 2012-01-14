@@ -32,7 +32,7 @@ date_default_timezone_set('UTC');
 config::set( 'autoload_library', array( 'db', 'session', 'user', 'url', 'pagination', 'benchmark', 'image', 'note', 'email' ) );
 
 /* Auto Load Helpers */
-config::set( 'autoload_helper', array('assets', 'theme', 'settings', 'scaffold', 'state', 'tentacle', 'gravatar', 'inflector', 'string', 'user') ); 
+config::set( 'autoload_helper', array('assets', 'theme', 'settings', 'scaffold', 'state', 'tentacle', 'gravatar', 'inflector', 'string', 'user' ) ); 
 
 /* Sessions */
 config::set('session',array(
@@ -59,7 +59,6 @@ config::set('folder_cache','cache');            // Cache
 config::set('folder_languages','language');     // Languages
 config::set('folder_errors','error');           // Errors
 config::set('folder_orm','orm');                // ORM
-
 
 
 /*
