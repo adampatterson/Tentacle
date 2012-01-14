@@ -25,31 +25,27 @@ define('ALLOWED_CHARS','/^[ \!\,\~\&\.\:\+\@\-_a-zA-Z0-9]+$/');
 * Added for Tentacle
 */
 // Application's Base URL
-if ($_SERVER["SERVER_PORT"] == '80' ) {
+if ($_SERVER["SERVER_PORT"] != '80' ) {
 	$port = ':'.$_SERVER["SERVER_PORT"];
 } else {
 	$port = '';
 }
+
 // Application's Base URL
-define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port);
+define('BASE_URI'      	, $_SERVER['REQUEST_URI'].$port.dirname($_SERVER['PHP_SELF']).'/');
 
 // @todo BASE_URL may need some testing in other environments
-//if ($_SERVER["SERVER_NAME"] == 'localhost') {
-//define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.'/http/dev.tcms.me/' );
-//} else {
-define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.'/' );
-//}
-
-define('ROOT'      ,'http://'.$_SERVER["SERVER_NAME"].$port.'/' );
-
+define('BASE_URL'      	, 'http://'.$_SERVER["SERVER_NAME"].$port.dirname($_SERVER['PHP_SELF']).'/' );
 
 // Application's Base Application URL
-define('TENTACLE_URL'  , BASE_URL.'tentacle/');
+define('TENTACLE_APP'	, 'http://'.$_SERVER["SERVER_NAME"].$port.str_replace("setup/index.php", "", $_SERVER['PHP_SELF']));
 
-define('TENTACLE_ADMIN'  , TENTACLE_URL.'admin/');
+define('TENTACLE_URL'  	, BASE_URL.'');
 
-define('TENTACLE_JS'   , TENTACLE_URL.'admin/js/');
-define('TENTACLE_CSS'  , TENTACLE_URL.'admin/css/');
+define('TENTACLE_ADMIN' , TENTACLE_APP.'tentacle/admin/');
+
+define('TENTACLE_IMAGE' , TENTACLE_APP.'tentacle/admin/images/');
+define('TENTACLE_CSS'  	, TENTACLE_APP.'tentacle/admin/css/');
 
 
 // End of configuration

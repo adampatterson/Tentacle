@@ -20,17 +20,17 @@
 				<p><strong>✔</strong> All right everything is ready to roll, Lets install the MySQL!</p>
 			</div>
 			<div class="one-half">
-				<a href="<?= BASE_URL; ?>setup/install/step3/" class="btn medium danger">Back</a>
+				<a href="<?= BASE_URL; ?>install/step3/" class="btn medium danger">Back</a>
 			</div>
 			<div class="textright one-half">
-				<a href="<?= BASE_URL; ?>setup/install/step5/" class="btn medium primary">Next</a>
+				<a href="<?= BASE_URL; ?>install/step5/" class="btn medium primary">Next</a>
 			</div>
 		<? else: ?>
 			<div class="alert-message error">
 				<p><strong>✘</strong> Something went wrong.</p>
 			</div>
 			<div class="one-half">
-				<a href="<?= BASE_URL; ?>setup/install/step3/" class="btn medium secondary">Back</a>
+				<a href="<?= BASE_URL; ?>install/step3/" class="btn medium secondary">Back</a>
 			</div>
 			<div class="textright one-half">
 				<a href="#" class="btn medium primary disabled">Next</a>

@@ -1,4 +1,4 @@
 RewriteEngine on
 
-RewriteCond $1 !^(index\.php|img|bin)
+RewriteCond $1 !^(index\.php)
 RewriteRule ^(.*)$ index.php?__dingo_page=$1 [L]

@@ -47,7 +47,7 @@
 				</div>
 			</div>
 			<div class="one-half">
-				<a href="<?= BASE_URL; ?>setup/install/step2/" class="btn medium secondary">Back</a>
+				<a href="<?= BASE_URL; ?>install/step2/" class="btn medium secondary">Back</a>
 			</div>
 			<div class="textright one-half">
 				<input name="submit" id="submit" type="submit" value="Submit" class="btn medium primary"/>

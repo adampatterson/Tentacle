@@ -117,7 +117,7 @@
 					<p><strong>✘</strong> Tentacle may not work correctly with your environment.</p>
 				</div>
 				<div class="one-half">
-					<a href="<?= BASE_URL; ?>setup/" class="btn medium danger">Back</a>
+					<a href="<?= BASE_URL; ?>/" class="btn medium danger">Back</a>
 				</div>
 				<div class="textright one-half">
 					<a href="#" class="btn medium primary disabled">Next</a>
@@ -127,10 +127,10 @@
 					<p><strong>✔</strong> Your environment passed all requirements.</p>
 				</div>
 				<div class="one-half">
-					<a href="<?= BASE_URL; ?>setup/install/step1" class="btn medium secondary">Back</a>
+					<a href="<?= BASE_URL; ?>install/step1" class="btn medium secondary">Back</a>
 				</div>
 				<div class="textright one-half">
-					<a href="<?= BASE_URL; ?>setup/install/step3/" class="btn medium primary">Next</a>
+					<a href="<?= BASE_URL; ?>install/step3/" class="btn medium primary">Next</a>
 				</div>
 			<?php endif ?>
       </div>

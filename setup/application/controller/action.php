@@ -5,7 +5,7 @@ class action_controller
 	
 	public function agree()
 	{
-		url::redirect('setup/install/step1');
+		url::redirect('install/step1');
 	}
 	
 	public function database()
@@ -67,7 +67,7 @@ class action_controller
 		foreach ( $source as $str )
 			fwrite($handle, $str);
 		
-		url::redirect('setup/install/step4');
+		url::redirect('install/step4');
 	}
 	
 	public function admin()
@@ -94,6 +94,6 @@ class action_controller
 								VALUES
 									('$email', '$user_name', '$encrypted_password', 'administrator', '{\"first_name\":\"$first_name\",\"last_name\":\"$last_name\",\"activity_key\":\"\",\"url\":\"\",\"display_name\":\"$display_name\",\"editor\":\"wysiwyg\"}', '$registered', 1)" );
 			
-		url::redirect('setup/install/done');
+		url::redirect('install/done');
 	}
 }

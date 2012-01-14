@@ -61,7 +61,7 @@
 					<input type="hidden" name='profile' value='true' />
 			</fieldset>
 			<div class="one-half">
-				<a href="<?= BASE_URL; ?>setup/install/step4/" class="btn medium secondary">Back</a>
+				<a href="<?= BASE_URL; ?>install/step4/" class="btn medium secondary">Back</a>
 			</div>
 			<div class="textright one-half">
 				<input name="submit" id= "fsubmit" type="submit" value="Submit" class="btn medium primary"/>

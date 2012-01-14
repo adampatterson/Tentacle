@@ -28,7 +28,7 @@
 		&nbsp;
 	</div>
 	<div class="textright one-half">
-		<a href="<?= BASE_URL; ?>setup/install/step2/" class="btn medium primary">let's go!</a>
+		<a href="<?= BASE_URL; ?>install/step2/" class="btn medium primary">let's go!</a>
 	</div>
   </div>
 </div>
