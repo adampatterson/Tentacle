@@ -15,7 +15,7 @@
     <div class="row">
       <div class="span14">
         <h2>Create your admin user.</h2>
-		<form method="post" action="<?= BASE_URL; ?>setup/action/admin">
+		<form method="post" action="<?= BASE_URL; ?>action/admin">
 			<fieldset>
 				<div class="clearfix">
 					<label for="user_name">Username <span class="description">(required)</span></label>
