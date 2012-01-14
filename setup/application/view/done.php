@@ -24,7 +24,7 @@
 				<li>Credits</li>
 			</ul>		
 			<div class="alert-actions">
-		    	<a class="btn large success" href="<?= BASE_URL ?>admin/">Login</a>
+		    	<a class="btn large success" href="<?= TENTACLE_APP ?>admin/">Login</a>
 		  </div>
 		</div>
 		<div class="alert-message error">
