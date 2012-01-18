@@ -26,7 +26,7 @@ define( 'APP_PATH'      , CORE_ROOT );
 * Added for Tentacle
 */
 if ($_SERVER["SERVER_PORT"] != '80' ) {
-	$port = $_SERVER["SERVER_PORT"].':';
+	$port = ':'.$_SERVER["SERVER_PORT"];
 } else {
 	$port = '';
 }

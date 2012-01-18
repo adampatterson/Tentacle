@@ -11,8 +11,6 @@ if (!file_exists('application/config/'.CONFIGURATION.'/db.php')):
    exit();
 endif;
 
-
-
 // End of configuration
 //----------------------------------------------------------------------------------------------
 define('DINGO',1);
