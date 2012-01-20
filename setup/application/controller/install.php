@@ -187,7 +187,7 @@ class install_controller
 								  UNIQUE KEY `term_id_taxonomy` (`term_id`,`taxonomy`),
 								  KEY `taxonomy` (`taxonomy`)
 								) ENGINE=MyISAM  DEFAULT CHARSET=utf8" );
-
+								  
 
 		$build = $pdo->exec( "CREATE TABLE IF NOT EXISTS `terms` (
 								  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,

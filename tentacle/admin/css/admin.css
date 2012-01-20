@@ -15,7 +15,8 @@ body {
   padding: 0; }
 
 #admin-window {
-  min-width: 960px; }
+  min-width: 960px;
+  /*background: url('../images/bg_white_hatch.jpg');*/ }
 
 #body-wrapper {
   clear: both;
