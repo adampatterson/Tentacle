@@ -251,29 +251,104 @@ class page_model
 
 	// Update Page
 	//----------------------------------------------------------------------------------------------	
-	public function update ( ) 
+	public function update ( $id ) 
 	{
 		// create a new version of the content.
+
+		$title         = $_POST['title'];
+		$slug          = sanitize($title);
+		$content       = $_POST['content'];
+		$status        = $_POST['status'];
+		$parent_page   = $_POST['parent_page'];
+		//$post_template = $_POST['page_template'];
 		
-		//'date' => time(),
-		//'modified' => time()
+		$dirty_template = session::get( 'template' );
 		
-		//$uri 			= $this->get_parent_uri( $parent_page ).$slug.'/';
+		if ( $dirty_template == '' ):
+			$post_template = 'default';
+		else:
+			$post_template = $dirty_template;
+		endif;
 		
-		note::set('success','page_update','Page Updated!');
+		
+		$post_type     = $_POST['page-or-post'];
+		
+		$post_author   = user::id();
+		
+		$uri 			= $this->get_parent_uri( $parent_page ).$slug.'/';
+		
+		// Run content through HTMLawd and Samrty Text
+		$page          = db('posts');
+		
+		$row = $page->update(array(
+			'title'	=>$title,
+			'slug'		=>$slug,
+			'content'	=>$content,
+			'status'	=>$status,
+			'author'	=>$post_author,
+			'type'		=>$post_type,
+			'template'	=>$post_template,
+			'parent'	=>$parent_page,
+			'uri'		=>$uri,
+			'modified'	=> time()
+		))		
+			->where( 'id', '=', $id )
+			->execute();
+
+	
+		$scaffold_data = $_POST;
+
+		$remove_keys = array( 'title', 'content', 'status', 'parent_page', 'page_template', 'page-or-post', 'history'  );
+		
+		foreach ( $remove_keys as $remove_key ):
+			unset( $scaffold_data[ $remove_key ] );
+		endforeach;
+	
+		$meta_value = serialize( $scaffold_data );
+
+		$page_meta      = db('posts_meta');
+
+		$page->update(array(
+			'meta_key'=>'scaffold_data',
+			'meta_value'=>$meta_value
+		))
+			->where( 'posts_id', '=', $id )
+			->execute();
+			
+		note::set('success','page_update','Page Updated!');		
 	}
 	
-/*
+	
 	public function soft_delete ( $id='' ) 
 	{
-		return 'delete';
+		$page_meta      = db('posts_meta');
+
+		$page->update(array(
+			'status'=>'trash'
+		))
+			->where( 'id', '=', $id )
+			->execute();
+			
+		note::set('success','page_soft_delete','Moved to the trash.');	
 	}
+	
 	
 	public function is_delete ( $id='' ) 
 	{
-		return 'delete';
+		$page	      = db('posts_meta');
+
+		$deleted_page = $page->count( )
+			->where ( 'id', '=', $id )
+			->clause('AND')
+			->where ( 'status', '=', 'trash' )
+			->execute();
+		
+		$deleted_page = $page->total( );
+		
+		if ( $deleted_page >= 1 )
+			return true;
 	}
-	*/
+	
 
 	// Add Page
 	//----------------------------------------------------------------------------------------------	
@@ -305,7 +380,7 @@ class page_model
 		$page          = db('posts');
 		
 		$row = $page->insert(array(
-			'title'		=>$title,
+			'title'	=>$title,
 			'slug'		=>$slug,
 			'content'	=>$content,
 			'status'	=>$status,

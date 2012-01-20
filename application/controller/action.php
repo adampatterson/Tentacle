@@ -148,15 +148,11 @@ class action_controller
 		tentacle::valid_user();
 
 		$page = load::model( 'page' );
-		$page_single = $page->update( );
-		
-		//	user the same serialize process as in the add page
-		//	uopdate the modified time.
+		$page_single = $page->update( $page_id );
 		
 		session::delete ( 'template' );
 
-		$history = input::post ( 'history' );	
-		url::redirect($history);
+		url::redirect( input::post ( 'history' ) );
 	}
 	
 	
