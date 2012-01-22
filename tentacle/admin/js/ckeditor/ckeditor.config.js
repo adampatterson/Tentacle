@@ -22,10 +22,10 @@ CKEDITOR.editorConfig = function(config) {
 
 	// WordPress full toolbar
 	config.toolbar_tentacle = [
-			['Bold','Italic','NumberedList', 'BulletedList'],
+			['Bold', 'Italic', 'Underline', 'HorizontalRule', 'Blockquote', 'NumberedList', 'BulletedList'],
 			['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-			['Format'],
-			['Outdent','Indent','Blockquote'],
+			//['Format'],
+			['Outdent','Indent'],
 			['Link','Unlink'],
 			//['PasteFromWord'],
 			//['Table','HorizontalRule'],

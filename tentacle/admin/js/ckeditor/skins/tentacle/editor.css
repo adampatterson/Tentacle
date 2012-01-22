@@ -104,7 +104,7 @@ span.cke_skin_tentacle {
 	border-radius: 4px;
 }
 .cke_skin_tentacle .cke_focus {
-	outline:auto 5px -webkit-focus-ring-color;
+	outline:auto 0px -webkit-focus-ring-color;
 }
 .cke_skin_tentacle textarea.cke_source {
 	font-family:'Courier New', Monospace;
@@ -996,7 +996,8 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale'),
 .cke_skin_tentacle .cke_button_source .cke_icon {
 	background-position:0 0;
 }
-.cke_skin_tentacle .cke_button_source.cke_on .cke_icon {
+.cke_skin_tentacle .cke_button_source.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_source:hover .cke_icon {
 	background-position:-16px 0;
 }
 .cke_skin_tentacle .cke_button_source span.cke_label {
@@ -1038,17 +1039,23 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale'),
 .cke_skin_tentacle .cke_button_bold .cke_icon {
 	background-position:0 -304px;
 }
-.cke_skin_tentacle .cke_button_bold.cke_on .cke_icon {
+.cke_skin_tentacle .cke_button_bold.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_bold:hover .cke_icon {
 	background-position:-16px -304px;
 }
 .cke_skin_tentacle .cke_button_italic .cke_icon {
 	background-position:0 -320px;
 }
-.cke_skin_tentacle .cke_button_italic.cke_on .cke_icon {
+.cke_skin_tentacle .cke_button_italic.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_italic:hover .cke_icon {
 	background-position:-16px -320px;
 }
 .cke_skin_tentacle .cke_button_underline .cke_icon {
 	background-position:0 -336px;
+}
+.cke_skin_tentacle .cke_button_underline.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_underline:hover .cke_icon {
+	background-position:-16px -336px;
 }
 .cke_skin_tentacle .cke_button_strike .cke_icon {
 	background-position:0 -352px;
@@ -1062,11 +1069,16 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale'),
 .cke_skin_tentacle .cke_button_table .cke_icon {
 	background-position:0 -608px;
 }
-.cke_skin_tentacle .cke_button_table.cke_on .cke_icon {
+.cke_skin_tentacle .cke_button_table.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_table:hover .cke_icon {
 	background-position:-16px -608px;
 }
 .cke_skin_tentacle .cke_button_horizontalrule .cke_icon {
 	background-position:0 -624px;
+}
+.cke_skin_tentacle .cke_button_horizontalrule.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_horizontalrule:hover .cke_icon {
+	background-position:-16px -624px;
 }
 .cke_skin_tentacle .cke_button_smiley .cke_icon {
 	background-position:0 -640px;
@@ -1074,13 +1086,15 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale'),
 .cke_skin_tentacle .cke_button_link .cke_icon {
 	background-position:0 -528px;
 }
-.cke_skin_tentacle .cke_button_link.cke_on .cke_icon {
+.cke_skin_tentacle .cke_button_link.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_link:hover .cke_icon {
 	background-position:-16px -528px;
 }
 .cke_skin_tentacle .cke_button_unlink .cke_icon {
 	background-position:0 -544px;
 }
-.cke_skin_tentacle .cke_button_unlink.cke_on .cke_icon {
+.cke_skin_tentacle .cke_button_unlink.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_unlink:hover .cke_icon {
 	background-position:16px -544px;
 }
 .cke_skin_tentacle .cke_button_anchor .cke_icon {
@@ -1101,7 +1115,8 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale'),
 .cke_skin_tentacle .cke_button_print .cke_icon {
 	background-position:0 -176px;
 }
-.cke_skin_tentacle .cke_button_checkspell .cke_icon, .cke_skin_tentacle .cke_button_scayt .cke_icon {
+.cke_skin_tentacle .cke_button_checkspell .cke_icon, 
+.cke_skin_tentacle .cke_button_scayt .cke_icon {
 	background-position:0 -192px;
 }
 .cke_skin_tentacle .cke_button_pagebreak .cke_icon {
@@ -1161,73 +1176,89 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale'),
 .cke_skin_tentacle .cke_button_numberedlist .cke_icon {
 	background-position:0 -400px;
 }
-.cke_skin_tentacle .cke_button_numberedlist.cke_on .cke_icon {
+.cke_skin_tentacle .cke_button_numberedlist.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_numberedlist:hover .cke_icon {
 	background-position:-16px -400px;
 }
 .cke_skin_tentacle .cke_button_bulletedlist .cke_icon {
 	background-position:0 -416px;
 }
-.cke_skin_tentacle .cke_button_bulletedlist.cke_on .cke_icon {
+.cke_skin_tentacle .cke_button_bulletedlist.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_bulletedlist:hover .cke_icon {
 	background-position:-16px -416px;
 }
 .cke_skin_tentacle .cke_mixed_dir_content .cke_button_numberedlist .cke_icon {
 	background-position:0 -1217px;
 }
-.cke_skin_tentacle .cke_mixed_dir_content .cke_button_bulletedlist .cke_icon {
+.cke_skin_tentacle .cke_mixed_dir_content .cke_button_numberedlist.cke_on .cke_icon,
+.cke_skin_tentacle .cke_mixed_dir_content .cke_button_numberedlist:hover .cke_icon {
+	background-position:-16px -1217px;
+}
+.cke_skin_tentacle .cke_mixed_dir_content .cke_button_bulletedlist.cke_on .cke_icon,
+.cke_skin_tentacle .cke_mixed_dir_content .cke_button_bulletedlist:hover .cke_icon {
 	background-position:0 -1233px;
 }
 .cke_skin_tentacle .cke_button_outdent .cke_icon {
 	background-position:0 -432px;
 }	
-.cke_skin_tentacle .cke_button_outdent.cke_on .cke_icon {
+.cke_skin_tentacle .cke_button_outdent.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_outdent:hover .cke_icon {
 		background-position:-16px -432px;
-	}
+}
 .cke_skin_tentacle .cke_button_indent .cke_icon {
 	background-position:0 -448px;
 }
-.cke_skin_tentacle .cke_button_indent.cke_on .cke_icon {
+.cke_skin_tentacle .cke_button_indent.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_indent:hover .cke_icon {
 	background-position:-16px -448px;
 }
 .cke_skin_tentacle .cke_mixed_dir_content .cke_button_indent .cke_icon {
 	background-position:0 -1265px;
 }
-.cke_skin_tentacle .cke_mixed_dir_content .cke_button_indent.cke_on .cke_icon {
+.cke_skin_tentacle .cke_mixed_dir_content .cke_button_indent.cke_on .cke_icon,
+.cke_skin_tentacle .cke_mixed_dir_content .cke_button_indent:hover .cke_icon {
 	background-position:-16px -1265px;
 }
 .cke_skin_tentacle .cke_mixed_dir_content .cke_button_outdent .cke_icon {
 	background-position:0 -1249px;
 }
-.cke_skin_tentacle .cke_mixed_dir_content .cke_button_outdent.cke_on .cke_icon {
+.cke_skin_tentacle .cke_mixed_dir_content .cke_button_outdent.cke_on .cke_icon,
+.cke_skin_tentacle .cke_mixed_dir_content .cke_button_outdent:hover .cke_icon {
 	background-position:-16px -1249px;
 }
 .cke_skin_tentacle .cke_button_justifyleft .cke_icon {
 	background-position:0 -464px;
 }
-.cke_skin_tentacle .cke_button_justifyleft.cke_on .cke_icon {
+.cke_skin_tentacle .cke_button_justifyleft.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_justifyleft:hover .cke_icon {
 	background-position:-16px -464px;
 }
 .cke_skin_tentacle .cke_button_justifycenter .cke_icon {
 	background-position:0 -480px;
 }
-.cke_skin_tentacle .cke_button_justifycenter.cke_on .cke_icon {
+.cke_skin_tentacle .cke_button_justifycenter.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_justifycenter:hover .cke_icon {
 	background-position:-16px -480px;
 }
 .cke_skin_tentacle .cke_button_justifyright .cke_icon {
 	background-position:0 -496px;
 }
-.cke_skin_tentacle .cke_button_justifyright.cke_on .cke_icon {
+.cke_skin_tentacle .cke_button_justifyright.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_justifyright:hover .cke_icon {
 	background-position:-16px -496px;
 }
 .cke_skin_tentacle .cke_button_justifyblock .cke_icon {
 	background-position:0 -512px;
 }
-.cke_skin_tentacle .cke_button_justifyblock.cke_on .cke_icon {
+.cke_skin_tentacle .cke_button_justifyblock.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_justifyblock:hover .cke_icon  {
 	background-position:-16px -512px;
 }
 .cke_skin_tentacle .cke_button_blockquote .cke_icon {
 	background-position:0 -1152px;
 }
-.cke_skin_tentacle .cke_button_blockquote.cke_on .cke_icon {
+.cke_skin_tentacle .cke_button_blockquote.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_blockquote:hover .cke_icon {
 	background-position:-16px -1152px;
 }
 .cke_skin_tentacle .cke_button_creatediv .cke_icon {
@@ -1245,7 +1276,8 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale'),
 .cke_skin_tentacle .cke_button_pastefromword .cke_icon {
 	background-position:0 -160px;
 }
-.cke_skin_tentacle .cke_button_pastefromword.cke_on .cke_icon {
+.cke_skin_tentacle .cke_button_pastefromword.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_pastefromword:hover .cke_icon {
 	background-position:-16px -160px;
 }
 .cke_skin_tentacle .cke_button_save .cke_icon {
@@ -1257,7 +1289,8 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale'),
 .cke_skin_tentacle .cke_button_maximize .cke_icon {
 	background-position:0 -1040px;
 }
-.cke_skin_tentacle .cke_button_maximize.cke_on .cke_icon {
+.cke_skin_tentacle .cke_button_maximize.cke_on .cke_icon,
+.cke_skin_tentacle .cke_button_maximize:hover .cke_icon {
 	background-position:-16px -1040px;
 }
 .cke_skin_tentacle .cke_button_editdiv .cke_icon {
@@ -1272,7 +1305,6 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale'),
 .cke_skin_tentacle .cke_button_iframe .cke_icon {
 	background-position:0 -1279px;
 }
-
 
 
 .cke_skin_tentacle .cke_button_source .cke_label {
