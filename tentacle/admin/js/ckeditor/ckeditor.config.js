@@ -22,17 +22,21 @@ CKEDITOR.editorConfig = function(config) {
 
 	// WordPress full toolbar
 	config.toolbar_tentacle = [
-			['Source'],
-			['Bold','Italic','StrikeThrough','Format'],
+			['Bold','Italic','NumberedList', 'BulletedList'],
 			['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-			['NumberedList', 'BulletedList'],
+			['Format'],
 			['Outdent','Indent','Blockquote'],
 			['Link','Unlink'],
 			//['PasteFromWord'],
-			['Table','HorizontalRule'],
+			//['Table','HorizontalRule'],
 			//['Maximize'],
 			//['atd-ckeditor', 'WPMore']
+			['Source'],
 		 ];
+
+		config.toolbarCanCollapse = false;
+		
+		config.resize_enabled = false;
 
 	// mediaembed plugin
 	// config.extraPlugins += (config.extraPlugins ? ',mediaembed' : 'mediaembed' );
