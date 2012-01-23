@@ -377,8 +377,8 @@ class dev_controller {
 
 		echo '<strong>CONFIG:</strong> ' . CONFIG . '<br />';
 
-		echo '<strong>BASE_URI:</strong> ' . BASE_URI . '<br />';
 		echo '<strong>BASE_URL:</strong> ' . BASE_URL . '<br />';
+		echo '<strong>BASE_URI:</strong> ' . BASE_URI . '<br />';
 
 		echo '<br /><strong>Admin variable:</strong> ' . $admin_var . '<br />';
 		

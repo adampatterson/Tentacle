@@ -46,7 +46,7 @@ define('ROOT'      , BASE_URI );
 //endif;
 
 // Application's Base Application URL
-define('TENTACLE_URL'  , BASE_URL.'/tentacle/');
+define('TENTACLE_URL'  , BASE_URL.'tentacle/');
 define('TENTACLE_URI'  , APP_PATH.'/tentacle');
 
 // Admin's Base URL
