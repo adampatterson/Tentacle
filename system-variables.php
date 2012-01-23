@@ -31,11 +31,17 @@ if ($_SERVER["SERVER_PORT"] != '80' ) {
 	$port = '';
 }
 	
+if ( dirname($_SERVER['PHP_SELF'])  == '/' ) {
+	$directory = '';
+} else {
+	$directory = dirname($_SERVER['PHP_SELF']);
+}
+	
 // Application's Base URL
-define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port.dirname($_SERVER['PHP_SELF']) );
+define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port.$directory );
 
 // @todo BASE_URL may need some testing in other environments
-define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.dirname($_SERVER['PHP_SELF']) );
+define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.$directory );
 
 
 // Application's Base URL
