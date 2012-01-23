@@ -38,7 +38,7 @@ define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port.dirname($_SERVER['PHP_SEL
 define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.dirname($_SERVER['PHP_SELF']).'/' );
 
 
-define('PATH'			,$port.dirname($_SERVER['PHP_SELF']).'/' );
+define('PATH'			,$port.dirname($_SERVER['PHP_SELF']) );
 
 // Application's Base URL
 define('ROOT'      , BASE_URL );
