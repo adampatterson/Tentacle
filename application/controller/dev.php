@@ -367,7 +367,8 @@ class dev_controller {
 
 	public function define_test ($admin_var ="")
 	{
-		echo '<strong>PATH:</strong> ' . PATH . '<br />';
+		echo dirname($_SERVER['PHP_SELF']). '<br />';
+		
 		echo '<strong>CORE_ROOT:</strong> ' . CORE_ROOT . '<br />';
 		echo '<strong>APP_PATH:</strong> ' . APP_PATH . '<br />';
 		echo '<strong>STORAGE_DIR:</strong> ' . STORAGE_DIR . '<br />';
