@@ -38,13 +38,15 @@ define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port.dirname($_SERVER['PHP_SEL
 define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.dirname($_SERVER['PHP_SELF']).'/' );
 
 
+define('PATH'			,$port.dirname($_SERVER['PHP_SELF']).'/' );
+
 // Application's Base URL
 define('ROOT'      , BASE_URL );
 
 //endif;
 
 // Application's Base Application URL
-define('TENTACLE_URL'  , BASE_URL.'tentacle');
+define('TENTACLE_URL'  , BASE_URL.'tentacle/');
 define('TENTACLE_URI'  , APP_PATH.'/tentacle');
 
 // Admin's Base URL
