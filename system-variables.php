@@ -35,7 +35,7 @@ if ($_SERVER["SERVER_PORT"] != '80' ) {
 define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port.dirname($_SERVER['PHP_SELF']).'/' );
 
 // @todo BASE_URL may need some testing in other environments
-define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.dirname($_SERVER['PHP_SELF']).'/' );
+define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.dirname($_SERVER['PHP_SELF']) );
 
 
 define('PATH'			,$port.dirname($_SERVER['PHP_SELF']) );
@@ -46,15 +46,15 @@ define('ROOT'      , BASE_URL );
 //endif;
 
 // Application's Base Application URL
-define('TENTACLE_URL'  , BASE_URL.'tentacle/');
+define('TENTACLE_URL'  , BASE_URL.'/tentacle/');
 define('TENTACLE_URI'  , APP_PATH.'/tentacle');
 
 // Admin's Base URL
 define('ADMIN'         , BASE_URL.'admin/');
-define('ADMIN_URL'     , TENTACLE_URL.'/admin/');
+define('ADMIN_URL'     , TENTACLE_URL.'admin/');
 define('ADMIN_URI'     , TENTACLE_URI.'/admin/');
 
-define('TENTACLE_LIB'  , CORE_ROOT.'/tentacle/admin/lib');
+define('TENTACLE_LIB'  , CORE_ROOT.'/tentacle/admin/lib/');
 define('TENTACLE_JS'   , ADMIN_URL.'js/');
 define('TENTACLE_CSS'  , ADMIN_URL.'css/');
 
