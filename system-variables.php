@@ -41,7 +41,7 @@ if ( dirname($_SERVER['PHP_SELF'])  == '/' ) {
 define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port.$directory );
 
 // @todo BASE_URL may need some testing in other environments
-define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.$directory );
+define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.$directory.'/' );
 
 
 // Application's Base URL
@@ -50,11 +50,11 @@ define('ROOT'      , BASE_URI );
 //endif;
 
 // Application's Base Application URL
-define('TENTACLE_URL'  , BASE_URL.'/tentacle/');
+define('TENTACLE_URL'  , BASE_URL.'tentacle/');
 define('TENTACLE_URI'  , APP_PATH.'/tentacle');
 
 // Admin's Base URL
-define('ADMIN'         , BASE_URL.'/admin/');
+define('ADMIN'         , BASE_URL.'admin/');
 define('ADMIN_URL'     , TENTACLE_URL.'admin/');
 define('ADMIN_URI'     , TENTACLE_URI.'/admin/');
 
