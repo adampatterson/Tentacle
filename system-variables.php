@@ -25,17 +25,17 @@ define( 'APP_PATH'      , CORE_ROOT );
 /*
 * Added for Tentacle
 */
-if ($_SERVER["SERVER_PORT"] != '80' ) {
+if ($_SERVER["SERVER_PORT"] != '80' ):
 	$port = ':'.$_SERVER["SERVER_PORT"];
-} else {
+else:
 	$port = '';
-}
+endif;
 	
-if ( dirname($_SERVER['PHP_SELF'])  == '/' ) {
+if ( dirname($_SERVER['PHP_SELF'])  == '/' ):
 	$directory = '';
-} else {
+else:
 	$directory = dirname($_SERVER['PHP_SELF']);
-}
+endif;
 	
 // Application's Base URL
 define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port.$directory );
