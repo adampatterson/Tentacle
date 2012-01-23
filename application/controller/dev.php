@@ -13,6 +13,20 @@ class dev_controller {
 	}
 	
 	
+	public function sortable ()
+	{	
+		$page = load::model( 'page' );
+		$pages = $page->get( );
+		
+		$page_hiarchy = $page->get_page_children( 0, $pages );
+		
+		$user = load::model('user'); 
+		$options = load::model ( 'settings' );
+		
+		load::view ('admin/sortable', array( 'pages'=>$page_hiarchy, 'user'=>$user ) );
+	}
+	
+	
 	public function RecursiveWrite( $pages, $level = 0 ) 
 	{
 		$page_flat_hiarchy = array();
@@ -31,6 +45,7 @@ class dev_controller {
 		return $page_flat_hiarchy;
 	}
 	
+	
 	/**
 	* pull function
 	* 
@@ -47,7 +62,6 @@ class dev_controller {
 		echo pull();
 	}
 
-	
 	
 	public function navigation ()
 	{
@@ -353,6 +367,7 @@ class dev_controller {
 
 	public function define_test ($admin_var ="")
 	{
+		echo '<strong>PATH:</strong> ' . PATH . '<br />';
 		echo '<strong>CORE_ROOT:</strong> ' . CORE_ROOT . '<br />';
 		echo '<strong>APP_PATH:</strong> ' . APP_PATH . '<br />';
 		echo '<strong>STORAGE_DIR:</strong> ' . STORAGE_DIR . '<br />';
