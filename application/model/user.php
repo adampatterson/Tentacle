@@ -75,7 +75,7 @@ class user_model
 		
 		if ($password != '') 
 		{
-			user::update($email)
+			user::update($new_email)
 				->password($password)
 				->save();
 		}
