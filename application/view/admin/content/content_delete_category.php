@@ -18,7 +18,7 @@
 							<input type="hidden" value="" name="delete_user">
 						</fieldset>
 						<div class="actions">
-							<input type="submit" value="Delete User" class="btn medium primary" />
+							<input type="submit" value="Delete Category" class="btn medium primary" />
 						<a href="#" class="red">Cancel</a>
 						</div>
 					</form>

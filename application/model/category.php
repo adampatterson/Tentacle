@@ -60,7 +60,7 @@ class category_model
 			->where( 'id', '=', $id )
 			->execute();
 			
-		note::set('success','snippet_update','Snippet Updated!');
+		note::set('success','category_update','Category Updated!');
 	} 
 
 
