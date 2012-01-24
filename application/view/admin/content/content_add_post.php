@@ -29,6 +29,7 @@
 								<select name="status" id="status" size="1">
 									<option value="draft">Draft</option>
 									<option value="published">Published</option>
+									<option value="published-on">Published On</option>
 								</select>
 							</dd>
 							<dt>
@@ -106,9 +107,14 @@
 									<textarea name="content" id="cke" cols="40" rows="5" class="jquery_ckeditor" placeholder='Content'></textarea>
 								</p>
 							<? else: ?>
-								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/codemirror.css">
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/codemirror-compressed.js"></script>
-								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/theme/default.css">
+								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.2/lib/codemirror.css">
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/lib/codemirror.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/xml/xml.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/css/css.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/javascript/javascript.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/clike/clike.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/php/php.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/htmlmixed/htmlmixed.js"></script>
 								<style type="text/css">
 								      .CodeMirror-scroll {
 										height: auto;
@@ -127,8 +133,18 @@
 									.activeline {
 										background: #f0fcff !important;
 									}
+									.cm-tab:after {
+									        content: "\21e5";
+									        display: -moz-inline-block;
+									        display: -webkit-inline-block;
+									        display: inline-block;
+									        width: 0px;
+									        position: relative;
+									        overflow: visible;
+									        left: -1.4em;
+									        color: #aaa;
+									      }
 							    </style>
-							
 								<p><textarea id="code" name="content" cols="40" rows="5" placeholder='Content'></textarea></p>
 
 								<script>

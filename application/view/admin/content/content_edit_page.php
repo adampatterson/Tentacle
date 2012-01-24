@@ -30,6 +30,7 @@
 								<select name="status" id="status" size="1">
 									<option value="draft" <? if ($get_page->status == 'draft') echo 'selected' ?>>Draft</option>
 									<option value="published" <? if ($get_page->status == 'published') echo 'selected' ?>>Published</option>
+									<option value="published-on" <? if ($get_page->status == 'published-on') echo 'selected' ?>>Published On</option>
 								</select>
 							</dd>
 							<dt>
@@ -99,10 +100,15 @@
 									<textarea name="content" id="cke" cols="40" rows="5" class="jquery_ckeditor" placeholder='Content'><?= $get_page->content ?></textarea>
 								</p>
 							<? else: ?>
-								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/lib/codemirror.css">
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/codemirror-compressed.js"></script>
-								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/theme/default.css">
-							    <style type="text/css">
+								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.2/lib/codemirror.css">
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/lib/codemirror.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/xml/xml.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/css/css.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/javascript/javascript.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/clike/clike.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/php/php.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/htmlmixed/htmlmixed.js"></script>
+								<style type="text/css">
 								      .CodeMirror-scroll {
 										height: auto;
 										min-height: 450px;
@@ -120,6 +126,17 @@
 									.activeline {
 										background: #f0fcff !important;
 									}
+									.cm-tab:after {
+									        content: "\21e5";
+									        display: -moz-inline-block;
+									        display: -webkit-inline-block;
+									        display: inline-block;
+									        width: 0px;
+									        position: relative;
+									        overflow: visible;
+									        left: -1.4em;
+									        color: #aaa;
+									      }
 							    </style>
 
 								<p><textarea id="code" name="content" cols="40" rows="5" placeholder='Content' class='CodeMirror-scroll'><?= stripslashes($get_page->content) ?></textarea></p>
