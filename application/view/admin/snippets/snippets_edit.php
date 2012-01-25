@@ -7,7 +7,7 @@
       <p>Snippets are generally small pieces of content which are included in other pages or layouts.</p>
       <h3>Tag to use this snippet</h3>
       <p>Just replace <strong>snippet</strong> by the snippet name you want to include.</p>
-      <p>&lt;?php $this-&gt;includeSnippet('snippet'); ?&gt;</p>
+      <p>[snippet slug=<strong>slug_name</strong>]</p>
     </div>
 		<div id="post-body">
 			<div id="post-body-content">

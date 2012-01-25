@@ -7,7 +7,7 @@
       <p>Snippets are generally small pieces of content which are included in other pages or layouts.</p>
       <h3>Tag to use this snippet</h3>
       <p>Just replace <strong>snippet</strong> by the snippet name you want to include.</p>
-      <p>&lt;?php $this-&gt;includeSnippet('snippet'); ?&gt;</p>
+      <p>[snippet slug=<strong>slug_name</strong>]</p>
     </div>
     <div id="post-body">
       <div id="post-body-content">
@@ -44,7 +44,7 @@
 						<td><?= $snippet->slug; ?></td>
 						<td><?= $snippet->id; ?></td>
 						<td><?= $snippet->filter; ?></td>                
-						<td><a href="<?= ADMIN ?>snippets_edit/<?= $snippet->id ?>"><img src="<?=ADMIN_URL; ?>images/icons/16_edit.png" width="16" height="16" alt="Edit" /></a> <a href="<?= ADMIN ?>snippets_delete/<?= $snippet->id ?>"><img src="<?=ADMIN_URL; ?>images/icons/16_delete.png" width="16" height="16" alt="Delete" /></a></td>
+						<td><a href="<?= ADMIN ?>snippets_edit/<?= $snippet->id ?>" class="btn small">Edit</a> <a href="<?= ADMIN ?>snippets_delete/<?= $snippet->id ?>" class="btn small danger">Delete</a></td>
 					</tr>
 				<? endforeach; ?>
             </tbody>

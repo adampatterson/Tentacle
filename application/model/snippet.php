@@ -23,18 +23,30 @@ class snippet_model
 
 		if ( $id == '' ) {
 			$get_snippets = $snippets->select( '*' )
-				->order_by ( 'id', 'DESC' )
+				->order_by ( 'name', 'DESC' )
 				->execute();
 					
 			return $get_snippets;
 		} else {	
 			$get_snippets = $snippets->select( '*' )
 				->where ( 'id', '=', $id )
-				->order_by ( 'id', 'DESC' )
 				->execute();	
 			
 			return $get_snippets[0];
 		}		
+	}
+	
+	// Get by Slug
+	//----------------------------------------------------------------------------------------------
+	public function get_slug ( $slug='' )
+	{
+		$snippets = db ( 'snippet' );
+
+		$get_snippet = $snippets->select( '*' )
+			->where ( 'slug', '=', $slug )
+			->execute();
+				
+		return $get_snippet[0];
 	}
 	
 	// Update Snippet

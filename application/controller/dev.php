@@ -13,6 +13,23 @@ class dev_controller {
 	}
 	
 	
+	/**
+	* pull function
+	* 
+	* The pull function is triggered by GitHub's Post-Receive URL. 
+	* Every time a push to GitHub is done staging.tcms.me will be updated.
+	*
+	* @return string
+	* @author Adam Patterson
+	*/
+	public function pull()
+	{
+		load::helper ('git');
+		
+		echo pull();
+	}
+	
+	
 	public function sortable ()
 	{	
 		$page = load::model( 'page' );
@@ -45,21 +62,32 @@ class dev_controller {
 		return $page_flat_hiarchy;
 	}
 	
-	
-	/**
-	* pull function
-	* 
-	* The pull function is triggered by GitHub's Post-Receive URL. 
-	* Every time a push to GitHub is done staging.tcms.me will be updated.
-	*
-	* @return string
-	* @author Adam Patterson
-	*/
-	public function pull()
+	public function snippet (  )
 	{
-		load::helper ('git');
+		echo '<h1>Snippet Test</h1>';
+		echo '<p>Page ID <strong>101</strong></p>';
+		echo '<p>Snippet slug anything from the site.</p>';
 		
-		echo pull();
+		$page = load::model( 'page' );
+		$page = $page->get( '101' );
+		
+		load::helper ('shortcode');
+		
+		echo '<h2>Page Object</h2>';
+		clean_out($page->content);
+		
+		echo '<h2>Parsing</h2>';
+
+		function snippet_func($atts) {
+			$snippet = load::model ( 'snippet' );
+			$snippet_single = $snippet->get_slug( $atts['slug'] );
+			
+			return $snippet_single->content;
+			}
+		
+		add_shortcode('snippet', 'snippet_func');
+		
+		echo do_shortcode($page->content);
 	}
 
 	
