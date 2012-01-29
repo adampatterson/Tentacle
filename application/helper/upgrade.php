@@ -1,6 +1,11 @@
 <?
-// Source Wordpress 3.2.1
-function wp_upgrade() {
+
+public function get_db_version ()
+{
+	return load::model ( 'settings' )->get( 'db_version' );
+}
+
+function tentacle_upgrade() {
 	global $wp_current_db_version, $wp_db_version, $wpdb;
 
 	$wp_current_db_version = __get_option('db_version');
@@ -12,12 +17,8 @@ function wp_upgrade() {
 	if ( ! is_blog_installed() )
 		return;
 
-	wp_check_mysql_version();
-	wp_cache_flush();
-	pre_schema_upgrade();
-	make_db_current_silent();
+	get_db_version();
 	upgrade_all();
-	wp_cache_flush();
 }
 
 
@@ -25,9 +26,7 @@ function wp_upgrade() {
 /**
  * Functions to be called in install and upgrade scripts.
  *
- * {@internal Missing Long Description}}
- *
- * @since 1.0.1
+ * @since 1.0.0
  */
 function upgrade_all() {
 	global $wp_current_db_version, $wp_db_version, $wp_rewrite;
@@ -51,7 +50,7 @@ function upgrade_all() {
 
 
 /**
- * Execute changes made in WordPress 1.0.1.
+ * Execute changes made in Tentacle CMS 1.0.1.
  *
  * @since 1.0.1
  */
