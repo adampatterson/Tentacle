@@ -204,7 +204,7 @@ class page_model
     }
 
 
-	public function get_page_level ( $pages, $depth = 0 )
+	public function get_page_by_level ( $pages, $depth = 0 )
 	{
 		$page_list = array();
      
@@ -215,6 +215,20 @@ class page_model
         endforeach;
 
         return $page_list;
+	}
+	
+	
+	public function get_page_level ( $pages, $uri )
+	{
+		$page_list = array();
+     
+   		foreach ( (array) $pages as $page ):
+            if ( $page['uri'] == $uri ):
+                $page_level[] = (array)$page['level'];
+            endif;
+        endforeach;
+
+        return $page_level[0];
 	}
 
 
