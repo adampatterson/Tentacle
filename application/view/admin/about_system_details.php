@@ -36,6 +36,7 @@
 							<li>jQuery History</li>
 							<li>jQuery Validate</li>
 							<li>jQuery Input Tags</li>
+							<li>jQuery oEmbed</li>
 						</ul>
 					</div>
 				</div>
