@@ -228,7 +228,7 @@ class page_model
             endif;
         endforeach;
 
-        return $page_level[0];
+        return $page_level[0][0];
 	}
 
 
