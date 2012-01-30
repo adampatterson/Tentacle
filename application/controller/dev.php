@@ -129,7 +129,7 @@ class dev_controller {
 
 		</script>
 		
-		<textarea id="info" style="width:80%; margin-right:auto; margin-left: auto; height:200px;">http://www.youtube.com/watch?feature=player_embedded&v=pjyfMCTAqKU</textarea>
+		<textarea id="info" style="width:80%; margin-right:auto; margin-left: auto; height:200px;"></textarea>
 		<hr/>
 		<div id="out"></div>
 		
