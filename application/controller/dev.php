@@ -85,9 +85,56 @@ class dev_controller {
 			return $snippet_single->content;
 			}
 		
-		add_shortcode('snippet', 'snippet_func');
+		add_shortcode( 'snippet', 'snippet_func' );
 		
-		echo do_shortcode($page->content);
+		echo do_shortcode( $page->content );
+	}
+	
+	
+	public function oembed (  )
+	{
+		echo '<h1>oEmbed</h1>';
+		echo '<p>Page ID <strong>102</strong></p>';
+		
+		$page = load::model( 'page' );
+		$page = $page->get( '102' );
+		
+		?>
+		
+		<h2>Parsing</h2>
+			<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.min.js"></script>
+			<script type="text/javascript" src="<?=TENTACLE_JS; ?>oembed/jquery.oembed.js"></script>
+		<script>
+
+		 $(document).ready(function () {
+
+			$('#info').keyup(function(){
+				tagdata = [];
+				eventdata = [];
+				var scriptruns = [];
+				var text = $('#info').val();
+				text = $('<span>'+text+'</span>').text(); //strip html
+				text = text.replace(/(\s|>|^)(https?:[^\s<]*)/igm,'$1<div><a href="$2" class="oembed">$2</a></div>');
+				$('#out').empty().html('<span>'+text+'</span>');
+
+				$(".oembed").oembed(null,{
+					apikeys: {
+						etsy : 'd0jq4lmfi5bjbrxq2etulmjr',
+					}
+				});
+
+			}); 
+
+		 });
+
+		</script>
+		
+		<textarea id="info" style="width:80%; margin-right:auto; margin-left: auto; height:200px;">http://www.youtube.com/watch?feature=player_embedded&v=pjyfMCTAqKU</textarea>
+		<hr/>
+		<div id="out"></div>
+		
+		<?
+		
 	}
 
 	
@@ -95,32 +142,37 @@ class dev_controller {
 	{
 		echo '<h1>Navigation</h1>';
 		
-		$page = load::model( 'page' );
+		function nav_menu ( )
+		{
+			$page = load::model( 'page' );
 		
-		$pages = $page->get( );
-		$page_tree = $page->get_page_tree( $pages );
+			$pages = $page->get( );
+			$page_tree = $page->get_page_tree( $pages );
 
-		$page_object = $page->get_page_children( 0, $pages );
+			$page_object = $page->get_page_children( 0, $pages );
 
-		//clean_out( RecursiveWrite( (array)$page_tree["children"], 1 ) );
+			//clean_out( RecursiveWrite( (array)$page_tree["children"], 1 ) );
 		
-		//echo '<hr /><h3>Page Tree</h3>';	
-		//clean_out( $page_tree );
+			//echo '<hr /><h3>Page Tree</h3>';	
+			//clean_out( $page_tree );
+			
+			$get_page_level = $page->get_page_level( $page_object, 'portfolio/design/print' );
 
-		echo '<hr /><h3>get_page_level</h3>';
-		clean_out( $page->get_page_level( $page_object, 2 ) );
+			$get_page_by_level = $page->get_page_by_level( $page_object, $get_page_level );
 		
-		echo '<hr /><h3>get_home</h3>';
-		clean_out( $page->get_home( ) );
+			$get_home = $page->get_home( );
 		
-		echo '<hr /><h3>get_flat_page_hierarchy</h3>';
-		clean_out( $page->get_flat_page_hierarchy( $pages ) );
+			$get_flat_page_hierarchy = $page->get_flat_page_hierarchy( $pages );
 		
-		echo '<hr /><h3>get_descendant_ids ID3</h3>';
-		clean_out( $page->get_descendant_ids( 3 ) );
+			$get_descendant_ids = $page->get_descendant_ids( 3 );
 		
-		echo '<hr /><h3>get_page_children ID 0</h3>';
-		clean_out( $page->get_page_children( 0, $pages ) );
+			$page_children = $page->get_page_children( 0, $pages );
+	
+			return $get_page_by_level;
+		}
+		
+		print_r(nav_menu());
+		
 	}
 	
 	public function system ()
