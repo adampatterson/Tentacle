@@ -161,7 +161,7 @@ class dev_controller {
 			        echo "</li>\n", "<li>";
 			        $flag = false;
 			    }
-			    echo $row['title'];
+			    echo '<a href="'.BASE_URL.$row['uri'].'">'.$row['title'].'</a>';
 			    $flag = true;
 			}
 		}
