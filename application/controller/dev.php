@@ -142,19 +142,42 @@ class dev_controller {
 	{
 		echo '<h1>Navigation</h1>';
 		
+		function nav_generate ( $tree )
+		{
+			
+			$depth = -1;
+			$flag = false;
+			foreach ($tree as $row) {
+			    while ($row['level'] > $depth) {
+			        echo "<ul>\n", "<li>";
+			        $flag = false;
+			        $depth++;
+			    }
+			    while ($row['level'] < $depth) {
+			        echo "</li>\n", "</ul>\n";
+			        $depth--;
+			    }
+			    if ($flag) {
+			        echo "</li>\n", "<li>";
+			        $flag = false;
+			    }
+			    echo $row['title'];
+			    $flag = true;
+			}
+		}
+		
 		function nav_menu ( )
 		{
+			
 			$page = load::model( 'page' );
-		
 			$pages = $page->get( );
+			// Current URI to be used with .current page
+			$uri = URI;
+		
+
 			$page_tree = $page->get_page_tree( $pages );
 
 			$page_object = $page->get_page_children( 0, $pages );
-
-			//clean_out( RecursiveWrite( (array)$page_tree["children"], 1 ) );
-		
-			//echo '<hr /><h3>Page Tree</h3>';	
-			//clean_out( $page_tree );
 			
 			$get_page_level = $page->get_page_level( $page_object, 'portfolio/design/print' );
 
@@ -168,7 +191,9 @@ class dev_controller {
 		
 			$page_children = $page->get_page_children( 0, $pages );
 	
-			return $get_page_by_level;
+			nav_generate ( (array)$page_object );
+	
+			//return $page_object;
 		}
 		
 		print_r(nav_menu());
@@ -444,10 +469,9 @@ class dev_controller {
 	* @return void
 	* @author Adam Patterson
 	**/
-
 	public function define_test ($admin_var ="")
 	{
-		echo dirname($_SERVER['PHP_SELF']). '<br />';
+		//echo dirname($_SERVER['PHP_SELF']). '<br />';
 		
 		echo '<strong>CORE_ROOT:</strong> ' . CORE_ROOT . '<br />';
 		echo '<strong>APP_PATH:</strong> ' . APP_PATH . '<br />';
@@ -460,6 +484,7 @@ class dev_controller {
 
 		echo '<strong>BASE_URL:</strong> ' . BASE_URL . '<br />';
 		echo '<strong>BASE_URI:</strong> ' . BASE_URI . '<br />';
+		echo '<strong>URI:</strong> ' . URI . '<br />';
 
 		echo '<br /><strong>Admin variable:</strong> ' . $admin_var . '<br />';
 		

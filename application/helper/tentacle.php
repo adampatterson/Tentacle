@@ -74,8 +74,34 @@ class tentacle
             return FALSE;
         } // else
     } // END render	
+
+	// Get the requested URL, parse it, then clean it up
+	// ---------------------------------------------------------------------------
+	public static function get_request_url()
+	{	
+		// Get the filename of the currently executing script relative to docroot
+		$url = (empty($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : '/';
+		
+		// Get the current script name (eg. /index.php)
+		$script_name = (isset($_SERVER['SCRIPT_NAME'])) ? $_SERVER['SCRIPT_NAME'] : $url;
+		
+		// Parse URL, check for PATH_INFO and ORIG_PATH_INFO server params respectively
+		$url = (0 !== stripos($url, $script_name)) ? $url : substr($url, strlen($script_name));
+		$url = (empty($_SERVER['PATH_INFO'])) ? $url : $_SERVER['PATH_INFO'];
+		$url = (empty($_SERVER['ORIG_PATH_INFO'])) ? $url : $_SERVER['ORIG_PATH_INFO'];
+		
+		// Check for GET __dingo_page
+		$url = (input::get('__dingo_page')) ? input::get('__dingo_page') : $url;
+		
+		//Tidy up the URL by removing trailing slashes
+		$url = (!empty($url)) ? rtrim($url, '/') : '/';
+		
+		return $url;
+	}
+	
 } // END class
 
+define('URI'			, tentacle::get_request_url() );
 
 /**
 * For use with hierarchal data
