@@ -1,4 +1,16 @@
 <?php 
+load::helper ('settings');
+
+
+// Tentacle Globals
+// ---------------------------------------------------------------------------
+
+/**
+ * Create a URI ( anything after the domain/folder/ )
+ */
+define('URI'			, tentacle::get_request_url() );
+define ('ACTIVE_THEME' , get_option( 'appearance' ) );
+
 
 /**
 * tentacle class
@@ -59,7 +71,7 @@ class tentacle
         // If theme does not exist display error
         if(!file_exists(THEMES_DIR.ACTIVE_THEME."/$theme.php"))
         {
-            dingo_error(E_USER_WARNING,'The requested theme ('.THEMES_DIR.$theme_folder."/$theme.php) could not be found.");
+            dingo_error(E_USER_WARNING,'The requested theme ('.THEMES_DIR.ACTIVE_THEME."/$theme.php) could not be found.");
             return FALSE;
         } // if
         else
@@ -101,7 +113,6 @@ class tentacle
 	
 } // END class
 
-define('URI'			, tentacle::get_request_url() );
 
 /**
 * For use with hierarchal data
