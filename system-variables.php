@@ -62,8 +62,6 @@ define('TENTACLE_LIB'  , CORE_ROOT.'/tentacle/admin/lib/');
 define('TENTACLE_JS'   , ADMIN_URL.'js/');
 define('TENTACLE_CSS'  , ADMIN_URL.'css/');
 
-define ('ACTIVE_THEME' , '/marketing');
-
 // http://code.google.com/p/minify/
 define('MINIFY'        , ADMIN_URL.'lib/min/');
 
@@ -72,8 +70,8 @@ define('GRAVATAR_SIZE' , "60" );
 
 // Folders
 define('STORAGE_DIR'   , TENTACLE_URI.'/storage');
-define('THEMES_DIR'    , TENTACLE_URI.'/themes');
-define('THEMES_URL'    , TENTACLE_URL.'/themes');
+define('THEMES_DIR'    , TENTACLE_URI.'/themes/');
+define('THEMES_URL'    , TENTACLE_URL.'themes');
 define('ADMIN_DIR'     , TENTACLE_URI.'/admin');
 define('ADMIN_BUNDLE'  , ADMIN_URI.'bundles/');
 define('IMAGE_DIR'     , STORAGE_DIR.'/images/');
