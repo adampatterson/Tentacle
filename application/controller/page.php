@@ -2,24 +2,19 @@
 
 class page_controller {
         
-    public function index($page_name = ""){
-        
+    public function index( $page_name = "" ){
+
 		load::library ('file');
 		$scaffold = new Scaffold ();
-		tentacle::render ('home', array ('scaffold' => $scaffold));
+		
+		if ( URI == ''):
+			$uri = 'index';
+		else:
+			$uri = URI;
+		endif;
+		
+		tentacle::render ($uri, array ('scaffold' => $scaffold));
                       
-        }// END index
-    
-    public function article($page_name = "", $subpage_name = "", $subpage_name2 = ""){
-        
-        echo '<h1>Page article controller</h1>';
-        
-        $data = $page_name;
-        $data2 = $subpage_name;
-        $data3 = $subpage_name2;
-		  
-		// look throught the URL data and attach a template theme to the view.
-        load::view('front_view', array( 'data'=>$data, 'data2'=>$data2, 'data3'=>$data3 ));   
         }// END index
     
 } // END Class page

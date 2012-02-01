@@ -3,6 +3,11 @@ class page_model
 {	
 	// Get Page
 	//----------------------------------------------------------------------------------------------
+	/**
+	 * Return all pages or one page by ID
+	 *
+	 * @author Adam Patterson
+	 */
 	public function get ( $id='' )
 	{
 		$pages = db ( 'posts' );
@@ -27,34 +32,35 @@ class page_model
 	
 	// Get Page by Status
 	//----------------------------------------------------------------------------------------------
-	public function get_by_status ( $id='', $status='' )
+	/**
+	 * @todo Test outcomes of this
+	 */
+	public function get_by_status ( $status='' )
 	{
 		$pages = db ( 'posts' );
 		
-		if ( $id == '' ) {
+		if ( $status != '' ) {
 			$get_pages = $pages->select( '*' )
 				->where ( 'type', '=', 'page' )
 			 	->clause('AND')
-				->where ( 'status', '=', 'published' )
+				->where ( 'status', '=', $status )
 				->order_by ( 'menu_order', 'ASC' )
 				->execute();
 					
 			return $get_pages;
 		} else {	
-			$get_pages = $pages->select( '*' )
-				->where ( 'id', '=', $id )
-				->clause( 'AND' )
-				->where ( 'type', '=', 'page' )
-				->order_by ( 'id', 'DESC' )
-				->execute();	
-
-			return $get_pages[0];
+			return false;
 		}	
 	}
 	
 
 	// Get Page Meta
 	//----------------------------------------------------------------------------------------------
+	/**
+	 * Get the meta date for a page, this would be any scaffold data or page options.
+	 *
+	 * @author Adam Patterson
+	 */
 	public function get_page_meta ( $id='' )
 	{		
 		$page_meta = db ( 'posts_meta' );
@@ -68,7 +74,13 @@ class page_model
 		return array_to_object( $clean_page_meta );
 	}
 	
-	
+	/**
+	 * Get the URI of a parent page
+	 *
+	 * @param string $parent_id 
+	 * @return void
+	 * @author Adam Patterson
+	 */
 	public function get_parent_uri( $parent_id )
 	{
 		$pages = db ( 'posts' );
@@ -87,6 +99,16 @@ class page_model
 	}
 	
 	
+	/**
+	 * Get an object based on its URI
+	 *
+	 * @param string $uri 
+	 * @return void
+	 * @author Adam Patterson
+	 * 
+	 * @todo If the URI query returns nothing we should post a 404
+	 * 
+	 */
 	public function get_by_uri( $uri )
 	{
 		$pages = db ( 'posts' );
@@ -102,7 +124,12 @@ class page_model
 		endif;
 	}
 	
-
+	
+	/**
+	 * Return the home Hobject
+	 *
+	 * @author Adam Patterson
+	 */
 	public function get_home( )
 	{
 		$pages = db ( 'posts' );
@@ -114,11 +141,18 @@ class page_model
 			return $home;
 	}
 	
+	
 	public function get_breadcrumbs( )
 	{
 		
 	}
+	
 
+	/**
+	 * Return all ID's under a parent id.
+	 *
+	 * @author Adam Patterson
+	 */
 	public function get_descendant_ids( $id, $id_array = array() )
 	{
 		$id_array[] = $id;
@@ -145,7 +179,12 @@ class page_model
 		return $id_array;
 	}
 	
-
+	
+	/**
+	 * Return a hierarchical page tree
+	 *
+	 * @author Adam Patterson
+	 */
 	public function get_page_tree ( $page_dirty )
 	{	
 		$pages = array();		
@@ -185,6 +224,15 @@ class page_model
 	}
 	
 	
+	/**
+	* Return the children under a parent ID
+	*
+	* @author Adam Patterson
+	*
+	* @param int $page_id 
+	*
+	* @return Object
+	*/
 	public function &get_page_children( $page_id, $pages, $level = 0 ) 
 	{
         $page_list = array();
@@ -251,7 +299,7 @@ class page_model
 		return $result;
 	}
 
-
+	
 	public function _page_traverse_name( $page_id, &$children, &$result )
 	{
 		if ( isset( $children[ $page_id ] ) ){
@@ -265,6 +313,11 @@ class page_model
 
 	// Update Page
 	//----------------------------------------------------------------------------------------------	
+	/**
+	 * Update a record
+	 *
+	 * @author Adam Patterson
+	 */
 	public function update ( $id ) 
 	{
 		// create a new version of the content.
@@ -332,7 +385,11 @@ class page_model
 		note::set('success','page_update','Page Updated!');		
 	}
 	
-	
+	/**
+	 * Mark a record as deleted
+	 *
+	 * @author Adam Patterson
+	 */
 	public function soft_delete ( $id='' ) 
 	{
 		$page_meta      = db('posts_meta');
@@ -347,6 +404,11 @@ class page_model
 	}
 	
 	
+	/**
+	 * Is the record marked as deleted?
+	 *
+	 * @author Adam Patterson
+	 */
 	public function is_delete ( $id='' ) 
 	{
 		$page	      = db('posts_meta');
@@ -365,7 +427,12 @@ class page_model
 	
 
 	// Add Page
-	//----------------------------------------------------------------------------------------------	
+	//----------------------------------------------------------------------------------------------
+	/**
+	 * Add a record
+	 *
+	 * @author Adam Patterson
+	 */	
 	public function add ( ) 
 	{
 		$title         = $_POST['title'];

@@ -1,5 +1,11 @@
 <?php if(!defined('DINGO')){die('External Access to File Denied');}
 
+route::set('(.*)',array(
+    'controller'=>'page',
+    'function'=>'index',
+	));
+
+/*
 // page route
 route::set('([-_a-zA-Z0-9]+)',array(
     'controller'=>'page',
@@ -20,20 +26,33 @@ route::set('([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
     'function'=>'article',
     'arguments'=>array('$1','$2','$3')
 	));
+*/
 
 // blog route
+route::set('blog',array(
+    'controller'=>'blog',
+    'function'=>'index'
+	));
+
 route::set('blog/([-_a-zA-Z0-9]+)',array(
     'controller'=>'blog',
     'function'=>'index',
     'arguments'=>array('$1')
 	));
 
+
 // category route
+route::set('category',array(
+    'controller'=>'category',
+    'function'=>'index'
+	));
+
 route::set('category/([-_a-zA-Z0-9]+)',array(
     'controller'=>'category',
     'function'=>'index',
     'arguments'=>array('$1')
 	));
+
 
 // comment route
 route::set('comment/([-_a-zA-Z0-9]+)',array(
@@ -42,19 +61,32 @@ route::set('comment/([-_a-zA-Z0-9]+)',array(
     'arguments'=>array('$1')
 	));
 
+
 // tag route
+route::set('tag',array(
+    'controller'=>'tag',
+    'function'=>'index'
+	));
+	
 route::set('tag/([-_a-zA-Z0-9]+)',array(
     'controller'=>'tag',
     'function'=>'index',
     'arguments'=>array('$1')
 	));
 
+
 // file route
+route::set('file',array(
+    'controller'=>'file',
+    'function'=>'index'
+	));
+	
 route::set('file/([-_a-zA-Z0-9]+)',array(
     'controller'=>'file',
     'function'=>'index',
     'arguments'=>array('$1')
 	));
+
 
 // admin route
 route::set('admin/([-_a-zA-Z0-9]+)',array(
@@ -109,9 +141,16 @@ route::set('dev',array(
     'controller'=>'dev',
     'function'=>'index'
 	));
+
 	
 // default route
+
+
+
+
 route::set('default_route','page/index');
+
+
 
 /*
  * From Dingo

@@ -78,6 +78,7 @@ class admin_controller {
 		$get_page = $page->get( $page_id );
 		
 		$pages = $page->get( );
+		
 		$page_hiarchy = $page->get_page_children( 0, $pages );
 		
 		$get_page_meta = $page->get_page_meta( $page_id );
@@ -85,19 +86,25 @@ class admin_controller {
 		load::view ('admin/content/content_edit_page', array(  'get_page'=>$get_page, 'get_page_meta'=>$get_page_meta, 'pages' => $page_hiarchy, 'page_id' => $page_id ) );		
 	}
 
-	public function content_manage_pages ()
+	public function content_manage_pages ( $status = '' )
 	{
 		tentacle::valid_user();
 		
 		$page = load::model( 'page' );
-		$pages = $page->get( );
+		
+		if ( $status ):
+			$pages = $page->get_by_status( $status );
+		else:
+			$pages = $page->get( );
+		endif;
+		
 		
 		$page_hiarchy = $page->get_page_children( 0, $pages );
 		
 		$user = load::model('user'); 
 		$options = load::model ( 'settings' );
-		
-		load::view ('admin/content/content_manage_pages', array( 'pages'=>$page_hiarchy, 'user'=>$user ) );	
+
+		load::view ('admin/content/content_manage_pages', array( 'pages'=>$page_hiarchy, 'user'=>$user ) );
 	}
 
 	public function content_add_post ()
