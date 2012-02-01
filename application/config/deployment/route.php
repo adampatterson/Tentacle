@@ -94,14 +94,12 @@ route::set('admin/([-_a-zA-Z0-9]+)',array(
     'function'=>'$1'
 	));
 	
-// admin route
 route::set('admin/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
     'controller'=>'admin',
     'function'=>'$1',
     'arguments'=>array('$2')
 	));
 
-// admin index
 route::set('admin',array(
     'controller'=>'admin',
     'function'=>'index'
@@ -124,7 +122,7 @@ route::set('action/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
 	'arguments'=>array('$2')
 	));
 	
-route::set('action/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)//([-_a-zA-Z0-9]+)',array(
+route::set('action/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
     'controller'=>'action',
     'function'=>'$1',
 	'arguments'=>array('$2','$3')
