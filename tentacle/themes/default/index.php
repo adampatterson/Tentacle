@@ -14,6 +14,6 @@ if(!defined('SCAFFOLD')):
 		);
 	}// END if
 ?>
-<h1>Index</h1>
+<h1>Default Theme - Index</h1>
 
 <? endif;?>
