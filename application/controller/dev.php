@@ -26,7 +26,9 @@ class dev_controller {
 	{
 		load::helper ('git');
 		
+		echo '<pre>';
 		echo pull();
+		echo '</pre>';
 	}
 	
 	
