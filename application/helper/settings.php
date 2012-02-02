@@ -18,4 +18,3 @@ function get_option( $option, $default = false )
 		return false;
 	endif;
 }
-

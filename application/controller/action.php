@@ -30,7 +30,7 @@ class action_controller
 	    user::login($username, $password);
 
 	    if(user::valid()) {
-	        
+
 			if ($history != '') {
 				url::redirect($history);
 			} else {
@@ -245,7 +245,7 @@ class action_controller
 	{
 		tentacle::valid_user();
 
-		$user 				= load::model('user');
+		$user 				= load::model( 'user' );
 		$user_single 		= $user->update();
 		
 		$history = input::post ( 'history' );
@@ -279,7 +279,7 @@ class action_controller
 	{	
 		tentacle::valid_user();
 			
-		$snippet = load::model('snippet');
+		$snippet = load::model( 'snippet' );
 		$snippet_single = $snippet->add( );
 
 		//$history = input::post ( 'history' );
@@ -290,7 +290,7 @@ class action_controller
 	{
 		tentacle::valid_user();
 		
-		$snippet = load::model('snippet');
+		$snippet = load::model( 'snippet' );
 		$snippet_single = $snippet->update( $id  );
 		
 		
@@ -302,7 +302,7 @@ class action_controller
 	{
 		tentacle::valid_user();
 		
-		$snippet = load::model('snippet');
+		$snippet = load::model( 'snippet' );
 		$snippet_delete = $snippet->delete( $id );
 		
 		url::redirect('admin/snippets_manage/');
