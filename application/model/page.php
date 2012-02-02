@@ -118,7 +118,7 @@ class page_model
 			->execute();
 		
 		if ( $uri ):
-			return $get_parent_uri[0]->uri;
+			return $get_parent_uri[0];
 		else:
 			return false;
 		endif;

@@ -47,7 +47,7 @@ function nav_menu ( )
 	$page_tree = $page->get_page_tree( $pages );
 
 	$page_object = $page->get_page_children( 0, $pages );
-	
+	/*
 	$get_page_level = $page->get_page_level( $page_object, 'portfolio/design/print' );
 
 	$get_page_by_level = $page->get_page_by_level( $page_object, $get_page_level );
@@ -59,7 +59,7 @@ function nav_menu ( )
 	$get_descendant_ids = $page->get_descendant_ids( 3 );
 
 	$page_children = $page->get_page_children( 0, $pages );
-
+	*/
 	// Generate the HTML output.
 	nav_generate ( (array)$page_object );
 

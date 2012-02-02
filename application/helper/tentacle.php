@@ -8,9 +8,9 @@ load::helper ('settings');
 /**
  * Create a URI ( anything after the domain/folder/ )
  */
-define('URI'			, tentacle::get_request_url() );
+define ('URI'			, tentacle::get_request_url() );
 define ('ACTIVE_THEME' , get_option( 'appearance' ) );
-
+define ( 'PATH'			, THEMES_URL.'/'.ACTIVE_THEME );
 
 /**
 * tentacle class
@@ -68,11 +68,22 @@ class tentacle
 	**/   
 	public static function render( $theme, $data = NULL )
     {
+		
+		if ( $theme == 'default' ):
+			$theme = 'index';
+		endif;
+		
         // If theme does not exist display error
         if(!file_exists(THEMES_DIR.ACTIVE_THEME."/$theme.php"))
         {
-            dingo_error(E_USER_WARNING,'The requested theme ('.THEMES_DIR.ACTIVE_THEME."/$theme.php) could not be found.");
-            return FALSE;
+            
+			require(THEMES_DIR.ACTIVE_THEME."/404.php"); 
+			           
+			echo '<!--';
+			dingo_error(E_USER_WARNING,'The requested theme ('.THEMES_DIR.ACTIVE_THEME."/$theme.php) could not be found.");
+			echo '-->';
+					
+			return FALSE;
         } // if
         else
         {
