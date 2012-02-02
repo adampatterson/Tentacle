@@ -8,8 +8,9 @@ Version: 1.0
 License: GNU General Public License
 License URI: license.txt
 */
-//if(!defined('SCAFFOLD'))
+if( !defined( 'SCAFFOLD' ) ):
 ?>
+<? //load_part('header',array('title'=>'Welcome to Tentacle','assets'=>'marketing')); ?>
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
@@ -60,21 +61,22 @@ License URI: license.txt
           </div>
         </div><!--/span-->
       </div><!--/row-->
+	<footer>
+	    <p><a href="http://tentaclecms.com"><img src="<?= PATH ?>/images/tentacle_logo_footer.png" alt="Tentacle" /></a></p>
+	  </footer>
 
-      <footer>
-        <p><a href="http://tentaclecms.com"><img src="<?= PATH ?>/images/tentacle_logo_footer.png" alt="Tentacle" /></a></p>
-      </footer>
+	</div> <!-- /container -->
 
-    </div> <!-- /container -->
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+	<!-- Le javascript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-    <script src="<?= PATH ?>/js/bootstrap.js"></script>
-    <script src="<?= PATH ?>/js/application.js"></script>
+	<script src="<?= PATH ?>/js/bootstrap.js"></script>
+	<script src="<?= PATH ?>/js/application.js"></script>
 	<!--
 		<? clean_out($data); ?>
 	 -->
-  </body>
+	</body>
 </html>
+<? //load_part('footer'); ?> 
+<? endif; ?>
