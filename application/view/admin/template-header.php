@@ -15,9 +15,15 @@
 			<div class="topbar">
 			  <div class="fill">
 				<div class="container-full">
+					<a class="brand" href="<?= ADMIN ?>">
+					  <?= get_option('blogname'); ?>
+					</a>
 				<ul class="nav" data-dropdown="dropdown">
-					<li class="<? if (
+<?
+/*					<li class="<? if (
 				    CURRENT_PAGE == 'admin/dashboard') echo 'active'; ?>"><a href="<?= ADMIN ?>">Dashboard</a></li>
+*/
+?>
 					<li class="dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Content</a>
 					  <ul class="dropdown-menu">
 						<li class="<? current_page('admin/content_add_page'); ?>"><a href="<?= ADMIN ?>content_add_page/">Write a new page</a></li>
