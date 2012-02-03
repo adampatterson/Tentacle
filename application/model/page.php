@@ -1,6 +1,7 @@
 <?
 class page_model  
 {	
+	
 	// Get Page
 	//----------------------------------------------------------------------------------------------
 	/**
@@ -12,12 +13,19 @@ class page_model
 	{
 		$pages = db ( 'posts' );
 		
-		if ( $id == '' ) {
+		if( defined( 'FRONT' ) ) {
 			$get_pages = $pages->select( '*' )
 				->where ( 'type', '=', 'page' )
 				->order_by ( 'menu_order', 'ASC' )
 				->clause ('AND')
 				->where ( 'status', '=', 'published' )
+				->execute();
+					
+			return $get_pages;
+		} elseif ( $id == '' ) {
+			$get_pages = $pages->select( '*' )
+				->where ( 'type', '=', 'page' )
+				->order_by ( 'menu_order', 'ASC' )
 				->execute();
 					
 			return $get_pages;

@@ -1,9 +1,9 @@
 <?php
 class admin_controller {
-
+	
 	public function __construct() 
 	{  
-		//	echo "string";
+		
 	}
 	
 	public function index ()

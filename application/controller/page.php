@@ -1,8 +1,11 @@
 <?php
 
 class page_controller {
+	
         
     public function index( $uri = "" ){
+
+		define ( 'FRONT'		,'true' );
 
 		load::library ('file');
 		$scaffold = new Scaffold ();
