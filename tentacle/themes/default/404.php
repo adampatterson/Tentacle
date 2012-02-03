@@ -1,20 +1,8 @@
-<?
- /*
-Name: Index Page
-URI: http://tcms.me/
-Description: This is the Tentacle default theme.
-Author: Tentacle
-Version: 1.0
-License: GNU General Public License
-License URI: license.txt
-*/
-//if(!defined('SCAFFOLD'))
-?>
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
 <meta charset="utf-8"> 
-<title><?= $data->title; ?></title>
+<title>404</title>
 </head>
 <body>
 
@@ -68,8 +56,5 @@ License URI: license.txt
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
     <script src="<?= PATH ?>/js/bootstrap.js"></script>
     <script src="<?= PATH ?>/js/application.js"></script>
-	<!--
-		<? clean_out($data); ?>
-	 -->
   </body>
 </html>
