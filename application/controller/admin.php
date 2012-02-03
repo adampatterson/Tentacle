@@ -147,7 +147,7 @@ class admin_controller {
 		
 		load::view ('admin/content/content_manage_categories', array( 'categories'=>$categories ) );	
 	}
-	
+
 	public function content_edit_category ( $id = '' )
 	{
 		tentacle::valid_user();
