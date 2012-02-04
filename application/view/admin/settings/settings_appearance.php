@@ -7,12 +7,12 @@
 				<? foreach (get_themes() as $theme):  
 					if ($theme->theme_id != 'empty'): ?>
 					<li><a href="#">
-							<img src="<?= $theme->screenshot ?>" width="210" height="150" alt="<?= $theme->theme_name ?>" class="thumbnail" />
+							<a href="<?= BASE_URL ?>action/update_settings/appearance/<?= $theme->theme_id ?>"><img src="<?= $theme->screenshot ?>" width="210" height="150" alt="<?= $theme->theme_name ?>" class="thumbnail" /></a>
 						</a>
 						<strong><?= $theme->theme_name ?></strong> <? current_theme($theme->theme_id); ?>
 						<div class="well">
 							<a class="btn small primary" href="<?= BASE_URL ?>action/update_settings/appearance/<?= $theme->theme_id ?>">Activate</a>
-							<a class="btn small" href="#">Preview</a>
+							<!--<a class="btn small" href="#">Preview</a>-->
 						</div>
 						<? foreach (get_settings($theme->theme_id) as $setting): ?>
 							<p><?= $setting->theme_description; ?></p>

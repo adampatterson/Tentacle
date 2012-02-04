@@ -15,15 +15,12 @@
 			<div class="topbar">
 			  <div class="fill">
 				<div class="container-full">
-					<a class="brand" href="<?= ADMIN ?>">
+					<a class="brand" href="<?= BASE_URL ?>">
 					  <?= get_option('blogname'); ?>
 					</a>
 				<ul class="nav" data-dropdown="dropdown">
-<?
-/*					<li class="<? if (
+					<li class="<? if (
 				    CURRENT_PAGE == 'admin/dashboard') echo 'active'; ?>"><a href="<?= ADMIN ?>">Dashboard</a></li>
-*/
-?>
 					<li class="dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Content</a>
 					  <ul class="dropdown-menu">
 						<li class="<? current_page('admin/content_add_page'); ?>"><a href="<?= ADMIN ?>content_add_page/">Write a new page</a></li>
@@ -74,12 +71,8 @@
 						<li class="<? current_page('admin/settings_seo'); ?>"><a href="<?= ADMIN ?>settings_seo/">SEO</a></li>
 						<li class="<? current_page('admin/settings_writing'); ?>"><a href="<?= ADMIN ?>settings_writing/">Writing</a></li>
 						<li class="<? current_page('admin/settings_reading'); ?>"><a href="<?= ADMIN ?>settings_reading/">Reading</a></li>
-*/
-						?>
 						<li class="<? current_page('admin/settings_comments'); ?>"><a href="<?= ADMIN ?>settings_comments/">Comments</a></li>
 						<li class="<? current_page('admin/settings_media'); ?>"><a href="<?= ADMIN ?>settings_media/">Media</a></li>
-						<?
-/*
 						<li class="<? current_page('admin/settings_privacy'); ?>"><a href="<?= ADMIN ?>settings_privacy/">Privacy</a></li>
 						<li class="<? current_page('admin/settings_export'); ?>"><a href="<?= ADMIN ?>settings_templates/">Notification Templates</a></li>
 						<li class="<? current_page('admin/settings_import'); ?>"><a href="<?= ADMIN ?>settings_import/">Import</a></li>

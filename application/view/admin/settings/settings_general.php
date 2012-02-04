@@ -13,6 +13,7 @@
 							<input type="text" value="<?= get_option('blogname'); ?>" name="blogname">
 						</div>
 					</div>
+<? /*
 					<div class="clearfix">
 						<label for="custom_logo">Custom Logo</label>
 						<div class="input">
@@ -25,6 +26,7 @@
 							<input type="file" name="custom_favicon">
 						</div>
 					</div>
+*/ ?>
 					<div class="clearfix">
 						<label for="blogdescription">Tagline</label>
 						<div class="input">
@@ -32,12 +34,15 @@
 							<span class="help-block">In a few words, explain what this site is about.</span>
 						</div>
 					</div>
+					
+<? /*
 					<div class="clearfix">
 						<label for="siteurl">Base (URL)</label>
 						<div class="input">
 							<input type="text" class="code" value="<?= get_option('siteurl'); ?>" name="siteurl">
 						</div>
 					</div>
+*/ ?>
 					<div class="clearfix">
 						<label for="admin_email">E-mail address</label>
 						<div class="input">
@@ -54,13 +59,14 @@
 						<div class="input">
 							<select class="postform" id="default_category" name="default_category">
 								<? foreach ($categories as $category): ?>
-									<option id="category-<?= $category->id  ?>" value="<?= $category->id  ?>"> <?= $category->name  ?></option>
+									<option id="category-<?= $category->id  ?>" value="<?= $category->id  ?>" <? selected( get_option('default_category'), $category->id  ); ?>> <?= $category->name  ?></option>
 								<? endforeach;?>
 							</select>
 						</div>
 					</div>
 				</fieldset>
-				<!--<fieldset>
+<? /*
+				<fieldset>
 					<div class="clearfix">
 						<label>Membership</label>
 						<div class="input">
@@ -167,8 +173,61 @@
 							</select>
 						</div>
 					</div>
-				</fieldset>-->
+				</fieldset>
+*/ ?>
 			</div>
+		</div>
+		<div class="one-full">
+			<br />
+			<h2>Image sizes</h2>
+			<hr />
+			<p>
+				The sizes listed below determine the maximum dimensions in pixels to use when inserting an image into the body of a post.
+			</p>
+			<fieldset>
+				<div class="clearfix">
+					<label>Thumbnail size</label>
+					<div class="input">
+						<div class="inline-inputs">
+							<input type="text" value="<?= get_option('image_thumb_size_w'); ?>" name="image_thumb_size_w" id="thumbnail_size_w" class='span2' />
+							x
+							<input type="text" value="<?= get_option('image_thumb_size_h'); ?>" name="image_thumb_size_h" id="thumbnail_size_h" class='span2' />
+						</div>
+					</div>
+<? /*
+					<div class="input">
+						<ul class="inputs-list">
+							<li>
+								<label>
+									<input type="hidden" value="0" name="thumbnail_crop">
+									<input type="checkbox" value="1" name="thumbnail_crop">
+									<span>Crop thumbnail to exact dimensions (normally thumbnails are proportional)</span> </label>
+							</li>
+						</ul>
+					</div>
+*/ ?>
+				</div>
+				<div class="clearfix">
+					<label>Medium size</label>
+					<div class="input">
+						<div class="inline-inputs">
+							<input type="text" value="<?= get_option('image_medium_size_w'); ?>" name="image_medium_size_w" id="medium_size_w" class='span2' />
+							x
+							<input type="text" value="<?= get_option('image_medium_size_h'); ?>" name="image_medium_size_h" id="medium_size_h" class='span2' />
+						</div>
+					</div>
+				</div>
+				<div class="clearfix">
+					<label>Large size</label>
+					<div class="input">
+						<div class="inline-inputs">
+							<input type="text" value="<?= get_option('image_large_size_w'); ?>" name="image_large_size_w" class='span2' />
+							x
+							<input type="text" value="<?= get_option('image_large_size_h'); ?>" name="image_large_size_h" class='span2' />
+						</div>
+					</div>
+				</div>
+			</fieldset>
 		</div>
 		<div class="one-full">
 			<div class="actions">

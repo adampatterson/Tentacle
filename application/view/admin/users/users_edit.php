@@ -70,6 +70,7 @@
 												<span class="help-block">Hint: The password should be at least seven characters long. To make it stronger, use upper and lower case letters, numbers and symbols like ! " ? $ % ^ &amp; ).</span>
 											</div>
 										</div>
+<? /*
 										<div class="clearfix">
 											<label for="type" class="alignleft">Role</label>
 											<div class="input">
@@ -82,6 +83,7 @@
 												</select>
 											</div>
 										</div>
+*/ ?>
 										<div class="clearfix">
 											<label for="editor" class="alignleft">Editor</label>
 											<div class="input">

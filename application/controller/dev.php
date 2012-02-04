@@ -173,13 +173,11 @@ class dev_controller {
 			var_dump($argv);	
 	}
 
-      public function less () {
 
-          require (ADMIN_URI.'lib/lessphp/lissc.inc.php');
-
-
-
-      }
+	public function less () 
+	{
+		require (ADMIN_URI.'lib/lessphp/lessc.inc.php');
+	}
 
 	
 	/**

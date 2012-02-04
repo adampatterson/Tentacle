@@ -26,7 +26,7 @@
 			<thead class="table-heading">
 				<tr>
 					<th>
-					<input type="checkbox" class="check-all" />
+					<!-- <input type="checkbox" class="check-all" /> -->
 					Title</th>
 					<th>Category</th>
 					<th>&nbsp;</th>
@@ -42,7 +42,7 @@
 				?>
 				<tr>
 					<td>
-					<input type="checkbox" />
+					<!-- <input type="checkbox" /> -->
 					<img src="<?=ADMIN_URL;?>images/icons/24_paper.png" width="24" height="24" alt="Page" /><strong class="title"><?= $post -> title;?></strong></td>
 					<td>
 						<?
@@ -50,11 +50,11 @@
 				            	 <a href="#<?=$relation->slug ?>"><?= $relation->name ?></a>
 				        <? endforeach; ?>
 					</td>
-					<td ><img src="<?=ADMIN_URL; ?>images/icons/16_note-dis.png" width="16" height="16" alt="Notes" /></td>
+					<td ><!--<img src="<?=ADMIN_URL; ?>images/icons/16_note-dis.png" width="16" height="16" alt="Notes" />--></td>
 					<td ><?= $user_meta -> first_name;?> <?= $user_meta -> last_name;?></td>
 					<td ><?= $post -> id;?></td>
 					<td><?= $post -> status;?></td>
-					<td><a href="<?= ADMIN ?>content_update_post/<?= $post -> id;?>" class="btn small">Edit</a> <a href="#" class="btn small danger">Delete</a></td>
+					<td><a href="<?= ADMIN ?>content_edit_post/<?= $post -> id;?>" class="btn small">Edit</a> <a href="#" class="btn small danger">Delete</a></td>
 				</tr>
 				<? endforeach;?>
 			</tbody>
