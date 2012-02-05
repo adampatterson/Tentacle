@@ -35,6 +35,8 @@ class install_controller
 		// CREATE DATABASE database_name
 
 		$sql = load::model ( 'sql' );
+		
+		$sql->get_100();
 						
 		load::view ('install/step5');
 	}

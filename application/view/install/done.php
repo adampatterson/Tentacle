@@ -22,7 +22,10 @@
 				<li>Freedoms</li>
 				<li>Feedback</li>
 				<li>Credits</li>
-			</ul>		
+			</ul>
+			<div class="alert-actions">
+			    <a class="btn large success" href="<?= BASE_URL ?>admin/">Log in</a>
+			</div>
 		</div>
 		<div class="alert-message error">
 		  <p>Make sure to delete the <strong>Setup</strong> folder!</p>
