@@ -1,4 +1,4 @@
-<? load::view('template-header', array('title' => '- Step 3'));?>
+<? load::view('install/template-header', array('title' => '- Step 3'));?>
   <div class="content">
     <div class="page-header">
       <h1>Install <small>Step 3</small></h1>
@@ -56,4 +56,4 @@
       </div>
     </div>
   </div>
-<? load::view('template-footer');?>
+<? load::view('install/template-footer');?>

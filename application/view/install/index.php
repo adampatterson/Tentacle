@@ -1,4 +1,4 @@
-<? load::view('template-header', array('title' => '- License'));?>
+<? load::view('install/template-header', array('title' => '- License'));?>
   <div class="content">
     <div class="page-header">
       <h1>License</small></h1>
@@ -613,4 +613,4 @@
 		</div>
 	</div>
 </div>
-<? load::view('template-footer');?>
+<? load::view('install/template-footer');?>

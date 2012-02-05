@@ -1,4 +1,4 @@
-<? load::view('template-header', array('title' => '- Step 4'));?>
+<? load::view('install/template-header', array('title' => '- Step 4'));?>
   <div class="content">
     <div class="page-header">
       <h1>Install <small>Step 4</small></h1>
@@ -15,7 +15,7 @@
     <div class="row">
       <div class="span14">
         <h2>Testing the config file</h2>
-		<? if (file_exists('../application/config/deployment/db.php')): ?>
+		<? if (file_exists('application/config/deployment/db.php')): ?>
 			<div class="alert-message success">
 				<p><strong>✔</strong> All right everything is ready to roll, Lets install the MySQL!</p>
 			</div>
@@ -39,4 +39,4 @@
       </div>
     </div>
   </div>
-<? load::view('template-footer');?>
+<? load::view('install/template-footer');?>

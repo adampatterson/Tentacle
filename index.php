@@ -6,10 +6,18 @@ error_reporting(E_STRICT|E_ALL);
 
 require_once('system-variables.php');
 
-if (!file_exists('application/config/'.CONFIGURATION.'/db.php')):
-   header( 'Location: '.BASE_URL.'setup/' );
-   exit();
+
+// @todo If the DB file exists but there are no tables, redirect as well.
+if ( !file_exists( 'application/config/deployment/db.php' ) ):
+	define('SETUP', 1);
 endif;
+
+// Configuration
+if (!defined('SETUP')){
+	define( 'CONFIGURATION' ,'deployment' );
+} else {
+	define( 'CONFIGURATION' ,'setup' );	
+}
 
 // End of configuration
 //----------------------------------------------------------------------------------------------

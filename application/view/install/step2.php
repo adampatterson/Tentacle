@@ -1,4 +1,4 @@
-<? load::view('template-header', array('title' => '- Step 2'));?>
+<? load::view('install/template-header', array('title' => '- Step 2'));?>
   <div class="content">
     <div class="page-header">
       <h1>Install <small>Step 2</small></h1>
@@ -32,7 +32,7 @@
 
 				<tr>
 					<th>System Directory</th>
-					<?php if (is_dir('../system/')): ?>
+					<?php if (is_dir('system/')): ?>
 						<td class="pass">/system/</td>
 					<?php else: $failed = TRUE ?>
 						<td class="fail">The <code>/system/</code> directory does not exist.</td>
@@ -40,7 +40,7 @@
 				</tr>
 				<tr>
 					<th>Application Directory</th>
-					<?php if (is_dir('../application/')): ?>
+					<?php if (is_dir('application/')): ?>
 						<td class="pass">/application/</td>
 					<?php else: $failed = TRUE ?>
 						<td class="fail">The configured <code>application</code> directory does not exist or does not contain required files.</td>
@@ -48,7 +48,7 @@
 				</tr>
 				<tr>
 					<th>Storage Directory</th>
-					<?php if (is_dir('../tentacle/storage/') AND is_writable('../tentacle/storage/')): ?>
+					<?php if (is_dir('tentacle/storage/') AND is_writable('tentacle/storage/')): ?>
 						<td class="pass">/storage/</td>
 					<?php else: $failed = TRUE ?>
 						<td class="fail">The <code>/tentacle/storage/</code> directory is not writable.</td>
@@ -56,7 +56,7 @@
 				</tr>
 				<tr>
 					<th>Config Directory</th>
-					<?php if (is_dir('../application/config/deployment/') AND is_writable('../application/config/deployment/')): ?>
+					<?php if (is_dir('application/config/deployment/') AND is_writable('application/config/deployment/')): ?>
 						<td class="pass">/application/config/deployment/</td>
 					<?php else: $failed = TRUE ?>
 						<td class="fail">The <code>/application/cache/'</code> directory is not writable.</td>
@@ -64,7 +64,7 @@
 				</tr>
 				<tr>
 					<th>Config File</th>
-					<?php if (!file_exists('../application/config/deployment/db.php')): ?>
+					<?php if (!file_exists('application/config/deployment/db.php')): ?>
 						<td class="pass">The <code>db.php</code> file has not been created yet.</td>
 					<?php else: $failed = TRUE ?>
 						<td class="fail"><p>The file <code>db.php</code> already exists. If you need to reset any of the configuration items in this file, please delete it first.</p></td>
@@ -136,4 +136,4 @@
       </div>
     </div>
   </div>
-<? load::view('template-footer');?>
+<? load::view('install/template-footer');?>

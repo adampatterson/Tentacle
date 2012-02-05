@@ -5,29 +5,6 @@ route::set('(.*)',array(
     'function'=>'index',
 	));
 
-/*
-// page route
-route::set('([-_a-zA-Z0-9]+)',array(
-    'controller'=>'page',
-    'function'=>'article',
-    'arguments'=>array('$1')
-	));
-
-// page/page route
-route::set('([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
-    'controller'=>'page',
-    'function'=>'article',
-    'arguments'=>array('$1','$2')
-	));
-
-// page/page/page route
-route::set('([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
-    'controller'=>'page',
-    'function'=>'article',
-    'arguments'=>array('$1','$2','$3')
-	));
-*/
-
 // blog route
 route::set('blog',array(
     'controller'=>'blog',
@@ -127,7 +104,7 @@ route::set('action/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
     'function'=>'$1',
 	'arguments'=>array('$2','$3')
 	));
-
+	
 // dev route
 route::set('dev/([-_a-zA-Z0-9]+)',array(
     'controller'=>'dev',
@@ -139,13 +116,20 @@ route::set('dev',array(
     'controller'=>'dev',
     'function'=>'index'
 	));
-
 	
-// default route
+// install rout
+route::set('install',array(
+    'controller'=>'install',
+    'function'=>'agree',
+	));
 
-
-
-
+route::set('install/([-_a-zA-Z0-9]+)',array(
+    'controller'=>'install',
+    'function'=>'$1',
+    'arguments'=>array('$1')
+	));
+	
+		
 route::set('default_route','page/index');
 
 

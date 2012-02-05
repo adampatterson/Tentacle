@@ -199,6 +199,7 @@
 										<span class="help-block">Separate each keyword with a comma ( , )</span>
 									</div>
 								</div>
+<? /*
 								<div class="clearfix">
 									<label>Meta Robot Tags</label>
 									<div class="input">
@@ -233,6 +234,7 @@
 										</ul>
 									</div>
 								</div>
+*/ ?>w
 							</fieldset>
 							<div class="clear"></div>
 						</div>

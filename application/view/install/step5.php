@@ -1,4 +1,4 @@
-<? load::view('template-header', array('title' => '- Step 6'));?>
+<? load::view('install/template-header', array('title' => '- Step 6'));?>
   <div class="content">
     <div class="page-header">
       <h1>Install <small>Step 6</small></h1>
@@ -20,7 +20,7 @@
 				<div class="clearfix">
 					<label for="user_name">Username <span class="description">(required)</span></label>
 					<div class="input">
-						<input type="text" required="true" value="<?= $user -> username;?>" id="user_name" name="user_name">
+						<input type="text" required="true" value="" id="user_name" name="user_name">
 					</div>
 				</div>
 				<div class="clearfix">
@@ -70,4 +70,4 @@
       </div>
    </div>
 </div>
-<? load::view('template-footer');?>
+<? load::view('install/template-footer');?>

@@ -1,14 +1,14 @@
 <?php if(!defined('DINGO')){die('External Access to File Denied');}
 
-// Default Route
-route::set('default_route','main');
-
 // admin route
-route::set('step/install/([-_a-zA-Z0-9]+)',array(
+route::set('install/([-_a-zA-Z0-9]+)',array(
     'controller'=>'install',
-    'function'=>'step.$1',
+    'function'=>'$1',
     //'arguments'=>array('')
 	));
+
+// Default Route
+route::set('default_route','install/agree');
 
 //route::set('main/([a-zA-Z]+)/([a-zA-Z]+)',array('controller'=>'$1','function'=>'awesome','arguments'=>array('$2')));
 //route::set('one/([a-zA-Z]+)/([a-zA-Z]+)','query/$1/$2' );

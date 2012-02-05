@@ -308,9 +308,24 @@ function convert_size($num) {
     return $num;
 }
 
-// Information about time and memory
 
+// Information about time and memory
 function memory_usage() {
     return convert_size(memory_get_usage());
+}
+
+
+function is_blog_installed() {
+	if ( get_option( 'is_blog_installed' ) ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
+function get_db_version ()
+{
+	return get_option( 'db_version' );
 }
 ?>

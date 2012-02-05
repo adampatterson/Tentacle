@@ -3,9 +3,6 @@
 * Dingo system settings.
 */
 
-// Configuration
-define( 'CONFIGURATION' ,'deployment' );
-
 // Dingo Location
 define( 'SYSTEM'        ,'system' );
 
@@ -37,17 +34,15 @@ else:
 	$directory = dirname($_SERVER['PHP_SELF']);
 endif;
 	
+	
 // Application's Base URL
 define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port );
 
 // @todo BASE_URL may need some testing in other environments
 define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.$directory.'/' );
 
-
 // Application's Base URL
 define('ROOT'      , BASE_URI );
-
-//endif;
 
 // Application's Base Application URL
 define('TENTACLE_URL'  , BASE_URL.'tentacle/');

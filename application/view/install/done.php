@@ -1,4 +1,4 @@
-<? load::view('template-header', array('title' => '- Done '));?>
+<? load::view('install/template-header', array('title' => '- Done '));?>
   <div class="content">
     <div class="page-header">
       <h1>Install <small>Complete</small></h1>
@@ -23,9 +23,6 @@
 				<li>Feedback</li>
 				<li>Credits</li>
 			</ul>		
-			<div class="alert-actions">
-		    	<a class="btn large success" href="<?= TENTACLE_APP ?>admin/">Login</a>
-		  </div>
 		</div>
 		<div class="alert-message error">
 		  <p>Make sure to delete the <strong>Setup</strong> folder!</p>
@@ -33,4 +30,4 @@
       </div>
     </div>
   </div>
-<? load::view('template-footer');?>
+<? load::view('install/template-footer');?>

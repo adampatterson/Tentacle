@@ -1,9 +1,10 @@
 <?
-
-public function get_db_version ()
-{
-	return load::model ( 'settings' )->get( 'db_version' );
-}
+/**
+ * Upgrade process will load SQL from within the SQL model.
+ * The same SQL that Setup will use.
+ *
+ * @author Adam Patterson
+ */
 
 function tentacle_upgrade() {
 	global $wp_current_db_version, $wp_db_version, $wpdb;
