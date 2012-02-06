@@ -2,16 +2,32 @@
 
 class blog_controller {
         
-    public function index($post_name = ""){
-        
-        echo '<h1>Blog controller</h1>';
-        
-        $data = $post_name;
-        $data2 = '';
-        $data3 = '';
+    public function index( $uri = "" ){
 
-        load::view('front_view', array( 'data'=>$data, 'data2'=>$data2, 'data3'=>$data3 ));;   
-    }// END index
+		if(user::valid())
+			load::helper ('adminbar');
+
+		define ( 'FRONT'		,'true' );
+		
+		$uri = trailingslashit( $uri );
+		
+		if ( URI == '' || $uri == 'home'):
+			$uri = 'blog/';
+		else:
+			$uri = trailingslashit( URI );
+		endif;
+		
+		$post = load::model( 'post' );
+		$posts = $post->get( );
+		
+		$category = load::model( 'category' );
+		
+		$user = load::model('user'); 
+		
+		tentacle::render ( 'blog', array ( 'data' => $posts, 'user'=>$user, 'category'=>$category ) );
+                      
+        }// END index
+
 } // END Class blog
 
 ?> 

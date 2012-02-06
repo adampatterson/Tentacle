@@ -52,6 +52,7 @@ if( !defined( 'SCAFFOLD' ) ):
         <div class="span3">
           <div class="well sidebar-nav">
             <? nav_menu(); ?>
+			<li><a href="<?= BASE_URL?>blog/">Blog</a></li>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
