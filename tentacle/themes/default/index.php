@@ -16,20 +16,8 @@ if( !defined( 'SCAFFOLD' ) ):
 <head>
 <meta charset="utf-8"> 
 <title><?= $data->title; ?></title>
-</head>
-<body>
-
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-
+<meta name="description" content="">
+<meta name="author" content="">
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -37,17 +25,11 @@ if( !defined( 'SCAFFOLD' ) ):
 
     <!-- Le styles -->
     <link href="<?= PATH ?>/css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
-
   </head>
 
-  <body>		
-	   <div class="container-fluid">
+  <body>
+	
+	  <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
           <div class="well sidebar-nav">
@@ -71,13 +53,13 @@ if( !defined( 'SCAFFOLD' ) ):
 	<!-- Le javascript
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-	<script src="<?=ADMIN_URL; ?>/js/bootstrap.js"></script>
-	<script src="<?= PATH ?>/js/application.js"></script>
+
 	<!--
 		<? clean_out($data); ?>
 	 -->
+	<? if(user::valid()) load::helper ('adminbar'); ?>	
 	</body>
 </html>
+
 <? //load_part('footer'); ?> 
 <? endif; ?>
