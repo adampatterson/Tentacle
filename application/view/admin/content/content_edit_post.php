@@ -13,7 +13,7 @@
 	</script>
 	-->
 	<form action="<?= BASE_URL ?>action/update_post/<?= $get_post->id ?>" method="post" class="form-stacked" id='edit_page'>
-		<input type="hidden" name="page-or-post" value='page' />
+		<input type="hidden" name="page-or-post" value='post' />
 		<div class="has-right-sidebar">
 			<div class="contet-sidebar has-tabs">
 				<div class="table-heading">
@@ -67,7 +67,7 @@
 							</dt>
 						</dl>
 					</fieldset>
-					<input type="hidden" value="admin/content_update_page/<?= $get_post->id ?>" name="history">
+					<input type="hidden" value="admin/content_update_post/<?= $get_post->id ?>" name="history">
 					<div class="textleft actions">
 						<button type="submit" class="btn large primary">Save</button>
 						<a class="red button-secondary" href="<?= BASE_URL ?>action/trash_post/<?= $get_post->id;?>">Move to trash</a><!--<a href="#review">Save for Review</a>-->
