@@ -43,7 +43,7 @@
 				<tr>
 					<td>
 					<!-- <input type="checkbox" /> -->
-					<img src="<?=ADMIN_URL;?>images/icons/24_paper.png" width="24" height="24" alt="Page" /><strong class="title"><?= $post -> title;?></strong></td>
+					<img src="<?=ADMIN_URL;?>images/icons/24_paper.png" width="24" height="24" alt="Page" /><strong class="title"><a href="<?= ADMIN ?>content_update_post/<?= $post -> id;?>"><?= $post -> title;?></a></strong></td>
 					<td>
 						<?
 						foreach( $relations = $category->get_relations( $post->id ) as $relation ): ?>
@@ -54,7 +54,7 @@
 					<td ><?= $user_meta -> first_name;?> <?= $user_meta -> last_name;?></td>
 					<td ><?= $post -> id;?></td>
 					<td><?= $post -> status;?></td>
-					<td><a href="<?= ADMIN ?>content_edit_post/<?= $post -> id;?>" class="btn small">Edit</a> <a href="#" class="btn small danger">Delete</a></td>
+					<td><a href="<?= ADMIN ?>content_update_post/<?= $post -> id;?>" class="btn small">Edit</a> <a href="<?= BASE_URL ?>action/trash_post/<?= $post -> id;?>" class="btn small danger">Trash</a></td>
 				</tr>
 				<? endforeach;?>
 			</tbody>

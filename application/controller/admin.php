@@ -116,6 +116,21 @@ class admin_controller {
 		
 		load::view ('admin/content/content_add_post', array( 'categories'=>$categories ) );
 	}
+	
+	public function content_update_post ( $post_id )
+	{
+		tentacle::valid_user();
+	
+		$post = load::model( 'post' );
+		$get_post = $post->get( $post_id );
+		
+		$category = load::model( 'category' );
+		$categories = $category->get( );
+		
+		$get_post_meta = $post->get_post_meta( $post_id );
+		
+		load::view ('admin/content/content_edit_post', array(  'get_post'=>$get_post, 'get_post_meta'=>$get_post_meta, 'post_id' => $post_id, 'categories'=>$categories ) );		
+	}
 
 	public function content_manage_posts ()
 	{
@@ -130,6 +145,8 @@ class admin_controller {
 		
 		load::view ('admin/content/content_manage_posts', array( 'posts'=>$posts, 'user'=>$user, 'category'=>$category ) );
 	}
+
+
 
 	public function content_manage_comments ()
 	{

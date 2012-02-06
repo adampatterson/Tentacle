@@ -71,7 +71,7 @@
 						<button type="submit" class="btn large primary">
 							Save
 						</button>
-						<a class="red button-secondary" href="#">Move to trash</a><!--<a href="#review">Save for Review</a>-->
+						<!--<a class="red button-secondary" href="">Move to trash</a><a href="#review">Save for Review</a>-->
 					</div>
 				</div>
 			</div>

@@ -154,17 +154,27 @@ class action_controller
 
 		url::redirect( input::post ( 'history' ) );
 	}
+
 	
-	
-	public function soft_delete_page ()
+	public function delete_page ()
  	{
 	
 	}
 	
 	
-	public function delete_page ()
+	public function trash_page ( $id )
  	{
-	
+		$page = db('posts');
+
+		$page->update(array(
+			'status'=>'trash'
+		))
+			->where( 'id', '=', $id )
+			->execute();
+			
+		note::set('success','page_soft_delete','Moved to the trash.');
+		
+		url::redirect( 'admin/content_manage_pages' );
 	}
 	
 	/**
@@ -179,8 +189,6 @@ class action_controller
 	 */
  	public function add_post ()
  	{
-		// @todo: deal with an array for categorie values.
-	
 		tentacle::valid_user();
 			
 		$post = load::model( 'post' );
@@ -188,30 +196,43 @@ class action_controller
 		
 		$page_categories = input::post( 'post_category' );
 		$category = load::model( 'category' );
-		$category_relations = $category->relations( $post_single->id, $page_categories );
-		// we need the page ID before we can add any meta to the DB.
-		//$post_meta = $post->add_meta( $post_single );
+		$category_relations = $category->relations( $post_single, $page_categories );
 		
-		note::set('success','post_add','Post Added!');
-		url::redirect( input::post ( 'history' ) );
+		url::redirect( 'admin/content_update_post/'.$post_single );
 	}	
 	
 	
-	public function update_post ()
+	public function update_post ( $post_id )
  	{
-	
-	}
-	
-	
-	public function soft_delete_post ()
- 	{
-	
+		tentacle::valid_user();
+
+		$post = load::model( 'page' );
+		$post_single = $post->update( $post_id );
+
+		session::delete ( 'template' );
+
+		url::redirect( input::post ( 'history' ) );
 	}
 	
 	
 	public function delete_post ()
  	{
 	
+	}
+	
+	public function trash_post ( $id )
+ 	{
+		$page = db('posts');
+
+		$page->update(array(
+			'status'=>'trash'
+		))
+			->where( 'id', '=', $id )
+			->execute();
+			
+		note::set('success','post_soft_delete','Moved to the trash.');
+		
+		url::redirect( 'admin/content_manage_posts' );
 	}
 	
 	/**

@@ -65,7 +65,7 @@
 					<input type="hidden" value="admin/content_update_page/<?= $get_page->id ?>" name="history">
 					<div class="textleft actions">
 						<button type="submit" class="btn large primary">Save</button>
-						<a class="red button-secondary" href="#">Move to trash</a><!--<a href="#review">Save for Review</a>-->
+						<a class="red button-secondary" href="<?= BASE_URL ?>action/trash_page/<?= $get_page->id;?>">Move to trash</a><!--<a href="#review">Save for Review</a>-->
 					</div>
 				</div>
 			</div>
