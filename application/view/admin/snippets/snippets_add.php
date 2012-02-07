@@ -36,7 +36,7 @@
 						<!--<input type="button" value="Save and Close" class="button" />
 						<input type="button" value="Save and Continure Editing" class="button" />-->
 						<input type="submit" value="Save" class="btn medium primary" />
-						<a href="#" class="red">Cancel</a>
+						<a href="<?=ADMIN;?>snippets_manage/" class="red">Cancel</a>
 					</div>
 				</form>
 			</div><!-- .post-body-content -->

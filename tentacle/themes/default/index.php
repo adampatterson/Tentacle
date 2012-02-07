@@ -18,13 +18,22 @@ if( !defined( 'SCAFFOLD' ) ):
 <title><?= $data->title; ?></title>
 <meta name="description" content="">
 <meta name="author" content="">
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 
-    <!-- Le styles -->
-    <link href="<?= PATH ?>/css/bootstrap.css" rel="stylesheet">
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.min.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-dropdown.js"></script>
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>bootstrap-1.4.0.min.css">
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>general.css">
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>admin.css">
+	<link href="<?= PATH ?>/css/bootstrap.css" rel="stylesheet">
+	<style type="text/css" media="screen">
+		body {
+	      padding-top: 60px;
+	      padding-bottom: 40px;
+	    }
+	</style>
   </head>
 
   <body>
@@ -48,15 +57,8 @@ if( !defined( 'SCAFFOLD' ) ):
 	    <p><a href="http://tentaclecms.com"><img src="<?= PATH ?>/images/tentacle_logo_footer.png" alt="Tentacle" /></a></p>
 	  </footer>
 
-	</div> <!-- /container -->
+	</div><!-- /container -->
 
-	<!-- Le javascript
-	================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-
-	<!--
-		<? clean_out($data); ?>
-	 -->
 	<? if(user::valid()) load::helper ('adminbar'); ?>	
 	</body>
 </html>

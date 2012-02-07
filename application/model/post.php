@@ -90,7 +90,7 @@ class post_model
 		$page          = db('posts');
 		
 		$row = $page->update(array(
-			'title'	=>$title,
+			'title'		=>$title,
 			'slug'		=>$slug,
 			'content'	=>$content,
 			'status'	=>$status,

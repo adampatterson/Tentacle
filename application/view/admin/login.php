@@ -2,12 +2,10 @@
 <div id="login-header">
 	<a href="<?=BASE_URL;?>">← Back to site name</a>
 </div>
-<!-- #login-header -->
-<div id="login-logo">
-	<a href="<?=BASE_URL;?>"><img src="<?=BASE_URL;?>tentacle/admin/images/tentacle_logo_large.png" width="238" height="85" alt="Tentacle" /></a>
-</div>
-<!-- #login-logo -->
 <div id="login-content">
+	<div id="login-logo">
+		<a href="<?=BASE_URL;?>"><img src="<?=BASE_URL;?>tentacle/admin/images/tentacle_logo_large.png" width="258" height="63" alt="Tentacle" /></a>
+	</div>
 	<form action="<?= BASE_URL ?>action/login/" method="post">
 		<dl>
 			<dd>
@@ -16,17 +14,13 @@
 			<dd>
 				<input type='password' id='password' name='password' placeholder='Password' />
 			</dd>
+			<dd>
+				<input type="submit" value="Sign in" class="btn large primary" />
+			</dd>
 		</dl>
-		<?php if($note = note::get('session')):
-		?>
-		<input type='hidden' name='history' value="<?= $note['content'];?> " />
+		<?php if($note = note::get('session')): ?>
+			<input type='hidden' name='history' value="<?= $note['content'];?> " />
 		<?php endif;?>
-		<div class="login-row">
-			<div class="inline-inputs">
-				<a href="<?= ADMIN ?>lost">Forgot password?</a>&nbsp;&nbsp;
-				<input type="submit" value="Sign in" class="btn medium secondary" />
-			</div>
-		</div>
 	</form>
 </div>
 <!-- #login-content -->

@@ -1,6 +1,6 @@
 <?
  /*
-Name: Index Page
+Name: Blog Page
 URI: http://tcms.me/
 Description: This is the Tentacle default theme.
 Author: Tentacle
@@ -18,13 +18,22 @@ if( !defined( 'SCAFFOLD' ) ):
 <title>Blog</title>
 <meta name="description" content="">
 <meta name="author" content="">
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <!-- Le styles -->
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.min.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-dropdown.js"></script>
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>bootstrap-1.4.0.min.css">
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>general.css">
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>admin.css">
     <link href="<?= PATH ?>/css/bootstrap.css" rel="stylesheet">
+	<style type="text/css" media="screen">
+		body {
+	      padding-top: 60px;
+	      padding-bottom: 40px;
+	    }
+	</style>
   </head>
 
   <body>
@@ -41,7 +50,7 @@ if( !defined( 'SCAFFOLD' ) ):
 			<?foreach ($data as $post): $user_meta = $user->get_meta ( $post->author ); ?>
 			<div class="hero-unit">
 
-				<h2 class="title"><a href="<?= ADMIN ?>content_update_post/<?= $post -> id;?>"><?= $post -> title;?></a></h2>
+				<h2 class="title"><a href="<?= BASE_URL.$post->uri ?>"><?= $post->title?></a></h2>
 				<small>Posted in: 
 					<? foreach( $relations = $category->get_relations( $post->id ) as $relation ): ?>
 			            	 <a href="#<?=$relation->slug ?>"><?= $relation->name ?></a>
@@ -62,16 +71,9 @@ if( !defined( 'SCAFFOLD' ) ):
 
 	</div> <!-- /container -->
 
-	<!-- Le javascript
-	================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-
-	<!--
-		<? clean_out($data); ?>
-	 -->
-	<? if(user::valid()) load::helper ('adminbar'); ?>
+	<? if(user::valid()) load::helper ('adminbar'); ?>	
 	</body>
-	
 </html>
+
 <? //load_part('footer'); ?> 
 <? endif; ?>
