@@ -37,7 +37,10 @@ class install_controller
 		$sql = load::model ( 'sql' );
 		
 		$sql->get_100();
-						
+		
+		// Seed data
+		$sql->get_101();
+								
 		load::view ('install/step5');
 	}
 	

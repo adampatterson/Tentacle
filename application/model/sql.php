@@ -232,10 +232,28 @@ class sql_model
 		# @todo This should be updated in the post table.
 		# ------------------------------------------------------------
 		$build = $pdo->exec( "ALTER TABLE  `posts` CHANGE  `guid`  `uri` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL" );
+		
 	}
 	
 	public function get_101 ()
 	{
+		$config = config::get('db');
+
+		try {
+			$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
+		} catch(PDOException $e) {
+			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
+		}
+		
+		
+		$build = $pdo->exec( "INSERT INTO `posts` (`id`, `parent`, `menu_order`, `author`, `date`, `modified`, `title`, `content`, `excerpt`, `comment_status`, `ping_status`, `password`, `slug`, `type`, `uri`, `visible`, `status`, `template`)
+		VALUES
+			(6, 0, 1, 1, 1322853969, 1328247576, 'Home', '<p><strong>Tentacle is an OpenSource Content Management System, it is free to use.</strong></p>\r\n<p>The goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>\r\n', '', 'open', 'open', '', 'home', 'page', 'home/', 'public', 'published', 'default')" );
+			
+		$build = $pdo->exec( "INSERT INTO `posts` (`id`, `parent`, `menu_order`, `author`, `date`, `modified`, `title`, `content`, `excerpt`, `comment_status`, `ping_status`, `password`, `slug`, `type`, `uri`, `visible`, `status`, `template`)
+			VALUES
+				(112, 0, 0, 1, 1328502285, 1328560008, 'Welcome to Tentacle CMS', '<p>This is your first post!</p>\r\n', '', 'open', 'open', '', 'welcome-to-tentacle-cms', 'post', 'welcome-to-tentacle-cms/', 'public', 'published', 'default')" );
+			
 		
 	}
 }
