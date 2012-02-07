@@ -253,7 +253,12 @@ class sql_model
 		$build = $pdo->exec( "INSERT INTO `posts` (`id`, `parent`, `menu_order`, `author`, `date`, `modified`, `title`, `content`, `excerpt`, `comment_status`, `ping_status`, `password`, `slug`, `type`, `uri`, `visible`, `status`, `template`)
 			VALUES
 				(112, 0, 0, 1, 1328502285, 1328560008, 'Welcome to Tentacle CMS', '<p>This is your first post!</p>\r\n', '', 'open', 'open', '', 'welcome-to-tentacle-cms', 'post', 'welcome-to-tentacle-cms/', 'public', 'published', 'default')" );
-			
 		
+		$build = $pdo->exec( "INSERT INTO `posts_meta` (`id`, `posts_id`, `meta_key`, `meta_value`)
+			VALUES
+				(7, 6, 'scaffold_data', 'a:5:{s:4:\"save\";s:0:\"\";s:11:\"bread_crumb\";s:0:\"\";s:13:\"meta_keywords\";s:0:\"\";s:16:\"meta_description\";s:0:\"\";s:4:\"tags\";s:0:\"\";}')" );
+		$build = $pdo->exec( "	INSERT INTO `posts_meta` (`id`, `posts_id`, `meta_key`, `meta_value`)
+			VALUES
+				(58, 112, 'scaffold_data', 'a:6:{s:9:\"post_type\";s:9:\"type-post\";s:13:\"post_category\";a:1:{i:0;s:1:\"1\";}s:11:\"bread_crumb\";s:0:\"\";s:13:\"meta_keywords\";s:0:\"\";s:16:\"meta_description\";s:27:\"Enter your comments here...\";s:4:\"tags\";s:0:\"\";}')" );
 	}
 }

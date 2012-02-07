@@ -426,7 +426,8 @@ class action_controller
 	 * 
 	 * 
 	 * 
-	 */	public function agree()
+	 */	
+	public function agree()
 	{
 		url::redirect('install/step1');
 	}
