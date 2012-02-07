@@ -30,32 +30,32 @@ if( !defined( 'SCAFFOLD' ) ):
 	<link href="<?= PATH ?>/css/bootstrap.css" rel="stylesheet">
 	<style type="text/css" media="screen">
 		body {
-	      padding-top: 60px;
-	      padding-bottom: 40px;
-	    }
+		  padding-top: 60px;
+		  padding-bottom: 40px;
+		}
 	</style>
   </head>
 
   <body>
 	
-	  <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <? nav_menu(); ?>
-			<li><a href="<?= BASE_URL?>blog/">Blog</a></li>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
-          <div class="hero-unit">
-            <h1><?= $data->title; ?></h1>
+	<div class="container-fluid">
+		<div class="row-fluid">
+		<div class="span3">
+			<div class="well sidebar-nav">
+				<? nav_menu(); ?>
+				<li><a href="<?= BASE_URL?>blog/">Blog</a></li>
+		  </div><!--/.well -->
+		</div><!--/span-->
+		<div class="span9">
+		  <div class="hero-unit">
+			<h1><?= $data->title; ?></h1>
 			<?= $data->content; ?>
-          </div>
-        </div><!--/span-->
-      </div><!--/row-->
+		  </div>
+		</div><!--/span-->
+	  </div><!--/row-->
 	<footer>
-	    <p><a href="http://tentaclecms.com"><img src="<?= PATH ?>/images/tentacle_logo_footer.png" alt="Tentacle" /></a></p>
-	  </footer>
+		<p><a href="http://tentaclecms.com"><img src="<?= PATH ?>/images/tentacle_logo_footer.png" alt="Tentacle" /></a></p>
+	</footer>
 
 	</div><!-- /container -->
 
