@@ -70,9 +70,9 @@
   width: 260px;
   padding-top: 20px;
   padding-left: 10px; }
-.login #login-content-message p {
+.login #login-content-message p, .login #login-content-message strong {
   font-size: 14px;
-  color: #999; }
+  color: #5b5b5b; }
 .login #login-content-message h2 {
   font-size: 1.75em;
   font-weight: bold;
