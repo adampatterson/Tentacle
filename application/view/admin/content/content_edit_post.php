@@ -12,7 +12,7 @@
 		}); 
 	</script>
 	-->
-	<form action="<?= BASE_URL ?>action/update_post/<?= $get_post->id ?>" method="post" class="form-stacked" id='edit_page'>
+	<form action="<?= BASE_URL ?>action/update_post/<?= $get_post->id ?>" method="post" class="form-stacked" id='edit_post'>
 		<input type="hidden" name="page-or-post" value='post' />
 		<div class="has-right-sidebar">
 			<div class="contet-sidebar has-tabs">
@@ -28,9 +28,9 @@
 							</dt>
 							<dd>
 								<select name="status" id="status" size="1">
-									<option value="draft">Draft</option>
-									<option value="published">Published</option>
-									<option value="published-on">Published On</option>
+									<option value="draft" <? selected( $get_post->status, 'draft' ); ?>>Draft</option>
+									<option value="published" <? selected( $get_post->status, 'published' ); ?>>Published</option>
+									<option value="published-on" <? selected( $get_post->status, 'published-on' ); ?>>Published On</option>
 								</select>
 							</dd>
 							<dt>
@@ -43,7 +43,7 @@
 											<ul class="inputs-list">
 												<?  $post_types = get_post_type ( get_option( 'appearance' ) );
 													foreach ($post_types as $post_type ): ?>
-														<li><label><input type="radio" name="post_type" class="post-format" value="<?= $post_type['part_id']; ?>"> <span><?= $post_type['part_name']; ?></span></label></li>
+														<li><label><input type="radio" name="post_type" class="post-format" value="<?= $post_type['part_id']; ?>" <? checked( $get_post->template, $post_type['part_id'] ); ?>> <span><?= $post_type['part_name']; ?></span></label></li>
 												<?	endforeach; ?>
 											</ul>
 										</div>
@@ -57,14 +57,14 @@
 								<div class="category-list">
 									<ul id="categorychecklist">
 									<? foreach ($categories as $category): ?>
-										<li id="category-<?= $category->id  ?>"><label class="selectit"><input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>"> <?= $category->name  ?></label></li>
+										<li id="category-<?= $category->id  ?>"><label class="selectit"><input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>" <? checked( $category->id, $post_type['part_id'] ); ?>> <?= $category->name  ?></label></li>
 									<? endforeach;?>
 									</ul>
 								</div>
 							</dd>
-							<dt>
+							<!--<dt>
 								<a href="#">Select a featured image.</a>
-							</dt>
+							</dt>-->
 						</dl>
 					</fieldset>
 					<input type="hidden" value="admin/content_update_post/<?= $get_post->id ?>" name="history">

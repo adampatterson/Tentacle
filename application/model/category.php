@@ -108,19 +108,24 @@ class category_model
 	
 	// Set the Category relations for a blog post.
 	//----------------------------------------------------------------------------------------------	
-	public function relations ( $post_id = '', $categories = '' ) 
+	public function relations ( $post_id = '', $categories = '', $update = false ) 
 	{	
 		$term         = db('term_relationships');
 
-		foreach ( $categories as $term_id ) 
-		{
+		if ( $update != false ):
+			foreach ( $categories as $term_id ):
+				$term->delete()
+					->where( 'post_id','=',$post_id )
+					->execute();
+			endforeach;
+		endif;
+		
+		foreach ( $categories as $term_id ):
 			$term->insert(array(
 				'page_id'		=> $post_id,
 				'term_id'		=> $term_id,
 			),FALSE);
-			
-			print_r($term);
-		}
+		endforeach;
 	}
 
 	

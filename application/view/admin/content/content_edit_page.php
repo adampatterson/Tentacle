@@ -28,9 +28,9 @@
 							</dt>
 							<dd>
 								<select name="status" id="status" size="1">
-									<option value="draft" <? if ($get_page->status == 'draft') echo 'selected' ?>>Draft</option>
-									<option value="published" <? if ($get_page->status == 'published') echo 'selected' ?>>Published</option>
-									<option value="published-on" <? if ($get_page->status == 'published-on') echo 'selected' ?>>Published On</option>
+									<option value="draft" <? selected( $get_page->status, 'draft' ); ?>>Draft</option>
+									<option value="published" <? selected( $get_page->status, 'published' ); ?>>Published</option>
+									<option value="published-on" <? selected( $get_page->status, 'published-on' ); ?>>Published On</option>
 								</select>
 							</dd>
 							<dt>

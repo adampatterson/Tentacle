@@ -194,9 +194,9 @@ class action_controller
 		$post = load::model( 'post' );
 		$post_single = $post->add( );
 		
-		$page_categories = input::post( 'post_category' );
+		$post_categories = input::post( 'post_category' );
 		$category = load::model( 'category' );
-		$category_relations = $category->relations( $post_single, $page_categories );
+		$category_relations = $category->relations( $post_single, $post_categories );
 		
 		url::redirect( 'admin/content_update_post/'.$post_single );
 	}	
@@ -206,11 +206,13 @@ class action_controller
  	{
 		tentacle::valid_user();
 
-		$post = load::model( 'page' );
+		$post = load::model( 'post' );
 		$post_single = $post->update( $post_id );
-
-		session::delete ( 'template' );
-
+		
+		$post_categories = input::post( 'post_category' );
+		$category = load::model( 'category' );
+		$category_relations = $category->relations( $post_single, $post_categories, true );
+		
 		url::redirect( input::post ( 'history' ) );
 	}
 	

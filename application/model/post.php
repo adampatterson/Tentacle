@@ -68,15 +68,10 @@ class post_model
 		$slug          = sanitize($title);
 		$content       = $_POST['content'];
 		$status        = $_POST['status'];
-		$parent_page   = $_POST['parent_page'];
-		//$post_template = $_POST['page_template'];
+		$post_template = $_POST['post_type'];
 		
-		$dirty_template = session::get( 'template' );
-		
-		if ( $dirty_template == '' ):
-			$post_template = 'default';
-		else:
-			$post_template = $dirty_template;
+		if ( $post_template == '' ):
+			$post_template = 'type-post';
 		endif;
 		
 		
@@ -84,7 +79,7 @@ class post_model
 		
 		$post_author   = user::id();
 		
-		$uri 			= $this->get_parent_uri( $parent_page ).$slug.'/';
+		$uri 			= $slug.'/';
 		
 		// Run content through HTMLawd and Samrty Text
 		$page          = db('posts');
@@ -97,7 +92,6 @@ class post_model
 			'author'	=>$post_author,
 			'type'		=>$post_type,
 			'template'	=>$post_template,
-			'parent'	=>$parent_page,
 			'uri'		=>$uri,
 			'modified'	=> time()
 		))		
@@ -124,7 +118,8 @@ class post_model
 			->where( 'posts_id', '=', $id )
 			->execute();
 			
-		note::set('success','page_update','Page Updated!');		
+		note::set('success','page_update','Page Updated!');
+		return $id;	
 	}
 	
 	
@@ -134,18 +129,23 @@ class post_model
 	{
 		$title         = input::post ( 'title' );
 		$slug          = sanitize($title);
-		
 		$content       = input::post ( 'content' );
-		
-		$post_template = input::post ( 'post_type' );
-		
 		$status        = input::post ( 'status' );
+
+		$post_template = $_POST['post_type'];
+		
+		if ( $post_template == '' ):
+			$post_template = 'type-post';
+		endif;
+
 		//$visible       = input::post ( 'visible' );
 		//$published     = input::post ( 'published' );
 		
 		$post_author   = user::id();
 		
 		$page          = db('posts');
+
+		echo $post_template;
 
 		$row = $page->insert(array(
 			'title'		=>$title,
@@ -180,7 +180,5 @@ class post_model
 
 		note::set('success','post_add','Post Added!');
 		return $row->id;
-		
-		echo $row->id;
 	}
 }

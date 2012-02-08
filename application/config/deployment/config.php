@@ -70,7 +70,7 @@ config::set('folder_orm','orm');                // ORM
 *
 * @global string $tentacle_version
 */
-define('TENTACLE_VERSION', '1.0');
+define('TENTACLE_VERSION', '1.0 beta');
  
 /**
 * The Dingo PHP Framework version
