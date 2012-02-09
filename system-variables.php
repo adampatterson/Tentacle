@@ -34,6 +34,7 @@ else:
 	$directory = dirname($_SERVER['PHP_SELF']);
 endif;
 	
+define( 'DS'				, DIRECTORY_SEPARATOR );
 	
 // Application's Base URL
 define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port );
@@ -42,7 +43,7 @@ define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port );
 define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.$directory.'/' );
 
 // Application's Base URL
-define('ROOT'      , BASE_URI );
+define('ROOT'		   , BASE_URI );
 
 // Application's Base Application URL
 define('TENTACLE_URL'  , BASE_URL.'tentacle/');

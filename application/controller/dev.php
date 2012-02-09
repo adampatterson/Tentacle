@@ -179,6 +179,11 @@ class dev_controller {
 		require (ADMIN_URI.'lib/lessphp/lessc.inc.php');
 	}
 
+
+	public function ds ()
+	{
+		echo DS;
+	}
 	
 	/**
 	* ajax function
