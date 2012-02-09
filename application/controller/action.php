@@ -222,6 +222,7 @@ class action_controller
 	
 	}
 	
+	
 	public function trash_post ( $id )
  	{
 		$page = db('posts');

@@ -67,6 +67,14 @@ class category_model
 
 	// Delete Category
 	//----------------------------------------------------------------------------------------------
+	public function delete_relations ( $post_id='' )
+	{
+		$term_relations = db::query("DELETE FROM term_relationships WHERE page_id=".$post_id );
+	}
+
+
+	// Delete Category
+	//----------------------------------------------------------------------------------------------
 	public function delete ( $id ) 
 	{
 		$category = db( 'terms' );
@@ -112,14 +120,9 @@ class category_model
 	{	
 		$term         = db('term_relationships');
 
-		if ( $update != false ):
-			foreach ( $categories as $term_id ):
-				$term->delete()
-					->where( 'post_id','=',$post_id )
-					->execute();
-			endforeach;
-		endif;
-		
+		if ( $update == true)
+			$term_relations = db::query("DELETE FROM term_relationships WHERE page_id=".$post_id );
+
 		foreach ( $categories as $term_id ):
 			$term->insert(array(
 				'page_id'		=> $post_id,

@@ -11,9 +11,8 @@
 	*/
 
     function current_page ($page) {
-		if (CURRENT_PAGE == $page){
+		if (CURRENT_PAGE == $page)
 			echo 'active';
-		} 
     }
 
 
@@ -45,11 +44,22 @@
      */
     function checked( $val1, $val2, $return = false ) 
 	{
-        if ( $val1 == $val2 )
-			if ($return)
-				return ' checked="checked"';
-			else
-				echo ' checked="checked"';
+		if ( is_array( $val2 ) ) {
+			foreach ($val2 as $value) {
+			
+				if ( $val1 == $value->id )
+					if ($return)
+						return ' checked="checked"';
+					else
+						echo ' checked="checked"';
+			}
+		} else {
+			if ( $val1 == $val2 )
+				if ($return)
+					return ' checked="checked"';
+				else
+					echo ' checked="checked"';
+		}
     }
 	 
 	

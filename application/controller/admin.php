@@ -129,7 +129,7 @@ class admin_controller {
 		
 		$get_post_meta = $post->get_post_meta( $post_id );
 		
-		load::view ('admin/content/content_edit_post', array(  'get_post'=>$get_post, 'get_post_meta'=>$get_post_meta, 'post_id' => $post_id, 'categories'=>$categories ) );		
+		load::view ('admin/content/content_edit_post', array(  'get_post'=>$get_post, 'get_post_meta'=>$get_post_meta, 'post_id' => $post_id, 'categories'=>$categories, 'category_relations'=>$category ) );		
 	}
 
 	public function content_manage_posts ()
