@@ -34,13 +34,6 @@ class install_controller
 	{
 		// CREATE DATABASE database_name
 		load::library('db');
-		$config = config::get('db');
-		?>
-		<!--
-			<? 	print_r($config); ?>
-		-->
-		<?
-
 		
 		$sql = load::model ( 'sql' );
 		
