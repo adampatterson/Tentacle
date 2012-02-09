@@ -9,3 +9,4 @@ _Tentacle Resource
 .idea/
 .settings/
 tentacle/admin/css/bootstrap-2/
+application/config/setup/db.php
