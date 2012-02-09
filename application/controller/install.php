@@ -33,7 +33,8 @@ class install_controller
 	public function step5 ( $step )
 	{
 		// CREATE DATABASE database_name
-
+		load::library('db');
+		
 		$sql = load::model ( 'sql' );
 		
 		$sql->get_100();
