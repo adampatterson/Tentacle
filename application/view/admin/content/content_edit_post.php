@@ -41,10 +41,10 @@
 									<div class="clearfix">
 										<div class="input">
 											<ul class="inputs-list">
-												<?  $post_types = get_post_type ( get_option( 'appearance' ) );
+												<? $post_types = get_post_type ( get_option( 'appearance' ) );
 													foreach ($post_types as $post_type ): ?>
 														<li><label><input type="radio" name="post_type" class="post-format" value="<?= $post_type['part_id']; ?>" <? checked( $get_post->template, $post_type['part_id'] ); ?>> <span><?= $post_type['part_name']; ?></span></label></li>
-												<?	endforeach; ?>
+												<? endforeach; ?>
 											</ul>
 										</div>
 									</div>
@@ -56,8 +56,15 @@
 							<dd>
 								<div class="category-list">
 									<ul id="categorychecklist">
-									<? foreach ($categories as $category): ?>
-										<li id="category-<?= $category->id  ?>"><label class="selectit"><input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>" <? checked( $category->id, $post_type['part_id'] ); ?>> <?= $category->name  ?></label></li>
+									<? 
+										$relations = $category_relations->get_relations( $get_post->id );
+										foreach ($categories as $category): ?>
+											<li id="category-<?= $category->id  ?>">
+												<label class="selectit">
+												<input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>" <? checked( $category->id, (array)$relations ); ?>> <?= $category->name  ?>
+											</label>
+										</li>
+							        <? ?>
 									<? endforeach;?>
 									</ul>
 								</div>

@@ -45,8 +45,7 @@
 					<!-- <input type="checkbox" /> -->
 					<img src="<?=ADMIN_URL;?>images/icons/24_paper.png" width="24" height="24" alt="Page" /><strong class="title"><a href="<?= ADMIN ?>content_update_post/<?= $post -> id;?>"><?= $post -> title;?></a></strong></td>
 					<td>
-						<?
-						foreach( $relations = $category->get_relations( $post->id ) as $relation ): ?>
+						<? foreach( $relations = $category->get_relations( $post->id ) as $relation ): ?>
 				            	 <a href="#<?=$relation->slug ?>"><?= $relation->name ?></a>
 				        <? endforeach; ?>
 					</td>

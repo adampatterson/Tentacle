@@ -13,7 +13,7 @@ if ( !file_exists( 'application/config/deployment/db.php' ) ):
 endif;
 
 // Configuration
-if ( !defined( 'SETUP' ) /*&& strpos( BASE_URI,'install' ) != true */) {
+if ( !defined( 'SETUP' ) && strpos( BASE_URI,'install' ) != true ) {
 	define( 'CONFIGURATION' ,'deployment' );	
 } else {
 	define( 'CONFIGURATION' ,'setup' );	
