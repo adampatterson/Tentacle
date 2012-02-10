@@ -180,11 +180,6 @@ class dev_controller {
 	}
 
 
-	public function ds ()
-	{
-		echo DS;
-	}
-	
 	/**
 	* ajax function
 	*
@@ -435,7 +430,9 @@ class dev_controller {
 	{
 		//echo dirname($_SERVER['PHP_SELF']). '<br />';
 	
-		echo ACTIVE_THEME;
+		echo '<strong>DS:</strong> ' .DS . '<br />';
+		
+		echo "<strong>realpath(''):</strong>" .realpath('') . '<br />';
 		
 		echo '<strong>CORE_ROOT:</strong> ' . CORE_ROOT . '<br />';
 		echo '<strong>APP_PATH:</strong> ' . APP_PATH . '<br />';
