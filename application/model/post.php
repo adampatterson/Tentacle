@@ -152,7 +152,24 @@ class post_model
 		$page          = db('posts');
 
 		echo $post_template;
-
+		
+		/*
+		load::helper ('date');
+		
+		$date = new date();
+	
+		$minute	= input::post ( 'minute' );
+		$hour	= input::post ( 'hour' );
+		$day 	= input::post ( 'day' );	
+		$month 	= input::post ( 'month' );
+		$year	= input::post ( 'year' );
+		
+		//2012-02-08 14:16:05
+		$composed_time = $year.'-'.$month.'-'.$day.' '.$hour.':'.$min.':00';
+		
+		echo date('l dS \o\f F Y h:i:s A', strtotime( $composed_time ));
+		*/
+		
 		$row = $page->insert(array(
 			'title'		=>$title,
 			'slug'		=>$slug,

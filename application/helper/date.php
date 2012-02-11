@@ -73,3 +73,47 @@ class date
         return $tag->toDateSelectTag($options);        
     }
 }
+
+function current_date( $unit ){
+	
+	$time_stamp = time();
+	
+	switch ($unit) {
+		case 'year':
+			echo strftime("%Y", $time_stamp );
+			break;
+			
+		case 'month':
+				$curr_month = date("m");
+				$month = array (1=>"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+				$select = "<select id=\"month\" name=\"month\" tabindex=\"4\" class=\"span4\">\n";
+				foreach ($month as $key => $val) {
+				    $select .= "\t<option val=\"".$key."\"";
+				    if ($key == $curr_month) {
+				        $select .= " selected=\"selected\">".$val."</option>\n";
+				    } else {
+				        $select .= ">".$val."</option>\n";
+				    }
+				}
+				$select .= "</select>";
+				echo $select;
+			break;
+		
+		case 'day':
+			echo strftime("%d", $time_stamp );
+			break;
+
+		case 'hour':
+			echo strftime("%H", $time_stamp );
+			break;
+		
+		case 'minute':
+			echo strftime("%S", $time_stamp );
+			break;
+		
+		default:
+			return false;
+			break;
+	}
+	
+}

@@ -33,32 +33,11 @@
 							    </select>
 							</dd>
 							<dd class="published-on">
-								
-								<?
-									$curr_month = date("m");
-									$month = array (1=>"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-									$select = "<select id=\"mm\" name=\"mm\" tabindex=\"4\" class=\"span4\">\n";
-									foreach ($month as $key => $val) {
-									    $select .= "\t<option val=\"".$key."\"";
-									    if ($key == $curr_month) {
-									        $select .= " selected=\"selected\">".$val."</option>\n";
-									    } else {
-									        $select .= ">".$val."</option>\n";
-									    }
-									}
-									$select .= "</select>";
-									echo $select;
-									?>
-							<!--	
-									If published-on is selected
-									Show input.
-									Allow for "next Thursday"
-									Or use a calendar date picker ( time stamp )
-								-->	
+								<? current_date('month'); ?>
 							</dd>
 							<dd class="published-on">
 			 					<div class="inline-inputs">
-									<input type="text" id="jj" name="jj" value="11" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> - <input type="text" id="aa" name="year" value="2012" size="4" maxlength="4" tabindex="4" autocomplete="off" class="span1"> @ <input type="text" id="hh" name="hh" value="04" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> : <input type="text" id="mn" name="mn" value="07" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
+									<input type="text" id="day" name="day" value="<? current_date( 'day' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> - <input type="text" id="year" name="year" value="<? current_date( 'year' ) ?>" size="4" maxlength="4" tabindex="4" autocomplete="off" class="span1"> @ <input type="text" id="hour" name="hour" value="<? current_date( 'hour' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> : <input type="text" id="minute" name="minute" value="<? current_date( 'minute' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
 								</div>
 							</dd>
 							<dt>
