@@ -111,6 +111,8 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
+		load::helper ('date');
+		
 		$category = load::model( 'category' );
 		$categories = $category->get( );
 		

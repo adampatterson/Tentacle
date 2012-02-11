@@ -950,10 +950,24 @@ class dev_controller {
 	 * @return void
 	 * @author Adam Patterson
 	 **/
-	public function date() 
+	public function date( $date='' ) 
 	{
 		echo '<h2>Date</h2>';
 		load::helper ('date');
+		
+		$date = new date();
+	
+		$minute	= 30;
+		$hour	= 11;
+		$day 	= 18;	
+		$month 	= 'DEC';
+		$year	= 1982;
+		
+		//2012-02-08 14:16:05
+		//$year.'-'.$month.'-'.$day.' '.$hour.':'.$min
+		
+		echo date('l dS \o\f F Y h:i:s A', strtotime( $year.'-'.$month.'-'.$day.' '.$hour.':'.$minute.':00' ));
+		
 	}// END Function
 	
 	/**

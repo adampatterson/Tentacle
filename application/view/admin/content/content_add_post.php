@@ -26,11 +26,40 @@
 								<label for="status">Status</label>
 							</dt>
 							<dd>
-								<select name="status" id="status" size="1">
+								<select id="status" name="status" size="1" class="span4">
 									<option value="draft">Draft</option>
 									<option value="published">Published</option>
-									<option value="published-on">Published On</option>
-								</select>
+									<option value="published-on">Publish On</option>
+							    </select>
+							</dd>
+							<dd class="published-on">
+								
+								<?
+									$curr_month = date("m");
+									$month = array (1=>"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+									$select = "<select id=\"mm\" name=\"mm\" tabindex=\"4\" class=\"span4\">\n";
+									foreach ($month as $key => $val) {
+									    $select .= "\t<option val=\"".$key."\"";
+									    if ($key == $curr_month) {
+									        $select .= " selected=\"selected\">".$val."</option>\n";
+									    } else {
+									        $select .= ">".$val."</option>\n";
+									    }
+									}
+									$select .= "</select>";
+									echo $select;
+									?>
+							<!--	
+									If published-on is selected
+									Show input.
+									Allow for "next Thursday"
+									Or use a calendar date picker ( time stamp )
+								-->	
+							</dd>
+							<dd class="published-on">
+			 					<div class="inline-inputs">
+									<input type="text" id="jj" name="jj" value="11" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> - <input type="text" id="aa" name="year" value="2012" size="4" maxlength="4" tabindex="4" autocomplete="off" class="span1"> @ <input type="text" id="hh" name="hh" value="04" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> : <input type="text" id="mn" name="mn" value="07" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
+								</div>
 							</dd>
 							<dt>
 								<label>Post type</label>
@@ -61,9 +90,10 @@
 									</ul>
 								</div>
 							</dd>
-							<dt>
+						<!--	<dt>
 								<a href="#">Select a featured image.</a>
 							</dt>
+							-->
 						</dl>
 					</fieldset>
 					<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>

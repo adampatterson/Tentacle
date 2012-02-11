@@ -201,7 +201,7 @@ $(document).ready(function(){
             e.preventDefault()
           })
 
-	/* Sprin */
+	/* Spin */
   	// =============================
 	var opts = {
 		lines: 10, // The number of lines to draw
@@ -230,8 +230,22 @@ $(document).ready(function(){
 		return this;
 	};
 
-	$('#preview').spin(opts);
 
+
+	/* Publish on */
+  	// =============================
+
+	$(".published-on").hide();
+
+	$("#status").change(function(){          
+	    var value = $("#status option:selected").val();
+
+	    if( value == 'published-on') {
+	        $(".published-on").show();
+	    } else {
+	        $(".published-on").hide();
+	    }
+	});
 
 });
 

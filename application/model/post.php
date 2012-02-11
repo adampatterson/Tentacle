@@ -7,15 +7,20 @@ class post_model
 	{
 		$posts = db ( 'posts' );
 
+		$current_time = time();
+
 		if( defined( 'FRONT' ) ) {
 			$get_posts = $posts->select( '*' )
 				->where ( 'type', '=', 'post' )
 				->order_by ( 'menu_order', 'ASC' )
 				->clause ('AND')
 				->where ( 'status', '=', 'published' )
+				->clause ('AND')
+				->where ( 'date', '<=', $current_time )
 				->execute();
 					
 			return $get_posts;
+			
 		} elseif ( $id == '' ) {
 			$get_posts = $posts->select( '*' )
 				->where ( 'type', '=', 'post' )
@@ -25,6 +30,7 @@ class post_model
 				->execute();
 					
 			return $get_posts;
+			
 		} else {
 			$get_posts = $posts->select( '*' )
 				->where ( 'id', '=', $id )
