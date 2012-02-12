@@ -138,7 +138,7 @@ class post_model
 		$content       = input::post ( 'content' );
 		$status        = input::post ( 'status' );
 
-		$post_template = $_POST['post_type'];
+		$post_template = input::post ( 'post_type' );
 		
 		if ( $post_template == '' ):
 			$post_template = 'type-post';
@@ -151,24 +151,25 @@ class post_model
 		
 		$page          = db('posts');
 
-		echo $post_template;
-		
-		/*
-		load::helper ('date');
-		
-		$date = new date();
-	
-		$minute	= input::post ( 'minute' );
-		$hour	= input::post ( 'hour' );
-		$day 	= input::post ( 'day' );	
-		$month 	= input::post ( 'month' );
-		$year	= input::post ( 'year' );
-		
-		//2012-02-08 14:16:05
-		$composed_time = $year.'-'.$month.'-'.$day.' '.$hour.':'.$min.':00';
-		
-		echo date('l dS \o\f F Y h:i:s A', strtotime( $composed_time ));
-		*/
+		if ( $status == 'published-on') {
+			load::helper ('date');
+
+			$date = new date();
+
+			$minute	= input::post ( 'minute' );
+			$hour	= input::post ( 'hour' );
+			$day 	= input::post ( 'day' );	
+			$month 	= input::post ( 'month' );
+			$year	= input::post ( 'year' );
+
+			//2012-02-08 14:16:05
+			$composed_time = $year.'-'.$month.'-'.$day.' '.$hour.':'.$minute.':00';
+			//echo date('l dS \o\f F Y h:i:s A', strtotime( $composed_time ));
+			
+			$date = strtotime( $composed_time );
+		} else {
+			$date = time();
+		}
 		
 		$row = $page->insert(array(
 			'title'		=>$title,
@@ -178,7 +179,7 @@ class post_model
 			'author'	=>$post_author,
 			'type'		=>'post',
 			'template'	=>$post_template,
-			'date'		=>time(),
+			'date'		=>$date,
 			'modified'	=>time()
 		));
 

@@ -88,7 +88,7 @@ function current_date( $unit ){
 				$month = array (1=>"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
 				$select = "<select id=\"month\" name=\"month\" tabindex=\"4\" class=\"span4\">\n";
 				foreach ($month as $key => $val) {
-				    $select .= "\t<option val=\"".$key."\"";
+				    $select .= "\t<option value=\"".$key."\"";
 				    if ($key == $curr_month) {
 				        $select .= " selected=\"selected\">".$val."</option>\n";
 				    } else {
