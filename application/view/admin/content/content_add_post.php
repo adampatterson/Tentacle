@@ -28,10 +28,20 @@
 							<dd>
 								<select id="status" name="status" size="1" class="span4">
 									<option value="draft">Draft</option>
+								<!--<option value="review">Pending Review</option>-->
 									<option value="published">Published</option>
+							    </select>
+							</dd>
+							<dt>
+								<label for="status">Publish</label>
+							</dt>
+							<dd>
+								<select id="publish" name="publish" size="1" class="span4">
+									<option value="immediately">Immediately</option>
 									<option value="published-on">Publish On</option>
 							    </select>
 							</dd>
+							
 							<dd class="published-on">
 								<? current_date('month'); ?>
 							</dd>
@@ -50,7 +60,7 @@
 											<ul class="inputs-list">
 												<?  $post_types = get_post_type ( get_option( 'appearance' ) );
 													foreach ($post_types as $post_type ): ?>
-														<li><label><input type="radio" name="post_type" class="post-format" value="<?= $post_type['part_id']; ?>"> <span><?= $post_type['part_name']; ?></span></label></li>
+														<li><label><input type="radio" name="post_type" class="post-format" value="<?= $post_type['part_id']; ?>" <? checked( $post_type['part_id'], 'type-post' ); ?>> <span><?= $post_type['part_name']; ?></span></label></li>
 												<?	endforeach; ?>
 											</ul>
 										</div>
@@ -64,7 +74,7 @@
 								<div class="category-list">
 									<ul id="categorychecklist">
 									<? foreach ($categories as $category): ?>
-										<li id="category-<?= $category->id  ?>"><label class="selectit"><input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>"> <?= $category->name  ?></label></li>
+										<li id="category-<?= $category->id  ?>"><label class="selectit"><input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>" <? checked( $category->id, '1' ); ?>> <?= $category->name  ?></label></li>
 									<? endforeach;?>
 									</ul>
 								</div>

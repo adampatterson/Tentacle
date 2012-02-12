@@ -237,8 +237,8 @@ $(document).ready(function(){
 
 	$(".published-on").hide();
 
-	$("#status").change(function(){          
-	    var value = $("#status option:selected").val();
+	$("#publish").change(function(){          
+	    var value = $("#publish option:selected").val();
 
 	    if( value == 'published-on') {
 	        $(".published-on").show();

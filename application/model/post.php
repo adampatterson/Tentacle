@@ -12,7 +12,7 @@ class post_model
 		if( defined( 'FRONT' ) ) {
 			$get_posts = $posts->select( '*' )
 				->where ( 'type', '=', 'post' )
-				->order_by ( 'menu_order', 'ASC' )
+				->order_by ( 'date', 'DESC' )
 				->clause ('AND')
 				->where ( 'status', '=', 'published' )
 				->clause ('AND')
@@ -137,6 +137,7 @@ class post_model
 		$slug          = sanitize($title);
 		$content       = input::post ( 'content' );
 		$status        = input::post ( 'status' );
+		$publish       = input::post ( 'publish' );
 
 		$post_template = input::post ( 'post_type' );
 		
@@ -151,7 +152,7 @@ class post_model
 		
 		$page          = db('posts');
 
-		if ( $status == 'published-on') {
+		if ( $publish == 'published-on') {
 			load::helper ('date');
 
 			$date = new date();
