@@ -14,22 +14,27 @@ class install_controller
 			load::view ('install/nothing');
 		endif;
 	}
+	
 	public function step1 ( $step )
 	{	
 		load::view ('install/step1');
 	}
+	
 	public function step2 ( $step )
 	{
 		load::view ('install/step2');
 	}
+	
 	public function step3 ( $step )
 	{
 		load::view ('install/step3');
 	}
+	
 	public function step4 ( $step )
 	{
 		load::view ('install/step4');
 	}
+	
 	public function step5 ( $step )
 	{
 		// CREATE DATABASE database_name
