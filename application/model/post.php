@@ -43,6 +43,30 @@ class post_model
 	}
 	
 	
+	// Get Page by Status
+	//----------------------------------------------------------------------------------------------
+	/**
+	 * @todo Test outcomes of this
+	 */
+	public function get_by_status ( $status='' )
+	{
+		$pages = db ( 'posts' );
+		
+		if ( $status != '' ) {
+			$get_pages = $pages->select( '*' )
+				->where ( 'type', '=', 'post' )
+			 	->clause('AND')
+				->where ( 'status', '=', $status )
+				->order_by ( 'id', 'DESC' )
+				->execute();
+					
+			return $get_pages;
+		} else {	
+			return false;
+		}	
+	}
+	
+	
 	// Get Page Meta
 	//----------------------------------------------------------------------------------------------
 	/**

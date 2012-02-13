@@ -38,12 +38,6 @@
 							</dt>
 							<dd>
 								<small><?= date('F dS\, Y \@ h:i:s A', $get_post->date ); ?></small> <a href="#" id="edit_publish" class="red button-secondary">edit</a>
-								<!--
-								<select id="publish" name="publish" size="1" class="span4">
-									<option value="immediately">Immediately</option>
-									<option value="published-on" <? if ($get_post->date >= time() ) echo 'selected="selected"'; ?>>Publish On</option>
-							    </select>
-								-->
 							</dd>
 							<dd class="published-on">
 								<? current_date('month', $get_post->date ); ?>

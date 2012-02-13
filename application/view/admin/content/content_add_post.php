@@ -41,7 +41,6 @@
 									<option value="published-on">Publish On</option>
 							    </select>
 							</dd>
-							
 							<dd class="published-on">
 								<? current_date('month'); ?>
 							</dd>

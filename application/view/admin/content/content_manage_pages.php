@@ -13,14 +13,15 @@
 			<input type="text" name="search" placeholder="Search" id="searchform" title="search" x-webkit-speech="" x-webkit-grammar="builtin:search" onwebkitspeechchange="startSearch()" />
 		</div>
 	</div>
-	<!--<div class="page-details">
+	<div class="page-details">
 		<div class="filter-links">
-			<a href="#">All (197)</a> | <a href="#">Published (72)</a> | <a href="#">Drafts (125)</a> | <a href="#">Trash (1)</a>
+			<a href="<?= BASE_URL ?>admin/content_manage_pages/">All</a> | <a href="<?= BASE_URL ?>admin/content_manage_pages/published/">Published</a> | <a href="<?= BASE_URL ?>admin/content_manage_pages/draft/">Drafts</a> | <a href="<?= BASE_URL ?>admin/content_manage_pages/trash">Trash</a>
 		</div>
+		<!--
 		<div class="pagination align-right textright">
 			<em><strong>Displaying 21–40 of 197</strong></em><a href="#">«</a><a href="#">1</a><a href="#" class="current">2</a><a href="#">3</a><a href="#">»</a>
-		</div>
-	</div>-->
+		</div>-->
+	</div>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
 		<thead>
 			<tr>
@@ -41,7 +42,7 @@
 			?>
 			<tr>
 				<td>
-					<div class="<?= offset($page->level); ?>">
+					<div class="<? if ( isset( $page->level ) ) echo offset($page->level); ?>">
 					<img src="<?=ADMIN_URL;?>images/icons/24_paper.png" width="24" height="24" alt="Page" /><strong class="title"><a href="<?= ADMIN ?>content_update_page/<?= $page->id;?>"><?= $page->title ?></a></strong>
 					</div> 
 				</td>

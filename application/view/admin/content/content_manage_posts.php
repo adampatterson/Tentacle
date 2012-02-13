@@ -14,14 +14,14 @@
 				<input type="text" name="search" placeholder="Search" id="searchform" title="search" x-webkit-speech="" x-webkit-grammar="builtin:search" onwebkitspeechchange="startSearch()" />
 			</div>
 		</div>
-		<!--<div class="page-details">
+		<div class="page-details">
 			<div class="filter-links">
-				<a href="#">All (197)</a> | <a href="#">Published (72)</a> | <a href="#">Drafts (125)</a> | <a href="#">Trash (1)</a>
+				<a href="<?= BASE_URL ?>admin/content_manage_posts/">All</a> | <a href="<?= BASE_URL ?>admin/content_manage_posts/published/">Published</a> | <a href="<?= BASE_URL ?>admin/content_manage_posts/draft/">Drafts</a> | <a href="<?= BASE_URL ?>admin/content_manage_posts/trash">Trash</a>
 			</div>
-			<div class="pagination align-right textright">
+			<!--<div class="pagination align-right textright">
 				<em><strong>Displaying 21–40 of 197</strong></em><a href="#">«</a><a href="#">1</a><a href="#" class="current">2</a><a href="#">3</a><a href="#">»</a>
-			</div>
-		</div>-->
+			</div>-->
+		</div>
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<thead class="table-heading">
 				<tr>
@@ -50,10 +50,10 @@
 				        <? endforeach; ?>
 					</td>
 					<td ><!--<img src="<?=ADMIN_URL; ?>images/icons/16_note-dis.png" width="16" height="16" alt="Notes" />--></td>
-					<td ><?= $user_meta -> first_name;?> <?= $user_meta -> last_name;?></td>
+					<td ><?= $user_meta->first_name;?> <?= $user_meta->last_name;?></td>
 					<td ><?= $post -> id;?></td>
 					<td><?= $post -> status;?></td>
-					<td><a href="<?= ADMIN ?>content_update_post/<?= $post -> id;?>" class="btn small">Edit</a> <a href="<?= BASE_URL ?>action/trash_post/<?= $post -> id;?>" class="btn small danger">Trash</a></td>
+					<td><a href="<?= ADMIN ?>content_update_post/<?= $post->id;?>" class="btn small">Edit</a> <a href="<?= BASE_URL ?>action/trash_post/<?= $post -> id;?>" class="btn small danger">Trash</a></td>
 				</tr>
 				<? endforeach;?>
 			</tbody>
