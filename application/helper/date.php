@@ -74,41 +74,76 @@ class date
     }
 }
 
-function current_date( $unit ){
+function current_date( $unit, $get_time = false ){
 	
 	$time_stamp = time();
 	
 	switch ($unit) {
 		case 'year':
-			echo strftime("%Y", $time_stamp );
-			break;
+			if ( isset( $get_time ) ):
+				echo strftime("%Y", $get_time );
+			else:
+				echo strftime("%Y", $time_stamp );
+			endif;
+		break;
 			
 		case 'month':
-				$curr_month = date("m");
-				$month = array (1=>"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-				$select = "<select id=\"month\" name=\"month\" tabindex=\"4\" class=\"span4\">\n";
-				foreach ($month as $key => $val) {
-				    $select .= "\t<option value=\"".$key."\"";
-				    if ($key == $curr_month) {
-				        $select .= " selected=\"selected\">".$val."</option>\n";
-				    } else {
-				        $select .= ">".$val."</option>\n";
-				    }
-				}
-				$select .= "</select>";
-				echo $select;
+				if ( $get_time):
+					$curr_month = strftime("%m", $get_time );
+					
+					$month = array (1=>"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+					$select = "<select id=\"month\" name=\"month\" tabindex=\"4\" class=\"span4\">\n";
+					foreach ($month as $key => $val) {
+					    $select .= "\t<option value=\"".$key."\"";
+					    if ($key == $curr_month) {
+					        $select .= " selected=\"selected\">".$val."</option>\n";
+					    } else {
+					        $select .= ">".$val."</option>\n";
+					    }
+					}
+					$select .= "</select>";
+					echo $select;
+					
+				else:
+					$curr_month = date("m");
+					$month = array (1=>"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+					$select = "<select id=\"month\" name=\"month\" tabindex=\"4\" class=\"span4\">\n";
+					foreach ($month as $key => $val) {
+					    $select .= "\t<option value=\"".$key."\"";
+					    if ($key == $curr_month) {
+					        $select .= " selected=\"selected\">".$val."</option>\n";
+					    } else {
+					        $select .= ">".$val."</option>\n";
+					    }
+					}
+					$select .= "</select>";
+					echo $select;
+				
+				endif;
 			break;
 		
 		case 'day':
-			echo strftime("%d", $time_stamp );
+			if ( $get_time):
+				echo strftime("%d", $get_time );
+			else:
+				echo strftime("%d", $time_stamp );
+			endif;
 			break;
 
 		case 'hour':
-			echo strftime("%H", $time_stamp );
+			if ( $get_time):
+				echo strftime("%H", $get_time );
+			else:
+				echo strftime("%H", $time_stamp );
+			endif;
 			break;
 		
 		case 'minute':
-			echo strftime("%S", $time_stamp );
+			if ( $get_time):
+				echo strftime("%S", $get_time );
+			else:
+				echo strftime("%S", $time_stamp );
+			endif;
 			break;
 		
 		default:

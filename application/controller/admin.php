@@ -123,6 +123,8 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 	
+		load::helper ('date');
+	
 		$post = load::model( 'post' );
 		$get_post = $post->get( $post_id );
 		

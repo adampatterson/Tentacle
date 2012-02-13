@@ -246,6 +246,23 @@ $(document).ready(function(){
 	        $(".published-on").hide();
 	    }
 	});
+	
+	$("a#edit_publish").click(function(){          
+	    var value = $("#publish option:selected").val();
+
+	    if( value == 'published-on') {
+	        $(".published-on").show();
+	    } else {
+	        $(".published-on").hide();
+	    }
+	});
+	
+	    $(".published-on").hide();
+        $("#edit_publish").show();
+ 
+    $('#edit_publish').click(function(){
+	    $(".published-on").toggle();
+	})
 
 });
 

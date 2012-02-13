@@ -69,18 +69,38 @@ class post_model
 	public function update ( $id ) 
 	{
 		// create a new version of the content.
-
 		$title         = $_POST['title'];
 		$slug          = sanitize($title);
 		$content       = $_POST['content'];
 		$status        = $_POST['status'];
+		$publish       = input::post ( 'publish' );
+		
 		$post_template = $_POST['post_type'];
 		
 		if ( $post_template == '' ):
 			$post_template = 'type-post';
 		endif;
-		
-		
+
+		if ( $publish == 'published-on') {
+			load::helper ('date');
+
+			$date = new date();
+
+			$minute	= input::post ( 'minute' );
+			$hour	= input::post ( 'hour' );
+			$day 	= input::post ( 'day' );	
+			$month 	= input::post ( 'month' );
+			$year	= input::post ( 'year' );
+
+			//2012-02-08 14:16:05
+			$composed_time = $year.'-'.$month.'-'.$day.' '.$hour.':'.$minute.':00';
+			//echo date('l dS \o\f F Y h:i:s A', strtotime( $composed_time ));
+			
+			$date = strtotime( $composed_time );
+		} else {
+			$date = time();
+		}
+
 		$post_type     = $_POST['page-or-post'];
 		
 		$post_author   = user::id();
@@ -99,6 +119,7 @@ class post_model
 			'type'		=>$post_type,
 			'template'	=>$post_template,
 			'uri'		=>$uri,
+			'date'		=>$date,
 			'modified'	=> time()
 		))		
 			->where( 'id', '=', $id )
@@ -184,7 +205,6 @@ class post_model
 			'modified'	=>time()
 		));
 
-		
 		$scaffold_data = $_POST;
 
 		$remove_keys = array( 'title', 'content', 'status', 'parent_page', 'page_template', 'page-or-post', 'history'  );

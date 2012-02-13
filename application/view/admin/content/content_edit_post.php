@@ -27,11 +27,32 @@
 								<label for="status">Status</label>
 							</dt>
 							<dd>
-								<select name="status" id="status" size="1">
+								<select id="status" name="status" size="1" class="span4">
 									<option value="draft" <? selected( $get_post->status, 'draft' ); ?>>Draft</option>
 									<option value="published" <? selected( $get_post->status, 'published' ); ?>>Published</option>
-									<option value="published-on" <? selected( $get_post->status, 'published-on' ); ?>>Published On</option>
-								</select>
+								<!--<option value="review">Pending Review</option>-->
+							    </select>
+							</dd>
+							<dt>
+								<label for="status">Publish</label>
+							</dt>
+							<dd>
+								<small><?= date('F dS\, Y \@ h:i:s A', $get_post->date ); ?></small> <a href="#" id="edit_publish" class="red button-secondary">edit</a>
+								<!--
+								<select id="publish" name="publish" size="1" class="span4">
+									<option value="immediately">Immediately</option>
+									<option value="published-on" <? if ($get_post->date >= time() ) echo 'selected="selected"'; ?>>Publish On</option>
+							    </select>
+								-->
+							</dd>
+							<dd class="published-on">
+								<? current_date('month', $get_post->date ); ?>
+							</dd>
+							<dd class="published-on">
+			 					<div class="inline-inputs">
+									<input type="text" id="day" name="day" value="<? current_date( 'day', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> - <input type="text" id="year" name="year" value="<? current_date( 'year', $get_post->date ) ?>" size="4" maxlength="4" tabindex="4" autocomplete="off" class="span1"> @ <input type="text" id="hour" name="hour" value="<? current_date( 'hour', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> : <input type="text" id="minute" name="minute" value="<? current_date( 'minute', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
+								</div>
+								<a href="#" id="edit_publish" class="red button-secondary">Cancel</a>
 							</dd>
 							<dt>
 								<label>Post type</label>
