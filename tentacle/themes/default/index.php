@@ -49,7 +49,7 @@ if( !defined( 'SCAFFOLD' ) ):
 		<div class="span9">
 		  <div class="hero-unit">
 			<h1><?= $data->title; ?></h1>
-			<?= $data->content; ?>
+			<?= stripslashes( $data->content ); ?>
 		  </div>
 		</div><!--/span-->
 	  </div><!--/row-->

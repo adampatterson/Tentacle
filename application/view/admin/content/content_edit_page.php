@@ -97,7 +97,7 @@
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/config.js"></script>
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.utils.js"></script>
 								<p>
-									<textarea name="content" id="cke" cols="40" rows="5" class="jquery_ckeditor" placeholder='Content'><?= $get_page->content ?></textarea>
+									<textarea name="content" id="cke" cols="40" rows="5" class="jquery_ckeditor" placeholder='Content'><?= stripslashes( $get_page->content ) ?></textarea>
 								</p>
 							<? else: ?>
 								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.2/lib/codemirror.css">
@@ -126,40 +126,43 @@
 									.activeline {
 										background: #f0fcff !important;
 									}
+									
 									.cm-tab:after {
-									        content: "\21e5";
-									        display: -moz-inline-block;
-									        display: -webkit-inline-block;
-									        display: inline-block;
-									        width: 0px;
-									        position: relative;
-									        overflow: visible;
-									        left: -1.4em;
-									        color: #aaa;
-									      }
-							    </style>
+										content: "\21e5";
+										display: -moz-inline-block;
+										display: -webkit-inline-block;
+										display: inline-block;
+										width: 0px;
+										position: relative;
+										overflow: visible;
+										left: -1.4em;
+										color: #aaa;
+									}
+								</style>
 
-								<p><textarea id="code" name="content" cols="40" rows="5" placeholder='Content' class='CodeMirror-scroll'><?= stripslashes($get_page->content) ?></textarea></p>
+								<p>
+									<textarea id="code" name="content" cols="40" rows="5" placeholder='Content' class='CodeMirror-scroll'><?= stripslashes($get_page->content) ?></textarea>
+								</p>
 
 								<script>
-								      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-								        lineNumbers: true,
-								        theme: "default",
+									var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+										lineNumbers: true,
+										theme: "default",
 										mode: "text/html",
 										onCursorActivity: function() {
-										    editor.setLineClass(hlLine, null);
-										    hlLine = editor.setLineClass(editor.getCursor().line, "activeline");
-										  },
-								        onKeyEvent: function(cm, e) {
-								          // Hook into ctrl-space
-								          if (e.keyCode == 32 && (e.ctrlKey || e.metaKey) && !e.altKey) {
-								            e.stop();
-								            return CodeMirror.simpleHint(cm, CodeMirror.javascriptHint);
-								          }
-								        }
-								      });
-								var hlLine = editor.setLineClass(0, "activeline");
-								    </script>
+											editor.setLineClass(hlLine, null);
+											hlLine = editor.setLineClass(editor.getCursor().line, "activeline");
+										},
+							 			onKeyEvent: function(cm, e) {
+											// Hook into ctrl-space
+											if (e.keyCode == 32 && (e.ctrlKey || e.metaKey) && !e.altKey) {
+												e.stop();
+												return CodeMirror.simpleHint(cm, CodeMirror.javascriptHint);
+											}
+										}
+									});
+									var hlLine = editor.setLineClass(0, "activeline");
+								</script>
 							<? endif; ?>
 							<div class="clear"></div>
 							<div id="scaffold">
