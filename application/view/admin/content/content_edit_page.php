@@ -14,6 +14,7 @@
 	-->
 	<form action="<?= BASE_URL ?>action/update_page/<?= $get_page->id ?>" method="post" class="form-stacked" id='edit_page'>
 		<input type="hidden" name="page-or-post" value='page' />
+		<input type='hidden' name='page_template' value='<?= $get_page->template?>' />
 		<div class="has-right-sidebar">
 			<div class="contet-sidebar has-tabs">
 				<div class="table-heading">

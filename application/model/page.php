@@ -346,7 +346,9 @@ class page_model
 		$parent_page   = $_POST['parent_page'];
 		//$post_template = $_POST['page_template'];
 		
-		$dirty_template = session::get( 'template' );
+		//$dirty_template = session::get( 'template' );
+		$dirty_template = $_POST['page_template'];
+		
 		
 		if ( $dirty_template == '' ):
 			$post_template = 'default';

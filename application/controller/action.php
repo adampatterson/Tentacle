@@ -3,7 +3,6 @@ class action_controller
 {
 	
 	# All actions should return True of False and be treated accordingly.
-	
 	public function index ()
 	{	
 		echo 'No direct access';

@@ -48,7 +48,21 @@ $data = array(
 	'paged' => 'Paged',
 	'posts_per_page' => 2,
 	'name' => array(				
-		'name' => 'First Name',
+		'name' => 'Name',
+		#'label_name' => 'first_name', // Humanixe the name
+		'input' => 'input',
+		'type' => 'text',
+		'notes' => 'This is a note'
+		),
+	'location' => array(				
+		'name' => 'Location',
+		#'label_name' => 'first_name', // Humanixe the name
+		'input' => 'input',
+		'type' => 'text',
+		'notes' => 'This is a note'
+		),
+	'Twitter' => array(				
+		'name' => 'Twitter',
 		#'label_name' => 'first_name', // Humanixe the name
 		'input' => 'input',
 		'type' => 'text',
@@ -67,14 +81,14 @@ $data = array(
         'input' => 'option',
         'notes' => 'Option notes.',
         'options' => array ('Canada', 'USA', 'Mexico', 'UK', 'Japan')
-        ), */
+        ),
 	'message' => array(				
 		'name' => 'Message',
 		#'label_name' => 'message', // Humanixe the name
 		'input' => 'multiline',
 		'type' => 'text',
         'notes' => 'Yes, more notes.'
-		),
+		), */
 	/*'button' => array(				
 		'button_name' => 'Button Name',
 		'type' => 'button',
