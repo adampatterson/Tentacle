@@ -58,8 +58,9 @@ if( !defined( 'SCAFFOLD' ) ):
 				</small>
 				<?= stripcslashes( $post->content );?>
 				<small>Created by: <?= $user_meta -> first_name;?> <?= $user_meta -> last_name;?></small>
-
-				<p><a href="<?= ADMIN ?>content_update_post/<?= $post->id;?>" class="btn small">Edit</a> <a href="<?= BASE_URL ?>action/trash_post/<?= $post -> id;?>" class="btn small danger">Trash</a></p>
+				<? if(user::valid()): ?>
+					<p><a href="<?= ADMIN ?>content_update_post/<?= $post->id;?>" class="btn small">Edit</a> <a href="<?= BASE_URL ?>action/trash_post/<?= $post -> id;?>" class="btn small danger">Trash</a></p>
+				<? endif; ?>
 			</div>
 			<? endforeach;?>
 

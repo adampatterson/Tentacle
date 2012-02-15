@@ -37,6 +37,7 @@ function nav_generate ( $tree )
 
 function nav_menu ( )
 {
+	define ( 'FRONT'		,'true' );
 	
 	$page = load::model( 'page' );
 	$pages = $page->get( );

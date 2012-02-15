@@ -4,11 +4,6 @@ class page_controller {
 	
     public function index( $uri = "" ){
 
-		if(user::valid())
-			//load::helper ('adminbar');
-
-		define ( 'FRONT'		,'true' );
-
 		load::library ('file');
 		$scaffold = new Scaffold ();
 		

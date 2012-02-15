@@ -3,8 +3,6 @@
 class blog_controller {
         
     public function index( $uri = "" ){
-
-		define ( 'FRONT'		,'true' );
 		
 		$uri = trailingslashit( $uri );
 		
@@ -22,7 +20,9 @@ class blog_controller {
 		$user = load::model('user'); 
 		
 		tentacle::render ( 'blog', array ( 'data' => $posts, 'user'=>$user, 'category'=>$category ) );
-                      
+        
+		if(user::valid()) load::helper ('adminbar');         
+
         }// END index
 
 } // END Class blog

@@ -142,8 +142,6 @@ if( !defined( 'SCAFFOLD' ) ):
 			<h3>From <?= $get_page_meta->location ?></h3>
 			<?= stripslashes( $data->content ); ?>
 			<p>Follow me <a href="http://www.twitter.com<?= $get_page_meta->twitter ?>">@<?= $get_page_meta->twitter ?></a></p>
-			
-			
 		  </div>
 		</div><!--/span-->
 	  </div><!--/row-->
