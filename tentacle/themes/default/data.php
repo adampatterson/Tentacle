@@ -15,21 +15,21 @@ $resource_assets = array(
 	'print' => 'dev_print.css:print'
 );
 
-#	type   
-#   checkbox
-#   file
-#   image
-#   password
-#   radio
-#   reset
-#   text
-#	name
-#	label_name
-#	checked
-#	options
-#	notes
-#	required
-
+  #	type   
+  #     checkbox
+  #     file
+  #     image
+  #     password
+  #     radio
+  #     reset
+  #     text
+  #  name
+  #  label_name
+  #  checked
+  #  options
+  #  notes
+  #  required
+  
 	# Other options
 # 
 #	Posty Type: Page / Post
@@ -43,7 +43,7 @@ $resource_assets = array(
 
 //@todo have help text (can be hidden in the admin area)
 
-$data = array(
+$scaffold_data = array(
 	'display' => 'admin',
 	'paged' => 'Paged',
 	'posts_per_page' => 2,
@@ -54,21 +54,21 @@ $data = array(
 		'type' => 'text',
 		'notes' => 'This is a note'
 		),
-	'location' => array(				
+	'location' => array(
 		'name' => 'Location',
 		#'label_name' => 'first_name', // Humanixe the name
 		'input' => 'input',
 		'type' => 'text',
 		'notes' => 'This is a note'
 		),
-	'Twitter' => array(				
+	'Twitter' => array(
 		'name' => 'Twitter',
 		#'label_name' => 'first_name', // Humanixe the name
 		'input' => 'input',
 		'type' => 'text',
 		'notes' => 'This is a note'
 		),
-/*	'password' => array(				
+/*	'password' => array(
 		'name' => 'Password',
 		#'label_name' => 'password', // Humanize the name
 		'input' => 'input',
@@ -77,7 +77,7 @@ $data = array(
 		),
 	'location' => array(                
         'name' => 'Location',
-        #'label_name' => 'location', // Humanixe the name
+        #'label_name' => 'location', // Humanize the name
         'input' => 'option',
         'notes' => 'Option notes.',
         'options' => array ('Canada', 'USA', 'Mexico', 'UK', 'Japan')
@@ -88,20 +88,70 @@ $data = array(
 		'input' => 'multiline',
 		'type' => 'text',
         'notes' => 'Yes, more notes.'
-		), */
-	/*'button' => array(				
+		),
+	'button' => array(				
 		'button_name' => 'Button Name',
 		'type' => 'button',
 		'input' => 'input'
 		),
 		*/
 	);
-if(!defined('SCAFFOLD')):
+if( !defined( 'SCAFFOLD' ) ):
+	$page = load::model ( 'page' );
+	$get_page_meta = $page->get_page_meta( $data->id );
 ?>
-<p>This is loaded from what would be a template file, The forms are what would be viewed on the admin page</p>
-<p>Soon the data posted from the forums will show up on this page.</p>
-<?
-// Load the scaffold, see addressbook page_contact and how the textile class was used
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+<meta charset="utf-8"> 
+<title><?= $data->title; ?></title>
+<meta name="description" content="">
+<meta name="author" content="">
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 
-endif;
-?>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.min.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-dropdown.js"></script>
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>bootstrap-1.4.0.min.css">
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>general.css">
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>admin.css">
+	<link href="<?= PATH ?>/css/bootstrap.css" rel="stylesheet">
+	<style type="text/css" media="screen">
+		body {
+		  padding-top: 60px;
+		  padding-bottom: 40px;
+		}
+	</style>
+  </head>
+
+  <body>
+	
+	<div class="container-fluid">
+		<div class="row-fluid">
+		<div class="span3">
+			<div class="well sidebar-nav">
+				<? nav_menu(); ?>
+				<li><a href="<?= BASE_URL?>blog/">Blog</a></li>
+		  </div><!--/.well -->
+		</div><!--/span-->
+		<div class="span9">
+		  <div class="hero-unit">
+			<h1><?= $data->title; ?></h1>
+			<h2><?= $get_page_meta->name ?></h2>
+			<h3>From <?= $get_page_meta->location ?></h3>
+			<?= stripslashes( $data->content ); ?>
+			<p>Follow me <a href="http://www.twitter.com<?= $get_page_meta->twitter ?>">@<?= $get_page_meta->twitter ?></a></p>
+			
+			
+		  </div>
+		</div><!--/span-->
+	  </div><!--/row-->
+	<footer>
+		<p><a href="http://tentaclecms.com"><img src="<?= PATH ?>/images/tentacle_logo_footer.png" alt="Tentacle" /></a></p>
+	</footer>
+
+	</div><!-- /container -->	
+	</body>
+</html>
+<? endif; ?>

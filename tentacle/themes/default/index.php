@@ -58,8 +58,6 @@ if( !defined( 'SCAFFOLD' ) ):
 	</footer>
 
 	</div><!-- /container -->
-
-	<? if(user::valid()) load::helper ('adminbar'); ?>	
 	</body>
 </html>
 

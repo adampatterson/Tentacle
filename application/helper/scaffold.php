@@ -92,8 +92,6 @@ class  Scaffold
 	            endforeach;
 	
 			endif;
-          
-        //$firephp->log($input, 'Scaffold array');
         
         echo $return_data;
         

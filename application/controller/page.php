@@ -25,7 +25,9 @@ class page_controller {
 		$content = $page->get_by_uri( $uri );
 
 		tentacle::render ( $content->template, array ( 'data' => $content ) );
-                      
+		
+		if(user::valid()) load::helper ('adminbar');
+		
         }// END index
     
 } // END Class page

@@ -164,7 +164,7 @@
 									@include(THEMES_DIR.'/default/'.session::get('template').'.php');
 
 									$scaffold = new Scaffold ();
-									$scaffold->processThis( $data );
+									$scaffold->processThis( $scaffold_date );
 								}
 								?>
 								<div class="clear"></div>

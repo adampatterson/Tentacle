@@ -31,7 +31,6 @@
 								<select name="status" id="status" size="1">
 									<option value="draft" <? selected( $get_page->status, 'draft' ); ?>>Draft</option>
 									<option value="published" <? selected( $get_page->status, 'published' ); ?>>Published</option>
-									<option value="published-on" <? selected( $get_page->status, 'published-on' ); ?>>Published On</option>
 								</select>
 							</dd>
 							<dt>
@@ -178,7 +177,7 @@
 									//load::library ( 'file' );
 
 									$scaffold = new Scaffold ();
-									$scaffold->populateThis( $data, $get_page_meta );
+									$scaffold->populateThis( $scaffold_data, $get_page_meta );
 								}
 								?>
 								<div class="clear"></div>
