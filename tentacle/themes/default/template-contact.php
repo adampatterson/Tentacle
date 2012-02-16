@@ -1,16 +1,12 @@
 <?
  /*
-Name: Contact template
-URI: http://tcms.me/
-Description: This is the Tentacle default theme.
-Author: Tentacle
-Version: 1.0
-License: GNU General Public License
-License URI: license.txt
+Name: Contact
 */
 
-$data = array(
+$scaffold_data = array(
 	'display' => 'front',
+	'paged' => 'paged',
+	'posts_per_page' => 2,
 	'first_name' => array(				
 		'name' => 'First Name',
 		'label_name' => 'First Name', // Humanixe the name
@@ -48,18 +44,7 @@ $data = array(
 	
 if(!defined('SCAFFOLD')):
 
-/**
-* @todo Make a template header and footer to include, then use the assets() pointing to the themes dundle folder. 
-* assets( @array, minify, css)
-*/
-
-$resource_assets = array(
-    'css' => 'dev_style.css',
-    'js' => 'dev_javascript.js',
-	'print' => 'dev_print.css:print'
-);
-
-load::theme_part('header',array('title'=>'Add a new snippet','assets'=>'application'));
+load::theme_part('header',array('title'=>'Add a new snippet','assets'=>'default'));
 
 ?>
 <p>This is loaded from what would be a template file, The forms are what would be viewed on the admin page</p>

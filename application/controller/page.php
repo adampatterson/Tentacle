@@ -19,10 +19,17 @@ class page_controller {
 		
 		$page = load::model ( 'page' );
 		$content = $page->get_by_uri( $uri );
-
-		tentacle::render ( $content->template, array ( 'data' => $content ) );
 		
-		if(user::valid()) load::helper ('adminbar');
+		// If URI lookup fails redirect to the themes 404 page
+		// 
+		if ( $content ) {
+			tentacle::render ( $content->template, array ( 'data' => $content ) );
+
+			if(user::valid()) load::helper ('adminbar');
+		} else {
+			// logging of 404's here.
+			tentacle::render ( '404' );
+		}
 		
         }// END index
     

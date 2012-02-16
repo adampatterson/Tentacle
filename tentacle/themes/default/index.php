@@ -1,6 +1,6 @@
 <?
  /*
-Name: Index Page
+Name: Default
 URI: http://tcms.me/
 Description: This is the Tentacle default theme.
 Author: Tentacle
