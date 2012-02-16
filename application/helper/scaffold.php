@@ -22,20 +22,17 @@ class  Scaffold
         return $start;
         }    
 
-    static public function processThis( $data ) 
-    {
-        
-        //$firephp = FirePHP::getInstance(TRUE);
-       
+    static public function processThis( $scaffold_data ) 
+    {  
         $return_data = "";
       
 		$inflector = new inflector();
 
-        if ( $data[ 'display' ] != 'front' ):
-			foreach ($data as $input):
+        if ( $scaffold_data[ 'display' ] == 'admin' ):
+			foreach ($scaffold_data as $input):
 			
-				$input_name =$inflector->underscore( $inflector->camelize( $input['name']) );
-				
+				$input_name = $inflector->underscore( $inflector->camelize( $input['name']) );
+
 	            //print_r($input);
 	            /*  
 	            echo $input['name'];
@@ -50,11 +47,11 @@ class  Scaffold
 	            if ($input['input'] == 'input'):
 	                switch($input['type']) {
 	                    case 'text':
-	                        $return_data .= '<div class="clearfix">
-												<label for="'.$input_name.'">'.$input['name'].'</label>
+	                       	$return_data .= '<div class="clearfix">
+												<label for="scaffold'.$input_name.'">'.$input['name'].'</label>
 												<div class="input">
 													<input type="text" class="xlarge" name="'.$input_name.'" />
-													<span class="help-block">'.$input['notes'].'</span>
+													<!--<span class="help-block">'.$input['notes'].'</span>-->
 												</div>
 											</div>';
 						break;
@@ -69,11 +66,15 @@ class  Scaffold
 						break;    
 					    case 'button':
 							
-							if ( $data[ 'display' ] != 'admin' ):
+							if ( $scaffold_data[ 'display' ] != 'admin' ):
 								$return_data .= self::createButton($input['button_name']);
 							endif;
-	                    break;               
-	                    }// switch 
+	                    break; 
+						default:
+							
+						break;          
+					}// switch 
+	
 	                elseif($input['input'] == 'option'):
 						$return_data .= '<select>';
 							foreach ($input['options'] as $option) {	
@@ -96,8 +97,8 @@ class  Scaffold
         echo $return_data;
         
     } // function process  
-    
-    static public function populateThis( $data, $get_page_meta )
+  
+    static public function populateThis( $data ='', $get_page_meta )
     {
 	if ( $page_id = '' )
 		return false;

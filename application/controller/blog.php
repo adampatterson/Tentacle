@@ -12,6 +12,8 @@ class blog_controller {
 			$uri = trailingslashit( URI );
 		endif;
 		
+		require_once( PATH_URI.'/functions.php' );
+								
 		$post = load::model( 'post' );
 		$posts = $post->get( );
 		
@@ -19,11 +21,11 @@ class blog_controller {
 		
 		$user = load::model('user'); 
 		
-		tentacle::render ( 'blog', array ( 'data' => $posts, 'user'=>$user, 'category'=>$category ) );
+		tentacle::render ( 'template-blog', array ( 'data' => $posts, 'user'=>$user, 'category'=>$category ) );
         
 		if(user::valid()) load::helper ('adminbar');         
 
-        }// END index
+	}// END index
 
 } // END Class blog
 

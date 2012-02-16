@@ -97,7 +97,7 @@ class action_controller
 	 * 
 	 * 
 	 */
-	public function render_admin ( $location, $template = '', $id = null )
+	public function render_admin ( $location, $template = ''/*, $id = null */ )
 	{
 		
 		if ( $template == 'default' ):
@@ -110,11 +110,14 @@ class action_controller
 			endif;
 		endif;
 		
+		url::redirect( 'admin/content_'.$location.'/' );
+		/*
 		if ( $id == null ) {
 			url::redirect( 'admin/content_'.$location.'/' );
 		} else {
 			url::redirect( 'admin/content_'.$location.'/'.$id );
 		}
+		*/
 	}
 
 

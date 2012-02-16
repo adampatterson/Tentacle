@@ -12,6 +12,8 @@ define ('URI'			, tentacle::get_request_url() );
 define ('ACTIVE_THEME' , get_option( 'appearance' ) );
 define ( 'PATH'			, THEMES_URL.'/'.ACTIVE_THEME );
 
+define ( 'PATH_URI'  	, THEMES_DIR.ACTIVE_THEME );
+
 /**
 * tentacle class
 *

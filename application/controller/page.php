@@ -15,8 +15,9 @@ class page_controller {
 			$uri = trailingslashit( URI );
 		endif;
 		
-		$page = load::model ( 'page' );
+		require_once( PATH_URI.'/functions.php' );
 		
+		$page = load::model ( 'page' );
 		$content = $page->get_by_uri( $uri );
 
 		tentacle::render ( $content->template, array ( 'data' => $content ) );

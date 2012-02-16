@@ -50,6 +50,7 @@ class assets
 		    echo '<!-- Could not find: '. $file .'-->';
 	}
 
+
 /**
  * load function
  *
@@ -57,10 +58,12 @@ class assets
  * @author Adam Patterson
  **/
 	public static function load ( $load_file = NULL ) 
-	{
-		return ADMIN_BUNDLE.$load_file.'.php';
+	{				
+		// Old admin setting ( not using at the moment )
+		//return ADMIN_BUNDLE.$load_file.'.php';
+		
+		return PATH_URI.'/bundles/'.$load_file.'.php';
 	}
 	
 } // END class assets
-
 ?>
