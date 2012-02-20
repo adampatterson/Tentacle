@@ -24,7 +24,7 @@ if(!defined('SCAFFOLD')):
 		<a href="<?=BASE_URL;?>"><img src="<?=BASE_URL;?>tentacle/admin/images/tentacle_logo_large.png" width="258" height="63" alt="Tentacle" /></a>
 	</div>
 	<div id="login-content-message">
-		<p><strong>Tentacle is an OpenSource Content Management System, and it's free to use!</strong></p>
+		<p><strong>Tentacle is an OpenSource Content Management System, and it's easy to use!</strong></p>
 		<p>Follow us on Twitter <a href="https://twitter.com/#!/TentacleCMS" class='' target="_blank">@TentacleCMS</a>, read the <a href='http://www.tentaclecms.com/blog/'>Blog</a>, and consider joining the mailing list.</p>
 	</div>
 
@@ -52,6 +52,7 @@ if(!defined('SCAFFOLD')):
 		<?php endif;?>
 	</form>
 </div>
+<a href="https://github.com/adampatterson/Tentacle/tree/beta-wip"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/abad93f42020b733148435e2cd92ce15c542d320/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub"></a>
   <!-- #login-content -->
 <? load_part('footer'); 
 endif;
