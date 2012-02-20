@@ -104,10 +104,12 @@ $scaffold_data = array(
 		),
 		*/
 	);
+// If SCAFFOLD is not set then display the theme content. 
+// If SCAFFOLD is set then the admin side will render the $scaffold_data array
 if( !defined( 'SCAFFOLD' ) ):
 	$page = load::model ( 'page' );
 	$get_page_meta = $page->get_page_meta( $data->id ); ?>
-	<? load_part('header',array('title'=>$data->title, 'assets'=>'default')); ?>
+	<? load_part('header',array('title'=>$data->title, 'assets'=>'default'));?>
 <div class="row-fluid">
 	<div class="span3">
 		<div class="well sidebar-nav">
@@ -118,7 +120,7 @@ if( !defined( 'SCAFFOLD' ) ):
 		<div class="hero-unit">
 			<h1><?= $data->title; ?></h1>
 			<h2><?= $get_page_meta->name ?></h2>
-			<h3>From <?= $get_page_meta->location ?></h3>
+			<h3>From <?= $get_page_meta->country ?></h3>
 			<?= stripslashes( $data->content ); ?>
 			<p>Follow me <a href="http://www.twitter.com<?= $get_page_meta->twitter ?>">@<?= $get_page_meta->twitter ?></a></p>
 		</div><!-- /hero-unit -->

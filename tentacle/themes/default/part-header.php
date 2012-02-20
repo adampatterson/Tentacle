@@ -2,11 +2,18 @@
 <html lang="en"> 
 <head>
 <meta charset="utf-8"> 
-<title><?= $title?></title>
+<title><?= $title ?></title>
 <meta name="description" content="">
 <meta name="author" content="">
-<? assets::render($assets); ?>
+<? 
+/**
+ * undocumented 
+ *
+ * @param comma,separated - located in the bundles folder
+ * @author Adam Patterson
+ */
+assets::render( $assets ); ?>
 </head>
 
-<body>
+<body <?= body_class(); ?>>
 	<div class="container-fluid">

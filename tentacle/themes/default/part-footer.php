@@ -3,5 +3,8 @@
 	  </footer>
 
 	</div> <!-- /container -->
+	<? 
+	// Load assets in the footer.
+	assets::render( $assets='' ); ?>
 	</body>
 </html>
