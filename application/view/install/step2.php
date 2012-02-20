@@ -78,14 +78,16 @@
 					<td class="fail">Neither <code>$_SERVER['REQUEST_URI']</code>, <code>$_SERVER['PHP_SELF']</code>, or <code>$_SERVER['PATH_INFO']</code> is available.</td>
 				<?php endif ?>
 			</tr>
+			<!--
 			<tr>
 				<th>cURL Enabled</th>
-				<?php if (extension_loaded('curl')): ?>
+				<?php //if (extension_loaded('curl')): ?>
 					<td class="pass">Pass</td>
-				<?php else: ?>
+				<?php //else: ?>
 					<td class="fail">Tentacle requires <a href="http://php.net/curl">cURL</a> for the Remote class.</td>
-				<?php endif ?>
+				<?php //endif ?>
 			</tr>
+			-->
 			<tr>
 				<th>mcrypt Enabled</th>
 				<?php if (extension_loaded('mcrypt')): ?>
