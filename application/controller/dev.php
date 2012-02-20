@@ -31,6 +31,176 @@ class dev_controller {
 		echo pull();
 		echo '</pre>';
 	}
+
+
+
+	/**
+	 * 
+	 * 
+	 * 
+	 * ========================= Google Analytics
+	 * http://code.google.com/p/gapi-google-analytics-php-interface/wiki/GAPIDocumentation
+	 * 
+	 * 
+	 * 
+	 */
+	
+	public function ga_account ()
+	{
+		load::helper ('google_analytics');
+
+		define('ga_email','email@gmail.com');
+		define('ga_password','password');
+
+		$ga = new gapi(ga_email,ga_password);
+
+		$ga->requestAccountData();
+
+		foreach($ga->getResults() as $result)
+		{
+		  echo $result . ' (' . $result->getProfileId() . ")<br />";
+		}	
+	}
+	
+	
+	public function ga_filter ()
+	{
+		load::helper ('google_analytics');	
+
+		define('ga_email','email@gmail.com');
+		define('ga_password','password');
+		define('ga_profile_id','account');
+
+		$ga = new gapi(ga_email,ga_password);
+
+		/**
+		 * Note: OR || operators are calculated first, before AND &&.
+		 * There are no brackets () for precedence and no quotes are
+		 * required around parameters.
+		 * 
+		 * Do not use brackets () for precedence, these are only valid for 
+		 * use in regular expressions operators!
+		 * 
+		 * The below filter represented in normal PHP logic would be:
+		 * country == 'United States' && ( browser == 'Firefox || browser == 'Chrome')
+		 */
+
+		$filter = 'country == United States && browser == Firefox || browser == Chrome';
+
+		$ga->requestReportData(ga_profile_id,array('browser','browserVersion'),array('pageviews','visits'),'-visits',$filter);
+		?>
+		<table>
+		<tr>
+		  <th>Browser &amp; Browser Version</th>
+		  <th>Pageviews</th>
+		  <th>Visits</th>
+		</tr>
+		<?php
+		foreach($ga->getResults() as $result):
+		?>
+		<tr>
+		  <td><?php echo $result ?></td>
+		  <td><?php echo $result->getPageviews() ?></td>
+		  <td><?php echo $result->getVisits() ?></td>
+		</tr>
+		<?php
+		endforeach
+		?>
+		</table>
+
+		<table>
+		<tr>
+		  <th>Total Results</th>
+		  <td><?php echo $ga->getTotalResults() ?></td>
+		</tr>
+		<tr>
+		  <th>Total Pageviews</th>
+		  <td><?php echo $ga->getPageviews() ?>
+		</tr>
+		<tr>
+		  <th>Total Visits</th>
+		  <td><?php echo $ga->getVisits() ?></td>
+		</tr>
+		<tr>
+		  <th>Results Updated</th>
+		  <td><?php echo $ga->getUpdated() ?></td>
+		</tr>
+		</table>
+		<?
+	}
+	
+	
+	public function ga_report () {
+		
+		load::helper ('google_analytics');
+	
+		define('ga_email','email@gmail.com');
+		define('ga_password','password');
+		define('ga_profile_id','account');
+		
+		
+		$ga = new gapi(ga_email,ga_password);
+
+		$ga->requestReportData(ga_profile_id,array('browser','browserVersion'),array('pageviews','visits'));
+		
+		?>
+		<table>
+		<tr>
+		  <th>Browser &amp; Browser Version</th>
+		  <th>Pageviews</th>
+		  <th>Visits</th>
+		</tr>
+		<?php
+		foreach($ga->getResults() as $result):
+		?>
+		<tr>
+		  <td><?php echo $result ?></td>
+		  <td><?php echo $result->getPageviews() ?></td>
+		  <td><?php echo $result->getVisits() ?></td>
+		</tr>
+		<?php
+		endforeach
+		?>
+		</table>
+
+		<table>
+		<tr>
+		  <th>Total Results</th>
+		  <td><?php echo $ga->getTotalResults() ?></td>
+		</tr>
+		<tr>
+		  <th>Total Pageviews</th>
+		  <td><?php echo $ga->getPageviews() ?>
+		</tr>
+		<tr>
+		  <th>Total Visits</th>
+		  <td><?php echo $ga->getVisits() ?></td>
+		</tr>
+		<tr>
+		  <th>Results Updated</th>
+		  <td><?php echo $ga->getUpdated() ?></td>
+		</tr>
+		</table>
+		<?
+		
+	}
+	
+	public function ga_token ()
+	{
+		load::helper ('google_analytics');
+	
+		define('ga_email','adamapatterson@gmail.com');
+		define('ga_password','pineapple23');
+		define('ga_profile_id','14303668');
+		
+		
+		$ga = new gapi(ga_email,ga_password,isset($_SESSION['ga_auth_token'])?$_SESSION['ga_auth_token']:null);
+		$_SESSION['ga_auth_token'] = $ga->getAuthToken();
+
+		echo 'Token: ' . $_SESSION['ga_auth_token'];
+	}
+	
+	
 	
 	
 	public function sortable ()
