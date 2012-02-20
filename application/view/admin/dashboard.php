@@ -6,29 +6,43 @@
 			<div class="one-full">
 				<div class="title pad-right">
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Welcome <strong><?= user_name();?></strong></h1>
-					<h2>Content</h2>
-					<ul>
-						<li><strong>#</strong> Posts</li>
-						<li><strong>#</strong> Pages</li>
-						<li><strong>#</strong> Categories</li>
-						<li><strong>#</strong> Tags</li>
-					</ul>
-					<h2>Comments</h2>
-					<ul>
-						<li><strong>#</strong> Comments</li>
-						<li><strong>#</strong> Approved</li>
-						<li><strong>#</strong> Pending</li>
-						<li><strong>#</strong> Spam</li>
-					</ul>
-					
-					<h2>Updates</h2>
-					<ul>
-						<li>System Updates</li>
-						<li>Theme Updates</li>
-						<li>Module Updates</li>
-					</ul>
-					<!--<span id="spin">You spin me rite round!</span>
-						<div id="preview"></div>-->
+				<!--<div class="one-half">
+						<h2>Content</h2>
+						<ul>
+							<li><strong>#</strong> Posts</li>
+							<li><strong>#</strong> Pages</li>
+							<li><strong>#</strong> Categories</li>
+							<li><strong>#</strong> Tags</li>
+						</ul>
+					</div>
+					<div class="one-half">
+						<h2>Quick Links</h2>
+						<ul>
+							<li><a href="<?= ADMIN ?>content_add_page/">Write a new page</a></li>
+					        <li><a href="<?= ADMIN ?>content_manage_pages/">Manage pages</a></li>
+					        <li><a href="<?= ADMIN ?>content_add_post/">Write a new post</a></li>
+					        <li><a href="<?= ADMIN ?>content_manage_posts/">Manage posts</a></li>
+					        <li><a href="<?= ADMIN ?>content_manage_categories/">Manage categories</a></li>
+						</ul>
+					</div>-->
+					<div class="row">
+						<div class="well">
+						<h2>Blog feed</h2>
+							<div class="feed"></div>
+							<ul>
+								<script type="text/javascript">
+										$.getJSON("http://tentaclecms.com/blog/feed/?feed=json&jsonp=?",
+								       function(data){
+								               console.debug(data[1]);
+
+											$.each(data.slice(0,4), function(i, item){
+												$(".feed").append('<li><h3><a href="' + item.permalink + '">' + item.title + '</a></h3><p>' + item.excerpt +'</p></li>');
+											});
+								       });
+								</script>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div><!-- .one-full -->
 		</div><!-- .post-body -->
