@@ -145,7 +145,6 @@
 	*
 	* @return a HTML-sanitized version of a string. 
 	*/
-
     function fix($string, $quotes = false) {
         $quotes = ($quotes) ? ENT_QUOTES : ENT_NOQUOTES ;
         return htmlspecialchars($string, $quotes, "utf-8");
@@ -318,6 +317,5 @@
         }
         return preg_replace("/($phrase)/", $highlighter, $text);
     }
-
 
 ?>
