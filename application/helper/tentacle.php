@@ -11,8 +11,8 @@ load::helper ('settings');
 define ('URI'			, tentacle::get_request_url() );
 define ('ACTIVE_THEME' , get_option( 'appearance' ) );
 define ( 'PATH'			, THEMES_URL.'/'.ACTIVE_THEME );
-
 define ( 'PATH_URI'  	, THEMES_DIR.ACTIVE_THEME );
+define ( 'HISTORY' 		, BASE_URL.URI.'/' );
 
 /**
 * tentacle class
@@ -215,6 +215,178 @@ function clean_out($data) {
 	echo '<pre>';
 	print_r($data);
 	echo '</pre>';
+}
+
+
+/**
+ * Converts the URI into a list of classes
+ *
+ * @return string
+ * @author Adam Patterson
+ */
+function body_class () {
+	// Separates classes with a single space, collates classes for body element
+	echo 'class="'.join( ' ', explode("/", URI ) ).'"';
+	//echo 'class="' . join( ' ', get_body_class( $class ) ) . '"';
+}
+
+
+
+/**
+ * Retrieve the classes for the body element as an array.
+ *
+ * @since 2.8.0
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ * @return array Array of classes.
+ */
+function get_body_class( $class = '' ) {
+	/*
+	global $wp_query, $wpdb;
+
+	$classes = array();
+
+	if ( is_rtl() )
+		$classes[] = 'rtl';
+
+	if ( is_front_page() )
+		$classes[] = 'home';
+	if ( is_home() )
+		$classes[] = 'blog';
+	if ( is_archive() )
+		$classes[] = 'archive';
+	if ( is_date() )
+		$classes[] = 'date';
+	if ( is_search() )
+		$classes[] = 'search';
+	if ( is_paged() )
+		$classes[] = 'paged';
+	if ( is_attachment() )
+		$classes[] = 'attachment';
+	if ( is_404() )
+		$classes[] = 'error404';
+
+	if ( is_single() ) {
+		$post_id = $wp_query->get_queried_object_id();
+		$post = $wp_query->get_queried_object();
+
+		$classes[] = 'single';
+		$classes[] = 'single-' . sanitize_html_class($post->post_type, $post_id);
+		$classes[] = 'postid-' . $post_id;
+
+		// Post Format
+		$post_format = get_post_format( $post->ID );
+
+		if ( $post_format && !is_wp_error($post_format) )
+			$classes[] = 'single-format-' . sanitize_html_class( $post_format );
+		else
+			$classes[] = 'single-format-standard';
+
+		if ( is_attachment() ) {
+			$mime_type = get_post_mime_type($post_id);
+			$mime_prefix = array( 'application/', 'image/', 'text/', 'audio/', 'video/', 'music/' );
+			$classes[] = 'attachmentid-' . $post_id;
+			$classes[] = 'attachment-' . str_replace( $mime_prefix, '', $mime_type );
+		}
+	} elseif ( is_archive() ) {
+		if ( is_post_type_archive() ) {
+			$classes[] = 'post-type-archive';
+			$classes[] = 'post-type-archive-' . sanitize_html_class( get_query_var( 'post_type' ) );
+		} else if ( is_author() ) {
+			$author = $wp_query->get_queried_object();
+			$classes[] = 'author';
+			$classes[] = 'author-' . sanitize_html_class( $author->user_nicename , $author->ID );
+			$classes[] = 'author-' . $author->ID;
+		} elseif ( is_category() ) {
+			$cat = $wp_query->get_queried_object();
+			$classes[] = 'category';
+			$classes[] = 'category-' . sanitize_html_class( $cat->slug, $cat->term_id );
+			$classes[] = 'category-' . $cat->term_id;
+		} elseif ( is_tag() ) {
+			$tags = $wp_query->get_queried_object();
+			$classes[] = 'tag';
+			$classes[] = 'tag-' . sanitize_html_class( $tags->slug, $tags->term_id );
+			$classes[] = 'tag-' . $tags->term_id;
+		} elseif ( is_tax() ) {
+			$term = $wp_query->get_queried_object();
+			$classes[] = 'tax-' . sanitize_html_class( $term->taxonomy );
+			$classes[] = 'term-' . sanitize_html_class( $term->slug, $term->term_id );
+			$classes[] = 'term-' . $term->term_id;
+		}
+	} elseif ( is_page() ) {
+		$classes[] = 'page';
+
+		$page_id = $wp_query->get_queried_object_id();
+
+		$post = get_page($page_id);
+
+		$classes[] = 'page-id-' . $page_id;
+
+		if ( $wpdb->get_var( $wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE post_parent = %d AND post_type = 'page' AND post_status = 'publish' LIMIT 1", $page_id) ) )
+			$classes[] = 'page-parent';
+
+		if ( $post->post_parent ) {
+			$classes[] = 'page-child';
+			$classes[] = 'parent-pageid-' . $post->post_parent;
+		}
+		if ( is_page_template() ) {
+			$classes[] = 'page-template';
+			$classes[] = 'page-template-' . sanitize_html_class( str_replace( '.', '-', get_post_meta( $page_id, '_wp_page_template', true ) ), '' );
+		} else {
+			$classes[] = 'page-template-default';
+		}
+	} elseif ( is_search() ) {
+		if ( !empty( $wp_query->posts ) )
+			$classes[] = 'search-results';
+		else
+			$classes[] = 'search-no-results';
+	}
+
+	if ( is_user_logged_in() )
+		$classes[] = 'logged-in';
+
+	if ( is_admin_bar_showing() )
+		$classes[] = 'admin-bar';
+
+	$page = $wp_query->get( 'page' );
+
+	if ( !$page || $page < 2)
+		$page = $wp_query->get( 'paged' );
+
+	if ( $page && $page > 1 ) {
+		$classes[] = 'paged-' . $page;
+
+		if ( is_single() )
+			$classes[] = 'single-paged-' . $page;
+		elseif ( is_page() )
+			$classes[] = 'page-paged-' . $page;
+		elseif ( is_category() )
+			$classes[] = 'category-paged-' . $page;
+		elseif ( is_tag() )
+			$classes[] = 'tag-paged-' . $page;
+		elseif ( is_date() )
+			$classes[] = 'date-paged-' . $page;
+		elseif ( is_author() )
+			$classes[] = 'author-paged-' . $page;
+		elseif ( is_search() )
+			$classes[] = 'search-paged-' . $page;
+		elseif ( is_post_type_archive() )
+			$classes[] = 'post-type-paged-' . $page;
+	}
+
+	if ( ! empty( $class ) ) {
+		if ( !is_array( $class ) )
+			$class = preg_split( '#\s+#', $class );
+		$classes = array_merge( $classes, $class );
+	} else {
+		// Ensure that we always coerce class to being an array.
+		$class = array();
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	return apply_filters( 'body_class', $classes, $class );
+	*/
 }
 
 
