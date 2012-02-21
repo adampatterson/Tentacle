@@ -46,6 +46,9 @@ class install_controller
 		
 		// Seed data
 		$sql->get_101();
+				
+		// Set an option key for the blog being installed
+		$sql->get_102();
 								
 		load::view ('install/step5');
 	}

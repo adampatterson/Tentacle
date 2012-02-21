@@ -1,6 +1,12 @@
 <?
  /*
 Name: Blog Page
+URI: http://tcms.me/
+Description: This is the Tentacle default theme.
+Author: Tentacle
+Version: 1.0
+License: GNU General Public License
+License URI: license.txt
 */
 if( !defined( 'SCAFFOLD' ) ):?>
 <? load_part('header',array('title'=>'Blog','assets'=>'default')); ?>
@@ -11,7 +17,9 @@ if( !defined( 'SCAFFOLD' ) ):?>
 		</div><!--/.well -->
 	</div><!--/span3-->
 	<div class="span9">
-		<?foreach ($data as $post): $user_meta = $user->get_meta ( $post->author ); ?>
+		<?
+		// Loop all of the blog posts.
+		foreach ($data as $post): $user_meta = $user->get_meta ( $post->author ); ?>
 			<div class="hero-unit">
 				<h2 class="title"><a href="<?= BASE_URL.$post->uri ?>"><?= $post->title?></a></h2>
 				<small>Posted in: 
@@ -21,7 +29,10 @@ if( !defined( 'SCAFFOLD' ) ):?>
 				</small>
 				<?= stripcslashes( $post->content );?>
 				<small>Created by: <?= $user_meta -> first_name;?> <?= $user_meta -> last_name;?></small>
-				<? if(user::valid()): ?>
+				<? 
+				// If you are an admin user who is logged in 
+				// then you can trash or edit posts.
+				if(user::valid()): ?>
 					<p><a href="<?= ADMIN ?>content_update_post/<?= $post->id;?>" class="btn small">Edit</a> <a href="<?= BASE_URL ?>action/trash_post/<?= $post -> id;?>" class="btn small danger">Trash</a></p>
 				<? endif; ?>
 			</div><!-- /hero-unit -->

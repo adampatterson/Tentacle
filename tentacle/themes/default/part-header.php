@@ -2,7 +2,7 @@
 <html lang="en"> 
 <head>
 <meta charset="utf-8"> 
-<title><?= $title ?></title>
+<title><?= get_option('blogname').' - '.$title ?></title>
 <meta name="description" content="">
 <meta name="author" content="">
 <? 

@@ -230,7 +230,15 @@ function body_class () {
 	//echo 'class="' . join( ' ', get_body_class( $class ) ) . '"';
 }
 
-
+/**
+ * Converts the URI for a post into a class
+ *
+ * @return string
+ * @author Adam Patterson
+ */
+function post_class() {
+	return true;
+}
 
 /**
  * Retrieve the classes for the body element as an array.

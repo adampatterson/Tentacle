@@ -10,8 +10,8 @@ License URI: license.txt
 */
 
 // If SCAFFOLD is not set then display the theme content.
-if( !defined( 'SCAFFOLD' ) ):?>
-<? 
+if( !defined( 'SCAFFOLD' ) ):
+
 /**
  * Parts is a simple way to include another file
  *
@@ -32,7 +32,6 @@ load_part('header',array('title'=>$data->title, 'assets'=>'default')); ?>
 	</div><!--/span3-->
 	<div class="span9">
 		<div class="hero-unit">
-			
 			<h1><?= $data->title; ?></h1>
 			<?  // Strip slashses will remove any special 
 				// encoding used by the data base.

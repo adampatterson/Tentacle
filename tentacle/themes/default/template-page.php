@@ -1,9 +1,15 @@
 <?
  /*
 Name: Page
+URI: http://tcms.me/
+Description: This is the Tentacle default theme.
+Author: Tentacle
+Version: 1.0
+License: GNU General Public License
+License URI: license.txt
 */
 
-$data = array();
+$scaffold_data = array();
 
 // If SCAFFOLD is not set then display the theme content.
 if( !defined( 'SCAFFOLD' ) ):?>

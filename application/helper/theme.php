@@ -22,7 +22,7 @@ function current_theme( $theme_id = '' )
 function get_themes()
 {
   	$themes = array();
-	$dir = THEMES_DIR.'/';
+	$dir = THEMES_DIR;
 	if ($handle = opendir($dir))
 	{
 		while (false !== ($file = readdir($handle)))
@@ -30,13 +30,13 @@ function get_themes()
 			if (strpos($file, '.') !== 0 && is_dir($dir.$file))
 			{
 
-				$theme_index = glob(THEMES_DIR.'/'.$file.'/index.php');
+				$theme_index = glob(THEMES_DIR.$file.'/index.php');
 				if (empty($theme_index)) {
 					$theme_index = array();	
 					$theme_index[0] = NULL;
 				}
 
-				$theme_screenshot = glob(THEMES_DIR.'/'.$file.'/screenshot.png');	
+				$theme_screenshot = glob(THEMES_DIR.$file.'/screenshot.png');	
 				if (empty($theme_screenshot)) {
 					$theme_screenshot = array();
 					$theme_screenshot[0] = 'http://placehold.it/210x150';
@@ -69,7 +69,7 @@ function get_themes()
 
 function get_settings ( $style_path = 'default' )
 {
-	$style_file = THEMES_DIR.'/'.$style_path.'/style.css';
+	$style_file = THEMES_DIR.$style_path.'/style.css';
 	if ( file_exists( $style_file ) ) 
 	{
 		$file = get_data($style_file, 'theme');
@@ -90,7 +90,7 @@ function get_settings ( $style_path = 'default' )
 // @todo Don't show the reserved file names, these should be valid tempalte files with the correct headers.
 function get_templates ( $theme_folder ) 
 {
-	$php_files = glob(THEMES_DIR.'/'.$theme_folder.'/*.php');	
+	$php_files = glob(THEMES_DIR.$theme_folder.'/*.php');	
 
 	foreach ($php_files as $php_file):
 	
@@ -228,7 +228,49 @@ function get_data( $theme_file, $data_type )
 		// need to cean out invalid files.
 		return $theme_data;
 		
-	} elseif ( $data_type == 'post_type' ) {
+	} elseif ( $data_type == 'theme' ) {
+		
+			$default_headers = array(
+				'Name' => 'Name',
+				'URI' => 'URI',
+				'Description' => 'Description',
+				'Author' => 'Author',
+				'AuthorURI' => 'Author URI',
+				'Version' => 'Version',
+				'Template' => 'Template',
+				'Status' => 'Status'
+				);
+
+			$theme_data = get_file_data( $theme_file, $default_headers );
+
+			$theme_data['Name'] = $theme_data['Title'] = $theme_data['Name'];
+			$theme_data['URI'] = $theme_data['URI'];
+			$theme_data['Description'] = $theme_data['Description'];
+			$theme_data['AuthorURI'] = $theme_data['AuthorURI'];
+			$theme_data['Template'] = $theme_data['Template'];
+			$theme_data['Version'] = $theme_data['Version'];
+
+			if ( $theme_data['Status'] == '' ):
+				$theme_data['Status'] = 'publish';
+			else:
+				$theme_data['Status'] = $theme_data['Status'];
+			endif;
+
+			if ( $theme_data['Author'] == '' ):
+				$theme_data['Author'] = $theme_data['AuthorName'] = 'Anonymous';
+			else:
+				$theme_data['AuthorName'] = $theme_data['Author'];
+				if ( empty( $theme_data['AuthorURI'] ) ):
+					$theme_data['Author'] = $theme_data['AuthorName'];
+				else:
+					$theme_data['Author'] = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', $theme_data['AuthorURI'], esc_attr__( 'Visit author homepage' ), $theme_data['AuthorName'] );
+				endif;
+			endif;
+
+			// need to cean out invalid files.
+			return $theme_data;
+
+		} elseif ( $data_type == 'post_type' ) {
 		
 		$default_headers = array(
 			'Type' => 'Type'

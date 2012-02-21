@@ -20,10 +20,12 @@ class page_controller {
 		$page = load::model ( 'page' );
 		$content = $page->get_by_uri( $uri );
 		
+		$get_page_meta = $page->get_page_meta( $content->id );
+		
 		// If URI lookup fails redirect to the themes 404 page
 		// 
 		if ( $content ) {
-			tentacle::render ( $content->template, array ( 'data' => $content ) );
+			tentacle::render ( $content->template, array ( 'data' => $content, 'get_page_meta' => $get_page_meta ) );
 
 			if(user::valid()) load::helper ('adminbar');
 		} else {

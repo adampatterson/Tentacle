@@ -261,4 +261,21 @@ class sql_model
 			VALUES
 				(58, 112, 'scaffold_data', 'a:6:{s:9:\"post_type\";s:9:\"type-post\";s:13:\"post_category\";a:1:{i:0;s:1:\"1\";}s:11:\"bread_crumb\";s:0:\"\";s:13:\"meta_keywords\";s:0:\"\";s:16:\"meta_description\";s:27:\"Enter your comments here...\";s:4:\"tags\";s:0:\"\";}')" );
 	}
+	
+	public function get_102 () 
+	{
+		
+		$config = config::get('db');
+
+		try {
+			$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
+		} catch(PDOException $e) {
+			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
+		}
+		
+		$build = $pdo->exec( "INSERT INTO `options` (`id`, `key`, `value`, `autoload`)
+		VALUES
+			(14, 'is_blog_installed', 'true', 'yes')" );
+
+	}
 }
