@@ -398,6 +398,29 @@ function get_body_class( $class = '' ) {
 }
 
 
+function is_blog_installed() {
+	if ( get_option( 'is_blog_installed' ) ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
+function get_db_version ()
+{
+	return get_option( 'db_version' );
+}
+
+
+function render_content ( $content='' ) {
+	return stripslashes( $content );
+}
+
+// Misc Utility
+//----------------------------------------------------------------------------------------------
+
+
 /**
  * Appends a trailing slash.
  *
@@ -494,20 +517,5 @@ function convert_size($num) {
 // Information about time and memory
 function memory_usage() {
     return convert_size(memory_get_usage());
-}
-
-
-function is_blog_installed() {
-	if ( get_option( 'is_blog_installed' ) ) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-
-function get_db_version ()
-{
-	return get_option( 'db_version' );
 }
 ?>
