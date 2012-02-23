@@ -16,12 +16,6 @@
 		<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Manage Categories</h1>
 		<div class='one-half'>
 			<form action='<?= BASE_URL ?>action/add_category/' method='post'>
-				<?php if( $note = note::get( 'category_add' ) ):
-				?>
-				<div class='flash success'>
-					<?= $note['content'];?>
-				</div>
-				<?php endif;?>
 				<div class='table-heading'>
 					<h3 class='regular'>Add Categories</h3>
 				</div>
