@@ -33,6 +33,13 @@ class dev_controller {
 	}
 
 
+		public function relations ()
+		{
+			$categories = load::model ( 'tags' );
+
+			clean_out( $categories->get_all_tags( ) );
+		}
+
 
 	/**
 	 * 
@@ -40,7 +47,7 @@ class dev_controller {
 	 * 
 	 * ========================= Google Analytics
 	 * http://code.google.com/p/gapi-google-analytics-php-interface/wiki/GAPIDocumentation
-	 * 
+	 * http://richardneililagan.com/2010/06/accessing-google-analytics-using-php-via-gapi/
 	 * 
 	 * 
 	 */
@@ -251,16 +258,14 @@ class dev_controller {
 		
 		echo '<h2>Parsing</h2>';
 
-		function snippet_func($atts) {
-			$snippet = load::model ( 'snippet' );
-			$snippet_single = $snippet->get_slug( $atts['slug'] );
-			
-			return $snippet_single->content;
-			}
-		
-		add_shortcode( 'snippet', 'snippet_func' );
+		// loaded from Snippet Helper
+		add_shortcode( 'snippet', 'snippet' );
 		
 		echo do_shortcode( $page->content );
+		
+		echo '<hr />';
+		
+		echo get_snippet('footer');
 	}
 	
 	
