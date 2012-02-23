@@ -81,9 +81,23 @@ class admin_controller {
 		
 		$page_hiarchy = $page->get_page_children( 0, $pages );
 		
+		$tag = load::model ( 'tags' );
+		$tags = $tag->get_all_tags();
+		$tag_dirty_relations = $tag->get_relations( $page_id);
+				
+		foreach ( $tag_dirty_relations as $tag_single ) {
+			$tag_relations[] = $tag_single->name;
+		}
+		
+		if ( isset( $tag_relations ) != '') {
+			$tag_relations = join(",", $tag_relations);
+		} else {
+			$tag_relations = null;
+		}
+
 		$get_page_meta = $page->get_page_meta( $page_id );
 		
-		load::view ('admin/content/content_edit_page', array(  'get_page'=>$get_page, 'get_page_meta'=>$get_page_meta, 'pages' => $page_hiarchy, 'page_id' => $page_id ) );		
+		load::view ('admin/content/content_edit_page', array(  'get_page'=>$get_page, 'get_page_meta'=>$get_page_meta, 'pages'=>$page_hiarchy, 'page_id'=>$page_id, 'tags'=>$tags, 'tag_relations'=>$tag_relations) );		
 	}
 
 	public function content_manage_pages ( $status = '' )
@@ -113,9 +127,12 @@ class admin_controller {
 		load::helper ('date');
 		
 		$category = load::model( 'category' );
-		$categories = $category->get( );
+		$categories = $category->get_all_categories( );
+		$tag = load::model ( 'tags' );
+
+		$tags = $tag->get_all_tags();
 		
-		load::view ('admin/content/content_add_post', array( 'categories'=>$categories ) );
+		load::view ('admin/content/content_add_post', array( 'categories'=>$categories, 'tags'=>$tags ) );
 	}
 	
 	public function content_update_post ( $post_id )
@@ -128,11 +145,26 @@ class admin_controller {
 		$get_post = $post->get( $post_id );
 		
 		$category = load::model( 'category' );
-		$categories = $category->get( );
+		$categories = $category->get_all_categories( );
+		$category_relations = $category->get_relations( $post_id );
 		
+		$tag = load::model ( 'tags' );
+		$tags = $tag->get_all_tags();
+		$tag_dirty_relations = $tag->get_relations( $post_id );
+		
+		foreach ( $tag_dirty_relations as $tag_single ) {
+			$tag_relations[] = $tag_single->name;
+		}  
+		
+		if ( isset( $tag_relations ) != '') {
+			$tag_relations = join(",", $tag_relations);
+		} else {
+			$tag_relations = null;
+		}
+
 		$get_post_meta = $post->get_post_meta( $post_id );
 		
-		load::view ('admin/content/content_edit_post', array(  'get_post'=>$get_post, 'get_post_meta'=>$get_post_meta, 'post_id' => $post_id, 'categories'=>$categories, 'category_relations'=>$category ) );		
+		load::view ('admin/content/content_edit_post', array(  'get_post'=>$get_post, 'get_post_meta'=>$get_post_meta, 'post_id' => $post_id, 'categories'=>$categories, 'category_relations'=>$category_relations, 'tags'=>$tags, 'tag_relations'=>$tag_relations) );		
 	}
 
 	public function content_manage_posts ( $status = '' )
