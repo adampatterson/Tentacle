@@ -141,6 +141,12 @@ class action_controller
 		// Delete the selected tempalte from the session once the Page has been posted.
 		session::delete ( 'template' );
 
+		/*
+		$post_tags = input::post( 'tags' );
+		$tag = load::model( 'tags' );
+		$tag_relations = $tag->relations( $post_single, $post_tags );
+		*/
+
 		url::redirect( 'admin/content_update_page/'.$page_single );
 	}
 	
@@ -151,6 +157,12 @@ class action_controller
 
 		$page = load::model( 'page' );
 		$page_single = $page->update( $page_id );
+		
+		/*
+		$post_tags = input::post( 'tags' );
+		$tag = load::model( 'tags' );
+		$tag_relations = $tag->relations( $post_single, $post_tags, true );
+		*/
 		
 		session::delete ( 'template' );
 
@@ -200,6 +212,16 @@ class action_controller
 		$category = load::model( 'category' );
 		$category_relations = $category->relations( $post_single, $post_categories );
 		
+		$post_tags = input::post( 'tags' );
+		$post_tags = explode(',', $post_tags );
+		$tags = load::model( 'tags' );
+		
+		foreach ( $post_tags as $tag ) {
+			$tag_single = $tags->add( $tag );
+			
+			$tag_relations = $tags->relations( $post_single, $tag_single );
+		}	
+		
 		url::redirect( 'admin/content_update_post/'.$post_single );
 	}	
 	
@@ -214,6 +236,12 @@ class action_controller
 		$post_categories = input::post( 'post_category' );
 		$category = load::model( 'category' );
 		$category_relations = $category->relations( $post_single, $post_categories, true );
+		
+		/*
+		$post_tags = input::post( 'tags' );
+		$tag = load::model( 'tags' );
+		$tag_relations = $tag->relations( $post_single, $post_tags, true );
+		*/
 		
 		url::redirect( input::post ( 'history' ) );
 	}
@@ -347,8 +375,7 @@ class action_controller
 	 */
  	public function add_category ()
  	{	
-		tentacle::valid_user()
-		;	
+		tentacle::valid_user();	
  		$category = load::model( 'category' );
  		$category_single = $category->add( );
  

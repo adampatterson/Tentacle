@@ -72,11 +72,10 @@
 								<div class="category-list">
 									<ul id="categorychecklist">
 									<? 
-										$relations = $category_relations->get_relations( $get_post->id );
 										foreach ($categories as $category): ?>
 											<li id="category-<?= $category->id  ?>">
 												<label class="selectit">
-												<input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>" <? checked( $category->id, (array)$relations ); ?>> <?= $category->name  ?>
+												<input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>" <? checked( $category->id, (array)$category_relations ); ?>> <?= $category->name  ?>
 											</label>
 										</li>
 							        <? ?>
@@ -216,8 +215,8 @@
 								</div>
 								<div class="clearfix">
 									<label>Tags</label>
-									<div class="input">
-										<input type="text" class="tags" name="tags" id="tags" value='<?= $get_post_meta->tags ?>' />
+									<div class="input">										
+										<input type="text" class="tags" name="tags" id="tags" value='<?= $tag_relations ?>' />
 										<span class="help-block">Separate each keyword with a comma ( , )</span>
 									</div>
 								</div>

@@ -252,7 +252,7 @@
 										</ul>
 									</div>
 								</div>
-*/ ?>w
+*/ ?>
 							</fieldset>
 							<div class="clear"></div>
 						</div>

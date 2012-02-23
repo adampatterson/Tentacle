@@ -209,7 +209,7 @@
 								<div class="clearfix">
 									<label>Tags</label>
 									<div class="input">
-										<input type="text" class="tags" name="tags" id="tags" value='<?= $get_page_meta->tags ?>' />
+										<input type="text" class="tags" name="tags" id="tags" value='<?= $tag_relations ?>' />
 										<span class="help-block">Separate each keyword with a comma ( , )</span>
 									</div>
 								</div>
