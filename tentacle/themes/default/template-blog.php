@@ -37,7 +37,7 @@ foreach ($data as $post): $user_meta = $user->get_meta ( $post->author ); ?>
 			<? endforeach; ?>
 		</small></p>
 		<p><small>Tags: 
-			<? foreach( $relations = $category->get_relations( $post->id ) as $relation ): ?>
+			<? foreach( $relations = $tag->get_relations( $post->id ) as $relation ): ?>
 				 <a href="#<?=$relation->slug ?>"><?= $relation->name ?></a>
 			<? endforeach; ?>
 		</small></p>

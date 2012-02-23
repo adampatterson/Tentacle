@@ -19,9 +19,11 @@ class blog_controller {
 		
 		$category = load::model( 'category' );
 		
+		$tag = load::model( 'tags' );
+		
 		$user = load::model('user'); 
 		
-		tentacle::render ( 'template-blog', array ( 'data' => $posts, 'user'=>$user, 'category'=>$category ) );
+		tentacle::render ( 'template-blog', array ( 'data' => $posts, 'user'=>$user, 'category'=>$category, 'tag'=>$tag ) );
         
 		if(user::valid()) load::helper ('adminbar');         
 
