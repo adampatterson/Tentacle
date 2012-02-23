@@ -33,7 +33,7 @@ if( !defined( 'SCAFFOLD' ) ):?>
 			 	// This will be replaced by a cuntion that
 			 	// will process any Shortcodes and OEMBED data.
 			?>
-			<?= stripslashes( $data->content ); ?>
+			<?= render_content( $data->content ); ?>
 			
 		</div><!-- /hero-unit -->
 	</div><!--/span9-->

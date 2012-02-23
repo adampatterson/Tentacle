@@ -13,7 +13,7 @@ if( !defined( 'SCAFFOLD' ) ):?>
 	<div class="span9">
 		<div class="hero-unit">
 			<h1><?= $data->title; ?></h1>
-			<?= stripslashes( $data->content ); ?>
+			<?= render_content( $data->content ); ?>
 		</div><!-- /hero-unit -->
 	</div><!--/span9-->
 </div><!--/row-->

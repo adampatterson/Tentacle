@@ -56,9 +56,9 @@ load_part('header',array('title'=>$data->title, 'assets'=>'default')); ?>
 		<div class="hero-unit">
 			
 			<h1><?= $data->title; ?></h1>
-			<?= stripslashes( $data->content ); ?>
-			<form action="<?= HISTORY  ?>" method="post" accept-charset="utf-8" class="form-horizontal" name="contact">
-				<input type="hidden" name="history" value="<?= HISTORY  ?>"/>
+			<?= render_content( $data->content ); ?>
+			<form action="<?= HISTORY ?>" method="post" accept-charset="utf-8" class="form-horizontal" name="contact">
+				<input type="hidden" name="history" value="<?= HISTORY ?>"/>
 				<fieldset>
 					<hr />
 		          <div class="control-group">

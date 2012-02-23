@@ -12,8 +12,6 @@ License URI: license.txt
 //@todo have help text (can be hidden in the admin area)
 $scaffold_data = array(
 	'display' => 'admin',
-	'paged' => 'paged',
-	'posts_per_page' => 2,
 	'name' => array(				
 		'name' => 'Name',
 		#'label_name' => 'first_name', // Humanixe the name
@@ -51,7 +49,7 @@ if( !defined( 'SCAFFOLD' ) ): ?>
 			<h1><?= $data->title; ?></h1>
 			<h2><?= $get_page_meta->name ?></h2>
 			<h3>From <?= $get_page_meta->country ?></h3>
-			<?= stripslashes( $data->content ); ?>
+			<?= render_content( $data->content ); ?>
 			<p>Follow me <a href="http://www.twitter.com<?= $get_page_meta->twitter ?>">@<?= $get_page_meta->twitter ?></a></p>
 		</div><!-- /hero-unit -->
 	</div><!--/span9-->
