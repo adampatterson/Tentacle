@@ -10,3 +10,4 @@ _Tentacle Resource
 .settings/
 tentacle/admin/css/bootstrap-2/
 application/config/setup/db.php
+tentacle/themes/default/template-rfp.php
