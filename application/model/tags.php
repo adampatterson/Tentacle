@@ -1,7 +1,59 @@
 <?
 class tags_model
 {
+	
+	// Add tag
+	//----------------------------------------------------------------------------------------------
+	public function add ( $post_tags ) 
+	{
+		$term_name = $post_tags;
+		
+		$inflector = new inflector( );
+		$term_slug = $inflector->camelize( $term_name );
+		$term_slug = $inflector->underscore( $term_slug );;
+		
+		$tag  = db( 'terms' );
 
+		$tag_id = $tag->insert(array(
+			'name'=>$term_name,
+			'slug'=>$term_slug
+		));
+
+		$term_taxonomy = db( 'term_taxonomy' );
+
+		$term_taxonomy->insert(array(
+			'taxonomy'=>'tag',
+			'term_id'=>$tag_id->id
+		),FALSE);
+		
+		return $tag_id->id;		
+	}
+	
+	
+	// Update tag
+	//----------------------------------------------------------------------------------------------
+	public function update ( $id='' )
+	{
+		$term_name = input::post ( 'name' );
+		$term_slug = input::post ( 'slug' );
+		
+		$inflector = new inflector( );
+		$term_slug = $inflector->camelize( $term_slug );
+		$term_slug = $inflector->underscore( $term_slug );
+		
+		$tag  = db( 'terms' );
+		
+		$tag->update(array(
+				'name'=>$term_name,
+				'slug'=>$term_slug,
+			))
+			->where( 'id', '=', $id )
+			->execute();
+			
+		note::set('success','tag_update','tag Updated!');
+	}	
+	
+	
 	// Get tag
 	//----------------------------------------------------------------------------------------------
 	public function get ( $id='' )
@@ -39,30 +91,6 @@ class tags_model
 		  
 		  return $get_tag[0];
     }
-	
-	
-	// Update tag
-	//----------------------------------------------------------------------------------------------
-	public function update ( $id='' )
-	{
-		$term_name = input::post ( 'name' );
-		$term_slug = input::post ( 'slug' );
-		
-		$inflector = new inflector( );
-		$term_slug = $inflector->camelize( $term_slug );
-		$term_slug = $inflector->underscore( $term_slug );
-		
-		$tag  = db( 'terms' );
-		
-		$tag->update(array(
-				'name'=>$term_name,
-				'slug'=>$term_slug,
-			))
-			->where( 'id', '=', $id )
-			->execute();
-			
-		note::set('success','tag_update','tag Updated!');
-	} 
 
 
 	// Delete tag
@@ -80,34 +108,6 @@ class tags_model
 		$tag = db( 'terms' );
 
 		$tag->delete( 'id','=',$id );
-	}
-	
-	
-	// Add tag
-	//----------------------------------------------------------------------------------------------
-	public function add ( $post_tags ) 
-	{
-		$term_name = $post_tags;
-		
-		$inflector = new inflector( );
-		$term_slug = $inflector->camelize( $term_name );
-		$term_slug = $inflector->underscore( $term_slug );;
-		
-		$tag  = db( 'terms' );
-
-		$tag_id = $tag->insert(array(
-			'name'=>$term_name,
-			'slug'=>$term_slug
-		));
-
-		$term_taxonomy = db( 'term_taxonomy' );
-
-		$term_taxonomy->insert(array(
-			'taxonomy'=>'tag',
-			'term_id'=>$tag_id->id
-		),FALSE);
-		
-		return $tag_id->id;		
 	}
 	
 	
@@ -130,17 +130,6 @@ class tags_model
 	
 	// Get the tag relations of a blog post.
 	//----------------------------------------------------------------------------------------------	
-	/*
-	[id] => 1
-	            [name] => Default
-	            [slug] => default
-	            [taxonomy] => tag
-	            [description] => 
-	            [parent] => 0
-	            [count] => 0
-	            [page_id] => 79
-	            [term_order] =>
-	*/
 	public function get_relations ( $post_id = '' ) 
 	{	
 		

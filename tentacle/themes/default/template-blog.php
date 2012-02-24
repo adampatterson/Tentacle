@@ -32,7 +32,7 @@ foreach ($data as $post): $user_meta = $user->get_meta ( $post->author ); ?>
 			<!--<p><a href="<?= ADMIN ?>content_update_post/<?= $post->id;?>" class="btn small">Edit</a> <a href="<?= BASE_URL ?>action/trash_post/<?= $post -> id;?>" class="btn small danger">Trash</a></p>-->
 		<? endif; ?>
 		<p><small>Posted in: 
-			<? foreach( $relations = $category->get_relations( $post->id ) as $relation ): ?>
+			<? foreach( $category->get_relations( $post->id ) as $relation ): ?>
 				 <a href="#<?=$relation->slug ?>"><?= $relation->name ?></a>
 			<? endforeach; ?>
 		</small></p>

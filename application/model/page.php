@@ -2,6 +2,155 @@
 class page_model  
 {	
 	
+	// Add Page
+	//----------------------------------------------------------------------------------------------
+	/**
+	 * Add a record
+	 *
+	 * @author Adam Patterson
+	 */	
+	public function add ( ) 
+	{
+		$title         = $_POST['title'];
+		$slug          = sanitize($title);
+		$content       = $_POST['content'];
+		$status        = $_POST['status'];
+		$parent_page   = $_POST['parent_page'];
+		//$post_template = $_POST['page_template'];
+		
+		$dirty_template = session::get( 'template' );
+		
+		if ( $dirty_template == '' ):
+			$post_template = 'default';
+		else:
+			$post_template = $dirty_template;
+		endif;
+		
+		
+		$post_type     = $_POST['page-or-post'];
+		
+		$post_author   = user::id();
+		
+		$uri 			= $this->get_parent_uri( $parent_page ).$slug.'/';
+		
+		// Run content through HTMLawd and Samrty Text
+		$page          = db('posts');
+		
+		$row = $page->insert(array(
+			'title'	=>$title,
+			'slug'		=>$slug,
+			'content'	=>$content,
+			'status'	=>$status,
+			'author'	=>$post_author,
+			'type'		=>$post_type,
+			'template'	=>$post_template,
+			'parent'	=>$parent_page,
+			'uri'		=>$uri,
+			'date'		=>time(),
+			'modified'	=> time()
+		));
+
+	
+		$scaffold_data = $_POST;
+
+		$remove_keys = array( 'save', 'title', 'content', 'status', 'parent_page', 'page_template', 'page-or-post', 'history', 'tags'  );
+		
+		foreach ( $remove_keys as $remove_key ):
+			unset( $scaffold_data[ $remove_key ] );
+		endforeach;
+	
+		$meta_value = serialize( $scaffold_data );
+
+		$page_meta      = db('posts_meta');
+
+		$page_meta->insert(array(
+			'posts_id'=>$row->id,
+			'meta_key'=>'scaffold_data',
+			'meta_value'=>$meta_value
+		));
+
+		note::set('success','page_add','Page Added!');
+		return $row->id;
+	}
+	
+	
+	// Update Page
+	//----------------------------------------------------------------------------------------------	
+	/**
+	 * Update a record
+	 *
+	 * @author Adam Patterson
+	 */
+	public function update ( $id ) 
+	{
+		// create a new version of the content.
+
+		$title         = $_POST['title'];
+		$slug          = sanitize($title);
+		$content       = $_POST['content'];
+		$status        = $_POST['status'];
+		$parent_page   = $_POST['parent_page'];
+		//$post_template = $_POST['page_template'];
+		
+		//$dirty_template = session::get( 'template' );
+		$dirty_template = $_POST['page_template'];
+		
+		
+		if ( $dirty_template == '' ):
+			$post_template = 'default';
+		else:
+			$post_template = $dirty_template;
+		endif;
+		
+		
+		$post_type     = $_POST['page-or-post'];
+		
+		$post_author   = user::id();
+		
+		$uri 			= $this->get_parent_uri( $parent_page ).$slug.'/';
+		
+		// Run content through HTMLawd and Samrty Text
+		$page          = db('posts');
+		
+		$row = $page->update(array(
+			'title'	=>$title,
+			'slug'		=>$slug,
+			'content'	=>$content,
+			'status'	=>$status,
+			'author'	=>$post_author,
+			'type'		=>$post_type,
+			'template'	=>$post_template,
+			'parent'	=>$parent_page,
+			'uri'		=>$uri,
+			'modified'	=> time()
+		))		
+			->where( 'id', '=', $id )
+			->execute();
+
+	
+		$scaffold_data = $_POST;
+
+		$remove_keys = array( 'title', 'content', 'status', 'parent_page', 'page_template', 'page-or-post', 'history', 'tags'  );
+		
+		foreach ( $remove_keys as $remove_key ):
+			unset( $scaffold_data[ $remove_key ] );
+		endforeach;
+	
+		$meta_value = serialize( $scaffold_data );
+
+		$page_meta      = db('posts_meta');
+
+		$page->update(array(
+			'meta_key'=>'scaffold_data',
+			'meta_value'=>$meta_value
+		))
+			->where( 'posts_id', '=', $id )
+			->execute();
+			
+		note::set('success','page_update','Page Updated!');		
+	}
+
+	
 	// Get Page
 	//----------------------------------------------------------------------------------------------
 	/**
@@ -325,155 +474,6 @@ class page_model
 				$this->_page_traverse_name( $child->id, $children, $result );
 			}
 		}
-	}
-	
-
-	// Update Page
-	//----------------------------------------------------------------------------------------------	
-	/**
-	 * Update a record
-	 *
-	 * @author Adam Patterson
-	 */
-	public function update ( $id ) 
-	{
-		// create a new version of the content.
-
-		$title         = $_POST['title'];
-		$slug          = sanitize($title);
-		$content       = $_POST['content'];
-		$status        = $_POST['status'];
-		$parent_page   = $_POST['parent_page'];
-		//$post_template = $_POST['page_template'];
-		
-		//$dirty_template = session::get( 'template' );
-		$dirty_template = $_POST['page_template'];
-		
-		
-		if ( $dirty_template == '' ):
-			$post_template = 'default';
-		else:
-			$post_template = $dirty_template;
-		endif;
-		
-		
-		$post_type     = $_POST['page-or-post'];
-		
-		$post_author   = user::id();
-		
-		$uri 			= $this->get_parent_uri( $parent_page ).$slug.'/';
-		
-		// Run content through HTMLawd and Samrty Text
-		$page          = db('posts');
-		
-		$row = $page->update(array(
-			'title'	=>$title,
-			'slug'		=>$slug,
-			'content'	=>$content,
-			'status'	=>$status,
-			'author'	=>$post_author,
-			'type'		=>$post_type,
-			'template'	=>$post_template,
-			'parent'	=>$parent_page,
-			'uri'		=>$uri,
-			'modified'	=> time()
-		))		
-			->where( 'id', '=', $id )
-			->execute();
-
-	
-		$scaffold_data = $_POST;
-
-		$remove_keys = array( 'title', 'content', 'status', 'parent_page', 'page_template', 'page-or-post', 'history', 'tags'  );
-		
-		foreach ( $remove_keys as $remove_key ):
-			unset( $scaffold_data[ $remove_key ] );
-		endforeach;
-	
-		$meta_value = serialize( $scaffold_data );
-
-		$page_meta      = db('posts_meta');
-
-		$page->update(array(
-			'meta_key'=>'scaffold_data',
-			'meta_value'=>$meta_value
-		))
-			->where( 'posts_id', '=', $id )
-			->execute();
-			
-		note::set('success','page_update','Page Updated!');		
-	}
-
-	// Add Page
-	//----------------------------------------------------------------------------------------------
-	/**
-	 * Add a record
-	 *
-	 * @author Adam Patterson
-	 */	
-	public function add ( ) 
-	{
-		$title         = $_POST['title'];
-		$slug          = sanitize($title);
-		$content       = $_POST['content'];
-		$status        = $_POST['status'];
-		$parent_page   = $_POST['parent_page'];
-		//$post_template = $_POST['page_template'];
-		
-		$dirty_template = session::get( 'template' );
-		
-		if ( $dirty_template == '' ):
-			$post_template = 'default';
-		else:
-			$post_template = $dirty_template;
-		endif;
-		
-		
-		$post_type     = $_POST['page-or-post'];
-		
-		$post_author   = user::id();
-		
-		$uri 			= $this->get_parent_uri( $parent_page ).$slug.'/';
-		
-		// Run content through HTMLawd and Samrty Text
-		$page          = db('posts');
-		
-		$row = $page->insert(array(
-			'title'	=>$title,
-			'slug'		=>$slug,
-			'content'	=>$content,
-			'status'	=>$status,
-			'author'	=>$post_author,
-			'type'		=>$post_type,
-			'template'	=>$post_template,
-			'parent'	=>$parent_page,
-			'uri'		=>$uri,
-			'date'		=>time(),
-			'modified'	=> time()
-		));
-
-	
-		$scaffold_data = $_POST;
-
-		$remove_keys = array( 'save', 'title', 'content', 'status', 'parent_page', 'page_template', 'page-or-post', 'history', 'tags'  );
-		
-		foreach ( $remove_keys as $remove_key ):
-			unset( $scaffold_data[ $remove_key ] );
-		endforeach;
-	
-		$meta_value = serialize( $scaffold_data );
-
-		$page_meta      = db('posts_meta');
-
-		$page_meta->insert(array(
-			'posts_id'=>$row->id,
-			'meta_key'=>'scaffold_data',
-			'meta_value'=>$meta_value
-		));
-
-		note::set('success','page_add','Page Added!');
-		return $row->id;
-	}
-	
+	}	
 } // END setting_model
 ?>

@@ -23,7 +23,6 @@ class page_controller {
 		$get_page_meta = $page->get_page_meta( $content->id );
 		
 		// If URI lookup fails redirect to the themes 404 page
-		// 
 		if ( $content ) {
 			tentacle::render ( $content->template, array ( 'data' => $content, 'get_page_meta' => $get_page_meta ) );
 

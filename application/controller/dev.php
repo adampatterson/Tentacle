@@ -41,6 +41,12 @@ class dev_controller {
 		}
 
 
+	public function extensions ()
+	{
+		clean_out( get_loaded_extensions() );
+		
+	}
+
 	/**
 	 * 
 	 * 
@@ -348,13 +354,7 @@ class dev_controller {
 		echo '<h3>$argv</h3><hr />';
 			var_dump($argv);	
 	}
-
-
-	public function less () 
-	{
-		require (ADMIN_URI.'lib/lessphp/lessc.inc.php');
-	}
-
+	
 
 	/**
 	* ajax function

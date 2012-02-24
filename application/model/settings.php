@@ -1,7 +1,44 @@
 <?
 class settings_model  
 {
+	// Add Setting
+	//----------------------------------------------------------------------------------------------
+	public function add ( $key, $value, $autoload )	
+	{
+		$setting = db('options');
+		
+		$setting->insert( array(
+				'key' => $key,
+				'value' => $value,
+				'autoload' => $autoload
+			), FALSE );
+	}
 	
+	
+	// Update Setting
+	//----------------------------------------------------------------------------------------------
+	public function update ( $key = '', $value = '' )	
+	{	
+		$autoload = 'yes';
+			
+		$result = $this->look_up( $key );
+				
+		if ( $result == false ):
+			$this->add( $key, $value, $autoload );
+		else:
+			$setting = db('options');
+
+			$setting->update( array(
+					'key' => $key,
+					'value' => $value,
+					'autoload' => $autoload
+				) )
+				->where( 'key', '=', $key )
+				->execute();
+		endif;		
+	}
+	
+		
 	// Get Setting
 	//----------------------------------------------------------------------------------------------	
 	public function get ( $key = '')	
@@ -56,42 +93,5 @@ class settings_model
 		$setting = db('options');
 
 		$setting->delete( 'key','=',$key );
-	}
-
-	// Add Setting
-	//----------------------------------------------------------------------------------------------
-	public function add ( $key, $value, $autoload )	
-	{
-		$setting = db('options');
-		
-		$setting->insert( array(
-				'key' => $key,
-				'value' => $value,
-				'autoload' => $autoload
-			), FALSE );
-	}
-	
-	// Update Setting
-	//----------------------------------------------------------------------------------------------
-	public function update ( $key = '', $value = '' )	
-	{	
-		$autoload = 'yes';
-			
-		$result = $this->look_up( $key );
-				
-		if ( $result == false ):
-			$this->add( $key, $value, $autoload );
-		else:
-			$setting = db('options');
-
-			$setting->update( array(
-					'key' => $key,
-					'value' => $value,
-					'autoload' => $autoload
-				) )
-				->where( 'key', '=', $key )
-				->execute();
-		endif;		
-	}
-	
+	}	
 } // END setting_model

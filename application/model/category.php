@@ -2,6 +2,61 @@
 class category_model
 {
 
+	// Add Category
+	//----------------------------------------------------------------------------------------------
+	public function add ( ) 
+	{
+		$term_name = input::post ( 'name' );
+		$term_slug = input::post ( 'slug' );
+		
+		$inflector = new inflector( );
+		$term_slug = $inflector->camelize( $term_slug );
+		$term_slug = $inflector->underscore( $term_slug );;
+		
+		$category  = db( 'terms' );
+
+		$category_id = $category->insert(array(
+			'name'=>$term_name,
+			'slug'=>$term_slug
+		));
+
+		$term_taxonomy  = db( 'term_taxonomy' );
+
+		$term_taxonomy->insert(array(
+			'taxonomy'=>'category',
+			'term_id'=>$category_id->id
+		),FALSE);
+
+		note::set('success','category_add','Category Added!');
+		
+		return $category_id;		
+	}
+
+
+	// Update Category
+	//----------------------------------------------------------------------------------------------
+	public function update ( $id='' )
+	{
+		$term_name = input::post ( 'name' );
+		$term_slug = input::post ( 'slug' );
+		
+		$inflector = new inflector( );
+		$term_slug = $inflector->camelize( $term_slug );
+		$term_slug = $inflector->underscore( $term_slug );
+		
+		$category  = db( 'terms' );
+		
+		$category->update(array(
+				'name'=>$term_name,
+				'slug'=>$term_slug,
+			))
+			->where( 'id', '=', $id )
+			->execute();
+			
+		note::set('success','category_update','Category Updated!');
+	} 
+
+
 	// Get Category
 	//----------------------------------------------------------------------------------------------
 	public function get ( $id='' )
@@ -40,30 +95,6 @@ class category_model
 		  return $get_category[0];
     }
 	
-	
-	// Update Category
-	//----------------------------------------------------------------------------------------------
-	public function update ( $id='' )
-	{
-		$term_name = input::post ( 'name' );
-		$term_slug = input::post ( 'slug' );
-		
-		$inflector = new inflector( );
-		$term_slug = $inflector->camelize( $term_slug );
-		$term_slug = $inflector->underscore( $term_slug );
-		
-		$category  = db( 'terms' );
-		
-		$category->update(array(
-				'name'=>$term_name,
-				'slug'=>$term_slug,
-			))
-			->where( 'id', '=', $id )
-			->execute();
-			
-		note::set('success','category_update','Category Updated!');
-	} 
-
 
 	// Delete Category
 	//----------------------------------------------------------------------------------------------
@@ -80,37 +111,6 @@ class category_model
 		$category = db( 'terms' );
 
 		$category->delete( 'id','=',$id );
-	}
-	
-	
-	// Add Category
-	//----------------------------------------------------------------------------------------------
-	public function add ( ) 
-	{
-		$term_name = input::post ( 'name' );
-		$term_slug = input::post ( 'slug' );
-		
-		$inflector = new inflector( );
-		$term_slug = $inflector->camelize( $term_slug );
-		$term_slug = $inflector->underscore( $term_slug );;
-		
-		$category  = db( 'terms' );
-
-		$category_id = $category->insert(array(
-			'name'=>$term_name,
-			'slug'=>$term_slug
-		));
-
-		$term_taxonomy  = db( 'term_taxonomy' );
-
-		$term_taxonomy->insert(array(
-			'taxonomy'=>'category',
-			'term_id'=>$category_id->id
-		),FALSE);
-
-		note::set('success','category_add','Category Added!');
-		
-		return $category_id;		
 	}
 	
 	
@@ -134,17 +134,6 @@ class category_model
 	
 	// Get the Category relations of a blog post.
 	//----------------------------------------------------------------------------------------------	
-	/*
-	[id] => 1
-	            [name] => Default
-	            [slug] => default
-	            [taxonomy] => category
-	            [description] => 
-	            [parent] => 0
-	            [count] => 0
-	            [page_id] => 79
-	            [term_order] =>
-	*/
 	public function get_relations ( $post_id = '' ) 
 	{	
 		
