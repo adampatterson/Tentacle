@@ -1,22 +1,11 @@
 <?
 class user_model
 {
-	// Add User
-	//----------------------------------------------------------------------------------------------
+	/**
+	* Add User
+	* ----------------------------------------------------------------------------------------------*/
 	public function add () 
-	{
-		
-		/*
-		if(user::unique('ETbyrne'))
-		{
-			echo 'Username not taken!';
-		}
-		else
-		{
-			echo 'Username taken!';
-		}
-		*/
-		
+	{		
 		$user_name    = input::post ( 'user_name' );
 		$password     = input::post ( 'password' );
 		$email        = input::post ( 'email' );
@@ -57,8 +46,9 @@ class user_model
 	}
 	
 	
-	// Update User
-	//----------------------------------------------------------------------------------------------
+	/**
+	* Update User
+	* ----------------------------------------------------------------------------------------------*/
 	public function update ( )
 	{
 		$user_name    = input::post ( 'user_name' );
@@ -103,8 +93,9 @@ class user_model
 	}
 	
 	
-	// Get User
-	//----------------------------------------------------------------------------------------------
+	/**
+	* Get User
+	* ----------------------------------------------------------------------------------------------*/
 	public function get ( $id='' )
 	{
 		$users_table = db ( 'users' );
@@ -128,8 +119,9 @@ class user_model
 	}
 	
 	
-	// Get Meta User
-	//----------------------------------------------------------------------------------------------
+	/**
+	* Get user Meta
+	* ----------------------------------------------------------------------------------------------*/
 	public function get_meta ( $id )
 	{
 		$user_meta = db ( 'users' );
@@ -144,8 +136,9 @@ class user_model
 	}
 	
 	
-	// Delete User
-	//----------------------------------------------------------------------------------------------
+	/**
+	* Delete User
+	* ----------------------------------------------------------------------------------------------*/
 	public function delete ( $id  ) 
 	{
 		#@todo dont allow the user to delete all accounts! One must be left.
@@ -154,5 +147,18 @@ class user_model
 		note::set('success','user_delete','User Deleted!');
 		
 		return TRUE;
+	}
+	
+	
+	/**
+	* Unique User
+	* ----------------------------------------------------------------------------------------------*/
+	public function unique ( $username )
+	{
+		if( user::unique( $username ) ):
+			echo '0';
+		else:
+			echo '1';
+		endif;
 	}
 }

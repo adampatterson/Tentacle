@@ -45,6 +45,7 @@ $(document).ready(function(){
 	/* jQuery validation settings */
 	// validate signup form on keyup and submit
 	// ====================================
+/*
 	$("form#validation").validate({
 		rules: {
 			firstname: "required",
@@ -87,9 +88,10 @@ $(document).ready(function(){
 			agree: "Please accept our policy"
 		}
 	});
-	
+*/	
 	/* User Edit page */
 	// ====================================
+/*
 	$("form#edit").validate({
 		rules: {
 			firstname: "required",
@@ -129,35 +131,11 @@ $(document).ready(function(){
 			agree: "Please accept our policy"
 		}
 	});
-	
+*/	
 	
 	/* Username Lookup */
 	// ====================================
-	function username_check(){
-		var username = $('#username').val();
-		if(username == "" || username.length < 4){
-			$('#username').css('border', '3px #CCC solid');
-			$('#tick').hide();
-		}else{
-			jQuery.ajax({
-				type: "POST",
-				url: "<?= BASE_URL ?>dev/username_check/",
-				data: 'username='+ username,
-				cache: false,
-					success: function(response) {
-					if(response == 1) {
-						$('#username').css('border', '3px #C33 solid');
-						$('#tick').hide();
-						$('#cross').fadeIn();
-					} else {
-						$('#cross').hide();
-						$('#tick').fadeIn();
-					}
-				}
-			});
-		}
-	}
-		
+
 	
 	/* Tags */
 	// ====================================

@@ -18,45 +18,93 @@
 			<form id='validation' action="<?= BASE_URL ?>action/add_user/" method="post">
 				<fieldset>
 					<div class="clearfix">
+						<style>
+							.email_cross, .user_cross{display:none}
+							.email_tick, .user_tick{display:none}
+						</style>
 						<script type="text/javascript" charset="utf-8">
 
-							function username_check(){
-								var username = $('#username').val();
-								if(username == "" || username.length < 4){
-									$('#username').css('border', '3px #CCC solid');
-									$('#tick').hide();
-								}else{
+								$(document).ready(function(){
+									$('#username').keyup(username_check);
 
-							jQuery.ajax({
-							type: "POST",
-							url: "<?= BASE_URL ?>dev/username_check/",
-								data: 'username='+ username,
-								cache: false,
-								success: function(response) {
-									if(response == 1) {
-										$('#username').css('border', '3px #C33 solid');
-										$('#tick').hide();
-										$('#cross').fadeIn();
-									} else {
-										$('#cross').hide();
-										$('#tick').fadeIn();
+									$('#useremail').keyup(useremail_check);
+								});
+
+								function username_check() {	
+									var username = $('#username').val();
+									if(username == "" || username.length < 4)
+									{
+										$('.tick').hide();
+									}
+									else
+									{
+										jQuery.ajax({
+											type: "POST",
+											url: "<?= BASE_URL ?>action/unique_user",
+											data: 'username='+ username,
+											cache: false,
+											success: function(response){
+												if(response == '1')
+												{
+													$('#username').css('border', '1px #C33 solid');	
+													$('.user_tick').hide();
+													$('.user_cross').fadeIn();
+												}
+												else
+												{
+													$('#username').css('border', '1px #090 solid');
+													$('.user_cross').hide();
+													$('.user_tick').fadeIn();
+												}
+											}
+										});
 									}
 								}
-								});
-								}
+								
+								function useremail_check() {	
+									var username = $('#useremail').val();
+									if(username == "" || username.length < 4)
+									{
+										$('.email_tick').hide();
+									}
+									else
+									{
+										jQuery.ajax({
+											type: "POST",
+											url: "<?= BASE_URL ?>action/unique_user",
+											data: 'username='+ username,
+											cache: false,
+											success: function(response){
+												if(response == '1')
+												{
+													$('#useremail').css('border', '1px #C33 solid');	
+													$('.email_tick').hide();
+													$('.email_cross').fadeIn();
+												}
+												else
+												{
+													$('#useremail').css('border', '1px #090 solid');
+													$('.email_cross').hide();
+													$('.email_tick').fadeIn();
+												}
+											}
+										});
+									}
 								}
 						</script>
 						<label for="username">Username <span class="description">(required)</span></label>
 						<div class="input">
-							<input type="text" aria-required="true" value="" id="username_off" name="user_name">
-							<img id="tick" src="http://papermashup.com/demos/check-username/tick.png" width="16" height="16"/>
-							<img id="cross" src="http://papermashup.com/demos/check-username/cross.png" width="16" height="16"/>
+							<input id="username" type="text" required="true" value="" name="user_name">
+							<img class="user_tick" src="http://papermashup.com/demos/check-username/tick.png" width="16" height="16"/>
+							<img class="user_cross" src="http://papermashup.com/demos/check-username/cross.png" width="16" height="16"/>
 						</div>
 					</div>
 					<div class="clearfix">
-						<label for="email">E-mail <span class="description">(required)</span></label>
+						<label for="useremail">E-mail <span class="description">(required)</span></label>
 						<div class="input">
-							<input type="text" value="" id="email" name="email">
+							<input type="text" value="" id="useremail" name="email">
+							<img class="email_tick" src="http://papermashup.com/demos/check-username/tick.png" width="16" height="16"/>
+							<img class="email_cross" src="http://papermashup.com/demos/check-username/cross.png" width="16" height="16"/>
 						</div>
 					</div>
 					<div class="clearfix">

@@ -35,16 +35,11 @@
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-popover.js"></script>
 	
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>spin.min.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>sisyphus.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.validate.js"></script>
+	<!--<script type="text/javascript" src="<?=TENTACLE_JS; ?>sisyphus.js"></script>-->
+	<!--<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.validate.js"></script>-->
 	
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>application.js"></script>
 	
-	<!-- <script type="text/javascript" charset="utf-8">
-		$(document).ready(function(){
-			$('#username').keyup(username_check);
-		});
-	</script> -->
 	
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

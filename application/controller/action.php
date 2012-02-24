@@ -2,7 +2,9 @@
 class action_controller 
 {
 	
-	# All actions should return True of False and be treated accordingly.
+	/**
+	* Cut it Out
+	* ----------------------------------------------------------------------------------------------*/
 	public function index ()
 	{	
 		echo 'No direct access';
@@ -19,6 +21,11 @@ class action_controller
 	 * 
 	 * 
 	 */
+	
+	
+	/**
+	* Login
+	* ----------------------------------------------------------------------------------------------*/
 	public function login ()
 	{
 		$username = input::post ( 'username' );
@@ -43,6 +50,9 @@ class action_controller
 	}
 	
 
+	/**
+	* Lost Password
+	* ----------------------------------------------------------------------------------------------*/
 	public function lost(){
  
     	$username = input::post('username');
@@ -88,6 +98,18 @@ class action_controller
 
 
 	/**
+	* Check for Unique user name
+	* ----------------------------------------------------------------------------------------------*/
+	public function unique_user ()
+	{
+		$user = load::model ( 'user' );
+		$unique = $user->unique( $_POST['username'] );
+	
+		return $unique;
+	}
+
+
+	/**
 	 * 
 	 * 
 	 * 
@@ -97,6 +119,10 @@ class action_controller
 	 * 
 	 * 
 	 */
+	
+	/**
+	* Render Admin
+	* ----------------------------------------------------------------------------------------------*/
 	public function render_admin ( $location, $template = ''/*, $id = null */ )
 	{
 		
@@ -131,6 +157,10 @@ class action_controller
 	 * 
 	 * 
 	 */
+
+	/**
+	* Add Page
+	* ----------------------------------------------------------------------------------------------*/
  	public function add_page ()
  	{
 		tentacle::valid_user();
@@ -150,7 +180,10 @@ class action_controller
 		url::redirect( 'admin/content_update_page/'.$page_single );
 	}
 	
-	
+
+	/**
+	* Update Page
+	* ----------------------------------------------------------------------------------------------*/	
 	public function update_page ( $page_id )
  	{
 		tentacle::valid_user();
@@ -169,13 +202,19 @@ class action_controller
 		url::redirect( input::post ( 'history' ) );
 	}
 
-	
+
+	/**
+	* Delete User
+	* ----------------------------------------------------------------------------------------------*/	
 	public function delete_page ()
  	{
 	
 	}
 	
-	
+
+	/**
+	* Trash User
+	* ----------------------------------------------------------------------------------------------*/	
 	public function trash_page ( $id )
  	{
 		$page = db('posts');
@@ -201,6 +240,10 @@ class action_controller
 	 * 
 	 * 
 	 */
+	
+	/**
+	* Add Post
+	* ----------------------------------------------------------------------------------------------*/
  	public function add_post ()
  	{
 		tentacle::valid_user();
@@ -226,6 +269,9 @@ class action_controller
 	}	
 	
 	
+	/**
+	* Update User
+	* ----------------------------------------------------------------------------------------------*/
 	public function update_post ( $post_id )
  	{
 		tentacle::valid_user();
@@ -246,13 +292,19 @@ class action_controller
 		url::redirect( input::post ( 'history' ) );
 	}
 	
-	
+
+	/**
+	* Delete Post
+	* ----------------------------------------------------------------------------------------------*/	
 	public function delete_post ()
  	{
 	
 	}
 	
-	
+
+	/**
+	* Trash Post
+	* ----------------------------------------------------------------------------------------------*/	
 	public function trash_post ( $id )
  	{
 		$page = db('posts');
@@ -278,6 +330,11 @@ class action_controller
 	 * 
 	 * 
 	 */
+	
+	
+	/**
+	* Add User
+	* ----------------------------------------------------------------------------------------------*/
 	public function add_user ()
 	{
 		tentacle::valid_user();
@@ -294,7 +351,11 @@ class action_controller
 		url::redirect('admin/users_manage/');
 
 	}
-	
+
+
+	/**
+	* Update User
+	* ----------------------------------------------------------------------------------------------*/	
 	public function update_user ( )
 	{
 		tentacle::valid_user();
@@ -308,6 +369,9 @@ class action_controller
 	}
 	
 
+	/**
+	* Delete User
+	* ----------------------------------------------------------------------------------------------*/
 	public function delete_user ( $id = '' )
 	{
 		tentacle::valid_user();
@@ -329,6 +393,11 @@ class action_controller
 	 * 
 	 * 
 	 */
+	
+	
+	/**
+	* Add Snippet
+	* ----------------------------------------------------------------------------------------------*/
 	public function add_snippet ()
 	{	
 		tentacle::valid_user();
@@ -339,7 +408,11 @@ class action_controller
 		//$history = input::post ( 'history' );
 		url::redirect('admin/snippets_manage/'); 
 	}
-	
+
+
+	/**
+	* Update Snippet
+	* ----------------------------------------------------------------------------------------------*/	
 	public function update_snippet ( $id )
 	{
 		tentacle::valid_user();
@@ -352,6 +425,10 @@ class action_controller
 		url::redirect('admin/snippets_manage/');
 	}
 	
+
+	/**
+	* Delete Snippet
+	* ----------------------------------------------------------------------------------------------*/
 	public function delete_snippet ( $id = '' )
 	{
 		tentacle::valid_user();
@@ -373,6 +450,11 @@ class action_controller
 	 * 
 	 * 
 	 */
+	
+	
+	/**
+	* Add Category
+	* ----------------------------------------------------------------------------------------------*/
  	public function add_category ()
  	{	
 		tentacle::valid_user();	
@@ -382,7 +464,11 @@ class action_controller
  		//$history = input::post ( 'history' );
  		url::redirect('admin/content_manage_categories/'); 
  	}
- 	
+
+
+	/**
+	* Update Category
+	* ----------------------------------------------------------------------------------------------*/ 	
  	public function update_category ( $id ) 
  	{
 		tentacle::valid_user();
@@ -392,7 +478,11 @@ class action_controller
 
 		url::redirect('admin/content_manage_categories/'); 
  	}
- 	
+ 
+
+	/**
+	* Delete Category
+	* ----------------------------------------------------------------------------------------------*/	
  	public function delete_category ( $id ) 
  	{
 		tentacle::valid_user()
@@ -414,6 +504,11 @@ class action_controller
 	 * 
 	 * 
 	 */
+	
+	
+	/**
+	* Update Settings
+	* ----------------------------------------------------------------------------------------------*/
  	public function update_settings ( $key, $value, $autoload = 'yes' )
 	{
 		$setting = load::model ( 'settings' );
@@ -423,6 +518,10 @@ class action_controller
 		url::redirect('admin/settings_appearance');	
 	}
 	
+	
+	/**
+	* Update Settings Post
+	* ----------------------------------------------------------------------------------------------*/
 	public function udpate_settings_post ( )
 	{	
 		$setting = load::model ( 'settings' );
@@ -459,12 +558,20 @@ class action_controller
 	 * 
 	 * 
 	 */	
+	
+	
+	/**
+	* Agree
+	* ----------------------------------------------------------------------------------------------*/
 	public function agree()
 	{
 		url::redirect('install/step1');
 	}
 	
 	
+	/**
+	* Database
+	* ----------------------------------------------------------------------------------------------*/
 	public function database()
 	{
 				
@@ -527,6 +634,10 @@ class action_controller
 		url::redirect('install/step4');
 	}
 	
+	
+	/**
+	* Admin
+	* ----------------------------------------------------------------------------------------------*/
 	public function admin()
 	{
 		load::config('db');
@@ -553,6 +664,4 @@ class action_controller
 			
 		url::redirect('install/done');
 	}
-	
-	
 }
