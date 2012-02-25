@@ -24,73 +24,77 @@
 						</style>
 						<script type="text/javascript" charset="utf-8">
 
-								$(document).ready(function(){
-									$('#username').keyup(username_check);
+							$(document).ready(function(){
+								$('#username').keyup(username_check);
 
-									$('#useremail').keyup(useremail_check);
-								});
+								$('#useremail').keyup(useremail_check);
+							});
 
-								function username_check() {	
-									var username = $('#username').val();
-									if(username == "" || username.length < 4)
-									{
-										$('.tick').hide();
-									}
-									else
-									{
-										jQuery.ajax({
-											type: "POST",
-											url: "<?= BASE_URL ?>action/unique_user",
-											data: 'username='+ username,
-											cache: false,
-											success: function(response){
-												if(response == '1')
-												{
-													$('#username').css('border', '1px #C33 solid');	
-													$('.user_tick').hide();
-													$('.user_cross').fadeIn();
-												}
-												else
-												{
-													$('#username').css('border', '1px #090 solid');
-													$('.user_cross').hide();
-													$('.user_tick').fadeIn();
-												}
-											}
-										});
-									}
+							function username_check() {	
+								var username = $('#username').val();
+								if(username == "" || username.length < 4)
+								{
+									$('.tick').hide();
 								}
-								
-								function useremail_check() {	
-									var username = $('#useremail').val();
-									if(username == "" || username.length < 4)
-									{
-										$('.email_tick').hide();
-									}
-									else
-									{
-										jQuery.ajax({
-											type: "POST",
-											url: "<?= BASE_URL ?>action/unique_user",
-											data: 'username='+ username,
-											cache: false,
-											success: function(response){
-												if(response == '1')
-												{
-													$('#useremail').css('border', '1px #C33 solid');	
-													$('.email_tick').hide();
-													$('.email_cross').fadeIn();
-												}
-												else
-												{
-													$('#useremail').css('border', '1px #090 solid');
-													$('.email_cross').hide();
-													$('.email_tick').fadeIn();
-												}
+								else
+								{
+									jQuery.ajax({
+										type: "POST",
+										url: "<?= BASE_URL ?>action/unique_user",
+										data: 'username='+ username,
+										cache: false,
+										success: function(response){
+											if(response == '1')
+											{
+												$('#username').css('border', '1px #C33 solid');	
+												$('.user_tick').hide();
+												$('.user_cross').fadeIn();
+												$("#save").attr("disabled", "disabled");
 											}
-										});
-									}
+											else
+											{
+												$('#username').css('border', '1px #090 solid');
+												$('.user_cross').hide();
+												$('.user_tick').fadeIn();
+												$("#save").removeAttr("disabled");
+											}
+										}
+									});
 								}
+							}
+						
+							function useremail_check() {	
+								var username = $('#useremail').val();
+								if(username == "" || username.length < 4)
+								{
+									$('.email_tick').hide();
+								}
+								else
+								{
+									jQuery.ajax({
+										type: "POST",
+										url: "<?= BASE_URL ?>action/unique_user",
+										data: 'username='+ username,
+										cache: false,
+										success: function(response){
+											if(response == '1')
+											{
+												$('#useremail').css('border', '1px #C33 solid');	
+												$('.email_tick').hide();
+												$('.email_cross').fadeIn();
+												$("#save").attr("disabled", "disabled");
+											}
+											else
+											{
+												$('#useremail').css('border', '1px #090 solid');
+												$('.email_cross').hide();
+												$('.email_tick').fadeIn();
+												$("#save").removeAttr("disabled");
+											}
+										}
+									});
+								}
+							}
 						</script>
 						<label for="username">Username <span class="description">(required)</span></label>
 						<div class="input">
@@ -134,10 +138,10 @@
 					<div class="clearfix">
 						<label for="password">Password <span class="description">(twice, required)</span></label>
 						<div class="input">
-							<input type="password" autocomplete="off" id="password" name="password" />
+							<input type="password" autocomplete="off" id="password" name="password" required />
 						</div>
 						<div class="input">
-							<input type="password" autocomplete="off" id="confirm_password" name="confirm_password" />
+							<input type="password" autocomplete="off" id="confirm_password" name="confirm_password" required />
 							<span class="help-block">Hint: The password should be at least seven characters long. To make it stronger, use upper and lower case letters, numbers and symbols like ! " ? $ % ^ &amp; ).</span>
 						</div>
 					</div>
@@ -181,7 +185,7 @@
 					<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
 				</fieldset>
 				<div class="actions">
-					<input type="submit" value="Save" class="btn medium primary" />
+					<input type="submit" value="Save" class="btn medium primary" id="save" />
 					<a href="<?=ADMIN;?>users_manage/" class="red">Cancel</a>
 				</div>
 			</form>
