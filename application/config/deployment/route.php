@@ -82,6 +82,12 @@ route::set('admin',array(
     'function'=>'index'
 	));
 
+
+route::set('ajax/([-_a-zA-Z0-9]+)',array(
+    'controller'=>'action',
+    'function'=>'$1'
+	));
+
 // Actoin
 route::set('action',array(
     'controller'=>'action',

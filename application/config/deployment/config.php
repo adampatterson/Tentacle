@@ -8,19 +8,6 @@
  * @Project Page    http://www.dingoframework.com
  */
 
-// Does Application Use Mod_Rewrite URLs?
-define('MOD_REWRITE',TRUE);
-
-// Turn Debugging On?
-define('DEBUG',TRUE);
-
-// Turn Error Logging On?
-define('ERROR_LOGGING',TRUE);
-
-// Error Log File Location
-define('ERROR_LOG_FILE','log.txt');
-
-
 /**
  * Your Application's Default Timezone
  * Syntax for your local timezone can be found at

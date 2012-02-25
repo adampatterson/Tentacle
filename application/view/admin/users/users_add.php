@@ -40,7 +40,7 @@
 								{
 									jQuery.ajax({
 										type: "POST",
-										url: "<?= BASE_URL ?>action/unique_user",
+										url: "<?= BASE_URL ?>ajax/unique_user",
 										data: 'username='+ username,
 										cache: false,
 										success: function(response){
@@ -73,7 +73,7 @@
 								{
 									jQuery.ajax({
 										type: "POST",
-										url: "<?= BASE_URL ?>action/unique_user",
+										url: "<?= BASE_URL ?>ajax/unique_user",
 										data: 'username='+ username,
 										cache: false,
 										success: function(response){

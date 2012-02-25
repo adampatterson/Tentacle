@@ -3,6 +3,19 @@
 * Dingo system settings.
 */
 
+
+// Does Application Use Mod_Rewrite URLs?
+define('MOD_REWRITE',TRUE);
+
+// Turn Debugging On?
+define('DEBUG',TRUE);
+
+// Turn Error Logging On?
+define('ERROR_LOGGING',TRUE);
+
+// Error Log File Location
+define('ERROR_LOG_FILE','log.txt');
+
 // Dingo Location
 define( 'SYSTEM'        ,'system' );
 
