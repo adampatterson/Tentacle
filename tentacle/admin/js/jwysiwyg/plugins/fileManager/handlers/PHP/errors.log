@@ -1,0 +1,30 @@
+[28-Feb-2012 22:55:16] PHP Warning:  strpos() [<a href='function.strpos'>function.strpos</a>]: Empty delimiter in /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/handlers.php on line 50
+[28-Feb-2012 22:55:16] PHP Stack trace:
+[28-Feb-2012 22:55:16] PHP   1. {main}() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/file-manager.php:0
+[28-Feb-2012 22:55:16] PHP   2. ResponseRouter->run() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/file-manager.php:42
+[28-Feb-2012 22:55:16] PHP   3. ResponseRouter->handle() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/common.php:146
+[28-Feb-2012 22:55:16] PHP   4. ListHandler->getResponse() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/common.php:176
+[28-Feb-2012 22:55:16] PHP   5. ListHandler->remove_path() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/handlers.php:68
+[28-Feb-2012 22:55:16] PHP   6. strpos() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/handlers.php:50
+[28-Feb-2012 22:55:16] PHP Warning:  Cannot modify header information - headers already sent by (output started at /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/handlers.php:50) in /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/common.php on line 113
+[28-Feb-2012 22:55:16] PHP Stack trace:
+[28-Feb-2012 22:55:16] PHP   1. {main}() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/file-manager.php:0
+[28-Feb-2012 22:55:16] PHP   2. ResponseRouter->run() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/file-manager.php:42
+[28-Feb-2012 22:55:16] PHP   3. ResponseRouter->handle() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/common.php:146
+[28-Feb-2012 22:55:16] PHP   4. json_response() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/common.php:181
+[28-Feb-2012 22:55:16] PHP   5. header() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/common.php:113
+[28-Feb-2012 22:57:10] PHP Warning:  strpos() [<a href='function.strpos'>function.strpos</a>]: Empty delimiter in /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/handlers.php on line 50
+[28-Feb-2012 22:57:10] PHP Stack trace:
+[28-Feb-2012 22:57:10] PHP   1. {main}() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/file-manager.php:0
+[28-Feb-2012 22:57:10] PHP   2. ResponseRouter->run() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/file-manager.php:42
+[28-Feb-2012 22:57:10] PHP   3. ResponseRouter->handle() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/common.php:146
+[28-Feb-2012 22:57:10] PHP   4. ListHandler->getResponse() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/common.php:176
+[28-Feb-2012 22:57:10] PHP   5. ListHandler->remove_path() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/handlers.php:68
+[28-Feb-2012 22:57:10] PHP   6. strpos() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/handlers.php:50
+[28-Feb-2012 22:57:10] PHP Warning:  Cannot modify header information - headers already sent by (output started at /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/handlers.php:50) in /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/common.php on line 113
+[28-Feb-2012 22:57:10] PHP Stack trace:
+[28-Feb-2012 22:57:10] PHP   1. {main}() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/file-manager.php:0
+[28-Feb-2012 22:57:10] PHP   2. ResponseRouter->run() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/file-manager.php:42
+[28-Feb-2012 22:57:10] PHP   3. ResponseRouter->handle() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/common.php:146
+[28-Feb-2012 22:57:10] PHP   4. json_response() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/common.php:181
+[28-Feb-2012 22:57:10] PHP   5. header() /Users/adampatterson/Sites/http/dev.tcms.me/tentacle/admin/js/jwysiwyg/plugins/fileManager/handlers/PHP/common.php:113
