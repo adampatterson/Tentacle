@@ -59,7 +59,14 @@ class Minify {
      * @var string $importWarning
      */
     public static $importWarning = "/* See http://code.google.com/p/minify/wiki/CommonProblems#@imports_can_appear_in_invalid_locations_in_combined_CSS_files */\n";
-    
+
+    /**
+     * Has the DOCUMENT_ROOT been set in user code?
+     * 
+     * @var bool
+     */
+    public static $isDocRootSet = false;
+
     /**
      * Specify a cache object (with identical interface as Minify_Cache_File) or
      * a path to use with Minify_Cache_File.
@@ -160,6 +167,10 @@ class Minify {
      */
     public static function serve($controller, $options = array())
     {
+        if (! self::$isDocRootSet && 0 === stripos(PHP_OS, 'win')) {
+            self::setDocRoot();
+        }
+
         if (is_string($controller)) {
             // make $controller into object
             $class = 'Minify_Controller_' . $controller;
@@ -252,8 +263,7 @@ class Minify {
         
         if (self::$_options['contentType'] === self::TYPE_CSS
             && self::$_options['rewriteCssUris']) {
-            reset($controller->sources);
-            while (list($key, $source) = each($controller->sources)) {
+            foreach($controller->sources as $key => $source) {
                 if ($source->filepath 
                     && !isset($source->minifyOptions['currentDir'])
                     && !isset($source->minifyOptions['prependRelativePath'])
@@ -378,28 +388,23 @@ class Minify {
     }
     
     /**
-     * On IIS, create $_SERVER['DOCUMENT_ROOT']
+     * Set $_SERVER['DOCUMENT_ROOT']. On IIS, the value is created from SCRIPT_FILENAME and SCRIPT_NAME.
      * 
-     * @param bool $unsetPathInfo (default false) if true, $_SERVER['PATH_INFO']
-     * will be unset (it is inconsistent with Apache's setting)
-     * 
-     * @return null
+     * @param string $docRoot value to use for DOCUMENT_ROOT
      */
-    public static function setDocRoot($unsetPathInfo = false)
+    public static function setDocRoot($docRoot = '')
     {
-        if (isset($_SERVER['SERVER_SOFTWARE'])
-            && 0 === strpos($_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS/')
+        self::$isDocRootSet = true;
+        if ($docRoot) {
+            $_SERVER['DOCUMENT_ROOT'] = $docRoot;
+        } elseif (isset($_SERVER['SERVER_SOFTWARE'])
+                  && 0 === strpos($_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS/')
         ) {
             $_SERVER['DOCUMENT_ROOT'] = rtrim(substr(
                 $_SERVER['SCRIPT_FILENAME']
                 ,0
                 ,strlen($_SERVER['SCRIPT_FILENAME']) - strlen($_SERVER['SCRIPT_NAME'])
             ), '\\');
-            if ($unsetPathInfo) {
-                unset($_SERVER['PATH_INFO']);
-            }
-            require_once 'Minify/Logger.php';
-            Minify_Logger::log("setDocRoot() set DOCUMENT_ROOT to \"{$_SERVER['DOCUMENT_ROOT']}\"");
         }
     }
     
@@ -423,7 +428,9 @@ class Minify {
         $url = htmlspecialchars($url, ENT_QUOTES);
         list(,$h1) = explode(' ', $header, 2);
         $h1 = htmlspecialchars($h1);
-        header($header);
+        // FastCGI environments require 3rd arg to header() to be set
+        list(, $code) = explode(' ', $header, 3);
+        header($header, true, $code);
         header('Content-Type: text/html; charset=utf-8');
         echo "<h1>$h1</h1>";
         echo "<p>Please see <a href='$url'>$url</a>.</p>";
@@ -473,32 +480,63 @@ class Minify {
         $defaultMinifier = isset(self::$_options['minifiers'][$type])
             ? self::$_options['minifiers'][$type]
             : false;
-       
-        // minify each source with its own options and minifier, then combine.
-        // Here we used to combine all first but this was probably
-        // bad for PCRE performance, esp. in CSS.
-        foreach (self::$_controller->sources as $source) {
-            // allow the source to override our minifier and options
-            $minifier = (null !== $source->minifier)
-                ? $source->minifier
-                : $defaultMinifier;
-            $options = (null !== $source->minifyOptions)
-                ? array_merge($defaultOptions, $source->minifyOptions)
-                : $defaultOptions;
-            if ($minifier) {
-                self::$_controller->loadMinifier($minifier);
-                // get source content and minify it
-                try {
-                    $pieces[] = call_user_func($minifier, $source->getContent(), $options);
-                } catch (Exception $e) {
-                    throw new Exception("Exception in " . $source->getId() .
-                        ": " . $e->getMessage());
-                }
-            } else {
-                $pieces[] = $source->getContent();
+
+        // process groups of sources with identical minifiers/options
+        $content = array();
+        $i = 0;
+        $l = count(self::$_controller->sources);
+        $groupToProcessTogether = array();
+        $lastMinifier = null;
+        $lastOptions = null;
+        do {
+            // get next source
+            $source = null;
+            if ($i < $l) {
+                $source = self::$_controller->sources[$i];
+                /* @var Minify_Source $source */
+                $sourceContent = $source->getContent();
+
+                // allow the source to override our minifier and options
+                $minifier = (null !== $source->minifier)
+                    ? $source->minifier
+                    : $defaultMinifier;
+                $options = (null !== $source->minifyOptions)
+                    ? array_merge($defaultOptions, $source->minifyOptions)
+                    : $defaultOptions;
             }
-        }
-        $content = implode($implodeSeparator, $pieces);
+            // do we need to process our group right now?
+            if ($i > 0                               // yes, we have at least the first group populated
+                && (
+                    ! $source                        // yes, we ran out of sources
+                    || $type === self::TYPE_CSS      // yes, to process CSS individually (avoiding PCRE bugs/limits)
+                    || $minifier !== $lastMinifier   // yes, minifier changed
+                    || $options !== $lastOptions)    // yes, options changed
+                )
+            {
+                // minify previous sources with last settings
+                $imploded = implode($implodeSeparator, $groupToProcessTogether);
+                $groupToProcessTogether = array();
+                if ($lastMinifier) {
+                    self::$_controller->loadMinifier($lastMinifier);
+                    try {
+                        $content[] = call_user_func($lastMinifier, $imploded, $lastOptions);
+                    } catch (Exception $e) {
+                        throw new Exception("Exception in minifier: " . $e->getMessage());
+                    }
+                } else {
+                    $content[] = $imploded;
+                }
+            }
+            // add content to the group
+            if ($source) {
+                $groupToProcessTogether[] = $sourceContent;
+                $lastMinifier = $minifier;
+                $lastOptions = $options;
+            }
+            $i++;
+        } while ($source);
+
+        $content = implode($implodeSeparator, $content);
         
         if ($type === self::TYPE_CSS && false !== strpos($content, '@import')) {
             $content = self::_handleCssImports($content);
@@ -527,7 +565,7 @@ class Minify {
     {
         $name = preg_replace('/[^a-zA-Z0-9\\.=_,]/', '', self::$_controller->selectionId);
         $name = preg_replace('/\\.+/', '.', $name);
-        $name = substr($name, 0, 250 - 34 - strlen($prefix));
+        $name = substr($name, 0, 200 - 34 - strlen($prefix));
         $md5 = md5(serialize(array(
             Minify_Source::getDigest(self::$_controller->sources)
             ,self::$_options['minifiers'] 

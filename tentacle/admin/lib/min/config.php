@@ -14,14 +14,12 @@
  *
  * If you want to use a custom error logger, set this to your logger
  * instance. Your object should have a method log(string $message).
- *
- * @todo cache system does not have error logging yet.
  */
 $min_errorLogger = false;
 
 
 /**
- * To allow debugging, you must set this option to true.
+ * To allow debug mode output, you must set this option to true.
  *
  * Once true, you can send the cookie minDebug to request debug mode output. The
  * cookie value should match the URIs you'd like to debug. E.g. to debug
@@ -49,6 +47,12 @@ $min_enableBuilder = true;
 //$min_cachePath = 'c:\\WINDOWS\\Temp';
 //$min_cachePath = '/tmp';
 //$min_cachePath = preg_replace('/^\\d+;/', '', session_save_path());
+/**
+ * To use APC/Memcache/ZendPlatform for cache storage, require the class and
+ * set $min_cachePath to an instance. Example below:
+ */
+//require dirname(__FILE__) . '/lib/Minify/Cache/APC.php';
+//$min_cachePath = new Minify_Cache_APC();
 
 
 /**
@@ -94,6 +98,18 @@ $min_serveOptions['bubbleCssImports'] = false;
  * querystring, maxAge will be set to one year. E.g. /min/f=hello.css&123456
  */
 $min_serveOptions['maxAge'] = 1800;
+
+
+/**
+ * To use Google's Closure Compiler API (falling back to JSMin on failure),
+ * uncomment the following lines:
+ */
+/*function closureCompiler($js) {
+    require_once 'Minify/JS/ClosureCompiler.php';
+    return Minify_JS_ClosureCompiler::minify($js);
+}
+$min_serveOptions['minifiers']['application/x-javascript'] = 'closureCompiler';
+//*/
 
 
 /**
