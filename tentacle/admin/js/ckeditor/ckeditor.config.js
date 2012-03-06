@@ -24,14 +24,16 @@ CKEDITOR.editorConfig = function(config) {
 	config.toolbar_tentacle = [
 			['Bold', 'Italic', 'Underline', 'HorizontalRule', 'Blockquote', 'NumberedList', 'BulletedList'],
 			['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-			//['Format'],
+			//['Format','WPMore',],
 			['Outdent','Indent'],
 			['Link','Unlink'],
+			//['Tentacle'],
+			//['Styles'],
 			//['PasteFromWord'],
 			//['Table','HorizontalRule'],
 			//['Maximize'],
-			//['atd-ckeditor', 'WPMore']
-			['Source'],
+			//['Image'],
+			['Source']
 		 ];
 
 		config.toolbarCanCollapse = false;

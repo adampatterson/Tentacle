@@ -1,25 +1,6 @@
-web1: #component type & number
-  name: tentaclecms
-  document_root: /
-  shared_writable_dirs:[ /application/cache,/tentacle/storage ]
-  php_version: 5.3.6
-  php_extensions:
-    - mysql
-    - gd
-    - curl
-    - apc
-    - exif
-    - ftp
-    - gettext
-    - http
-    - json
-    - mcrypt
-    - pdo_dblib
-    - pdo_mysql
-    - pdo
-    - xml
-    - yaml
-    - zip
-  php_error_reporting: 30719 # Equivalent to E_ALL
-  php_display_errors: "1"
-  php_short_open_tag: "1"
+web1: 
+  name: tentacle-web 
+  shared_writable_dirs:
+    - tentacle/storage/images
+db1:
+  name: tentacle
