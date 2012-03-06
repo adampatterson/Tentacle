@@ -20,3 +20,5 @@ class ajax_controller
 	
 		return $unique;
 	}
+
+}

@@ -15,40 +15,35 @@
 
 class snippet_model  
 {
-	// Get Snippet
+	
+	
+	// Add Snippet
 	//----------------------------------------------------------------------------------------------
-	public function get ( $id='' )
+	public function add () 
 	{
-		$snippets = db ( 'snippet' );
+		$name            = input::post ( 'name' );
+		$created_by      = user::id();
+		$snippet_content = input::post ( 'content' );
+		$filter          = input::post ( 'filter' );
+		
+		$inflector       = new inflector();
+		$slug            = $inflector->camelize($name);
+		$slug            = $inflector->underscore($slug);
 
-		if ( $id == '' ) {
-			$get_snippets = $snippets->select( '*' )
-				->order_by ( 'name', 'DESC' )
-				->execute();
-					
-			return $get_snippets;
-		} else {	
-			$get_snippets = $snippets->select( '*' )
-				->where ( 'id', '=', $id )
-				->execute();	
-			
-			return $get_snippets[0];
-		}		
+		$snippet = db('snippet');
+
+		$snippet->insert(array(
+			'name'=>$name,
+			'slug'=>$slug,
+			'created_by'=>$created_by,
+			'content'=>$snippet_content,
+			'filter'=>$filter
+		),FALSE);
+
+		note::set('success','snippet_add','Snippet Added!');
 	}
 	
-	// Get by Slug
-	//----------------------------------------------------------------------------------------------
-	public function get_slug ( $slug='' )
-	{
-		$snippets = db ( 'snippet' );
 
-		$get_snippet = $snippets->select( '*' )
-			->where ( 'slug', '=', $slug )
-			->execute();
-				
-		return $get_snippet[0];
-	}
-	
 	// Update Snippet
 	//----------------------------------------------------------------------------------------------
 	public function update ( $id )
@@ -76,6 +71,43 @@ class snippet_model
 			
 		note::set('success','snippet_update','Snippet Updated!');
 	} 
+	
+	
+	// Get Snippet
+	//----------------------------------------------------------------------------------------------
+	public function get ( $id='' )
+	{
+		$snippets = db ( 'snippet' );
+
+		if ( $id == '' ) {
+			$get_snippets = $snippets->select( '*' )
+				->order_by ( 'name', 'DESC' )
+				->execute();
+					
+			return $get_snippets;
+		} else {	
+			$get_snippets = $snippets->select( '*' )
+				->where ( 'id', '=', $id )
+				->execute();	
+			
+			return $get_snippets[0];
+		}		
+	}
+	
+	
+	// Get by Slug
+	//----------------------------------------------------------------------------------------------
+	public function get_slug ( $slug='' )
+	{
+		$snippets = db ( 'snippet' );
+
+		$get_snippet = $snippets->select( '*' )
+			->where ( 'slug', '=', $slug )
+			->execute();
+				
+		return $get_snippet[0];
+	}
+
 
 	// Delete Snippet
 	//----------------------------------------------------------------------------------------------	
@@ -85,31 +117,4 @@ class snippet_model
 
 		$snippet->delete( 'id','=',$id );
 	}
-	
-	// Add Snippet
-	//----------------------------------------------------------------------------------------------
-	public function add () 
-	{
-		$name            = input::post ( 'name' );
-		$created_by      = user::id();
-		$snippet_content = input::post ( 'content' );
-		$filter          = input::post ( 'filter' );
-		
-		$inflector       = new inflector();
-		$slug            = $inflector->camelize($name);
-		$slug            = $inflector->underscore($slug);
-
-		$snippet = db('snippet');
-
-		$snippet->insert(array(
-			'name'=>$name,
-			'slug'=>$slug,
-			'created_by'=>$created_by,
-			'content'=>$snippet_content,
-			'filter'=>$filter
-		),FALSE);
-
-		note::set('success','snippet_add','Snippet Added!');
-	}
-
 } // END setting_model
