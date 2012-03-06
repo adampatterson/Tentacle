@@ -1,0 +1,6 @@
+web1: 
+  name: tentacle-web 
+  shared_writable_dirs:
+    - tentacle/storage/images
+db1:
+  name: tentacle
