@@ -82,12 +82,6 @@ route::set('admin',array(
     'function'=>'index'
 	));
 
-
-route::set('ajax/([-_a-zA-Z0-9]+)',array(
-    'controller'=>'action',
-    'function'=>'$1'
-	));
-
 // Actoin
 route::set('action',array(
     'controller'=>'action',
@@ -135,7 +129,16 @@ route::set('install/([-_a-zA-Z0-9]+)',array(
     'arguments'=>array('$1')
 	));
 	
-		
+route::set('ajax/([-_a-zA-Z0-9]+)',array(
+    'controller'=>'ajax',
+    'function'=>'$1'
+	));
+	
+route::set('ajax/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
+    'controller'=>'ajax',
+    'function'=>'$1'
+	));
+			
 route::set('default_route','page/index');
 
 
