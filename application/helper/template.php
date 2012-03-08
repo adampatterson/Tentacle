@@ -9,9 +9,10 @@
     function get_bloginfo () {echo 'get the bloginfo';}
 
 // Blog Info
-    function bloginfo() {
+    function bloginfo() 
+    {
         // http://codex.wordpress.org/Function_Reference/bloginfo
-        }
+    }
    
 // Author Tags
     function the_author () {}

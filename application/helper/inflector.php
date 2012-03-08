@@ -15,7 +15,8 @@ class inflector {
 	* See Also:
 	*     <decamelize>
 	*/
-    public static function camelize($string, $keep_spaces = false) {
+    public static function camelize($string, $keep_spaces = false) 
+    {
         $lower = strtolower($string);
         $deunderscore = str_replace("_", " ", $lower);
         $dehyphen = str_replace("-", " ", $deunderscore);
@@ -40,7 +41,8 @@ class inflector {
 	* See Also:
 	*     <camelize>
 	*/
-    public static function decamelize($string) {
+    public static function decamelize($string) 
+    {
         return strtolower(preg_replace("/([a-z])([A-Z])/", "\\1 \\2", $string));
     }
 
@@ -51,7 +53,8 @@ class inflector {
      * @param  string $string CamelCased word to be "underscorized"
      * @return string Underscored version of the $string
      */
-    public static function underscore($string) {
+    public static function underscore($string) 
+    {
         return strtolower(preg_replace('/(?<=\\w)([A-Z])/', '_\\1', $string));
     }
 
@@ -61,7 +64,8 @@ class inflector {
      * @param  string $string CamelCased word to be "underscorized"
      * @return string Underscored version of the $string
      */
-    public static function dash($string) {
+    public static function dash($string) 
+    {
         return strtolower(preg_replace('/(?<=\\w)([A-Z])/', '-\\1', $string));
     }
     
@@ -71,7 +75,8 @@ class inflector {
      * @param  string $string CamelCased word to be "underscorized"
      * @return string Underscored version of the $string
      */
-    public static function humanize($string) {
+    public static function humanize($string) 
+    {
         return ucfirst(str_replace('-', ' ', $string));
     }
 
