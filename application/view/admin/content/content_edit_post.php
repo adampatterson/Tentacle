@@ -126,14 +126,14 @@
 									<textarea name="content" id="cke" cols="40" rows="5" class="jquery_ckeditor" placeholder='Content'><?= stripslashes( $get_post->content ) ?></textarea>
 								</p>
 							<? else: ?>
-								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.2/lib/codemirror.css">
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/lib/codemirror.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/xml/xml.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/css/css.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/javascript/javascript.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/clike/clike.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/php/php.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.2/mode/htmlmixed/htmlmixed.js"></script>
+								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.22/lib/codemirror.css">
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/lib/codemirror.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/xml/xml.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/css/css.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/javascript/javascript.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/clike/clike.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/php/php.js"></script>
+								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/htmlmixed/htmlmixed.js"></script>
 								<style type="text/css">
 								      .CodeMirror-scroll {
 										height: auto;
