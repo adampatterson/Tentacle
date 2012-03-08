@@ -14,18 +14,17 @@
 			"atd-ckeditor": "plugins/atd-ckeditor/",
 			"autogrow": "plugins/autogrow/",
 			"tableresize": "plugins/tableresize/",
-			//"stylesheetparser": "plugins/stylesheetparser/",
+			"stylesheetparser": "plugins/stylesheetparser/",
 		},
 		"configuration": {
-			"height": "300px", 
+			"height": "400px", 
 			"skin": "tentacle", 
 			"toolbar": "tentacle", 
 			"removePlugins": "elementspath",
 			"autoGrow_maxHeight": 800,
 			"autoGrow_minHeight": 400,
 			"customConfig": "ckeditor.config.js"
-		},
-		"additionalButtons": [ "WPMore" ] 
+		}
 	}
 	CKEDITOR.on('instanceReady', function (ev) {
 		if(ev.editor.name == 'tentacle-editor'){
