@@ -1,4 +1,31 @@
-<? load::view('admin/template-header', array('title' => 'Threaded Content', 'assets' => 'application'));?>
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8"> 
+<meta name="description" content="">
+<meta name="author" content="">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Tentacle Admin - <?= $title?></title>
+<!--
+
+	_/_/_/_/_/                      _/                          _/           
+	   _/      _/_/    _/_/_/    _/_/_/_/    _/_/_/    _/_/_/  _/    _/_/    
+	  _/    _/_/_/_/  _/    _/    _/      _/    _/  _/        _/  _/_/_/_/   
+	 _/    _/        _/    _/    _/      _/    _/  _/        _/  _/          
+	_/      _/_/_/  _/    _/      _/_/    _/_/_/    _/_/_/  _/    _/_/_/     
+	======================================================================-->                                                                 
+
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>bootstrap-1.4.0.min.css">
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>general.css">
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>admin.css">
+	
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.min.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery-ui-1.8.16.custom.min.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>nestedSortable-1.3.4/jquery.ui.nestedSortable.js"></script>
+	
+<meta name="viewport"/>
+</head>
+<body id="admin-window">
 <style type="text/css">
 	.ui-nestedSortable-error {
 				background:#fbe3e4;
@@ -39,138 +66,59 @@
 			<div class="one-full">
 				<div class="title pad-right">
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Threaded</h1>
+					<hr />
 					<?
-					// http://www.jongales.com/blog/2009/01/27/php-class-for-threaded-comments/
-
-					class Threaded_comments
+					function nav_generate_sortable ( $tree )
 					{
-
-					    public $parents  = array();
-					    public $children = array();
-
-					    /**
-					     * @param array $pages
-					     */
-					    function __construct($pages)
-					    {
-					        foreach ($pages as $comment)
-					        {
-					            if ($comment['parent'] === 0)
-					            {
-					                $this->parents[$comment['id']][] = $comment;
-					            }
-					            else
-					            {
-					                $this->children[$comment['parent']][] = $comment;
-					            }
-					        }
-					    }
-
-					    /**
-					     * @param array $comment
-					     * @param int $depth
-					     */
-					    private function format_comment($comment, $depth)
-					    {
-					        for ($depth; $depth > 0; $depth--)
-					        {
-					            echo "- - ";
-					        } 
-
-					        echo $comment['text'];
-					        echo "<br />";
-					    }
-
-					    /**
-					     * @param array $comment
-					     * @param int $depth
-					     */
-					    private function print_parent($comment, $depth = 0)
-					    {
-					        foreach ($comment as $c)
-					        {
-					            $this->format_comment($c, $depth);
-
-					            if (isset($this->children[$c['id']]))
-					            {
-					                $this->print_parent($this->children[$c['id']], $depth + 1);
-					            }
-					        }
-					    }
-
-					    public function print_comments()
-					    {
-					        foreach ($this->parents as $c)
-					        {
-					            $this->print_parent($c);
-					        }
-					    }
-
+						$depth = -1;
+						$flag = false;
+						foreach ($tree as $row) {
+						    while ($row['level'] > $depth) {
+						        echo '<ol class="sortable"><li id="list_'.$row['id'].'">';
+						        $flag = false;
+						        $depth++;
+						    }
+						    while ($row['level'] < $depth) {
+						        echo "</li></ol>";
+						        $depth--;
+						    }
+						    if ($flag) {
+						        echo '</li><li id="list_'.$row['id'].'">';
+						        $flag = false;
+						    }
+						    echo '<div>'.$row['title'].'</div>';
+						    $flag = true;
+						}
+						echo '</li></ol>';
 					}
 
+					/**
+					 * Process the page object.
+					 *
+					 * @author Adam Patterson
+					 */
 
-					$pages = array(  array('id'=>1, 'parent'=>0,   'text'=>'#1 Parent'),
-					                    array('id'=>2, 'parent'=>1,   'text'=>'#2 Child'),
-					                    array('id'=>3, 'parent'=>2,   'text'=>'#3 Child Third level'),
-					                    array('id'=>4, 'parent'=>0,   'text'=>'#4 Second Parent'),
-					                    array('id'=>5, 'parent'=>4,   'text'=>'#5 Second Child'),
-										array('id'=>6, 'parent'=>3,   'text'=>'#6 Child Fourth level'),
-										array('id'=>7, 'parent'=>6,   'text'=>'#7 Child Fith level'),
-					                );
+					function nav_menu_sortable ( )
+					{
+						define ( 'FRONT'		,'true' );
+
+						$page = load::model( 'page' );
+						$pages = $page->get( );
+						// Current URI to be used with .current page
+						$uri = URI;
 
 
-					$threaded_comments = new Threaded_comments($pages[0]);
+						$page_tree = $page->get_page_tree( $pages );
 
-					$threaded_comments->print_comments();
+						$page_object = $page->get_page_children( 0, $pages );
+						
+						nav_generate_sortable ( (array)$page_object );
+
+					}
 					
-
+						nav_menu_sortable ( );
 					?>
-					<hr />
-					<? foreach ($pages as $page):
-						$user_meta = $user->get_meta ( $page->author ); ?>
-						<? if ($page->parent != '0'): ?> <div class="sub-page"> <? endif; ?>
-						<strong class="title"><a href="<?= ADMIN ?>content_update_page/<?= $page->id;?>"><?= $page->title ?></a></strong>
-						<? if ($page->parent != '0'): ?> </div> <? endif; ?>
-					<? endforeach; ?>
-					
-					<!-- <script type="text/javascript" src="<?=TENTACLE_JS; ?>nestedSortable-1.3.4/jquery.ui.nestedSortable.js"></script>
-					<script type="text/javascript">
-						(document).ready(function(){
-
-								('ol.sortable').nestedSortable({
-									disableNesting: 'no-nest',
-									forcePlaceholderSize: true,
-									handle: 'div',
-									helper:	'clone',
-									items: 'li',
-									maxLevels: 3,
-									opacity: .6,
-									placeholder: 'placeholder',
-									revert: 250,
-									tabSize: 25,
-									tolerance: 'pointer',
-									toleranceElement: '> div'
-								});
-
-								('#serialize').click(function(){
-									serialized = ('ol.sortable').nestedSortable('serialize');
-									('#serializeOutput').text(serialized+'\n\n');
-								})
-								
-								// retrieve the ids of root pages so we can POST them along
-								data_callback = function(even, ui) {
-									// In the pages module we get a list of root pages
-									root_pages = [];
-									// grab an array of root page ids
-									('ul.sortable').children('li').each(function(){
-										root_pages.push((this).attr('id').replace('page_', ''));
-									});
-									return { 'root_pages' : root_pages };
-								}
-								
-							});
-					</script>
-					<ol class="sortable">
+<!--					<ol class="sortable">
 						<li id="list_1"><div>Item 1</div>
 						<li id="list_2"><div>Item 2</div>
 							<ol>
@@ -192,9 +140,61 @@
 						<li id="list_15"><div>Item 7</div>
 						<li id="list_16"><div>Item 8</div>
 					</ol> -->
-				</div>
-			</div><!-- .one-full -->
-		</div><!-- .post-body -->
-	</div><!-- .full-content -->
-</div><!-- #wrap -->
-<? load::view('admin/template-footer');?>
+					<p>
+						</br></br>
+						<input type="submit" name="toHierarchy" id="toHierarchy" value="To hierarchy" />
+					<pre id="toHierarchyOutput"></pre>
+					</p>
+					<script type="text/javascript">
+						$(document).ready(function(){
+
+								$('.sortable').nestedSortable({
+									disableNesting: 'no-nest',
+									forcePlaceholderSize: true,
+									handle: 'div',
+									helper:	'clone',
+									items: 'li',
+									maxLevels: 3,
+									opacity: .6,
+									placeholder: 'placeholder',
+									revert: 250,
+									tabSize: 25,
+									tolerance: 'pointer',
+									toleranceElement: '> div'
+								});								
+							});
+							
+							$('#toHierarchy').click(function(e){
+								hiered = $('ol.sortable').nestedSortable('toHierarchy');
+								hiered = dump(hiered);
+								(typeof($('#toHierarchyOutput')[0].textContent) != 'undefined') ?
+								$('#toHierarchyOutput')[0].textContent = hiered : $('#toHierarchyOutput')[0].innerText = hiered;
+							})
+
+							function dump(arr,level) {
+								var dumped_text = "";
+								if(!level) level = 0;
+
+								//The padding given at the beginning of the line.
+								var level_padding = "";
+								for(var j=0;j<level+1;j++) level_padding += "    ";
+
+								if(typeof(arr) == 'object') { //Array/Hashes/Objects
+									for(var item in arr) {
+										var value = arr[item];
+
+										if(typeof(value) == 'object') { //If it is an array,
+											dumped_text += level_padding + "'" + item + "' ...\n";
+											dumped_text += dump(value,level+1);
+										} else {
+											dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
+										}
+									}
+								} else { //Strings/Chars/Numbers etc.
+									dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
+								}
+								return dumped_text;
+							}
+					</script>
+				</body>
+				</html>

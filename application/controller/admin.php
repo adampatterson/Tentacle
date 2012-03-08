@@ -3,7 +3,7 @@ class admin_controller {
 	
 	public function __construct() 
 	{  
-		
+		// Check the DB version with the version in the sql.php model 
 	}
 	
 	/**
