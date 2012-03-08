@@ -8,7 +8,7 @@
 define('MOD_REWRITE',TRUE);
 
 // Turn Debugging On?
-define('DEBUG',TRUE);
+define('DEBUG', TRUE);
 
 // Turn Error Logging On?
 define('ERROR_LOGGING',TRUE);
@@ -84,3 +84,28 @@ define('THEMES_URL'    , TENTACLE_URL.'themes');
 define('ADMIN_DIR'     , TENTACLE_URI.'/admin');
 define('ADMIN_BUNDLE'  , ADMIN_URI.'bundles/');
 define('IMAGE_DIR'     , STORAGE_DIR.'/images/');
+
+
+
+// an array of file extensions to accept
+$accepted_extensions = array(
+	"png", "jpg", "gif"
+);
+
+// http://your-web-site.domain/base/url
+$base_url = BASE_URL;
+
+// the root path of the upload directory on the server
+$uploads_dir = STORAGE_DIR.'/images/';
+
+// the root path that the files are available from the webserver
+// YOU WILL NEED TO CHANGE THIS
+$uploads_access_dir = '/tentacle/storage/images/';
+
+$capabilities = array(
+	"move" => true,
+	"rename" => true,
+	"remove" => true,
+	"mkdir" => true,
+	"upload" => true
+);	// an array of file extensions to accept
