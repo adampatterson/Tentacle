@@ -153,7 +153,7 @@
 											theme_advanced_resizing : true,
 
 											// Example content CSS (should be your site CSS)
-											content_css : "css/content.css",
+											content_css : "http://localhost/http/dev.tcms.me/tentacle/themes/default/css/bootstrap.css",
 											// Drop lists for link/image/media/template dialogs
 											template_external_list_url : "lists/template_list.js",
 											external_link_list_url : "lists/link_list.js",
