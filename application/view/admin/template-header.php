@@ -18,11 +18,11 @@
 	<link type="text/css" rel="stylesheet" href="<?= MINIFY ?>b=http/dev.tcms.me/tentacle/admin/css&amp;f=bootstrap-1.4.0.min.css,general.css,admin.css" />
 <!--
 	<script type="text/javascript" src="<?= MINIFY ?>b=http/dev.tcms.me/tentacle/admin/js&amp;f=jquery.min.js,jquery-ui-1.8.16.custom.min.js,modernizr-2.0.6.min.js,jquery.notice.js,jquery.inputtags.js,spin.min.js"></script>
-
+-->
 	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>bootstrap-1.4.0.min.css">
 	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>general.css">
 	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>admin.css">
--->
+
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.min.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery-ui-1.8.16.custom.min.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>modernizr-2.0.6.min.js"></script>

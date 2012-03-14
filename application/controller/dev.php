@@ -1565,14 +1565,6 @@ class dev_controller {
 				});
 			});
 			
-			var $frame = $('<iframe style="width:200px; height:100px;">');
-			        $('body').html( $frame );
-			        setTimeout( function() {
-			                var doc = $frame[0].contentWindow.document;
-			                var $body = $('body',doc);
-			                $body.html('<h1>Test</h1>');
-			        }, 1 );
-			
 			$.fn.insertAtCaret = function (myValue) {
 				return this.each(function(){
 					//IE support
@@ -1607,7 +1599,7 @@ class dev_controller {
 				<li><a href="http://www.google.ca">Link</a></li>
 			</ul>
 
-			<? */
+			<?
     }
 
 	public function loader ()
