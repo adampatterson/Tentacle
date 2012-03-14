@@ -57,7 +57,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
-<body id="admin-window" class="<?= route::controller().'_'. route::method();?>" lang="en">
+<body id="admin-window" class="<?= route::controller().' '. route::method();?>" lang="en">
 	<header>
 		<nav>
 			<div class="topbar">
