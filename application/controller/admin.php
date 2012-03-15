@@ -34,7 +34,7 @@ class admin_controller {
 		tentacle::valid_user();
 		
 		
-		if ( get_db_version() == get_current_db_version() )
+		if ( get_db_version() != get_current_db_version() )
 			url::redirect('admin/upgrade');
 		
 		$id = user::id( );
