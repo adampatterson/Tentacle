@@ -303,6 +303,6 @@ class sql_model
 			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
 		}
 		
-		$build = $pdo->exec( "UPDATE  `options` SET  `value` =  '{$version}' WHERE  `options`.`id` =12;" );
+		$build = $pdo->exec( "UPDATE  `options` SET  `value` =  '{$version}' WHERE  `options`.`key` ='db_version';" );
 	}
 }
