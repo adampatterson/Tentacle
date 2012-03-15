@@ -3,9 +3,14 @@
  * These Get functions are meant to the used more so on the admin side.
  */
 
-	function get_db_version ()
+	function get_current_db_version ()
 	{
 		return get_option( 'db_version' );
+	}
+	
+	function get_db_version ()
+	{
+		return TENTACLE_DB_VERSION;
 	}
 
 		

@@ -1,9 +1,23 @@
 <?php
 class admin_controller {
 	
-	public function __construct() 
-	{  
-		// Check the DB version with the version in the sql.php model 
+	/**
+	* Upgrade Database
+	* ----------------------------------------------------------------------------------------------*/	
+	public function upgrade ()
+	{	
+		load::helper ('upgrade');
+		
+		tentacle_upgrade();
+		
+		url::redirect('admin/upgraded');
+	}
+	
+	public function upgraded ()
+	{	
+		tentacle::valid_user();
+
+		load::view ('admin/upgraded');
 	}
 	
 	/**
@@ -18,6 +32,10 @@ class admin_controller {
 	public function dashboard ()
 	{
 		tentacle::valid_user();
+		
+		
+		if ( get_db_version() == get_current_db_version() )
+			url::redirect('admin/upgrade');
 		
 		$id = user::id( );
 

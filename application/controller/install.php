@@ -49,6 +49,10 @@ class install_controller
 				
 		// Set an option key for the blog being installed
 		$sql->get_102();
+		
+		$sql->get_103();
+		
+		$sql->set_db('103');
 								
 		load::view ('install/step5');
 	}

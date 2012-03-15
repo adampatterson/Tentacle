@@ -226,7 +226,7 @@ class sql_model
 										(9, 'image_large_size_w', '600', 'yes'),
 										(10, 'image_large_size_h', '600', 'yes'),
 										(11, 'image_thumb_size_h', '150', 'yes'),
-										(12, 'db_version', '1', 'yes')" );
+										(12, 'db_version', '100', 'yes')" );
 
 	
 		# @todo This should be updated in the post table.
@@ -277,5 +277,19 @@ class sql_model
 		VALUES
 			(14, 'is_blog_installed', 'true', 'yes')" );
 
+	}
+	
+	public function get_103 ()
+	{
+		$config = config::get('db');
+		
+		try {
+			$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
+		} catch(PDOException $e) {
+			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
+		}
+
+		$build = $pdo->exec( "ALTER TABLE  `media` ADD  `caption` TEXT NULL AFTER  `title` ,
+		ADD  `description` TEXT NULL AFTER  `caption" );
 	}
 }
