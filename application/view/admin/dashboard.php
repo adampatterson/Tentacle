@@ -30,17 +30,9 @@
 						<h2>Blog feed</h2>
 
 							<div class="feed"></div>
-							<ul>
 								<?
-								$blog_feed = file_get_contents('http://tentaclecms.com/blog/feed/?feed=json');
-								$blog_feed = json_decode( $blog_feed );
-
-								foreach ( $blog_feed as $blog ) { ?>
-									<li>
-										<h3><a href="<?= $blog->permalink ?>" target="_blank"><?= $blog->title ?></a></h3>
-										<p><?= $blog->excerpt ?></p>
-									</li>
-								<? } ?>
+								dashboard_feed("http://tentaclecms.com/blog/feed/");
+								?>
 								<!--
 								<script type="text/javascript">
 										$.getJSON("http://tentaclecms.com/blog/feed/?feed=json&jsonp=?",
@@ -53,7 +45,6 @@
 								       });
 								</script>
 								-->
-							</ul>
 						</div>
 					</div>
 				</div>

@@ -206,6 +206,34 @@ class tentacle
 	
 	
 
+// Display blog feed in the dashboard.
+//----------------------------------------------------------------------------------------------
+
+	function dashboard_feed($feed) {
+		// Use cURL to fetch text
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $feed);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$rss = curl_exec($ch);
+		curl_close($ch);
+
+		// Manipulate string into object
+		$rss = simplexml_load_string($rss);
+
+		$cnt = count($rss->channel->item);
+		
+		echo '<ul>';
+		for($i=0; $i<$cnt; $i++)
+		{
+			$url = $rss->channel->item[$i]->link;
+			$title = $rss->channel->item[$i]->title;
+			$desc = $rss->channel->item[$i]->description;
+			echo '<li><h3><a href="'.$url.'">'.$title.'</a></h3><p>'.$desc.'</p></li>';
+		}
+		echo '</ul>';
+	}
+
 	
 
 // Render classes in the template
