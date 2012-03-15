@@ -292,4 +292,17 @@ class sql_model
 		$build = $pdo->exec( "ALTER TABLE  `media` ADD  `caption` TEXT NULL AFTER  `title` ,
 		ADD  `description` TEXT NULL AFTER  `caption" );
 	}
+	
+	public function set_db ( $version )
+	{
+		$config = config::get('db');
+		
+		try {
+			$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
+		} catch(PDOException $e) {
+			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
+		}
+		
+		$build = $pdo->exec( "UPDATE  `options` SET  `value` =  '{$version}' WHERE  `options`.`id` =12;" );
+	}
 }
