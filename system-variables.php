@@ -84,6 +84,7 @@ define('THEMES_URL'    , TENTACLE_URL.'themes');
 define('ADMIN_DIR'     , TENTACLE_URI.'/admin');
 define('ADMIN_BUNDLE'  , ADMIN_URI.'bundles/');
 define('IMAGE_DIR'     , STORAGE_DIR.'/images/');
+define('IMAGE_URL'	   , TENTACLE_URL.'/storage/images/');
 
 
 
