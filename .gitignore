@@ -11,3 +11,5 @@ _Tentacle Resource
 tentacle/admin/css/bootstrap-2/
 application/config/setup/db.php
 tentacle/themes/default/template-rfp.php
+tentacle/admin/js/tiny_mce_wp/
+tentacle/admin/js/tinymce_compressor_php/
