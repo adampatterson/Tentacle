@@ -23,7 +23,7 @@
 	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>general.css">
 	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>admin.css">
 
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.min.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery-ui-1.8.16.custom.min.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>modernizr-2.0.6.min.js"></script>
 	
@@ -85,10 +85,11 @@
 						*/
 ?>
 				        <li class="<? current_page('admin/content_manage_categories'); ?>"><a href="<?= ADMIN ?>content_manage_categories/">Manage categories</a></li>
-<?
-/*
+
 						<li class="divider"></li>
 						<li class="<? current_page('admin/media_manage'); ?>"><a href="<?= ADMIN ?>media_manage/">Manage media</a></li>
+<?
+/*
 					    <li class="<? current_page('admin/media_downloads'); ?>"><a href="<?= ADMIN ?>media_downloads/">Media downloads</a></li>
 						<li class="divider"></li>
 						<li class="<? current_page('admin/media_manage'); ?>"><a href="<?= ADMIN ?>media_manage/">Manage Navigation</a></li>
