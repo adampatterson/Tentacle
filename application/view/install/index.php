@@ -14,6 +14,7 @@
 	</ul>
     <div class="row">
       <div class="span14">
+	
 		<div style="background: #F7F7F7; border: 1px solid #DDDDDD; padding: 10px; margin-bottom: 15px;">
 		      <div style="color: #333; height: 300px; width: 795px; border: 1px solid #CCC; background: #FFF; overflow-y: scroll;overflow-x:hidden;">
 		        <div style="padding: 5px;">
@@ -584,6 +585,18 @@
 		        </div>
 		      </div>
 		    </div>
+		<!--
+			<div id='inkdit-agree-plugin-container'></div>
+			<script src='https://inkdit.com/plugins/agree-plugin.js'></script>
+			<script type="text/javascript">
+			agreeButton = new Inkdit.AgreePluginHelper({
+				"id":    "45",
+				"token": "b9bc9d67f397947ea62673a238992fafab404111f072a36e8bac8141ee4c16b1",
+				"submitbutton": "user_submit",
+				"emailinput":   "user_email"
+			});
+			</script>
+			-->
 			<form action="<?= BASE_URL; ?>action/agree/" method="get">
 				<div style="background: #F7F7F7; border: 1px solid #DDDDDD; padding: 10px; margin-bottom: 15px; text-align: right;">I agree to the license
 					<input type="checkbox" name="agree" id="agree">
