@@ -669,7 +669,7 @@ class dev_controller {
 		<?php
 
 		// Include the diff class
-		tentacle::library('/diff','diff');
+		tentacle::library('diff','diff');
 
 			$a_raw = '<html>
 				<head>
@@ -1218,7 +1218,7 @@ class dev_controller {
 	{	
 		echo '<h2>Spyc</h2>';
 		
-		tentacle::library('/spyc','spyc');
+		tentacle::library('spyc','spyc');
 	}// END Function
 	
 	
@@ -1415,8 +1415,9 @@ class dev_controller {
 		        <h1>File Upload</h1>
 		    </div>
 		    <br>
-		    <!-- The file upload form used as target for the file upload widget -->
-		    <form id="fileupload" action="<?= TENTACLE_JS ?>jQuery-File-Upload/server/php/" method="POST" enctype="multipart/form-data">
+		    <!-- The file upload form used as target for the file upload widget -->    
+			<!--<form id="fileupload" action="<?= TENTACLE_JS ?>jQuery-File-Upload/server/php/" method="POST" enctype="multipart/form-data">-->
+			<form id="fileupload" action="<?= BASE_URL ?>action/upload_media/" method="POST" enctype="multipart/form-data">
 		        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
 		        <div class="row fileupload-buttonbar">
 		            <div class="span7">
@@ -1601,6 +1602,11 @@ class dev_controller {
 
 			<?
     }
+
+	public function file ()
+	{
+		echo IMAGE_DIR;
+	}
 
 	public function loader ()
 	{
