@@ -12,6 +12,14 @@
 		}
 	}
 	
+	function is_agree() {
+		if ( get_option( 'is_agree' ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	function is_rtl() {}
 	
 	function is_front_page() {}

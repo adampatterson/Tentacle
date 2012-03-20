@@ -2,7 +2,7 @@
 class admin_controller {
 	
 	/**
-	* Upgrade Database
+	* Upgrade Database / License Agree
 	* ----------------------------------------------------------------------------------------------*/	
 	public function upgrade ()
 	{	
@@ -20,6 +20,13 @@ class admin_controller {
 		load::view ('admin/upgraded');
 	}
 	
+	public function agree ()
+	{
+		tentacle::valid_user();
+		
+		load::view ( 'admin/agree' );
+	}
+	
 	/**
 	* Dashboard
 	* ----------------------------------------------------------------------------------------------*/
@@ -33,6 +40,9 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
+
+		if ( is_agree() == false )
+			url::redirect('admin/agree');
 		
 		if ( get_db_version() != get_current_db_version() )
 			url::redirect('admin/upgrade');

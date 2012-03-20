@@ -120,7 +120,7 @@ route::set('dev',array(
 // install rout
 route::set('install',array(
     'controller'=>'install',
-    'function'=>'agree',
+    'function'=>'step1',
 	));
 
 route::set('install/([-_a-zA-Z0-9]+)',array(

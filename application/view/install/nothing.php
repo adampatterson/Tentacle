@@ -7,7 +7,7 @@
       <div class="span14">
         <h2>Congratulations!</h2>
 		<div class="alert-message block-message success">
-			<p>Looks like Tentacle has already been installed.</p>
+			<p>It looks like Tentacle has already been installed!</p>
 			<div class="alert-actions">
 		    	<a class="btn large success" href="<?= BASE_URL ?>admin/">Log in</a>
 		  </div>

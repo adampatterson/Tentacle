@@ -4,7 +4,6 @@
       <h1>Install <small>Step 4</small></h1>
     </div>
 	<ul class="breadcrumb">
-		<li><a href='#'>License</a><span class="divider">/</span></li>
 		<li><a href='#'>Overview</a><span class="divider">/</span></li>
 		<li><a href='#'>System Check</a><span class="divider">/</span></li>
 		<li><a href='#'>Database Information</a><span class="divider">/</span></li>

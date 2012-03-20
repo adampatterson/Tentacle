@@ -71,7 +71,7 @@ define('MVC_VERSION', DINGO_VERSION);
 *
 * @global int $tentacle_db_version
 */
-define('TENTACLE_DB_VERSION', '103');
+define('TENTACLE_DB_VERSION', '104');
  
 
 /**

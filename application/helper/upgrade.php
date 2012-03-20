@@ -1,13 +1,13 @@
 <?
 /**
  * Upgrade process will load SQL from within the SQL model.
- * The same SQL that Setup will use.
  *
  * @author Adam Patterson
  */
 
 function tentacle_upgrade() {
-	// We are up-to-date.  Nothing to do.
+	// current db version is stored in the database
+	// DB version is saved in the config file in TENTACLE_DB_VERSION
 	if ( get_db_version() == get_current_db_version() )
 		return;
 

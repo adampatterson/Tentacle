@@ -6,18 +6,13 @@
 
 class install_controller
 {
-	public function agree ()
-	{
+	public function step1 ( $step=1 )
+	{	
 		if ( !file_exists( 'application/config/deployment/db.php' ) ):
-			load::view ('install/index');
+			load::view ('install/step1');
 		else:
 			load::view ('install/nothing');
 		endif;
-	}
-	
-	public function step1 ( $step )
-	{	
-		load::view ('install/step1');
 	}
 	
 	public function step2 ( $step )
@@ -52,7 +47,10 @@ class install_controller
 		
 		$sql->get_103();
 		
-		$sql->set_db('103');
+		$sql->get_104();
+		
+		// Set the current Install version
+		$sql->set_db('104');
 								
 		load::view ('install/step5');
 	}

@@ -12,6 +12,19 @@ class action_controller
 	
 	
 	/**
+	* Agree to terms
+	* ----------------------------------------------------------------------------------------------*/
+	public function agree ()
+	{
+	
+		$setting = load::model ( 'settings' );
+		
+		$update_agree = $setting->update( 'is_agree', 'true' );
+
+		url::redirect('admin/dashboard');
+	}
+	
+	/**
 	 * 
 	 * 
 	 * 
@@ -625,15 +638,6 @@ class action_controller
 	 * 
 	 * 
 	 */	
-	
-	
-	/**
-	* Agree
-	* ----------------------------------------------------------------------------------------------*/
-	public function agree()
-	{
-		url::redirect('install/step1');
-	}
 	
 	
 	/**

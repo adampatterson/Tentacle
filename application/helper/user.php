@@ -23,6 +23,17 @@ function user_name ( ) {
 }
 
 
+function user_email ( ) {
+	$id = user::id( );
+
+	$user = load::model ( 'user' );
+
+	$user_meta = $user->get( $id );
+
+	return $user_meta->email;
+}
+
+
 function user_editor ( ) {
 	$id = user::id( );
 

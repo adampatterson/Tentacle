@@ -275,7 +275,7 @@ class sql_model
 		
 		$build = $pdo->exec( "INSERT INTO `options` (`id`, `key`, `value`, `autoload`)
 		VALUES
-			(14, 'is_blog_installed', 'true', 'yes')" );
+			(NULL, 'is_blog_installed', 'true', 'yes')" );
 
 	}
 	
@@ -291,6 +291,21 @@ class sql_model
 
 		$build = $pdo->exec( "ALTER TABLE  `media` ADD  `caption` TEXT NULL AFTER  `title` ,
 		ADD  `description` TEXT NULL AFTER  `caption" );
+	}
+	
+	public function get_104 ()
+	{
+		$config = config::get('db');
+		
+		try {
+			$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
+		} catch(PDOException $e) {
+			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
+		}
+
+		$build = $pdo->exec( "INSERT INTO `options` (`id`, `key`, `value`, `autoload`)
+		VALUES
+			(NULL, 'is_agree', 'true', 'yes')" );
 	}
 	
 	public function set_db ( $version )
