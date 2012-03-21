@@ -6,7 +6,7 @@
 
 class install_controller
 {
-	public function step1 ( $step=1 )
+	public function step1 ( )
 	{	
 		if ( !file_exists( 'application/config/deployment/db.php' ) ):
 			load::view ('install/step1');
@@ -15,22 +15,22 @@ class install_controller
 		endif;
 	}
 	
-	public function step2 ( $step )
+	public function step2 ( )
 	{
 		load::view ('install/step2');
 	}
 	
-	public function step3 ( $step )
+	public function step3 ( )
 	{
 		load::view ('install/step3');
 	}
 	
-	public function step4 ( $step )
+	public function step4 ( )
 	{
 		load::view ('install/step4');
 	}
 	
-	public function step5 ( $step )
+	public function step5 ( )
 	{
 		// CREATE DATABASE database_name
 		load::library('db');
@@ -55,7 +55,7 @@ class install_controller
 		load::view ('install/step5');
 	}
 	
-	public function done ( $step )
+	public function done ( )
 	{
 		load::view ( 'install/done' );	
 	}

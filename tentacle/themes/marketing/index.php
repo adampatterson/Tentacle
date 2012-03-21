@@ -44,7 +44,7 @@ if(!defined('SCAFFOLD')):
 				<input type="text" name="email" maxlength="60" required="required" placeholder="Email" value="" class="email span4" />
 			</dd>
 			<dd>
-				<input type="submit" value="Notify Me!" class="btn large primary" />
+				<input type="submit" value="Notify Me!" class="btn large primary" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://tentaclecms.com/blog/downloads/tentacle-beta" class="btn large success">Download</a>
 			</dd>
 		</dl>
 		<?php if($note = note::get('session')): ?>

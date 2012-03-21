@@ -19,7 +19,11 @@ date_default_timezone_set('UTC');
 config::set( 'autoload_library', array( 'db', 'session', 'user', 'url', 'pagination', 'benchmark', 'image', 'note', 'email' ) );
 
 /* Auto Load Helpers */
-config::set( 'autoload_helper', array('assets', 'theme', 'settings', 'scaffold', 'state', 'tentacle', 'navigation', 'gravatar', 'inflector', 'string', 'user', 'snippet', 'get', 'is' ) ); 
+if ( strpos( BASE_URI,'install' ) == true ) {
+	config::set( 'autoload_helper', array('assets' ) ); 	
+} else {
+	config::set( 'autoload_helper', array('assets', 'theme', 'settings', 'scaffold', 'state', 'tentacle', 'navigation', 'gravatar', 'inflector', 'string', 'user', 'snippet', 'get', 'is' ) ); 
+}
 
 /* Sessions */
 config::set('session',array(
