@@ -1,18 +1,5 @@
 <?php if(!defined('DINGO')){die('External Access to File Denied');}
 
-/**
- * Dingo Framework Basic Configuration File
- *
- * @Author          Evan Byrne
- * @Copyright       2008 - 2010
- * @Project Page    http://www.dingoframework.com
- */
-
-/**
- * Your Application's Default Timezone
- * Syntax for your local timezone can be found at
- * http://www.php.net/timezones
- */
 date_default_timezone_set('UTC');
 
 /* Auto Load Libraries */
@@ -50,45 +37,3 @@ config::set('folder_cache','cache');            // Cache
 config::set('folder_languages','language');     // Languages
 config::set('folder_errors','error');           // Errors
 config::set('folder_orm','orm');                // ORM
-
-/*
- *  Component Versions
- */
-
-/**
-* The Tentacle version
-*
-* @global string $tentacle_version
-*/
-define('TENTACLE_VERSION', '1.0 beta');
- 
-/**
-* The Dingo PHP Framework version
-*
-* @global string $dingo_version
-*/
-define('MVC_VERSION', DINGO_VERSION);
- 
- 
-/**
-* Holds the Tentacle DB revision, increments when changes are made to the Tentacle DB schema.
-*
-* @global int $tentacle_db_version
-*/
-define('TENTACLE_DB_VERSION', '104');
- 
-
-/**
-* Holds the required PHP version
-*
-* @global string $required_php_version
-*/
-define('REQUIRED_PHP_VERSION', '5.2');
- 
- 
-/**
-* Holds the required MySQL version
-*
-* @global string $required_mysql_version
-*/
-define('REQUIRED_MYSQL_VERSION', '4.1.2');

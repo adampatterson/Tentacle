@@ -88,25 +88,37 @@ define('IMAGE_URL'	   , TENTACLE_URL.'/storage/images/');
 
 
 
-// an array of file extensions to accept
-$accepted_extensions = array(
-	"png", "jpg", "gif"
-);
+/*
+ *  Component Versions
+ */
 
-// http://your-web-site.domain/base/url
-$base_url = BASE_URL;
+/**
+* The Tentacle version
+*
+* @global string $tentacle_version
+*/
+define('TENTACLE_VERSION', '0.5');
+ 
+ 
+/**
+* Holds the Tentacle DB revision, increments when changes are made to the Tentacle sql model.
+*
+* @global int $tentacle_db_version
+*/
+define('TENTACLE_DB_VERSION', '104');
+ 
 
-// the root path of the upload directory on the server
-$uploads_dir = STORAGE_DIR.'/images/';
-
-// the root path that the files are available from the webserver
-// YOU WILL NEED TO CHANGE THIS
-$uploads_access_dir = '/tentacle/storage/images/';
-
-$capabilities = array(
-	"move" => true,
-	"rename" => true,
-	"remove" => true,
-	"mkdir" => true,
-	"upload" => true
-);	// an array of file extensions to accept
+/**
+* Holds the required PHP version
+*
+* @global string $required_php_version
+*/
+define('REQUIRED_PHP_VERSION', '5.2');
+ 
+ 
+/**
+* Holds the required MySQL version
+*
+* @global string $required_mysql_version
+*/
+define('REQUIRED_MYSQL_VERSION', '4.1.2');

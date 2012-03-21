@@ -10,7 +10,6 @@ class dev_controller {
 	public function index()
 	{		
 		//echo __DIR__;
-		echo date("m");
 	}
 	
 	

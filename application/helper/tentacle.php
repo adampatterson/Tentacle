@@ -122,8 +122,27 @@ class tentacle
 		$url = (!empty($url)) ? rtrim($url, '/') : '/';
 		
 		return $url;
-	}
+	}	
 	
+	 /**
+	  * Checks what the latest Tentacle version is that is available at tentaclecms.com
+	  */
+	 public static function check_version()
+	 {
+	     if (!defined('TENTACLE_VERSION') || !TENTACLE_VERSION)
+	         return;
+
+	     if (!defined('CHECK_TIMEOUT')) define('CHECK_TIMEOUT', 5);
+	     $scc = stream_context_create(array('http' => array('timeout' => CHECK_TIMEOUT)));
+
+	     $version = file_get_contents('http://version.tentaclecms.com/', 0, $scc);
+	     if ($version > TENTACLE_VERSION)
+	     {
+	         _e('<p class="well"><span class="label important">Important</span> There is a newer version of Tentacle, Visit <a href="http://tentaclecms.com">http://tentaclecms.com</a> to upgrade to <strong>Version '. $version.'</strong></p>');
+				return true;
+	     }
+	}
+
 } // END class
 
 	

@@ -6,6 +6,7 @@
 			<div class="one-full">
 				<div class="title pad-right">
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Welcome <strong><?= user_name();?></strong></h1>
+						<? tentacle::check_version(); ?>
 				<!--<div class="one-half">
 						<h2>Content</h2>
 						<ul>
@@ -25,27 +26,9 @@
 					        <li><a href="<?= ADMIN ?>content_manage_categories/">Manage categories</a></li>
 						</ul>
 					</div>-->
-					<div class="row">
-						<div class="well">
-						<h2>Blog feed</h2>
-
-							<div class="feed"></div>
-								<?
-								dashboard_feed("http://tentaclecms.com/blog/feed/");
-								?>
-								<!--
-								<script type="text/javascript">
-										$.getJSON("http://tentaclecms.com/blog/feed/?feed=json&jsonp=?",
-								       function(data){
-								               console.debug(data[1]);
-
-											$.each(data.slice(0,4), function(i, item){
-												$(".feed").append('<li><h3><a href="' + item.permalink + '">' + item.title + '</a></h3><p>' + item.excerpt +'</p></li>');
-											});
-								       });
-								</script>
-								-->
-						</div>
+					<div class="well">
+						<h2>Tentacle News</h2>
+						<? dashboard_feed("http://tentaclecms.com/blog/feed/"); ?>
 					</div>
 				</div>
 			</div><!-- .one-full -->

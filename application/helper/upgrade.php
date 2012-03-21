@@ -4,7 +4,6 @@
  *
  * @author Adam Patterson
  */
-
 function tentacle_upgrade() {
 	// current db version is stored in the database
 	// DB version is saved in the config file in TENTACLE_DB_VERSION
