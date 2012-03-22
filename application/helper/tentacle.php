@@ -135,7 +135,7 @@ class tentacle
 	     if (!defined('CHECK_TIMEOUT')) define('CHECK_TIMEOUT', 5);
 	     $scc = stream_context_create(array('http' => array('timeout' => CHECK_TIMEOUT)));
 
-	     $version = file_get_contents('http://version.tentaclecms.com/', 0, $scc);
+	     $version = file_get_contents('http://api.tentaclecms.com/version/', 0, $scc);
 	     if ($version > TENTACLE_VERSION)
 	     {
 	         _e('<p class="well"><span class="label important">Important</span> There is a newer version of Tentacle, Visit <a href="http://tentaclecms.com">http://tentaclecms.com</a> to upgrade to <strong>Version '. $version.'</strong></p>');
