@@ -129,18 +129,21 @@ class tentacle
 	  */
 	 public static function check_version()
 	 {
-	     if (!defined('TENTACLE_VERSION') || !TENTACLE_VERSION)
+		if ( !defined( 'TENTACLE_VERSION' ) || !TENTACLE_VERSION )
 	         return;
 
-	     if (!defined('CHECK_TIMEOUT')) define('CHECK_TIMEOUT', 5);
-	     $scc = stream_context_create(array('http' => array('timeout' => CHECK_TIMEOUT)));
+		if ( !defined( 'CHECK_TIMEOUT') ) define( 'CHECK_TIMEOUT', 5 );
+		$scc = stream_context_create( array( 'http' => array( 'timeout' => CHECK_TIMEOUT ) ) );
 
-	     $version = file_get_contents('http://api.tentaclecms.com/version/', 0, $scc);
-	     if ($version > TENTACLE_VERSION)
-	     {
-	         _e('<p class="well"><span class="label important">Important</span> There is a newer version of Tentacle, Visit <a href="http://tentaclecms.com">http://tentaclecms.com</a> to upgrade to <strong>Version '. $version.'</strong></p>');
+		$version = file_get_contents( 'http://localhost/serpent/get/core/', 0, $scc );
+	
+		$v = json_decode( $version );
+		
+		if ($v->version > TENTACLE_VERSION)
+		{
+	        _e('<p class="well"><span class="label important">Important</span> There is a newer version of Tentacle, Visit <a href="'.$v->download.'">'.$v->download.'</a> to upgrade to <strong>Version '. $v->version.'</strong></p>');
 				return true;
-	     }
+			}
 	}
 
 } // END class
@@ -585,4 +588,20 @@ class tentacle
 		print_r($data);
 		echo '</pre>';
 	}
+	
+	
+// DEBUG
+//----------------------------------------------------------------------------------------------
+
+    function render_debug() {
+		_e('<strong>GET</strong>');
+	    	var_dump($_GET);
+		_e('<strong>POST</strong>');
+	    	var_dump($_POST);
+		_e('<strong>COOKIE</strong>');
+	    	var_dump($_COOKIE);
+		_e('<strong>REQUEST</strong>');
+	    	var_dump($_REQUEST);
+    }
+
 ?>
