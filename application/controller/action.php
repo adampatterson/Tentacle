@@ -362,7 +362,6 @@ class action_controller
 
 		//url::redirect($history); 
 		url::redirect('admin/users_manage/');
-
 	}
 
 

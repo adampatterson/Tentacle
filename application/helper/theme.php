@@ -1,7 +1,5 @@
 <?php if(!defined('DINGO')){die('External Access to File Denied');}
 
-load::helper ('array');
-
 function _cleanup_header_comment($str) 
 {
 	return trim(preg_replace("/\s*(?:\*\/|\?>).*/", '', $str));

@@ -1,5 +1,6 @@
 </div>
 <!-- #body-wrapper -->
+<? //render_debug(); ?>
 <footer>
 	<div class="container-full">
 		<div class="one-half"><p><a href="https://github.com/adampatterson/Tentacle/wiki" target="_blank">Documentation</a> | <a href="https://github.com/adampatterson/Tentacle/issues" target="_blank">Feedback</a> | <a href="https://github.com/adampatterson/Tentacle/wiki/Credits" target="_blank">Credits</a> |  version <?= TENTACLE_VERSION; ?></p></div>

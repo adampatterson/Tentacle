@@ -8,9 +8,7 @@ class themes_model
 	
 	public function get_themes () 
 	{
-		load::helper ('array');
-
-		return array_to_object(get_themes());
+		return (object)get_themes();
 	}
 	
 	public function theme_settings ( $theme = '' )

@@ -8,8 +8,8 @@ class dev_controller {
 	* @author Adam Patterson
 	**/
 	public function index()
-	{		
-		//echo __DIR__;
+	{				
+		
 	}
 	
 	
@@ -32,13 +32,13 @@ class dev_controller {
 	}
 
 
-		public function relations ()
-		{
-			$categories = load::model ( 'tags' );
+	public function relations ()
+	{
+		$categories = load::model ( 'tags' );
 
-			clean_out( $categories->get_all_tags( ) );
-		}
-
+		clean_out( $categories->get_all_tags( ) );
+	}
+	
 
 	public function extensions ()
 	{
