@@ -4,7 +4,7 @@ class date
     /**
      * @todo possibly convert from time object
      */
-    public function distanceOfTimeInWords($fromTime, $toTime = 0, $includeSeconds = false)
+    public function distance_of_time_in_words($fromTime, $toTime = 0, $includeSeconds = false)
     {
         $distanceInMinutes = round(((abs($toTime - $fromTime)/60)));
         $distanceInSeconds = round(abs($toTime - $fromTime));
@@ -52,7 +52,7 @@ class date
      * Like distance_of_time_in_words, but where <tt>to_time</tt> is fixed to 
      * <tt>Time.now</tt>.
      */ 
-    public function timeAgoInWords($fromTime, $includeSeconds=false)
+    public function time_ago_in_words($fromTime, $includeSeconds=false)
     {
         return $this->distanceOfTimeInWords($fromTime, time(), $includeSeconds);
     }
@@ -60,12 +60,12 @@ class date
     /**
      * alias method to timeAgoInWords
      */ 
-    public function distanceOfTimeInWordsToNow($fromTime, $includeSeconds=false)
+    public function distance_of_time_in_words_to_now($fromTime, $includeSeconds=false)
     {
         return $this->timeAgoInWords($fromTime, $includeSeconds);
     }
 
-    public function dateSelect($objectName, $method, $options = array())
+    public function date_select($objectName, $method, $options = array())
     {
         $object = isset($options['object']) ? $options['object'] : null;
         unset($options['object']);
