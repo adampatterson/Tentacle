@@ -4,6 +4,7 @@ Type: Gallery
 */
 if( !defined( 'SCAFFOLD' ) ):?>
 <? load_part('header',array('title'=>$data->title,'assets'=>'default')); ?>
+<? // http://instagram.com/developer/ ?>
 <div class="row-fluid">
 	<div class="span3">
 		<div class="well sidebar-nav">

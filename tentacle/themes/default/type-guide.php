@@ -4,6 +4,7 @@ Type: Guide
 */
 if( !defined( 'SCAFFOLD' ) ):?>
 <? load_part('header',array('title'=>$data->title,'assets'=>'default')); ?>
+<? // http://snapguide.com/ ?>
 <div class="row-fluid">
 	<div class="span3">
 		<div class="well sidebar-nav">
@@ -14,7 +15,6 @@ if( !defined( 'SCAFFOLD' ) ):?>
 		<div class="hero-unit">
 			<h1><?= $data->title; ?></h1>
 			<?= render_content( $data->content ); ?>
-			<!-- http://snapguide.com/ -->
 		</div><!-- /hero-unit -->
 	</div><!--/span9-->
 </div><!--/row-->
