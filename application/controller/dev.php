@@ -1,14 +1,10 @@
 <?php
 class dev_controller {	
 	
-	/**
-	* index function
-	*
-	* @return void
-	* @author Adam Patterson
-	**/
+
 	public function index()
 	{				
+
 		// We are up-to-date.  Nothing to do.
 		if ( get_db_version() == get_current_db_version() )
 			return false;
@@ -17,7 +13,7 @@ class dev_controller {
 
 		$i = get_current_db_version()+1;
 		
-		echo $i.'<br />';
+		echo $i;
 		
 		while ($i <= get_db_version()):
 
@@ -28,6 +24,8 @@ class dev_controller {
 			//$sql->$version();
 		    $i++;
 		endwhile;
+		
+
 	}
 	
 	

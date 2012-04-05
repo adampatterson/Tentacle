@@ -7,9 +7,9 @@ config::set( 'autoload_library', array( 'db', 'session', 'user', 'url', 'paginat
 
 /* Auto Load Helpers */
 if ( strpos( BASE_URI,'install' ) == true ) {
-	config::set( 'autoload_helper', array('assets' ) ); 	
+	config::set( 'autoload_helper', array( 'assets' ) ); 	
 } else {
-	config::set( 'autoload_helper', array('assets', 'theme', 'settings', 'scaffold', 'state', 'tentacle', 'navigation', 'gravatar', 'inflector', 'string', 'user', 'snippet', 'get', 'is' ) ); 
+	config::set( 'autoload_helper', array( 'assets', 'theme', 'scaffold', 'state', 'get', 'is', 'tentacle', 'navigation', 'gravatar', 'inflector', 'string', 'user', 'snippet') ); 
 }
 
 /* Sessions */

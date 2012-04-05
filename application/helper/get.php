@@ -3,6 +3,25 @@
  * These Get functions are meant to the used more so on the admin side.
  */
 
+	/**
+	 * Get Options
+	 *
+	 * @param string $option 
+	 * @param string $default 
+	 * @return void
+	 * @author Adam Patterson
+	 */
+	function get_option( $option, $default = false ) 
+	{
+		$setting = db ( 'options' );
+		
+		$get_settings = $setting->select( '*' )
+			->where( 'key', '=', $option )
+			->execute();
+
+		return $get_settings[0]->value;
+	}
+
 	function get_current_db_version ()
 	{
 		return get_option( 'db_version' );

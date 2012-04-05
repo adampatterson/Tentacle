@@ -1,7 +1,4 @@
 <?php 
-load::helper ('settings');
-
-
 // Tentacle Globals
 // ---------------------------------------------------------------------------
 
@@ -135,7 +132,7 @@ class tentacle
 		if ( !defined( 'CHECK_TIMEOUT') ) define( 'CHECK_TIMEOUT', 5 );
 		$scc = stream_context_create( array( 'http' => array( 'timeout' => CHECK_TIMEOUT ) ) );
 
-		$version = file_get_contents( 'http://localhost/serpent/get/core/', 0, $scc );
+		$version = file_get_contents( 'http://api.tentaclecms.com/get/core/', 0, $scc );
 	
 		$v = json_decode( $version );
 		

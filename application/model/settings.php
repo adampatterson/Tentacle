@@ -41,13 +41,12 @@ class settings_model
 		
 	// Get Setting
 	//----------------------------------------------------------------------------------------------	
-	public function get ( $key = '')	
+	public function get ( $key = '' )	
 	{
 		$setting = db ( 'options' );
 		
 		$get_settings = $setting->select( '*' )
 			->where( 'key', '=', $key )
-			->order_by ( 'id', 'DESC' )
 			->execute();
 
 
@@ -58,7 +57,7 @@ class settings_model
 		if ( $count == 0 ):
 			return false;
 		else:
-			return $get_settings[0]->value;		
+			return $get_settings;		
 		endif;			
 	}
 
