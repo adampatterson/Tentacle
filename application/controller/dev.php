@@ -16,6 +16,8 @@ class dev_controller {
 		//$sql = load::model ( 'sql' );
 
 		$i = get_current_db_version()+1;
+		
+		echo .'<br />'
 		while ($i <= get_db_version()):
 		    echo $i;
 
