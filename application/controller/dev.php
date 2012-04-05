@@ -9,7 +9,23 @@ class dev_controller {
 	**/
 	public function index()
 	{				
-		
+		// We are up-to-date.  Nothing to do.
+		if ( get_db_version() == get_current_db_version() )
+			return false;
+
+		//$sql = load::model ( 'sql' );
+
+		$i = get_current_db_version()+1;
+		while ($i <= get_db_version()):
+		    echo $i;
+
+			$version = 'get_'.$i;
+
+			echo $version;
+			
+			//$sql->$version();
+		    $i++;
+		endwhile;
 	}
 	
 	
