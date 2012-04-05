@@ -17,7 +17,7 @@ class dev_controller {
 
 		$i = get_current_db_version()+1;
 		
-		echo .'<br />'
+		echo $i.'<br />'
 		while ($i <= get_db_version()):
 		    echo $i;
 
