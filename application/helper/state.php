@@ -68,6 +68,7 @@
 	    return ($odd = !$odd) ? 'even': 'odd';
 	}
 
+
 	function even_odd() {
 	    return odd_even();
 	}

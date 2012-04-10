@@ -107,7 +107,7 @@ function get_templates ( $theme_folder )
 		endif;
 	endforeach;
 
-	return(array_to_object( $template ));
+	return( (object) $template );
 	
 } // Get Templates
 
