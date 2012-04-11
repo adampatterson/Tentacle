@@ -601,4 +601,34 @@ class tentacle
 	    	var_dump($_REQUEST);
     }
 
+
+
+	// TEMP Array to Object
+	//----------------------------------------------------------------------------------------------
+
+	/**
+	* Array to object - Takes an array as input and returns an object
+	* @return object
+	* @param  $array
+	*/
+
+		function array_to_object($array = array())
+		{
+		    $tmp = new stdClass;
+
+		    foreach ($array as $key => $value) {
+		        if (is_array($value)) {
+		            $tmp->$key = array_to_object($value);
+		        } else {
+		            if (is_numeric($key)) {
+		                exit('Cannot turn numeric arrays into objects!');
+		            }
+
+		            $tmp->$key = $value;
+		        }
+		    }
+
+		    return $tmp;
+		}
+
 ?>
