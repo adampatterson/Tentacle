@@ -1,6 +1,5 @@
 <?php
-class ajax_controller 
-{
+class ajax_controller {
 	
 	# All ajax calls should pass throught this controller.
 	
@@ -15,7 +14,7 @@ class ajax_controller
 	* ----------------------------------------------------------------------------------------------*/
 	public function unique_user ()
 	{
-		$user = load::model ( 'user' );
+		$user = load::model( 'user' );
 		$unique = $user->unique( $_POST['username'] );
 	
 		return $unique;

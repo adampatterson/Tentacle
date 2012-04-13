@@ -1,13 +1,12 @@
 <?
-class category_model
-{
+class category_model {
 
 	// Add Category
 	//----------------------------------------------------------------------------------------------
-	public function add ( ) 
+	public function add() 
 	{
-		$term_name = input::post ( 'name' );
-		$term_slug = input::post ( 'slug' );
+		$term_name = input::post( 'name' );         
+		$term_slug = input::post( 'slug' );
 		
 		$inflector = new inflector( );
 		$term_slug = $inflector->camelize( $term_slug );
@@ -35,21 +34,21 @@ class category_model
 
 	// Update Category
 	//----------------------------------------------------------------------------------------------
-	public function update ( $id='' )
+	public function update( $id='' )
 	{
-		$term_name = input::post ( 'name' );
-		$term_slug = input::post ( 'slug' );
+		$term_name = input::post( 'name' );
+		$term_slug = input::post( 'slug' );
 		
-		$inflector = new inflector( );
+		$inflector = new inflector();
 		$term_slug = $inflector->camelize( $term_slug );
 		$term_slug = $inflector->underscore( $term_slug );
 		
 		$category  = db( 'terms' );
 		
-		$category->update(array(
+		$category->update( array(
 				'name'=>$term_name,
 				'slug'=>$term_slug,
-			))
+			) )
 			->where( 'id', '=', $id )
 			->execute();
 			
@@ -59,46 +58,44 @@ class category_model
 
 	// Get Category
 	//----------------------------------------------------------------------------------------------
-	public function get ( $id='' )
+	public function get( $id='' )
 	{
-		$categories = db ( 'terms' );
+		$categories = db( 'terms' );
 		
-		if ( $id == '' ) {
+		if ( $id == '' ):
 			$get_categories = $categories->select( '*' )
-				->order_by ( 'id', 'DESC' )
+				->order_by( 'id', 'DESC' )
 				->execute();
 			return $get_categories;
-		} else {	
+		else:
 			$get_category = $categories->select( '*' )
-				->where ( 'id', '=', $id )
-				->order_by ( 'id', 'DESC' )
+				->where( 'id', '=', $id )
+				->order_by( 'id', 'DESC' )
 				->execute();	
 			
 			return $get_category[0];
-		}
+		endif;
 	}
 
 
     // Get Category List
     // @todo: return a comma seporated list ( with links )
     //----------------------------------------------------------------------------------------------
-    public function get_list ( $list = array() )
+    public function get_list( $list = array() )
     {
-        $categories = db ( 'terms' );
+        $categories = db( 'terms' );
 
-        foreach( $list as $item ){
-            
-				$this->get( $item )->name; 
-				
-        }
+        foreach( $list as $item ):    
+			$this->get( $item )->name; 	
+        endforeach;
 		  
-		  return $get_category[0];
+		return $get_category[0];
     }
 	
 
 	// Delete Category
 	//----------------------------------------------------------------------------------------------
-	public function delete_relations ( $post_id='' )
+	public function delete_relations( $post_id='' )
 	{
 		$term_relations = db::query("DELETE FROM term_relationships WHERE page_id=".$post_id );
 	}
@@ -106,7 +103,7 @@ class category_model
 
 	// Delete Category
 	//----------------------------------------------------------------------------------------------
-	public function delete ( $id ) 
+	public function delete( $id ) 
 	{
 		$category = db( 'terms' );
 
@@ -116,7 +113,7 @@ class category_model
 	
 	// Set the Category relations for a blog post.
 	//----------------------------------------------------------------------------------------------	
-	public function relations ( $post_id = '', $categories = '', $update = false ) 
+	public function relations( $post_id = '', $categories = '', $update = false ) 
 	{	
 		$term         = db('term_relationships');
 
@@ -124,17 +121,17 @@ class category_model
 			$term_relations = db::query("DELETE FROM term_relationships WHERE page_id=".$post_id );
 
 		foreach ( $categories as $term_id ):
-			$term->insert(array(
+			$term->insert( array(
 				'page_id'		=> $post_id,
 				'term_id'		=> $term_id,
-			),FALSE);
+			), FALSE );
 		endforeach;
 	}
 
-	
+
 	// Get the Category relations of a blog post.
 	//----------------------------------------------------------------------------------------------	
-	public function get_relations ( $post_id = '' ) 
+	public function get_relations( $post_id = '' ) 
 	{	
 		
 		$term_relations = db::query("SELECT
@@ -161,9 +158,8 @@ class category_model
 	}
 	
 	
-	public function get_all_categories ( ) 
+	public function get_all_categories( ) 
 	{	
-		
 		$term_relations = db::query("SELECT t.*, tt.* FROM terms AS t INNER JOIN term_taxonomy AS tt ON t.id = tt.term_id WHERE tt.taxonomy IN ('category') ORDER BY t.name ASC" );
 			
 		return $term_relations;

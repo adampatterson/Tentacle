@@ -100,7 +100,7 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		$page = load::model ( 'page' );
+		$page = load::model( 'page' );
 		$pages = $page->get( );
 		
 		$page_hiarchy = $page->get_page_children( 0, $pages );
@@ -122,7 +122,7 @@ class admin_controller {
 		
 		$page_hiarchy = $page->get_page_children( 0, $pages );
 		
-		$tag = load::model ( 'tags' );
+		$tag = load::model( 'tags' );
 		$tags = $tag->get_all_tags();
 		$tag_dirty_relations = $tag->get_relations( $page_id);
 				
@@ -159,7 +159,7 @@ class admin_controller {
 		endif;
 		
 		$user = load::model('user'); 
-		$options = load::model ( 'settings' );
+		$options = load::model( 'settings' );
 
 		load::view ('admin/content/content_manage_pages', array( 'pages'=>$page_hiarchy, 'user'=>$user ) );
 	}
@@ -175,7 +175,7 @@ class admin_controller {
 		
 		$category = load::model( 'category' );
 		$categories = $category->get_all_categories( );
-		$tag = load::model ( 'tags' );
+		$tag = load::model( 'tags' );
 
 		$tags = $tag->get_all_tags();
 		
@@ -198,7 +198,7 @@ class admin_controller {
 		$categories = $category->get_all_categories( );
 		$category_relations = $category->get_relations( $post_id );
 		
-		$tag = load::model ( 'tags' );
+		$tag = load::model( 'tags' );
 		$tags = $tag->get_all_tags();
 		$tag_dirty_relations = $tag->get_relations( $post_id );
 		
@@ -344,6 +344,16 @@ class admin_controller {
 	/**
 	* Add Media
 	* ----------------------------------------------------------------------------------------------*/
+	public function media_insert ()
+	{
+		tentacle::valid_user();
+		
+		load::view ('admin/media/media_insert');
+	}
+
+	/**
+	* Add Media
+	* ----------------------------------------------------------------------------------------------*/
 	public function media_add ()
 	{
 		tentacle::valid_user();
@@ -472,7 +482,7 @@ class admin_controller {
 
 		$theme = load::helper ('theme');
 		
-		$options = load::model ( 'settings' );
+		$options = load::model( 'settings' );
 		
 		$get = $options->get( 'appearance' );
 		

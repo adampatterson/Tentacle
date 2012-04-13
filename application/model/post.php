@@ -5,20 +5,20 @@ class post_model
 	//----------------------------------------------------------------------------------------------
 	public function add ( ) 
 	{
-		$title         = input::post ( 'title' );
+		$title         = input::post( 'title' );
 		$slug          = sanitize($title);
-		$content       = input::post ( 'content' );
-		$status        = input::post ( 'status' );
-		$publish       = input::post ( 'publish' );
+		$content       = input::post( 'content' );
+		$status        = input::post( 'status' );
+		$publish       = input::post( 'publish' );
 
-		$post_template = input::post ( 'post_type' );
+		$post_template = input::post( 'post_type' );
 		
 		if ( $post_template == '' ):
 			$post_template = 'type-post';
 		endif;
 
-		//$visible       = input::post ( 'visible' );
-		//$published     = input::post ( 'published' );
+		//$visible       = input::post( 'visible' );
+		//$published     = input::post( 'published' );
 		
 		$post_author   = user::id();
 		
@@ -29,11 +29,11 @@ class post_model
 
 			$date = new date();
 
-			$minute	= input::post ( 'minute' );
-			$hour	= input::post ( 'hour' );
-			$day 	= input::post ( 'day' );	
-			$month 	= input::post ( 'month' );
-			$year	= input::post ( 'year' );
+			$minute	= input::post( 'minute' );
+			$hour	= input::post( 'hour' );
+			$day 	= input::post( 'day' );	
+			$month 	= input::post( 'month' );
+			$year	= input::post( 'year' );
 
 			//2012-02-08 14:16:05
 			$composed_time = $year.'-'.$month.'-'.$day.' '.$hour.':'.$minute.':00';
@@ -88,7 +88,7 @@ class post_model
 		$slug          = sanitize($title);
 		$content       = $_POST['content'];
 		$status        = $_POST['status'];
-		$publish       = input::post ( 'publish' );
+		$publish       = input::post( 'publish' );
 		
 		$post_template = $_POST['post_type'];
 		
@@ -101,11 +101,11 @@ class post_model
 
 			$date = new date();
 
-			$minute	= input::post ( 'minute' );
-			$hour	= input::post ( 'hour' );
-			$day 	= input::post ( 'day' );	
-			$month 	= input::post ( 'month' );
-			$year	= input::post ( 'year' );
+			$minute	= input::post( 'minute' );
+			$hour	= input::post( 'hour' );
+			$day 	= input::post( 'day' );	
+			$month 	= input::post( 'month' );
+			$year	= input::post( 'year' );
 
 			//2012-02-08 14:16:05
 			$composed_time = $year.'-'.$month.'-'.$day.' '.$hour.':'.$minute.':00';

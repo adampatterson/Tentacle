@@ -24,7 +24,7 @@ function upgrade_all() {
 	if ( get_db_version() == get_current_db_version() )
 		return false;
 
-	$sql = load::model ( 'sql' );
+	$sql = load::model( 'sql' );
 		
 	$i = get_current_db_version()+1;
 	while ($i <= get_db_version()):
@@ -36,7 +36,7 @@ function upgrade_all() {
 	    $i++;
 	endwhile;
 	
-	$setting = load::model ( 'settings' );
+	$setting = load::model( 'settings' );
 	
 	$update_db = $setting->update( 'db_version', get_db_version() );
 

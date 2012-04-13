@@ -7,7 +7,7 @@ function _cleanup_header_comment($str)
 
 function current_theme( $theme_id = '' ) 
 {
-	$options = load::model ( 'settings' );
+	$options = load::model( 'settings' );
 
 	$current_theme = $options->get( 'appearance' );
 	

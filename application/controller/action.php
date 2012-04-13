@@ -1,6 +1,5 @@
 <?php
-class action_controller 
-{
+class action_controller {
 	
 	/**
 	* Cut it Out
@@ -17,7 +16,7 @@ class action_controller
 	public function agree ()
 	{
 	
-		$setting = load::model ( 'settings' );
+		$setting = load::model( 'settings' );
 		
 		$update_agree = $setting->update( 'is_agree', 'true' );
 
@@ -41,22 +40,28 @@ class action_controller
 	* ----------------------------------------------------------------------------------------------*/
 	public function login ()
 	{
-		$username = input::post ( 'username' );
-	    $password = input::post ( 'password' );
+		$username = input::post( 'username' );
+	    $password = input::post( 'password' );
 	
-		$history = input::post ( 'history' );
+		$history = input::post( 'history' );
 
 	    user::login($username, $password);
 
-	    if(user::valid()) {
+	    if(user::valid()) 
+		{
 
-			if ($history != '') {
+			if ($history != '') 
+			{
 				url::redirect($history);
-			} else {
+			} 
+			else 
+			{
 				url::redirect('admin/dashboard');
 			}
 			
-	    } else {
+	    } 
+		else 
+		{
 	       note::set("error","login",NOTE_PASSWORD);
 	       url::redirect('admin/index'); 
 	    }
@@ -66,7 +71,8 @@ class action_controller
 	/**
 	* Lost Password
 	* ----------------------------------------------------------------------------------------------*/
-	public function lost(){
+	public function lost()
+	{
  
     	$username = input::post('username');
 
@@ -75,7 +81,8 @@ class action_controller
 	                    ->where('email','=',$username)
 	                    ->execute();
             
-	    if ( isset($user[0]->email)) {
+	    if ( isset($user[0]->email)) 
+		{
 	        // Generate a Hash from the users IP
        
 	        $ip = $_SERVER['REMOTE_ADDR'];
@@ -102,7 +109,9 @@ class action_controller
        
 	        url::redirect('/'); 
        
-	    } else {
+	    } 
+		else 
+		{
 	        // @todo set lost password error message for not match
 	        echo 'No match, Set an error message';
 	    }
@@ -115,7 +124,7 @@ class action_controller
 	* ----------------------------------------------------------------------------------------------*/
 	public function unique_user ()
 	{
-		$user = load::model ( 'user' );
+		$user = load::model( 'user' );
 		$unique = $user->unique( $_POST['username'] );
 	
 		return $unique;
@@ -212,7 +221,7 @@ class action_controller
 		
 		session::delete ( 'template' );
 
-		url::redirect( input::post ( 'history' ) );
+		url::redirect( input::post( 'history' ) );
 	}
 
 
@@ -302,7 +311,7 @@ class action_controller
 		$tag_relations = $tag->relations( $post_single, $post_tags, true );
 		*/
 		
-		url::redirect( input::post ( 'history' ) );
+		url::redirect( input::post( 'history' ) );
 	}
 	
 
@@ -355,7 +364,7 @@ class action_controller
 		$user = load::model( 'user' );
 		$user_single = $user->add();
 
-		$history = input::post ( 'history' );
+		$history = input::post( 'history' );
 
 		// Check for return True.
 		// Log error
@@ -375,7 +384,7 @@ class action_controller
 		$user 				= load::model( 'user' );
 		$user_single 		= $user->update();
 		
-		$history = input::post ( 'history' );
+		$history = input::post( 'history' );
 
 		url::redirect($history); 
 	}
@@ -417,7 +426,7 @@ class action_controller
 		$snippet = load::model( 'snippet' );
 		$snippet_single = $snippet->add( );
 
-		//$history = input::post ( 'history' );
+		//$history = input::post( 'history' );
 		url::redirect('admin/snippets_manage/'); 
 	}
 
@@ -473,7 +482,7 @@ class action_controller
  		$category = load::model( 'category' );
  		$category_single = $category->add( );
  
- 		//$history = input::post ( 'history' );
+ 		//$history = input::post( 'history' );
  		url::redirect('admin/content_manage_categories/'); 
  	}
 
@@ -523,7 +532,7 @@ class action_controller
 	* ----------------------------------------------------------------------------------------------*/
  	public function update_settings ( $key, $value, $autoload = 'yes' )
 	{
-		$setting = load::model ( 'settings' );
+		$setting = load::model( 'settings' );
 		
 		$update_appearance = $setting->update( $key, $value, $autoload );
 
@@ -536,7 +545,7 @@ class action_controller
 	* ----------------------------------------------------------------------------------------------*/
 	public function udpate_settings_post ( )
 	{	
-		$setting = load::model ( 'settings' );
+		$setting = load::model( 'settings' );
 		
 		$autoload = 'yes';
 		$keys = array_keys( $_POST );
@@ -555,7 +564,7 @@ class action_controller
 			}
 		}
 
-		$history = input::post ( 'history' );
+		$history = input::post( 'history' );
 		url::redirect($history);
 		//unset($_POST);
 	}
@@ -646,10 +655,10 @@ class action_controller
 	{
 				
 		$this->driver 		= 'mysql';
-		$this->host 		= input::post ( 'db_host' );
-		$this->username 	= input::post ( 'db_user' );
-		$this->password 	= input::post ( 'db_password' );
-		$this->database 	= input::post ( 'db_name' );
+		$this->host 		= input::post( 'db_host' );
+		$this->username 	= input::post( 'db_user' );
+		$this->password 	= input::post( 'db_password' );
+		$this->database 	= input::post( 'db_name' );
 		
 		try {
 			$this->con = new pdo("{$this->driver}:dbname={$this->database};host={$this->host}",$this->username,$this->password);
@@ -714,13 +723,13 @@ class action_controller
 		
 		$config = config::get('db');
 
-		$user_name    = input::post ( 'user_name' );
-		$raw_password     = input::post ( 'password' );
-		$email        = input::post ( 'email' );
+		$user_name    = input::post( 'user_name' );
+		$raw_password     = input::post( 'password' );
+		$email        = input::post( 'email' );
 
-		$first_name   = input::post ( 'first_name' );
-		$last_name    = input::post ( 'last_name' );
-		$display_name = input::post ( 'display_name' );
+		$first_name   = input::post( 'first_name' );
+		$last_name    = input::post( 'last_name' );
+		$display_name = input::post( 'display_name' );
 
 		$encrypted_password = sha1( $raw_password );
 

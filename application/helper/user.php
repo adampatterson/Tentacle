@@ -15,7 +15,7 @@ function current_user_can () {
 function user_name ( ) {
 	$id = user::id( );
 
-	$user = load::model ( 'user' );
+	$user = load::model( 'user' );
 
 	$user_meta = $user->get_meta( $id );
 
@@ -26,7 +26,7 @@ function user_name ( ) {
 function user_email ( ) {
 	$id = user::id( );
 
-	$user = load::model ( 'user' );
+	$user = load::model( 'user' );
 
 	$user_meta = $user->get( $id );
 
@@ -37,7 +37,7 @@ function user_email ( ) {
 function user_editor ( ) {
 	$id = user::id( );
 
-	$user = load::model ( 'user' );
+	$user = load::model( 'user' );
 
 	$user_meta = $user->get_meta( $id );
 

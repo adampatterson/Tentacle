@@ -17,6 +17,9 @@
 			<dt>Dimensions</dt>
 			<dd>200 x 200</dd>
 		</dl>
+		<input type="hidden" name="file_name" value="adam.jpg" >
+		<input type="hidden" name="width" value="200" >
+		<input type="hidden" name="height" value="250" >
 	</div>
 </div>
 <div class="row">
@@ -107,17 +110,14 @@
 							</label>
 						</li>
 					</ul>
-					</div>
 				</div>
-	          <div class="actions">
-	            <button type="submit" class="btn primary">Insert Image</button>
+			</div>
+			<div class="actions">
+				<button type="submit" class="btn primary">Insert Image</button>
 				<button type="submit" class="btn danger">Delete</button>
-	            <button class="btn">Cancel</button>
-	          </div>
-	        </fieldset>
-	      </form>
+				<button class="btn">Cancel</button>
+			</div>
+		</fieldset>
+	</form>
 </div>
-
-
-
 <? load::view('admin/template-modal-footer');?>
