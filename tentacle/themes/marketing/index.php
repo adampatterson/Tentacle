@@ -41,6 +41,15 @@ if(!defined('SCAFFOLD')):
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?= PATH ?>/assets/ico/apple-touch-icon-114-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?= PATH ?>/assets/ico/apple-touch-icon-72-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" href="<?= PATH ?>/assets/ico/apple-touch-icon-57-precomposed.png">
+	
+	<script>document.cookie='resolution='+Math.max(screen.width,screen.height)+("devicePixelRatio" in window ? ","+devicePixelRatio : ",1")+'; path=/';</script>
+	<style>
+
+	img.screenshot {
+		display: block;
+		max-width: 100%;
+	}
+	</style>
 </head>
 
 <body data-spy="scroll" data-target=".subnav" data-offset="50">
@@ -71,10 +80,18 @@ if(!defined('SCAFFOLD')):
 
 	<div class="container">
 		<header class="jumbotron subhead" id="overview">
-			<h1>Tentacle CMS</h1>
-			<p class="lead">Tentacle is an OpenSource Content Management System.</p>
-			<p class="lead">It’s goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
-			<p class="lead"><img src="<?= PATH ?>/assets/img/tentacle-app.png" alt="Tentacle " /></p>
+			<div class="row">
+				<div class="span4">
+					<h1>Tentacle CMS</h1>
+					<p class="lead">Tentacle is an OpenSource Content Management System.</p>
+					<p class="lead">It’s goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
+					<p><a class="btn" href="#">Download</a></p>
+				</div>
+				<div class="span8">
+					<p class="lead"><img src="<?= PATH ?>/assets/img/tentacle-app.png" alt="Tentacle" class="screenshot" /></p>
+				</div>
+			</div>
+			
 			<div class="subnav">
 				<ul class="nav nav-pills">
 					<li><a href="#whu">Why</a></li>
