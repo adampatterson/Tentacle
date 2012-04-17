@@ -1,3 +1,5 @@
+	</div>
+<!-- #body-wrapper -->
 <!-- Google Analytics -->
 <script type="text/javascript">
 
