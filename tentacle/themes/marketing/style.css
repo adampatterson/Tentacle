@@ -12,46 +12,119 @@ License URI: license.txt
 /* Body and structure
 -------------------------------------------------- */
 body {
-  position: relative;
-  padding-top: 90px;
-  background-color: #fff;
+	position: relative;
+	padding-top: 67px;
+	background-color: #FCFCFC;
+	background: url('http://subtlepatterns.com/wp-content/themes/tweaker6/images/bgnoise.gif');
+}
+
+header {
+	background-color:#F9F9F9;
+	background: url('http://subtlepatterns.com/patterns/white_plaster.png');
+	margin-bottom: 50px;
+}
+
+img.full {
+	display: block;
+	max-width: 100%;
+}
+
+.bump {
+	margin-bottom: 50px;
+}
+
+.lead {
+	font-size: 16px;
+}
+
+.center {
+	text-align: center;
 }
 
 
-/* Tweak navbar brand link to be super sleek
+/* Navbar
 -------------------------------------------------- */
 .navbar-fixed-top .brand {
-  padding-right: 0;
-  padding-left: 0;
-  margin-left: 20px;
-  float: right;
-  font-weight: bold;
-  color: #000;
-  text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
-  -webkit-transition: all .2s linear;
-     -moz-transition: all .2s linear;
-          transition: all .2s linear;
-}
-.navbar-fixed-top .brand:hover {
-  text-decoration: none;
+	padding-top: 11px;
+	padding-right: 0;
+	padding-left: 0;
+	margin-left: 0px;
 }
 
+.navbar .navbar-inner {
+	background: #fff;
+	color: #000;
+	padding-top: 5px;
+	box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-ms-border-radius: 0;
+	-o-border-radius: 0;
+	border-radius: 0;
+	text-shadow: none;
+}
 
+.navbar .navbar-inner .nav > li {
+	display: block;
+}
+.navbar .navbar-inner .nav > li > a {
+	margin-top: 5px;
+	text-shadow: none;
+	padding: 13px 15px;
+	font-size: 16px;
+}
+.navbar .navbar-inner .nav > li .active > a, .navbar .navbar-inner .nav > li .active > a:hover, .navbar .navbar-inner .nav > li > a:hover {
+	background: #fff;
+	color: #000;
+}
+.navbar .navbar-inner .nav-collapse.in ul:first-child {
+	margin-bottom: 0;
+}
+.navbar .navbar-inner .btn-navbar {
+	margin-top: 8px;
+}
+
+@media (max-width: 979px) {
+	.navbar-fixed-top {
+		position: static;
+		margin-bottom: 4px;
+	}
+	
+	header {
+		margin-bottom: 50px;;
+	}
+	header .container {
+		padding-bottom: 30px
+	}
+}
 /* Jumbotrons
 -------------------------------------------------- */
 .jumbotron {
-  position: relative;
+	padding-top: 20px;
+	position: relative;
+}
+.jumbotron .lead {
+	font-size: 20px;
 }
 .jumbotron h1 {
-  margin-bottom: 9px;
-  font-size: 81px;
-  font-weight: bold;
-  letter-spacing: -1px;
-  line-height: 1;
+	margin-bottom: 9px;
+	font-size: 81px;
+	font-weight: bold;
+	letter-spacing: -1px;
+	line-height: 1;
 }
 .jumbotron p {
-  margin-bottom: 18px;
-  font-weight: 300;
+	margin-bottom: 18px;
+	font-weight: 300;
+}
+.jumbotron .btn-medium {
+  font-size: 15px;
+  font-weight: normal;
+  padding: 10px 10px;
+  margin-right: 8px;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
 }
 .jumbotron .btn-large {
   font-size: 20px;
@@ -91,10 +164,13 @@ body {
 /* supporting docs pages */
 .subhead {
   padding-bottom: 0;
-  margin-bottom: 9px;
 }
 .subhead h1 {
-  font-size: 54px;
+  font-size: 45px;
+	line-height: 45px;
+}
+.subhead h1 small {
+	font-size: 45px;
 }
 
 /* Subnav */

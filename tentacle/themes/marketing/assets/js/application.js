@@ -1,4 +1,7 @@
 !function ($) {
+
+  $('.subnav').scrollspy()
+	
   $(function(){
     // fix sub nav on scroll
     var $win = $(window)

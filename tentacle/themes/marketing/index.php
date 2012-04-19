@@ -28,7 +28,7 @@ if(!defined('SCAFFOLD')):
 
 	<!-- Le styles -->
 	<link href="<?= PATH ?>/assets/css/bootstrap.css" rel="stylesheet">
-	<link href="<?= PATH ?>/assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="<?= PATH ?>/assets/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link href="<?= PATH ?>/style.css" rel="stylesheet">
 	
 	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -41,128 +41,291 @@ if(!defined('SCAFFOLD')):
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?= PATH ?>/assets/ico/apple-touch-icon-114-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?= PATH ?>/assets/ico/apple-touch-icon-72-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" href="<?= PATH ?>/assets/ico/apple-touch-icon-57-precomposed.png">
-	
-	<script>document.cookie='resolution='+Math.max(screen.width,screen.height)+("devicePixelRatio" in window ? ","+devicePixelRatio : ",1")+'; path=/';</script>
-	<style>
-
-	img.screenshot {
-		display: block;
-		max-width: 100%;
-	}
-	</style>
 </head>
 
-<body data-spy="scroll" data-target=".subnav" data-offset="50">
+<body>
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
-			<div class="container">
+			<div class="container visible-phone visible-tablet">
+				<ul class="nav pull-left">
+					<li>
+						<img src="<?= PATH ?>/assets/img/tentacle.png" alt="" class="brand" />
+					</li>
+				</ul>
+			</div>
+			<div class="container hidden-phone hidden-tablet">
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<div class="nav-collapse">
-					<ul class="nav pull-right">
-						<li class="">
-							<a href="http://tentaclecms.com/blog/">Blog</a>
-						</li>
-						<li class="">
-							<a href="http://tentaclecms.com/blog/about-tentacle/">About</a>
-						</li>
-						<li class="">
-							<a href="http://tentaclecms.com/blog/contact/">Contact</a>
-						</li>
-					</ul>
-				</div>
+				<ul class="nav">
+					<li>
+						<img src="<?= PATH ?>/assets/img/tentacle.png" alt="" class="brand" />
+					</li>
+				</ul>
+				<ul class="nav pull-right">
+					<li>
+						<a href="https://twitter.com/#!/TentacleCMS">@TentacleCMS</a>
+					</li>
+					<li class="">
+						<a href="http://tentaclecms.com/blog/">Blog</a>
+					</li>
+					<li class="">
+						<a href="http://tentaclecms.com/blog/about-tentacle/">About</a>
+					</li>
+					<li class="">
+						<a href="http://tentaclecms.com/blog/contact/">Contact</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
 
-	<div class="container">
-		<header class="jumbotron subhead" id="overview">
-			<div class="row">
-				<div class="span4">
-					<h1>Tentacle CMS</h1>
-					<p class="lead">Tentacle is an OpenSource Content Management System.</p>
+	<header class="jumbotron subhead" id="overview">
+		<div class="container">
+			<div class="row visible-desktop">
+				<div class="span5">
+					<h1><small>Create &amp; Manage Content your way!</small></h1>
+					<p class="lead">Tentacle makes it easy to Design, Develop, and Write content for the web.</p>
 					<p class="lead">It’s goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
-					<p><a class="btn" href="#">Download</a></p>
+					<p class="lead"><a class="btn btn-large btn-success" href="http://tentaclecms.com/blog/downloads/tentacle-beta" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5 Beta']);">&nbsp;&nbsp;&nbsp;Download&nbsp;&nbsp;&nbsp;</a></p>
 				</div>
-				<div class="span8">
-					<p class="lead"><img src="<?= PATH ?>/assets/img/tentacle-app.png" alt="Tentacle" class="screenshot" /></p>
+				<div class="span7">
+					<p class="lead"><img src="<?= PATH ?>/assets/img/tentacle-app.png" alt="Tentacle" class="full" /></p>
 				</div>
 			</div>
 			
+			<div class="row visible-tablet">
+				<div class="span5">
+					<h1><small>Create &amp; Manage Content your way!</small></h1>
+				</div>
+				<div class="span7">
+					<p class="lead"><img src="<?= PATH ?>/assets/img/tentacle-app.png" alt="Tentacle" class="full" /></p>
+				</div>
+			</div>
+			<div class="row visible-tablet">
+				<div class="span12">
+					<p class="lead">Tentacle makes it easy to Design, Develop, and Write content for the web.</p>
+					<p class="lead">It’s goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
+					<p class="lead"><a class="btn btn-large btn-success" href="http://tentaclecms.com/blog/downloads/tentacle-beta" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5 Beta']);">&nbsp;&nbsp;&nbsp;Download&nbsp;&nbsp;&nbsp;</a></p>
+				</div>
+			</div>
+			
+			<div class="row visible-phone">
+				<div class="span12">
+					<h1><small>Create &amp; Manage Content your way!</small></h1>
+					<p class="lead">Tentacle makes it easy to Design, Develop, and Write content for the web.</p>
+					<p class="lead">It’s goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
+					<p class="lead"><a class="btn btn-large btn-success" href="http://tentaclecms.com/blog/downloads/tentacle-beta" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5 Beta']);">&nbsp;&nbsp;&nbsp;Download&nbsp;&nbsp;&nbsp;</a></p>
+				</div>
+			</div>
+<?/* 
 			<div class="subnav">
 				<ul class="nav nav-pills">
-					<li><a href="#whu">Why</a></li>
+					<li><a href="#why">Why</a></li>
 					<li><a href="#features">Features</a></li>
 					<li><a href="#support">Support</a></li>
 					<li><a href="#hosting">Hosting</a></li>
-					<li><a href="#download">Download</a></li>
 					<li><a href="#documentation">Documentation</a></li>
+					<li><a href="#get-it">Get it</a></li>
 				</ul>
 			</div>
-		</header>
-
-		<div class="row" id="why">
+*/?>
+		</div>
+	</header>
+	<div class="container">
+		<div class="row bump" id="why">
 			<div class="span12">
-				<h1>Why</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed.</p>
+				<h1>Why Tentacle?</h1>
+				
+				<hr />
+				
+				<p class="lead">By focusing on the user we are able to refine the processes for every one.  By building Tentacle on a light weight flexible framework we are not imposing strickt rules on you.	By working with and providing the tools you need we hope you can accomplish more in less time.</p>
+
+				<p class="lead">Writers will be able to add custom data just as easily as filling out a web form with contextual titles, a full WYSIWYG editor, with Validation.</p>
+
+				<p class="lead">Designers can stick to what they know and use HTML, CSS, PHP, JS to do their bidding.</p>
+
+				<p class="lead">With an approval process in place content can be added as a draft, approved and versioned. We went another step in that you can modify approved content without publishing immediately publishing the changes to the live site.</p>
+				
+				<p><a class="btn btn-default btn-large" href="https://github.com/adampatterson/Tentacle/wiki/Philosophy">Read more about our Philosophy</a></p>
+			</div>
+		</div>
+<?/* 
+		<div class="row bump" id="features">
+			<div class="span12">
+				<h1>Core features</h1>
 				<p><a class="btn" href="#">View details &raquo;</a></p>
 			</div>
 		</div>
-		<hr />
-
-		<div class="row" id="features">
+	
+		<div class="row bump" id="testamonie">
 			<div class="span12">
-				<h1>Features</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed.</p>
-				<p><a class="btn" href="#">View details &raquo;</a></p>
+				<h1>Hook Line &amp; Sinker</h1>
+				<p class="lead">We love using Tentacle but the proof is in the pudding.</p>
+				
+				<ul class="thumbnails">
+					<li class="span4">
+						<div class="thumbnail">
+							<img src="http://placehold.it/260x180" alt="" class="full">
+							<div class="caption">
+								<h5>Thumbnail label</h5>
+								<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+							</div>
+						</div>
+					</li>
+						<li class="span4">
+							<div class="thumbnail">
+								<img src="http://placehold.it/260x180" alt="" class="full">
+								<div class="caption">
+									<h5>Thumbnail label</h5>
+									<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+								</div>
+							</div>
+						</li>
+						<li class="span4">
+							<div class="thumbnail">
+								<img src="http://placehold.it/260x180" alt="" class="full">
+								<div class="caption">
+									<h5>Thumbnail label</h5>
+									<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+								</div>
+							</div>
+						</li>
+					</ul>
 			</div>
 		</div>
-		<hr />
-
-		<div class="row" id="support">
-			<div class="span12">
-				<h1>Support</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed.</p>
-				<p><a class="btn" href="#">View details &raquo;</a></p>
+*/ ?>
+		
+		<div class="row bump" id='get-it'>
+			<div class="span12 center jumbotron subhead" id="overview">
+				<div class="container">
+					<h1><small>Use Tentacle CMS today</small></h1>
+					<p><a class="btn btn-large btn-success" href="http://tentaclecms.com/blog/downloads/tentacle-beta" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5 Beta']);">&nbsp;&nbsp;&nbsp;Get it!&nbsp;&nbsp;&nbsp;</a></p>
+				</div>
 			</div>
 		</div>
-		<hr />
+		
+		<div class="row bump" id="support">
+			<div class="span12">
+				<h1>We are here to help!</h1>
+				
+				<hr />
+				
+				<div class="row">
 
-		<div class="row" id="hosting">
+					<div class="span6">
+						<h3>Forms</h3>
+						<p class="lead">Get answers to your design and development questions from the online community.</p>
+						<p><a href="#comingsoon" class="btn btn-default btn-large">Coming soon!</a></p>
+					</div>
+<?/* 
+					<div class="span4">	
+						<h3>IRC</h3>
+						<p class="lead">Join us in the IRC channel from <a href="http://freenode.net/">Freenode.net</a>, A great resource for Designers and Developers.</p>
+						<p><a href="http://webchat.freenode.net/?channel=tentaclecms" class="btn btn-default btn-large" >#tentaclecms</a></p>
+					</div>
+*/ ?>
+					<div class="span6">
+						<h3>Report a Bug</h3>
+						<p class="lead">If you found a bug in the CMS use the <a href="https://github.com/adampatterson/Tentacle/issues">Issue Tracker</a> on GitHub to report it.</p>
+
+						<p class="lead"><strong>Please try to provide us with as much clear information as possible.</strong></p>
+
+						<p><a href="https://github.com/adampatterson/Tentacle/issues" class="btn btn-default btn-large">Submit and Issue</a></p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+<?/* 
+		<div class="row bump" id="hosting">
 			<div class="span12">
 				<h1>Hosting</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed.</p>
 				<p><a class="btn" href="#">View details &raquo;</a></p>
 			</div>
 		</div>
+*/?>
 		<hr />
-
-		<div class="row" id='download'>
-			<div class="span12">
-				<h1>Download</h1>
-				<p><a class="btn" href="#">View details &raquo;</a></p>
-			</div>
-		</div>
-		<hr />
-
-		<div class="row" id="documentation">
-			<div class="span12">
-				<h1>Documentation</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed.</p>
-				<p><a class="btn" href="#">View details &raquo;</a></p>
-			</div>
-		</div>
-		<hr />
+		
 		<footer>
-			<p>&copy; Tentacle CMS 2012</p>
+			<div class="row">
+				<div class="span4">
+					<h3>Let us know what you think.</h3>
+					
+					<form action="http://www.pyrocms.com/contact" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+
+						<div class="control-group">
+							<div class="controls">
+								<input type="text" class="span3 input-xlarge" id="name" name="name" placeholder="Name">
+							</div>
+						</div>
+
+						<div class="control-group">
+							<div class="controls">
+								<input type="email" class="span3  input-xlarge" id="email" name="email" placeholder="Email">
+							</div>
+						</div>
+
+						<div class="control-group">
+							<div class="controls">
+								<input type="text" class="span3 input-xlarge" id="subject" name="subject" placeholder="Subject">
+							</div>
+						</div>
+
+						<div class="control-group">
+							<div class="controls">
+								<textarea class="input-xlarge span3" id="textarea" rows="3" placeholder="Message"></textarea>
+							</div>
+						</div>
+
+						<input type="submit" name="submit-button" value="Say Hello" class="btn btn-default btn-large">
+
+					</form>
+				</div>
+				
+				<div class="span4">
+					<form method="post" action="http://www.industrymailout.com/Industry/SubscribeRedirect.aspx" >
+						<input type="hidden" name="mailinglistid" value="27205" />
+						<input type="hidden" name="success" value="http://tentaclecms.com" />
+						<input type="hidden" name="errorparm" value="error" />
+
+						<h3>Mailing list</h3>
+						<div class="control-group">
+							<div class="controls">
+								<input type="text" name="givenname" placeholder="First Name"  maxlength="50" class="span3 input-xlarge" id="name" name="name" placeholder="Name">
+							</div>
+						</div>
+
+						<div class="control-group">
+							<div class="controls">
+								<input type="text" name="familyname" placeholder="Last Name" maxlength="50" class="span3 input-xlarge" id="email" name="email" placeholder="Email">
+							</div>
+						</div>
+
+						<div class="control-group">
+							<div class="controls">
+								<input type="text" name="email" required="required" placeholder="Email" value="" class="email span3 input-xlarge" id="email" name="email" placeholder="Email">
+							</div>
+						</div>
+
+						<input type="submit" value="Join the List!" class="btn btn-default btn-large" />
+
+						<?php if($note = note::get('session')): ?>
+							<input type='hidden' name='history' value="<?= $note['content'];?> " />
+						<?php endif;?>
+					</form>
+				</div>
+				
+				<div class="span4">
+					<h3>Blog</h3>
+					<? dashboard_feed("http://tentaclecms.com/blog/feed/", 4, true ); ?>
+				</div>
+			
+			</div>
+			<p>&copy; Tentacle CMS 2012 <a href="https://twitter.com/#!/TentacleCMS">@TentacleCMS</a></p>
 		</footer>
 
 	</div> <!-- /container -->
