@@ -251,7 +251,7 @@ if(!defined('SCAFFOLD')):
 		<hr />
 		
 		<footer>
-			<div class="row">
+			<div class="row bump">
 				<div class="span4">
 					<h3>Let us know what you think.</h3>
 					
