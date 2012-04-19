@@ -24,6 +24,22 @@ header {
 	margin-bottom: 50px;
 }
 
+footer {
+	background: url('http://subtlepatterns.com/patterns/irongrip.png');
+	color: #F4F4F4;
+	padding-top: 30px;
+}
+
+footer a:link, footer a:visited {
+	color: white;
+}
+
+footer .lead {
+	font-weight: 200;
+	line-height: 27px;
+	margin-bottom: 5px;
+}
+
 img.full {
 	display: block;
 	max-width: 100%;
@@ -39,6 +55,10 @@ img.full {
 
 .center {
 	text-align: center;
+}
+
+.modal form {
+	margin: 0;
 }
 
 

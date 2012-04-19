@@ -141,7 +141,7 @@ if(!defined('SCAFFOLD')):
 				
 				<hr />
 				
-				<p class="lead">By focusing on the user we are able to refine the processes for every one.  By building Tentacle on a light weight flexible framework we are not imposing strickt rules on you.	By working with and providing the tools you need we hope you can accomplish more in less time.</p>
+				<p class="lead">By focusing on the user we are able to refine the processes for every one.  By building Tentacle on a light weight flexible framework we are not imposing strict rules on you.	By working with and providing the tools you need we hope you can accomplish more in less time.</p>
 
 				<p class="lead">Writers will be able to add custom data just as easily as filling out a web form with contextual titles, a full WYSIWYG editor, with Validation.</p>
 
@@ -248,87 +248,83 @@ if(!defined('SCAFFOLD')):
 			</div>
 		</div>
 */?>
-		<hr />
-		
+	</div>
 		<footer>
-			<div class="row bump">
-				<div class="span4">
-					<h3>Let us know what you think.</h3>
+			<div class="container">
+				<div class="row bump">
+					<div class="span6">
+						<h2>Let us know what you think.</h2>
 					
-					<form action="http://www.pyrocms.com/contact" enctype="multipart/form-data" method="post" accept-charset="utf-8">
-
-						<div class="control-group">
-							<div class="controls">
-								<input type="text" class="span3 input-xlarge" id="name" name="name" placeholder="Name">
-							</div>
-						</div>
-
-						<div class="control-group">
-							<div class="controls">
-								<input type="email" class="span3  input-xlarge" id="email" name="email" placeholder="Email">
-							</div>
-						</div>
-
-						<div class="control-group">
-							<div class="controls">
-								<input type="text" class="span3 input-xlarge" id="subject" name="subject" placeholder="Subject">
-							</div>
-						</div>
-
-						<div class="control-group">
-							<div class="controls">
-								<textarea class="input-xlarge span3" id="textarea" rows="3" placeholder="Message"></textarea>
-							</div>
-						</div>
-
-						<input type="submit" name="submit-button" value="Say Hello" class="btn btn-default btn-large">
-
-					</form>
-				</div>
-				
-				<div class="span4">
-					<form method="post" action="http://www.industrymailout.com/Industry/SubscribeRedirect.aspx" >
-						<input type="hidden" name="mailinglistid" value="27205" />
-						<input type="hidden" name="success" value="http://tentaclecms.com" />
-						<input type="hidden" name="errorparm" value="error" />
-
-						<h3>Mailing list</h3>
-						<div class="control-group">
-							<div class="controls">
-								<input type="text" name="givenname" placeholder="First Name"  maxlength="50" class="span3 input-xlarge" id="name" name="name" placeholder="Name">
-							</div>
-						</div>
-
-						<div class="control-group">
-							<div class="controls">
-								<input type="text" name="familyname" placeholder="Last Name" maxlength="50" class="span3 input-xlarge" id="email" name="email" placeholder="Email">
-							</div>
-						</div>
-
-						<div class="control-group">
-							<div class="controls">
-								<input type="text" name="email" required="required" placeholder="Email" value="" class="email span3 input-xlarge" id="email" name="email" placeholder="Email">
-							</div>
-						</div>
-
-						<input type="submit" value="Join the List!" class="btn btn-default btn-large" />
-
-						<?php if($note = note::get('session')): ?>
-							<input type='hidden' name='history' value="<?= $note['content'];?> " />
-						<?php endif;?>
-					</form>
-				</div>
-				
-				<div class="span4">
-					<h3>Blog</h3>
-					<? dashboard_feed("http://tentaclecms.com/blog/feed/", 4, true ); ?>
+						<ul class="unstyled">
+							<li class="lead"><a data-toggle="modal" href="#myModal">Mailing List</a></li>
+							<li class="lead"><a href="mailto:hello@tentaclecms.com">hello@tentaclecms.com</a></li>
+							<li class="lead"><a href="https://twitter.com/#!/TentacleCMS">@TentacleCMS</a></li>
+						</ul>
+					</div>
+			
+					<div class="span6">	
+						<p class="pull-right"><img src="<?= PATH ?>/assets/img/adam-patterson.png" alt="" /></p>
+					</div>
+<? /*			
+					<div class="span4">
+						<h3>Blog</h3>
+						<? dashboard_feed("http://tentaclecms.com/blog/feed/", 4, true ); ?>
+					</div>
+*/ ?>
 				</div>
 			
 			</div>
-			<p>&copy; Tentacle CMS 2012 <a href="https://twitter.com/#!/TentacleCMS">@TentacleCMS</a></p>
-		</footer>
+		</div> <!-- /container -->
+	</footer>
+	
+	<div class="modal hide fade" id="myModal">
+		<form method="post" action="http://www.industrymailout.com/Industry/SubscribeRedirect.aspx" >
+			<div class="modal-header">
+			<a class="close" data-dismiss="modal">×</a>
+			<h3>Mailing list</h3>
+		</div>
+		<div class="modal-body">
 
-	</div> <!-- /container -->
+			<input type="hidden" name="mailinglistid" value="27205" />
+			<input type="hidden" name="success" value="http://tentaclecms.com" />
+			<input type="hidden" name="errorparm" value="error" />
+
+
+			<div class="control-group">
+				<label for="firstname">First Name</label>
+				<div class="controls">
+					<input type="text" name="givenname" maxlength="50" class="span3 input-xlarge" id="firstname" >
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label for="lastname">Last Name</label>
+				<div class="controls">
+					<input type="text" name="familyname" maxlength="50" class="span3 input-xlarge" id="lastname" >
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label for="email">Email</label>
+				<div class="controls">
+					<input type="text" name="email" required="required" value="" class="email span3 input-xlarge" id="email">
+				</div>
+			</div>
+
+			<?php if($note = note::get('session')): ?>
+				<input type='hidden' name='history' value="<?= $note['content'];?> " />
+			<?php endif;?>
+		  </div>
+		  <div class="modal-footer">
+		    <input type="submit" value="Join the List!" class="btn btn-default btn-large btn-primary" />
+		  </div>
+		</form>
+	</div>
+
+	<script type="text/javascript" charset="utf-8">
+		$('#myModal').modal('hide')
+	</script>
+	
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="<?= PATH ?>/assets/js/bootstrap.min.js"></script>
 	<script src="<?= PATH ?>/assets/js/application.js"></script>
