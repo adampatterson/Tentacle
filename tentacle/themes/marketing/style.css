@@ -45,6 +45,10 @@ img.full {
 	max-width: 100%;
 }
 
+.bump-top {
+	margin-top: 50px;
+}
+
 .bump {
 	margin-bottom: 50px;
 }
@@ -65,12 +69,15 @@ img.full {
 /* Navbar
 -------------------------------------------------- */
 .navbar-fixed-top .brand {
-	padding-top: 11px;
+	padding-top: 0px;
 	padding-right: 0;
 	padding-left: 0;
 	margin-left: 0px;
 }
-
+.navbar .navbar-inner .nav > li > a.brand {
+	padding-top: 0;
+	margin-top: 10px;
+}
 .navbar .navbar-inner {
 	background: #fff;
 	color: #000;
