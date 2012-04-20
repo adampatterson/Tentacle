@@ -4,28 +4,7 @@ class dev_controller {
 
 	public function index()
 	{				
-
-		// We are up-to-date.  Nothing to do.
-		if ( get_db_version() == get_current_db_version() )
-			return false;
-
-		//$sql = load::model ( 'sql' );
-
-		$i = get_current_db_version()+1;
 		
-		echo $i;
-		
-		while ($i <= get_db_version()):
-
-			$version = 'get_'.$i;
-
-			echo $version;
-			
-			//$sql->$version();
-		    $i++;
-		endwhile;
-		
-
 	}
 	
 	
@@ -50,7 +29,7 @@ class dev_controller {
 
 	public function relations ()
 	{
-		$categories = load::model ( 'tags' );
+		$categories = load::model( 'tags' );
 
 		clean_out( $categories->get_all_tags( ) );
 	}
@@ -528,7 +507,7 @@ class dev_controller {
 	 **/
 	public function username_check($username = '')
 	{		
-		$username = trim( strtolower( input::post ( 'username') ) );
+		$username = trim( strtolower( input::post( 'username') ) );
 		
 		# Query the database and then return the number of rows (1 == taken, 0 = availible. )
 		

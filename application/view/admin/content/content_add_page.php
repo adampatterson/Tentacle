@@ -213,18 +213,10 @@
 								</style>
 
 								<!-- Some integration calls -->
-								<a href="javascript:;" onclick="$('#elm1').tinymce().show();return false;">[Show]</a>
-								<a href="javascript:;" onclick="$('#elm1').tinymce().hide();return false;">[Hide]</a>
-								<a href="javascript:;" onclick="alert($('#elm1').tinymce().selection.getNode().nodeName);return false;">[Get selected element]</a>
-								<a href="javascript:;" onclick="$('#elm1').tinymce().execCommand('mceInsertContent',false,'<b>Hello world!!</b>');return false;">[Insert HTML]</a>
-							
-								<hr />
-							
-								<input type="button" value="Media" id="media" onclick="$('#elm1').tinymce().execCommand('mceInsertContent',false,'<b>Hello world!!</b>');return false;"/>
-							
-								<ul id="media_list">
-									<li><strong>test</strong></li>
-								</ul>
+								<a href="javascript:;" onclick="$('#elm1').tinymce().show();return false;">[ Show ]</a>
+								<a href="javascript:;" onclick="$('#elm1').tinymce().hide();return false;">[ Hide ]</a>
+								<a href="javascript:;" onclick="alert($('#elm1').tinymce().selection.getNode().nodeName);return false;">[ Get selected element ]</a>
+								<a href="javascript:;" onclick="tinyMCE.execCommand('mceInsertContent',false,'<img src=\'http://placehold.it/350x150\' />');">[ Insert Image ]</a>
 							
 							<? elseif (user_editor() == 'jwysiwyg'): ?>
 								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>jwysiwyg/jquery.wysiwyg.css" type="text/css"/>

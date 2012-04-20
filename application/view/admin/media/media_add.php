@@ -95,35 +95,7 @@
 			{% } %}
 			</script>
 			
-			<!-- The template to display files available for download -->
-			<script id="template-download" type="text/x-tmpl">
-			{% for (var i=0, file; file=o.files[i]; i++) { %}
-			    <tr class="template-download fade">
-			        {% if (file.error) { %}
-			            <td></td>
-			            <td class="name">{%=file.name%}</td>
-			            <td class="size">{%=o.formatFileSize(file.size)%}</td>
-			            <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
-			        {% } else { %}
-			            <td class="preview">{% if (file.thumbnail_url) { %}
-			                <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
-			            {% } %}</td>
-			            <td class="name">
-			                <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
-			            </td>
-			            <td class="size">{%=o.formatFileSize(file.size)%}</td>
-			            <td colspan="2"></td>
-			        {% } %}
-			        <td class="delete">
-			            <button class="btn btn-danger danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
-			                <i class="icon-trash icon-white"></i> {%=locale.fileupload.destroy%}
-			            </button>
-			            <input type="checkbox" name="delete" value="1">
-			        </td>
-			    </tr>
-			{% } %}
-			</script>
-			
+
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 			<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>

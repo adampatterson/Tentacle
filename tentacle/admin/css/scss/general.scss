@@ -140,6 +140,13 @@ dd {
 	margin-bottom: 15px;
 }
 
+.dl-horizontal dt {
+	float: left;
+	clear: left;
+	width: 120px;
+	text-align: right;
+}
+
 pre, code {
 	color: #222222;
 	margin: 1.5em 0;

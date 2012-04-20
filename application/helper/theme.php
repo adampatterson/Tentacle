@@ -7,11 +7,9 @@ function _cleanup_header_comment($str)
 
 function current_theme( $theme_id = '' ) 
 {
-	$options = load::model ( 'settings' );
-
-	$current_theme = $options->get( 'appearance' );
+	$options = load::model( 'settings' );
 	
-	if ( $theme_id == $current_theme )
+	if ( $theme_id == $options->get( 'appearance' ) )
 	{
 		echo '<span class="label success">Active</span>';
 	}
@@ -81,7 +79,7 @@ function get_settings ( $style_path = 'default' )
 		$theme[$style_file]['theme_description'] = 'This theme has a missing style sheet.';
 	}
 	
-	return(array_to_object($theme));
+	return( array_to_object( $theme ) );
 } // Get Settings
 
 
@@ -107,7 +105,7 @@ function get_templates ( $theme_folder )
 		endif;
 	endforeach;
 
-	return(array_to_object( $template ));
+	return( array_to_object( $template ) );
 	
 } // Get Templates
 

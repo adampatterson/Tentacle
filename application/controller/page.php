@@ -17,7 +17,7 @@ class page_controller {
 		
 		require_once( PATH_URI.'/functions.php' );
 		
-		$page = load::model ( 'page' );
+		$page = load::model( 'page' );
 		$content = $page->get_by_uri( $uri );
 		
 		$get_page_meta = $page->get_page_meta( $content->id );

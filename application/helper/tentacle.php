@@ -138,7 +138,7 @@ class tentacle
 		
 		if ($v->version > TENTACLE_VERSION)
 		{
-	        _e('<p class="well"><span class="label important">Important</span> There is a newer version of Tentacle, Visit <a href="'.$v->download.'">'.$v->download.'</a> to upgrade to <strong>Version '. $v->version.'</strong></p>');
+	        _e('<p class="well"><span class="label important">Important</span> There is a newer version of Tentacle, Visit <a href="'.$v->download.'">'.$v->download.'</a> to download <strong>Version '. $v->version.'</strong></p>');
 				return true;
 			}
 	}
@@ -228,7 +228,7 @@ class tentacle
 // Display blog feed in the dashboard.
 //----------------------------------------------------------------------------------------------
 
-	function dashboard_feed($feed) {
+	function dashboard_feed( $feed, $count = 0, $only_titles = false ) {
 		// Use cURL to fetch text
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $feed);
@@ -240,15 +240,29 @@ class tentacle
 		// Manipulate string into object
 		$rss = simplexml_load_string($rss);
 
-		$cnt = count($rss->channel->item);
-		
+		if ( $count == 0 ) {
+			$cnt = count($rss->channel->item);
+		} else {
+			$cnt = $count;
+		}
+
 		echo '<ul>';
 		for($i=0; $i<$cnt; $i++)
 		{
 			$url = $rss->channel->item[$i]->link;
 			$title = $rss->channel->item[$i]->title;
 			$desc = $rss->channel->item[$i]->description;
-			echo '<li><h3><a href="'.$url.'">'.$title.'</a></h3><p>'.$desc.'</p></li>';
+			
+			if ( $only_titles == false ):
+				echo '<li><h3><a href="'.$url.'">'.$title.'</a></h3><p>'.$desc.'</p></li>';
+			else:
+				echo '<li><h3><a href="'.$url.'">'.$title.'</a></h3></li>';
+			endif;
+			
+			
+			
+			
+			
 		}
 		echo '</ul>';
 	}
@@ -600,5 +614,35 @@ class tentacle
 		_e('<strong>REQUEST</strong>');
 	    	var_dump($_REQUEST);
     }
+
+
+
+	// TEMP Array to Object
+	//----------------------------------------------------------------------------------------------
+
+	/**
+	* Array to object - Takes an array as input and returns an object
+	* @return object
+	* @param  $array
+	*/
+
+		function array_to_object($array = array())
+		{
+		    $tmp = new stdClass;
+
+		    foreach ($array as $key => $value) {
+		        if (is_array($value)) {
+		            $tmp->$key = array_to_object($value);
+		        } else {
+		            if (is_numeric($key)) {
+		                exit('Cannot turn numeric arrays into objects!');
+		            }
+
+		            $tmp->$key = $value;
+		        }
+		    }
+
+		    return $tmp;
+		}
 
 ?>

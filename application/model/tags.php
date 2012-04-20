@@ -34,8 +34,8 @@ class tags_model
 	//----------------------------------------------------------------------------------------------
 	public function update ( $id='' )
 	{
-		$term_name = input::post ( 'name' );
-		$term_slug = input::post ( 'slug' );
+		$term_name = input::post( 'name' );
+		$term_slug = input::post( 'slug' );
 		
 		$inflector = new inflector( );
 		$term_slug = $inflector->camelize( $term_slug );

@@ -33,7 +33,8 @@
 				 <? endif;
 				endforeach; ?>
 			</ul>
-			<!--<h2>Appearance</h2>
+			<? /* 
+			<h2>Appearance</h2>
 			<hr />
 			<p>Font type</p>
 			<h2>Header</h2>
@@ -43,7 +44,7 @@
 			<h2>Footer</h2>
 			<hr />
 			<p>Copyright<br />
-			Links</p>-->
+			Links</p>*/?>
 		</div>
 	</div>
 </div><!-- #wrap -->
