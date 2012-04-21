@@ -13,7 +13,7 @@
 				</div>
 
 				<div class="span6">	
-					<p class="pull-right"><img src="<?= PATH ?>/assets/img/adam-patterson.png" alt="" /></p>
+					<p class="pull-right"><a href="http://adampatterson.ca" target="_blank"><img src="<?= PATH ?>/assets/img/adam-patterson.png" alt="" /></a></p>
 				</div>
 <? /*			
 				<div class="span4">

@@ -19,6 +19,9 @@ if( !defined( 'SCAFFOLD' ) ):?>
 			<div class="span12">
 
 			<h2 class="title"><a href="<?= BASE_URL.$post->uri ?>"><?= $post->title?></a></h2>
+			
+			<hr />
+			
 			<?= render_content( $post->content ); ?>
 			<small>Created by: <?= $user_meta -> first_name;?> <?= $user_meta -> last_name;?></small>
 
