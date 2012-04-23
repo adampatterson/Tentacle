@@ -20,11 +20,11 @@ if( !defined( 'SCAFFOLD' ) ):?>
 	<div class="span9">
 		<?
 	// Loop all of the blog posts.
-foreach ($data as $post): $user_meta = $user->get_meta ( $post->author ); ?>
+foreach ($posts as $post): $author_meta = $author->get_meta ( $post->author ); ?>
 	<div class="hero-unit">
 		<h2 class="title"><a href="<?= BASE_URL.$post->uri ?>"><?= $post->title?></a></h2>
 		<?= render_content( $post->content ); ?>
-		<small>Created by: <?= $user_meta -> first_name;?> <?= $user_meta -> last_name;?></small>
+		<small>Created by: <?= $author_meta -> first_name;?> <?= $author_meta -> last_name;?></small>
 		<? 
 		// If you are an admin user who is logged in 
 		// then you can trash or edit posts.

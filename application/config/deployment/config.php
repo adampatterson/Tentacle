@@ -3,7 +3,7 @@
 date_default_timezone_set('UTC');
 
 /* Auto Load Libraries */
-config::set( 'autoload_library', array( 'db', 'session', 'user', 'url', 'pagination', 'benchmark', 'image', 'note', 'email' ) );
+config::set( 'autoload_library', array( 'db', 'session', 'user', 'url', 'pagination', 'image', 'note', 'email' ) );
 
 /* Auto Load Helpers */
 if ( strpos( BASE_URI,'install' ) == true ) {

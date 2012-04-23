@@ -37,7 +37,7 @@ $scaffold_data = array(
 // If SCAFFOLD is not set then display the theme content. 
 // If SCAFFOLD is set then the admin side will render the $scaffold_data array
 if( !defined( 'SCAFFOLD' ) ): ?>
-	<? load_part('header',array('title'=>$data->title, 'assets'=>'default'));?>
+	<? load_part('header',array('title'=>$post->title, 'assets'=>'default'));?>
 <div class="row-fluid">
 	<div class="span3">
 		<div class="well sidebar-nav">
@@ -46,11 +46,11 @@ if( !defined( 'SCAFFOLD' ) ): ?>
 	</div><!--/span3-->
 	<div class="span9">
 		<div class="hero-unit">
-			<h1><?= $data->title; ?></h1>
-			<h2><?= $get_page_meta->name ?></h2>
-			<h3>From <?= $get_page_meta->country ?></h3>
-			<?= render_content( $data->content ); ?>
-			<p>Follow me <a href="http://www.twitter.com<?= $get_page_meta->twitter ?>">@<?= $get_page_meta->twitter ?></a></p>
+			<h1><?= $post->title; ?></h1>
+			<h2><?= $page_meta->name ?></h2>
+			<h3>From <?= $page_meta->country ?></h3>
+			<?= render_content( $post->content ); ?>
+			<p>Follow me <a href="http://www.twitter.com<?= $page_meta->twitter ?>">@<?= $get_page_meta->twitter ?></a></p>
 		</div><!-- /hero-unit -->
 	</div><!--/span9-->
 </div><!--/row-->

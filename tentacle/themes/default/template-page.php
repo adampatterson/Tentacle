@@ -13,7 +13,7 @@ $scaffold_data = array();
 
 // If SCAFFOLD is not set then display the theme content.
 if( !defined( 'SCAFFOLD' ) ):?>
-<? load_part('header',array('title'=>$data->title, 'assets'=>'default')); ?>
+<? load_part('header',array('title'=>$post->title, 'assets'=>'default')); ?>
 
 <div class="row-fluid">
 	<div class="span3">
@@ -26,14 +26,14 @@ if( !defined( 'SCAFFOLD' ) ):?>
 	<div class="span9">
 		<div class="hero-unit">
 			
-			<h1><?= $data->title; ?></h1>
+			<h1><?= $post->title; ?></h1>
 			<?  // Strip slashses will remove any special 
 				// encoding used by the data base.
 				//
 			 	// This will be replaced by a cuntion that
 			 	// will process any Shortcodes and OEMBED data.
 			?>
-			<?= render_content( $data->content ); ?>
+			<?= render_content( $post->content ); ?>
 			
 		</div><!-- /hero-unit -->
 	</div><!--/span9-->

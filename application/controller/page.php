@@ -3,7 +3,7 @@
 class page_controller {
 	
     public function index( $uri = "" ){
-
+		
 		load::library ('file');
 		$scaffold = new Scaffold ();
 		
@@ -18,21 +18,24 @@ class page_controller {
 		require_once( PATH_URI.'/functions.php' );
 		
 		$page = load::model( 'page' );
-		$content = $page->get_by_uri( $uri );
+		$post = $page->get_by_uri( $uri );
 		
-		$get_page_meta = $page->get_page_meta( $content->id );
+		$post_meta = $page->get_page_meta( $post->id );
+		
+		require_once(APP_PATH.'/application/helper/template.php');
 		
 		// If URI lookup fails redirect to the themes 404 page
-		if ( $content ) {
-			tentacle::render ( $content->template, array ( 'data' => $content, 'get_page_meta' => $get_page_meta ) );
+		if ( $post ) {
+			tentacle::render ( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
 
-			if(user::valid()) load::helper ('adminbar');
+			//if(user::valid()) load::helper ('adminbar');
+			
 		} else {
 			// logging of 404's here.
 			tentacle::render ( '404' );
 		}
 		
-        }// END index
+	}// END index
     
 } // END Class page
 

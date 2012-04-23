@@ -40,7 +40,7 @@ if( !defined( 'SCAFFOLD' ) ):
 		note::set( 'success','sent_message','Thanks!' );
 	}
 
-load_part('header',array('title'=>$data->title, 'assets'=>'default')); ?>
+load_part('header',array('title'=>$post->title, 'assets'=>'default')); ?>
 <?php if( $note = note::get('sent_message') ): ?>
 	<div class="alert alert-success">
 		<h3 class="<?= $note['type']; ?>"><?= $note['content'];?></h3>
@@ -55,8 +55,8 @@ load_part('header',array('title'=>$data->title, 'assets'=>'default')); ?>
 	<div class="span9">
 		<div class="hero-unit">
 			
-			<h1><?= $data->title; ?></h1>
-			<?= render_content( $data->content ); ?>
+			<h1><?= $post->title; ?></h1>
+			<?= render_content( $post->content ); ?>
 			<form action="<?= HISTORY ?>" method="post" accept-charset="utf-8" class="form-horizontal" name="contact">
 				<input type="hidden" name="history" value="<?= HISTORY ?>"/>
 				<fieldset>

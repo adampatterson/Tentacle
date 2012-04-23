@@ -21,14 +21,14 @@ class blog_controller {
 		
 		$tag = load::model( 'tags' );
 		
-		$user = load::model('user'); 
+		$author = load::model('user'); 
 		
-		tentacle::render ( 'template-blog', array ( 'data' => $posts, 'user'=>$user, 'category'=>$category, 'tag'=>$tag ) );
+		require_once(APP_PATH.'/application/helper/template.php');
+
+		tentacle::render ( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
         
-		if(user::valid()) load::helper ('adminbar');         
+		//if(user::valid()) load::helper ('adminbar');         
 
 	}// END index
 
 } // END Class blog
-
-?> 
