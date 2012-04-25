@@ -82,7 +82,7 @@
 							<!--<p>
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>
 							</p>-->
-							<? if (user_editor() == 'wysiwyg'): ?>
+							<? if (user_editor() == 'cke'): ?>
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.js"></script>
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/config.js"></script>
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.utils.js"></script>
@@ -128,8 +128,7 @@
 									};
 									</script>
 									*/?>
-							<? elseif (user_editor() == 'tinymce'): ?>
-							
+							<? elseif (user_editor() == 'wysiwyg'): ?>
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>tiny_mce/jquery.tinymce.js"></script>
 								<script type="text/javascript">
 									$().ready(function() {
@@ -143,7 +142,7 @@
 											plugins : "autolink,lists,pagebreak,style,advhr,advimage,advlink,inlinepopups,insertdatetime,media,contextmenu,directionality,fullscreen,noneditable,xhtmlxtras,advlist",
 
 											// Theme options
-											theme_advanced_buttons1 : "bold,italic,|,justifyleft,justifycenter,justifyright,|,bullist,numlist,blockquote,|,link,unlink,image,|,hr,removeformat,|,media,pagebreak,|,code,|,formatselect",
+											theme_advanced_buttons1 : "bold,italic,|,justifyleft,justifycenter,justifyright,|,bullist,numlist,blockquote,|,link,unlink,image,|,hr,removeformat,|,media,pagebreak,|,code,|,formatselect,|,openSwampyBrowser",
 											theme_advanced_buttons2 : "",
 											theme_advanced_buttons3 : "",
 											theme_advanced_buttons4 : "",
@@ -153,14 +152,13 @@
 											theme_advanced_resizing : true,
 
 											// Example content CSS (should be your site CSS)
-											content_css : "http://localhost/http/dev.tcms.me/tentacle/themes/default/css/bootstrap.css",
+											content_css : "http://localhost/tentacle/tentacle/themes/default/css/bootstrap.css",
 											// Drop lists for link/image/media/template dialogs
-											template_external_list_url : "lists/template_list.js",
-											external_link_list_url : "lists/link_list.js",
-											external_image_list_url : "lists/image_list.js",
-											media_external_list_url : "lists/media_list.js",
+											template_external_list_url : "<?=TENTACLE_JS; ?>tiny_mce/plugins/lists/template_list.js",
+											external_link_list_url : "<?=TENTACLE_JS; ?>tiny_mce/plugins/lists/link_list.js",
+											external_image_list_url : "<?=TENTACLE_JS; ?>tiny_mce/plugins/lists/image_list.js",
+											media_external_list_url : "<?=TENTACLE_JS; ?>tiny_mce/plugins/lists/media_list.js",
 										});
-									
 									
 
 										$('#ClickWordList li').click(function() { 
@@ -195,17 +193,11 @@
 											}
 										});
 									};
+
 								</script>
-								
+
 								<p class="wysiwyg">
-									<textarea id="elm1" name="elm1" rows="15" cols="80" class="tinymce">
-										&lt;p&gt;
-											This is some example text that you can edit inside the &lt;strong&gt;TinyMCE editor&lt;/strong&gt;.
-										&lt;/p&gt;
-										&lt;p&gt;
-										Nam nisi elit, cursus in rhoncus sit amet, pulvinar laoreet leo. Nam sed lectus quam, ut sagittis tellus. Quisque dignissim mauris a augue rutrum tempor. Donec vitae purus nec massa vestibulum ornare sit amet id tellus. Nunc quam mauris, fermentum nec lacinia eget, sollicitudin nec ante. Aliquam molestie volutpat dapibus. Nunc interdum viverra sodales. Morbi laoreet pulvinar gravida. Quisque ut turpis sagittis nunc accumsan vehicula. Duis elementum congue ultrices. Cras faucibus feugiat arcu quis lacinia. In hac habitasse platea dictumst. Pellentesque fermentum magna sit amet tellus varius ullamcorper. Vestibulum at urna augue, eget varius neque. Fusce facilisis venenatis dapibus. Integer non sem at arcu euismod tempor nec sed nisl. Morbi ultricies, mauris ut ultricies adipiscing, felis odio condimentum massa, et luctus est nunc nec eros.
-										&lt;/p&gt;
-									</textarea>
+									<textarea id="Content" name="content" rows="15" cols="80" class="tinymce"></textarea>
 								</p>
 								<style type="text/css" media="screen">
 									.tinymce { width:98%; }
@@ -218,6 +210,46 @@
 								<a href="javascript:;" onclick="alert($('#elm1').tinymce().selection.getNode().nodeName);return false;">[ Get selected element ]</a>
 								<a href="javascript:;" onclick="tinyMCE.execCommand('mceInsertContent',false,'<img src=\'http://placehold.it/350x150\' />');">[ Insert Image ]</a>
 							
+								<!-- fancyBox MODAL -->
+								<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/jquery.fancybox.js?v=2.0.6"></script>
+								<link rel="stylesheet" type="text/css" href="<?=TENTACLE_JS; ?>fancyBox/source/jquery.fancybox.css?v=2.0.6" media="screen" />
+
+								<!-- Add Button helper (this is optional) -->
+								<link rel="stylesheet" type="text/css" href="<?=TENTACLE_JS; ?>fancyBox/source/helpers/jquery.fancybox-buttons.css?v=1.0.2" />
+								<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/helpers/jquery.fancybox-buttons.js?v=1.0.2"></script>
+
+								<!-- Add Thumbnail helper (this is optional) -->
+								<link rel="stylesheet" type="text/css" href="<?=TENTACLE_JS; ?>fancyBox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.2" />
+								<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.2"></script>
+
+								<!-- Add Media helper (this is optional) -->
+								<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/helpers/jquery.fancybox-media.js?v=1.0.0"></script>
+								<script type="text/javascript">
+									$(document).ready(function() {
+										/*
+										 *  Simple image gallery. Uses default settings
+										 */
+
+										$('.fancybox').fancybox();
+											$("#fancybox-manual-b").click(function() {
+												$.fancybox.open({
+													href : 'iframe.html',
+													type : 'iframe',
+													padding : 5
+												});
+											});
+										});
+									</script>
+									<style type="text/css">
+										.fancybox-custom .fancybox-skin {
+											box-shadow: 0 0 50px #222;
+										}
+									</style>
+						
+						
+								<a class="fancybox fancybox.iframe" href="<?= BASE_URL ?>admin/media_insert/">[ Iframe ]</a>
+								<!-- // fancyBox MODAL -->
+									
 							<? elseif (user_editor() == 'jwysiwyg'): ?>
 								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>jwysiwyg/jquery.wysiwyg.css" type="text/css"/>
 								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>jwysiwyg/lib/ui/jquery.ui.all.css" type="text/css"/> 

@@ -92,13 +92,88 @@
 							<? //clean_out($get_page_meta ) ?>
 							<input type="text" name="title" placeholder='Title' value='<?= $get_page->title ?>' class='xlarge' required='required' />
 							<!--<p>Permalink: http://www.sitename/com/path/ <a href="#">Edit</a></p>-->
-							<? if (user_editor() == 'wysiwyg'): ?>
+							<? if (user_editor() == 'cke'): ?>
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.js"></script>
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/config.js"></script>
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.utils.js"></script>
 								<p>
 									<textarea name="content" id="cke" cols="40" rows="5" class="jquery_ckeditor" placeholder='Content'><?= stripslashes( $get_page->content ) ?></textarea>
 								</p>
+							<? elseif(user_editor() == 'wysiwyg'):?>
+								<script type="text/javascript" src="<?=TENTACLE_JS; ?>tiny_mce/jquery.tinymce.js"></script>
+								<script type="text/javascript">
+									$().ready(function() {
+										$('textarea.tinymce').tinymce({
+											// Location of TinyMCE script
+											script_url : '<?=TENTACLE_JS; ?>tiny_mce/tiny_mce.js',
+
+											// General options
+											theme : "advanced",
+											skin: 'grappelli',
+											plugins : "autolink,lists,pagebreak,style,advhr,advimage,advlink,inlinepopups,insertdatetime,media,contextmenu,directionality,fullscreen,noneditable,xhtmlxtras,advlist",
+
+											// Theme options
+											theme_advanced_buttons1 : "bold,italic,|,justifyleft,justifycenter,justifyright,|,bullist,numlist,blockquote,|,link,unlink,image,|,hr,removeformat,|,media,pagebreak,|,code,|,formatselect",
+											theme_advanced_buttons2 : "",
+											theme_advanced_buttons3 : "",
+											theme_advanced_buttons4 : "",
+											theme_advanced_toolbar_location : "top",
+											theme_advanced_toolbar_align : "left",
+											theme_advanced_statusbar_location : "",
+											theme_advanced_resizing : true,
+
+											// Example content CSS (should be your site CSS)
+											content_css : "http://localhost/http/dev.tcms.me/tentacle/themes/default/css/bootstrap.css",
+											// Drop lists for link/image/media/template dialogs
+											template_external_list_url : "lists/template_list.js",
+											external_link_list_url : "lists/link_list.js",
+											external_image_list_url : "lists/image_list.js",
+											media_external_list_url : "lists/media_list.js",
+										});
+									
+									
+
+										$('#ClickWordList li').click(function() { 
+											$("#txtMessage").insertAtCaret($(this).html());
+											return false
+										});
+									
+									});
+
+									$.fn.insertAtCaret = function (myValue) {
+										return this.each(function(){
+											//IE support
+											if (document.selection) {
+												this.focus();
+												sel = document.selection.createRange();
+												sel.text = myValue;
+												this.focus();
+											}
+											//MOZILLA / NETSCAPE support
+											else if (this.selectionStart || this.selectionStart == '0') {
+												var startPos = this.selectionStart;
+												var endPos = this.selectionEnd;
+												var scrollTop = this.scrollTop;
+												this.value = this.value.substring(0, startPos)+ myValue+ this.value.substring(endPos,this.value.length);
+												this.focus();
+												this.selectionStart = startPos + myValue.length;
+												this.selectionEnd = startPos + myValue.length;
+												this.scrollTop = scrollTop;
+											} else {
+												this.value += myValue;
+												this.focus();
+											}
+										});
+									};
+								</script>
+								
+								<p class="wysiwyg">
+									<textarea id="Content" name="content" rows="15" cols="80" class="tinymce"><?= stripslashes( $get_page->content ) ?></textarea>
+								</p>
+								<style type="text/css" media="screen">
+									.tinymce { width:98%; }
+									.wysiwyg { margin-top:15px;}
+								</style>
 							<? else: ?>
 								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.22/lib/codemirror.css">
 								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/lib/codemirror.js"></script>
