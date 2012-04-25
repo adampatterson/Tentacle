@@ -29,7 +29,6 @@
 	function is_paged() {}
 	function is_page() {}
 	function is_page_template() {}
-	function is_attachment() {}
 	function is_404() {}
 	function is_error() {}
 	function is_single() {}
