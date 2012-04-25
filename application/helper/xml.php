@@ -10,7 +10,7 @@
 * @return array
 */
 
-    function xml2arr($parse) {
+    function xml_arr($parse) {
         if (empty($parse))
             return "";
 
@@ -36,7 +36,7 @@
 * @return xml 
 */
 
-    function arr2xml(&$object, $data) {
+    function arr_xml(&$object, $data) {
         foreach ($data as $key => $val) {
             if (is_int($key) and (empty($val) or (is_string($val) and trim($val) == ""))) {
                 unset($data[$key]);
