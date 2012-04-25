@@ -205,10 +205,8 @@
 								</style>
 
 								<!-- Some integration calls -->
-								<a href="javascript:;" onclick="$('#elm1').tinymce().show();return false;">[ Show ]</a>
-								<a href="javascript:;" onclick="$('#elm1').tinymce().hide();return false;">[ Hide ]</a>
-								<a href="javascript:;" onclick="alert($('#elm1').tinymce().selection.getNode().nodeName);return false;">[ Get selected element ]</a>
-								<a href="javascript:;" onclick="tinyMCE.execCommand('mceInsertContent',false,'<img src=\'http://placehold.it/350x150\' />');">[ Insert Image ]</a>
+								<!--<a href="javascript:;" onclick="alert($('#elm1').tinymce().selection.getNode().nodeName);return false;">[ Get selected element ]</a>
+								<a href="javascript:;" onclick="tinyMCE.execCommand('mceInsertContent',false,'<img src=\'http://placehold.it/350x150\' />');">[ Insert Image ]</a>-->
 							
 								<!-- fancyBox MODAL -->
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/jquery.fancybox.js?v=2.0.6"></script>
@@ -230,14 +228,14 @@
 										 *  Simple image gallery. Uses default settings
 										 */
 
-										$('.fancybox').fancybox();
-											$("#fancybox-manual-b").click(function() {
-												$.fancybox.open({
-													href : 'iframe.html',
-													type : 'iframe',
-													padding : 5
-												});
-											});
+										$(".fancybox").fancybox({
+										  fitToView: false,
+										  afterLoad: function(){
+										   this.width = $(this.element).data("width");
+										   this.height = $(this.element).data("height");
+										  }
+										 }); // fancybox
+										
 										});
 									</script>
 									<style type="text/css">
@@ -245,9 +243,12 @@
 											box-shadow: 0 0 50px #222;
 										}
 									</style>
-						
-						
-								<a class="fancybox fancybox.iframe" href="<?= BASE_URL ?>admin/media_insert/">[ Iframe ]</a>
+									<a class="fancybox fancybox.iframe" id="insert-media" href="<?= BASE_URL ?>admin/media_insert" title="Insert Media" data-width="600" data-height="825">[ Insert Media ]</a>
+									<!--<a class="fancybox" href="#insert-media" title="Insert Media">[ Insert Media ]</a>-->
+									<div id="inline" style="width:600px;display: none;">
+										<? //load::view( 'admin/media/media_insert' );?>
+									</div>
+								
 								<!-- // fancyBox MODAL -->
 									
 							<? elseif (user_editor() == 'jwysiwyg'): ?>
@@ -654,6 +655,10 @@
 			</div>
 		</div>
 	</form>
+	<!-- Modal -->
+	
+
+	<!-- //Modal -->
 </div>
 <!-- #wrap -->
 <? load::view('admin/template-footer');?> 
