@@ -47,10 +47,10 @@ if( !defined( 'SCAFFOLD' ) ): ?>
 	<div class="span9">
 		<div class="hero-unit">
 			<h1><?= $post->title; ?></h1>
-			<h2><?= $page_meta->name ?></h2>
-			<h3>From <?= $page_meta->country ?></h3>
+			<h2><?= $post_meta->name ?></h2>
+			<h3>From <?= $post_meta->country ?></h3>
 			<?= render_content( $post->content ); ?>
-			<p>Follow me <a href="http://www.twitter.com<?= $page_meta->twitter ?>">@<?= $get_page_meta->twitter ?></a></p>
+			<p>Follow me <a href="http://www.twitter.com<?= $post_meta->twitter ?>">@<?= $post_meta->twitter ?></a></p>
 		</div><!-- /hero-unit -->
 	</div><!--/span9-->
 </div><!--/row-->
