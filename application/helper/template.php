@@ -72,7 +72,8 @@
 	 */
 	function body_class () {
 		// Separates classes with a single space, collates classes for body element
-		echo 'class="'.join( ' ', explode("/", URI ) ).'"';
+		echo 'class="'.route::controller().' '. route::method().' '.join( ' ', explode("/", URI ) ).'"';
+		
 		//echo 'class="' . join( ' ', get_body_class( $class ) ) . '"';
 	}
 	
