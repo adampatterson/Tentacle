@@ -79,56 +79,7 @@
 					<div class="tab-content tab-body" id="my-tab-content">
 						<div id="content" class="active tab-pane">
 							<input type="text" name="title" placeholder='Title' class='xlarge' required='required' />
-							<!--<p>
-								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>
-							</p>-->
-							<? if (user_editor() == 'cke'): ?>
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.js"></script>
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/config.js"></script>
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.utils.js"></script>
-								<p>
-									<textarea name="content" id="cke" cols="40" rows="5" class="jquery_ckeditor" placeholder='Content'></textarea>
-								</p>
-								<? /* 
-									<ul id="media_list">
-										<li><strong>test</strong></li>
-									</ul>
-									
-									<script>
-									$('#media_list li').click(function() { 
-										//$("#editor-wysiwyg-iframe").contents().find("body").insertAtCaret($(this).html());
-										$("#cke").insertAtCaret($(this).html());
-										return false
-									});
-
-									$.fn.insertAtCaret = function (myValue) {
-										return this.each(function(){
-											//IE support
-											if (document.selection) {
-												this.focus();
-												sel = document.selection.createRange();
-												sel.text = myValue;
-												this.focus();
-											}
-											//MOZILLA / NETSCAPE support
-											else if (this.selectionStart || this.selectionStart == '0') {
-												var startPos = this.selectionStart;
-												var endPos = this.selectionEnd;
-												var scrollTop = this.scrollTop;
-												this.value = this.value.substring(0, startPos)+ myValue+ this.value.substring(endPos,this.value.length);
-												this.focus();
-												this.selectionStart = startPos + myValue.length;
-												this.selectionEnd = startPos + myValue.length;
-												this.scrollTop = scrollTop;
-											} else {
-												this.value += myValue;
-												this.focus();
-											}
-										});
-									};
-									</script>
-									*/?>
-							<? elseif (user_editor() == 'wysiwyg'): ?>
+							<? if (user_editor() == 'wysiwyg'): ?>
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>tiny_mce/jquery.tinymce.js"></script>
 								<script type="text/javascript">
 									$().ready(function() {
@@ -199,6 +150,7 @@
 								<p class="wysiwyg">
 									<textarea id="Content" name="content" rows="15" cols="80" class="tinymce"></textarea>
 								</p>
+							
 								<style type="text/css" media="screen">
 									.tinymce { width:98%; }
 									.wysiwyg { margin-top:15px;}
@@ -220,7 +172,9 @@
 										
                                     });
                                 </script>
-                                <a class="fancybox fancybox.iframe" id="insert-media" href="<?= BASE_URL ?>admin/media_insert" title="Insert Media" data-width="600" data-height="825">[ Insert Media ]</a>
+                                	
+								<a class="fancybox fancybox.iframe" id="insert-media" href="<?= BASE_URL ?>admin/media_insert" title="Insert Media" data-width="600" data-height="825">[ Insert Media ]</a>
+							
 							<? else: ?>
 								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.22/lib/codemirror.css">
 								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/lib/codemirror.js"></script>
