@@ -116,7 +116,7 @@
 		<div class="row">
 			<div class="actions">
 				<!--<a href="javascript:;" onclick="tinyMCE.execCommand('mceInsertContent',false,'<img src=\'http://placehold.it/350x150\' />');">[ Insert Image ]</a>-->
-				<button class="btn primary" onclick="tinyMCE.execCommand('mceInsertContent',false,'<img src=\'http://placehold.it/350x150\' />');">Insert Image</button>
+				<a class="btn primary" href="javascript:parent.top.tinyMCE.get('Content').execCommand('mceInsertContent',false,'<img src=\'http://placehold.it/350x150\' />');" onmouseup="parent.jQuery.fancybox.close();">Insert Image</a>
 				<button class="btn danger">Delete</button>
 				<a class="btn" href="javascript:parent.jQuery.fancybox.close();">Cancel</a>
 			</div>

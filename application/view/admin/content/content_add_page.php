@@ -204,24 +204,6 @@
 									.wysiwyg { margin-top:15px;}
 								</style>
 
-								<!-- Some integration calls -->
-								<!--<a href="javascript:;" onclick="alert($('#elm1').tinymce().selection.getNode().nodeName);return false;">[ Get selected element ]</a>
-								<a href="javascript:;" onclick="tinyMCE.execCommand('mceInsertContent',false,'<img src=\'http://placehold.it/350x150\' />');">[ Insert Image ]</a>-->
-							
-								<!-- fancyBox MODAL -->
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/jquery.fancybox.js?v=2.0.6"></script>
-								<link rel="stylesheet" type="text/css" href="<?=TENTACLE_JS; ?>fancyBox/source/jquery.fancybox.css?v=2.0.6" media="screen" />
-
-								<!-- Add Button helper (this is optional) -->
-								<link rel="stylesheet" type="text/css" href="<?=TENTACLE_JS; ?>fancyBox/source/helpers/jquery.fancybox-buttons.css?v=1.0.2" />
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/helpers/jquery.fancybox-buttons.js?v=1.0.2"></script>
-
-								<!-- Add Thumbnail helper (this is optional) -->
-								<link rel="stylesheet" type="text/css" href="<?=TENTACLE_JS; ?>fancyBox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.2" />
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.2"></script>
-
-								<!-- Add Media helper (this is optional) -->
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/helpers/jquery.fancybox-media.js?v=1.0.0"></script>
 								<script type="text/javascript">
 									$(document).ready(function() {
 										/*
@@ -236,136 +218,9 @@
 										  }
 										 }); // fancybox
 										
-										});
-									</script>
-									<style type="text/css">
-										.fancybox-custom .fancybox-skin {
-											box-shadow: 0 0 50px #222;
-										}
-									</style>
-									<a class="fancybox fancybox.iframe" id="insert-media" href="<?= BASE_URL ?>admin/media_insert" title="Insert Media" data-width="600" data-height="825">[ Insert Media ]</a>
-									<!--<a class="fancybox" href="#insert-media" title="Insert Media">[ Insert Media ]</a>-->
-									<div id="inline" style="width:600px;display: none;">
-										<? //load::view( 'admin/media/media_insert' );?>
-									</div>
-								
-								<!-- // fancyBox MODAL -->
-									
-							<? elseif (user_editor() == 'jwysiwyg'): ?>
-								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>jwysiwyg/jquery.wysiwyg.css" type="text/css"/>
-								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>jwysiwyg/lib/ui/jquery.ui.all.css" type="text/css"/> 
-								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>jwysiwyg/lib/ui/jquery.ui.dialog.css" type="text/css"/> 
-								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>jwysiwyg/plugins/fileManager/wysiwyg.fileManager.css" type="text/css"/>
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>jwysiwyg/lib/ui/jquery.ui.core.js"></script> 
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>jwysiwyg/lib/ui/jquery.ui.widget.js"></script> 
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>jwysiwyg/lib/ui/jquery.ui.position.js"></script> 
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>jwysiwyg/lib/ui/jquery.ui.dialog.js"></script> 
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>jwysiwyg/jquery.wysiwyg.js"></script>
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>jwysiwyg/controls/wysiwyg.image.js"></script>
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>jwysiwyg/controls/wysiwyg.link.js"></script>
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>jwysiwyg/controls/wysiwyg.table.js"></script>
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>jwysiwyg/plugins/wysiwyg.fullscreen.js"></script>
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>jwysiwyg/plugins/wysiwyg.fileManager.js"></script>
-
-								<script type="text/javascript" charset="utf-8">
-								//<![CDATA[								
-									$(document).ready(function(){
-									
-										$('#editor').wysiwyg({
-											autoGrow: true,
-											maxHeight: 600,
-											initialContent: '',
-											//css: '<?= BASE_URL?>',
-										    controls: {
-												strikeThrough : { visible : false },
-												bold		  : { visible : true },
-												italic		  : { visible : true },
-												underline     : { visible : true },
-												insertHorizontalRule : { visible : true },
-
-												separator00   : { visible : false },
-
-												justifyLeft   : { visible : true },
-												justifyCenter : { visible : true },
-												justifyRight  : { visible : true },
-												justifyFull   : { visible : true },
-
-												separator01   : { visible : false },
-
-												indent        : { visible : true },
-												outdent       : { visible : true },
-
-												separator02  : { visible : false },
-
-												subscript    : { visible : false },
-												superscript  : { visible : false },
-
-												separator03  : { visible : false },
-
-												undo         : { visible : false },
-												redo         : { visible : false },
-
-												separator04  : { visible : false },
-
-												insertOrderedList    : { visible : true },
-												insertUnorderedList  : { visible : true },
-
-												separator05  : { visible : false },
-
-												cut          : { visible : false },
-												copy         : { visible : false },
-												paste        : { visible : false },
-												html         : { visible : true },
-												removeFormat : { visible : false },
-												insertTable  : { visible : false },
-												
-															
-												"fileManager": {
-													visible: true,
-													groupIndex: 12,
-													tooltip: "File Manager",
-													exec: function () {
-														$.wysiwyg.fileManager.init(function (file) {
-															file ? alert(file) : alert("No file selected.");
-														});
-													}
-												},
-												separator06  : { visible : false },
-												fullscreen: {
-													groupIndex: 12,
-													visible: true,
-													exec: function () {
-														if ($.wysiwyg.fullscreen) {
-															$.wysiwyg.fullscreen.init(this);
-														}
-													},
-													tooltip: "Fullscreen"
-												}
-										    },
-											iFrameClass: "wysiwyg-input",
-											toolbar:"#toolbar"
-											
-										  });
-										$.wysiwyg.fileManager.setAjaxHandler("<?=TENTACLE_JS; ?>jwysiwyg/plugins/fileManager/handlers/PHP/file-manager.php");
-									});
-								//]]>
-								</script>
-								<style type="text/css" media="screen">
-									#jwysiwyg, #editor{ width:100%; }
-									.wysiwyg-input { width: 400px; height: 400px }
-								</style>
-
-								<input type="button" value="Media" id="media"/>
-								
-								<ul id="media_list">
-									<li><strong>test</strong></li>
-								</ul>
-
-								<ul id="toolbar"></ul>
-								<p id="jwysiwyg">
-									<textarea id="editor"></textarea>
-								</p>
-								
+                                    });
+                                </script>
+                                <a class="fancybox fancybox.iframe" id="insert-media" href="<?= BASE_URL ?>admin/media_insert" title="Insert Media" data-width="600" data-height="825">[ Insert Media ]</a>
 							<? else: ?>
 								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.22/lib/codemirror.css">
 								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/lib/codemirror.js"></script>

@@ -118,14 +118,7 @@
 							<? //clean_out($get_post_meta ) ?>
 							<input type="text" name="title" placeholder='Title' value='<?= $get_post->title ?>' class='xlarge' required='required' />
 							<!--<p>Permalink: http://www.sitename/com/path/ <a href="#">Edit</a></p>-->
-							<? if (user_editor() == 'cke'): ?>
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.js"></script>
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/config.js"></script>
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>ckeditor/ckeditor.utils.js"></script>
-								<p>
-									<textarea name="content" id="cke" cols="40" rows="5" class="jquery_ckeditor" placeholder='Content'><?= stripslashes( $get_post->content ) ?></textarea>
-								</p>
-							<? elseif(user_editor() == 'wysiwyg'):?>
+							<? if(user_editor() == 'wysiwyg'):?>
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>tiny_mce/jquery.tinymce.js"></script>
 								<script type="text/javascript">
 									$().ready(function() {
@@ -196,10 +189,31 @@
 								<p class="wysiwyg">
 									<textarea id="Content" name="content" rows="15" cols="80" class="tinymce"><?= stripslashes( $get_post->content ) ?></textarea>
 								</p>
+								
 								<style type="text/css" media="screen">
 									.tinymce { width:98%; }
 									.wysiwyg { margin-top:15px;}
 								</style>
+								
+								<script type="text/javascript">
+									$(document).ready(function() {
+										/*
+										 *  Simple image gallery. Uses default settings
+										 */
+
+										$(".fancybox").fancybox({
+										  fitToView: false,
+										  afterLoad: function(){
+										   this.width = $(this.element).data("width");
+										   this.height = $(this.element).data("height");
+										  }
+										 }); // fancybox
+
+                                    });
+                                </script>
+                            
+    							<a class="fancybox fancybox.iframe" id="insert-media" href="<?= BASE_URL ?>admin/media_insert" title="Insert Media" data-width="600" data-height="825">[ Insert Media ]</a>
+							
 							<? else: ?>
 								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.22/lib/codemirror.css">
 								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/lib/codemirror.js"></script>
