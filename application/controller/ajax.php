@@ -20,4 +20,37 @@ class ajax_controller {
 		return $unique;
 	}
 
+	/**
+	* Touch the DB and see if the credentials are correct.
+	* ----------------------------------------------------------------------------------------------*/
+	public function confirm_database()
+	{
+		$server = $_POST['server'];
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		$port = $_POST['port'];
+
+		$host = $server . ':' . $port;
+
+		$link = @mysql_connect($host, $username, $password, TRUE);
+
+		if (!$link)
+		{
+			$data['success'] = 'false';
+			$data['message'] = 'Problem connecting to the database:' . mysql_error();
+		}
+		else
+		{
+			$data['success'] = 'true';
+			$data['message'] = 'The database settings are tested and working fine.';
+		}
+
+		// Set some headers for our JSON
+		header('Cache-Control: no-cache, must-revalidate');
+		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+		header('Content-type: application/json');
+
+		echo json_encode($data);
+	}
+
 }
