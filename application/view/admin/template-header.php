@@ -63,6 +63,10 @@
 	<!-- Add Media helper (this is optional) -->
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/helpers/jquery.fancybox-media.js?v=1.0.0"></script>
 
+	<script type="text/javascript" charset="utf-8">
+		var base_url = "<?= BASE_URL ?>";
+	</script>
+
 	<link rel="shortcut icon" href="images/favicon.ico">
 	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
