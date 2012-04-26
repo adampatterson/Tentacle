@@ -150,28 +150,33 @@ if(!defined('SCAFFOLD')):
 				
 				<div class="row">
 
-					<div class="span6">
+					<div class="span4">
+						<h3>Join our Mailing List</h3>
+						<p class="lead">From time to time we like to let every one know what has been going on and announce new features.</p>
+						<a class="btn btn-default" data-toggle="modal" href="#myModal">Join it!</a>
+						<? /*
 						<h3>Forms</h3>
 						<p class="lead">Get answers to your design and development questions from the online community.</p>
-						<p><a href="#comingsoon" class="btn btn-default btn-large">Coming soon!</a></p>
+						<p><a href="#comingsoon" class="btn btn-default">Coming soon!</a></p>
+						*/?>
 					</div>
-<?/* 
+					
 					<div class="span4">	
 						<h3>IRC</h3>
 						<p class="lead">Join us in the IRC channel from <a href="http://freenode.net/">Freenode.net</a>, A great resource for Designers and Developers.</p>
-						<p><a href="http://webchat.freenode.net/?channel=tentaclecms" class="btn btn-default btn-large" >#tentaclecms</a></p>
+						<p><a href="http://webchat.freenode.net/?channel=tentacle" class="btn btn-default" >#tentacle</a></p>
 					</div>
-*/ ?>
-					<div class="span6">
+					
+					<div class="span4">
 						<h3>Report a Bug</h3>
 						<p class="lead">If you found a bug in the CMS use the <a href="https://github.com/adampatterson/Tentacle/issues">Issue Tracker</a> on GitHub to report it.</p>
 
 						<p class="lead"><strong>Please try to provide us with as much clear information as possible.</strong></p>
 
-						<p><a href="https://github.com/adampatterson/Tentacle/issues" class="btn btn-default btn-large">Submit and Issue</a></p>
+						<p><a href="https://github.com/adampatterson/Tentacle/issues" class="btn btn-default">Submit and Issue</a></p>
 					</div>
 				</div>
-
+				
 			</div>
 		</div>
 
