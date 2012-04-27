@@ -7,6 +7,7 @@
 		<div class="one-half textright"><p><span>Thanks for creating with</<span> <a href="http://tentaclecms.com"><img src="<?= TENTACLE_URL.'/admin/images/tentacle_logo_footer.png' ?>" alt="Tentacle CMS" /></a></p></div>
 	</div>
 </footer>
+<script type="text/javascript" src="<?=TENTACLE_JS; ?>application.js"></script>
 <!-- 
 <?
 	echo shell_exec('git status'); 

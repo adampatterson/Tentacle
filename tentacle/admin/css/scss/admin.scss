@@ -151,6 +151,46 @@ footer {
 	}
 }
 
+
+/*
+* Editor
+* ------------------------------------------------------------------------------------------- */
+
+.tinymce { width:98%; }
+
+.wysiwyg { margin-top:15px;}
+
+.CodeMirror-scroll {
+	height: auto;
+	min-height: 450px;
+	max-height: 900px;
+	overflow-y: hidden;
+	overflow-x: auto;
+	width: 100%;
+}
+
+.CodeMirror {
+	border-top: 1px solid black; 
+	border-bottom: 1px solid black;
+}
+
+.activeline {
+	background: #f0fcff !important;
+}
+
+.cm-tab:after {
+	content: "\21e5";
+	display: -moz-inline-block;
+	display: -webkit-inline-block;
+	display: inline-block;
+	width: 0px;
+	position: relative;
+	overflow: visible;
+	left: -1.4em;
+	color: #aaa;
+  }
+
+
 /*
 * Tabs 
 * ------------------------------------------------------------------------------------------- */
@@ -698,9 +738,7 @@ div.tagsinput {
 /* 
 Username Lookup
 * ------------------------------------------------------------------------------------------- */
-#username {
-
-}
+#username { }
 
 #tick { display: none; }
 

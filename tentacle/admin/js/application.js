@@ -1,6 +1,17 @@
 $(document).ready(function(){
+	
+    // FancyBox modal
+	// ====================================
+	$(".fancybox").fancybox({
+	  fitToView: false,
+	  afterLoad: function(){
+	   this.width = $(this.element).data("width");
+	   this.height = $(this.element).data("height");
+	  }
+	 }); // fancybox
+	
 
-    //Minimize Content Box
+    // Minimize Content Box
 	// ====================================
 		$(".content-box-header h3").css({ "cursor":"s-resize" }); // Give the h3 in Content Box Header a different cursor
 		$(".closed-box .content-box-content").hide(); // Hide the content of the header if it has the class "closed"
@@ -14,7 +25,7 @@ $(document).ready(function(){
 			}
 		);
 		
-	//Admin Tabs:
+	// Admin Tabs:
 	// ====================================
 		$('.tabs').tabs()
 
@@ -242,5 +253,63 @@ $(document).ready(function(){
 	    $(".published-on").toggle();
 	})
 
+
+	$('textarea.tinymce').tinymce({
+		// Location of TinyMCE script
+		script_url : js_url + 'tiny_mce/tiny_mce.js',
+
+		// General options
+		theme 	: "advanced",
+		skin	: 'grappelli',
+		plugins : "autolink,lists,pagebreak,style,advhr,advimage,advlink,inlinepopups,insertdatetime,media,contextmenu,directionality,fullscreen,noneditable,xhtmlxtras,advlist",
+
+		// Theme options
+		theme_advanced_buttons1 			: "bold,italic,|,justifyleft,justifycenter,justifyright,|,bullist,numlist,blockquote,|,link,unlink,|,hr,removeformat,|,media,pagebreak,|,code,|,formatselect,|,openSwampyBrowser",
+		theme_advanced_buttons2 			: "",
+		theme_advanced_buttons3 			: "",
+		theme_advanced_buttons4 			: "",
+		theme_advanced_toolbar_location 	: "top",
+		theme_advanced_toolbar_align 		: "left",
+		theme_advanced_statusbar_location 	: "",
+		theme_advanced_resizing 			: true,
+
+		// Example content CSS (should be your site CSS)
+		content_css : editor_path + 'style.css'
+	});
+
+
+	$('#ClickWordList li').click(function() { 
+		$("#txtMessage").insertAtCaret($(this).html());
+		return false
+	});
+	
+
 });
 
+
+
+$.fn.insertAtCaret = function (myValue) {
+	return this.each(function(){
+		//IE support
+		if (document.selection) {
+			this.focus();
+			sel = document.selection.createRange();
+			sel.text = myValue;
+			this.focus();
+		}
+		//MOZILLA / NETSCAPE support
+		else if (this.selectionStart || this.selectionStart == '0') {
+			var startPos = this.selectionStart;
+			var endPos = this.selectionEnd;
+			var scrollTop = this.scrollTop;
+			this.value = this.value.substring(0, startPos)+ myValue+ this.value.substring(endPos,this.value.length);
+			this.focus();
+			this.selectionStart = startPos + myValue.length;
+			this.selectionEnd = startPos + myValue.length;
+			this.scrollTop = scrollTop;
+		} else {
+			this.value += myValue;
+			this.focus();
+		}
+	});
+};

@@ -81,97 +81,10 @@
 							<input type="text" name="title" placeholder='Title' class='xlarge' required='required' />
 							<? if (user_editor() == 'wysiwyg'): ?>
 								<script type="text/javascript" src="<?=TENTACLE_JS; ?>tiny_mce/jquery.tinymce.js"></script>
-								<script type="text/javascript">
-									$().ready(function() {
-										$('textarea.tinymce').tinymce({
-											// Location of TinyMCE script
-											script_url : '<?=TENTACLE_JS; ?>tiny_mce/tiny_mce.js',
-
-											// General options
-											theme : "advanced",
-											skin: 'grappelli',
-											plugins : "autolink,lists,pagebreak,style,advhr,advimage,advlink,inlinepopups,insertdatetime,media,contextmenu,directionality,fullscreen,noneditable,xhtmlxtras,advlist",
-
-											// Theme options
-											theme_advanced_buttons1 : "bold,italic,|,justifyleft,justifycenter,justifyright,|,bullist,numlist,blockquote,|,link,unlink,image,|,hr,removeformat,|,media,pagebreak,|,code,|,formatselect,|,openSwampyBrowser",
-											theme_advanced_buttons2 : "",
-											theme_advanced_buttons3 : "",
-											theme_advanced_buttons4 : "",
-											theme_advanced_toolbar_location : "top",
-											theme_advanced_toolbar_align : "left",
-											theme_advanced_statusbar_location : "",
-											theme_advanced_resizing : true,
-
-											// Example content CSS (should be your site CSS)
-											content_css : "http://localhost/tentacle/tentacle/themes/default/css/bootstrap.css",
-											// Drop lists for link/image/media/template dialogs
-											template_external_list_url : "<?=TENTACLE_JS; ?>tiny_mce/plugins/lists/template_list.js",
-											external_link_list_url : "<?=TENTACLE_JS; ?>tiny_mce/plugins/lists/link_list.js",
-											external_image_list_url : "<?=TENTACLE_JS; ?>tiny_mce/plugins/lists/image_list.js",
-											media_external_list_url : "<?=TENTACLE_JS; ?>tiny_mce/plugins/lists/media_list.js",
-										});
-									
-
-										$('#ClickWordList li').click(function() { 
-											$("#txtMessage").insertAtCaret($(this).html());
-											return false
-										});
-									
-									});
-
-									$.fn.insertAtCaret = function (myValue) {
-										return this.each(function(){
-											//IE support
-											if (document.selection) {
-												this.focus();
-												sel = document.selection.createRange();
-												sel.text = myValue;
-												this.focus();
-											}
-											//MOZILLA / NETSCAPE support
-											else if (this.selectionStart || this.selectionStart == '0') {
-												var startPos = this.selectionStart;
-												var endPos = this.selectionEnd;
-												var scrollTop = this.scrollTop;
-												this.value = this.value.substring(0, startPos)+ myValue+ this.value.substring(endPos,this.value.length);
-												this.focus();
-												this.selectionStart = startPos + myValue.length;
-												this.selectionEnd = startPos + myValue.length;
-												this.scrollTop = scrollTop;
-											} else {
-												this.value += myValue;
-												this.focus();
-											}
-										});
-									};
-
-								</script>
 
 								<p class="wysiwyg">
 									<textarea id="Content" name="content" rows="15" cols="80" class="tinymce"></textarea>
 								</p>
-							
-								<style type="text/css" media="screen">
-									.tinymce { width:98%; }
-									.wysiwyg { margin-top:15px;}
-								</style>
-
-								<script type="text/javascript">
-									$(document).ready(function() {
-										/*
-										 *  Simple image gallery. Uses default settings
-										 */
-
-										$(".fancybox").fancybox({
-										  fitToView: false,
-										  afterLoad: function(){
-										   this.width = $(this.element).data("width");
-										   this.height = $(this.element).data("height");
-										  }
-										 }); // fancybox
-										
-                                    });
-                                </script>
                                 	
 								<a class="fancybox fancybox.iframe" id="insert-media" href="<?= BASE_URL ?>admin/media_insert" title="Insert Media" data-width="600" data-height="825">[ Insert Media ]</a>
 							
@@ -184,37 +97,7 @@
 								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/clike/clike.js"></script>
 								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/php/php.js"></script>
 								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/htmlmixed/htmlmixed.js"></script>
-								<style type="text/css">
-								      .CodeMirror-scroll {
-										height: auto;
-										min-height: 450px;
-										max-height: 900px;
-										overflow-y: hidden;
-										overflow-x: auto;
-										width: 100%;
-									}
 
-									.CodeMirror {
-										border-top: 1px solid black; 
-										border-bottom: 1px solid black;
-									}
-
-									.activeline {
-										background: #f0fcff !important;
-									}
-									.cm-tab:after {
-									        content: "\21e5";
-									        display: -moz-inline-block;
-									        display: -webkit-inline-block;
-									        display: inline-block;
-									        width: 0px;
-									        position: relative;
-									        overflow: visible;
-									        left: -1.4em;
-									        color: #aaa;
-									      }
-							    </style>
-							
 								<p><textarea id="code" name="content" cols="40" rows="5" placeholder='Content'></textarea></p>
 
 								<script>
@@ -329,7 +212,7 @@
 							</fieldset>
 							<div class="clear"></div>
 						</div>
-						<!--<div id="revisions" class="">
+<? /* 					<div id="revisions" class="">
 							<h4>Feb 7, 2011</h4>
 							<div class="small-row">
 								<input type="radio" checked="checked" />
@@ -458,16 +341,13 @@
 								</button>
 							</div>
 							<div class="clear"></div>
-						</div>-->
+						</div>
+*/ ?>
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
-	<!-- Modal -->
-	
-
-	<!-- //Modal -->
 </div>
 <!-- #wrap -->
 <? load::view('admin/template-footer');?> 
