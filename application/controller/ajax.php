@@ -28,9 +28,8 @@ class ajax_controller {
 		$server = $_POST['server'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		$port = $_POST['port'];
 
-		$host = $server . ':' . $port;
+		$host = $server;
 
 		$link = @mysql_connect($host, $username, $password, TRUE);
 
