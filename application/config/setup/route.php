@@ -6,6 +6,16 @@ route::set('install/([-_a-zA-Z0-9]+)',array(
     'function'=>'$1',
     //'arguments'=>array('')
 	));
+	
+route::set('ajax/([-_a-zA-Z0-9]+)',array(
+    'controller'=>'ajax',
+    'function'=>'$1'
+	));
+
+route::set('ajax/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
+    'controller'=>'ajax',
+    'function'=>'$1'
+	));
 
 // Default Route
 route::set('default_route','install/step1');

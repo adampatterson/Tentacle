@@ -12,7 +12,12 @@
 	    <![endif]-->
 
 	    <!-- Le styles -->
-	   	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		
+		<script type="text/javascript" charset="utf-8">
+			var base_url = "<?= BASE_URL ?>";
+		</script>
+		
 		<link type="text/css" rel="stylesheet" href="<?= TENTACLE_CSS ?>bootstrap-1.4.0.min.css">
 		<link type="text/css" rel="stylesheet" href="<?= TENTACLE_CSS ?>general.css">
 		<link type="text/css" rel="stylesheet" href="<?= TENTACLE_CSS ?>admin.css">
