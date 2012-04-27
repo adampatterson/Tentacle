@@ -207,6 +207,143 @@ class dev_controller {
 		echo 'Token: ' . $_SESSION['ga_auth_token'];
 	}
 	
+	public function tracking()
+	{
+	/*
+		header( "Content-type: image/gif"); 
+		header( "Expires: Wed, 5 Feb 1986 06:06:06 GMT"); 
+		header( "Cache-Control: no-cache"); 
+		header( "Cache-Control: must-revalidate"); 
+
+		printf ('%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%', 71,73,70,56,57,97,1,0,1,0,128,255,0,192,192,192,0,0,0,33,249,4,1,0,0,0,0,44,0,0,0,0,1,0,1,0,0,2,2,68,1,0,59);
+	*/
+		//?utmwv=4.3&utmn=1464271798&utmhn=www.example.com&utmcs=UTF-8&utmsr=1920x1200&utmsc=32-bit&utmul=en-us&utmje=1&utmfl=10.0%20r22&utmdt=Page%20title&utmhid=1805038256&utmr=0&utmp=/&utmac=cookie%20value
+	
+		$url = parse_url($_SERVER['REQUEST_URI']);
+		
+		$query_string = $url['query'];
+		
+
+		function get_tracking_array( $query_string = '' ){
+
+			if ( $query_string != '' )
+			{
+
+		  	  $query_array = array();
+		
+				$raw_query = explode( '&', $query_string );
+
+			    foreach( $raw_query as $key => $key_value )
+				{
+				
+					$raw_value = explode( '=', $key_value );
+				
+					$query_array[$raw_value[0]] = $raw_value[1];
+			    }
+			    return $query_array;
+			} else {
+				return false;
+			}
+			
+		}
+		
+		clean_out( get_tracking_array( $query_string ) );
+		//clean_out( explode( '&', $query_string ) );
+		
+		$return_array = build_http_query( $query_string );
+		
+		echo $return_array['test'];
+
+		$setting = load::model( 'settings' );
+
+		$update_agree = $setting->update( 'tracking', $return_array['test'] );
+	
+	}
+	
+
+	public function dbtest ()
+	{
+	?>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		var base_url = "<?= BASE_URL ?>";
+	
+		jQuery(document).ready(function($) {
+			// Add that cool orange bkg to the input that has focus
+			$('input, select').bind({
+				focusin: function() {
+					var wrapper = $(this).closest('.input');
+					$(wrapper).addClass('block-message pyro');
+				},
+				focusout: function() {
+					var wrapper = $(this).closest('.input');
+					$(wrapper).removeClass('block-message pyro');
+				}
+			});
+		
+			$('input[name=password]').bind('keyup focus', function() {
+
+				$.post(base_url + 'ajax/confirm_database', {
+						server: $('input[name=hostname]').val(),
+			            port: $('input[name=port]').val(),
+						username: $('input[name=username]').val(),
+						password: $('input[name=password]').val()
+					}, function(data) {
+						if (data.success == 'true') {
+							 $('#confirm_db').html(data.message).removeClass('block-message error').addClass('block-message success');
+						} else {
+							$('#confirm_db').html(data.message).removeClass('block-message success').addClass('block-message error');
+						}
+					}, 'json'
+				);
+			});
+		});
+	</script>
+	<style type="text/css" media="screen">
+		.error {
+			color: red;
+		}
+		.success {
+			color: green;
+		}
+	</style>
+	<form action="" id="install_frm" method="post" accept-charset="utf-8">
+
+		<section class="title">
+			<h3>Database Settings</h3>
+		</section>
+
+		<section class="item">
+
+			<div class="input">
+				<label for="hostname">MySQL Hostname</label>
+				<input type="text" name="hostname" value="localhost" id="hostname">
+			</div>
+
+			<div class="input">
+				<label for="username">MySQL Username</label>
+				<input type="text" name="username" value="root" id="username">
+			</div>
+
+			<div class="input">
+				<label for="password">MySQL Password</label>
+				<input type="password" name="password" value="root" id="password">
+
+			</div>
+
+			<div class="input">
+				<label for="port">MySQL Port</label>
+				<input type="text" name="port" value="3306" id="port">
+
+			</div>
+
+			<div id="confirm_db">test</div>
+		</section>
+
+	</form>
+	
+	<?		
+	}
 
 	public function sortable ()
 	{			
@@ -231,6 +368,7 @@ class dev_controller {
 
 		return $page_flat_hiarchy;
 	}
+	
 	
 	public function snippet (  )
 	{
