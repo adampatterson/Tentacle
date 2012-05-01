@@ -1,0 +1,15 @@
+[submodule "tentacle/themes/duplex"]
+	path = tentacle/themes/duplex
+	url = git@github.com:adampatterson/tentacle-duplex.git
+[submodule "tentacle/themes/redux"]
+	path = tentacle/themes/redux
+	url = git@github.com:adampatterson/tentacle-redux.git
+[submodule "tentacle/themes/repro"]
+	path = tentacle/themes/repro
+	url = git@github.com:adampatterson/tentacle-repro.git
+[submodule "tentacle/themes/organic_structure"]
+	path = tentacle/themes/organic_structure
+	url = git@github.com:adampatterson/tentacle-organic-structure.git
+[submodule "tentacle/themes/tentacle"]
+	path = tentacle/themes/tentacle
+	url = git@github.com:adampatterson/tentacle-default.git
