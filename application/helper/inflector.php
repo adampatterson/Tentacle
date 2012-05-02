@@ -77,7 +77,10 @@ class inflector {
      */
     public static function humanize($string) 
     {
-        return ucfirst(str_replace('-', ' ', $string));
+		$string = str_replace('_', ' ', $string);
+		$string = str_replace('-', ' ', $string);
+		
+        return ucfirst( $string );
     }
 
 

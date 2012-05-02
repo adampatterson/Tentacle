@@ -105,7 +105,7 @@ define('TENTACLE_VERSION', 'v0.5');
 *
 * @global int $tentacle_db_version
 */
-define('TENTACLE_DB_VERSION', '104');
+define('TENTACLE_DB_VERSION', '105');
  
 
 /**
