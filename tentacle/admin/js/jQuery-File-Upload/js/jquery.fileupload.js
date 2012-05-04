@@ -1,5 +1,5 @@
 /*
- * jQuery File Upload Plugin 5.8
+ * jQuery File Upload Plugin 5.11.1
  * https://github.com/blueimp/jQuery-File-Upload
  *
  * Copyright 2010, Sebastian Tschan
@@ -10,7 +10,7 @@
  */
 
 /*jslint nomen: true, unparam: true, regexp: true */
-/*global define, window, document, XMLHttpRequestUpload, Blob, File, FormData, location */
+/*global define, window, document, Blob, FormData, location */
 
 (function (factory) {
     'use strict';
@@ -18,8 +18,7 @@
         // Register as an anonymous AMD module:
         define([
             'jquery',
-            './vendor/jquery.ui.widget',
-            './jquery.iframe-transport'
+            'jquery.ui.widget'
         ], factory);
     } else {
         // Browser globals:
@@ -27,6 +26,12 @@
     }
 }(function ($) {
     'use strict';
+
+    // The FileReader API is not actually used, but works as feature detection,
+    // as e.g. Safari supports XHR file uploads via the FormData API,
+    // but not non-multipart XHR file uploads:
+    $.support.xhrFileUpload = !!(window.XMLHttpRequestUpload && window.FileReader);
+    $.support.xhrFormDataFileUpload = !!window.FormData;
 
     // The fileupload widget listens for change events on file input fields defined
     // via fileInput setting and paste or drop events of the given dropZone.
@@ -58,7 +63,8 @@
             replaceFileInput: true,
             // The parameter name for the file form data (the request argument name).
             // If undefined or empty, the name property of the file input field is
-            // used, or "files[]" if the file input name property is also empty:
+            // used, or "files[]" if the file input name property is also empty,
+            // can be a string or an array of strings:
             paramName: undefined,
             // By default, each file of a selection is uploaded using an individual
             // request for XHR type uploads. Set to false to upload file
@@ -103,6 +109,10 @@
             // global progress calculation. Set the following option to false to
             // prevent recalculating the global progress data:
             recalculateProgress: true,
+            // Interval in milliseconds to calculate and trigger progress events:
+            progressInterval: 100,
+            // Interval in milliseconds to calculate progress bitrate:
+            bitrateInterval: 500,
 
             // Additional form data to be sent along with the file uploads can be set
             // using this option, which accepts an array of objects with name and
@@ -166,13 +176,33 @@
         },
 
         // A list of options that require a refresh after assigning a new value:
-        _refreshOptionsList: ['namespace', 'dropZone', 'fileInput'],
+        _refreshOptionsList: [
+            'namespace',
+            'dropZone',
+            'fileInput',
+            'multipart',
+            'forceIframeTransport'
+        ],
+
+        _BitrateTimer: function () {
+            this.timestamp = +(new Date());
+            this.loaded = 0;
+            this.bitrate = 0;
+            this.getBitrate = function (now, loaded, interval) {
+                var timeDiff = now - this.timestamp;
+                if (!this.bitrate || !interval || timeDiff > interval) {
+                    this.bitrate = (loaded - this.loaded) * (1000 / timeDiff) * 8;
+                    this.loaded = loaded;
+                    this.timestamp = now;
+                }
+                return this.bitrate;
+            };
+        },
 
         _isXHRUpload: function (options) {
-            var undef = 'undefined';
             return !options.forceIframeTransport &&
-                typeof XMLHttpRequestUpload !== undef && typeof File !== undef &&
-                (!options.multipart || typeof FormData !== undef);
+                ((!options.multipart && $.support.xhrFileUpload) ||
+                $.support.xhrFormDataFileUpload);
         },
 
         _getFormData: function (options) {
@@ -201,15 +231,29 @@
 
         _onProgress: function (e, data) {
             if (e.lengthComputable) {
-                var total = data.total || this._getTotal(data.files),
-                    loaded = parseInt(
-                        e.loaded / e.total * (data.chunkSize || total),
-                        10
-                    ) + (data.uploadedBytes || 0);
+                var now = +(new Date()),
+                    total,
+                    loaded;
+                if (data._time && data.progressInterval &&
+                        (now - data._time < data.progressInterval) &&
+                        e.loaded !== e.total) {
+                    return;
+                }
+                data._time = now;
+                total = data.total || this._getTotal(data.files);
+                loaded = parseInt(
+                    e.loaded / e.total * (data.chunkSize || total),
+                    10
+                ) + (data.uploadedBytes || 0);
                 this._loaded += loaded - (data.loaded || data.uploadedBytes || 0);
                 data.lengthComputable = true;
                 data.loaded = loaded;
                 data.total = total;
+                data.bitrate = data._bitrateTimer.getBitrate(
+                    now,
+                    loaded,
+                    data.bitrateInterval
+                );
                 // Trigger a custom progress event with a total data property set
                 // to the file size(s) of the current upload and a loaded data
                 // property calculated accordingly:
@@ -219,7 +263,12 @@
                 this._trigger('progressall', e, {
                     lengthComputable: true,
                     loaded: this._loaded,
-                    total: this._total
+                    total: this._total,
+                    bitrate: this._bitrateTimer.getBitrate(
+                        now,
+                        this._loaded,
+                        data.bitrateInterval
+                    )
                 });
             }
         },
@@ -246,8 +295,11 @@
 
         _initXHRData: function (options) {
             var formData,
-                file = options.files[0];
-            if (!options.multipart || options.blob) {
+                file = options.files[0],
+                // Ignore non-multipart setting if not supported:
+                multipart = options.multipart || !$.support.xhrFileUpload,
+                paramName = options.paramName[0];
+            if (!multipart || options.blob) {
                 // For non-multipart uploads and chunked uploads,
                 // file meta data is not part of the request body,
                 // so we transmit this data as part of the HTTP headers.
@@ -263,13 +315,13 @@
                     // Non-chunked non-multipart upload:
                     options.contentType = file.type;
                     options.data = file;
-                } else if (!options.multipart) {
+                } else if (!multipart) {
                     // Chunked non-multipart upload:
                     options.contentType = 'application/octet-stream';
                     options.data = options.blob;
                 }
             }
-            if (options.multipart && typeof FormData !== 'undefined') {
+            if (multipart && $.support.xhrFormDataFileUpload) {
                 if (options.postMessage) {
                     // window.postMessage does not allow sending FormData
                     // objects, so we just add the File/Blob objects to
@@ -278,13 +330,13 @@
                     formData = this._getFormData(options);
                     if (options.blob) {
                         formData.push({
-                            name: options.paramName,
+                            name: paramName,
                             value: options.blob
                         });
                     } else {
                         $.each(options.files, function (index, file) {
                             formData.push({
-                                name: options.paramName,
+                                name: options.paramName[index] || paramName,
                                 value: file
                             });
                         });
@@ -299,14 +351,18 @@
                         });
                     }
                     if (options.blob) {
-                        formData.append(options.paramName, options.blob, file.name);
+                        formData.append(paramName, options.blob, file.name);
                     } else {
                         $.each(options.files, function (index, file) {
                             // File objects are also Blob instances.
                             // This check allows the tests to run with
                             // dummy objects:
                             if (file instanceof Blob) {
-                                formData.append(options.paramName, file, file.name);
+                                formData.append(
+                                    options.paramName[index] || paramName,
+                                    file,
+                                    file.name
+                                );
                             }
                         });
                     }
@@ -350,16 +406,36 @@
             }
         },
 
+        _getParamName: function (options) {
+            var fileInput = $(options.fileInput),
+                paramName = options.paramName;
+            if (!paramName) {
+                paramName = [];
+                fileInput.each(function () {
+                    var input = $(this),
+                        name = input.prop('name') || 'files[]',
+                        i = (input.prop('files') || [1]).length;
+                    while (i) {
+                        paramName.push(name);
+                        i -= 1;
+                    }
+                });
+                if (!paramName.length) {
+                    paramName = [fileInput.prop('name') || 'files[]'];
+                }
+            } else if (!$.isArray(paramName)) {
+                paramName = [paramName];
+            }
+            return paramName;
+        },
+
         _initFormSettings: function (options) {
             // Retrieve missing options from the input field and the
             // associated form, if available:
             if (!options.form || !options.form.length) {
                 options.form = $(options.fileInput.prop('form'));
             }
-            if (!options.paramName) {
-                options.paramName = options.fileInput.prop('name') ||
-                    'files[]';
-            }
+            options.paramName = this._getParamName(options);
             if (!options.url) {
                 options.url = options.form.prop('action') || location.href;
             }
@@ -492,6 +568,8 @@
                 // and no other uploads are currently running,
                 // equivalent to the global ajaxStart event:
                 this._trigger('start');
+                // Set timer for global bitrate progress calculation:
+                this._bitrateTimer = new this._BitrateTimer();
             }
             this._active += 1;
             // Initialize the global progress values:
@@ -544,6 +622,7 @@
                 this._trigger('stop');
                 // Reset the global progress values:
                 this._loaded = this._total = 0;
+                this._bitrateTimer = null;
             }
         },
 
@@ -555,6 +634,8 @@
                 options = that._getAJAXSettings(data),
                 send = function (resolve, args) {
                     that._sending += 1;
+                    // Set timer for bitrate progress calculation:
+                    options._bitrateTimer = new that._BitrateTimer();
                     jqXHR = jqXHR || (
                         (resolve !== false &&
                         that._trigger('send', e, options) !== false &&
@@ -622,21 +703,34 @@
                 result = true,
                 options = $.extend({}, this.options, data),
                 limit = options.limitMultiFileUploads,
+                paramName = this._getParamName(options),
+                paramNameSet,
+                paramNameSlice,
                 fileSet,
                 i;
             if (!(options.singleFileUploads || limit) ||
                     !this._isXHRUpload(options)) {
                 fileSet = [data.files];
+                paramNameSet = [paramName];
             } else if (!options.singleFileUploads && limit) {
                 fileSet = [];
+                paramNameSet = [];
                 for (i = 0; i < data.files.length; i += limit) {
                     fileSet.push(data.files.slice(i, i + limit));
+                    paramNameSlice = paramName.slice(i, i + limit);
+                    if (!paramNameSlice.length) {
+                        paramNameSlice = paramName;
+                    }
+                    paramNameSet.push(paramNameSlice);
                 }
+            } else {
+                paramNameSet = paramName;
             }
             data.originalFiles = data.files;
             $.each(fileSet || data.files, function (index, element) {
-                var files = fileSet ? element : [element],
-                    newData = $.extend({}, data, {files: files});
+                var newData = $.extend({}, data);
+                newData.files = fileSet ? element : [element];
+                newData.paramName = paramNameSet[index];
                 newData.submit = function () {
                     newData.jqXHR = this.jqXHR =
                         (that._trigger('submit', e, this) !== false) &&
@@ -749,10 +843,12 @@
 
         _initEventHandlers: function () {
             var ns = this.options.namespace;
-            this.options.dropZone
-                .bind('dragover.' + ns, {fileupload: this}, this._onDragOver)
-                .bind('drop.' + ns, {fileupload: this}, this._onDrop)
-                .bind('paste.' + ns, {fileupload: this}, this._onPaste);
+            if (this._isXHRUpload(this.options)) {
+                this.options.dropZone
+                    .bind('dragover.' + ns, {fileupload: this}, this._onDragOver)
+                    .bind('drop.' + ns, {fileupload: this}, this._onDrop)
+                    .bind('paste.' + ns, {fileupload: this}, this._onPaste);
+            }
             this.options.fileInput
                 .bind('change.' + ns, {fileupload: this}, this._onChange);
         },
@@ -793,10 +889,9 @@
         },
 
         _create: function () {
-            var options = this.options,
-                dataOpts = $.extend({}, this.element.data());
-            dataOpts[this.widgetName] = undefined;
-            $.extend(options, dataOpts);
+            var options = this.options;
+            // Initialize options set via HTML5 data-attributes:
+            $.extend(options, $(this.element[0].cloneNode(false)).data());
             options.namespace = options.namespace || this.widgetName;
             this._initSpecialOptions();
             this._slots = [];
