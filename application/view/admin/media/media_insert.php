@@ -1,10 +1,50 @@
 <? load::view('admin/template-modal-header', array('title' => 'Insert media' ));?>
 
+<script type="text/javascript">
+
+	// domain.com/attachment/width/height/filename.extension
+	// domain.com/attachment/name.extension
+
+	$(document).ready(function(){
+
+			$('#none').click(function() {
+				
+				$('#link_url').val('');
+				return false;
+			});
+			
+			$('#file').click(function() {
+				
+				$('#link_url').val('http://placehold.it/200x200');
+				return false;
+			});
+
+			$('#insert').click(function() {
+
+				var Title				= $('#title').val();
+				var AltText				= $('#alt_text').val();
+				var Caption				= $('#caption').val();
+				var Link				= $('#link_url').val();
+				
+				if ( Link ) {
+					var HtmlLink 		= '<a href="'+Link+'"><img src="http://placehold.it/200x200" alt="'+AltText+'" /></a>';
+				} else {
+					var HtmlLink 		= '<img src="http://placehold.it/200x200" alt="'+AltText+'" />';
+				}
+
+				console.log(HtmlLink);
+
+				return false;
+			});
+			
+		});
+	</script>
+
 <div class="row">
 	<div class="span4">
-		<img src="http://placehold.it/200x200" />
-		<br />	
-		<button class="btn ">Edit Image</button>
+		<img src="http://placehold.it/200x200" class="thumbnail"/>
+		<!--<br />	
+		<button class="btn ">Edit Image</button>-->
 	</div>
 	<div class="span6">
 		<dl class="dl-horizontal">
@@ -25,62 +65,67 @@
 <div class="row">
 	<form class="form-horizontal">
 		<fieldset>
-			<h1>&nbsp;</h1>
+			<h3>&nbsp;</h3>
 			<div class="clearfix">
 				<label class="control-label" for="title">Title</label>
 				<div class="input">
-					<input type="text" class="input-xlarge span5" id="title" name="title">
+					<input type="text" class="input-xlarge span5" id="title" name="title" value="This is the title">
 				</div>
 			</div>
 			<div class="clearfix">
 				<label class="control-label" for="alt_text">Alternate Text</label>
 				<div class="input">
-					<input type="text" class="input-xlarge span5" id="alt_text" name="alt_text">
+					<input type="text" class="input-xlarge span5" id="alt_text" name="alt_text" value="This is an image" >
 				</div>
 			</div>
 			<div class="clearfix">
 				<label class="control-label" for="caption">Caption</label>
 				<div class="input">
-					<input type="text" class="input-xlarge span5" id="caption" name="caption">
+					<input type="text" class="input-xlarge span5" id="caption" name="caption" value="This is the caption">
 				</div>
 			</div>
 			<div class="clearfix">
-				<label class="control-label" for="link_utl">Link URL</label>
+				<label class="control-label" for="link_url">Link URL</label>
 				<div class="input">
-					<input type="text" class="input-xlarge span5" id="link_utl" name="link_utl">
+					<input type="text" class="input-xlarge span5" id="link_url" name="link_url" value="http://placehold.it/350x150" >
+					<div class="input-append">
+		                <button class="btn" type="button" id="none">None</button> <button class="btn" type="button" id="file">File</button>
+		             </div>
 				</div>
 			</div>
+		<? /* 
 			<div class="clearfix">
-				<label class="control-label">Allignment</label>
+				<label class="control-label">Alignment</label>
 				<div class="input">
 					<ul class="inputs-list">
 						<li>
 							<label>
-								<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+								<input type="radio" name="alignment" id="optionsRadios1" value="option1" checked="">
 									None
 							</label>
 						</li>
 						<li>
 							<label>
-								<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+								<input type="radio" name="alignment" id="optionsRadios2" value="option2">
 								Left
 							</label>
 						</li>
 						<li>
 							<label>
-								<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+								<input type="radio" name="alignment" id="optionsRadios3" value="option3">
 								Center
 							</label>
 						</li>
 						<li>
 							<label>
-								<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+								<input type="radio" name="alignment" id="optionsRadios3" value="option3">
 								Right
 							</label>
 						</li>
 					</ul>
 					</div>
 				</div>
+			*/?>
 			<div class="clearfix">
 				<label class="control-label">Size</label>
 				<div class="input">
@@ -116,7 +161,8 @@
 		<div class="row">
 			<div class="actions">
 				<!--<a href="javascript:;" onclick="tinyMCE.execCommand('mceInsertContent',false,'<img src=\'http://placehold.it/350x150\' />');">[ Insert Image ]</a>-->
-				<a class="btn primary" href="javascript:parent.top.tinyMCE.get('Content').execCommand('mceInsertContent',false,'<img src=\'http://placehold.it/350x150\' />');" onmouseup="parent.jQuery.fancybox.close();">Insert Image</a>
+				<!--<a class="btn primary" href="javascript:parent.top.tinyMCE.get('Content').execCommand('mceInsertContent',false,'<img src=\'http://placehold.it/350x150\' />');" onmouseup="parent.jQuery.fancybox.close();">Insert Image</a>-->
+				<a class="btn primary" id="insert">Insert Image</a>
 				<button class="btn danger">Delete</button>
 				<a class="btn" href="javascript:parent.jQuery.fancybox.close();">Cancel</a>
 			</div>
