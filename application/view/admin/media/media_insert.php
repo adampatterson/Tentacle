@@ -3,7 +3,7 @@
 <script type="text/javascript">
 
 	// domain.com/attachment/width/height/filename.extension
-	// domain.com/attachment/name.extension
+	// domain.com/attachment/name.extensio
 
 	$(document).ready(function(){
 
@@ -133,25 +133,25 @@
 						<li>
 							<label>
 								<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="" />
-									Thumbnail (150 × 150)
+									Thumbnail ( <?= get_option('image_thumb_size_w').' x '.get_option('image_thumb_size_h'); ?> )
 							</label>
 						</li>
 						<li>
 							<label>
 								<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" />
-								Medium (300 × 300)
+								Medium ( <?= get_option('image_medium_size_w').' x '.get_option('image_medium_size_h'); ?> )
 							</label>
 						</li>
 						<li>
 							<label>
 								<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" />
-								Large (584 × 584)
+								Large ( <?= get_option('image_large_size_w').' x '.get_option('image_large_size_h'); ?> )
 							</label>
 						</li>
 						<li>
 							<label>
 								<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" />
-								Full Size (1060 × 1060)
+								Full Size
 							</label>
 						</li>
 					</ul>
