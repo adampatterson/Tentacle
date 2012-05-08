@@ -5,8 +5,8 @@
 /**
  * Create a URI ( anything after the domain/folder/ )
  */
-define ('URI'			, tentacle::get_request_url() );
-define ('ACTIVE_THEME' , get_option( 'appearance' ) );
+define ( 'URI'			, tentacle::get_request_url() );
+define ( 'ACTIVE_THEME' , get_option( 'appearance' ) );
 define ( 'PATH'			, THEMES_URL.'/'.ACTIVE_THEME );
 define ( 'PATH_URI'  	, THEMES_DIR.ACTIVE_THEME );
 define ( 'HISTORY' 		, BASE_URL.URI.'/' );
@@ -204,7 +204,7 @@ class tentacle
 	function load_part( $part, $data = '' )
 	{
 	    // If theme does not exist display error
-	    if(!file_exists(THEMES_DIR.ACTIVE_THEME."/part-$part.php"))
+	    if(!file_exists(THEMES_DIR.ACTIVE_THEME."/$part.php"))
 	    {
 	        dingo_error(E_USER_WARNING,'The requested theme part ('.THEMES_DIR.ACTIVE_THEME."/part-$part.php) could not be found.");
 	        return FALSE;
@@ -218,7 +218,7 @@ class tentacle
 	            extract($data, EXTR_OVERWRITE);
 	        }
 	
-	        require(THEMES_DIR.ACTIVE_THEME."/part-$part.php");
+	        require(THEMES_DIR.ACTIVE_THEME."/$part.php");
 	        return FALSE;
 	    } // else
 	} // END render
@@ -450,6 +450,34 @@ class tentacle
 		    }
 
 		    return $tmp;
+		}
+
+
+		function get_tracking_array(  )
+		{
+            $url = parse_url($_SERVER['REQUEST_URI']);
+
+            $query_string = $url['query'];
+
+			if ( $query_string != '' )
+			{
+
+		  	  $query_array = array();
+
+				$raw_query = explode( '&', $query_string );
+
+			    foreach( $raw_query as $key => $key_value )
+				{
+
+					$raw_value = explode( '=', $key_value );
+
+					$query_array[$raw_value[0]] = $raw_value[1];
+			    }
+			    return $query_array;
+			} else {
+				return false;
+			}
+
 		}
 
 ?>
