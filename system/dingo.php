@@ -79,11 +79,12 @@ class bootstrap
 		
 		
 		// Get route
-		$uri = route::get(bootstrap::get_request_url());
+		$request_url = self::get_request_url();
+		$uri = Route::get($request_url);
 		
 		
 		// Set current page
-		define('CURRENT_PAGE',$uri['string']);
+		define('CURRENT_PAGE', $request_url);
 		
 		
 		// Validate

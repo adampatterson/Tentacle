@@ -318,8 +318,22 @@ class sql_model
 			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
 		}
 
-		$build = $pdo->exec( "	UPDATE  `options` SET  `value` =  'tentacle' WHERE  `options`.`key` = 'appearance" );
+		$build = $pdo->exec( "UPDATE  `options` SET  `value` =  'tentacle' WHERE  `options`.`key` = 'appearance" );
 	}
+	
+	public function get_106 ()
+	{
+		$config = config::get('db');
+		
+		try {
+			$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
+		} catch(PDOException $e) {
+			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
+		}
+
+		$build = $pdo->exec( "ALTER TABLE  `media` ADD  `slug` VARCHAR( 200 ) NOT NULL AFTER  `path`" );
+	}	
+	
 	
 	public function set_db ( $version )
 	{
