@@ -3,7 +3,7 @@ TENTACLE CMS
 
 **Tentacle is an OpenSource Content Management System.**
 
-It’s goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.
+Its goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.
 
 http://tentaclecms.com/blog/ 
 
