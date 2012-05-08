@@ -5,6 +5,20 @@ route::set('(.*)',array(
     'function'=>'index',
 	));
 
+
+// attachmentr route
+/* (jpg|png|gif|bmp)
+route::set('attachment/([0-9]+)x([0-9]+)/([^\s]+)\.',array(
+    'controller'=>'attachment',
+    'function'=>'file',
+    'arguments'=>array('$1','$2','$3')
+	));
+*/
+route::set('attachment',array(
+    'controller'=>'attachment',
+    'function'=>'file'
+	));
+
 // blog route
 route::set('blog',array(
     'controller'=>'blog',
@@ -53,17 +67,11 @@ route::set('tag/([-_a-zA-Z0-9]+)',array(
 
 
 // file route
-route::set('file',array(
-    'controller'=>'file',
+route::set('attachment',array(
+    'controller'=>'attachment',
     'function'=>'index'
 	));
 	
-route::set('file/([-_a-zA-Z0-9]+)',array(
-    'controller'=>'file',
-    'function'=>'index',
-    'arguments'=>array('$1')
-	));
-
 
 // admin route
 route::set('admin/([-_a-zA-Z0-9]+)',array(
@@ -146,17 +154,3 @@ route::set('ajax/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
 	));
 			
 route::set('default_route','page/index');
-
-
-
-/*
- * From Dingo
- * route::set('main/([a-zA-Z]+)/([a-zA-Z]+)',array('controller'=>'$1','function'=>'awesome','arguments'=>array('$2')));
- * route::set('one/([a-zA-Z]+)/([a-zA-Z]+)','query/$1/$2' );
- * route::set('sweet',array('controller'=>'test/sweet'));
- * 
- * From FROG CMS
- * Visiting /about/ would call PageController::about(),
- * visiting /blog/5 would call BlogController::post(5)
- * visiting /blog/5/comment/42/delete would call BlogController::deleteComment(5,42)
- */
