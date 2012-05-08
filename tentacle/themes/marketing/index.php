@@ -15,7 +15,7 @@ $data = array(
 
 if(!defined('SCAFFOLD')):
 ?>
-<? load_part( 'header',array( 'title'=>'Welcome to Tentacle', 'assets'=>'marketing' ) ); ?>
+<? load_part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>'marketing' ) ); ?>
 
 <div class="container">
 	<h1><?= $data->title; ?></h1>
@@ -28,6 +28,6 @@ if(!defined('SCAFFOLD')):
 	<?= render_content( $data->content ); ?>
 </div><!-- /container -->
 
-<? load_part( 'footer' ); 
+<? load_part( 'partials/footer' ); 
 endif;
 ?>
