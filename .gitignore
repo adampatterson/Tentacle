@@ -14,3 +14,5 @@ tentacle/themes/default/template-rfp.php
 tentacle/admin/js/tiny_mce_wp/
 tentacle/admin/js/tinymce_compressor_php/
 blog/
+tentacle/storage/temp/*
+tentacle/storage/file.zip
