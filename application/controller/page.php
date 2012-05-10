@@ -4,7 +4,11 @@ class page_controller {
 	
     public function index( $uri = "" ){
 		
-		load::library ('file');
+		//load::library ('file');
+	
+
+		
+		
 		$scaffold = new Scaffold ();
 		
 		$uri = trailingslashit( $uri );
@@ -21,6 +25,10 @@ class page_controller {
 		$post = $page->get_by_uri( $uri );
 		
 		$post_meta = $page->get_page_meta( $post->id );
+		
+		// Set GLOBALS
+		//$GLOBALS['post'] 			= $post;
+		//$GLOBALS['post_meta'] 	= $post_meta;
 		
 		require_once(APP_PATH.'/application/helper/template.php');
 		
