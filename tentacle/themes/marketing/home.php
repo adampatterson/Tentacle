@@ -15,7 +15,7 @@ $data = array(
 
 if(!defined('SCAFFOLD')):
 ?>
-<? load_part( 'header',array( 'title'=>'Welcome to Tentacle', 'assets'=>'marketing' ) ); ?>
+<? load_part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>'marketing' ) ); ?>
 
 	<header class="jumbotron subhead" id="overview">
 		<div class="container">
@@ -23,7 +23,7 @@ if(!defined('SCAFFOLD')):
 				<div class="span5">
 					<h1><small>Create &amp; Manage Content your way!</small></h1>
 					<p class="lead">Tentacle makes it easy to Design, Develop, and Write content for the web.</p>
-					<p class="lead">It’s goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
+					<p class="lead">Its goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
 					<p class="lead"><a class="btn btn-large btn-success" href="http://tentaclecms.com/blog/downloads/tentacle-beta" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5 Beta']);">&nbsp;&nbsp;&nbsp;Download&nbsp;&nbsp;&nbsp;</a></p>
 				</div>
 				<div class="span7">
@@ -42,7 +42,7 @@ if(!defined('SCAFFOLD')):
 			<div class="row visible-tablet">
 				<div class="span12">
 					<p class="lead">Tentacle makes it easy to Design, Develop, and Write content for the web.</p>
-					<p class="lead">It’s goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
+					<p class="lead">Its goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
 					<p class="lead"><a class="btn btn-large btn-success" href="http://tentaclecms.com/blog/downloads/tentacle-beta" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5 Beta']);">&nbsp;&nbsp;&nbsp;Download&nbsp;&nbsp;&nbsp;</a></p>
 				</div>
 			</div>
@@ -50,9 +50,8 @@ if(!defined('SCAFFOLD')):
 			<div class="row visible-phone">
 				<div class="span12">
 					<h1><small>Create &amp; Manage Content your way!</small></h1>
-					<p class="lead">Tentacle makes it easy to Design, Develop, and Write content for the web.</p>
-					<p class="lead">It’s goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
-					<p class="lead"><a class="btn btn-large btn-success" href="http://tentaclecms.com/blog/downloads/tentacle-beta" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5 Beta']);">&nbsp;&nbsp;&nbsp;Download&nbsp;&nbsp;&nbsp;</a></p>
+					<p class="lead">Tentacle makes it easy to Design, develop, and Write content for the web.</p>
+					<p class="lead">Its goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
 				</div>
 			</div>
 <?/* 
@@ -238,6 +237,6 @@ if(!defined('SCAFFOLD')):
 		$('#myModal').modal('hide')
 	</script>
 	
-	<? load_part( 'footer' ); 
+	<? load_part( 'partials/footer' ); 
 	endif;
 	?>
