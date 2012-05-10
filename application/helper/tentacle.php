@@ -10,6 +10,9 @@ define ( 'ACTIVE_THEME' , get_option( 'appearance' ) );
 define ( 'PATH'			, THEMES_URL.'/'.ACTIVE_THEME );
 define ( 'PATH_URI'  	, THEMES_DIR.ACTIVE_THEME );
 define ( 'HISTORY' 		, BASE_URL.URI.'/' );
+define ( 'IMAGE_T', get_option( 'image_thumb_size_w' ) );
+define ( 'IMAGE_M', get_option( 'image_medium_size_w' ) );
+define ( 'IMAGE_L', get_option( 'image_large_size_w' ) );
 
 /**
 * tentacle class
