@@ -97,7 +97,7 @@ define('IMAGE_URL'	   , TENTACLE_URL.'/storage/images/');
 *
 * @global string $tentacle_version
 */
-define('TENTACLE_VERSION', 'v0.5');
+define('TENTACLE_VERSION', 'v0.5.3');
  
  
 /**
