@@ -16,8 +16,7 @@
    
 // Author Tags
     function the_author () {
-		clean_out( $user );
-		
+
 	}
     function get_the_author () {}
     function the_author_link () {}
