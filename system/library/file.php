@@ -60,6 +60,14 @@ class file
 	}
 	
 	
+	// Unlink
+	// ---------------------------------------------------------------------------
+	public function delete($data=FALSE)
+	{
+		unlink($this->fh,$data);
+	}
+	
+	
 	// Read Line
 	// ---------------------------------------------------------------------------
 	public function read_lines($data=FALSE)
