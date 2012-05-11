@@ -11,7 +11,7 @@
  *
  * PHP versions 4 and 5
  *
- * {@internal The variable names are the same as those in
+ * {@internal The variable names are the same as those in 
  * {@link http://tools.ietf.org/html/rfc2104#section-2 RFC2104}.}}
  *
  * Here's a short example of how to use this library:
@@ -27,29 +27,31 @@
  * ?>
  * </code>
  *
- * LICENSE: This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston,
- * MA  02111-1307  USA
+ * LICENSE: Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  *
  * @category   Crypt
+ * @package    Crypt_Hash
  * @author     Jim Wigginton <terrafrost@php.net>
  * @copyright  MMVII Jim Wigginton
- * @license    http://www.gnu.org/licenses/lgpl.txt
+ * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
  * @version    $Id: Hash.php,v 1.6 2009/11/23 23:37:07 terrafrost Exp $
  * @link       http://phpseclib.sourceforge.net
- * 
- * @package Helpers
  */
 
 /**#@+
@@ -76,6 +78,7 @@ define('CRYPT_HASH_MODE_HASH',     3);
  * @author  Jim Wigginton <terrafrost@php.net>
  * @version 0.1.0
  * @access  public
+ * @package Crypt_Hash
  */
 class Crypt_Hash {
     /**
@@ -202,7 +205,8 @@ class Crypt_Hash {
 
         switch ($hash) {
             case 'md2':
-                $mode = CRYPT_HASH_MODE_INTERNAL;
+                $mode = CRYPT_HASH_MODE == CRYPT_HASH_MODE_HASH && in_array('md2', hash_algos()) ?
+                    CRYPT_HASH_MODE_HASH : CRYPT_HASH_MODE_INTERNAL;
                 break;
             case 'sha384':
             case 'sha512':
@@ -234,6 +238,7 @@ class Crypt_Hash {
                     case 'md5-96':
                         $this->hash = 'md5';
                         return;
+                    case 'md2':
                     case 'sha256':
                     case 'sha384':
                     case 'sha512':
@@ -301,7 +306,7 @@ class Crypt_Hash {
                         resultant L byte string as the actual key to HMAC."
 
                         -- http://tools.ietf.org/html/rfc2104#section-2 */
-                    $key = strlen($this->key) > $this->b ? call_user_func($this->$hash, $this->key) : $this->key;
+                    $key = strlen($this->key) > $this->b ? call_user_func($this->hash, $this->key) : $this->key;
 
                     $key    = str_pad($key, $this->b, chr(0));      // step 1
                     $temp   = $this->ipad ^ $key;                   // step 2
@@ -330,7 +335,7 @@ class Crypt_Hash {
     /**
      * Returns the hash length (in bytes)
      *
-     * @access private
+     * @access public
      * @return Integer
      */
     function getLength()
@@ -402,7 +407,10 @@ class Crypt_Hash {
         $l = chr(0);
         for ($i = 0; $i < $length; $i+= 16) {
             for ($j = 0; $j < 16; $j++) {
-                $c[$j] = chr($s[ord($m[$i + $j] ^ $l)]);
+                // RFC1319 incorrectly states that C[j] should be set to S[c xor L]
+                //$c[$j] = chr($s[ord($m[$i + $j] ^ $l)]);
+                // per <http://www.rfc-editor.org/errata_search.php?rfc=1319>, however, C[j] should be set to S[c xor L] xor C[j]
+                $c[$j] = chr($s[ord($m[$i + $j] ^ $l)] ^ ord($c[$j]));
                 $l = $c[$j];
             }
         }
@@ -549,7 +557,7 @@ class Crypt_Hash {
     function _sha512($m)
     {
         if (!class_exists('Math_BigInteger')) {
-            use_helper('BigInteger');
+            require_once('Math/BigInteger.php');
         }
 
         static $init384, $init512, $k;
@@ -557,11 +565,11 @@ class Crypt_Hash {
         if (!isset($k)) {
             // Initialize variables
             $init384 = array( // initial values for SHA384
-                'cbbb9d5dc1059ed8', '629a292a367cd507', '9159015a3070dd17', '152fecd8f70e5939',
+                'cbbb9d5dc1059ed8', '629a292a367cd507', '9159015a3070dd17', '152fecd8f70e5939', 
                 '67332667ffc00b31', '8eb44a8768581511', 'db0c2e0d64f98fa7', '47b5481dbefa4fa4'
             );
             $init512 = array( // initial values for SHA512
-                '6a09e667f3bcc908', 'bb67ae8584caa73b', '3c6ef372fe94f82b', 'a54ff53a5f1d36f1',
+                '6a09e667f3bcc908', 'bb67ae8584caa73b', '3c6ef372fe94f82b', 'a54ff53a5f1d36f1', 
                 '510e527fade682d1', '9b05688c2b3e6c1f', '1f83d9abfb41bd6b', '5be0cd19137e2179'
             );
 
