@@ -3,8 +3,20 @@ class dev_controller {
 	
 
 	public function index()
-	{				
-		
+	{
+		include TENTACLE_LIB.'chromephp/ChromePhp.php';
+		ChromePhp::log('hello world');
+		ChromePhp::log($_SERVER);
+
+		// using labels
+		foreach ($_SERVER as $key => $value)
+		{
+		    ChromePhp::log($key, $value);
+		}
+
+		// warnings and errors
+		ChromePhp::warn('this is a warning');
+		ChromePhp::error('this is an error');
 	}
 	
 	
@@ -207,52 +219,27 @@ class dev_controller {
 		echo 'Token: ' . $_SESSION['ga_auth_token'];
 	}
 	
+	
 	public function tracking()
 	{
-	/*
 		header( "Content-type: image/gif"); 
 		header( "Expires: Wed, 5 Feb 1986 06:06:06 GMT"); 
 		header( "Cache-Control: no-cache"); 
 		header( "Cache-Control: must-revalidate"); 
 
 		printf ('%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%', 71,73,70,56,57,97,1,0,1,0,128,255,0,192,192,192,0,0,0,33,249,4,1,0,0,0,0,44,0,0,0,0,1,0,1,0,0,2,2,68,1,0,59);
-	*/
+
 		//?utmwv=4.3&utmn=1464271798&utmhn=www.example.com&utmcs=UTF-8&utmsr=1920x1200&utmsc=32-bit&utmul=en-us&utmje=1&utmfl=10.0%20r22&utmdt=Page%20title&utmhid=1805038256&utmr=0&utmp=/&utmac=cookie%20value
 	
 		$url = parse_url($_SERVER['REQUEST_URI']);
 		
 		$query_string = $url['query'];
 		
-
-		function get_tracking_array( $query_string = '' ){
-
-			if ( $query_string != '' )
-			{
-
-		  	  $query_array = array();
+		//clean_out( get_tracking_array( $query_string ) );
 		
-				$raw_query = explode( '&', $query_string );
-
-			    foreach( $raw_query as $key => $key_value )
-				{
-				
-					$raw_value = explode( '=', $key_value );
-				
-					$query_array[$raw_value[0]] = $raw_value[1];
-			    }
-			    return $query_array;
-			} else {
-				return false;
-			}
-			
-		}
+		$return_array = get_tracking_array( $query_string );
 		
-		clean_out( get_tracking_array( $query_string ) );
-		//clean_out( explode( '&', $query_string ) );
-		
-		$return_array = build_http_query( $query_string );
-		
-		echo $return_array['test'];
+		//echo $return_array['test'];
 
 		$setting = load::model( 'settings' );
 
@@ -703,18 +690,21 @@ class dev_controller {
 	 **/
 	public function theme()
 	{ 
+		
+		define( 'SCAFFOLD' , 'TRUE' );
+		
 		echo '<h2>Detected Themes</h2>';
 			
 		clean_out(get_themes());
 		
 		echo '<h2>Valid Template Files</h2>';
-			clean_out(get_templates('default'));
+			clean_out(get_templates('tentacle'));
 		
 		echo '<h2>Themes Settings</h2>';
-			clean_out(get_settings('default'));
+			clean_out(get_settings('tentacle'));
 		
 		echo '<h2>Themes Resources</h2>';
-			clean_out(get_resources(THEMES_DIR.'default'));
+			clean_out(get_resources(THEMES_DIR.'tentacle'));
 	}
 	
 	
@@ -934,44 +924,33 @@ class dev_controller {
 
 	public function hash () 
 	{
+		
+		/*
+		* create a hash from a users domain name an email address
+		* send hash to remote servier for verification.
+		*/
 		load::helper ('hash');
 
 		$hash = new Crypt_Hash('sha512');
 
-		$hash->setKey('abcdefg');
+		$email 		= 'adamapatterson@gmail.com';
+		$domain 	= 'tentaclecms.com';
+		$token 		= '&@?(l?95jl!rxxknfzc!';
+		
+		$hash_string = '7oHB0wNEzMsXmeQStp3wHgFOutaT0in3FvVnZbXJ0NjV7rEJHfYBbfrsfPpnADPPQs0xka9tTJ+eZaTBbGN/ow==';
+		
+		$hash->setKey($email.$token);
+		
+		if (base64_encode($hash->hash($domain)) == $hash_string )
+		{
+			echo 'We have a match!';
+			
+		}
 
-		echo base64_encode($hash->hash('abcdefg'));
 	} // END Hash
  
 
-	/**
-	 * json function
-	 *
-	 * @return void
-	 * @author Adam Patterson
-	 **/
 
-	function json () 
-	{
-		load::helper ('json');
-		
-		// create a new instance of Services_JSON
-		$json = new Services_JSON();
-
-		// convert a complexe value to JSON notation, and send it to the browser
-		$value = array('foo', 'bar', array(1, 2, 'baz'), array(3, array(4)));
-		$output = $json->encode($value);
-
-		print($output);
-		// prints: ["foo","bar",[1,2,"baz"],[3,[4]]]
-
-		// accept incoming POST data, assumed to be in JSON notation
-		$input = file_get_contents('php://input', 1000000);
-		$value = $json->decode($input);
-
-	} // END JSON
-	
-	
 	/**
 	* smushit function
 	*
@@ -1028,7 +1007,7 @@ class dev_controller {
 		echo '</pre>';
 		
 		$array = (array)$object;
-		echo '<h2>Array to Object</h2><pre>';
+		echo '<h2>Object to Array</h2><pre>';
 			print_r($array);
 		echo '</pre>';
 		
@@ -1128,42 +1107,6 @@ class dev_controller {
 	<?
 	}
 	
-	/**
-	* xml function
-	*
-	* @return void
-	* @author Adam Patterson
-	**/
-	public function xml ()
-	{
-		
-		$array = array(
-			'post_type' => 'Post Type',
-			'paged' => 'Paged',
-			'posts_per_page' => 2,
-			'name' => array(				
-				'name' => 'First Name',
-				'input' => 'input',
-				'type' => 'text',
-				'notes' => 'This is a note'
-				));
-				
-		echo '<h2>XML</h2>';
-		load::helper ('xml');
-
-		$xml = "<note>
-		<to>Tove</to>
-		<from>Jani</from>
-		<heading>Reminder</heading>
-		<body>Don't forget me this weekend!</body>
-		</note>";
-
-		echo '<pre>';
-		print_r(xml2arr($xml));
-		echo '</pre>';
-		
-		#arr2xml(&$object, $array);
-	}
 
 	/**
 	 * inflector function
@@ -1223,7 +1166,7 @@ class dev_controller {
 		echo '<h4>fix()</h4> '.fix($html_string, true).'<br />';
 		echo '<h4>unfix()</h4> '.unfix($san_string).'<br />';
 		echo '<h4>sanitize()</h4> '.sanitize($string).'<br />';
-		echo '<h4>random()</h4> '.random(100, true).'<br />';
+		echo '<h4>random()</h4> '.random(20, true).'<br />';
 		echo '<h4>normalize()</h4> '.normalize($string).'<br />';
 		echo '<h4>pluralize()</h4>'.pluralize(3, 'bean','beans');
 		echo '<h4>escapeStr()</h4> '.escapeStr($slash_string).'<br />';
@@ -1363,8 +1306,34 @@ class dev_controller {
 	public function track()
 	{	
 		echo '<h2>Track</h2>';
-		load::helper ('track');
+		load::helper('track');
 	}// END Function
+	
+	
+	/**
+	 * create_user function
+	 *
+	 * @return void
+	 * @author Adam Patterson
+	 **/
+	public function create_user ()
+	{
+		/*user::create(array(
+			'username'=>'adampatterson',
+			'email'=>'adamapatterson@gmail.com',
+			'password'=>'pineapple23',
+			'type'=>'admin'
+		));
+	
+		user::update('adamapatterson@gmail.com')
+			->data('first_name','Adam')
+	        ->data('last_name','Patterson')
+			->data('activity_key','')
+			->data('url','http://www.adampatterson.ca')
+			->data('display_name','Adam Patterson')
+			->save(); */
+	}
+	
 	
 	
 	/**
@@ -1400,395 +1369,31 @@ class dev_controller {
 			echo 'Can not load the file.';			
 		}
 	}// END Function
-	/*
-	public funstion object_variable () {
-		# @todo test this with template data.
-		extract($data, EXTR_OVERWRITE);
-	}*/
-
-# lib/glip
-# lib/htmlLawed
-# lib/jquery-uplaodify
-# lib/markit up
-# lib/min
-# lib/pclZip
-# lib/PHPExcel
-# lib/phpseclib
-# lib/pgp
-# lib/smartypants
-# lib/spyc
-# lib/xmlrpc
+	
 
 	/**
-	 * create_user function
+	 * wordpress_xml function
 	 *
 	 * @return void
 	 * @author Adam Patterson
 	 **/
-	public function create_user ()
-	{
-		/*user::create(array(
-			'username'=>'adampatterson',
-			'email'=>'adamapatterson@gmail.com',
-			'password'=>'pineapple23',
-			'type'=>'admin'
-		));
-	
-		user::update('adamapatterson@gmail.com')
-			->data('first_name','Adam')
-	        ->data('last_name','Patterson')
-			->data('activity_key','')
-			->data('url','http://www.adampatterson.ca')
-			->data('display_name','Adam Patterson')
-			->save(); */
-	}
-	
-	public function ace ()
-	{
-		?>
-		<script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
-		<script src="<?=TENTACLE_JS; ?>ace/ace.js" type="text/javascript" charset="utf-8"></script>
-		<script src="<?=TENTACLE_JS; ?>ace/theme-textmate.js" type="text/javascript" charset="utf-8"></script>
-		<script src="<?=TENTACLE_JS; ?>ace/mode-html.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript" charset="utf-8">
-			window.onload = function() {
-			    var editor = ace.edit("editor");
-		
-					editor.setTheme("ace/theme/textmate");
+	public function wordpress_xml()
+	{	
+		tentacle::library('wordpress_import/controllers','admin');
+
+		$appdata = STORAGE_DIR.'/temp/wordpress.xml';		
+
+		if (file_exists($appdata)) 
+		{
+			echo 'Touched the file.';
 			
-				var JavaScriptMode = require("ace/mode/html").Mode;
-					editor.getSession().setMode(new JavaScriptMode());
-				
-					editor.getSession().setUseWrapMode(true);
-					editor.setHighlightActiveLine(true);
-					editor.getSession().setTabSize(4);
-					editor.setShowPrintMargin(false);
-					
-					editor.getSession().setValue($("div#editor_content").html());
-		
-			};
-		</script>
-	
-<div id="editor_content" style="display: none;"></div>
-<div id="editor" style="height: 500px; width: 700px"></div>
-		<?		
-	}
-	
-	public function mirror ()
-	{
-		?>
-			<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/lib/codemirror.css">
-		   <script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/lib/codemirror.js"></script>
-			<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/xml/xml.js"></script>
-			<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/javascript/javascript.js"></script>
-			<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/css/css.js"></script>
-			<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.16/theme/default.css">
-			<script src="<?=TENTACLE_JS; ?>CodeMirror-2.16/mode/htmlmixed/htmlmixed.js"></script>
-		    <style type="text/css">
-		      .CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
-		      .activeline {background: #f0fcff !important;}
-		    </style>
+			$rss = simplexml_load_file( $appdata, 'SimpleXMLElement', LIBXML_NOCDATA);
 
-			    <form>
-<textarea id="code" name="code"></textarea></form>
-			<script>
-			      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-			        lineNumbers: true,
-			        theme: "default",
-					mode: "text/html",
-					onCursorActivity: function() {
-					    editor.setLineClass(hlLine, null);
-					    hlLine = editor.setLineClass(editor.getCursor().line, "activeline");
-					  },
-			        onKeyEvent: function(cm, e) {
-			          // Hook into ctrl-space
-			          if (e.keyCode == 32 && (e.ctrlKey || e.metaKey) && !e.altKey) {
-			            e.stop();
-			            return CodeMirror.simpleHint(cm, CodeMirror.javascriptHint);
-			          }
-			        }
-			      });
-			var hlLine = editor.setLineClass(0, "activeline");
-			    </script>
-			
-			
-		<?
-	}
-
-	public function upload_image ()
-	{
-		$post_id = '123';
-
-		$targetFolder = STORAGE_DIR.'images/'; // Relative to the root
-		
-		?>
-		<!DOCTYPE HTML>
-		<html lang="en">
-		<head>
-		<meta charset="utf-8">
-		<title>jQuery File Upload Demo</title>
-		<meta name="description" content="File Upload widget with multiple file selection, drag&amp;drop support, progress bar and preview images for jQuery. Supports cross-domain, chunked and resumable file uploads. Works with any server-side platform (Google App Engine, PHP, Python, Ruby on Rails, Java, etc.) that supports standard HTML form file uploads.">
-		<!-- Bootstrap CSS Toolkit styles -->
-		<link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap.min.css">
-		<!-- Bootstrap styles for responsive website layout, supporting different screen sizes -->
-		<link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-responsive.min.css">
-		<!-- Bootstrap CSS fixes for IE6 -->
-		<!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
-		<!-- Bootstrap Image Gallery styles -->
-		<link rel="stylesheet" href="http://blueimp.github.com/Bootstrap-Image-Gallery/css/bootstrap-image-gallery.min.css">
-		<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
-		<link rel="stylesheet" href="<?= TENTACLE_CSS ?>/jquery.fileupload-ui.css">
-		<!-- Shim to make HTML5 elements usable in older Internet Explorer versions -->
-		<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-		</head>
-		<body>
-		<div class="container">
-		    <div class="page-header">
-		        <h1>File Upload</h1>
-		    </div>
-		    <br>
-		    <!-- The file upload form used as target for the file upload widget -->    
-			<!--<form id="fileupload" action="<?= TENTACLE_JS ?>jQuery-File-Upload/server/php/" method="POST" enctype="multipart/form-data">-->
-			<form id="fileupload" action="<?= BASE_URL ?>action/upload_media/" method="POST" enctype="multipart/form-data">
-		        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-		        <div class="row fileupload-buttonbar">
-		            <div class="span7">
-		                <!-- The fileinput-button span is used to style the file input field as button -->
-		                <span class="btn btn-success fileinput-button">
-		                    <span><i class="icon-plus icon-white"></i> Add files...</span>
-		                    <input type="file" name="files[]" multiple>
-		                </span>
-		                <button type="submit" class="btn btn-primary start">
-		                    <i class="icon-upload icon-white"></i> Start upload
-		                </button>
-		                <button type="reset" class="btn btn-warning cancel">
-		                    <i class="icon-ban-circle icon-white"></i> Cancel upload
-		                </button>
-		                <button type="button" class="btn btn-danger delete">
-		                    <i class="icon-trash icon-white"></i> Delete
-		                </button>
-		                <input type="checkbox" class="toggle">
-		            </div>
-		            <div class="span5">
-		                <!-- The global progress bar -->
-		                <div class="progress progress-success progress-striped active fade">
-		                    <div class="bar" style="width:0%;"></div>
-		                </div>
-		            </div>
-		        </div>
-		        <!-- The loading indicator is shown during image processing -->
-		        <div class="fileupload-loading"></div>
-		        <br>
-		        <!-- The table listing the files available for upload/download -->
-		        <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
-		    </form>
-		    <br>
-		</div>
-		<!-- modal-gallery is the modal dialog used for the image gallery -->
-		<div id="modal-gallery" class="modal modal-gallery hide fade">
-		    <div class="modal-header">
-		        <a class="close" data-dismiss="modal">&times;</a>
-		        <h3 class="modal-title"></h3>
-		    </div>
-		    <div class="modal-body"><div class="modal-image"></div></div>
-		    <div class="modal-footer">
-		        <a class="btn btn-primary modal-next">Next <i class="icon-arrow-right icon-white"></i></a>
-		        <a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i> Previous</a>
-		        <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> Slideshow</a>
-		        <a class="btn modal-download" target="_blank"><i class="icon-download"></i> Download</a>
-		    </div>
-		</div>
-		<!-- The template to display files available for upload -->
-		<script id="template-upload" type="text/x-tmpl">
-		{% for (var i=0, file; file=o.files[i]; i++) { %}
-		    <tr class="template-upload fade">
-		        <td class="preview"><span class="fade"></span></td>
-		        <td class="name">{%=file.name%}</td>
-		        <td class="size">{%=o.formatFileSize(file.size)%}</td>
-		        {% if (file.error) { %}
-		            <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
-		        {% } else if (o.files.valid && !i) { %}
-		            <td>
-		                <div class="progress progress-success progress-striped active"><div class="bar" style="width:0%;"></div></div>
-		            </td>
-		            <td class="start">{% if (!o.options.autoUpload) { %}
-		                <button class="btn btn-primary">
-		                    <i class="icon-upload icon-white"></i> {%=locale.fileupload.start%}
-		                </button>
-		            {% } %}</td>
-		        {% } else { %}
-		            <td colspan="2"></td>
-		        {% } %}
-		        <td class="cancel">{% if (!i) { %}
-		            <button class="btn btn-warning">
-		                <i class="icon-ban-circle icon-white"></i> {%=locale.fileupload.cancel%}
-		            </button>
-		        {% } %}</td>
-		    </tr>
-		{% } %}
-		</script>
-		<!-- The template to display files available for download -->
-		<script id="template-download" type="text/x-tmpl">
-		{% for (var i=0, file; file=o.files[i]; i++) { %}
-		    <tr class="template-download fade">
-		        {% if (file.error) { %}
-		            <td></td>
-		            <td class="name">{%=file.name%}</td>
-		            <td class="size">{%=o.formatFileSize(file.size)%}</td>
-		            <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
-		        {% } else { %}
-		            <td class="preview">{% if (file.thumbnail_url) { %}
-		                <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
-		            {% } %}</td>
-		            <td class="name">
-		                <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
-		            </td>
-		            <td class="size">{%=o.formatFileSize(file.size)%}</td>
-		            <td colspan="2"></td>
-		        {% } %}
-		        <td class="delete">
-		            <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
-		                <i class="icon-trash icon-white"></i> {%=locale.fileupload.destroy%}
-		            </button>
-		            <input type="checkbox" name="delete" value="1">
-		        </td>
-		    </tr>
-		{% } %}
-		</script>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-		<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
-		<!-- The Templates plugin is included to render the upload/download listings -->
-		<script src="http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"></script>
-		<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-		<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
-		<!-- The Canvas to Blob plugin is included for image resizing functionality -->
-		<script src="http://blueimp.github.com/JavaScript-Canvas-to-Blob/canvas-to-blob.min.js"></script>
-		<!-- Bootstrap JS and Bootstrap Image Gallery are not required, but included for the demo -->
-		<script src="http://blueimp.github.com/cdn/js/bootstrap.min.js"></script>
-		<script src="http://blueimp.github.com/Bootstrap-Image-Gallery/js/bootstrap-image-gallery.min.js"></script>
-		<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-		<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
-		<!-- The basic File Upload plugin -->
-		<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/jquery.fileupload.js"></script>
-		<!-- The File Upload image processing plugin -->
-		<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/jquery.fileupload-ip.js"></script>
-		<!-- The File Upload user interface plugin -->
-		<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/jquery.fileupload-ui.js"></script>
-		<!-- The localization script -->
-		<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/locale.js"></script>
-		<!-- The main application script -->
-		<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/main.js"></script>
-		<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
-		<!--[if gte IE 8]><script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/cors/jquery.xdr-transport.js"></script><![endif]-->
-		</body> 
-		</html>
-		<?
-    }
-
-
-    public function text () {
-        ?>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        <script type="text/javascript">
-			$(document).ready( function() {
-				$('#ClickWordList li').click(function() { 
-					$("#txtMessage").insertAtCaret($(this).html());
-					return false
-				});
-			});
-			
-			$.fn.insertAtCaret = function (myValue) {
-				return this.each(function(){
-					//IE support
-					if (document.selection) {
-						this.focus();
-						sel = document.selection.createRange();
-						sel.text = myValue;
-						this.focus();
-					}
-					//MOZILLA / NETSCAPE support
-					else if (this.selectionStart || this.selectionStart == '0') {
-						var startPos = this.selectionStart;
-						var endPos = this.selectionEnd;
-						var scrollTop = this.scrollTop;
-						this.value = this.value.substring(0, startPos)+ myValue+ this.value.substring(endPos,this.value.length);
-						this.focus();
-						this.selectionStart = startPos + myValue.length;
-						this.selectionEnd = startPos + myValue.length;
-						this.scrollTop = scrollTop;
-					} else {
-						this.value += myValue;
-						this.focus();
-					}
-				});
-			};
-			</script>
-
-			<textarea name="txtMessage" id="txtMessage" class="txtDropTarget ui-droppable" cols="80" rows="15"></textarea>		
-
-			<legend>Click to insert:</legend>
-			<ul id="ClickWordList">
-				<li><a href="http://www.google.ca">Link</a></li>
-			</ul>
-
-			<?
-    }
-
-	public function file ()
-	{
-		echo IMAGE_DIR;
-	}
-
-	public function loader ()
-	{
-		define('BACKPRESS_PATH','');
-		
-		include_once(TENTACLE_LIB.'/backpress/functions.core.php');
-		
-		include_once(TENTACLE_LIB.'backpress/class.bp-log.php');
-		include_once(TENTACLE_LIB.'backpress/class.bp-roles.php');
-		include_once(TENTACLE_LIB.'backpress/class.bp-sql-schema-parser.php');
-		include_once(TENTACLE_LIB.'backpress/class.bp-user.php');
-		include_once(TENTACLE_LIB.'backpress/class.bpdb-multi.php');
-		include_once(TENTACLE_LIB.'backpress/class.bpdb.php');
-		include_once(TENTACLE_LIB.'backpress/class.ixr.php');
-		include_once(TENTACLE_LIB.'backpress/class.mailer-smtp.php');
-		include_once(TENTACLE_LIB.'backpress/class.mailer.php');
-		include_once(TENTACLE_LIB.'backpress/class.passwordhash.php');
-		include_once(TENTACLE_LIB.'backpress/class.wp-ajax-response.php');
-		include_once(TENTACLE_LIB.'backpress/class.wp-auth.php');
-		include_once(TENTACLE_LIB.'backpress/class.wp-dependencies.php');
-		include_once(TENTACLE_LIB.'backpress/class.wp-error.php');
-		include_once(TENTACLE_LIB.'backpress/class.wp-http.php');
-		include_once(TENTACLE_LIB.'backpress/class.wp-pass.php');
-		include_once(TENTACLE_LIB.'backpress/class.wp-scripts.php');
-		include_once(TENTACLE_LIB.'backpress/class.wp-styles.php');
-		include_once(TENTACLE_LIB.'backpress/class.wp-taxonomy.php');
-		include_once(TENTACLE_LIB.'backpress/class.wp-users.php');
-		include_once(TENTACLE_LIB.'backpress/functions.bp-options.php');
-		include_once(TENTACLE_LIB.'backpress/functions.compat.php');
-		include_once(TENTACLE_LIB.'backpress/functions.formatting.php');
-		include_once(TENTACLE_LIB.'backpress/functions.kses.php');
-		include_once(TENTACLE_LIB.'backpress/functions.plugin-api.php');
-		include_once(TENTACLE_LIB.'backpress/functions.shortcodes.php');
-		include_once(TENTACLE_LIB.'backpress/functions.wp-cron.php');
-		include_once(TENTACLE_LIB.'backpress/functions.wp-object-cache.php');
-		include_once(TENTACLE_LIB.'backpress/functions.wp-scripts.php');
-		include_once(TENTACLE_LIB.'backpress/functions.wp-styles.php');
-		include_once(TENTACLE_LIB.'backpress/functions.wp-taxonomy.php');
-		include_once(TENTACLE_LIB.'backpress/interface.bp-options.php');
-
-		// Only include one of these two
-		include_once(TENTACLE_LIB.'backpress/loader.wp-object-cache-memcached.php');
-		//include_once(TENTACLE_LIB.'backpress/loader.wp-object-cache.php');
-		
-		// Load an array of assets
-		
-		// Read what has been requested
-		
-		// Look in the assets folder
-		
-		//load the content and output to this files
-	}
+			//clean_out( $rss );
+		}
+		else
+		{
+			echo 'Can not load the file.';			
+		}
+	}// END Function
 }// END Dev
