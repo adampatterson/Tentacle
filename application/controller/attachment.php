@@ -11,7 +11,18 @@ class attachment_controller {
 
 		$file_meta = explode('.', $file['file'] );
 		
-        if( file_exists( $file_path ) )
+		$exif = exif_read_data($file_path, 0, true);
+		echo "$file_path<br />\n";
+		foreach ($exif as $key => $section) {
+		    foreach ($section as $name => $val) {
+		        echo "$key.$name: $val<br />\n";
+		    }
+		}
+		
+		
+		$process = FALSE;
+		
+        if( file_exists( $file_path ) && $process )
         {         
 			$image = new image( IMAGE_DIR.$file['file'] );
 			
