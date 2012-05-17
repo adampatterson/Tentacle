@@ -151,8 +151,38 @@ if(!defined('SCAFFOLD')):
 
 					<div class="span4">
 						<h3>Join our Mailing List</h3>
-						<p class="lead">From time to time we like to let every one know what has been going on and announce new features.</p>
-						<a class="btn btn-default" data-toggle="modal" href="#myModal">Join it!</a>
+						<p class="lead">Get the lowdown on announcements and cool new features.</p>
+						
+						<form method="post" action="http://www.industrymailout.com/Industry/SubscribeRedirect.aspx" >
+					
+							<input type="hidden" name="mailinglistid" value="27205" />
+							<input type="hidden" name="success" value="http://tentaclecms.com" />
+							<input type="hidden" name="errorparm" value="error" />
+
+							<div class="control-group">
+								<label for="firstname">First Name</label>
+								<div class="controls">
+									<input type="text" name="givenname" maxlength="50" class="span3 input-xlarge" id="firstname" >
+								</div>
+				
+								<label for="lastname">Last Name</label>
+								<div class="controls">
+									<input type="text" name="familyname" maxlength="50" class="span3 input-xlarge" id="lastname" >
+								</div>
+								
+								<label for="email">Email</label>
+								<div class="controls">
+									<input type="text" name="email" required="required" value="" class="email span3 input-xlarge" id="email">
+								</div>
+							</div>
+
+							<?php if($note = note::get('session')): ?>
+								<input type='hidden' name='history' value="<?= $note['content'];?> " />
+							<?php endif;?>
+					
+						    <input type="submit" value="Join it!" class="btn btn-default" />
+
+						</form>
 						<? /*
 						<h3>Forms</h3>
 						<p class="lead">Get answers to your design and development questions from the online community.</p>
@@ -188,8 +218,8 @@ if(!defined('SCAFFOLD')):
 		</div>
 */?>
 	</div>
-
-	<div class="modal hide fade" id="myModal">
+<?/* 
+	<div class="modal hide fade" id="myModal" style="width: 300px;">
 		<form method="post" action="http://www.industrymailout.com/Industry/SubscribeRedirect.aspx" >
 			<div class="modal-header">
 			<a class="close" data-dismiss="modal">×</a>
@@ -236,7 +266,7 @@ if(!defined('SCAFFOLD')):
 	<script type="text/javascript" charset="utf-8">
 		$('#myModal').modal('hide')
 	</script>
-	
+*/?>	
 	<? load_part( 'partials/footer' ); 
 	endif;
 	?>

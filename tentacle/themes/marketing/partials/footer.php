@@ -1,11 +1,10 @@
 	<footer>
 		<div class="container">
-			<div class="row bump">
+			<div class="row">
 				<div class="span6">
 					<h2>Let us know what you think.</h2>
 
 					<ul class="unstyled">
-						<li class="lead"><a data-toggle="modal" href="#myModal">Mailing List</a></li>
 						<li class="lead"><a href="mailto:hello@tentaclecms.com">hello@tentaclecms.com</a></li>
 						<li class="lead"><a href="https://twitter.com/#!/TentacleCMS">@TentacleCMS</a></li>
 					</ul>
