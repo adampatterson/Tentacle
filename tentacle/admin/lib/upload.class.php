@@ -22,7 +22,7 @@ class UploadHandler
             'param_name' => 'files',
             // Set the following option to 'POST', if your server does not support
             // DELETE requests. This is a parameter sent to the client:
-            'delete_type' => 'DELETE',
+            'delete_type' => 'POST',
             // The php.ini settings upload_max_filesize and post_max_size
             // take precedence over the following max_file_size setting:
             'max_file_size' => null,
@@ -79,7 +79,9 @@ class UploadHandler
     }
 
     protected function get_file_object($file_name) {
+	
         $file_path = $this->options['upload_dir'].$file_name;
+
         if (is_file($file_path) && $file_name[0] !== '.') {
             $file = new stdClass();
             $file->name = $file_name;
@@ -92,16 +94,45 @@ class UploadHandler
                 }
             }
             $this->set_file_delete_url($file);
-            return $file;
+			
+			return $file;
         }
         return null;
     }
 
     protected function get_file_objects() {
+
+		$file_content = scandir( IMAGE_DIR );
+		
+		foreach ( $file_content as $file_name )
+		{
+			$file_path = IMAGE_DIR.$file_name;
+			
+			$file_meta = explode('.', $file_name );	
+			
+			if ( is_file( $file_path ) && $file_meta[0] != ''  )
+			{
+				$files[] = $file_name;
+			}
+		}
+
+		$pattern = array('/_[0-9]/','/_sq/'); 
+		$replace = array('$0','$0');
+
+		$filtered = preg_filter($pattern, $replace, $files);
+		
+		$clean_files = array_diff( $files, $filtered );
+
+
+		include TENTACLE_LIB.'chromephp/ChromePhp.php';
+		
+		ChromePhp::log($this);
+	
         return array_values(array_filter(array_map(
             array($this, 'get_file_object'),
-            scandir($this->options['upload_dir'])
+            $clean_files
         )));
+
     }
 
     protected function create_scaled_image($file_name, $options) {
@@ -331,15 +362,18 @@ class UploadHandler
         $file_name = isset($_REQUEST['file']) ?
             basename(stripslashes($_REQUEST['file'])) : null;
         if ($file_name) {
-            $info = $this->get_file_object($file_name);
+		    $info = $this->get_file_object($file_name);
         } else {
             $info = $this->get_file_objects();
         }
         header('Content-type: application/json');
+
         echo json_encode($info);
     }
 
     public function post() {
+		
+
         if (isset($_REQUEST['_method']) && $_REQUEST['_method'] === 'DELETE') {
             return $this->delete();
         }
@@ -361,6 +395,10 @@ class UploadHandler
                     $upload['error'][$index],
                     $index
                 );
+
+				// Process images and add them to the database.
+				$media = load::model( 'media' );
+				$add_image = $media->add( $upload['name'][$index] );
             }
         } elseif ($upload || isset($_SERVER['HTTP_X_FILE_NAME'])) {
             // param_name is a single object identifier like "file",
