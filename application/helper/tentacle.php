@@ -268,8 +268,7 @@ class tentacle
 	
 // Server Overview
 //----------------------------------------------------------------------------------------------
-	
-	
+
 	function colorify_value($value, $expected) {
 		if (strcasecmp($value, $expected) == 0) {
 			return '<span class="label success">'.$value.'</span>';
@@ -397,6 +396,14 @@ class tentacle
 		echo $data;
 	}
 	
+	function uri_contains( $string )
+	{
+		if(strpos(BASE_URI, $string) !== false){
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
 
 	/**
 	* Render pre tags around data for displaying arrays and objects.
