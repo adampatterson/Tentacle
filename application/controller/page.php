@@ -5,10 +5,7 @@ class page_controller {
     public function index( $uri = "" ){
 		
 		//load::library ('file');
-	
 
-		
-		
 		$scaffold = new Scaffold ();
 		
 		$uri = trailingslashit( $uri );

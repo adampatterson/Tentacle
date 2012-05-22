@@ -8,6 +8,9 @@
 class assets 
 {
 	
+	// {{ 'style.css' | asset_url | stylesheet_tag }}
+	// {{ 'style.js' | asset_url | script_tag }}
+	
 /**
  * assets function
  *

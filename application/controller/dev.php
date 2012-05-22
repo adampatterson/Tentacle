@@ -5,6 +5,7 @@ class dev_controller {
 	public function index()
 	{
 		include TENTACLE_LIB.'chromephp/ChromePhp.php';
+		
 		ChromePhp::log('hello world');
 		ChromePhp::log($_SERVER);
 
@@ -17,6 +18,10 @@ class dev_controller {
 		// warnings and errors
 		ChromePhp::warn('this is a warning');
 		ChromePhp::error('this is an error');
+		
+		
+		load::helper('dbug');
+		new dBug( $_SERVER );
 	}
 	
 	
@@ -718,6 +723,9 @@ class dev_controller {
 	{
 		//echo dirname($_SERVER['PHP_SELF']). '<br />';
 	
+		echo IMAGE_URI. '<br />';
+		
+	
 		echo '<strong>DS:</strong> ' .DS . '<br />';
 		
 		echo "<strong>realpath(''):</strong>" .realpath('') . '<br />';
@@ -944,7 +952,6 @@ class dev_controller {
 		if (base64_encode($hash->hash($domain)) == $hash_string )
 		{
 			echo 'We have a match!';
-			
 		}
 
 	} // END Hash
@@ -1380,6 +1387,8 @@ class dev_controller {
 	public function wordpress_xml()
 	{	
 		tentacle::library('wordpress_import/controllers','admin');
+
+		$import = new wordpressImport();
 
 		$appdata = STORAGE_DIR.'/temp/wordpress.xml';		
 
