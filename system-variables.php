@@ -84,7 +84,8 @@ define('THEMES_URL'    , TENTACLE_URL.'themes');
 define('ADMIN_DIR'     , TENTACLE_URI.'/admin');
 define('ADMIN_BUNDLE'  , ADMIN_URI.'bundles/');
 define('IMAGE_DIR'     , STORAGE_DIR.'/images/');
-define('IMAGE_URL'	   , TENTACLE_URL.'/storage/images/');
+define('IMAGE_URL'	   , TENTACLE_URL.'storage/images/');
+define('IMAGE_URI'	   , 'tentacle/storage/images/');
 
 
 
@@ -105,11 +106,11 @@ define('TENTACLE_VERSION', 'v0.5.3');
 *
 * @global int $tentacle_db_version
 */
-define('TENTACLE_DB_VERSION', '106');
+define('TENTACLE_DB_VERSION', '108');
  
 
 /**
-* Holds the required PHP version
+* Holds the required PHP versionw
 *
 * @global string $required_php_version
 */

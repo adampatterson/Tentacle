@@ -334,6 +334,32 @@ class sql_model
 		$build = $pdo->exec( "ALTER TABLE  `media` ADD  `slug` VARCHAR( 200 ) NOT NULL AFTER  `path`" );
 	}	
 	
+	public function get_107 ()
+	{
+		$config = config::get('db');
+		
+		try {
+			$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
+		} catch(PDOException $e) {
+			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
+		}
+
+		$build = $pdo->exec( "ALTER TABLE  `media` CHANGE  `path`  `uri` VARCHAR( 255 )" );
+	}
+	
+	public function get_108 ()
+	{
+		$config = config::get('db');
+		
+		try {
+			$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
+		} catch(PDOException $e) {
+			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
+		}
+
+		$build = $pdo->exec( "ALTER TABLE  `media` ADD  `author` BIGINT( 20 ) NOT NULL" );
+	}	
+
 	
 	public function set_db ( $version )
 	{
