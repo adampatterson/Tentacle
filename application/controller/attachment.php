@@ -1,5 +1,4 @@
 <?php
-
 class attachment_controller {
         
     public function index()
@@ -10,7 +9,8 @@ class attachment_controller {
         $file_path = IMAGE_DIR.$file['file'];
 
 		$file_meta = explode('.', $file['file'] );
-		
+	
+	/*	
 		$exif = exif_read_data($file_path, 0, true);
 		echo "$file_path<br />\n";
 		foreach ($exif as $key => $section) {
@@ -18,7 +18,7 @@ class attachment_controller {
 		        echo "$key.$name: $val<br />\n";
 		    }
 		}
-		
+	*/	
 		
 		$process = FALSE;
 		
