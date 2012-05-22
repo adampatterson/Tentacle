@@ -162,7 +162,7 @@ if(!defined('SCAFFOLD')):
 							<div class="control-group">
 								<label for="firstname">First Name</label>
 								<div class="controls">
-									<input type="text" name="givenname" maxlength="50" class="span3 input-xlarge" id="firstname" >
+									<input type="text" name="givenname" maxlength="50" class="span3 input-xlarge input-small" id="firstname" >
 								</div>
 				
 								<label for="lastname">Last Name</label>
