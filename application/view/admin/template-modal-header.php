@@ -23,13 +23,8 @@
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery-ui-1.8.16.custom.min.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>modernizr-2.0.6.min.js"></script>
 	
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-tabs.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-alerts.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-dropdown.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-scrollspy.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-modal.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-twipsy.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-popover.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-collapse.js"></script>
+
 	
 
 	<!--[if lt IE 9]>
