@@ -27,7 +27,9 @@ function nav_generate ( $tree )
 	    echo '<a href="'.BASE_URL.$row['uri'].'">'.$row['title'].'</a>';
 	    $flag = true;
 	}
-	echo '</ul>';
+	?>
+	</ul>
+	<?
 }
 
 /**
