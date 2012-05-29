@@ -141,7 +141,7 @@
 								</p>
 
 								<script>
-								      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+									var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
 								        lineNumbers: true,
 								        theme: "default",
 										mode: "text/html",

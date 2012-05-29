@@ -130,7 +130,7 @@
 								
 								if ( session::get( 'template' ) != 'index' && session::get( 'template' ) != ''   ) {
 									
-									@include(THEMES_DIR.'/default/'.session::get('template').'.php');
+									@include(THEMES_DIR.'/'.get_option('appearance').'/'.session::get('template').'.php');
 
 									if ( isset( $scaffold_data ) ) {
 									

@@ -142,13 +142,24 @@
 
 								if ( $get_page->template != '' && $get_page->template != 'default' ) {
 
+									$template = THEMES_DIR.'/'.get_option('appearance').'/'.$get_page->template.'.php';
+
 									// Load the saved template, then if the user changes override the saved template.
-									include(THEMES_DIR.'/default/'.$get_page->template.'.php');
-
-									//load::library ( 'file' );
-
-									$scaffold = new Scaffold ();
-									$scaffold->populateThis( $scaffold_data, $get_page_meta );
+									if( file_exists( $template ))
+									{
+											include($template);
+											
+											if ( isset( $scaffold ) ) {
+												$scaffold = new Scaffold ();
+												$scaffold->populateThis( $scaffold_data, $get_page_meta );
+											}
+									} else { ?>
+										<br/><br/>
+										<div class="alert-message warning">
+											<p><strong>A template file appears to be a missing from your theme:</strong> <br />
+											<?= '/tentacle/themes/'.get_option('appearance').'/'.$get_page->template.'.php'?></p>
+										</div>
+									<? }
 								}
 								?>
 								<div class="clear"></div>
