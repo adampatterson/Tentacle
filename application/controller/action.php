@@ -574,7 +574,7 @@ class action_controller {
      *
      *
      *
-     * ========================= Upload Media
+     * ========================= Media
      *
      *
      *
@@ -636,6 +636,30 @@ class action_controller {
     }
 
 
+	public function update_media( $id )
+	{
+		$media = load::model( 'media' );
+
+		//$update = $media->update( $id );
+		
+		$history = input::post( 'history' );
+
+		url::redirect($history); 
+	}
+
+	
+	public function delete_media()
+	{
+		
+	}
+	
+	
+	public function trash_media()
+	{
+		
+	}
+	
+	
 	/**
 	 * 
 	 * 

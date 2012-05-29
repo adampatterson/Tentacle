@@ -49,4 +49,27 @@ class media_model
 			->where( 'id', '=', $id )
 			->execute();
 	}
+	
+	public function get( $id = '' )
+	{
+		$media = db ( 'media' );
+		
+		if ( $id == '' ) {
+			$get_media = $media->select( '*' )
+				->where ( 'type', '=', 'image' )
+				->order_by ( 'id', 'DESC' )
+				->execute();
+					
+			return $get_media;
+			
+		} else {
+			$get_media = $media->select( '*' )
+				->where ( 'id', '=', $id )
+				->clause ('AND')
+				->where ( 'type', '=', 'image' )
+				->execute();
+			
+			return $get_media[0];
+		}
+	}
 }

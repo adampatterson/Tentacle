@@ -1,52 +1,5 @@
 <? load::view('admin/template-modal-header', array('title' => 'Insert media' ));?>
 
-<style type="text/css" media="screen">
-	.accordion {
-	  margin-bottom: 18px;
-	}
-
-	.accordion-group {
-	  margin-bottom: 2px;
-	  border: 1px solid #e5e5e5;
-	  -webkit-border-radius: 4px;
-	     -moz-border-radius: 4px;
-	          border-radius: 4px;
-	}
-
-	.accordion-heading {
-	  border-bottom: 0;
-	}
-
-	.accordion-heading .accordion-toggle {
-	  display: block;
-	  padding: 8px 15px;
-	}
-
-	.accordion-toggle {
-	  cursor: pointer;
-	}
-
-	.accordion-inner {
-	  padding: 9px 15px;
-	  border-top: 1px solid #e5e5e5;
-	}
-	
-	.collapse {
-	  position: relative;
-	  height: 0;
-	  overflow: hidden;
-	  -webkit-transition: height 0.35s ease;
-	     -moz-transition: height 0.35s ease;
-	      -ms-transition: height 0.35s ease;
-	       -o-transition: height 0.35s ease;
-	          transition: height 0.35s ease;
-	}
-
-	.collapse.in {
-	  height: auto;
-	}
-</style>
-
 <script type="text/javascript">
 
 	$(".accordion").collapse()
@@ -90,7 +43,121 @@
 	</script>
 	
 <div class="row">	
-	<div class="accordion" id="accordion">
+	<div class="accordion" id="accordion">	
+		<? foreach ( $media as $image ): ?>
+		<? $file_meta = explode('.', $image->name );	
+		
+		IMAGE_DIR.$file_meta[0].'_sq'.'.'.$file_meta[1];
+		
+		IMAGE_T;
+		IMAGE_M;
+		IMAGE_L;
+		?>
+		
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$image->id ?>">
+					<img src="<?= IMAGE_URL.$file_meta[0].'_sq'.'.'.$file_meta[1]; ?>" class="thumbnail" width="30" height="30" /> <?=$image->title ?>
+				</a>
+			</div>
+			<div id="collapse<?=$image->id ?>" class="accordion-body collapse" style="height: 0px; ">
+				<div class="accordion-inner">
+					<div class="row">
+						<div class="span4">
+							<img src="<?= IMAGE_URL.$file_meta[0].'_sq'.'.'.$file_meta[1]; ?>" class="thumbnail"/>
+						</div>
+						<div class="span6">
+							<dl class="dl-horizontal">
+								<dt>File name:</dt>
+								<dd><?=$image->name ?></dd>
+								<dt>File type:</dt>
+								<dd><?=$image->type ?></dd>
+								<dt>Uploaded on:</dt>
+								<dd>April 11, 2012</dd>
+								<dt>Dimensions</dt>
+								<dd>200 x 200</dd>
+							</dl>
+							<input type="hidden" name="file_name" value="<?=$image->name ?>" >
+						</div>
+					</div>
+					<div class="row">
+						<form action="<?= BASE_URL ?>action/update_media/<?= $image->id ?>" method="post" class="form-horizontal" name="<?= $image->slug ?>">
+							<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
+							<fieldset>
+								<h3>&nbsp;</h3>
+								<div class="clearfix">
+									<label class="control-label" for="title">Title</label>
+									<div class="input">
+										<input type="text" class="input-xlarge span5" id="title" name="title" value="<?=$image->title ?>">
+									</div>
+								</div>
+								<div class="clearfix">
+									<label class="control-label" for="alt_text">Alternate Text</label>
+									<div class="input">
+										<input type="text" class="input-xlarge span5" id="alt_text" name="alt_text" value="<?=$image->alt ?>" >
+									</div>
+								</div>
+								<div class="clearfix">
+									<label class="control-label" for="caption">Caption</label>
+									<div class="input">
+										<input type="text" class="input-xlarge span5" id="caption" name="caption" value="<?= $image->caption ?>">
+									</div>
+								</div>
+								<div class="clearfix">
+									<label class="control-label" for="link_url">Link URL</label>
+									<div class="input">
+										<input type="text" class="input-xlarge span5" id="link_url" name="link_url" value="<?= $image->link ?>" >
+										<div class="input-append">
+							                <button class="btn" type="button" id="none">None</button> <button class="btn" type="button" id="file">File</button>
+							             </div>
+									</div>
+								</div>
+								<div class="clearfix">
+									<label class="control-label">Size</label>
+									<div class="input">
+										<ul class="inputs-list">
+											<li>
+												<label>
+													<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="" />
+														Thumbnail ( <?= get_option('image_thumb_size_w').' x '.get_option('image_thumb_size_h'); ?> )
+												</label>
+											</li>
+											<li>
+												<label>
+													<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" />
+													Medium ( <?= get_option('image_medium_size_w').' x '.get_option('image_medium_size_h'); ?> )
+												</label>
+											</li>
+											<li>
+												<label>
+													<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" />
+													Large ( <?= get_option('image_large_size_w').' x '.get_option('image_large_size_h'); ?> )
+												</label>
+											</li>
+											<li>
+												<label>
+													<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" />
+													Full Size
+												</label>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="actions">
+									<a class="btn primary" id="insert">Insert Image</a>
+									<input type="submit" name="update" value="Update" id="update" class="btn success">
+									<!--<a class="btn primary" id="insert">Insert Image</a>-->
+									<button class="btn danger">Delete</button>
+									<a class="btn" href="javascript:parent.jQuery.fancybox.close();">Cancel</a>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		<? endforeach; ?>	
+	<? /* ?>
 		<div class="accordion-group">
 			<div class="accordion-heading">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
@@ -195,6 +262,7 @@
 				</div>
 			</div>
 		</div>	
+	<? */ ?>
 	</div>
 </div>
 <? /*
