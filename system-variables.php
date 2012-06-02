@@ -3,7 +3,6 @@
 * Dingo system settings.
 */
 
-
 // Does Application Use Mod_Rewrite URLs?
 define('MOD_REWRITE',TRUE);
 
@@ -47,7 +46,7 @@ else:
 	$directory = dirname($_SERVER['PHP_SELF']);
 endif;
 	
-define( 'DS'				, DIRECTORY_SEPARATOR );
+define( 'DS'			, DIRECTORY_SEPARATOR );
 	
 // Application's Base URL
 define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port );
@@ -87,6 +86,7 @@ define('IMAGE_DIR'     , STORAGE_DIR.'/images/');
 define('IMAGE_URL'	   , TENTACLE_URL.'storage/images/');
 define('IMAGE_URI'	   , 'tentacle/storage/images/');
 
+// See application/helper/tentacle.php for other constants set using functionality not loaded yet.
 
 
 /*
@@ -98,7 +98,7 @@ define('IMAGE_URI'	   , 'tentacle/storage/images/');
 *
 * @global string $tentacle_version
 */
-define('TENTACLE_VERSION', 'v0.5.3');
+define('TENTACLE_VERSION', 'v0.5.7');
  
  
 /**
