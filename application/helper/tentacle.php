@@ -124,6 +124,7 @@ class tentacle
 		return $url;
 	}	
 	
+
 	 /**
 	  * Checks what the latest Tentacle version is that is available at tentaclecms.com
 	  */
@@ -335,8 +336,8 @@ class tentacle
 	 * @param string $string What to add the trailing slash to.
 	 * @return string String with trailing slash added.
 	 */
-	function trailingslashit($string) {
-		return untrailingslashit($string) . '/';
+	function slash_it($string) {
+		return un_slash($string) . '/';
 	}
 	
 	
@@ -352,7 +353,7 @@ class tentacle
 	 * @param string $string What to remove the trailing slash from.
 	 * @return string String without the trailing slash.
 	 */
-	function untrailingslashit($string) {
+	function un_slash($string) {
 		return rtrim($string, '/');
 	}
 

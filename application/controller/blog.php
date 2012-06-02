@@ -4,12 +4,14 @@ class blog_controller {
         
     public function index( $uri = "" ){
 		
-		$uri = trailingslashit( $uri );
+		define("IS_POST", FALSE);
+		
+		$uri = slash_it( $uri );
 		
 		if ( URI == '' || $uri == 'home'):
 			$uri = 'blog/';
 		else:
-			$uri = trailingslashit( URI );
+			$uri = slash_it( URI );
 		endif;
 		
 		require_once( PATH_URI.'/functions.php' );

@@ -73,6 +73,8 @@
 		// Separates classes with a single space, collates classes for body element
 		echo 'class="'.route::controller().' '. route::method().' '.join( ' ', explode("/", URI ) ).'"';
 		
+		
+		
 		//echo 'class="' . join( ' ', get_body_class( $class ) ) . '"';
 	}
 	
@@ -86,6 +88,27 @@
 		return true;
 	}
 	
+	
+	function nav_class( $uri='', $type='' ) {
+
+		$open = "class='";
+
+		$class = 'page-item ';
+
+		if ( $uri == 	slash_it( CURRENT_PAGE )) {
+			$class .= 'active ';
+		} elseif ( $uri == 'home/' && CURRENT_PAGE == '' ) {
+			$class .= 'active ';
+		} elseif ( $uri == 'blog/' && IS_POST == true ) {
+			$class .= 'active ';
+		}
+
+		$cleaned_class = trim($class); 
+
+		$close = "'";
+
+		return $open.$cleaned_class.$close;
+	}
 
 // Get and is functions
 //----------------------------------------------------------------------------------------------

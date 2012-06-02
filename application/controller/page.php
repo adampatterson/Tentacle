@@ -8,12 +8,12 @@ class page_controller {
 
 		$scaffold = new Scaffold ();
 		
-		$uri = trailingslashit( $uri );
+		$uri = slash_it( $uri );
 		
 		if ( URI == '' || $uri == 'home'):
 			$uri = 'home/';
 		else:
-			$uri = trailingslashit( URI );
+			$uri = slash_it( URI );
 		endif;
 		
 		require_once( PATH_URI.'/functions.php' );
@@ -22,6 +22,13 @@ class page_controller {
 		$post = $page->get_by_uri( $uri );
 		
 		$post_meta = $page->get_page_meta( $post->id );
+		
+		if ($post->type == 'post') {
+			define("IS_POST", TRUE);
+		} else {
+			define("IS_POST", FALSE);
+		}
+
 		
 		// Set GLOBALS
 		//$GLOBALS['post'] 			= $post;
