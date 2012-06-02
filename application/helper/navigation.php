@@ -68,3 +68,56 @@ function nav_menu ( )
 	nav_generate ( (array)$page_object );
 
 }
+
+/**
+* Navigation
+*/
+class nav
+{
+	
+	public function build_tree_object ( $items ) {
+		$childs = array();
+
+		foreach($items as $item)
+		    $childs[$item->parent][] = $item;
+
+		foreach($items as $item) if (isset($childs[$item->id]))
+		    $item->childs = $childs[$item->id];
+
+		$tree = $childs[0];
+		
+		return $tree;
+	}
+
+	// http://www.sitepoint.com/forums/showthread.php?448787-Creating-an-Unordered-List-from-The-Adjacency-List-Model
+	public function build_menu($currentPageId, $menuItems, $output = '')
+	    {
+	        // Loop through menu items
+	        if(count($menuItems) > 0)
+	        {
+	            $output .= "\n<ul>\n";
+	            foreach($menuItems as $item)
+	            {
+	                $pageId = !empty($item->alias) ? $item->alias : 'page/view/' . $item->id;
+	                $current = ($item->id == $currentPageId) ? ' class="active"' : '';
+	                $output .= "  <li><a href=\"" . $pageId . "\" title=\"" . $item->title . "\" " . $current . ">" . $item->title . "</a>";
+	                // Child menu
+	                if(isset($item->childs))
+	                {
+	                    // Recursive function call
+	                    $thisFunction = __FUNCTION__;
+	                    $output = $this->$thisFunction($currentPageId, $item->childs, $output);
+	                }
+	                $output .= "  </li>\n";
+	            }
+	            //$output .= "  <li><a href=\"#\" class=\"end\"></a></li>\n";
+	            $output .= "</ul>\n";
+	        } else {
+	            $output = "&nbsp;";
+	        }
+
+	        return $output;
+	    }
+
+}
+
