@@ -434,18 +434,6 @@ class dev_controller {
 		<?
 		
 	}
-
-	
-	public function navigation ()
-	{
-		echo '<h1>Navigation</h1>';
-		
-		load::helper ('navigation');
-
-		
-		print_r(nav_menu());
-		
-	}
 	
 	public function system ()
 	{
@@ -1389,20 +1377,131 @@ class dev_controller {
 		tentacle::library('wordpress_import/controllers','admin');
 
 		$import = new wordpressImport();
+		
+		$appdata = 'wordpress.xml';		
 
-		$appdata = STORAGE_DIR.'/temp/wordpress.xml';		
+		$parse = $import->parse($appdata);
+	
+		//$rss = simplexml_load_file( $appdata, 'SimpleXMLElement', LIBXML_NOCDATA);
+		//clean_out( $rss );
 
-		if (file_exists($appdata)) 
-		{
-			echo 'Touched the file.';
-			
-			$rss = simplexml_load_file( $appdata, 'SimpleXMLElement', LIBXML_NOCDATA);
-
-			//clean_out( $rss );
-		}
-		else
-		{
-			echo 'Can not load the file.';			
-		}
 	}// END Function
+	
+	public function hooks()
+	{
+		load::helper('plugin');
+
+		
+	}
+	
+	
+	public function navigation ()
+	{
+		echo '<h1>Navigation</h1>';
+		
+		load::helper ('navigation');
+
+		print_r(nav_menu());
+	}
+	
+	
+	//http://stackoverflow.com/questions/4843945/php-tree-structure-for-categories-and-sub-categories-without-looping-a-query
+	public function tree()
+	{
+	
+	/*
+		$categories = array(
+		    array('id' => 1,  'parent' => 0, 'alias' => 'alias', 'title' => 'Category A'),
+		    array('id' => 2,  'parent' => 0, 'alias' => 'alias', 'title' => 'Category B'),
+		    array('id' => 4,  'parent' => 0, 'alias' => 'alias', 'title' => 'Category C'),
+		    array('id' => 6,  'parent' => 2, 'alias' => 'alias', 'title' => 'Subcategory D'),
+		    array('id' => 7,  'parent' => 2, 'alias' => 'alias', 'title' => 'Subcategory E'),
+		    array('id' => 9,  'parent' => 4, 'alias' => 'alias', 'title' => 'Subcategory F'),
+		    array('id' => 10, 'parent' => 9, 'alias' => 'alias', 'title' => 'Subcategory G'),
+		);
+
+
+		function ToTree(&$categories) {
+
+		    $map = array(
+		        0 => array('subcategories' => array())
+		    );
+
+		    foreach ($categories as &$category) {
+		        $category['subcategories'] = array();
+		        $map[$category['id']] = &$category;
+		    }
+
+		    foreach ($categories as &$category) {
+		        $map[$category['parent']]['subcategories'][] = &$category;
+		    }
+
+		    return $map[0]['subcategories'];
+
+		}
+
+	*/
+		
+		$items = array(
+		    (object) array('id' => 1,  'parent' => 0, 'alias' => 'alias', 'title' => 'Category A'),
+		    (object) array('id' => 2,  'parent' => 0, 'alias' => 'alias', 'title' => 'Category B'),
+		    (object) array('id' => 4,  'parent' => 0, 'alias' => 'alias', 'title' => 'Category C'),
+		    (object) array('id' => 6,  'parent' => 2, 'alias' => 'alias', 'title' => 'Subcategory D'),
+		    (object) array('id' => 7,  'parent' => 2, 'alias' => 'alias', 'title' => 'Subcategory E'),
+		    (object) array('id' => 9,  'parent' => 4, 'alias' => 'alias', 'title' => 'Subcategory F'),
+		    (object) array('id' => 10, 'parent' => 9, 'alias' => 'alias', 'title' => 'Subcategory G'),
+		);
+		
+		function build_tree_object ( $items ) {
+			$childs = array();
+
+			foreach($items as $item)
+			    $childs[$item->parent][] = $item;
+
+			foreach($items as $item) if (isset($childs[$item->id]))
+			    $item->childs = $childs[$item->id];
+
+			$tree = $childs[0];
+			
+			return $tree;
+		}
+		
+		$object_tree = build_tree_object( $items );
+
+		
+		// http://www.sitepoint.com/forums/showthread.php?448787-Creating-an-Unordered-List-from-The-Adjacency-List-Model
+		function build_menu($currentPageId, $menuItems, $output = '')
+		    {
+		        // Loop through menu items
+		        if(count($menuItems) > 0)
+		        {
+		            $output .= "\n<ul>\n";
+		            foreach($menuItems as $item)
+		            {
+		                $pageId = !empty($item->alias) ? $item->alias : 'page/view/' . $item->id;
+		                $current = ($item->id == $currentPageId) ? ' class="active"' : '';
+		                $output .= "  <li><a href=\"" . $pageId . "\" title=\"" . $item->title . "\" " . $current . ">" . $item->title . "</a>";
+		                // Child menu
+		                if(isset($item->childs))
+		                {
+		                    // Recursive function call
+		                    $thisFunction = __FUNCTION__;
+		                    $output = $thisFunction($currentPageId, $item->childs, $output);
+		                }
+		                $output .= "  </li>\n";
+		            }
+		            //$output .= "  <li><a href=\"#\" class=\"end\"></a></li>\n";
+		            $output .= "</ul>\n";
+		        } else {
+		            $output = "&nbsp;";
+		        }
+
+		        return $output;
+		    }
+
+		echo build_menu(1, $object_tree);
+		
+	}
+	
+
 }// END Dev
