@@ -4,7 +4,7 @@ class dev_controller {
 
 	public function index()
 	{
-		include TENTACLE_LIB.'chromephp/ChromePhp.php';
+		//include TENTACLE_LIB.'chromephp/ChromePhp.php';
 		
 		ChromePhp::log('hello world');
 		ChromePhp::log($_SERVER);
@@ -1397,11 +1397,15 @@ class dev_controller {
 	
 	public function navigation ()
 	{
-		echo '<h1>Navigation</h1>';
-		
-		load::helper ('navigation');
+		echo '<h1>Navigation</h1>
+		<style type="text/css" media="screen">
+			.active {
+				color: red;
+			}
+		</style>
+		';
 
-		print_r(nav_menu());
+		nav_menu( );
 	}
 	
 	
@@ -1409,39 +1413,6 @@ class dev_controller {
 	public function tree()
 	{
 	
-	/*
-		$categories = array(
-		    array('id' => 1,  'parent' => 0, 'alias' => 'alias', 'title' => 'Category A'),
-		    array('id' => 2,  'parent' => 0, 'alias' => 'alias', 'title' => 'Category B'),
-		    array('id' => 4,  'parent' => 0, 'alias' => 'alias', 'title' => 'Category C'),
-		    array('id' => 6,  'parent' => 2, 'alias' => 'alias', 'title' => 'Subcategory D'),
-		    array('id' => 7,  'parent' => 2, 'alias' => 'alias', 'title' => 'Subcategory E'),
-		    array('id' => 9,  'parent' => 4, 'alias' => 'alias', 'title' => 'Subcategory F'),
-		    array('id' => 10, 'parent' => 9, 'alias' => 'alias', 'title' => 'Subcategory G'),
-		);
-
-
-		function ToTree(&$categories) {
-
-		    $map = array(
-		        0 => array('subcategories' => array())
-		    );
-
-		    foreach ($categories as &$category) {
-		        $category['subcategories'] = array();
-		        $map[$category['id']] = &$category;
-		    }
-
-		    foreach ($categories as &$category) {
-		        $map[$category['parent']]['subcategories'][] = &$category;
-		    }
-
-		    return $map[0]['subcategories'];
-
-		}
-
-	*/
-		
 		$items = array(
 		    (object) array('id' => 1,  'parent' => 0, 'alias' => 'alias', 'title' => 'Category A'),
 		    (object) array('id' => 2,  'parent' => 0, 'alias' => 'alias', 'title' => 'Category B'),
