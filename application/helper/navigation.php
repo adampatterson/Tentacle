@@ -15,7 +15,7 @@ function nav_generate ( $tree, $output = '' )
 	foreach ($tree as $row) {
 
 	    while ($row['level'] > $depth) {
-	        $output .= '<ul><li '.nav_class( $row['uri'], $row['type'] ).'>';
+	        $output .= '<ul><li '.nav_class( array('uri'=> $row['uri'] ), $row['type'] ).'>';
 	        $flag = false;
 	        $depth++;
 	    }
@@ -24,7 +24,7 @@ function nav_generate ( $tree, $output = '' )
 	        $depth--;
 	    }
 	    if ($flag) {
-	        $output .= '</li><li '.nav_class( $row['uri'], $row['type'] ).'>';
+	        $output .= '</li><li '.nav_class( array('uri'=> $row['uri'] ), $row['type'] ).'>';
 	        $flag = false;
 	    }
 	    $output .= '<a href="'.BASE_URL.$row['uri'].'">'.$row['title'].'</a>';
@@ -34,7 +34,6 @@ function nav_generate ( $tree, $output = '' )
 	$output .= '</ul>';
 	
 	echo $output;
-
 }
 
 /**
