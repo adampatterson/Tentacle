@@ -89,17 +89,17 @@
 	}
 	
 	
-	function nav_class( $uri='', $type='' ) {
+	function nav_class($args = array (), $type='' ) {
 
 		$open = "class='";
 
 		$class = 'page-item ';
 
-		if ( $uri == 	slash_it( CURRENT_PAGE )) {
+		if ( $args['uri'] == 	slash_it( CURRENT_PAGE )) {
 			$class .= 'active ';
-		} elseif ( $uri == 'home/' && CURRENT_PAGE == '' ) {
+		} elseif ( $args['uri'] == 'home/' && CURRENT_PAGE == '' ) {
 			$class .= 'active ';
-		} elseif ( $uri == 'blog/' && IS_POST == true ) {
+		} elseif ( $args['uri'] == 'blog/' && IS_POST == true ) {
 			$class .= 'active ';
 		}
 
