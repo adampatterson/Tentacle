@@ -67,6 +67,7 @@ define('ADMIN_URL'     , TENTACLE_URL.'admin/');
 define('ADMIN_URI'     , TENTACLE_URI.'/admin/');
 
 define('TENTACLE_LIB'  , CORE_ROOT.'/tentacle/admin/lib/');
+define('TENTACLE_PLUGIN'  , CORE_ROOT.'/tentacle/plugins/');
 define('TENTACLE_JS'   , ADMIN_URL.'js/');
 define('TENTACLE_CSS'  , ADMIN_URL.'css/');
 

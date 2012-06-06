@@ -60,6 +60,14 @@ class tentacle
 		return self::file(TENTACLE_LIB.$folder,$library,'library');
 	}
 	
+	// Plugin
+	// ---------------------------------------------------------------------------
+	public static function plugin($folder='/',$library)
+	{
+		return self::file(TENTACLE_PLUGIN.$folder,$library,'library');
+	}
+	
+	
 	/**
 	* render function
 	*
