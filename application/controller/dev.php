@@ -745,6 +745,7 @@ class dev_controller {
 		echo "ADMIN_URL: ". ADMIN_URL ."<br />";
 		echo "ADMIN_URI: ". ADMIN_URI ."<br />";
 		echo "TENTACLE_LIB: ". TENTACLE_LIB ."<br />";
+		echo "TENTACLE_PLUGIN: ". TENTACLE_PLUGIN ."<br />";
 		echo "TENTACLE_JS: ". TENTACLE_JS ."<br />";
 		echo "TENTACLE_CSS: ". TENTACLE_CSS ."<br />";
 		echo "MINIFY: ". MINIFY ."<br />";
@@ -974,66 +975,6 @@ class dev_controller {
 		echo '<img src="'.$raw->dest.'" alt="Smushed" title="Smushed" />';
 		
 	}// END SmushIt
-	
-	/**
-	 * array function
-	 *
-	 * @return void
-	 * @author Adam Patterson
-	 **/
-
-	public function array_mod ()
-	{
-		$array = array(
-			'post_type' => 'Post Type',
-			'paged' => 'Paged',
-			'posts_per_page' => 2,
-			'name' => array(				
-				'name' => 'First Name',
-				'input' => 'input',
-				'type' => 'text',
-				'notes' => 'This is a note'
-				));
-		
-		
-		$object = (object)$array;
-		echo '<h2>Array to Object</h2><pre>';
-			print_r($object);
-		echo '</pre>';
-		
-		$array = (array)$object;
-		echo '<h2>Object to Array</h2><pre>';
-			print_r($array);
-		echo '</pre>';
-		
-	}
-	
-	
-	/**
-	* tentacle function
-	*
-	* @return void
-	* @author Adam Patterson
-	**/
-
-	public function tentacle ()
-	{
-		load::helper ('tentacle');
-		load::helper ('url');
-
-		echo '<h2>Tentacle</h2>';
-		echo '<h4>get_url()</h4>'.clean_out(get_url());
-		
-		echo '<h4>get_request_method()</h4>'.clean_out(get_request_method());
-		
-		echo '<h4>html_encode()</h4>';
-		$dirty = "this & that";
-		echo html_encode($dirty);
-		
-		echo '<h4>convert_size()</h4>'.convert_size(1070041824);
-		
-		echo '<h4>memory_usage()</h4>'. memory_usage();
-			}
 	
 	
 	/**
@@ -1365,36 +1306,6 @@ class dev_controller {
 		}
 	}// END Function
 	
-
-	/**
-	 * wordpress_xml function
-	 *
-	 * @return void
-	 * @author Adam Patterson
-	 **/
-	public function wordpress_xml()
-	{	
-		tentacle::library('wordpress_import/controllers','admin');
-
-		$import = new wordpressImport();
-		
-		$appdata = 'wordpress.xml';		
-
-		$parse = $import->parse($appdata);
-	
-		//$rss = simplexml_load_file( $appdata, 'SimpleXMLElement', LIBXML_NOCDATA);
-		//clean_out( $rss );
-
-	}// END Function
-	
-	public function hooks()
-	{
-		load::helper('plugin');
-
-		
-	}
-	
-	
 	public function navigation ()
 	{
 		echo '<h1>Navigation</h1>
@@ -1474,5 +1385,51 @@ class dev_controller {
 		
 	}
 	
+	public function wordpress_import()
+	{	
+		load::helper('import');
+	}// END Function
+
+	public function chyrp_import()
+	{	
+		load::helper('import');
+	}// END Function
+
+	public function tumblr_import()
+	{	
+		load::helper('import');
+	}// END Function
+	
+	public function textpattern_import()
+	{	
+		load::helper('import');
+	}// END Function
+	
+	public function movabletype_import()
+	{	
+		load::helper('import');
+	}// END Function
+	
+	public function module()
+	{
+		
+		tentacle::library('/', 'YAML');
+
+		
+		load::helper('module');
+		
+		# Initiate the extensions.
+	    init_extensions();
+		
+		# Prepare the trigger class
+		$trigger = Trigger::current();
+		
+		$text = '[ipsum] [test]';
+		
+		echo $text.'<hr>';
+		
+		if($trigger->exists("preview"))
+			echo $trigger->filter($text,"preview");
+	}
 
 }// END Dev
