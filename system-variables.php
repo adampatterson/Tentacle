@@ -58,15 +58,15 @@ define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.$directory.'/' )
 define('ROOT'		   , BASE_URI );
 
 // Application's Base Application URL
-define('TENTACLE_URL'  , BASE_URL.'tentacle/');
-define('TENTACLE_URI'  , APP_PATH.'/tentacle');
-
-// Admin's Base URL
-define('ADMIN'         , BASE_URL.'admin/');
-define('ADMIN_URL'     , TENTACLE_URL.'admin/');
-define('ADMIN_URI'     , TENTACLE_URI.'/admin/');
-
-define('TENTACLE_LIB'  , CORE_ROOT.'/tentacle/admin/lib/');
+define('TENTACLE_URL'     , BASE_URL.'tentacle/');
+define('TENTACLE_URI'     , APP_PATH.'/tentacle');
+                          
+// Admin's Base URL       
+define('ADMIN'            , BASE_URL.'admin/');
+define('ADMIN_URL'        , TENTACLE_URL.'admin/');
+define('ADMIN_URI'        , TENTACLE_URI.'/admin/');
+                          
+define('TENTACLE_LIB'     , CORE_ROOT.'/application/library/');
 define('TENTACLE_PLUGIN'  , CORE_ROOT.'/tentacle/plugins/');
 define('TENTACLE_JS'   , ADMIN_URL.'js/');
 define('TENTACLE_CSS'  , ADMIN_URL.'css/');
