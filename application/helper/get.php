@@ -18,8 +18,12 @@
 		$get_settings = $setting->select( '*' )
 			->where( 'key', '=', $option )
 			->execute();
-
-		return $get_settings[0]->value;
+		
+		if ( isset($get_settings[0]->value)) {
+			return $get_settings[0]->value;
+		} else {
+			return $default;
+		}
 	}
 
 	function get_current_db_version ()
