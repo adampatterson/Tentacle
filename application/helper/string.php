@@ -257,6 +257,18 @@
 	    }
 	}
 
+	function camelize($string, $keep_spaces = false) {
+        $lower = strtolower($string);
+        $deunderscore = str_replace("_", " ", $lower);
+        $dehyphen = str_replace("-", " ", $deunderscore);
+        $final = ucwords($dehyphen);
+
+        if (!$keep_spaces)
+            $final = str_replace(" ", "", $final);
+
+        return $final;
+    }
+
 	/**
 	* escapeStr function
 	*
