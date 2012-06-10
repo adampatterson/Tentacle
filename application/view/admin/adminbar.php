@@ -1,1 +1,1 @@
-<div class="admin-bar">Admin Bar</div>
+<div class="admin-bar">Admin Bar Fixed to the bottom</div>
