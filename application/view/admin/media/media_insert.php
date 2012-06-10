@@ -6,41 +6,40 @@
 
 	$(document).ready(function(){
 
-			$('#none').click(function() {
-				
-				$('#link_url').val('');
-				return false;
-			});
+		//$('#none').click(function( none) {
+		//	$( none.target ).closest('#link_url').val('')
+		//	$('#link_url').val('');
+		//	return false;
+		//});
+		
+		//$('#file').click(function() {	
+		//	$('#link_url').val('http://placehold.it/200x200');
+		//	return false;
+		//});
+
+		$('#insert').click(function() {
+
+			var Title				= $('#title').val();
+			var AltText				= $('#alt_text').val();
+			var Caption				= $('#caption').val();
+			var Link				= $('#link_url').val();
 			
-			$('#file').click(function() {
-				
-				$('#link_url').val('http://placehold.it/200x200');
-				return false;
-			});
+			if ( Link ) {
+				var HtmlLink 		= '<a href="'+Link+'"><img src="http://placehold.it/200x200" alt="'+AltText+'" /></a>';
+			} else {
+				var HtmlLink 		= '<img src="http://placehold.it/200x200" alt="'+AltText+'" />';
+			}
 
-			$('#insert').click(function() {
-
-				var Title				= $('#title').val();
-				var AltText				= $('#alt_text').val();
-				var Caption				= $('#caption').val();
-				var Link				= $('#link_url').val();
-				
-				if ( Link ) {
-					var HtmlLink 		= '<a href="'+Link+'"><img src="http://placehold.it/200x200" alt="'+AltText+'" /></a>';
-				} else {
-					var HtmlLink 		= '<img src="http://placehold.it/200x200" alt="'+AltText+'" />';
-				}
-
-				console.log(HtmlLink);
-				
-				parent.top.tinyMCE.get('Content').execCommand('mceInsertContent',false, HtmlLink );
-				parent.jQuery.fancybox.close();
-				
-				return false;
-			});
+			console.log(HtmlLink);
 			
+			parent.top.tinyMCE.get('Content').execCommand('mceInsertContent',false, HtmlLink );
+			parent.jQuery.fancybox.close();
+			
+			return false;
 		});
-	</script>
+		
+	});
+</script>
 	
 <div class="row">	
 	<div class="accordion" id="accordion">	
