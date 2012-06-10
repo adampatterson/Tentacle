@@ -1,8 +1,10 @@
 <?php if(!defined('DINGO')){die('External Access to File Denied');}
 
+//load::library('db');
+
 route::set('(.*)',array(
     'controller'=>'page',
-    'function'=>'index',
+    'function'=>'index'
 	));
 
 
@@ -14,11 +16,13 @@ route::set('attachment/([0-9]+)x([0-9]+)/([^\s]+)\.',array(
     'arguments'=>array('$1','$2','$3')
 	));
 */
+
 route::set('attachment',array(
     'controller'=>'attachment',
     'function'=>'file'
 	));
-
+	
+/*
 // blog route
 route::set('blog',array(
     'controller'=>'blog',
@@ -30,7 +34,7 @@ route::set('blog/([-_a-zA-Z0-9]+)',array(
     'function'=>'index',
     'arguments'=>array('$1')
 	));
-
+*/
 
 // category route
 route::set('category',array(

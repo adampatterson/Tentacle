@@ -2,11 +2,11 @@
 
 class blog_controller {
         
-    public function index( $uri = "" ){
+    public function index( ){
+/*
+		$uri = URI;
 		
 		define("IS_POST", FALSE);
-		
-		$uri = slash_it( $uri );
 		
 		if ( URI == '' || $uri == 'home'):
 			$uri = 'blog/';
@@ -30,7 +30,7 @@ class blog_controller {
 		tentacle::render ( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
         
 		//if(user::valid()) load::helper ('adminbar');         
-
+*/
 	}// END index
 
 } // END Class blog

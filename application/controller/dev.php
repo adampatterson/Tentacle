@@ -21,7 +21,24 @@ class dev_controller {
 		
 		
 		load::helper('dbug');
-		new dBug( $_SERVER );
+		//new dBug( $_SERVER );
+		
+		$array = array('one'=>1,'two'=>2,'three'=>3);
+		
+		clean_out( $array );
+		
+		$array['one'] = 'four';
+
+		clean_out( $array );
+		
+		
+		$object = (object) $array;
+		
+		clean_out( $object );
+		
+		$object->one = 'three';
+		
+		clean_out( $object );	
 	}
 	
 	
@@ -1362,7 +1379,7 @@ class dev_controller {
 		            {
 		                $pageId = !empty($item->alias) ? $item->alias : 'page/view/' . $item->id;
 		                $current = ($item->id == $currentPageId) ? ' class="active"' : '';
-		                $output .= "  <li><a href=\"" . $pageId . "\" title=\"" . $item->title . "\" " . $current . ">" . $item->title . "</a>";
+		                $output .= "  <!-- <li> --><a href=\"" . $pageId . "\" title=\"" . $item->title . "\" " . $current . ">" . $item->title . "</a>";
 		                // Child menu
 		                if(isset($item->childs))
 		                {
@@ -1411,11 +1428,9 @@ class dev_controller {
 	}// END Function
 	
 	public function module()
-	{
-		
+	{	
 		tentacle::library('/', 'YAML');
 
-		
 		load::helper('module');
 		
 		# Initiate the extensions.
