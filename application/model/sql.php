@@ -396,7 +396,7 @@ class sql_model
 			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
 		}
 
-		$build = $pdo->exec( "INSERT INTO `options` (`key`, `value`, `autoload`) VALUES('active_modules', NULL, 'yes');" );
+		$build = $pdo->exec( "INSERT INTO `options` (`key`, `value`, `autoload`) VALUES('active_modules', 'a:1:{i:0;s:5:\"ipsum\";}', 'yes');" );
 	}	
 
 	
