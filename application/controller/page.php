@@ -7,15 +7,16 @@ class page_controller {
 
 		tentacle::library('YAML', 'YAML');
 
+		load::helper('template');
 		load::helper('module');
 		
 		# Initiate the extensions.
 	    init_extensions();
 	
 		# Prepare the trigger class
-		$trigger = Trigger::current();
+		$trigger 	= Trigger::current();
 		
-		$scaffold = new Scaffold ();
+		$scaffold 	= new Scaffold ();
 		
 		if ( $uri == '' || $uri == 'home'):
 			$uri = 'home/';
@@ -41,9 +42,10 @@ class page_controller {
 			$tag 		= load::model( 'tags' );
 			$author 	= load::model('user'); 
 
-			require_once(APP_PATH.'/application/helper/template.php');
+			if($trigger->exists("preview"))
+				$post->content = $trigger->filter($post->content,"preview");
 
-			tentacle::render ( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
+			tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
 			
 		} else {
 			$page 		= load::model( 'page' );
@@ -53,29 +55,26 @@ class page_controller {
 
 			define("IS_POST", TRUE);
 
-			load::helper('template');
-
 			// If URI lookup fails redirect to the themes 404 page
 			if ( $post ) {
 
-				if($trigger->exists("preview"))
-					echo $trigger->filter($text,"preview");
-
 				// at this tage we are simply allowing the contnet attribute to be modified by the modules.
-				$post->content = $trigger->filter($post->content,"preview");
+				if($trigger->exists("preview"))
+					$post->content = $trigger->filter($post->content,"preview");
 
-				tentacle::render ( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
-				//if(user::valid()) load::helper ('adminbar');
+				tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
 
 			} else {
 				// logging of 404's here.
 				tentacle::render ( '404' );
 			}
-
-			echo __CLASS__.'<br />';
-			render_debug();
+			
+			
 		}	
 		
+		if(user::valid()) load::view( 'admin/template-navigation' );
+
+		if(user::valid()) render_debug();
 		
 		
 	}// END index
