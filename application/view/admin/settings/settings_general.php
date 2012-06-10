@@ -189,9 +189,9 @@
 					<label>Thumbnail size</label>
 					<div class="input">
 						<div class="inline-inputs">
-							<input type="text" value="<?= get_option('image_thumb_size_w'); ?>" name="image_thumb_size_w" id="thumbnail_size_w" class='span2' />
+							<input type="text" value="<?= get_option('image_thumb_size_w','150'); ?>" name="image_thumb_size_w" id="thumbnail_size_w" class='span2' />
 							x
-							<input type="text" value="<?= get_option('image_thumb_size_h'); ?>" name="image_thumb_size_h" id="thumbnail_size_h" class='span2' />
+							<input type="text" value="<?= get_option('image_thumb_size_h','150'); ?>" name="image_thumb_size_h" id="thumbnail_size_h" class='span2' />
 						</div>
 					</div>
 <? /*
@@ -211,9 +211,9 @@
 					<label>Medium size</label>
 					<div class="input">
 						<div class="inline-inputs">
-							<input type="text" value="<?= get_option('image_medium_size_w'); ?>" name="image_medium_size_w" id="medium_size_w" class='span2' />
+							<input type="text" value="<?= get_option('image_medium_size_w','300'); ?>" name="image_medium_size_w" id="medium_size_w" class='span2' />
 							x
-							<input type="text" value="<?= get_option('image_medium_size_h'); ?>" name="image_medium_size_h" id="medium_size_h" class='span2' />
+							<input type="text" value="<?= get_option('image_medium_size_h','300'); ?>" name="image_medium_size_h" id="medium_size_h" class='span2' />
 						</div>
 					</div>
 				</div>
@@ -221,9 +221,9 @@
 					<label>Large size</label>
 					<div class="input">
 						<div class="inline-inputs">
-							<input type="text" value="<?= get_option('image_large_size_w'); ?>" name="image_large_size_w" class='span2' />
+							<input type="text" value="<?= get_option('image_large_size_w','600'); ?>" name="image_large_size_w" class='span2' />
 							x
-							<input type="text" value="<?= get_option('image_large_size_h'); ?>" name="image_large_size_h" class='span2' />
+							<input type="text" value="<?= get_option('image_large_size_h','600'); ?>" name="image_large_size_h" class='span2' />
 						</div>
 					</div>
 				</div>
