@@ -386,6 +386,20 @@ class sql_model
 		$build = $pdo->exec( "ALTER TABLE  `media` ADD  `link` VARCHAR( 250 ) NOT NULL AFTER  `date`" );
 	}
 	
+	public function get_111 ()
+	{
+		$config = config::get('db');
+		
+		try {
+			$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
+		} catch(PDOException $e) {
+			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
+		}
+
+		$build = $pdo->exec( "INSERT INTO `options` (`key`, `value`, `autoload`) VALUES('active_modules', NULL, 'yes');" );
+	}	
+
+	
 	public function set_db ( $version )
 	{
 		$config = config::get('db');

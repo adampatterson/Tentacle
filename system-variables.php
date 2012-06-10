@@ -3,28 +3,28 @@
 * Dingo system settings.
 */
 
-// Does Application Use Mod_Rewrite URLs?
+# Does Application Use Mod_Rewrite URLs?
 define('MOD_REWRITE',TRUE);
 
-// Turn Debugging On?
+# Turn Debugging On?
 define('DEBUG', TRUE);
 
-// Turn Error Logging On?
+# Turn Error Logging On?
 define('ERROR_LOGGING',TRUE);
 
-// Error Log File Location
+# Error Log File Location
 define('ERROR_LOG_FILE','log.txt');
 
-// Dingo Location
+# Dingo Location
 define( 'SYSTEM'        ,'system' );
 
-// Application Location
+# Application Location
 define( 'APPLICATION'   ,'application' );
 
-// Config Directory Location (in relation to application location)
+# Config Directory Location (in relation to application location)
 define( 'CONFIG'        ,'config' );
 
-// Allowed Characters in URL
+# Allowed Characters in URL
 define( 'ALLOWED_CHARS' ,'/^[ \!\,\~\&\.\:\+\@\-_a-zA-Z0-9]+$/');
 
 define( 'CORE_ROOT'     , __DIR__ );
@@ -48,20 +48,20 @@ endif;
 	
 define( 'DS'			, DIRECTORY_SEPARATOR );
 	
-// Application's Base URL
+# Application's Base URL
 define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port );
 
-// @todo BASE_URL may need some testing in other environments
+# @todo BASE_URL may need some testing in other environments
 define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.$directory.'/' );
 
-// Application's Base URL
+# Application's Base URL
 define('ROOT'		   , BASE_URI );
 
-// Application's Base Application URL
+# Application's Base Application URL
 define('TENTACLE_URL'     , BASE_URL.'tentacle/');
 define('TENTACLE_URI'     , APP_PATH.'/tentacle');
                           
-// Admin's Base URL       
+# Admin's Base URL       
 define('ADMIN'            , BASE_URL.'admin/');
 define('ADMIN_URL'        , TENTACLE_URL.'admin/');
 define('ADMIN_URI'        , TENTACLE_URI.'/admin/');
@@ -71,13 +71,13 @@ define('TENTACLE_PLUGIN'  , CORE_ROOT.'/tentacle/plugins/');
 define('TENTACLE_JS'   , ADMIN_URL.'js/');
 define('TENTACLE_CSS'  , ADMIN_URL.'css/');
 
-// http://code.google.com/p/minify/
+# http:#code.google.com/p/minify/
 define('MINIFY'        , ADMIN_URL.'lib/min/');
 
-// Image Size
+# Image Size
 define('GRAVATAR_SIZE' , "60" );
 
-// Folders
+# Folders
 define('STORAGE_DIR'   , TENTACLE_URI.'/storage');
 define('THEMES_DIR'    , TENTACLE_URI.'/themes/');
 define('THEMES_URL'    , TENTACLE_URL.'themes');
@@ -87,7 +87,7 @@ define('IMAGE_DIR'     , STORAGE_DIR.'/images/');
 define('IMAGE_URL'	   , TENTACLE_URL.'storage/images/');
 define('IMAGE_URI'	   , 'tentacle/storage/images/');
 
-// See application/helper/tentacle.php for other constants set using functionality not loaded yet.
+# See application/helper/tentacle.php for other constants set using functionality not loaded yet.
 
 
 /*
@@ -99,7 +99,7 @@ define('IMAGE_URI'	   , 'tentacle/storage/images/');
 *
 * @global string $tentacle_version
 */
-define('TENTACLE_VERSION', 'v0.5.7');
+define('TENTACLE_VERSION', 'v0.5.8');
  
  
 /**
@@ -107,7 +107,7 @@ define('TENTACLE_VERSION', 'v0.5.7');
 *
 * @global int $tentacle_db_version
 */
-define('TENTACLE_DB_VERSION', '110');
+define('TENTACLE_DB_VERSION', '111');
  
 
 /**

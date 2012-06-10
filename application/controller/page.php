@@ -4,7 +4,17 @@ class page_controller {
 	
     public function index( $uri = "" ){
 		
-		//load::library ('file');
+		tentacle::library('/', 'YAML');
+
+		load::helper('module');
+		
+		# Initiate the extensions.
+	    init_extensions();
+	
+		# Prepare the trigger class
+		$trigger = Trigger::current();
+		
+		
 
 		$scaffold = new Scaffold ();
 		
@@ -34,10 +44,16 @@ class page_controller {
 		//$GLOBALS['post'] 			= $post;
 		//$GLOBALS['post_meta'] 	= $post_meta;
 		
-		require_once(APP_PATH.'/application/helper/template.php');
+		load::helper('template');
 		
 		// If URI lookup fails redirect to the themes 404 page
 		if ( $post ) {
+			
+			if($trigger->exists("preview"))
+				echo $trigger->filter($text,"preview");
+			
+			$post->content = $trigger->filter($post->content,"preview");
+				
 			tentacle::render ( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
 
 			//if(user::valid()) load::helper ('adminbar');
