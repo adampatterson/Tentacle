@@ -426,22 +426,22 @@ class tentacle
 		echo '</pre>';
 	}
 	
-	
+
 // DEBUG
 //----------------------------------------------------------------------------------------------
 
     function render_debug() {
-		echo '<strong>GET</strong><pre>';
-	    	var_dump($_GET);
-		echo '</pre><strong>POST</strong><pre>';
-	    	var_dump($_POST);
-		echo '</pre><strong>COOKIE</strong><pre>';
-	    	var_dump($_COOKIE);
-		echo '</pre><strong>REQUEST</strong><pre>';
-	    	var_dump($_REQUEST);
-		echo '</pre><strong>REQUEST</strong>';
-    }
+		load::helper('dbug');
 
+    	new dBug($_GET, null, true);
+    	new dBug($_POST, null, true);
+    	//new dBug($_FILES, null, true);
+    	new dBug($_REQUEST, null, true);
+    	new dBug($_COOKIE, null, true);
+    	//new dBug($_SERVER, null, true);
+		//new dBug($_ENV, null, true);
+		new dBug($GLOBALS['dbug_query'], null, true);
+    }
 
 
 	// TEMP Array to Object

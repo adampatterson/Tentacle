@@ -276,8 +276,8 @@ class pdo_db_table
 			// Build and run SQL query
 			$sql = DingoSQL::build_insert($clean,$this->name,$this->db->driver);
 			$this->db->query($sql);
-			
-			// Return Select
+
+            // Return Select
 			//return $this->db->con->insert_id;
 			if($query)
 			{
@@ -292,11 +292,12 @@ class pdo_db_table
 	// ---------------------------------------------------------------------------
 	public function execute($query)
 	{
+
 		// Selects
 		if($query->type == 'select')
 		{
 			$data = $this->db->query(DingoSQL::build_select($query,$this->db->driver),$this->_orm);
-			
+            ;
 			// Combos
 			if(!empty($query->_combos))
 			{

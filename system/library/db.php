@@ -431,6 +431,11 @@ class DingoSQL
 			$sql .= " OFFSET {$query->_offset}";
 		}
 		
+		if (DEBUG == TRUE) {
+			load::helper('dbug');
+			logger($sql);
+		}
+		
 		//echo "<hr/>\n$sql<hr/>\n";
 		//return $this->db->query($sql);
 		return $sql;

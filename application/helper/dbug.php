@@ -1,4 +1,18 @@
 <?php
+
+function logger($sql)
+{
+	global $dbug_query;
+	$uid = uniqid();
+	
+	$bt = debug_backtrace();
+    $caller = array_shift($bt);
+	
+	$dbug_query[$uid]['query'] = $sql;
+	$dbug_query[$uid]['file'] = $caller['file'].' from line #'.$caller['line'];
+}
+
+
 /*********************************************************************************************************************\
  * LAST UPDATE
  * ============
