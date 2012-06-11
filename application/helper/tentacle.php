@@ -431,14 +431,15 @@ class tentacle
 //----------------------------------------------------------------------------------------------
 
     function render_debug() {
-		_e('<strong>GET</strong>');
+		echo '<strong>GET</strong><pre>';
 	    	var_dump($_GET);
-		_e('<strong>POST</strong>');
+		echo '</pre><strong>POST</strong><pre>';
 	    	var_dump($_POST);
-		_e('<strong>COOKIE</strong>');
+		echo '</pre><strong>COOKIE</strong><pre>';
 	    	var_dump($_COOKIE);
-		_e('<strong>REQUEST</strong>');
+		echo '</pre><strong>REQUEST</strong><pre>';
 	    	var_dump($_REQUEST);
+		echo '</pre><strong>REQUEST</strong>';
     }
 
 
