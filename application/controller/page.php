@@ -3,7 +3,7 @@
 class page_controller {
 	
     public function index(  ){
-		$uri = URI;
+		$uri 			= URI;
 
 		tentacle::library('YAML', 'YAML');
 
@@ -14,16 +14,16 @@ class page_controller {
 	    init_extensions();
 	
 		# Prepare the trigger class
-		$trigger 	= Trigger::current();
+		$trigger 		= Trigger::current();
 		
-		$scaffold 	= new Scaffold ();
+		$scaffold 		= new Scaffold ();
 		
 		if ( $uri == '' || $uri == 'home'):
-			$uri = 'home/';
+			$uri 		= 'home/';
 		elseif	( URI == '' || $uri == 'blog'):
-			$uri = 'blog/';
+			$uri 		= 'blog/';
 		else:
-			$uri = slash_it( $uri );
+			$uri 		= slash_it( $uri );
 		endif;
 		
 		// load the functions.php file from the active theme.
@@ -35,8 +35,8 @@ class page_controller {
 
 			define("IS_POST", FALSE);
 
-			$post = load::model( 'post' );
-			$posts = $post->get( );
+			$post 		= load::model( 'post' );
+			$posts 		= $post->get( );
 
 			$category 	= load::model( 'category' );
 			$tag 		= load::model( 'tags' );
@@ -68,14 +68,11 @@ class page_controller {
 				// logging of 404's here.
 				tentacle::render ( '404' );
 			}
-			
-			
+
 		}	
 		
 		if(user::valid()) load::view( 'admin/template-navigation' );
-
 		if(user::valid()) render_debug();
-		
 		
 	}// END index
     
