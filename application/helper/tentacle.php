@@ -15,17 +15,16 @@ define ( 'IMAGE_M', get_option( 'image_medium_size_w' ) );
 define ( 'IMAGE_L', get_option( 'image_large_size_w' ) );
 
 /**
-* tentacle class
-*
-* Taken part of the Dingo core load class for loading Tentacles admin Libs.
-*
-* @package Tentacle
-* @author Adam Patterson
-**/
+ * Class: tentacle
+ * Various core functionalities
+ */
 class tentacle 
 {
-	// Valid User / Redirect
-	// ---------------------------------------------------------------------------
+	
+	/**
+	* Function: valid_user
+	* Valid User / Redirect.
+	*/
 	public static function valid_user()
 	{	
 		if(!user::valid()) 
@@ -36,8 +35,18 @@ class tentacle
 		}
 	}
 	
-	// File
-	// ---------------------------------------------------------------------------
+	/**
+	* Function: file
+	* Loads a file from a folder
+	*
+	* Parameters:
+	*     $folder - path
+	*     $file - name
+	*
+	* Returns:
+	*		if true requires the file
+	*       if false returns an error
+	*/
 	public static function file($folder,$file)
 	{
 		// If file does not exist display error
@@ -53,29 +62,38 @@ class tentacle
 		}
 	}
 
-	// Library
-	// ---------------------------------------------------------------------------
+	/**
+	* Function: library
+	* Loads libraries specific to Tentacle
+	*
+	* Parameters:
+	*     $folder - path
+	*     $file - name
+	*
+	* Returns:
+	*     Required library
+	*/
 	public static function library($folder='/',$library)
 	{
 		return self::file(TENTACLE_LIB.$folder,$library,'library');
 	}
-	
-	// Plugin
-	// ---------------------------------------------------------------------------
-	public static function plugin($folder='/',$library)
-	{
-		return self::file(TENTACLE_PLUGIN.$folder,$library,'library');
-	}
+
 	
 	
 	/**
-	* render function
+	* Function: render
+	* Loads the active theme for viewing
 	*
-	* Load themes for viewing.
+	* Parameters:
+	*     $theme - string
+	*     $data - object/array
 	*
-	* @return void
-	* @author Adam Patterson
-	**/   
+	* Returns:
+	*     The loaded theme passing it $data
+	*
+	* See Also:
+	*     <load_part>
+	*/ 
 	public static function render( $theme, $data = NULL )
     {
 		
@@ -108,8 +126,14 @@ class tentacle
         } // else
     } // END render	
 
-	// Get the requested URL, parse it, then clean it up
-	// ---------------------------------------------------------------------------
+	
+	/**
+	* Function: get_request_url
+	* Get the requested URL, parse it, then clean it up
+	*
+	* Returns:
+	*     $url
+	*/
 	public static function get_request_url()
 	{	
 		// Get the filename of the currently executing script relative to docroot
@@ -133,9 +157,13 @@ class tentacle
 	}	
 	
 
-	 /**
-	  * Checks what the latest Tentacle version is that is available at tentaclecms.com
-	  */
+	/**
+	* Function: check_version
+	* Checks what the latest Tentacle version is that is available at tentaclecms.com
+	*
+	* Returns:
+	*     A string containing a message and a link to the latest version of Tentacle.
+	*/
 	 public static function check_version()
 	 {
 		if ( !defined( 'TENTACLE_VERSION' ) || !TENTACLE_VERSION )
@@ -159,13 +187,12 @@ class tentacle
 
 	
 	/**
-	* For use with hierarchal data
+	* Function: offset
+	* For use with hierarchal data, used to return a CSS class that can be used on generated tables and lists.
 	*
-	* This is used to return a CSS class that can be used on generated tables and lists.
-	*
-	* @return string
-	* @author Adam Patterson
-	**/
+	* Returns:
+	*     $string
+	*/
 	function offset( $i = 1, $output = 'class' ){
 		
 		if ( $output == 'list') {
@@ -206,13 +233,19 @@ class tentacle
 	}
 	
 	/**
-	* render function
-	*
+	* Function: load_part
 	* Load theme parts for inclusion.
 	*
-	* @return void
-	* @author Adam Patterson
-	**/   
+	* Parameters:
+	*     $part - string
+	*     $data - object/array
+	*
+	* Returns:
+	*     $string
+	*
+	* See Also:
+	*     <render>
+	*/
 	function load_part( $part, $data = '' )
 	{
 	    // If theme does not exist display error
@@ -235,11 +268,18 @@ class tentacle
 	    } // else
 	} // END render
 	
-	
-
-// Display blog feed in the dashboard.
-//----------------------------------------------------------------------------------------------
-
+	/**
+	* Function: dashboard_feed
+	* Display blog feed in the dashboard.
+	*
+	* Parameters:
+	*     $feed - string
+	*     $count - int
+	*	  $only_titles - true/false
+	*
+	* Returns:
+	*     html
+	*/
 	function dashboard_feed( $feed, $count = 0, $only_titles = false ) {
 		// Use cURL to fetch text
 		$ch = curl_init();
@@ -278,6 +318,17 @@ class tentacle
 // Server Overview
 //----------------------------------------------------------------------------------------------
 
+	/**
+	* Function: colorify_value
+	* Used to compare two strings, if they are equal then a bootstrap label of success is returned, error if other wise.
+	*
+	* Parameters:
+	*     $value - string/int
+	*     $expected - string/int
+	*
+	* Returns:
+	*     html
+*/
 	function colorify_value($value, $expected) {
 		if (strcasecmp($value, $expected) == 0) {
 			return '<span class="label success">'.$value.'</span>';
@@ -289,11 +340,13 @@ class tentacle
 	
 	
 	/**
-	 * http://www.php.net/manual/en/function.phpinfo.php
-	 * code at adspeed dot com
-	 * 09-Dec-2005 11:31
-	 * This function parses the phpinfo output to get details about a PHP module.
-	 */
+	* Function: parse_php_info
+	* This function parses the phpinfo output to get details about a PHP module.
+	* http://www.php.net/manual/en/function.phpinfo.php
+    *
+	* Returns:
+	*     html
+	*/
 	function parse_php_info() {
 		ob_start();
 		phpinfo(INFO_MODULES);
@@ -329,51 +382,81 @@ class tentacle
 //----------------------------------------------------------------------------------------------
 	
 	/**
-	 * Appends a trailing slash.
-	 *
-	 * Will remove trailing slash if it exists already before adding a trailing
-	 * slash. This prevents double slashing a string or path.
-	 *
-	 * The primary use of this is for paths and thus should be used for paths. It is
-	 * not restricted to paths and offers no specific path support.
-	 *
-	 * @package WordPress
-	 * @since 1.2.0
-	 * @uses untrailingslashit() Unslashes string if it was slashed already.
-	 *
-	 * @param string $string What to add the trailing slash to.
-	 * @return string String with trailing slash added.
-	 */
+	* Function: slash_it
+	* Appends a trailing slash.
+	*
+	* Will remove trailing slash if it exists already before adding a trailing
+	* slash. This prevents double slashing a string or path.
+	*
+	* The primary use of this is for paths and thus should be used for paths. It is
+	* not restricted to paths and offers no specific path support.
+	*
+	* From WordPress
+	*
+	* Parameters:
+	*     $string - string $string What to add the trailing slash to.
+	*
+	* Returns:
+	*     $string - String with trailing slash added.
+	*
+	* See Also:
+	*     <un_slash>
+	*/
 	function slash_it($string) {
 		return un_slash($string) . '/';
 	}
-	
-	
+
+
 	/**
-	 * Removes trailing slash if it exists.
-	 *
-	 * The primary use of this is for paths and thus should be used for paths. It is
-	 * not restricted to paths and offers no specific path support.
-	 *
-	 * @package WordPress
-	 * @since 2.2.0
-	 *
-	 * @param string $string What to remove the trailing slash from.
-	 * @return string String without the trailing slash.
-	 */
+	* Function: un_slash
+	* Removes trailing slash if it exists.
+	*
+	* The primary use of this is for paths and thus should be used for paths. It is
+	* not restricted to paths and offers no specific path support.
+	*
+	*
+	* From WordPress
+	*
+	* Parameters:
+	*     $string - string $string What to remove the trailing slash from.
+	*
+	* Returns:
+	*     $string - String without the trailing slash.
+	*
+	* See Also:
+	*     <slash_it>
+	*/
 	function un_slash($string) {
 		return rtrim($string, '/');
 	}
 
-	
 	/**
-	 * Encodes HTML safely for UTF-8. Use instead of htmlentities.
-	 */
+	* Function: html_encode
+	* Encodes HTML safely for UTF-8. Use instead of htmlentities.
+	*
+	* Parameters:
+	*     $string - String containing content
+	*
+	* Returns:
+	*     $string - String cleaned with invalid characters converted to UTF-8
+	*/
 	function html_encode($string) {
 		return htmlentities($string, ENT_QUOTES, 'UTF-8') ;
 	}
 	
-	
+	/**
+	* Function: convert_size
+	* Converts a number to a readable file size.
+	*
+	* Parameters:
+	*     $num - Int
+	*
+	* Returns:
+	*     $num - Bytes converted to KB, MB, or GB
+	*
+	* See Also:
+	*     <memory_usage>
+	*/
 	function convert_size($num) {
 	    if ($num >= 1073741824) $num = round($num / 1073741824 * 100) / 100 .' gb';
 	    else if ($num >= 1048576) $num = round($num / 1048576 * 100) / 100 .' mb';
@@ -382,8 +465,17 @@ class tentacle
 	    return $num;
 	}
 	
-	
-	// Information about time and memory
+
+	/**
+	* Function: memory_usage
+	* Information about time and memory
+	*
+	* Returns:
+	*     Int
+	*
+	* See Also:
+	*     <convert_size>
+	*/
 	function memory_usage() {
 	    return convert_size(memory_get_usage());
 	}
@@ -393,18 +485,46 @@ class tentacle
 // Theme Content Rendering ( Output )
 //----------------------------------------------------------------------------------------------
 
-	
+	/**
+	* Function: render_content
+	* Information about time and memory
+	*
+	* Parameters:
+	*	  $content - String
+	* 	
+	* Returns:
+	*     $content - Slashes removed.
+	*/
 	function render_content ( $content='' ) {
 		return stripslashes( $content );
 	}	
 	
-	
-	// Short Echo, Later used in translations.
+
+	/**
+	* Function: _e
+	* Short Echo, Later used in translations.
+	*
+	* Parameters:
+	*	  $data - String
+	* 	
+	* Returns:
+	*     $data - String
+	*/
 	function _e( $data ) 
 	{
 		echo $data;
 	}
 	
+	
+	/**
+	* Function: uri_contains
+	*
+	* Parameters:
+	*	  $string - String
+	* 	
+	* Returns:
+	*     Bool
+	*/
 	function uri_contains( $string )
 	{
 		if(strpos(BASE_URI, $string) !== false){
@@ -414,12 +534,17 @@ class tentacle
 		}
 	}
 
+
 	/**
+	* Function: clean_out
 	* Render pre tags around data for displaying arrays and objects.
 	*
-	* @return html
-	* @author Adam Patterson
-	**/
+	* Parameters:
+	*	  $data - String
+	* 	
+	* Returns:
+	*     HTML
+	*/
 	function clean_out($data) {
 		echo '<pre>';
 		print_r($data);
@@ -430,6 +555,20 @@ class tentacle
 // DEBUG
 //----------------------------------------------------------------------------------------------
 
+	/**
+	* Function: render_debug
+	* Render pre tags around data for displaying arrays and objects.
+	*
+	* Parameters:
+	*	  $_GET
+	*	  $_POST
+	*	  $_REQUEST
+	*	  $_COOKIE
+	*	  $GLOBALS
+	* 	
+	* Returns:
+	*     HTML from dBug class
+*/
     function render_debug() {
 		load::helper('dbug');
 
@@ -447,12 +586,16 @@ class tentacle
 	// TEMP Array to Object
 	//----------------------------------------------------------------------------------------------
 
-	/**
-	* Array to object - Takes an array as input and returns an object
-	* @return object
-	* @param  $array
-	*/
-
+		/**
+		* Function: array_to_object
+		* Array to object - Takes an array as input and returns an object
+		*
+		* Parameters:
+		*	  $array - Array
+		* 	
+		* Returns:
+		*     $tmp - Object
+		*/
 		function array_to_object($array = array())
 		{
 		    $tmp = new stdClass;
@@ -473,6 +616,16 @@ class tentacle
 		}
 
 
+		/**
+		* Function: get_tracking_array
+		* Get an array from the query string, this can be used for tracking downloads or other statistics. 
+		*
+		* Parameters:
+		*	  $url - String
+		* 	
+		* Returns:
+		*     $query_array - Array
+		*/
 		function get_tracking_array(  )
 		{
             $url = parse_url($_SERVER['REQUEST_URI']);

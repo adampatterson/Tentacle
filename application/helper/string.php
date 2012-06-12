@@ -1,19 +1,21 @@
 <?
-	/**
-	* truncate function 
+ 	/**
+	* Function: truncate
 	* Truncates a string to the given length, optionally taking into account HTML tags, and/or keeping words in tact.
 	* @author CakePHP team, code style modified.
 	*
-	* @param $text - String to shorten.
-	* @param $length - Length to truncate to.
-	* @param $ending - What to place at the end, e.g. "...".
-	* @param $exact - Break words?
-	* @param $html - Auto-close cut-off HTML tags?
+	* Parameters:
+	*     $text - String to shorten.
+	*     $length - Length to truncate to.
+	*     $ending - What to place at the end, e.g. "...".
+	*     $exact - Break words?
+	*     $html - Auto-close cut-off HTML tags?*
+	* Returns:
+	*     String
 	*
-	* @return String 
-	*
+	* See Also:
+	*     <truncate_middle>
 	*/
-
     function truncate($text, $length = 100, $ending = "...", $exact = false, $html = false) {
         if (is_array($ending))
             extract($ending);
@@ -256,18 +258,6 @@
 	        echo $n . ' ' . $plural;
 	    }
 	}
-
-	function camelize($string, $keep_spaces = false) {
-        $lower = strtolower($string);
-        $deunderscore = str_replace("_", " ", $lower);
-        $dehyphen = str_replace("-", " ", $deunderscore);
-        $final = ucwords($dehyphen);
-
-        if (!$keep_spaces)
-            $final = str_replace(" ", "", $final);
-
-        return $final;
-    }
 
 	/**
 	* escapeStr function
