@@ -1,6 +1,4 @@
 <?
-class inflector {
-
 	/**
 	* Function: camelize
 	* Converts a given string to camel-case.
@@ -15,7 +13,7 @@ class inflector {
 	* See Also:
 	*     <decamelize>
 	*/
-    public static function camelize($string, $keep_spaces = false) 
+    function camelize($string, $keep_spaces = false) 
     {
         $lower = strtolower($string);
         $deunderscore = str_replace("_", " ", $lower);
@@ -41,41 +39,59 @@ class inflector {
 	* See Also:
 	*     <camelize>
 	*/
-    public static function decamelize($string) 
+    function decamelize($string) 
     {
         return strtolower(preg_replace("/([a-z])([A-Z])/", "\\1 \\2", $string));
     }
 
 
-    /**
-     * Return an underscore_syntaxed (like_this_dear_reader) from something LikeThisDearReader.
-     *
-     * @param  string $string CamelCased word to be "underscorized"
-     * @return string Underscored version of the $string
-     */
-    public static function underscore($string) 
+	/**
+	* Function: underscore
+	* Return an underscore_syntaxed (like_this_dear_reader) from something LikeThisDearReader.
+	*
+	* Parameters:
+	*     string $string CamelCased word to be "underscorized"
+	*
+	* Returns:
+	*     string Underscored version of the $string
+	*
+	* See Also:
+	*     <dash>
+	*/
+    function underscore($string) 
     {
         return strtolower(preg_replace('/(?<=\\w)([A-Z])/', '_\\1', $string));
     }
 
-    /**
-     * Return an dashed-syntaxed (like-this-dear-reader) from something LikeThisDearReader.
-     *
-     * @param  string $string CamelCased word to be "underscorized"
-     * @return string Underscored version of the $string
-     */
-    public static function dash($string) 
+	/**
+	* Function: dash
+	* Return an dashed-syntaxed (like-this-dear-reader) from something LikeThisDearReader.
+	*
+	* Parameters:
+	*     string $string CamelCased word to be "underscorized"
+	*
+	* Returns:
+	*     string Underscored version of the $string
+	*
+	* See Also:
+	*     <underscore>
+	*/
+    function dash($string) 
     {
         return strtolower(preg_replace('/(?<=\\w)([A-Z])/', '-\\1', $string));
     }
     
-    /**
-     * Return a Humanized syntaxed (Like this dear reader) from something like-this-dear-reader.
-     *
-     * @param  string $string CamelCased word to be "underscorized"
-     * @return string Underscored version of the $string
-     */
-    public static function humanize($string) 
+	/**
+	* Function: humanize
+	* Return a Humanized syntaxed (Like this dear reader) from something like-this-dear-reader.
+	*
+	* Parameters:
+	*     string $string CamelCased word to be "underscorized"
+	*
+	* Returns:
+	*	  string Underscored version of the $string
+	*/
+    function humanize($string) 
     {
 		$string = str_replace('_', ' ', $string);
 		$string = str_replace('-', ' ', $string);
@@ -84,28 +100,39 @@ class inflector {
     }
 
 
-	
 	/**
+	* Function: is_upper
 	* Determines if a string contains all uppercase characters.
 	*
-	* @param string $s string to check
-	* @return bool
+	* Parameters:
+	*     string $string string to check
+	*
+	* Returns:
+	*	  bool
+	*
+	* See Also:
+	*     <is_lower>
 	*/
-	public static function is_upper($s)
+	function is_upper($string)
 	{
-		return (strtoupper($s) === $s);
+		return (strtoupper($string) === $string);
 	}
 	
 
 	/**
+	* Function: is_lower
 	* Determines if a string contains all lowercase characters.
 	*
-	* @param string $s string to check
-	* @return bool
+	* Parameters:
+	*     string $string string to check
+	*
+	* Returns:
+	*     bool
+	*
+	* See Also:
+	*     <is_upper>
 	*/
-	public static function is_lower($s)
+	function is_lower($string)
 	{
-		return (strtolower($s) === $s);
-	}
-
-}// 	
+		return (strtolower($string) === $string);
+	}	
