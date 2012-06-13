@@ -1,9 +1,16 @@
 <?
+/**
+* File: Time
+*/
 
-    /**
-     * Function: time_in_timezone
-     * Returns the appropriate time() for representing a timezone.
-     */
+
+	/**
+	* Function: time_in_timezone
+	* Returns the appropriate time() for representing a timezone.
+	*
+	* Returns:
+	* 	The appropriate time() for representing a timezone.
+	*/
     function time_in_timezone($timezone) {
         $orig = get_timezone();
         set_timezone($timezone);
@@ -12,10 +19,13 @@
         return strtotime($time);
     }
 
-    /**
-     * Function: timezones
-     * Returns an array of timezones that have unique offsets. Doesn't count deprecated timezones.
-     */
+
+	/**
+	* Function: timezones
+	* 	Returns an array of timezones that have unique offsets. Doesn't count deprecated timezones.
+	* Returns: 
+	*	$zones - Array of timezones that have unique offsets. Doesn't count deprecated timezones.
+	*/
     function timezones() {
         $zones = array();
 
@@ -35,6 +45,7 @@
         return $zones;
     }
 
+
    /**
      * Function: set_timezone
      * Sets the timezone.
@@ -49,10 +60,14 @@
             ini_set("date.timezone", $timezone);
     }
 
-    /**
-     * Function: get_timezone()
-     * Returns the current timezone.
-     */
+
+	/**
+	* Function: get_timezone()
+	* Returns the current timezone.
+	*
+	* Returns:
+	*	Time Zone
+	*/
     function get_timezone() {
         if (function_exists("date_default_timezone_set"))
             return date_default_timezone_get();
@@ -109,6 +124,7 @@
 
         return $amount." ".pluralize($unit, $amount)." ".$word;
     }
+
 
      /**
      * Function: now

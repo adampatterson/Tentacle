@@ -1,4 +1,9 @@
 <?
+/**
+* File: Template
+*/
+
+
 // Include tempalte files
     function get_header () {echo 'get the header';}
     function get_sidebar () {echo 'get the sidebar';}

@@ -1,5 +1,10 @@
 <?php
 /**
+* File: Hash
+*/
+
+
+/**
  * Pure-PHP implementations of keyed-hash message authentication codes (HMACs) and various cryptographic hashing functions.
  *
  * Uses hash() or mhash() if available and an internal implementation, otherwise.  Currently supports the following:

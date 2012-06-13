@@ -1,4 +1,9 @@
 <?php
+/**
+* File: Scaffold
+*/
+
+
 /*
  * Process PHP Array and convert it to Forum Input fields.
  * @todo humanize the label name from the input name.

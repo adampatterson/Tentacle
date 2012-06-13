@@ -1,5 +1,10 @@
 <?php
 /**
+* File: Smushit
+*/
+
+
+/**
  * Description: Compresses images using Smush.it
  * 
  * @license MIT

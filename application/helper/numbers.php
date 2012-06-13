@@ -1,5 +1,10 @@
 <?php
 /**
+* File: Numbers
+*/
+
+
+/**
  * Provides methods for converting a numbers into formatted strings.
  * Methods are provided for phone numbers, currency, percentage,
  * precision, positional notation, and file size.

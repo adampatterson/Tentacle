@@ -261,8 +261,8 @@ function get_file_data( $file, $default_headers )
 * Function: get_data
 *
 * Parameters:
-*     $theme_file - 
-*	  $data_type - 
+*     $theme_file - String
+*	  $data_type - theme / template / post_type
 *
 * Returns:
 *     $theme_data - Array

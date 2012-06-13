@@ -1,4 +1,9 @@
 <?php 
+/**
+* File: Notification
+*/
+
+
 // create a function that takes the note key and sets the type as well as the message.
 
 if($note = note::get('page_add')): ?>

@@ -1,4 +1,9 @@
 <?
+/**
+* File: Is
+*/
+
+
 /*
  * These functions should return TRUE of FALSE
  * They should be used to logic in templates and the admin area.

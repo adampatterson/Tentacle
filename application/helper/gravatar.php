@@ -1,4 +1,9 @@
 <?
+/**
+* File: Gravatar
+*/
+
+
 	/**
 	 * Get either a Gravatar URL or complete image tag for a specified email address.
 	 *

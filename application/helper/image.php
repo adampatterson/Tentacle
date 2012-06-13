@@ -1,4 +1,9 @@
 <?
+/**
+* File: Image
+*/
+
+
 function process_image( $file = '', $insert = FALSE )
 {
 	//get the file array
