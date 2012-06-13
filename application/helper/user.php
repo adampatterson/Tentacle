@@ -1,17 +1,21 @@
 <?php
 
 /**
+* Function: current_user_can
 * 
-* @author Adam Patterson
-* @param  option key
-* @return True / False
 */
-
 function current_user_can () {
 	
 }
 
 
+/**
+* Function: user_name
+* Returns a joined first and last name
+*
+* Returns:
+*     	string - first_name last_name
+*/
 function user_name ( ) {
 	$id = user::id( );
 
@@ -23,6 +27,13 @@ function user_name ( ) {
 }
 
 
+/**
+* Function: user_email
+* Recursively converts a SimpleXML object (and children) to an array.
+*
+* Returns:
+*     	string - users email address
+*/
 function user_email ( ) {
 	$id = user::id( );
 
@@ -34,6 +45,13 @@ function user_email ( ) {
 }
 
 
+/**
+* Function: user_editor
+* Returns what editor the user has chosen.
+*
+* Returns:
+*     	string
+*/
 function user_editor ( ) {
 	$id = user::id( );
 

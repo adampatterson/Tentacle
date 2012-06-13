@@ -1,13 +1,17 @@
 <?php	
 /**
- * extract_zip function
- *
- * @param string $filename 
- * @return true
- * @author Adam Patterson
- *
- * @todo set the extraction location. Make a function for moving files around.
- */	
+* Function: extract_zip
+* extract_zip function
+*
+* Parameters:
+*     $filename - String
+*
+* Returns:
+*     Bool
+*
+* See Also:
+*     <download_and_extract_zip>
+*/
 function extract_zip( $filename, $extract_to = '/' )
 {
     if ( class_exists( 'ZipArchive' ) )
@@ -38,13 +42,19 @@ function extract_zip( $filename, $extract_to = '/' )
 
 
 /**
- * download_and_extract_zip function
- *
- * @param string $appname 
- * @param string $appdata 
- * @return void
- * @author Adam Patterson
- */
+* Function: download_and_extract_zip
+* download_and_extract_zip function
+*
+* Parameters:
+* 	  $appname - Path to archive file.
+* 	  $appdata - 
+* 
+* Returns:
+*     void
+*
+* See Also:
+*     <extract_zip>
+*/
 function download_and_extract_zip( $appname, $appdata )
 {
 	$zipped = file_get_contents( $appdata );

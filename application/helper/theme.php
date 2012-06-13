@@ -1,10 +1,32 @@
 <?php if(!defined('DINGO')){die('External Access to File Denied');}
+/**
+* File: Theme
+*/
 
+
+/**
+* Function: _cleanup_header_comment
+* 	Converts a given string to camel-case.
+*
+* Returns:
+*     String
+*/
 function _cleanup_header_comment($str) 
 {
 	return trim(preg_replace("/\s*(?:\*\/|\?>).*/", '', $str));
 }
 
+
+/**
+* Function: current_theme
+* 	Returns HTML for the current active theme ( sets Bootstrap Label )
+*
+* Parameters:
+*     $theme_id = INT
+*
+* Returns:
+*     HTML
+*/
 function current_theme( $theme_id = '' ) 
 {
 	$options = load::model( 'settings' );
@@ -15,6 +37,17 @@ function current_theme( $theme_id = '' )
 	}
 }
 
+
+/**
+* Function: get_themes
+* 	Returns an array of theme data.
+*
+* Returns:
+*     $themes - Array
+*
+* See Also:
+*     <get_templates>
+*/
 function get_themes()
 {
   	$themes = array();
@@ -51,7 +84,7 @@ function get_themes()
 				$themes[$file]['index'] = $theme_index[0];
 				$themes[$file]['screenshot'] = $theme_screenshot[0];
 				$themes[$file]['style'] = $theme_style[0];
-				$themes[$file]['theme_name'] = inflector::humanize($file);
+				$themes[$file]['theme_name'] = humanize($file);
 				$themes[$file]['theme_id'] = $file;
 			}
 		}
@@ -63,6 +96,16 @@ function get_themes()
 }// Get Themes
 
 
+/**
+* Function: get_settings
+* 	Returns an array of themes settings parsed from style.css
+*
+* Parameters:
+*     $style_path - String ( theme name )
+*
+* Returns:
+*     $theme - Array
+*/
 function get_settings ( $style_path = 'default' )
 {
 	$style_file = THEMES_DIR.$style_path.'/style.css';
@@ -83,7 +126,19 @@ function get_settings ( $style_path = 'default' )
 } // Get Settings
 
 
-// @todo Don't show the reserved file names, these should be valid tempalte files with the correct headers.
+/**
+* Function: get_templates
+* Returns a list of template files located in $theme_folder
+*
+* Parameters:
+*     $theme_folder - String
+*
+* Returns:
+*     $template - Array
+*
+* See Also:
+*     <get_themes>
+*/
 function get_templates ( $theme_folder ) 
 {
 	$php_files = glob(THEMES_DIR.$theme_folder.'/*.php');	
@@ -110,6 +165,18 @@ function get_templates ( $theme_folder )
 } // Get Templates
 
 
+/**
+* Function: get_post_type
+*
+* Parameters:
+*     $theme_folder - String
+*
+* Returns:
+*     $template - Array
+*
+* See Also:
+*     <get_templates> <get_themes>
+*/
 function get_post_type ( $theme_folder )
 {
 	$php_files = glob(THEMES_DIR.'/'.$theme_folder.'/type-*.php');	
@@ -131,6 +198,7 @@ function get_post_type ( $theme_folder )
 } // Get Post Type
 
 
+/*
 function get_resources( $index_path = '' )
 {	
 	$index_file = $index_path.'/index.php';
@@ -147,11 +215,20 @@ function get_resources( $index_path = '' )
 		return NULL;
 	endif;	
 } // Get Resources
+*/
 
 
 /**
-* Retrieve metadata from a file.
-* Modified from WordPress
+* Function: get_file_data
+* 	Retrieve metadata from a file.
+* 	Modified from WordPress
+*
+* Parameters:
+*     $file - 
+*	  $default_headers - 
+*
+* Returns:
+*     $file_data - Array
 */
 function get_file_data( $file, $default_headers )
 {
@@ -180,6 +257,16 @@ function get_file_data( $file, $default_headers )
 } // get_file_data
 
 
+/**
+* Function: get_data
+*
+* Parameters:
+*     $theme_file - 
+*	  $data_type - 
+*
+* Returns:
+*     $theme_data - Array
+*/
 function get_data( $theme_file, $data_type ) 
 {
 	if ( $data_type == 'template' ) {

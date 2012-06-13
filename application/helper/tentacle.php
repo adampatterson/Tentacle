@@ -1,4 +1,8 @@
-<?php 
+<?php
+
+/**
+ * File: Tentacle
+ */
 // Tentacle Globals
 // ---------------------------------------------------------------------------
 
@@ -14,10 +18,6 @@ define ( 'IMAGE_T', get_option( 'image_thumb_size_w' ) );
 define ( 'IMAGE_M', get_option( 'image_medium_size_w' ) );
 define ( 'IMAGE_L', get_option( 'image_large_size_w' ) );
 
-/**
- * Class: tentacle
- * Various core functionalities
- */
 class tentacle 
 {
 	

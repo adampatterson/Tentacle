@@ -34,7 +34,8 @@
 	* Parameters:
 	*     $string - The string to decamelize.
 	*
-	* Return a de_camel_cased string.
+	* Returns:
+	* 	  a de_camel_cased string.
 	*
 	* See Also:
 	*     <camelize>

@@ -1,9 +1,12 @@
 <?
 /**
- * Upgrade process will load SQL from within the SQL model.
- *
- * @author Adam Patterson
- */
+* File: Upgrade
+*/
+
+/**
+* Function: tentacle_upgrade
+* Upgrade process will load SQL from within the SQL model.
+*/
 function tentacle_upgrade() {
 	// current db version is stored in the database
 	// DB version is saved in the config file in TENTACLE_DB_VERSION
@@ -13,11 +16,14 @@ function tentacle_upgrade() {
 	upgrade_all();
 }
 
+
 /**
- * Functions to be called in install and upgrade scripts.
- *
- * @since 1.0.0
- */
+* Function: upgrade_all
+* Functions to be called in install and upgrade scripts.
+*
+* Returns:
+* 		bool
+*/
 function upgrade_all() {
 	
 	// We are up-to-date.  Nothing to do.
