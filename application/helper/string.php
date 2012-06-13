@@ -1,4 +1,8 @@
 <?
+/**
+ * File: String
+ */
+
  	/**
 	* Function: truncate
 	* Truncates a string to the given length, optionally taking into account HTML tags, and/or keeping words in tact.

@@ -1,4 +1,7 @@
 <?
+/**
+* File: Inflector
+*/
 	/**
 	* Function: camelize
 	* Converts a given string to camel-case.

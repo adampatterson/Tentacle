@@ -1,5 +1,10 @@
 <?
 /**
+* File: URL
+*/
+
+
+/**
 * Function: self_url
 * builds the full URL for the current page.
 *

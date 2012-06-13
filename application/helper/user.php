@@ -1,4 +1,8 @@
 <?php
+/**
+* File: User
+*/
+
 
 /**
 * Function: current_user_can

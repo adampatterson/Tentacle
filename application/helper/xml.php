@@ -1,5 +1,10 @@
 <?
 /**
+* File: XML
+*/
+
+
+/**
 * Function: xml_arr
 * Recursively converts a SimpleXML object (and children) to an array.
 *
