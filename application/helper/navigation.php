@@ -1,14 +1,56 @@
 <?
+/**
+* File: Navigation
+*/
+
 
 /**
- * Generate HTML output for Naviogation
- *
- * @author Adam Patterson
- */
+* Function: nav_menu
+*	Build the page object from the page model.
+*
+* Returns:
+*	HTML - Formatted HTML tree.
+*/
+function nav_menu ( )
+{
+	define ( 'FRONT'		,'true' );
+	
+	$page = load::model( 'page' );
+	$pages = $page->get( );
+	// Current URI to be used with .current page
+	$uri = URI;
 
-function nav_generate ( $tree, $output = '' )
+	$page_tree = $page->get_page_tree( $pages );
+	$page_array = $page->get_page_children( 0, $pages, 0 );
+	
+	/*
+	$get_page_level = $page->get_page_level( $page_object, 'portfolio/design/print' );
+	$get_page_by_level = $page->get_page_by_level( $page_object, $get_page_level );
+	$get_home = $page->get_home( );
+	$get_flat_page_hierarchy = $page->get_flat_page_hierarchy( $pages );
+	$get_descendant_ids = $page->get_descendant_ids( 3 );
+	$page_children = $page->get_page_children( 0, $pages );
+	*/
+	// Generate the HTML output.
+	nav_generate ( (array)$page_array );
+
+}
+
+
+/**
+* Function: nav_generate
+*	Generate HTML output for Naviogation
+*
+* Parameters:
+*	$tree - Tree data array
+*
+* Returns:
+*	HTML - Formatted HTML tree.
+*/
+function nav_generate ( $tree )
 {
 
+	$output = '';
 	$depth = -1;
 	$flag = false;
 	
@@ -34,35 +76,4 @@ function nav_generate ( $tree, $output = '' )
 	$output .= '</ul>';
 	
 	echo $output;
-}
-
-/**
- * Process the page object.
- *
- * @author Adam Patterson
- */
-
-function nav_menu ( )
-{
-	define ( 'FRONT'		,'true' );
-	
-	$page = load::model( 'page' );
-	$pages = $page->get( );
-	// Current URI to be used with .current page
-	$uri = URI;
-
-	$page_tree = $page->get_page_tree( $pages );
-	$page_array = $page->get_page_children( 0, $pages, 0 );
-	
-	/*
-	$get_page_level = $page->get_page_level( $page_object, 'portfolio/design/print' );
-	$get_page_by_level = $page->get_page_by_level( $page_object, $get_page_level );
-	$get_home = $page->get_home( );
-	$get_flat_page_hierarchy = $page->get_flat_page_hierarchy( $pages );
-	$get_descendant_ids = $page->get_descendant_ids( 3 );
-	$page_children = $page->get_page_children( 0, $pages );
-	*/
-	// Generate the HTML output.
-	nav_generate ( (array)$page_array );
-
 }

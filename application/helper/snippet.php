@@ -4,17 +4,19 @@
 */
 
 
-function get_snippet( $atts ) {
+/**
+* Function: get_snippet
+*	Function call passing the $slug to retrieve the snippet.
+*
+* Parameters:
+*	$slug - String
+*
+* Returns:
+*	String
+*/
+function get_snippet( $slug ) {
 	$snippet = load::model( 'snippet' );
-	$snippet_single = $snippet->get_slug( $atts );
-	
-	return $snippet_single->content;
-	}
-	
-	
-function snippet( $atts ) {
-	$snippet = load::model( 'snippet' );
-	$snippet_single = $snippet->get_slug( $atts['slug'] );
+	$snippet_single = $snippet->get_slug( $slug );
 	
 	return $snippet_single->content;
 	}
