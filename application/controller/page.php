@@ -1,5 +1,4 @@
 <?php
-
 class page_controller {
 	
     public function index(  ){
@@ -44,6 +43,9 @@ class page_controller {
 
 			if($trigger->exists("preview"))
 				$post->content = $trigger->filter($post->content,"preview");
+			
+			if($trigger->exists("shortcode"))
+				$post->content = $trigger->filter($post->content,"shortcode");
 
 			tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
 			
@@ -61,8 +63,11 @@ class page_controller {
 				// at this tage we are simply allowing the contnet attribute to be modified by the modules.
 				if($trigger->exists("preview"))
 					$post->content = $trigger->filter($post->content,"preview");
+					
+				if($trigger->exists("shortcode"))
+					$post->content = $trigger->filter($post->content,"shortcode");
 
-				tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
+				tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta, 'trigger', $trigger ) );
 
 			} else {
 				// logging of 404's here.
@@ -71,9 +76,9 @@ class page_controller {
 
 		}	
 		
-		if(user::valid()) load::view( 'admin/template-navigation' );
-		if(user::valid()) render_debug();
-		
+		//if(user::valid()) load::view( 'admin/template-navigation' );
+		//if(user::valid()) render_debug();
+
 	}// END index
     
 } // END Class page
