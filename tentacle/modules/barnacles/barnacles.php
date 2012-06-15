@@ -2,7 +2,8 @@
 class Barnacles extends Modules {
 
     public function __init() {
-        $this->addAlias("shortcode", "shortcode");
+        $this->addAlias("shortcode", "shortcode", 1);
+		add_shortcode( 'snippet', 'snippet' );
     }
 
 	public function shortcode($text='') {
