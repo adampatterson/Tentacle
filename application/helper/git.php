@@ -5,17 +5,29 @@
 
 
 /**
- * Git Helper
- *
- * @author Adam Patterson
- */
-
-function pull ($branch = '')
+* Function: pull
+*	
+*
+* Parameters:
+*	Executes a shell command 'git pull'
+*
+* Returns:
+*	Git message
+*/
+function pull( $branch = '' )
 {
 	return shell_exec('git pull');
 }
 
-function status () 
+
+/**
+* Function: status
+*	Executes a shell command 'git status'
+*
+* Returns:
+*	Git message
+*/
+function status() 
 {
 	return shell_exec('git status');	
 }

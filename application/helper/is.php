@@ -3,12 +3,14 @@
 * File: Is
 */
 
-
-/*
- * These functions should return TRUE of FALSE
- * They should be used to logic in templates and the admin area.
- */
-
+	
+	/**
+	* Function: is_blog_installed
+	*	Simply checks to see if the blog is installed.
+	*
+	* Returns:
+	*	Bool
+	*/
 	function is_blog_installed() {
 		if ( get_option( 'is_blog_installed' ) ) {
 			return true;
@@ -17,6 +19,14 @@
 		}
 	}
 	
+	
+	/**
+	* Function: is_agree
+	*	Has the owner agreed to the terms and services.
+	*
+	* Returns:
+	*	Bool
+	*/
 	function is_agree() {
 		if ( get_option( 'is_agree' ) ) {
 			return true;
@@ -25,8 +35,32 @@
 		}
 	}
 	
-	function is_rtl() {}
 	
+	/**
+	* Function: is_mobile
+	*	Is the page being viewed with a mobile device?
+	*
+	* Returns:
+	*	Bool
+	*/
+	function is_mobile() 
+	{
+		$iphone = strpos($_SERVER['HTTP_USER_AGENT'],"iPhone");
+		$android = strpos($_SERVER['HTTP_USER_AGENT'],"Android");
+		$palmpre = strpos($_SERVER['HTTP_USER_AGENT'],"webOS");
+		$berry = strpos($_SERVER['HTTP_USER_AGENT'],"BlackBerry");
+		$ipod = strpos($_SERVER['HTTP_USER_AGENT'],"iPod");
+
+		if ($iphone || $android || $palmpre || $ipod || $berry == true) 
+		{ 
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	
+	function is_rtl() {}
 	function is_front_page() {}
 	function is_home() {}
 	function is_date() {}
@@ -45,18 +79,3 @@
 	function is_tag() {}
 	function is_tax() {}
 	function is_admin_bar_showing() {}
-		
-	function is_mobile() 
-	{
-		$iphone = strpos($_SERVER['HTTP_USER_AGENT'],"iPhone");
-		$android = strpos($_SERVER['HTTP_USER_AGENT'],"Android");
-		$palmpre = strpos($_SERVER['HTTP_USER_AGENT'],"webOS");
-		$berry = strpos($_SERVER['HTTP_USER_AGENT'],"BlackBerry");
-		$ipod = strpos($_SERVER['HTTP_USER_AGENT'],"iPod");
-
-		if ($iphone || $android || $palmpre || $ipod || $berry == true) 
-		{ 
-			echo 'yes';
-		}
-	}
-

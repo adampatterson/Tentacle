@@ -3,7 +3,17 @@
 * File: Image
 */
 
-
+/**
+* Function: process_image
+*	Takes an image and saves multiple versions of that image based on the admin options.
+*
+* Parameters:
+*	$file - String - Path to the image
+*	$insert - Custom image size processed when the user clicks insert image.
+*
+* Returns:
+*	NULL
+*/
 function process_image( $file = '', $insert = FALSE )
 {
 	//get the file array

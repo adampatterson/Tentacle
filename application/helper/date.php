@@ -1,9 +1,23 @@
 <?
+/**
+* File: Date
+*
+* Class: date
+*/
 class date
 {
     /**
-     * @todo possibly convert from time object
-     */
+    * Function: distance_of_time_in_words
+    *	Distance of time $fromTime $toTime in words.
+    *
+    * Parameters:
+    *	$fromTime -
+	*	$toTime -
+	*	$includeSeconds - 
+    *
+    * Returns:
+    *	String
+    */
     public function distance_of_time_in_words($fromTime, $toTime = 0, $includeSeconds = false)
     {
         $distanceInMinutes = round(((abs($toTime - $fromTime)/60)));
@@ -48,32 +62,54 @@ class date
         }
     }
 
+
     /**
-     * Like distance_of_time_in_words, but where <tt>to_time</tt> is fixed to 
-     * <tt>Time.now</tt>.
-     */ 
+    * Function: time_ago_in_words
+    *	Like distance_of_time_in_words, but where <tt>to_time</tt> is fixed to 
+    *	<tt>Time.now</tt>.
+    *
+    * Parameters:
+    *	$fromTime - 
+    *	$includeSeconds - 
+	*
+    * Returns:
+    *	String
+    */
     public function time_ago_in_words($fromTime, $includeSeconds=false)
     {
-        return $this->distanceOfTimeInWords($fromTime, time(), $includeSeconds);
+        return $this->distance_of_time_in_words($fromTime, time(), $includeSeconds);
     }
+
 
     /**
-     * alias method to timeAgoInWords
-     */ 
+    * Function: distance_of_time_in_words_to_now
+    *	Distance of time $fromTime to now in words.
+    *
+    * Parameters:
+    *	$fromTime - 
+	*	$includeSeconds - 
+    *
+    * Returns:
+    *	String
+    */
     public function distance_of_time_in_words_to_now($fromTime, $includeSeconds=false)
     {
-        return $this->timeAgoInWords($fromTime, $includeSeconds);
-    }
-
-    public function date_select($objectName, $method, $options = array())
-    {
-        $object = isset($options['object']) ? $options['object'] : null;
-        unset($options['object']);
-        $tag = new $this->_instanceTag($objectName, $method, $this->_view, $object);
-        return $tag->toDateSelectTag($options);        
+        return $this->time_ago_in_words($fromTime, $includeSeconds);
     }
 }
 
+
+/**
+* Function: current_date
+*	
+*
+* Parameters:
+*	$unit - 
+*	$get_time - 
+*
+* Returns:
+*	String
+*/
 function current_date( $unit, $get_time = false ){
 	
 	$time_stamp = time();

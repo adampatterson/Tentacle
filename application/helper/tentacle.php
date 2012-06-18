@@ -232,6 +232,7 @@ class tentacle
 		}
 	}
 	
+	
 	/**
 	* Function: load_part
 	* Load theme parts for inclusion.
@@ -267,6 +268,7 @@ class tentacle
 	        return FALSE;
 	    } // else
 	} // END render
+	
 	
 	/**
 	* Function: dashboard_feed
@@ -550,37 +552,6 @@ class tentacle
 		print_r($data);
 		echo '</pre>';
 	}
-	
-
-// DEBUG
-//----------------------------------------------------------------------------------------------
-
-	/**
-	* Function: render_debug
-	* Render pre tags around data for displaying arrays and objects.
-	*
-	* Parameters:
-	*	  $_GET
-	*	  $_POST
-	*	  $_REQUEST
-	*	  $_COOKIE
-	*	  $GLOBALS
-	* 	
-	* Returns:
-	*     HTML from dBug class
-*/
-    function render_debug() {
-		load::helper('dbug');
-
-    	new dBug($_GET, null, true);
-    	new dBug($_POST, null, true);
-    	//new dBug($_FILES, null, true);
-    	new dBug($_REQUEST, null, true);
-    	new dBug($_COOKIE, null, true);
-    	//new dBug($_SERVER, null, true);
-		//new dBug($_ENV, null, true);
-		new dBug($GLOBALS['dbug_query'], null, true);
-    }
 
 
 	// TEMP Array to Object

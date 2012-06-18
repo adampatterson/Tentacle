@@ -1,27 +1,33 @@
 <?php if ( !defined('DINGO') ) { die('External Access to File Denied'); }
 /**
- * assets class
- *
- * @package default
- * @author Adam Patterson
- **/
+* File: assets
+*
+* Class: assets
+*/
 class assets 
 {
 	
 	// {{ 'style.css' | asset_url | stylesheet_tag }}
 	// {{ 'style.js' | asset_url | script_tag }}
 	
-/**
- * assets function
- *
- * @author Adam Patterson
- * assets() will accept an comma separated string of files that will relate to bundle files in the 
- * tentacle admin folder, as well as an output format for normal or minify and asset type.
- *
- * assets() will be passed a comma separated string from the load::view that sets the header file.
- *
- * @example assets( @array, minify, css)
- **/
+	/**
+	* Function: render
+	* 	assets() will accept an comma separated string of files that will relate to bundle files in the 
+	* 	tentacle admin folder, as well as an output format for normal or minify and asset type.
+	*
+	* 	assets() will be passed a comma separated string from the load::view that sets the header file.
+	*
+	* Parameters:
+	*	$assets - string
+	*	$format - null
+	*	$type - JavaScript or CSS
+	*
+	* Returns:
+	*	$asset_list - HTML
+	*
+	* See Also:
+	*	<build>
+	*/
 	public static function render ($assets = '', $format = null, $type = null) 
 	{
 		$exploded_assets = explode(',', $assets);
@@ -37,12 +43,19 @@ class assets
 	}
 	
 	
-/**
- * build function
- *
- * @return html
- * @author Adam Patterson
- **/
+	/**
+	* Function: build
+	*	Builds the HTML from the bundle
+	*
+	* Parameters:
+	*	$file - bundle file to load
+	*
+	* Returns:
+	*	HTML
+	*
+	* See Also:
+	*	<load>
+	*/
 	public static function build ( $file = NULL ) 
 	{
 		$file = self::load($file);
@@ -54,12 +67,16 @@ class assets
 	}
 
 
-/**
- * load function
- *
- * @return string
- * @author Adam Patterson
- **/
+	/**
+	* Function: load
+	*	Loads the single bundle file
+	*
+	* Parameters:
+	*	$load_file - File name sent from build()
+	*
+	* Returns:
+	*	String
+	*/
 	public static function load ( $load_file = NULL ) 
 	{				
 		// Old admin setting ( not using at the moment )
