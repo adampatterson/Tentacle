@@ -19,6 +19,7 @@ class Barnacles extends Modules {
     }
 }
 
+
 /**
 * Function: snippet
 *	Called from the short code API.

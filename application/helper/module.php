@@ -6,7 +6,7 @@
 
 /**
 * Function: init_extensions
-* Initialize all Modules and Feathers.
+* Initialize all Modules
 */
 function init_extensions() {
 
@@ -26,8 +26,10 @@ function init_extensions() {
 		Modules::$instances[$module]->safename = $module;
 
 		foreach (Modules::$instances as $module)
+		{
 			if (method_exists($module, "__init"))
-			$module->__init();
+				$module->__init();
+		}
 	}
 }
 
@@ -79,8 +81,8 @@ function fallback(&$variable) {
  * Returns:
  *     Whether or not the requested module is enabled.
  */
-function module_enabled($name) {
-    return in_array($name, enabled_module());
+function module_enabled( $name ) {
+    return in_array( $name, enabled_module() );
 }
 
 
