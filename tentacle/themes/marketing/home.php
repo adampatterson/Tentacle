@@ -131,12 +131,25 @@ if(!defined('SCAFFOLD')):
 			</div>
 		</div>
 */ ?>
+		<div class="row bump" id='get-it'>
+			<div class="span12" id="overview">
+				<div class="container">
+					<h1>Take Her for a spin!</h1>
+					<p class="lead">The demo installation of Tentacle will be reset every few hours, We are still in beta so please let us know if any issues you see.</p>
+
+					<p><strong>Login:</strong> <a href="http://demo.tentaclecms.com/admin/">http://demo.tentaclecms.com/admin/</a><br />
+					<strong>username:</strong> demo<br />
+					<strong>password:</strong> demo</p>
+					<p><a class="btn btn-large" href="http://demo.tentaclecms.com/admin/" onClick="javascript: _gaq.push(['_trackPageview', 'demo.tentaclecms.com/admin/']); _gaq.push(['_trackEvent', 'Link', 'Demo', 'v 0.5.8 Beta']);">&nbsp;&nbsp;&nbsp;View the demo&nbsp;&nbsp;&nbsp;</a></p>
+				</div>
+			</div>
+		</div>
 		
 		<div class="row bump" id='get-it'>
 			<div class="span12 center jumbotron subhead" id="overview">
 				<div class="container">
 					<h1><small>Use Tentacle CMS today</small></h1>
-					<p><a class="btn btn-large btn-success" href="http://tentaclecms.com/blog/downloads/tentacle-beta" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5 Beta']);">&nbsp;&nbsp;&nbsp;Get it!&nbsp;&nbsp;&nbsp;</a></p>
+					<p><a class="btn btn-large btn-success" href="http://tentaclecms.com/blog/downloads/tentacle-beta" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5.8 Beta']);">&nbsp;&nbsp;&nbsp;Get it!&nbsp;&nbsp;&nbsp;</a></p>
 				</div>
 			</div>
 		</div>

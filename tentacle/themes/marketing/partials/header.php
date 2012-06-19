@@ -35,6 +35,9 @@
 						<a href="https://twitter.com/#!/TentacleCMS">@TentacleCMS</a>
 					</li>
 					<li class="">
+						<a href="http://demo.tentaclecms.com" target="_blank">Demo</a>
+					</li>
+					<li class="">
 						<a href="http://tentaclecms.com/blog/">Blog</a>
 					</li>
 					<li class="">
