@@ -16,6 +16,6 @@
 [submodule "tentacle/themes/immersion"]
 	path = tentacle/themes/immersion
 	url = git@github.com:adampatterson/tentacle-immersion.git
-[submodule "tentacle/plugins/ipsum"]
-	path = tentacle/plugins/ipsum
+[submodule "tentacle/modules/ipsum"]
+	path = tentacle/modules/ipsum
 	url = git@github.com:adampatterson/tentacle-ipsum.git
