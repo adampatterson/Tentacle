@@ -159,7 +159,7 @@ class dev_controller {
 		        <tr>
 		        	<td width="570" colspan="5" valign="top"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="1" height="1" style="display:block;" /><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="1" height="1" style="display:block;" /><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="1" height="10" style="display:block;" />';
 		
-		$html .= 'This is my message'
+		$html .= 'This is my message';
 		
 		$html .= '</td>
 				        	</tr>
@@ -187,8 +187,7 @@ class dev_controller {
 				</table>
 				</td></tr></table>
 				</body>
-				</html>
-		';
+				</html>';
 		
 		
 		$mail = new email();
@@ -196,7 +195,7 @@ class dev_controller {
 		$mail->from('Adam Patterson <adamapatterson@gmail.com>');
 		$mail->subject('Testing');
 		$mail->content( $html );
-		//$mail->send();
+		$mail->send();
 	}
 
 	/**
