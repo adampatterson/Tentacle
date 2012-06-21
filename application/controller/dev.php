@@ -79,12 +79,124 @@ class dev_controller {
 	
 	public function email()
 	{
+		$html = '<html>
+		<head>
+		<title>Tentacle CMS Mailing List</title>
+		<style type="text/css">
+			<!--
+			body {
+				-webkit-text-size-adjust:none;
+				font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:20px;line-height:18px;
+				background: #DDD url(http://www.industrymailout.com/customers/tentacle/light_toast.png);
+			}
+			img
+			{
+				line-height:0;
+			}
+			.article h2
+			{
+				display:block; color:#000000; font-size:1.6em; font-weight:normal;
+			}
+			a
+			{
+				color:#0088CC;
+				text-decoration:none;
+			}
+			a:hover
+			{
+				text-decoration:underline;
+			}
+			a.menuLink:hover
+			{
+				background:#0088CC;
+				color:#ffffff;
+				text-decoration:none;
+			}
+			.article
+			{
+				color:#000000;
+			}
+			.article p 
+			{
+				margin: 0 auto 1em;
+			}
+			.trouble
+			{
+				display:none;
+			}
+			-->
+		</style>
+
+		</head>
+		<body bgcolor="#dddddd" marginheight="0" topmargin="0" background="http://www.industrymailout.com/customers/tentacle/light_toast.png"> 
+		<table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#dddddd" background="http://www.industrymailout.com/customers/tentacle/light_toast.png"><tr><td align="center">
+
+		            <table width="600" border="0" cellpadding="0" cellspacing="0">
+		            	<tr><td height="30" colspan="2"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="1" height="30" style="display:block;" /></td></tr>
+						<tr>
+							<td align="left" width="14"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="14" height="1" style="display:block;" /></td>
+							<td align="left"><strong style="display:block; color:#000000; font-size:1.8em; font-weight:normal;"><font color="#000000"><img src="http://www.industrymailout.com/customers/tentacle/tentacle_logo_large.png" alt="Tentacle CMS" width="258" height="63" style="vertical-align:bottom; line-height:0;"></font></strong></td>
+		               	</tr>
+
+		                <tr><td height="30" colspan="2"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="1" height="30" style="display:block;" /></td></tr>
+		            </table>
+
+		<table width="600" border="0" cellpadding="0" cellspacing="0" style="color:$!preferences.content_fgcolor; background:#ffffff;" bgcolor="#FFFFFF"> 
+		    <tr valign="top">
+		    	<td width="1" rowspan="4" bgcolor="#f5f5f5"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="1" height="1" style="display:block;" /></td>
+		    	<td width="14" rowspan="4"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="14" height="1" style="display:block;" /></td>
+		        <td width="570" colspan="5">
+		        </td> 
+		    	<td width="14" rowspan="4"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="14" height="1" style="display:block;" /></td>
+		    	<td width="1" rowspan="4" bgcolor="#f5f5f5"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="1" height="1" style="display:block;" /></td>
+		    </tr> 
+		    <tr>
+		        <td colspan="5" height="20"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="1" height="20" style="display:block;" /></td>
+		    </tr> 
+			    <tr>
+		            <td width="570" colspan="5"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="570" height="1" style="display:block;" /></td>
+		        </tr>
+		        <tr>
+		        	<td width="570" colspan="5" valign="top"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="1" height="1" style="display:block;" /><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="1" height="1" style="display:block;" /><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="1" height="10" style="display:block;" />';
+		
+		$html .= 'This is my message'
+		
+		$html .= '</td>
+				        	</tr>
+				    <tr>
+				    	<td width="1" bgcolor="#f5f5f5"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="1" height="1" style="display:block;" /></td>
+				    	<td width="14"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="14" height="1" style="display:block;" /></td>
+				    	<td colspan="5" height="15" ><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="1" height="15" style="display:block;" /></td>
+				    	<td width="14"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="14" height="1" style="display:block;" /></td>
+				    	<td width="1" bgcolor="#f5f5f5"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="1" height="1" style="display:block;" /></td>
+				    	</tr>
+				    <tr>
+						<td height="1" colspan="9" bgcolor="#f5f5f5"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="1" height="1" style="display:block;" /></td>
+				    </tr>
+				</table> 
+				 <table width="600" border="0" cellpadding="0" cellspacing="0">
+					<tr><td height="30" colspan="2"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="1" height="30" style="display:block;" /></td></tr>
+					<tr>
+						<td align="left" width="14"><img src="http://www.industrymailout.com/customers/_public_shared/spacer.gif" alt="" width="14" height="1" style="display:block;" /></td>
+						<td align="left">
+						<a href="https://github.com/adampatterson/Tentacle/wiki/Reporting-a-bug" target="_blank">Support</a> <font color="#989898">|</font> <a href="https://github.com/adampatterson/Tentacle/wiki" target="_blank">Documentation</a> <font color="#989898">|</font> <a href="http://tentaclecms.com/blog/" target="_blank">Blog</a> <font color="#989898">|</font> <a href="https://github.com/adampatterson/Tentacle/">Github</a> <font color="#989898">|</font> <a href="http://twitter.com/tentaclecms" target="_blank">@tentaclecms</a><br>
+
+							</td>
+
+					</tr>
+				</table>
+				</td></tr></table>
+				</body>
+				</html>
+		';
+		
+		
 		$mail = new email();
 		$mail->to('adamapatterson@gmail.com');
 		$mail->from('Adam Patterson <adamapatterson@gmail.com>');
 		$mail->subject('Testing');
-		$mail->content('<strong>Hello, World!</strong>');
-		$mail->send();
+		$mail->content( $html );
+		//$mail->send();
 	}
 
 	/**
