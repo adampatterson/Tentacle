@@ -40,6 +40,9 @@
 					<li class="">
 						<a href="http://tentaclecms.com/blog/">Blog</a>
 					</li>
+					<li>
+						<a href="http://community.tentaclecms.com/">Community</a>
+					</li>
 					<li class="">
 						<a href="http://tentaclecms.com/blog/about-tentacle/">About</a>
 					</li>
