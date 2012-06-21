@@ -1,9 +1,5 @@
 <?php
 /**
-* File: Textile
-*/
-
-/**
  * Example: get XHTML from a given Textile-markup string ($string)
  *
  *    $textile = new Textile;
