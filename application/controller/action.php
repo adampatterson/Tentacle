@@ -364,12 +364,27 @@ class action_controller {
 		$user = load::model( 'user' );
 		$user_single = $user->add();
 
+		if (input::post( 'send_password' ) == 'yes') {
+			$send_email = load::model( 'email' );
+
+			$user_name    = input::post( 'user_name' );
+			$password     = input::post( 'password' );
+			$email        = input::post( 'email' );
+		
+			$first_name   = input::post( 'first_name' );
+			$last_name    = input::post( 'last_name' );
+		
+			$message = '<p>Hello '.$first_name.' '.$last_name.'<br /></p>';
+		
+			$message .= '<p><strong>Username</strong>: '.$user_name.'<br />'
+			$message .= '<strong>Password</strong>: '.$password.'</p>'
+			$message .= '<a href="'.ADMIN_URL.'">'.ADMIN_URL.'</a>';
+
+			$user_email = $send_email->send( 'Tentacle CMS', $message='', $email );
+		}
+		
 		$history = input::post( 'history' );
-
-		// Check for return True.
-		// Log error
-
-		//url::redirect($history); 
+		
 		url::redirect('admin/users_manage/');
 	}
 

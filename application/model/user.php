@@ -27,7 +27,7 @@ class user_model
 
 		user::update($email)
 			->data('first_name',$first_name)
-	      ->data('last_name',$last_name)
+	      	->data('last_name',$last_name)
 			->data('activity_key','activation_key')
 			->data('url',$url)
 			->data('editor',$editor)
