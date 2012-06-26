@@ -374,11 +374,10 @@ class action_controller {
 			$first_name   = input::post( 'first_name' );
 			$last_name    = input::post( 'last_name' );
 		
-			$message = '<p>Hello '.$first_name.' '.$last_name.'<br /></p>';
-		
-			$message .= '<p><strong>Username</strong>: '.$user_name.'<br />'
-			$message .= '<strong>Password</strong>: '.$password.'</p>'
-			$message .= '<a href="'.ADMIN_URL.'">'.ADMIN_URL.'</a>';
+			$message = '<p>Hello '.$first_name.' '.$last_name.'<br /></p>
+						<p><strong>Username</strong>: '.$user_name.'<br />
+						<strong>Password</strong>: '.$password.'</p>
+						<a href="'.ADMIN_URL.'">'.ADMIN_URL.'</a>';
 
 			$user_email = $send_email->send( 'Tentacle CMS', $message='', $email );
 		}
