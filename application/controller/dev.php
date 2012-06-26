@@ -81,17 +81,20 @@ class dev_controller {
 	{
 		
 		load::helper('email');
-
-$html = '<h2>Title</h2>
+		
+$html = email_header('Welcome to Tentacle CMS');
+$html .= '<h2>Title</h2>
 		 <p>This is my message</p>';						
+$html .= email_footer();
+
+	echo $html;
+	
 		
 		$mail = new email();
 		$mail->to('adamapatterson@gmail.com');
 		$mail->from('Adam Patterson <adamapatterson@gmail.com>');
 		$mail->subject('Welcome to Tentacle CMS');
-		$mail->content( email_header('Welcome to Tentacle CMS') );
 		$mail->content( $html );
-		$mail->content( email_footer() );
 		$mail->send();
 	}
 
