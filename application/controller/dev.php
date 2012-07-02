@@ -88,9 +88,6 @@ class dev_controller {
 	
 		$first_name   = 'adam';
 		$last_name    = 'patterson';
-	
-
-		load::helper('email');
 
 		$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
 		$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
@@ -115,6 +112,9 @@ class dev_controller {
 		$mail->subject($subject);
 		$mail->content( $html );
 		$mail->send();
+		
+		
+		//$user_email = $send_email->send( 'Tentacle CMS', $message='', $email, $email );
 	}
 
 	/**
