@@ -110,7 +110,7 @@ class dev_controller {
 		echo $html;
 
 		$mail = new email();
-		$mail->to(input::post( 'email' ));
+		$mail->to($email);
 		$mail->from(get_option('admin_email'));
 		$mail->subject($subject);
 		$mail->content( $html );
