@@ -3,7 +3,7 @@
 class email_model
 {
 
-	public function send ( $subject='', $message='', $to='', $from='' ) 
+	public function send ( $subject, $message, $to, $from='' ) 
 	{
 		
 		if ($from == '') {
@@ -15,14 +15,12 @@ class email_model
 		$html = email_header($subject);
 		$html .= $message;						
 		$html .= email_footer();
-
-		//echo $html;
 	
 		$mail = new email();
 		$mail->to( $to );
 		$mail->from( $from );
 		$mail->subject( $subject );
 		$mail->content( $html );
-		$mail->send();
+		//$mail->send();
 	}
 }
