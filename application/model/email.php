@@ -3,7 +3,7 @@
 class email_model
 {
 
-	public function send ( $subject='', $message='', $to='' ) 
+	public function send ( $subject='', $message='', $to='', $from='' ) 
 	{
 		
 		$from = get_option('admin_email');

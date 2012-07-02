@@ -73,6 +73,25 @@ class admin_controller {
 	}
 
 	/**
+	* Activate account
+	* ----------------------------------------------------------------------------------------------*/
+	public function activate( $hash='' ){
+		
+		$user = load::model( 'user' );
+		$hash_user = $user->get_hash( $hash );
+		
+		clean_out( $hash_user );
+		
+		/*
+		user::update($hash_user->email)
+			->data('activity_key','')
+			->save();
+		*/
+		
+		//load::view ('admin/lost');
+	}
+	
+	/**
 	* resources
 	* ----------------------------------------------------------------------------------------------*/
 	public function resources ()

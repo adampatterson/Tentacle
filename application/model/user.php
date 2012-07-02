@@ -120,6 +120,19 @@ class user_model
 	
 	
 	/**
+	* Get from Hash
+	* ----------------------------------------------------------------------------------------------*/
+	public function get_hash ( $hash )
+	{
+		$user_hash = db::query("SELECT * FROM users WHERE
+			data LIKE '%".$hash."%'
+			ORDER BY id ASC");
+			
+		return $user_hash[0];
+	}
+	
+	
+	/**
 	* Get user Meta
 	* ----------------------------------------------------------------------------------------------*/
 	public function get_meta ( $id )

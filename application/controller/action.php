@@ -374,10 +374,19 @@ class action_controller {
 			$first_name   = input::post( 'first_name' );
 			$last_name    = input::post( 'last_name' );
 		
+		
+		
+			$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
+			$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
+
+			
+		
 			$message = '<p>Hello '.$first_name.' '.$last_name.'<br /></p>
 						<p><strong>Username</strong>: '.$user_name.'<br />
 						<strong>Password</strong>: '.$password.'</p>
+						<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
 						<a href="'.ADMIN_URL.'">'.ADMIN_URL.'</a>';
+						
 
 			$user_email = $send_email->send( 'Tentacle CMS', $message='', $email );
 		}
@@ -770,14 +779,19 @@ class action_controller {
 		$display_name = input::post( 'display_name' );
 
 		$encrypted_password = sha1( $raw_password );
-
+		
 		$registered = time();
-
+		$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].$registered);
+		$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
+		
+		
+		
 		$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
 
 		$build = $pdo->exec( "INSERT INTO `users` (`email`, `username`, `password`, `type`, `data`, `registered`, `status`)
 								VALUES
-									('$email', '$user_name', '$encrypted_password', 'administrator', '{\"first_name\":\"$first_name\",\"last_name\":\"$last_name\",\"activity_key\":\"\",\"url\":\"\",\"display_name\":\"$display_name\",\"editor\":\"wysiwyg\"}', '$registered', 1)" );
+									('$email', '$user_name', '$encrypted_password', 'administrator', '{\"first_name\":\"$first_name\",\"last_name\":\"$last_name\",\"activity_key\":\"$hashed_ip\",\"url\":\"\",\"display_name\":\"$display_name\",\"editor\":\"wysiwyg\"}', '$registered', 1)" );
+		
 		
 		if (input::post( 'send_password' ) == 'yes') {
 			$send_email = load::model( 'email' );
@@ -785,9 +799,10 @@ class action_controller {
 			$message = '<p>Hello '.$first_name.' '.$last_name.'<br /></p>
 						<p><strong>Username</strong>: '.$user_name.'<br />
 						<strong>Password</strong>: '.$raw_password.'</p>
+						<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
 						<a href="'.ADMIN_URL.'">'.ADMIN_URL.'</a>';
 
-			$user_email = $send_email->send( 'Tentacle CMS', $message='', $email );
+			$user_email = $send_email->send( 'Tentacle CMS', $message='', $email, $email );
 		}
 			
 		url::redirect('install/done');
