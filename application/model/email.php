@@ -6,8 +6,10 @@ class email_model
 	public function send ( $subject='', $message='', $to='', $from='' ) 
 	{
 		
-		$from = get_option('admin_email');
-		
+		if ($from == '') {
+			$from = get_option('admin_email');
+		}
+
 		load::helper('email');
 		
 		$html = email_header($subject);
