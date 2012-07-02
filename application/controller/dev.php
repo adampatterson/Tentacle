@@ -89,19 +89,19 @@ class dev_controller {
 		$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
 		$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
 
-		$html = '<p>Hello '.$first_name.' '.$last_name.'<br /></p>
-					<p><strong>Username</strong>: '.$user_name.'<br />
-					<strong>Password</strong>: '.$password.'</p>
+		$html = '<p>Hello Adam<br /></p>
+					<p><strong>Username</strong>: adampatterson<br />
+					<strong>Password</strong>: password</p>
 					<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
 					<a href="'.ADMIN_URL.'">'.ADMIN_URL.'</a>';
 						
-$html .= email_footer();
+		$html .= email_footer();
 
 		echo $html;
 	
 		$mail = new email();
 		$mail->to('adamapatterson@gmail.com');
-		$mail->from('Adam Patterson <adamapatterson@gmail.com>');
+		$mail->from('adamapatterson@gmail.com');
 		$mail->subject('Welcome to Tentacle CMS');
 		$mail->content( $html );
 		$mail->send();
