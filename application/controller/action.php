@@ -781,14 +781,14 @@ class action_controller {
 		$config = config::get('db');
 
 		$user_name    = input::post( 'user_name' );
-		$raw_password     = input::post( 'password' );
+		$password     = input::post( 'password' );
 		$email        = input::post( 'email' );
 
 		$first_name   = input::post( 'first_name' );
 		$last_name    = input::post( 'last_name' );
 		$display_name = input::post( 'display_name' );
 
-		$encrypted_password = sha1( $raw_password );
+		$encrypted_password = sha1( $password );
 		
 		$registered = time();
 		$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].$registered);
