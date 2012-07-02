@@ -84,7 +84,7 @@ class dev_controller {
 	
 	
 	
-		$html = email_header('Welcome to Tentacle CMS');
+		$html .= email_header('Welcome to Tentacle CMS');
 	
 		$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
 		$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
