@@ -778,6 +778,17 @@ class action_controller {
 		$build = $pdo->exec( "INSERT INTO `users` (`email`, `username`, `password`, `type`, `data`, `registered`, `status`)
 								VALUES
 									('$email', '$user_name', '$encrypted_password', 'administrator', '{\"first_name\":\"$first_name\",\"last_name\":\"$last_name\",\"activity_key\":\"\",\"url\":\"\",\"display_name\":\"$display_name\",\"editor\":\"wysiwyg\"}', '$registered', 1)" );
+		
+		if (input::post( 'send_password' ) == 'yes') {
+			$send_email = load::model( 'email' );
+			
+			$message = '<p>Hello '.$first_name.' '.$last_name.'<br /></p>
+						<p><strong>Username</strong>: '.$user_name.'<br />
+						<strong>Password</strong>: '.$raw_password.'</p>
+						<a href="'.ADMIN_URL.'">'.ADMIN_URL.'</a>';
+
+			$user_email = $send_email->send( 'Tentacle CMS', $message='', $email );
+		}
 			
 		url::redirect('install/done');
 	}
