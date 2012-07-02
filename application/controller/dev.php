@@ -82,25 +82,37 @@ class dev_controller {
 		
 		load::helper('email');
 	
+		$user_name    = 'user_name';
+		$password     = 'password';
+		$email        = 'adamapatterson@gmail.com';
+	
+		$first_name   = 'adam';
+		$last_name    = 'patterson';
+	
+
+		load::helper('email');
+
 		$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
 		$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
-	
-		$html = email_header('Welcome to Tentacle CMS');
-	
-		$html .= '<p>Hello Adam<br /></p>
-					<p><strong>Username</strong>: adampatterson<br />
-					<strong>Password</strong>: password</p>
+
+
+		$subject = 'Welcome to Tentacle CMS';
+		$html = email_header($subject);
+
+		$html .= '<p>Hello '.$first_name.' '.$last_name.'<br /></p>
+					<p><strong>Username</strong>: '.$user_name.'<br />
+					<strong>Password</strong>: '.$password.'</p>
 					<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
-					<a href="'.ADMIN_URL.'">'.ADMIN_URL.'</a>';
-						
+					<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
+
 		$html .= email_footer();
 
-		echo $html;
-	
+		//echo $html;
+
 		$mail = new email();
-		$mail->to('adamapatterson@gmail.com');
-		$mail->from('adamapatterson@gmail.com');
-		$mail->subject('Welcome to Tentacle CMS');
+		$mail->to(input::post( 'email' ));
+		$mail->from(get_option('admin_email'));
+		$mail->subject($subject);
 		$mail->content( $html );
 		$mail->send();
 	}
