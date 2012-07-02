@@ -81,6 +81,9 @@ class dev_controller {
 	{
 		
 		load::helper('email');
+		$send_email = load::model( 'email' );
+
+		
 	
 		$user_name    = 'user_name';
 		$password     = 'password';
@@ -93,28 +96,13 @@ class dev_controller {
 		$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
 
 
-		$subject = 'Welcome to Tentacle CMS';
-		$html = email_header($subject);
-
-		$html .= '<p>Hello '.$first_name.' '.$last_name.'<br /></p>
+		$message = '<p>Hello '.$first_name.' '.$last_name.'<br /></p>
 					<p><strong>Username</strong>: '.$user_name.'<br />
 					<strong>Password</strong>: '.$password.'</p>
 					<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
 					<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
-
-		$html .= email_footer();
-
-		echo $html;
-
-		$mail = new email();
-		$mail->to($email);
-		$mail->from(get_option('admin_email'));
-		$mail->subject($subject);
-		$mail->content( $html );
-		$mail->send();
 		
-		
-		//$user_email = $send_email->send( 'Tentacle CMS', $message='', $email, $email );
+		$user_email = $send_email->send( 'Tentacle CMS', $message='', $email, $email );
 	}
 
 	/**
