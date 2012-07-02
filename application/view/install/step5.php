@@ -56,6 +56,13 @@
 							<span class="help-block">Hint: The password should be at least seven characters long. To make it stronger, use upper and lower case letters, numbers and symbols like ! " ? $ % ^ &amp; ).</span>
 						</div>
 					</div>
+					<div class="clearfix">
+						<label for="send_password">Send password?</label>
+						<div class="input">
+							<input type="checkbox" id="send_password" name="send_password" value="yes">
+							<span class="help-block"> Send this password to the new user by email.</span>
+						</div>
+					</div>
 					<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
 					<input type="hidden" name='profile' value='true' />
 			</fieldset>
