@@ -82,14 +82,12 @@ class dev_controller {
 		
 		load::helper('email');
 	
-	
-	
-		$html .= email_header('Welcome to Tentacle CMS');
-	
 		$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
 		$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
-
-		$html = '<p>Hello Adam<br /></p>
+	
+		$html = email_header('Welcome to Tentacle CMS');
+	
+		$html .= '<p>Hello Adam<br /></p>
 					<p><strong>Username</strong>: adampatterson<br />
 					<strong>Password</strong>: password</p>
 					<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
