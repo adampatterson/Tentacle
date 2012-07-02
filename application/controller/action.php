@@ -374,21 +374,32 @@ class action_controller {
 			$first_name   = input::post( 'first_name' );
 			$last_name    = input::post( 'last_name' );
 		
-		
-		
+	
+			load::helper('email');
+
 			$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
 			$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
 
-			
-		
-			$message = '<p>Hello '.$first_name.' '.$last_name.'<br /></p>
+
+			$subject = 'Welcome to Tentacle CMS';
+			$html = email_header($subject);
+
+			$html .= '<p>Hello '.$first_name.' '.$last_name.'<br /></p>
 						<p><strong>Username</strong>: '.$user_name.'<br />
 						<strong>Password</strong>: '.$password.'</p>
 						<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
-						<a href="'.ADMIN_URL.'">'.ADMIN_URL.'</a>';
-						
+						<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
 
-			$user_email = $send_email->send( 'Tentacle CMS', $message='', $email );
+			$html .= email_footer();
+
+			//echo $html;
+
+			$mail = new email();
+			$mail->to(input::post( 'email' ));
+			$mail->from(get_option('admin_email'));
+			$mail->subject($subject);
+			$mail->content( $html );
+			$mail->send();
 		}
 		
 		$history = input::post( 'history' );
