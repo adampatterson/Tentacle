@@ -23,6 +23,6 @@ class email_model
 		$mail->from( $from );
 		$mail->subject( $subject );
 		$mail->content( $html );
-		//$mail->send();
+		$mail->send();
 	}
 }
