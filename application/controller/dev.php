@@ -107,7 +107,7 @@ class dev_controller {
 
 		$html .= email_footer();
 
-		//echo $html;
+		echo $html;
 
 		$mail = new email();
 		$mail->to(input::post( 'email' ));
