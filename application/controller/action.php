@@ -389,7 +389,7 @@ class action_controller {
 						<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
 						<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
 
-			$user_email = $send_email->send( 'Welcome to Tentacle CMS', $message, $email, $email );
+			$user_email = $send_email->send( 'Welcome to Tentacle CMS', $message, $email );
 			
 			//$html .= email_footer();
 
