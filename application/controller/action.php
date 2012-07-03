@@ -380,25 +380,27 @@ class action_controller {
 			$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
 
 
-			$subject = 'Welcome to Tentacle CMS';
-			$html = email_header($subject);
+			//$subject = 'Welcome to Tentacle CMS';
+			//$html = email_header($subject);
 
-			$html .= '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
+			$message = '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
 						<p><strong>Username</strong>: '.$user_name.'<br />
 						<strong>Password</strong>: '.$password.'</p>
 						<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
 						<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
 
-			$html .= email_footer();
+			$user_email = $send_email->send( 'Welcome to Tentacle CMS', $message, $email, $email );
+			
+			//$html .= email_footer();
 
 			//echo $html;
 
-			$mail = new email();
-			$mail->to($email);
-			$mail->from(get_option('admin_email'));
-			$mail->subject($subject);
-			$mail->content( $html );
-			$mail->send();
+			// $mail = new email();
+			// 			$mail->to($email);
+			// 			$mail->from(get_option('admin_email'));
+			// 			$mail->subject($subject);
+			// 			$mail->content( $html );
+			// 			$mail->send();
 		}
 		
 		$history = input::post( 'history' );
@@ -806,8 +808,8 @@ class action_controller {
 		if (input::post( 'send_password' ) == 'yes') {
 			load::helper('email');
 
-			$subject = 'Welcome to Tentacle CMS';
-			$html = email_header($subject);
+			// $subject = 'Welcome to Tentacle CMS';
+			// $html = email_header($subject);
 
 			$html .= '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
 						<p><strong>Username</strong>: '.$user_name.'<br />
@@ -815,14 +817,16 @@ class action_controller {
 						<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
 						<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
 
-			$html .= email_footer();
-
-			$mail = new email();
-			$mail->to($email);
-			$mail->from($email);
-			$mail->subject($subject);
-			$mail->content( $html );
-			$mail->send();
+			// $html .= email_footer();
+			// 
+			// 			$mail = new email();
+			// 			$mail->to($email);
+			// 			$mail->from($email);
+			// 			$mail->subject($subject);
+			// 			$mail->content( $html );
+			// 			$mail->send();
+			
+			$user_email = $send_email->send( 'Tentacle CMS', $message, $email, $email );
 		}
 			
 		url::redirect('install/done');

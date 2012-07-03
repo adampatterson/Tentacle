@@ -101,8 +101,10 @@ class dev_controller {
 					<strong>Password</strong>: '.$password.'</p>
 					<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
 					<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
+					
+		$message_two = 'simple message';
 		
-		$user_email = $send_email->send( 'Tentacle CMS', $message='', $email, $email );
+		$user_email = $send_email->send( 'Tentacle CMS', $message, $email, $email );
 	}
 
 	/**
