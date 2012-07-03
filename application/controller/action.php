@@ -816,8 +816,7 @@ class action_controller {
 			$message = '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
 						<p><strong>Username</strong>: '.$user_name.'<br />
 						<strong>Password</strong>: '.$password.'</p>
-						<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
-						<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
+						<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>';
 
 			// $html .= email_footer();
 			// 
