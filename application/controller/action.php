@@ -811,7 +811,7 @@ class action_controller {
 			// $subject = 'Welcome to Tentacle CMS';
 			// $html = email_header($subject);
 
-			$html .= '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
+			$message = '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
 						<p><strong>Username</strong>: '.$user_name.'<br />
 						<strong>Password</strong>: '.$password.'</p>
 						<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
