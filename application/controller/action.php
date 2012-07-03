@@ -807,6 +807,8 @@ class action_controller {
 		
 		if (input::post( 'send_password' ) == 'yes') {
 			load::helper('email');
+			
+			$send_email = load::model( 'email' );
 
 			// $subject = 'Welcome to Tentacle CMS';
 			// $html = email_header($subject);
