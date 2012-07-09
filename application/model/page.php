@@ -292,6 +292,36 @@ class page_model
 	
 	
 	/**
+	 * Get an object based on its SLUG
+	 *
+	 * @param string $uri 
+	 * @return void
+	 * @author Adam Patterson
+	 * 
+	 * @todo Finds the last page available in a URI
+	 * 
+	 */
+	public function get_by_slug( $uri )
+	{
+		$pages = db ( 'posts' );
+	
+		$slug_parts = explode('/', $uri);
+	
+		foreach ($slug_parts as $part ) {
+			$get_slug = $pages->select( '*' )
+				->where ( 'slug', '=', $part )
+				->execute();
+			
+			if ($get_slug) {
+				return $get_slug[0];
+			}
+		}
+	}
+
+	
+	
+	
+	/**
 	 * Return the home Hobject
 	 *
 	 * @author Adam Patterson

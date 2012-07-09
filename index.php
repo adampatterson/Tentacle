@@ -1,4 +1,19 @@
 <?php
+/**
+* Tentacle CMS - Create & Manage Content your way!
+*
+* Version:
+*     v0.5.8
+*
+* License:
+*     Modified CPL (See COPYING)
+*
+* Tentacle CMS Copyright:
+*     Copyright (c) 2012 Tentacle CMS - Adam Patterson
+*/
+if (version_compare(PHP_VERSION, "5.2.0", "<"))
+    exit("Tentacle CMS requires PHP 5.2.0 or greater.");
+
 error_reporting(E_STRICT|E_ALL);
 
 // Application configuration
@@ -23,4 +38,6 @@ if ( !defined( 'SETUP' ) && strpos( BASE_URI,'install' ) !== true ) {
 //----------------------------------------------------------------------------------------------
 define('DINGO',1);
 require_once(SYSTEM.'/dingo.php');
+
 bootstrap::run();
+
