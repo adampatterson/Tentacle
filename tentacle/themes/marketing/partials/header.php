@@ -8,7 +8,7 @@
 	<meta name="author" content="">
 	<? assets::render($assets); ?>
 </head>
-
+<? $prettify = false ;?>
 <body <?= body_class(); ?> <? if ($prettify)echo 'onLoad="NDOnLoad();prettyPrint();"' ?>>
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
