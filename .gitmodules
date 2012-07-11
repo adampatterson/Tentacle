@@ -19,3 +19,6 @@
 [submodule "tentacle/modules/ipsum"]
 	path = tentacle/modules/ipsum
 	url = git@github.com:adampatterson/tentacle-ipsum.git
+[submodule "tentacle/modules/ndoc"]
+	path = tentacle/modules/ndoc
+	url = git@github.com:adampatterson/tentacle-ndoc.git
