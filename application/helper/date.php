@@ -1,8 +1,6 @@
 <?
 /**
 * File: Date
-*
-* Class: date
 */
 class date
 {

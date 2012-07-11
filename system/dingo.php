@@ -133,7 +133,8 @@ class bootstrap
 			}
 			else
 			{
-				load::error('404');
+				// Turned this off so that .html files would work in the URL
+				//load::error('404');
 			}
 		}
 		

@@ -38,10 +38,75 @@ class dev_controller {
 		
 		$object->one = 'three';
 		
-		clean_out( $object );	
+		clean_out( $object );
+		
+		echo serialize(array('barnacles','ipsum','ndoc','test'));
+	}
+
+	
+	public function demo_clean()
+	{
+		$config = config::get('db');
+		
+		try {
+			$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
+		} catch(PDOException $e) {
+			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
+		}
+
+		$build = $pdo->exec( "TRUNCATE TABLE  `posts`" );
+		
+		$build = $pdo->exec( "TRUNCATE TABLE `post_meta`" );
+		
+		$build = $pdo->exec( "TRUNCATE TABLE `users`" );	
+			
+		$build = $pdo->exec( "INSERT INTO `users` (`id`, `email`, `username`, `password`, `type`, `data`, `registered`, `status`)
+		VALUES
+			(1, 'demo@tentaclecms.com', 'demo', '89e495e7941cf9e40e6980d14a16bf023ccd4c91', 'administrator', '{\"first_name\":\"Demo\",\"last_name\":\"User\",\"activity_key\":\"\",\"url\":\"\",\"display_name\":\"Demo User\",\"editor\":\"wysiwyg\"}', 1340063724, 1);" );
+			
+		$build = $pdo->exec( "INSERT INTO `posts` (`id`, `parent`, `author`, `date`, `modified`, `title`, `content`, `excerpt`, `comment_status`, `ping_status`, `password`, `slug`, `type`, `menu_order`, `uri`, `visible`, `status`, `template`)
+			VALUES
+				(6, 0, 1, 1322853969, 1328247576, 'Home', '<p><strong>Tentacle is an OpenSource Content Management System, it is free to use.</strong></p>\r\n<p>The goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>\r\n', '', 'open', 'open', '', 'home', 'page', 1, 'home/', 'public', 'published', 'default'),
+				(112, 0, 1, 1328502285, 1328560008, 'Welcome to Tentacle CMS', '<p>This is your first post!</p>\r\n', '', 'open', 'open', '', 'welcome-to-tentacle-cms', 'post', 0, 'welcome-to-tentacle-cms/', 'public', 'published', 'default'),
+				(113, 0, 1, 1340070422, 1340070422, 'Blog', '', '', 'open', 'open', '', 'blog', 'page', 2, 'blog/', 'public', 'published', 'template-blog');" );
+		
+		$build = $pdo->exec( "INSERT INTO `posts_meta` (`id`, `posts_id`, `meta_key`, `meta_value`)
+			VALUES
+				(7, 6, 'scaffold_data', 'a:5:{s:4:\"save\";s:0:\"\";s:11:\"bread_crumb\";s:0:\"\";s:13:\"meta_keywords\";s:0:\"\";s:16:\"meta_description\";s:0:\"\";s:4:\"tags\";s:0:\"\";}'),
+				(58, 112, 'scaffold_data', 'a:6:{s:9:\"post_type\";s:9:\"type-post\";s:13:\"post_category\";a:1:{i:0;s:1:\"1\";}s:11:\"bread_crumb\";s:0:\"\";s:13:\"meta_keywords\";s:0:\"\";s:16:\"meta_description\";s:27:\"Enter your comments here...\";s:4:\"tags\";s:0:\"\";}');" );
 	}
 	
 	
+	public function email()
+	{
+		
+		load::helper('email');
+		$send_email = load::model( 'email' );
+
+		
+	
+		$user_name    = 'user_name';
+		$password     = 'password';
+		$email        = 'adamapatterson@gmail.com';
+	
+		$first_name   = 'adam';
+		$last_name    = 'patterson';
+
+		$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
+		$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
+
+
+		$message = '<p>Hello '.$first_name.' '.$last_name.'<br /></p>
+					<p><strong>Username</strong>: '.$user_name.'<br />
+					<strong>Password</strong>: '.$password.'</p>
+					<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
+					<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
+					
+		$message_two = 'simple message';
+		
+		$user_email = $send_email->send( 'Tentacle CMS', $message, $email, $email );
+	}
+
 	/**
 	* pull function
 	* 
@@ -388,21 +453,33 @@ class dev_controller {
 		$page = load::model( 'page' );
 		$page = $page->get( '101' );
 		
-		load::helper ('shortcode');
-		
 		echo '<h2>Page Object</h2>';
 		clean_out($page->content);
 		
 		echo '<h2>Parsing</h2>';
 
 		// loaded from Snippet Helper
-		add_shortcode( 'snippet', 'snippet' );
+		//add_shortcode( 'snippet', 'snippet' );
 		
-		echo do_shortcode( $page->content );
+		//echo serialize(array('barnacles','ipsum'));
+		
+		tentacle::library('YAML', 'YAML');
+		load::helper('module');
+		
+		# Initiate the extensions.
+	    init_extensions();
+	
+		# Prepare the trigger class
+		$trigger 		= Trigger::current();
+
+		if($trigger->exists("shortcode"))
+			$page->content = $trigger->filter($page->content,"shortcode");
+		
+		echo $page->content;
 		
 		echo '<hr />';
 		
-		echo get_snippet('footer');
+		//echo get_snippet('footer');
 	}
 	
 	
@@ -714,7 +791,7 @@ class dev_controller {
 			clean_out(get_settings('tentacle'));
 		
 		echo '<h2>Themes Resources</h2>';
-			clean_out(get_resources(THEMES_DIR.'tentacle'));
+			//clean_out(get_resources(THEMES_DIR.'tentacle'));
 	}
 	
 	
@@ -993,32 +1070,7 @@ class dev_controller {
 		
 	}// END SmushIt
 	
-	
-	/**
-	* url function
-	*
-	* @return void
-	* @author Adam Patterson
-	**/
-	public function url ()
-	{	
-		echo '<h2>URL</h2>';
-		
-		load::helper ('url');
 
-		echo '<h4>self_url()</h4>'.self_url();
-		
-		echo '<h4>baseUrl()</h4>'.baseUrl();
-		
-		echo '<h4>baseUri()</h4>'.baseUri();
-		
-		#echo '<strong>Page nasdaot found</strong>'. page_not_found();
-		
-		echo '<h4>refresh()</h4>'.refresh(30);
-		
-		echo '<h4>urlTitle()</h4>'. urlTitle('http://www.google.ca');
-	}
-	
 	
 	/**
 	* gravatar function
@@ -1210,7 +1262,10 @@ class dev_controller {
 		
 		echo '<h4>relative_time()</h4><p>Does not work.</p>';
 		
-		echo '<h4>now()</h4>'.now('+1 day');
+		echo '<h4>now()</h4><p>'.now('+1 day').'</p>';
+		
+		load::helper ('date');
+		echo current_date('year');
 		
 	}// END Function
 	
@@ -1429,7 +1484,7 @@ class dev_controller {
 	
 	public function module()
 	{	
-		tentacle::library('/', 'YAML');
+		tentacle::library('YAML', 'YAML');
 
 		load::helper('module');
 		

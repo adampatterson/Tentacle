@@ -1,9 +1,4 @@
 <?php
-/**
-* File: Scaffold
-*/
-
-
 /*
  * Process PHP Array and convert it to Forum Input fields.
  * @todo humanize the label name from the input name.
@@ -30,13 +25,11 @@ class  Scaffold
     static public function processThis( $scaffold_data ) 
     {  
         $return_data = "";
-      
-		$inflector = new inflector();
 
         if ( $scaffold_data[ 'display' ] == 'admin' ):
 			foreach ($scaffold_data as $input):
 			
-				$input_name = $inflector->underscore( $inflector->camelize( $input['name']) );
+				$input_name = underscore( camelize( $input['name']) );
 
 	            //print_r($input);
 	            /*  
@@ -109,13 +102,11 @@ class  Scaffold
 		return false;
 
         $return_data = "";
-
-		$inflector = new inflector();
 		
         if ( $data[ 'display' ] != 'front' ):
 			foreach ($data as $input):
 			
-				$input_name =$inflector->underscore( $inflector->camelize( $input['name']) );
+				$input_name = underscore( camelize( $input['name']) );
 				
 	            if ($input['input'] == 'input'):
 	                switch($input['type']) {

@@ -215,7 +215,7 @@ class sql_model
 		# ------------------------------------------------------------
 		$build = $pdo->exec( "INSERT INTO `options` (`id`, `key`, `value`, `autoload`)
 									VALUES
-										(1, 'appearance', 'default', 'yes'),
+										(1, 'appearance', 'tentacle', 'yes'),
 										(2, 'blogname', 'Tentacle CMS', 'yes'),
 										(3, 'blogdescription', 'Just another tentacle in the sea.', 'yes'),
 										(4, 'siteurl', '', 'yes'),

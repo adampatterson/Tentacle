@@ -29,9 +29,9 @@ class page_controller {
 		if (file_exists(PATH_URI.'/functions.php')) {
 			require_once( PATH_URI.'/functions.php' );
 		}
-			
+	
 		if (URI == 'blog') {
-
+			
 			define("IS_POST", FALSE);
 
 			$post 		= load::model( 'post' );
@@ -53,13 +53,17 @@ class page_controller {
 			$page 		= load::model( 'page' );
 			$post 		= $page->get_by_uri( $uri );
 			
+			if ( !$post) {
+				$post 		= $page->get_by_slug( $uri );
+			}
+			
 			$post_meta 	= $page->get_page_meta( $post->id );
 
 			define("IS_POST", TRUE);
 
 			// If URI lookup fails redirect to the themes 404 page
 			if ( $post ) {
-
+				
 				// at this tage we are simply allowing the contnet attribute to be modified by the modules.
 				if($trigger->exists("preview"))
 					$post->content = $trigger->filter($post->content,"preview");

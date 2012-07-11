@@ -27,7 +27,7 @@ class user_model
 
 		user::update($email)
 			->data('first_name',$first_name)
-	      ->data('last_name',$last_name)
+	      	->data('last_name',$last_name)
 			->data('activity_key','activation_key')
 			->data('url',$url)
 			->data('editor',$editor)
@@ -116,6 +116,19 @@ class user_model
 				
 			return $users[0];	
 		}
+	}
+	
+	
+	/**
+	* Get from Hash
+	* ----------------------------------------------------------------------------------------------*/
+	public function get_hash ( $hash )
+	{
+		$user_hash = db::query("SELECT * FROM users WHERE
+			data LIKE '%".$hash."%'
+			ORDER BY id ASC");
+			
+		return $user_hash[0];
 	}
 	
 	

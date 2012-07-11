@@ -26,9 +26,6 @@
 			    <a class="btn large success" href="<?= BASE_URL ?>admin/">Log in</a>
 			</div>
 		</div>
-		<div class="alert-message error">
-		  <p>Make sure to delete the <strong>Setup</strong> folder!</p>
-		</div>
       </div>
     </div>
   </div>

@@ -1,8 +1,6 @@
 <?php if ( !defined('DINGO') ) { die('External Access to File Denied'); }
 /**
-* File: assets
-*
-* Class: assets
+* Class: Assets
 */
 class assets 
 {

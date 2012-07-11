@@ -9,7 +9,7 @@
 	<? assets::render($assets); ?>
 </head>
 
-<body <?= body_class(); ?>>
+<body <?= body_class(); ?> <? if ($prettify)echo 'onLoad="NDOnLoad();prettyPrint();"' ?>>
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container visible-phone visible-tablet">
@@ -39,6 +39,9 @@
 					</li>
 					<li class="">
 						<a href="http://tentaclecms.com/blog/">Blog</a>
+					</li>
+					<li>
+						<a href="http://community.tentaclecms.com/">Community</a>
 					</li>
 					<li class="">
 						<a href="http://tentaclecms.com/blog/about-tentacle/">About</a>

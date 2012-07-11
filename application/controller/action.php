@@ -364,12 +364,47 @@ class action_controller {
 		$user = load::model( 'user' );
 		$user_single = $user->add();
 
+		if (input::post( 'send_password' ) == 'yes') {
+			$send_email = load::model( 'email' );
+
+			$user_name    = input::post( 'user_name' );
+			$password     = input::post( 'password' );
+			$email        = input::post( 'email' );
+		
+			$first_name   = input::post( 'first_name' );
+			$last_name    = input::post( 'last_name' );
+	
+			load::helper('email');
+
+			$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
+			$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
+
+
+			//$subject = 'Welcome to Tentacle CMS';
+			//$html = email_header($subject);
+
+			$message = '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
+						<p><strong>Username</strong>: '.$user_name.'<br />
+						<strong>Password</strong>: '.$password.'</p>
+						<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
+						<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
+
+			$user_email = $send_email->send( 'Welcome to Tentacle CMS', $message, $email );
+			
+			//$html .= email_footer();
+
+			//echo $html;
+
+			// $mail = new email();
+			// 			$mail->to($email);
+			// 			$mail->from(get_option('admin_email'));
+			// 			$mail->subject($subject);
+			// 			$mail->content( $html );
+			// 			$mail->send();
+		}
+		
 		$history = input::post( 'history' );
-
-		// Check for return True.
-		// Log error
-
-		//url::redirect($history); 
+		
 		url::redirect('admin/users_manage/');
 	}
 
@@ -748,22 +783,52 @@ class action_controller {
 		$config = config::get('db');
 
 		$user_name    = input::post( 'user_name' );
-		$raw_password     = input::post( 'password' );
+		$password     = input::post( 'password' );
 		$email        = input::post( 'email' );
 
 		$first_name   = input::post( 'first_name' );
 		$last_name    = input::post( 'last_name' );
 		$display_name = input::post( 'display_name' );
 
-		$encrypted_password = sha1( $raw_password );
-
+		$encrypted_password = sha1( $password );
+		
 		$registered = time();
-
+		$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].$registered);
+		$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
+		
+		
+		
 		$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
 
 		$build = $pdo->exec( "INSERT INTO `users` (`email`, `username`, `password`, `type`, `data`, `registered`, `status`)
 								VALUES
-									('$email', '$user_name', '$encrypted_password', 'administrator', '{\"first_name\":\"$first_name\",\"last_name\":\"$last_name\",\"activity_key\":\"\",\"url\":\"\",\"display_name\":\"$display_name\",\"editor\":\"wysiwyg\"}', '$registered', 1)" );
+									('$email', '$user_name', '$encrypted_password', 'administrator', '{\"first_name\":\"$first_name\",\"last_name\":\"$last_name\",\"activity_key\":\"$hashed_ip\",\"url\":\"\",\"display_name\":\"$display_name\",\"editor\":\"wysiwyg\"}', '$registered', 1)" );
+		
+		
+		if (input::post( 'send_password' ) == 'yes') {
+			load::helper('email');
+			
+			$send_email = load::model( 'email' );
+
+			// $subject = 'Welcome to Tentacle CMS';
+			// $html = email_header($subject);
+
+			$message = '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
+						<p><strong>Username</strong>: '.$user_name.'<br />
+						<strong>Password</strong>: '.$password.'</p>
+						<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>';
+
+			// $html .= email_footer();
+			// 
+			// 			$mail = new email();
+			// 			$mail->to($email);
+			// 			$mail->from($email);
+			// 			$mail->subject($subject);
+			// 			$mail->content( $html );
+			// 			$mail->send();
+			
+			$user_email = $send_email->send( 'Tentacle CMS', $message, $email, $email );
+		}
 			
 		url::redirect('install/done');
 	}
