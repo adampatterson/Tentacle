@@ -13,7 +13,7 @@ $scaffold_data = array();
 
 // If SCAFFOLD is not set then display the theme content.
 if( !defined( 'SCAFFOLD' ) ):?>
-<? load_part('partials/header',array('title'=>$post->title, 'assets'=>'docs')); ?>
+<? load_part('partials/header',array('title'=>$post->title, 'assets'=>'docs', 'prettify'=>true)); ?>
 
 <div class="container">
 	<div class="row bump" id="why">

@@ -21,5 +21,5 @@ _/      _/_/_/  _/    _/      _/_/    _/_/_/    _/_/_/  _/    _/_/_/
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?= PATH ?>/assets/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed" href="<?= PATH ?>/assets/ico/apple-touch-icon-57-precomposed.png">
 <link type="text/css" rel="stylesheet" href="<?=PATH; ?>/docs/styles/main.css">
-<link type="text/css" rel="stylesheet" href="<?=PATH; ?>/docs/javascript/main.js">
-<link type="text/css" rel="stylesheet" href="<?=PATH; ?>/docs/javascript/prettify.js">
+<script type="text/javascript" src="<?=PATH; ?>/docs/javascript/main.js"></script>
+<script type="text/javascript" src="<?=PATH; ?>/docs/javascript/prettify.js"></script>
