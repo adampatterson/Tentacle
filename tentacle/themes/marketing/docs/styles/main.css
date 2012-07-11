@@ -1,0 +1,388 @@
+
+/*
+
+BigTree / Natural Docs Base Styles
+
+*/
+
+	td { vertical-align: top; }
+	
+	
+	/*  Opera doesn't break with just wbr, but will if you add this.  */
+	.Opera wbr:after { content: "\00200B"; }
+	
+	/*  Blockquotes are used as containers for things that may need to scroll.  */
+	blockquote { margin: 0; padding: 0; overflow: auto; }
+	
+	.Firefox1 blockquote { padding-bottom: .5em; }
+	
+	/*  Turn off scrolling when printing.  */
+	@media print {
+		blockquote { overflow: visible; }
+		.IE blockquote { width: auto; }
+	}
+	
+	
+	#Menu { background: #F6F6F6; overflow: hidden; margin: 0 1.04167%; }
+	.MEntry {  }
+	.MEntry, .MEntry a, #MSelected { color: #333; font-weight: bold; font-size: 14px; line-height: 1; margin: 0; }
+	.MEntry a, #MSelected { border-top: 1px solid #ccc; display: block; padding: 10px; }
+	.MEntry a:hover { background: #ECF3E7; color: #222; }
+	.MGroup { padding: 10px 0; }
+	.MGroup > a { display: none; }
+	.MGroup .MEntry a { font-size: 13px; font-weight: normal; text-transform: none; }
+	.MGroup .MEntry #MSelected { font-size: 13px; font-weight: normal; }
+    .MGroupContent { border-bottom: 1px solid #ccc; font-weight: normal; }
+	.MIndex a { padding-left: ; }
+	.MFile, .MText, .MLink, .MIndex { }
+	
+	.MText { font-size: 8pt; font-style: italic }
+	
+	.MLink { font-style: italic; }
+	
+	#MSelected { background: #4A8813; color: #fff; }
+	
+	#MSearchPanel { display: none; }
+	#MSearchResultsWindow { display: none; }
+	
+	#Wrapper { overflow: hidden; }
+	#Content { border-bottom: 1px solid #ccc; float: right; min-height: 500px; padding: 0; margin: 0 1.04167%; }
+	.ContentPage #Content { }
+	.ContentPage .Firefox #Content { }
+	
+	
+    .CTopic { }
+    .CTitle { color: #222; font-size: 18px; font-weight: bold; margin: 0; }
+    
+    .CGroup .CTitle { border-bottom: 1px solid #ccc; color: #336B00; font-size: 20px; font-weight: bold; margin: 50px 0 0; padding: 0 0 10px; text-transform: uppercase; letter-spacing: 0; }
+    
+    .CTitle a { display: block; }
+    .CFunction .CTitle a { padding: 20px 0 0; }
+    /* .CGroup .CTitle { color: #222; font-size: 24px; font-weight: bold; } */  
+    .CClass .CTitle, .CInterface .CTitle, .CDatabase .CTitle, .CDatabaseTable .CTitle, .CSection .CTitle { font-size: 18px; }
+    
+    #MainTopic .CTitle { font-size: 48px; margin: 0 0 16px; line-height: 1; }
+    #MainTopic .CBody p { font-size: 14px; margin: 0; }
+    
+    .CFunction { border-bottom: 1px solid #ccc; margin: 0; overflow: hidden; padding: 10px 0 30px; }
+    .CFunction:first-of-type { padding-top: 0; }
+    .CFunction:last-of-type { border: 0; }
+    .CFunction .CTitle { margin-bottom: 15px; letter-spacing: 0; }
+    
+    .CBody { padding: 0 }
+    .CBody p { margin: 0 25px; }
+	.CBody ul { padding-left: 15px; padding-right: 15px; margin: 0 25px; }
+	.CDescriptionList { margin: 0 25px; }
+	
+	
+	.CToolTip { display: none; }
+	
+	.CHeading { color: #222; font-size: 13px; font-weight: bold; margin: 20px 0 10px; text-transform: uppercase; }
+	
+	    .CBody pre {
+	        font: 10pt monospace;
+		    background-color: #FCFCFC;
+		    margin: 1em 35px;
+		    padding: 10px 15px 10px 10px;
+		    border-color: #E0E0E0 #E0E0E0 #E0E0E0 #E4E4E4;
+		    border-width: 1px 1px 1px 6px;
+		    border-style: dashed dashed dashed solid;
+	        }
+	
+	.CDLEntry { color: #008; font-family: monospace; font-size: 14px; line-height: 14px; padding: 5px 0; white-space: nowrap; }
+	.CDLDescription { font-size: 13px; line-height: 14px; padding: 5px 0 5px 30px; }
+	
+	
+	    .CTopic img {
+	        text-align: center;
+	        display: block;
+	        margin: 1em auto;
+	        }
+	    .CImageCaption {
+	        font-variant: small-caps;
+	        font-size: 8pt;
+	        color: #808080;
+	        text-align: center;
+	        position: relative;
+	        top: 1em;
+	        }
+	
+	    .CImageLink {
+	        color: #808080;
+	        font-style: italic;
+	        }
+	    a.CImageLink:link,
+	    a.CImageLink:visited,
+	    a.CImageLink:hover { color: #808080 }
+	    
+	
+	.Prototype { border: 1px solid #eee; font-family: monospace; font-size: 14px; margin: 0 25px 15px;  }
+	.Prototype table td { padding: 5px 7px; }
+	.Prototype .prettyprint { padding: 10px 14px; }
+	.Prototype td.PParameter, .Prototype td.PDefaultValuePrefix, .Prototype td.PDefaultValue { padding: 10px 0; }
+	
+	    .PDefaultValue,
+	    .PDefaultValuePrefix,
+	    .PTypePrefix {
+	        color: #8F8F8F;
+	        }
+	    .PTypePrefix {
+	        text-align: right;
+	        }
+	    .PAfterParameters {
+	        vertical-align: bottom;
+	        }
+	
+	    .IE .Prototype table {
+	        padding: 0;
+	        }
+	
+	
+	.CFunction .Prototype { background-color: #FCFCFC; }
+	    
+	    
+	    .CProperty .Prototype { background-color: #F4F4FF; }
+	    .CVariable .Prototype { background-color: #FFFFF0; border-color: #E0E0A0; }
+	
+	    .CClass .Prototype {
+	        border-width: 1px 2px 2px 1px; border-style: solid; border-color: #A0A0A0;
+	        background-color: #F4F4F4;
+	        }
+	    .CInterface .Prototype {
+	        border-width: 1px 2px 2px 1px; border-style: solid; border-color: #A0A0D0;
+	        background-color: #F4F4FF;
+	        }
+	
+	    .CDatabaseIndex .Prototype,
+	    .CConstant .Prototype {
+	        background-color: #D0D0D0; border-color: #000000 }
+	    .CType .Prototype,
+	    .CEnumeration .Prototype {
+	        background-color: #FAF0F0; border-color: #E0B0B0;
+	        }
+	    .CDatabaseTrigger .Prototype,
+	    .CEvent .Prototype,
+	    .CDelegate .Prototype {
+	        background-color: #F0FCF0; border-color: #B8E4B8 }
+	
+	
+	.Summary { margin: 30px 0 20px; }
+	.STitle { color: #336B00; font-size: 20px; font-weight: bold; margin: 0 0 10px 0; text-transform: uppercase; }
+	.SBorder { background: #F6F6F6; overflow: hidden; padding: 10px 0; }
+	.STable { border-top: 1px solid #ccc; font-size: 13px; width: 100%; }
+	.STable tr { background: #F6F6F6; border-bottom: 1px solid #ccc; }
+	.STable tr:hover { background: #ECF3E7; }
+	.SEntry { width: 30% }
+	.SDescription { width: 70% }
+	.SMarked {  }
+	
+	.SEntry { font-size: 13px; font-weight: bold; }
+	.SDescription, .SEntry { padding: 20px; }
+	
+	.SMain { }
+	
+	.SDescription a { color: #0000}
+	
+	.SGroup { display: none; }
+	.SGroup td { background: #d9d9d9; padding: 6px 10px 5px; }
+	.SGroup .SEntry { font-weight: bold; text-transform: uppercase; }
+	.SGroup .SEntry a { color: #666; }
+	
+	.SMain td, .SClass td, .SDatabase td, .SDatabaseTable td, .SSection td { font-size: 14px; }
+	.SClass td, .SDatabase td, .SDatabaseTable td, .SSection td { }
+	.SMain .SEntry, .SClass .SEntry, .SDatabase .SEntry, .SDatabaseTable .SEntry, .SSection .SEntry { font-size: 14px; font-weight: bold; }
+	
+	
+	.ClassHierarchy {
+	    margin: 0 15px 1em 15px }
+	
+	    .CHEntry {
+	        border-width: 1px 2px 2px 1px; border-style: solid; border-color: #A0A0A0;
+	        margin-bottom: 3px;
+	        padding: 2px 2ex;
+	        font-size: 10pt;
+	        background-color: #F4F4F4; color: #606060;
+	        }
+	
+	    .Firefox .CHEntry {
+	        }
+	
+	    .CHCurrent .CHEntry {
+	        font-weight: bold;
+	        border-color: #000000;
+	        color: #000000;
+	        }
+	
+	    .CHChildNote .CHEntry {
+	        font-style: italic;
+	        font-size: 8pt;
+	        }
+	
+	    .CHIndent {
+	        margin-left: 3ex;
+	        }
+	
+	    .CHEntry a:link,
+	    .CHEntry a:visited,
+	    .CHEntry a:hover {
+	        color: #606060;
+	        }
+	
+	
+	#Index { background: #fff; border-left: 1px solid #eee; margin: 0 0 0 225px; min-height: 500px; padding: 35px 30px 40px 29px; width: 675px; }
+	
+	.IndexPage #Index, .FramedIndexPage #Index, .FramedSearchResultsPage #Index { }
+	.IndexPage #Index { }
+	
+	.IPageTitle { color: #222; font-size: 32px; font-weight: bold; line-height: 0.9; margin: 10px 0; }
+
+	
+	    .FramedSearchResultsPage .IPageTitle {
+	        margin-bottom: 15px;
+	        }
+	
+	.INavigationBar { border: 1px solid #D9D9D9; letter-spacing: 0.1em; margin: 15px 0 0;
+		background: #d9d9d9; padding: 6px 10px 5px; 
+		background: -moz-linear-gradient(#eee, #D9D9D9); /* FF 3.6+ */  
+	    background: -ms-linear-gradient(#eee, #D9D9D9); /* IE10 */  
+	    background: -webkit-linear-gradient(#eee, #D9D9D9); /* Safari 5.1+, Chrome 10+ */  
+	    background: -o-linear-gradient(#eee, #D9D9D9); /* Opera 11.10 */  
+	    background: linear-gradient(#eee, #D9D9D9); /* the standard */  
+	}
+	.INavigationBar a { font-weight: bold; }
+	.IHeading { border: none; font-size: 20px; font-weight: bold; padding: 20px 10px 0 0; width: 20px; }
+	
+	.IEntry { padding: 3px 0; }
+	.PopupSearchResultsPage .IEntry { }
+	.PopupSearchResultsPage .Opera9 .IEntry,
+	.FramedSearchResultsPage .Opera9 .IEntry { }
+	.FramedSearchResultsPage .IEntry { }
+	
+	    .ISubIndex {
+	        padding-left: 3ex; padding-bottom: .5em }
+	    .PopupSearchResultsPage .ISubIndex {
+	        display: none;
+	        }
+	
+	.ISymbol { font-weight: bold; color: #666; }
+	.IndexPage .ISymbolPrefix, .FramedIndexPage .ISymbolPrefix { }
+	
+	    .PopupSearchResultsPage .ISymbolPrefix,
+	    .FramedSearchResultsPage .ISymbolPrefix {
+	        color: #900000;
+	        }
+	    .PopupSearchResultsPage .ISymbolPrefix {
+	        font-size: 8pt;
+	        }
+	
+	.IndexPage #IFirstSymbolPrefix, .FramedIndexPage #IFirstSymbolPrefix { }
+	.IndexPage #ILastSymbolPrefix, .FramedIndexPage #ILastSymbolPrefix { }
+	.IndexPage #IOnlySymbolPrefix, .FramedIndexPage #IOnlySymbolPrefix { }
+	
+	    a.IParent,
+	    a.IFile {
+	        display: block;
+	        }
+	
+	    .PopupSearchResultsPage .SRStatus {
+	        padding: 2px 5px;
+	        font-size: 8pt;
+	        font-style: italic;
+	        }
+	    .FramedSearchResultsPage .SRStatus {
+	        font-size: 10pt;
+	        font-style: italic;
+	        }
+	
+	    .SRResult {
+	        display: none;
+	        }
+	
+	
+	
+	#Footer { clear: both; padding: 10px 0; font-size: 10px; color: #999; margin: 0; text-align: right; }
+	#Footer p { }
+	.ContentPage #Footer, .IndexPage #Footer { }
+	.FramedMenuPage #Footer { }
+	#Footer a:link,
+	#Footer a:hover,
+	#Footer a:visited { color: #989898 }
+	
+	
+	
+	.prettyprint .kwd { color: #000; }  /* keywords */
+	.prettyprint.PDefaultValue .kwd, .prettyprint.PDefaultValuePrefix .kwd, .prettyprint.PTypePrefix .kwd { color: #C88F8F; }
+	
+	.prettyprint .com { color: #008000; }  /* comments */
+	
+	    .prettyprint.PDefaultValue .com,
+	    .prettyprint.PDefaultValuePrefix .com,
+	    .prettyprint.PTypePrefix .com {
+	        color: #8FC88F;
+	        }
+	
+	.prettyprint .str { color: #0000B0; }  /* strings */
+	.prettyprint .lit { color: #0000B0; }  /* literals */
+	
+	    .prettyprint.PDefaultValue .str,
+	    .prettyprint.PDefaultValuePrefix .str,
+	    .prettyprint.PTypePrefix .str,
+	    .prettyprint.PDefaultValue .lit,
+	    .prettyprint.PDefaultValuePrefix .lit,
+	    .prettyprint.PTypePrefix .lit {
+	        color: #8F8FC0;
+	        }
+	
+	.prettyprint .typ { color: #000000; }  /* types */
+	.prettyprint .pun { color: #333; }  /* punctuation */
+	.prettyprint .pln { color: #222; }  /* punctuation */
+	
+	
+	.PBeforeParameters .pln { color: #660066; }  /* punctuation */
+	.PParameter .pln { color: #008; }  /* punctuation */
+	.PDefaultValue .pln { display: none; }
+
+	
+	
+	    .prettyprint.PDefaultValue .typ,
+	    .prettyprint.PDefaultValuePrefix .typ,
+	    .prettyprint.PTypePrefix .typ,
+	    .prettyprint.PDefaultValue .pun,
+	    .prettyprint.PDefaultValuePrefix .pun,
+	    .prettyprint.PTypePrefix .pun,
+	    .prettyprint.PDefaultValue .pln,
+	    .prettyprint.PDefaultValuePrefix .pln,
+	    .prettyprint.PTypePrefix .pln {
+	        color: #8F8F8F;
+	        }
+	
+	.prettyprint .tag { color: #008; }
+	.prettyprint .atn { color: #606; }
+	.prettyprint .atv { color: #080; }
+	.prettyprint .dec { color: #606; }
+	
+
+@media screen and (max-width: 720px) {
+	#Content, #Menu { width: 97.9166666666666667%; }
+	#Content { margin-top: 30px; }
+	#MainTopic .CTitle { font-size: 42px; }
+	
+	.Summary { display: none; }
+}
+
+
+#Menu {
+
+	width: 25%;
+	clear: left;
+	margin: 0;
+}
+
+#Content,
+#Footer {
+	float: right;
+	width: 72%;
+	clear: left;
+	margin: 0;
+	display: block;
+}

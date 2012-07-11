@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteCond $1 !^(index\.php|styles|javascript)
+RewriteRule ^(.*)$ index.php?file=$1 [L]

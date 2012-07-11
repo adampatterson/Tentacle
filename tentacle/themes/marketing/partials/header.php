@@ -9,7 +9,7 @@
 	<? assets::render($assets); ?>
 </head>
 
-<body <?= body_class(); ?>>
+<body <?= body_class(); ?> <? if ($prettify)echo 'onLoad="NDOnLoad();prettyPrint();"' ?>>
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container visible-phone visible-tablet">
