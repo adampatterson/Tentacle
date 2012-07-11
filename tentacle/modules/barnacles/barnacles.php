@@ -1,7 +1,4 @@
 <?php
-/**
-* Class: Barnacles
-*/
 class Barnacles extends Modules {
 
     public function __init() {
@@ -20,16 +17,6 @@ class Barnacles extends Modules {
 }
 
 
-/**
-* Function: snippet
-*	Called from the short code API.
-*
-* Parameters:
-*	$slug - String
-*
-* Returns:
-*	String
-*/
 function snippet( $slug ) {
 	$snippet = load::model( 'snippet' );
 	$snippet_single = $snippet->get_slug( $slug['slug'] );

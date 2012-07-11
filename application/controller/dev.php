@@ -40,7 +40,7 @@ class dev_controller {
 		
 		clean_out( $object );
 		
-		echo serialize(array('barnacles','ipsum','test'));
+		echo serialize(array('barnacles','ipsum','ndoc','test'));
 	}
 
 	

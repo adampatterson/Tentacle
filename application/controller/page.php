@@ -75,7 +75,7 @@ class page_controller {
 
 			} else {
 				// logging of 404's here.
-				//tentacle::render ( '404' );
+				tentacle::render ( '404' );
 			}
 
 		}	
