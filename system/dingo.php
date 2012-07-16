@@ -80,7 +80,7 @@ class bootstrap
 		
 		// Get route
 		$request_url = self::get_request_url();
-		$uri = Route::get($request_url);
+		$uri = route::get($request_url);
 		
 		
 		// Set current page
@@ -330,7 +330,7 @@ class api
 
 class route
 {
-	private static $route = array();
+	static $route = array();
 	private static $current = array();
 	
 	
@@ -687,7 +687,6 @@ class load
 	{
 		return self::file(SYSTEM."/driver/$library",$driver,'drver');
 	}
-	
 	
 	
 	// Helper
