@@ -2,7 +2,7 @@
 /**
 * File: Module
 */
-
+tentacle::library('YAML', 'YAML');
 
 /**
 * Function: init_extensions
