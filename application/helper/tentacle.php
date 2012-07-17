@@ -195,6 +195,7 @@ class tentacle
 	    } // else
 	} // END render
 	
+	
 	/**
 	* Function: offset
 	* For use with hierarchal data, used to return a CSS class that can be used on generated tables and lists.

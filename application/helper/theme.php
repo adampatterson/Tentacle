@@ -93,9 +93,9 @@ class theme {
 	// ---------------------------------------------------------------------------
 	public static function helper($helper)
 	{
-		return self::file(THEMES_DIR.ACTIVE_THEME.'/helper/',$helper,'helper');
+		return load::file(THEMES_DIR.ACTIVE_THEME.'/helper/',$helper,'helper');
 	}
-}
+} // END theme
 
 /**
 * Function: _cleanup_header_comment
