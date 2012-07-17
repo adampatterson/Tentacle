@@ -3,6 +3,99 @@
 * File: Theme
 */
 
+class theme {	
+	
+	/**
+	* Function: library
+	* Loads libraries specific to Tentacle
+	*
+	* Parameters:
+	*     $folder - path
+	*     $file - name
+	*
+	* Returns:
+	*     Required library
+	*/
+	public static function library($folder='/',$library)
+	{
+		return load::file(THEMES_DIR.ACTIVE_THEME.'library'.$folder,$library,'library');
+	}
+	
+	
+	/**
+	* Function: load_part
+	* Load theme parts for inclusion.
+	*
+	* Parameters:
+	*     $part - string
+	*     $data - object/array
+	*
+	* Returns:
+	*     $string
+	*
+	* See Also:
+	*     <render>
+	*/
+	public static function part( $part, $data = '' )
+	{
+	    // If theme does not exist display error
+	    if(!file_exists(THEMES_DIR.ACTIVE_THEME."/$part.php"))
+	    {
+	        dingo_error(E_USER_WARNING,'The requested theme part ('.THEMES_DIR.ACTIVE_THEME."/part-$part.php) could not be found.");
+	        return FALSE;
+	    } // if
+	    else
+	    {
+	        // If data is array, convert keys to variables
+
+	        if(is_array($data))
+	        {
+	            extract($data, EXTR_OVERWRITE);
+	        }
+
+	        require(THEMES_DIR.ACTIVE_THEME."/$part.php");
+	        return FALSE;
+	    } // else
+	} // END load_part
+
+
+	// Model
+	// ---------------------------------------------------------------------------
+	public static function model($model,$args=array())
+	{
+		// Model class
+		$model_class = explode('/',$model);
+		$model_class = end($model_class).'_model';
+
+
+		if(!class_exists($model_class))
+		{
+			$path = THEMES_DIR.ACTIVE_THEME."/model/$model.php";
+
+			// If model does not exist display error
+			if(!file_exists($path))
+			{
+				dingo_error(E_USER_ERROR,"The requested model ($path) could not be found.");
+				return FALSE;
+			}
+			else
+			{
+				require_once($path);
+			}
+		}
+
+		// Return model class
+		return new $model_class();
+	}
+
+
+	// Helper
+	// ---------------------------------------------------------------------------
+	public static function helper($helper)
+	{
+		return self::file(THEMES_DIR.ACTIVE_THEME.'/helper/',$helper,'helper');
+	}
+}
 
 /**
 * Function: _cleanup_header_comment

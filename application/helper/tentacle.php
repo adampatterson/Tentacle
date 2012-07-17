@@ -18,49 +18,9 @@ define ( 'IMAGE_T', get_option( 'image_thumb_size_w' ) );
 define ( 'IMAGE_M', get_option( 'image_medium_size_w' ) );
 define ( 'IMAGE_L', get_option( 'image_large_size_w' ) );
 
+// tentacle core loaders
 class tentacle 
 {
-	
-	/**
-	* Function: valid_user
-	* Valid User / Redirect.
-	*/
-	public static function valid_user()
-	{	
-		if(!user::valid()) 
-		{
-			//note::set("error","session",NOTE_SESSION);
-			note::set('error','session',CURRENT_PAGE);
-			url::redirect('admin'); 
-		}
-	}
-	
-	/**
-	* Function: file
-	* Loads a file from a folder
-	*
-	* Parameters:
-	*     $folder - path
-	*     $file - name
-	*
-	* Returns:
-	*		if true requires the file
-	*       if false returns an error
-	*/
-	public static function file($folder,$file)
-	{
-		// If file does not exist display error
-		if(!file_exists("$folder/$file.php"))
-		{
-			dingo_error(E_USER_ERROR,"The requested $name ($folder/$file.php) could not be found.");
-			return FALSE;
-		}
-		else
-		{
-			require_once("$folder/$file.php");
-			return TRUE;
-		}
-	}
 
 	/**
 	* Function: library
@@ -75,10 +35,24 @@ class tentacle
 	*/
 	public static function library($folder='/',$library)
 	{
-		return self::file(TENTACLE_LIB.$folder,$library,'library');
+		return load::file(TENTACLE_LIB.$folder,$library,'library');
 	}
 
 	
+	/**
+	* Function: valid_user
+	* Valid User / Redirect.
+	*/
+	public static function valid_user()
+	{	
+		if(!user::valid()) 
+		{
+			//note::set("error","session",NOTE_SESSION);
+			note::set('error','session',CURRENT_PAGE);
+			url::redirect('admin'); 
+		}
+	}
+
 	
 	/**
 	* Function: render
@@ -185,6 +159,41 @@ class tentacle
 
 } // END class
 
+	/**
+	* Function: load_part
+	* Load theme parts for inclusion.
+	*
+	* Parameters:
+	*     $part - string
+	*     $data - object/array
+	*
+	* Returns:
+	*     $string
+	*
+	* See Also:
+	*     <render>
+	*/
+	function load_part( $part, $data = '' )
+	{
+	    // If theme does not exist display error
+	    if(!file_exists(THEMES_DIR.ACTIVE_THEME."/$part.php"))
+	    {
+	        dingo_error(E_USER_WARNING,'The requested theme part ('.THEMES_DIR.ACTIVE_THEME."/part-$part.php) could not be found.");
+	        return FALSE;
+	    } // if
+	    else
+	    {
+	        // If data is array, convert keys to variables
+
+	        if(is_array($data))
+	        {
+	            extract($data, EXTR_OVERWRITE);
+	        }
+
+	        require(THEMES_DIR.ACTIVE_THEME."/$part.php");
+	        return FALSE;
+	    } // else
+	} // END render
 	
 	/**
 	* Function: offset
@@ -231,44 +240,6 @@ class tentacle
 			}
 		}
 	}
-	
-	
-	/**
-	* Function: load_part
-	* Load theme parts for inclusion.
-	*
-	* Parameters:
-	*     $part - string
-	*     $data - object/array
-	*
-	* Returns:
-	*     $string
-	*
-	* See Also:
-	*     <render>
-	*/
-	function load_part( $part, $data = '' )
-	{
-	    // If theme does not exist display error
-	    if(!file_exists(THEMES_DIR.ACTIVE_THEME."/$part.php"))
-	    {
-	        dingo_error(E_USER_WARNING,'The requested theme part ('.THEMES_DIR.ACTIVE_THEME."/part-$part.php) could not be found.");
-	        return FALSE;
-	    } // if
-	    else
-	    {
-	        // If data is array, convert keys to variables
-	
-	        if(is_array($data))
-	        {
-	            extract($data, EXTR_OVERWRITE);
-	        }
-	
-	        require(THEMES_DIR.ACTIVE_THEME."/$part.php");
-	        return FALSE;
-	    } // else
-	} // END render
-	
 	
 	/**
 	* Function: dashboard_feed
