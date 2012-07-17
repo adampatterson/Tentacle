@@ -68,6 +68,22 @@
 			?>
 		  </ul>
 		</li>
+         <?
+		$trigger = Trigger::current();
+
+		$subnav["settings"] = $trigger->filter($subnav["settings"], "settings_nav");
+		
+		if (isset($subnav["settings"])) { ?>
+		<li class="dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Module Settings</a>
+            <ul class="dropdown-menu">
+               <?
+				foreach ($subnav["settings"] as $sub_page) {
+					echo '<li><a href="settings_module/'.$sub_page['href'].'">'.$sub_page['title'].'</a></li>';
+				} 
+				?>
+            </ul>
+        </li>
+		<? } ?>
 		<li class="<? if (
 	    CURRENT_PAGE == 'admin/about_system_details') echo 'active'; ?>"><a href="<?= ADMIN ?>about_system_details/">About</a> </li>
 	  </ul>

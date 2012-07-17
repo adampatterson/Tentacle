@@ -4,13 +4,7 @@ class page_controller {
     public function index(  ){
 		$uri 			= URI;
 
-		tentacle::library('YAML', 'YAML');
-
 		load::helper('template');
-		load::helper('module');
-		
-		# Initiate the extensions.
-	    init_extensions();
 	
 		# Prepare the trigger class
 		$trigger 		= Trigger::current();
@@ -30,6 +24,7 @@ class page_controller {
 			require_once( PATH_URI.'/functions.php' );
 		}
 	
+		// Todo: get option blog path.
 		if (URI == 'blog') {
 			
 			define("IS_POST", FALSE);

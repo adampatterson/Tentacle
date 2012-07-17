@@ -554,6 +554,20 @@ class admin_controller {
 		load::view ('admin/settings/settings_general', array( 'categories'=>$categories ) );
 	}
 
+    /**
+     * Module settings
+     * ----------------------------------------------------------------------------------------------*/
+    public function settings_module ($page=null)
+    {
+        tentacle::valid_user();
+
+        if ( $page === null ) {
+            echo 'standard page';
+        } else {
+            echo $page;
+        }
+    }
+
 	/**
 	* SEO Settings
 	* ----------------------------------------------------------------------------------------------*/
@@ -805,5 +819,4 @@ class admin_controller {
 		
 		load::view ('admin/about_system_details');
 	}
-
 } // END Class main_controller

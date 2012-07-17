@@ -30,6 +30,9 @@
 		}
 	}
 
+     function get_modules() {
+         return enabled_module();
+     }
 
 	/**
 	* Function: get_current_db_version

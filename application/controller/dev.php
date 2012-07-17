@@ -6,18 +6,18 @@ class dev_controller {
 	{
 		//include TENTACLE_LIB.'chromephp/ChromePhp.php';
 		
-		ChromePhp::log('hello world');
-		ChromePhp::log($_SERVER);
+		//ChromePhp::log('hello world');
+		//ChromePhp::log($_SERVER);
 
 		// using labels
 		foreach ($_SERVER as $key => $value)
 		{
-		    ChromePhp::log($key, $value);
+		    //ChromePhp::log($key, $value);
 		}
 
 		// warnings and errors
-		ChromePhp::warn('this is a warning');
-		ChromePhp::error('this is an error');
+		//ChromePhp::warn('this is a warning');
+		//ChromePhp::error('this is an error');
 		
 		
 		load::helper('dbug');
@@ -40,7 +40,7 @@ class dev_controller {
 		
 		clean_out( $object );
 		
-		echo serialize(array('barnacles','ipsum','ndoc','test'));
+		echo serialize(array('barnacles','ndoc'));
 	}
 
 	
@@ -75,8 +75,22 @@ class dev_controller {
 				(7, 6, 'scaffold_data', 'a:5:{s:4:\"save\";s:0:\"\";s:11:\"bread_crumb\";s:0:\"\";s:13:\"meta_keywords\";s:0:\"\";s:16:\"meta_description\";s:0:\"\";s:4:\"tags\";s:0:\"\";}'),
 				(58, 112, 'scaffold_data', 'a:6:{s:9:\"post_type\";s:9:\"type-post\";s:13:\"post_category\";a:1:{i:0;s:1:\"1\";}s:11:\"bread_crumb\";s:0:\"\";s:13:\"meta_keywords\";s:0:\"\";s:16:\"meta_description\";s:27:\"Enter your comments here...\";s:4:\"tags\";s:0:\"\";}');" );
 	}
-	
-	
+
+
+    public function module_nav () {
+		$trigger 		= Trigger::current();
+
+		$subnav["settings"] = $trigger->filter($subnav["settings"], "settings_nav");
+		//$pages["settings"] = array_keys($subnav["settings"]);
+
+		clean_out( 	$subnav["settings"] );
+		
+		foreach ($subnav["settings"] as $sub_page) {
+			echo $sub_page['title'].'</br>';
+			echo $sub_page['href'].'</br>';
+		}
+    }
+
 	public function email()
 	{
 		
@@ -133,6 +147,10 @@ class dev_controller {
 		clean_out( $categories->get_all_tags( ) );
 	}
 	
+
+    public function rout_test() {
+       var_dump(route::$route);
+    }
 
 	public function extensions ()
 	{
@@ -463,9 +481,6 @@ class dev_controller {
 		
 		//echo serialize(array('barnacles','ipsum'));
 		
-		tentacle::library('YAML', 'YAML');
-		load::helper('module');
-		
 		# Initiate the extensions.
 	    init_extensions();
 	
@@ -500,24 +515,24 @@ class dev_controller {
 
 		 $(document).ready(function () {
 
-			$('#info').keyup(function(){
-				tagdata = [];
-				eventdata = [];
-				var scriptruns = [];
-				var text = $('#info').val();
-				text = $('<span>'+text+'</span>').text(); //strip html
-				text = text.replace(/(\s|>|^)(https?:[^\s<]*)/igm,'$1<div><a href="$2" class="oembed">$2</a></div>');
-				$('#out').empty().html('<span>'+text+'</span>');
+                 $('#info').keyup(function(){
+                     tagdata = [];
+                     eventdata = [];
+                     var scriptruns = [];
+                     var text = $('#info').val();
+                     text = $('<span>'+text+'</span>').text(); //strip html
+                     text = text.replace(/(\s|>|^)(https?:[^\s<]*)/igm,'$1<div><a href="$2" class="oembed">$2</a></div>');
+                     $('#out').empty().html('<span>'+text+'</span>');
 
-				$(".oembed").oembed(null,{
-					apikeys: {
-						etsy : 'd0jq4lmfi5bjbrxq2etulmjr',
-					}
-				});
+                     $(".oembed").oembed(null,{
+                         apikeys: {
+                             etsy : 'd0jq4lmfi5bjbrxq2etulmjr',
+                         }
+                     });
 
-			}); 
+                 });
 
-		 });
+             });
 
 		</script>
 		
@@ -1380,15 +1395,51 @@ class dev_controller {
 	
 	public function navigation ()
 	{
-		echo '<h1>Navigation</h1>
-		<style type="text/css" media="screen">
-			.active {
-				color: red;
-			}
-		</style>
-		';
+			load::helper('navigation');
 
-		nav_menu( );
+			tentacle::library('dbug','dbug');
+			
+			$args = array();
+			
+			define ( 'FRONT'		,'true' );
+
+			$page = load::model( 'page' );
+			$pages = $page->get( );
+			// Current URI to be used with .current page
+			$uri = URI;
+			
+			$get_page_level = 0;
+
+			$page_tree = $page->get_page_tree( $pages );
+			_e('<h3>Page Tree - $page->get_page_tree( $pages )</h3>');
+			//clean_out( $page_tree );
+			
+			$page_array = $page->get_page_children( 0, $pages, 0 );
+			_e('<h3>Page Array - $page->get_page_children( 0, $pages, 0 )</h3>');
+			//clean_out( $page_array );
+			
+			$page_object = (object)$page_array;
+			
+			$get_page_level = $page->get_page_level( $page_object, 'portfolio/design/' );
+			//_e('<h3>Page Array - $page->get_page_level( $page_object, \'portfolio/design/print/\' )</h3>');
+			//clean_out( $get_page_level );
+			
+			$get_page_by_level = $page->get_page_by_level( $page_object, $get_page_level );
+			_e('<h3>Page Array - $page->get_page_by_level( $page_object, $get_page_level )</h3>');
+			clean_out( $get_page_by_level );
+			
+			
+			$get_home = $page->get_home( );
+			
+			$get_flat_page_hierarchy = $page->get_flat_page_hierarchy( $pages );
+			
+			$get_descendant_ids = $page->get_descendant_ids( 3 );
+			
+			$page_children = $page->get_page_children( 0, $pages );
+		
+			// Generate the HTML output.
+			//nav_generate ( (array)$page_array, $args );
+
 	}
 	
 	
@@ -1483,14 +1534,7 @@ class dev_controller {
 	}// END Function
 	
 	public function module()
-	{	
-		tentacle::library('YAML', 'YAML');
-
-		load::helper('module');
-		
-		# Initiate the extensions.
-	    init_extensions();
-		
+	{
 		# Prepare the trigger class
 		$trigger = Trigger::current();
 		

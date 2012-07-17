@@ -154,8 +154,12 @@ class bootstrap
 		
 		// Autoload Components
 		bootstrap::autoload($controller);
-		
-		
+
+        // Load the modules here so that we can set route's, and use the Hooks in all areas of the application.
+        load::helper('module');
+        init_extensions();
+
+
 		// Check to see if function exists
 		if(!is_callable(array($controller,$uri['function'])))
 		{
@@ -166,15 +170,12 @@ class bootstrap
 			{
 				load::error('404');
 			}
-			else
-			{
-				$uri['function'] = $minus_function_name;
-			}
+            else
+            {
+                $uri['function'] = $minus_function_name;
+            }
+
 		}
-		
-		// Load the modules here so that we can set route's, and use the Hooks in all areas of the application.
-        load::helper('module');
-		init_extensions();
 		
 		// Run Function
 		call_user_func_array(array($controller,$uri['function']),$uri['arguments']);
