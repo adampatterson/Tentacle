@@ -156,9 +156,11 @@ class bootstrap
 		bootstrap::autoload($controller);
 
         // Load the modules here so that we can set route's, and use the Hooks in all areas of the application.
-        load::helper('module');
-        init_extensions();
-
+		// Check to see if we are installed so we dont explode.
+        if (function_exists('get_option') && get_option('is_blog_installed')) {
+			load::helper('module');
+        	init_extensions();
+		}
 
 		// Check to see if function exists
 		if(!is_callable(array($controller,$uri['function'])))
