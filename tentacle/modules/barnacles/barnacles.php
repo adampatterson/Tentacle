@@ -6,6 +6,12 @@ class Barnacles extends Modules {
 		add_shortcode( 'snippet', 'snippet' );
     }
 
+    public function settings_nav($navs) {
+    	$navs["barnacle_settings"] = array("title" => "Barnacles");
+
+    	return $navs;
+    }
+
 	public function shortcode($text='') {
 		if (function_exists('do_shortcode'))
 		    return do_shortcode( $text );
@@ -20,6 +26,6 @@ class Barnacles extends Modules {
 function snippet( $slug ) {
 	$snippet = load::model( 'snippet' );
 	$snippet_single = $snippet->get_slug( $slug['slug'] );
-	
+
 	return $snippet_single->content;
 	}
