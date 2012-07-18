@@ -69,17 +69,21 @@
 		  </ul>
 		</li>
          <?
-		$trigger = Trigger::current();
+		$trigger= Trigger::current();
 
 		$subnav["settings"] = $trigger->filter($subnav["settings"], "settings_nav");
+		
+		foreach ($subnav["settings"] as $key => $value) {
+ 			$subnav["settings"][$key] = array('title' => $value['title'], 'rout' => $key);
+		}
 		
 		if (isset($subnav["settings"])) { ?>
 		<li class="dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Module Settings</a>
             <ul class="dropdown-menu">
                <?
-				foreach ($subnav["settings"] as $sub_page) {
-					echo '<li><a href="settings_module/'.$sub_page['href'].'">'.$sub_page['title'].'</a></li>';
-				} 
+				foreach ( $subnav["settings"] as $sub_page ) {
+					echo '<li><a href="settings_module/'.$sub_page['rout'].'">'.$sub_page['title'].'</a></li>';
+				}
 				?>
             </ul>
         </li>
