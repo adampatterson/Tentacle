@@ -15,8 +15,7 @@ $data = array(
 
 if(!defined('SCAFFOLD')):
 ?>
-<? load_part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>'marketing' ) ); ?>
-
+<? theme::part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>'marketing' ) ); ?>
 	<header class="jumbotron subhead" id="overview">
 		<div class="container">
 			<div class="row visible-desktop">
@@ -230,8 +229,32 @@ if(!defined('SCAFFOLD')):
 			</div>
 		</div>
 */?>
+
 	</div>
-<?/* 
+	<? /* 
+	<script type="text/javascript">
+	$("document").ready(function (){
+
+	       // load the overlay
+
+	        if (document.cookie.indexOf('visited=true') == -1) {
+	            var fifteenDays = 1000*60*60*24*15;
+	            var expires = new Date((new Date()).valueOf() + fifteenDays);
+	            document.cookie = "visited=true;expires=" + expires.toUTCString();
+	            $.colorbox({width:"580px", inline:true, href:"#subscribe_popup"});
+	        }
+
+	        $(".open_popup").colorbox({width:"580px", inline:true, href:"#subscribe_popup"});
+
+	 });
+	
+	</script>
+	
+	<script type="text/javascript" charset="utf-8">
+		$('#myModal').modal('hide')
+	</script>
+	
+ <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>
 	<div class="modal hide fade" id="myModal" style="width: 300px;">
 		<form method="post" action="http://www.industrymailout.com/Industry/SubscribeRedirect.aspx" >
 			<div class="modal-header">
@@ -275,11 +298,7 @@ if(!defined('SCAFFOLD')):
 		  </div>
 		</form>
 	</div>
-
-	<script type="text/javascript" charset="utf-8">
-		$('#myModal').modal('hide')
-	</script>
-*/?>	
-	<? load_part( 'partials/footer' ); 
+	*/?>
+	<? theme::part( 'partials/footer' ); 
 	endif;
 	?>

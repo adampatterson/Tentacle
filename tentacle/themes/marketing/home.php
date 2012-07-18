@@ -15,7 +15,7 @@ $data = array(
 
 if(!defined('SCAFFOLD')):
 ?>
-<? load_part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>'marketing' ) ); ?>
+<? theme::part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>'marketing' ) ); ?>
 
 	<header class="jumbotron subhead" id="overview">
 		<div class="container">
@@ -230,7 +230,10 @@ if(!defined('SCAFFOLD')):
 			</div>
 		</div>
 */?>
+
+
 	</div>
+
 <?/* 
 	<div class="modal hide fade" id="myModal" style="width: 300px;">
 		<form method="post" action="http://www.industrymailout.com/Industry/SubscribeRedirect.aspx" >
@@ -280,6 +283,6 @@ if(!defined('SCAFFOLD')):
 		$('#myModal').modal('hide')
 	</script>
 */?>	
-	<? load_part( 'partials/footer' ); 
+	<? theme::part( 'partials/footer' ); 
 	endif;
 	?>

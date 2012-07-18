@@ -10,7 +10,7 @@ License URI: license.txt
 */
 
 if( !defined( 'SCAFFOLD' ) ):?>
-<? load_part('header',array('title'=>'Blog','assets'=>'marketing')); ?>
+<? theme::part('header',array('title'=>'Blog','assets'=>'marketing')); ?>
 <div class="container bump-top">
 		<?
 	// Loop all of the blog posts.
@@ -40,5 +40,5 @@ if( !defined( 'SCAFFOLD' ) ):?>
 	<? endforeach;?>
 
 </div><!-- /container -->
-<? load_part('footer'); ?> 
+<? theme::part('footer'); ?> 
 <? endif; ?>

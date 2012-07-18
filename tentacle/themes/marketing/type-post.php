@@ -3,7 +3,7 @@
 Type: Post
 */
 if( !defined( 'SCAFFOLD' ) ):?>
-<? load_part('header',array('title'=>$post->title,'assets'=>'marketing')); ?>
+<? theme::part('header',array('title'=>$post->title,'assets'=>'marketing')); ?>
 <div class="container">
 	<div class="row">
 		<div class="span12">
@@ -15,5 +15,5 @@ if( !defined( 'SCAFFOLD' ) ):?>
 		</div><!--/span9-->
 	</div><!--/row-->
 </div><!-- /container -->
-<? load_part('footer'); ?> 
+<? theme::part('footer'); ?> 
 <? endif; ?>
