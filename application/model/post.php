@@ -84,10 +84,10 @@ class post_model
 	public function update ( $id ) 
 	{
 		// create a new version of the content.
-		$title         = $_POST['title'];
+		$title         = input::post( 'title' );
 		$slug          = sanitize($title);
-		$content       = $_POST['content'];
-		$status        = $_POST['status'];
+		$content       = input::post( 'content' );
+		$status        = input::post( 'status' );
 		$publish       = input::post( 'publish' );
 		
 		$post_template = $_POST['post_type'];

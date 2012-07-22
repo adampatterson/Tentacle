@@ -305,11 +305,16 @@ class action_controller {
 		$category = load::model( 'category' );
 		$category_relations = $category->relations( $post_single, $post_categories, true );
 		
-		/*
 		$post_tags = input::post( 'tags' );
-		$tag = load::model( 'tags' );
-		$tag_relations = $tag->relations( $post_single, $post_tags, true );
-		*/
+		$post_tags = explode(',', $post_tags );
+		$tags = load::model( 'tags' );
+		
+		foreach ( $post_tags as $tag ) {
+
+			$tag_single = $tags->add( $tag );
+			
+			$tag_relations = $tags->relations( $post_single, $tag_single );
+		}
 		
 		url::redirect( input::post( 'history' ) );
 	}

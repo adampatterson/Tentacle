@@ -8,9 +8,8 @@ class category_model {
 		$term_name = input::post( 'name' );         
 		$term_slug = input::post( 'slug' );
 		
-		$inflector = new inflector( );
-		$term_slug = $inflector->camelize( $term_slug );
-		$term_slug = $inflector->underscore( $term_slug );;
+		$term_slug = camelize( $term_slug );
+		$term_slug = underscore( $term_slug );;
 		
 		$category  = db( 'terms' );
 
@@ -39,9 +38,8 @@ class category_model {
 		$term_name = input::post( 'name' );
 		$term_slug = input::post( 'slug' );
 		
-		$inflector = new inflector();
-		$term_slug = $inflector->camelize( $term_slug );
-		$term_slug = $inflector->underscore( $term_slug );
+		$term_slug = camelize( $term_slug );
+		$term_slug = underscore( $term_slug );
 		
 		$category  = db( 'terms' );
 		

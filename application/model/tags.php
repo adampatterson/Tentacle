@@ -10,22 +10,26 @@ class tags_model
 		
 		$term_slug = camelize( $term_name );
 		$term_slug = underscore( $term_slug );;
-		
+	
 		$tag  = db( 'terms' );
-
-		$tag_id = $tag->insert(array(
-			'name'=>$term_name,
-			'slug'=>$term_slug
-		));
-
 		$term_taxonomy = db( 'term_taxonomy' );
 
-		$term_taxonomy->insert(array(
-			'taxonomy'=>'tag',
-			'term_id'=>$tag_id->id
-		),FALSE);
-		
-		return $tag_id->id;		
+		if ( !self::lookup( $term_slug ) ) 
+		{
+			$tag_id = $tag->insert(array(
+						'name'=>$term_name,
+						'slug'=>$term_slug
+					));
+			
+					$term_taxonomy->insert(array(
+						'taxonomy'=>'tag',
+						'term_id'=>$tag_id->id
+					),FALSE);
+			
+			return $tag_id->id;
+		} else {
+			return self::lookup( $term_slug );
+		}		
 	}
 	
 	
@@ -51,6 +55,26 @@ class tags_model
 		note::set('success','tag_update','tag Updated!');
 	}	
 	
+
+	// Lookuo tag
+	//----------------------------------------------------------------------------------------------
+	public function lookup ( $slug='' )
+	{
+		$tags = db ( 'terms' );
+		
+		$get_tag = $tags->select( '*' )
+			->where ( 'slug', '=', $slug )
+			->order_by ( 'id', 'DESC' )
+			->execute();	
+		
+		if ($get_tag) 
+		{
+			return $get_tag[0]->id;
+			
+		} else {
+			return false;
+		}
+	}
 	
 	// Get tag
 	//----------------------------------------------------------------------------------------------
@@ -122,7 +146,6 @@ class tags_model
 			'page_id'		=> $post_id,
 			'term_id'		=> $term_id,
 		),FALSE);
-
 	}
 
 	
