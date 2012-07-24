@@ -29,22 +29,6 @@
 
 	<a href="https://github.com/adampatterson/Tentacle/tree/beta-wip" class="visible-desktop"><img style="position: absolute; top: 60px; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
 
-	<!-- Google Analytics -->
-	<script type="text/javascript">
-
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-403336-24']);
-	  _gaq.push(['_setDomainName', 'none']);
-	  _gaq.push(['_setAllowLinker', true]);
-	  _gaq.push(['_trackPageview']);
-
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-
-	</script>
 	<!-- End Google Analytics -->
 	<script type="text/javascript">
 	  var uvOptions = {};
