@@ -58,7 +58,7 @@
 				<?php if (is_dir('application/config/deployment/') AND is_writable('application/config/deployment/')): ?>
 					<td class="pass">/application/config/deployment/</td>
 				<?php else: $failed = TRUE ?>
-					<td class="fail">The <code>/application/cache/'</code> directory is not writable.</td>
+					<td class="fail">The <code>/application/config/deployment/'</code> directory is not writable.</td>
 				<?php endif ?>
 			</tr>
 			<tr>
