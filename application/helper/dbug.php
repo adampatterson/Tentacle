@@ -40,7 +40,7 @@ function logger($sql)
 *	HTML from dBug class
 */
    function render_debug() {
-	load::helper('dbug');
+	tentacle::library('dbug','dbug');
 
    	new dBug($_GET, null, true);
    	new dBug($_POST, null, true);
@@ -51,4 +51,5 @@ function logger($sql)
 	//new dBug($_ENV, null, true);
 	new dBug($GLOBALS['dbug_query'], null, true);
    }
+
 ?>

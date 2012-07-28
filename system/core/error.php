@@ -14,7 +14,7 @@
 
 // Errors
 // ---------------------------------------------------------------------------
-function dingo_error($level,$message,$file='current file',$line='(unknown)')
+function dingo_error($level,$message,$file='current file',$line='(unknown)',$backtrace='', $code ='')
 {
 	$fatal = false;
 	$exception = false;
@@ -67,7 +67,9 @@ function dingo_error($level,$message,$file='current file',$line='(unknown)')
 		'prefix'=>$prefix,
 		'message'=>$message,
 		'file'=>$file,
-		'line'=>$line
+		'line'=>$line,
+		'backtrace'=>$backtrace,
+		'code'=>$code
 	);
 	
 	if($fatal)
@@ -125,7 +127,7 @@ function dingo_error($level,$message,$file='current file',$line='(unknown)')
 // ---------------------------------------------------------------------------
 function dingo_exception($ex)
 {
-	dingo_error('exception',$ex->getMessage(),$ex->getFile(),$ex->getLine());
+	dingo_error('exception',$ex->getMessage(),$ex->getFile(),$ex->getLine(), $ex->getTrace(), $ex->getCode() );
 	//echo "<p>Uncaught exception in {$exception->getFile()} on line {$exception->getLine()}: <strong>{$exception->getMessage()}</strong></p>";
 }
 

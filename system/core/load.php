@@ -14,17 +14,24 @@ class load
 	// ---------------------------------------------------------------------------
 	public static function file($folder,$file,$name)
 	{
-		// If file does not exist display error
-		if(!file_exists("$folder/$file.php"))
-		{
-			dingo_error(E_USER_ERROR,"The requested $name ($folder/$file.php) could not be found.");
-			return FALSE;
-		}
-		else
-		{
-			require_once("$folder/$file.php");
-			return TRUE;
-		}
+	
+		try {
+			// If file does not exist display error
+			if(!file_exists("$folder/$file.php"))
+			{
+				//dingo_error(E_USER_ERROR,"The requested $name ($folder/$file.php) could not be found.");
+				$error = "The requested $name ($folder/$file.php) could not be found.";
+				throw new Exception($error);
+				return FALSE;
+			}
+			else
+			{
+				require_once("$folder/$file.php");
+				return TRUE;
+			}
+		} catch (Exception $ex) {
+	         dingo_exception($ex);
+	      }
 	}
 	
 	
