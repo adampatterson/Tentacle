@@ -126,7 +126,7 @@ function current_date( $unit, $get_time = false ){
 					$curr_month = strftime("%m", $get_time );
 					
 					$month = array (1=>"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-					$select = "<select id=\"month\" name=\"month\" tabindex=\"4\" class=\"span4\">\n";
+					$select = "<select id=\"month\" name=\"month\" tabindex=\"4\">\n";
 					foreach ($month as $key => $val) {
 					    $select .= "\t<option value=\"".$key."\"";
 					    if ($key == $curr_month) {
@@ -141,7 +141,7 @@ function current_date( $unit, $get_time = false ){
 				else:
 					$curr_month = date("m");
 					$month = array (1=>"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-					$select = "<select id=\"month\" name=\"month\" tabindex=\"4\" class=\"span4\">\n";
+					$select = "<select id=\"month\" name=\"month\" tabindex=\"4\">\n";
 					foreach ($month as $key => $val) {
 					    $select .= "\t<option value=\"".$key."\"";
 					    if ($key == $curr_month) {

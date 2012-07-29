@@ -3,7 +3,7 @@
 <div id="wrap">
 	<div class="title">
 		<h1 class="align-left"><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Manage pages</h1>
-		<a href="<?=ADMIN;?>content_add_page/" class="btn medium primary">Add new page</a>
+		<a href="<?=ADMIN;?>content_add_page/" class="btn btn-primary">Add new page</a>
 		<div class="title-search alignright">
 			<script type="text/javascript">     
 				function startSearch(event) {       
@@ -22,7 +22,7 @@
 			<em><strong>Displaying 21–40 of 197</strong></em><a href="#">«</a><a href="#">1</a><a href="#" class="current">2</a><a href="#">3</a><a href="#">»</a>
 		</div>-->
 	</div>
-	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="manage_content">
 		<thead>
 			<tr>
 				<th>Title</th>
@@ -50,7 +50,7 @@
 				<td ><?= $user_meta->first_name?> <?= $user_meta->last_name?></td>
 				<td ><?= $page->id?></td>
 				<td><?= $page->status?></td>
-				<td><a href="<?= ADMIN ?>content_add_page/<?= $page->id;?>" class="btn small">Add</a> <a href="<?= ADMIN ?>content_update_page/<?= $page->id;?>" class="btn small">Edit</a> <!-- <a href="#" class="btn small">Duplicate</a> --> <a href="<?= BASE_URL ?>action/trash_page/<?= $page -> id;?>" class="btn small danger">Trash</a></td>
+				<td><a href="<?= ADMIN ?>content_add_page/<?= $page->id;?>" class="btn small">Add</a> <a href="<?= ADMIN ?>content_update_page/<?= $page->id;?>" class="btn btn-small">Edit</a> <!-- <a href="#" class="btn small">Duplicate</a> --> <a href="<?= BASE_URL ?>action/trash_page/<?= $page -> id;?>" class="btn btn-small btn-danger">Trash</a></td>
 				<!--<td><a href=""><img src="<?=ADMIN_URL;?>images/icons/16_edit.png" width="16" height="16" alt="Edit" /></a> <img src="<?=ADMIN_URL;?>images/icons/16_delete.png" width="16" height="16" alt="Delete" /> <a href="<?= ADMIN ?>content_add_page/<?= $page->id;?>" title="Add sub-page"><img src="<?=ADMIN_URL;?>images/icons/16_add.png" width="15" height="16" alt="Add" /></a></td>-->
 			</tr>
 			<? endforeach;?>

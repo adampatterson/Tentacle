@@ -19,24 +19,23 @@
 			<div class="contet-sidebar has-tabs">
 				<div class="table-heading">
 					<h3 class="regular">Page Settings</h3>
-					<input type="button" value="Preview" class="btn small primary alignright" />
+					<input type="button" value="Preview" class="btn btn-small btn-primary pull-right" />
 				</div>
 				<div class="table-content">
 					<fieldset>
-						<dl>
-							<dt>
-								<label for="status">Status</label>
-							</dt>
-							<dd>
-								<select name="status" id="status" size="1">
+						<div class="control-group">
+							<label class="control-label" for="status">Status</label>
+							<div class="controls">
+								<select name="status" id="status">
 									<option value="draft" <? selected( $get_page->status, 'draft' ); ?>>Draft</option>
 									<option value="published" <? selected( $get_page->status, 'published' ); ?>>Published</option>
 								</select>
-							</dd>
-							<dt>
-								<label for="parent_page">Parent page</label>
-							</dt>
-							<dd>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="parent_page">Parent Page</label>
+							<div class="controls">
 								<select id="parent_page" name="parent_page">
 									<option value="0">None</option>
 									<? foreach ($pages as $page_array): 
@@ -44,13 +43,14 @@
 										<option value="<?= $page->id?>" <? selected( $page->id, $get_page->parent  ); ?>><?= offset($page->level, 'list').$page->title;?></option>
 									<? endforeach;?>
 								</select>
-							</dd>
-							<!--
+							</div>
+						</div>
+					
+						<? /* 
 							@todo Figure out a way to change templates after one has been saved.
-							<dt>
+						
 								<label for="page_template">Page template</label>
-							</dt>
-							<dd>
+					
 								<select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
 									<option value="<?= BASE_URL ?>action/render_admin/update_page/default/<?= $get_page->id ?>" <? if ($get_page->template == 'default') echo 'selected' ?>>Default</option>
 									<? $templates = get_templates( get_option( 'appearance' ) ); 
@@ -59,12 +59,11 @@
 										<option value="<?= BASE_URL ?>action/render_admin/update_page/<?= $template->template_id ?>/<?= $get_page->id ?>" <? selected( $get_page->template, $template->template_id ); ?>><?= $template->template_name ?></option>
 									<? endforeach; ?>
 								</select>
-							</dd>-->
-						</dl>
+							*/?>
 					</fieldset>
 					<input type="hidden" value="admin/content_update_page/<?= $get_page->id ?>" name="history">
-					<div class="textleft actions">
-						<button type="submit" class="btn large primary">Save</button>
+					<div class="form-actions">
+						<button type="submit" class="btn btn-large btn-primary">Save</button>
 						<a class="red button-secondary" href="<?= BASE_URL ?>action/trash_page/<?= $get_page->id;?>">Move to trash</a><!--<a href="#review">Save for Review</a>-->
 					</div>
 				</div>
@@ -167,30 +166,34 @@
 						</div>
 						<div id="options" class="tab-pane">
 							<fieldset>
-								<div class="clearfix">
-									<label>Breadcrumb title</label>
-									<div class="input">
-										<input type="text" placeholder="Edit title" name='bread_crumb' value='<?= $get_page_meta->bread_crumb ?>' />
-										<span class="help-block">This title will appear in the breadcrumb trail.</span>
+								
+								<div class="control-group">
+									<label class="control-label" for='bread_crumb'>Breadcrumb title</label>
+									<div class="controls">
+											<input type="text" placeholder="Edit title" name='bread_crumb' value='<?= $get_post_meta->bread_crumb ?>' />
+											<span class="help-block">This title will appear in the breadcrumb trail.</span>
 									</div>
 								</div>
-								<div class="clearfix">
-									<label>Meta Keywords</label>
-									<div class="input">
-										<input type="text" placeholder="Keywords" name='meta_keywords' value='<?= $get_page_meta->meta_keywords ?>' />
+
+								<div class="control-group">
+									<label class="control-label" for="meta_keywords">Meta Keywords</label>
+									<div class="controls">
+										<input type="text" placeholder="Keywords" name='meta_keywords' value='<?= $get_post_meta->meta_keywords ?>' />
 										<span class="help-block">Separate each keyword with a comma ( , )</span>
 									</div>
 								</div>
-								<div class="clearfix">
-									<label>Meta Description</label>
-									<div class="input">
-										<textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'><?= $get_page_meta->meta_description ?></textarea>
+
+								<div class="control-group">
+									<label class="control-label" for="meta_description">Meta Description</label>
+									<div class="controls">
+										<textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'><?= $get_post_meta->meta_description ?></textarea>
 										<span class="help-block">A short summary of the page's content</span>
 									</div>
 								</div>
-								<div class="clearfix">
-									<label>Tags</label>
-									<div class="input">
+
+								<div class="control-group">
+									<label class="control-label" for="tags">Tags</label>
+									<div class="controls">
 										<input type="text" class="tags" name="tags" id="tags" value='<?= $tag_relations ?>' />
 										<span class="help-block">Separate each keyword with a comma ( , )</span>
 									</div>

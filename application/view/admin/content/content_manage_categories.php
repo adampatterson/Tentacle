@@ -21,27 +21,30 @@
 				</div>
 				<div class='table-content'>
 					<fieldset>
-						<div class="clearfix">
-							<label for='name'>Name</label>
-							<div class="input">
+						
+						<div class="controlgroup">
+							<label for='name' class="control-label">Name</label>
+							<div class="controls">
 								<input type='text' name='name' id='name' required='required'>
 							</div>
 						</div>
-						<div class="clearfix">
-							<label for='slug'>Slug</label>
-							<div class="input">
+						
+						<div class="controlgroup">
+							<label for='slug' class="control-label">Slug</label>
+							<div class="controls">
 								<input type='text' name='slug' id='slug' required='required'>
 							</div>
 						</div>
+						
 					</fieldset>
 				</div>
-				<div class='actions'>
-					<input type='submit' value='Add new category' class='btn medium primary' />
+				<div class='form-actions'>
+					<input type='submit' value='Add new category' class='btn btn-large btn-primary' />
 				</div>
 			</form>
 		</div>
 		<div class='one-half'>
-			<table width='100%' border='0' cellspacing='0' cellpadding='0'>
+			<table width='100%' border='0' cellspacing='0' cellpadding='0' class='manage_content'>
 				<thead class='table-heading'>
 					<tr>
 						<th>
@@ -66,7 +69,7 @@
 						?></td> -->
 						<td><?= $category->id
 						?></td>
-						<td><a href='<?= ADMIN ?>content_edit_category/<?= $category->id  ?>' class="btn small">Edit</a> <a href='<?= ADMIN ?>content_delete_category/<?= $category->id  ?>' class="btn small danger">Delete</a><!--<img src='<?=ADMIN_URL; ?>images/icons/16_add.png' width='15' height='16' alt='Add' />--></td>
+						<td><a href='<?= ADMIN ?>content_edit_category/<?= $category->id  ?>' class="btn btn-small">Edit</a> <a href='<?= ADMIN ?>content_delete_category/<?= $category->id  ?>' class="btn btn-small btn-danger">Delete</a><!--<img src='<?=ADMIN_URL; ?>images/icons/16_add.png' width='15' height='16' alt='Add' />--></td>
 					</tr>
 					<? endforeach;?>
 				</tbody>

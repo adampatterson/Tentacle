@@ -10,21 +10,25 @@
 		</div>
 		<?php endif;?>
 		<form action="<?= BASE_URL ?>action/update_category/<?= $id;?>" method="post">
-			<div class="clearfix">
-				<label for="name">Name</label>
-				<div class="input">
+			
+			<div class="control-group">
+				<label class="control-label" for="name">name</label>
+				<div class="controls">
 					<input type="text" name="name" id="name" value="<?= escapeStr($category -> name);?>" />
 				</div>
 			</div>
-			<div class="clearfix">
-				<label for="slug">Slug</label>
-				<div class="input">
+			
+			<div class="control-group">
+				<label class="control-label" for="slug">Slug</label>
+				<div class="controls">
 					<input type="text" name="slug" id='slug' value="<?= $category->slug ?>">
 				</div>
 			</div>
+		
 			<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
-			<div class="actions">
-				<input type="submit" value="Save" class="btn medium primary" />
+			
+			<div class="form-actions">
+				<input type="submit" value="Save" class="btn btn-primary btn-large" />
 				<a href="#" class="red">Cancel</a>
 			</div>
 		</form>

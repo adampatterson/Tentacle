@@ -18,24 +18,25 @@
 			<div class="contet-sidebar has-tabs">
 				<div class="table-heading">
 					<h3 class="regular">Page Settings</h3>
-					<input type="button" value="Preview" class="btn small primary alignright" name='preview' />
+					<input type="button" value="Preview" class="btn btn-small btn-primary pull-right" name='preview' />
 				</div>
 				<div class="table-content">
 					<fieldset>
-						<dl>
-							<dt>
-								<label for="status">Status</label>
-							</dt>
-							<dd>
-								<select name="status" id="status" size="1">
+						
+						<div class="control-group">
+							<label for="status" class="control-label">Status</label>
+							<div class="controls">
+								<select name="status" id="status">
 									<option value="draft">Draft</option>
 									<option value="published">Published</option>
 								</select>
-							</dd>
-							<dt>
-								<label for="parent_page">Parent page</label>
-							</dt>
-							<dd>
+							</div>
+						</div>
+				
+				
+						<div class="control-group">
+							<label for="parent_page" class="control-label">Parent page</label>
+							<div class="controls">
 								<select id="parent_page" name="parent_page">
 									<option value="0">None</option>
 									<? foreach ($pages as $page_array): 
@@ -43,11 +44,12 @@
 										<option value="<?= $page->id?>" <? selected( $page->id, $parent_page_id ); ?>><?= offset($page->level, 'list').$page->title;?></option>
 									<? endforeach;?>
 								</select>
-							</dd>
-							<dt>
-								<label for="page_template">Page template</label>
-							</dt>
-							<dd>
+							</div>
+						</div>
+							
+						<div class="control-group">
+							<label for="page_template" class="control-label">Page template</label>
+							<div class="controls">
 								<select id="page_template" name="page_template" onchange="window.location = this.options[this.selectedIndex].value;">
 									<!--<option value="<?= BASE_URL ?>action/render_admin/add_page/default" selected='selected'>Default</option>-->
 									<? $templates = get_templates( get_option( 'appearance' ) ); 
@@ -55,15 +57,15 @@
 										<option value="<?= BASE_URL ?>action/render_admin/add_page/<?= $template->template_id ?>" <? selected( session::get( 'template' ), $template->template_id ); ?>><?= $template->template_name ?></option>
 									<? endforeach; ?>
 								</select>
-							</dd>
+							</div>
+						</div>
 							<!--<dt>
 								<a href="#">Select a featured image.</a>
-							</dt>-->
-						</dl>
+							-->
 					</fieldset>
 					<input type="hidden" value="admin/content_add_page" name="history">
-					<div class="textleft actions">
-						<button type="submit" class="btn large primary" name='save'>Save</button><!--<a href="#review">Save for Review</a>-->
+					<div class="form-actions">
+						<button type="submit" class="btn btn-large btn-primary" name='save'>Save</button><!--<a href="#review">Save for Review</a>-->
 					</div>
 				</div>
 			</div>

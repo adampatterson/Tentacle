@@ -24,10 +24,10 @@
 				</script>
 			<?php endif; ?>
         	<h1 class="title align-left"><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Manage snippets</h1>
-			<a href="<?=ADMIN; ?>snippets_add/" class="btn medium primary">Add new snippet</a>       	 	
+			<a href="<?=ADMIN; ?>snippets_add/" class="btn btn-primary">Add new snippet</a>       	 	
        	</div>
         <div class="table">
-          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0" class="manage_content">
             <thead class="table-heading">
               <tr>
                 <th>Title</th>
@@ -44,7 +44,7 @@
 						<td><?= $snippet->slug; ?></td>
 						<td><?= $snippet->id; ?></td>
 						<td><?= $snippet->filter; ?></td>                
-						<td><a href="<?= ADMIN ?>snippets_edit/<?= $snippet->id ?>" class="btn small">Edit</a> <a href="<?= ADMIN ?>snippets_delete/<?= $snippet->id ?>" class="btn small danger">Delete</a></td>
+						<td><a href="<?= ADMIN ?>snippets_edit/<?= $snippet->id ?>" class="btn btn-small">Edit</a> <a href="<?= ADMIN ?>snippets_delete/<?= $snippet->id ?>" class="btn btn-small btn-danger">Delete</a></td>
 					</tr>
 				<? endforeach; ?>
             </tbody>

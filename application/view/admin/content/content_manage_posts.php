@@ -4,7 +4,7 @@
 	<div id="post-body">
 		<div class="title">
 			<h1 class="align-left"><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Manage posts</h1>
-			<a href="<?=ADMIN;?>content_add_post/" class="btn medium primary">Add new post</a>
+			<a href="<?=ADMIN;?>content_add_post/" class="btn btn-primary">Add new post</a>
 			<div class="title-search alignright">
 				<script type="text/javascript">     
 					function startSearch(event) {       
@@ -22,7 +22,7 @@
 				<em><strong>Displaying 21–40 of 197</strong></em><a href="#">«</a><a href="#">1</a><a href="#" class="current">2</a><a href="#">3</a><a href="#">»</a>
 			</div>-->
 		</div>
-		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="manage_content">
 			<thead class="table-heading">
 				<tr>
 					<th>
@@ -53,7 +53,7 @@
 					<td ><?= $user_meta->first_name;?> <?= $user_meta->last_name;?></td>
 					<td ><?= $post -> id;?></td>
 					<td><?= $post -> status;?></td>
-					<td><a href="<?= ADMIN ?>content_update_post/<?= $post->id;?>" class="btn small">Edit</a> <a href="<?= BASE_URL ?>action/trash_post/<?= $post -> id;?>" class="btn small danger">Trash</a></td>
+					<td><a href="<?= ADMIN ?>content_update_post/<?= $post->id;?>" class="btn btn-small">Edit</a> <a href="<?= BASE_URL ?>action/trash_post/<?= $post -> id;?>" class="btn btn-small btn-danger">Trash</a></td>
 				</tr>
 				<? endforeach;?>
 			</tbody>

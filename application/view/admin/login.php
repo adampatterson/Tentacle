@@ -15,7 +15,7 @@
 				<input type='password' id='password' name='password' placeholder='Password' />
 			</dd>
 			<dd>
-				<input type="submit" value="Sign in" class="btn large primary" />
+				<input type="submit" value="Sign in" class="btn btn-primary btn-large pull-right" />
 			</dd>
 		</dl>
 		<?php if($note = note::get('session')): ?>

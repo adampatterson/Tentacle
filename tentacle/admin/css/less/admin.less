@@ -81,20 +81,11 @@ footer {
 	}
 	
 	h1.title { margin-bottom: 20px; }
+}
 
-	a {
-		&:link, 
-		&:visited,
-		&:visited.btn {
-			color: black;
-		}
-		&.btn {
-			color: #333;
-		}
-		&.btn.primary, &.btn.info, &.btn.success, &.btn.danger {
-			color: #fff;
-		}
-	}
+table.manage_content td:last-child {
+	width: 150px;
+	text-align: right;
 }
 
 .page-details {
@@ -250,7 +241,7 @@ footer {
 /*
 Topbar
 * ------------------------------------------------------------------------------------------- */
-.topbar{ 
+.navbar{ 
 	height: 40px;
 	position: fixed;
 	top: 0;
@@ -259,55 +250,10 @@ Topbar
 	z-index: 10000;
 	overflow: visible;
 	
-	.pull-right {
+	p {
 		color: white;
-	}
-	
-	h3 {
+		padding-top: 10px;
 		margin: 0;
-		a{
-			margin-left: -23px;
-		    padding: 7px 20px 0px;
-		}
-	}
-	
-	ul li a, ul li li a {
-	  color: #bfbfbf;
-	  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); }
-	
-	.container-full {
-		width: 100%;
-		margin: 0 auto;
-		zoom: 1;
-		
-		&:before {
-			display: table;
-			content: ""; 
-		}
-		
-		&:after {
-			display: table;
-			content: "";
-			clear: both; 
-		} 
-	}
-	
-  	.fill {
-		padding: 0 15px 0 15px;
-		background: #222;
-		background-color: #222222;
-		background-repeat: repeat-x;
-		background-image: -khtml-gradient(linear, left top, left bottom, from(#333333), to(#222222));
-		background-image: -moz-linear-gradient(top, #333333, #222222);
-		background-image: -ms-linear-gradient(top, #333333, #222222);
-		background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #333333), color-stop(100%, #222222));
-		background-image: -webkit-linear-gradient(top, #333333, #222222);
-		background-image: -o-linear-gradient(top, #333333, #222222);
-		background-image: linear-gradient(top, #333333, #222222);
-		/*background: url('../images/bg_black_denim.png');*/
-		-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-		-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1); 
 	}
 }
 
@@ -488,17 +434,8 @@ table {
 		float: left;
 		font-size: 1.55em;
 	}
-/* Might not be used */
-	.button {
-		margin-bottom: 0;
-		top: 7px;
-		margin-left: 10px;
-		margin-right: 10px;
-	}
-	
-	.btn.alignright {
-		margin-top: 8px;
-		margin-right: 8px;
+	h3+input.btn {
+		margin: 8px 10px 0 0;
 	}
 }
 
@@ -507,6 +444,10 @@ table {
 	border-left: 1px solid #CCCCCC;
 	border-right: 1px solid #CCCCCC;
 	border-bottom: 1px solid #CCCCCC;
+	
+	> .form-actions {
+		margin-bottom: 0;
+	}
 	
 	fieldset {
 		padding: 0 15px 0 0;

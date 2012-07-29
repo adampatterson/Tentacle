@@ -143,9 +143,9 @@ class  Scaffold
 	static public function createButton( $name = '' ) 
 	{
 		if (isset($name)):
-			$button =  '<input type="submit" value="'.$name.'" class="btn medium secondary"><br />';   
+			$button =  '<input type="submit" value="'.$name.'" class="btn"><br />';
 		else:
-			$button =  '<input type="submit" value="Submit" class="btn medium secondary"><br />';   
+			$button =  '<input type="submit" value="Submit" class="btn"><br />';
 		endif;
 		
 		return $button;

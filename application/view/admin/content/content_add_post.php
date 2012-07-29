@@ -17,76 +17,79 @@
 			<div class="contet-sidebar has-tabs">
 				<div class="table-heading">
 					<h3 class="regular">Post Settings</h3>
-					<input type="button" value="Preview" class="btn small primary alignright" />
+					<input type="button" value="Preview" class="btn btn-small btn-primary pull-right" />
 				</div>
 				<div class="table-content">
 					<fieldset>
-						<dl>
-							<dt>
-								<label for="status">Status</label>
-							</dt>
-							<dd>
-								<select id="status" name="status" size="1" class="span4">
+						<div class="control-group">
+								<label for="status" class="control-label">Status</label>
+								<div class="controls">
+								<select id="status" name="status">
 									<option value="draft">Draft</option>
 								<!--<option value="review">Pending Review</option>-->
 									<option value="published">Published</option>
 							    </select>
-							</dd>
-							<dt>
-								<label for="status">Publish</label>
-							</dt>
-							<dd>
-								<select id="publish" name="publish" size="1" class="span4">
+							</div>
+						</div>
+				
+						<div class="control-group">
+								<label for="status" class="control-label">Publish</label>
+								<div class="controls">
+									
+								<select id="publish" name="publish">
 									<option value="immediately">Immediately</option>
 									<option value="published-on">Publish On</option>
 							    </select>
-							</dd>
-							<dd class="published-on">
-								<? current_date('month'); ?>
-							</dd>
-							<dd class="published-on">
-			 					<div class="inline-inputs">
-									<input type="text" id="day" name="day" value="<? current_date( 'day' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> - <input type="text" id="year" name="year" value="<? current_date( 'year' ) ?>" size="4" maxlength="4" tabindex="4" autocomplete="off" class="span1"> @ <input type="text" id="hour" name="hour" value="<? current_date( 'hour' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> : <input type="text" id="minute" name="minute" value="<? current_date( 'minute' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
-								</div>
-							</dd>
-							<dt>
-								<label>Post type</label>
-							</dt>
-							<dd>
-								<fieldset>
-									<div class="clearfix">
-										<div class="input">
-											<ul class="inputs-list">
-												<?  $post_types = get_post_type ( get_option( 'appearance' ) );
-													foreach ($post_types as $post_type ): ?>
-														<li><label><input type="radio" name="post_type" class="post-format" value="<?= $post_type['part_id']; ?>" <? checked( $post_type['part_id'], 'type-post' ); ?>> <span><?= $post_type['part_name']; ?></span></label></li>
-												<?	endforeach; ?>
-											</ul>
-										</div>
+							</div>
+						</div>
+			
+						<div class="control-group published-on">
+							<? current_date('month'); ?>
+						</div>
+						
+						<div class="control-group published-on">
+		 					<div class="form-inline">
+								<input type="text" id="day" name="day" value="<? current_date( 'day' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> - <input type="text" id="year" name="year" value="<? current_date( 'year' ) ?>" size="4" maxlength="4" tabindex="4" autocomplete="off" class="span1"> @ <input type="text" id="hour" name="hour" value="<? current_date( 'hour' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> : <input type="text" id="minute" name="minute" value="<? current_date( 'minute' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">Post type</label>
+							<div class="controls">
+								<div class="clearfix">
+									<div class="input">
+										<ul class="unstyled">
+											<?  $post_types = get_post_type ( get_option( 'appearance' ) );
+												foreach ($post_types as $post_type ): ?>
+													<li><label class="radio"><input type="radio" name="post_type" class="post-format" value="<?= $post_type['part_id']; ?>" <? checked( $post_type['part_id'], 'type-post' ); ?>> <span><?= $post_type['part_name']; ?></span></label></li>
+											<?	endforeach; ?>
+										</ul>
 									</div>
-								</fieldset>
-							</dd>
-							<dt>
-								<label for='page_category'>Category</label>
-							</dt>
-							<dd>
+								</div>
+							</div>
+						</div>		
+								
+						<div class="control-group">
+							<label for='page_category' class="control-label">Category</label>
+							<div class="controls">
 								<div class="category-list">
 									<ul id="categorychecklist">
 									<? foreach ($categories as $category): ?>
-										<li id="category-<?= $category->id  ?>"><label class="selectit"><input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>" <? checked( $category->id, '1' ); ?>> <?= $category->name  ?></label></li>
+										<li id="category-<?= $category->id  ?>"><label class="checkbox"><input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>" <? checked( $category->id, '1' ); ?>> <?= $category->name  ?></label></li>
 									<? endforeach;?>
 									</ul>
 								</div>
-							</dd>
+							</div>
+						</div>
 						<!--	<dt>
 								<a href="#">Select a featured image.</a>
 							</dt>
 							-->
-						</dl>
+					
 					</fieldset>
 					<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
-					<div class="textleft actions">
-						<button type="submit" class="btn large primary">
+					<div class="form-actions">
+						<button type="submit" class="btn btn-large btn-primary pull-right">
 							Save
 						</button>
 						<!--<a class="red button-secondary" href="">Move to trash</a><a href="#review">Save for Review</a>-->

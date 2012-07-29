@@ -19,23 +19,27 @@
 				</div>
 				<?php endif;?>
 				<form action="<?= BASE_URL ?>action/add_snippet/" method="post">
-					<div class="clearfix">
-						<label for="">Snippet name</label>
-						<div class="input">
+					
+					<div class="control-group">
+						<label class="control-label" for="name">Snippet Name</label>
+						<div class="controls">
 							<input type="text" name="name" value="" placeholder='Snippet name' />
 						</div>
 					</div>
-					<div class="clearfix">
-						<label for="content">Code Block</label>
-						<div class="input">
+					
+					<div class="control-group">
+						<label class="control-label" for="content">Code Block</label>
+						<div class="controls">
 							<textarea name="content" cols="40" rows="5" placeholder='Enter your snippet code here'></textarea>
 						</div>
 					</div>
+					
 					<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
-					<div class="actions">
+					
+					<div class="form-actions">
 						<!--<input type="button" value="Save and Close" class="button" />
 						<input type="button" value="Save and Continure Editing" class="button" />-->
-						<input type="submit" value="Save" class="btn medium primary" />
+						<input type="submit" value="Save" class="btn btn-primary btn-large" />
 						<a href="<?=ADMIN;?>snippets_manage/" class="red">Cancel</a>
 					</div>
 				</form>

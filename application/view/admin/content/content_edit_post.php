@@ -18,79 +18,78 @@
 			<div class="contet-sidebar has-tabs">
 				<div class="table-heading">
 					<h3 class="regular">Page Settings</h3>
-					<input type="button" value="Preview" class="btn small primary alignright" />
+					<input type="button" value="Preview" class="btn btn-small btn-primary pull-right" />
 				</div>
 				<div class="table-content">
 					<fieldset>
-						<dl>
-							<dt>
-								<label for="status">Status</label>
-							</dt>
-							<dd>
-								<select id="status" name="status" size="1" class="span4">
+						
+						<div class="control-group">
+							<label class="control-label" for="status">Status</label>
+							<div class="controls">
+								<select id="status" name="status">
 									<option value="draft" <? selected( $get_post->status, 'draft' ); ?>>Draft</option>
 									<option value="published" <? selected( $get_post->status, 'published' ); ?>>Published</option>
 								<!--<option value="review">Pending Review</option>-->
 							    </select>
-							</dd>
-							<dt>
-								<label for="status">Publish</label>
-							</dt>
-							<dd>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label for="status" class="control-label">Publish</label>
+							<div class="controls">
+									
 								<small><?= date('F dS\, Y \@ h:i:s A', $get_post->date ); ?></small> <a href="#" id="edit_publish" class="red button-secondary">edit</a>
-							</dd>
-							<dd class="published-on">
-								<? current_date('month', $get_post->date ); ?>
-							</dd>
-							<dd class="published-on">
-			 					<div class="inline-inputs">
-									<input type="text" id="day" name="day" value="<? current_date( 'day', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> - <input type="text" id="year" name="year" value="<? current_date( 'year', $get_post->date ) ?>" size="4" maxlength="4" tabindex="4" autocomplete="off" class="span1"> @ <input type="text" id="hour" name="hour" value="<? current_date( 'hour', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> : <input type="text" id="minute" name="minute" value="<? current_date( 'minute', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
-								</div>
-								<a href="#" id="edit_publish" class="red button-secondary">Cancel</a>
-							</dd>
-							<dt>
-								<label>Post type</label>
-							</dt>
-							<dd>
-								<fieldset>
-									<div class="clearfix">
-										<div class="input">
-											<ul class="inputs-list">
-												<? $post_types = get_post_type ( get_option( 'appearance' ) );
-													foreach ($post_types as $post_type ): ?>
-														<li><label><input type="radio" name="post_type" class="post-format" value="<?= $post_type['part_id']; ?>" <? checked( $get_post->template, $post_type['part_id'] ); ?>> <span><?= $post_type['part_name']; ?></span></label></li>
-												<? endforeach; ?>
-											</ul>
-										</div>
-									</div>
-								</fieldset>
-							</dd>
-							<dt>
-								<label for='page_category'>Category</label>
-							</dt>
-							<dd>
-								<div class="category-list">
-									<ul id="categorychecklist">
-									<? 
-										foreach ($categories as $category): ?>
-											<li id="category-<?= $category->id  ?>">
-												<label class="selectit">
-												<input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>" <? checked( $category->id, (array)$category_relations ); ?>> <?= $category->name  ?>
-											</label>
-										</li>
-							        <? ?>
-									<? endforeach;?>
-									</ul>
-								</div>
-							</dd>
-							<!--<dt>
-								<a href="#">Select a featured image.</a>
-							</dt>-->
-						</dl>
+							</div>
+						</div>
+			
+						<div class="control-group published-on">
+							<? current_date('month', $get_post->date ); ?>
+						</div>
+						
+						<div class="control-group published-on">
+		 					<div class="inline-inputs">
+								<input type="text" id="day" name="day" value="<? current_date( 'day', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> - <input type="text" id="year" name="year" value="<? current_date( 'year', $get_post->date ) ?>" size="4" maxlength="4" tabindex="4" autocomplete="off" class="span1"> @ <input type="text" id="hour" name="hour" value="<? current_date( 'hour', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> : <input type="text" id="minute" name="minute" value="<? current_date( 'minute', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
+							</div>
+							<a href="#" id="edit_publish" class="red button-secondary">Cancel</a>
+						</div>
+							
+						<div class="control-group">
+							<label class="control-label" >Post Type</label>
+							<div class="controls">
+								<ul class="unstyled">
+									<? $post_types = get_post_type ( get_option( 'appearance' ) );
+										foreach ($post_types as $post_type ): ?>
+											<li><label><input type="radio" name="post_type" class="post-format" value="<?= $post_type['part_id']; ?>" <? checked( $get_post->template, $post_type['part_id'] ); ?>> <span><?= $post_type['part_name']; ?></span></label></li>
+									<? endforeach; ?>
+								</ul>
+							</div>
+						</div>
+
+
+						<div class="control-group">
+							<label class="control-label" for="page_category">Category</label>
+							<div class="controls category-list">
+								<ul id="categorychecklist">
+								<? 
+									foreach ($categories as $category): ?>
+										<li id="category-<?= $category->id  ?>">
+											<label class="selectit">
+											<input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>" <? checked( $category->id, (array)$category_relations ); ?>> <?= $category->name  ?>
+										</label>
+									</li>
+						        <? ?>
+								<? endforeach;?>
+								</ul>
+							</div>
+						</div>
+
+						<!--<dt>
+							<a href="#">Select a featured image.</a>
+						</dt>-->
 					</fieldset>
 					<input type="hidden" value="admin/content_update_post/<?= $get_post->id ?>" name="history">
-					<div class="textleft actions">
-						<button type="submit" class="btn large primary">Save</button>
+					<div class="form-actions">
+						<button type="submit" class="btn btn-large btn-primary">Save</button>
 						<a class="red button-secondary" href="<?= BASE_URL ?>action/trash_post/<?= $get_post->id;?>">Move to trash</a><!--<a href="#review">Save for Review</a>-->
 					</div>
 				</div>
@@ -165,34 +164,39 @@
 						</div>
 						<div id="options" class="tab-pane">
 							<fieldset>
-								<div class="clearfix">
-									<label>Breadcrumb title</label>
-									<div class="input">
-										<input type="text" placeholder="Edit title" name='bread_crumb' value='<?= $get_post_meta->bread_crumb ?>' />
-										<span class="help-block">This title will appear in the breadcrumb trail.</span>
+								
+								<div class="control-group">
+									<label class="control-label" for='bread_crumb'>Breadcrumb title</label>
+									<div class="controls">
+											<input type="text" placeholder="Edit title" name='bread_crumb' value='<?= $get_post_meta->bread_crumb ?>' />
+											<span class="help-block">This title will appear in the breadcrumb trail.</span>
 									</div>
 								</div>
-								<div class="clearfix">
-									<label>Meta Keywords</label>
-									<div class="input">
+
+								<div class="control-group">
+									<label class="control-label" for="meta_keywords">Meta Keywords</label>
+									<div class="controls">
 										<input type="text" placeholder="Keywords" name='meta_keywords' value='<?= $get_post_meta->meta_keywords ?>' />
 										<span class="help-block">Separate each keyword with a comma ( , )</span>
 									</div>
 								</div>
-								<div class="clearfix">
-									<label>Meta Description</label>
-									<div class="input">
+
+								<div class="control-group">
+									<label class="control-label" for="meta_description">Meta Description</label>
+									<div class="controls">
 										<textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'><?= $get_post_meta->meta_description ?></textarea>
 										<span class="help-block">A short summary of the page's content</span>
 									</div>
 								</div>
-								<div class="clearfix">
-									<label>Tags</label>
-									<div class="input">										
+
+								<div class="control-group">
+									<label class="control-label" for="tags">Tags</label>
+									<div class="controls">
 										<input type="text" class="tags" name="tags" id="tags" value='<?= $tag_relations ?>' />
 										<span class="help-block">Separate each keyword with a comma ( , )</span>
 									</div>
 								</div>
+
 <? /*
 								<div class="clearfix">
 									<label>Meta Robot Tags</label>

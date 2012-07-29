@@ -40,6 +40,7 @@ function nav_menu ( $args = array() )
 }
 
 
+
 /**
 * Function: nav_generate
 *	Generate HTML output for Naviogation
@@ -53,18 +54,55 @@ function nav_menu ( $args = array() )
 */
 function nav_generate ( $tree, $args = array() )
 {
-	$default_args = array( 'menu' => '', 'container' => 'div', 'container_class' => '', 'container_id' => '', 'menu_class' => 'menu', 'menu_id' => '',
-		'echo' => true, 'fallback_cb' => 'wp_page_menu', 'before' => '', 'after' => '', 'link_before' => '', 'link_after' => '', 'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-		'depth' => 0, 'walker' => '', 'theme_location' => '' );
-	
+	$default_args = array( 
+		'menu' => '', 
+		#'container' => 'div', 
+		#'container_class' => '', 
+		#'container_id' => '', 
+		'menu_class' => 'menu', 
+		'menu_id' => '',
+		'menu_item' => '',
+		#'echo' => true, 
+		#'before' => '', 
+		#'after' => '', 
+		#'link_before' => '', 
+		#'link_after' => '', 
+		#'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+		'depth' => 0, 
+		#'theme_location' => '',
+		'child_of' => 0,
+		'exclude' => '',
+		'include' => '',
+		#'number' => 'per_page',
+		#'offset' => 'offset',
+		#'order' => 'ASC',
+		#'orderby' => 'name'
+	);
+
+/*
+<ul>
+	<li class="page-item"><a href="http://localhost/tentacle/docs/">Docs</a></li>
+	<li class="page-item"><a href="http://localhost/tentacle/home/">Home</a></li>
+	<li class="page-item"><a href="http://localhost/tentacle/portfolio/">Portfolio</a>
+		<ul>
+			<li class="page-item"><a href="http://localhost/tentacle/portfolio/design/">Design</a>
+				<ul>
+					<li class="page-item"><a href="http://localhost/tentacle/portfolio/design/print/">Print</a></li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+	<li class="page-item active"><a href="http://localhost/tentacle/blog/">Blog</a></li>
+</ul>
+*/
+
 	$args = wp_parse_args( $args, $default_args );
 	$args = (object) $args;
 	
-
 	$output = '';
 	$depth = -1;
 	$flag = false;
-	
+		
 	foreach ($tree as $row) {
 
 	    while ($row['level'] > $depth) {

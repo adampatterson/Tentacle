@@ -18,30 +18,40 @@
 					</div>
 				<?php endif; ?>
 				<form action="<?= BASE_URL ?>action/update_snippet/<?= $snippet->id; ?>" method="post">
-					<div class="clearfix">
-						<label for="name">Snippet name</label>
-						<div class="input">
-							<input type="text" value="<?= escapeStr($snippet->name); ?>" name="name" id='name' />
+					<fieldset>
+						
+						<div class="control-group">
+							<label class="control-label" for="name">Snippet Name</label>
+							<div class="controls">
+								<input type="text" value="<?= escapeStr($snippet->name); ?>" name="name" id='name' />
+							</div>
 						</div>
-					</div>
-					<div class="clearfix">
-						<div class="input">
-							<textarea name="content" cols="40" rows="5" name="content"><?= escapeStr($snippet->content); ?></textarea>
+						
+						<div class="control-group">
+							<label class="control-label" for="content">Code Block</label>
+							<div class="controls">
+								<textarea name="content" cols="40" rows="5" name="content"><?= escapeStr($snippet->content); ?></textarea>
+							</div>
 						</div>
-					</div>
-					<div class="clearfix">
-						<label for="filter">Filter</label>
-						<div class="input">
-							<select name='filter' id='filter'>
-								<option>Text</option>
-								<option>HTML</option>
-							</select>
+						
+					</fieldset>
+					
+					<? /* 
+						<div class="clearfix">
+							<label for="filter">Filter</label>
+							<div class="input">
+								<select name='filter' id='filter'>
+									<option>Text</option>
+									<option>HTML</option>
+								</select>
+							</div>
 						</div>
-					</div>
+					*/ ?>
+					
 					<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
-					<div class="actions">
-						<input type="submit" value="Save" class="btn primary medium" />
-						<a href="#" class="red">Cancel</a>
+					<div class="form-actions">
+						<input type="submit" value="Save" class="btn btn-primary btn-large" /> 
+						<a href="<?=ADMIN;?>snippets_manage/" class="red">Cancel</a>
 					</div>
 				</form>
 			</div><!-- .post-body-content -->

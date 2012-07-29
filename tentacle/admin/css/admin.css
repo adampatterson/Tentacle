@@ -73,19 +73,9 @@ footer span {
 #wrap h1.title {
   margin-bottom: 20px;
 }
-#wrap a:link,
-#wrap a:visited,
-#wrap a:visited.btn {
-  color: black;
-}
-#wrap a.btn {
-  color: #333;
-}
-#wrap a.btn.primary,
-#wrap a.btn.info,
-#wrap a.btn.success,
-#wrap a.btn.danger {
-  color: #fff;
+table.manage_content td:last-child {
+  width: 150px;
+  text-align: right;
 }
 .page-details {
   display: block;
@@ -216,7 +206,7 @@ footer span {
 /*
 Topbar
 * ------------------------------------------------------------------------------------------- */
-.topbar {
+.navbar {
   height: 40px;
   position: fixed;
   top: 0;
@@ -225,52 +215,10 @@ Topbar
   z-index: 10000;
   overflow: visible;
 }
-.topbar .pull-right {
+.navbar p {
   color: white;
-}
-.topbar h3 {
+  padding-top: 10px;
   margin: 0;
-}
-.topbar h3 a {
-  margin-left: -23px;
-  padding: 7px 20px 0px;
-}
-.topbar ul li a,
-.topbar ul li li a {
-  color: #bfbfbf;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-}
-.topbar .container-full {
-  width: 100%;
-  margin: 0 auto;
-  zoom: 1;
-}
-.topbar .container-full:before {
-  display: table;
-  content: "";
-}
-.topbar .container-full:after {
-  display: table;
-  content: "";
-  clear: both;
-}
-.topbar .fill {
-  padding: 0 15px 0 15px;
-  background: #222;
-  background-color: #222222;
-  background-repeat: repeat-x;
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#333333), to(#222222));
-  background-image: -moz-linear-gradient(top, #333333, #222222);
-  background-image: -ms-linear-gradient(top, #333333, #222222);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #333333), color-stop(100%, #222222));
-  background-image: -webkit-linear-gradient(top, #333333, #222222);
-  background-image: -o-linear-gradient(top, #333333, #222222);
-  background-image: linear-gradient(top, #333333, #222222);
-  /*background: url('../images/bg_black_denim.png');*/
-
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 /*
 Admin Sidebar
@@ -410,10 +358,6 @@ thead {
   background: linear-gradient(top, #eeeeee 0%, #d8d8d8 100%);
   text-shadow: 0 1px 0 #FFFFFF;
 }
-.table-heading {
-  /* Might not be used */
-
-}
 .table-heading h3 {
   padding: 10px 0 10px 10px;
   margin: 0;
@@ -421,21 +365,17 @@ thead {
   float: left;
   font-size: 1.55em;
 }
-.table-heading .button {
-  margin-bottom: 0;
-  top: 7px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-.table-heading .btn.alignright {
-  margin-top: 8px;
-  margin-right: 8px;
+.table-heading h3 + input.btn {
+  margin: 8px 10px 0 0;
 }
 .table-content {
   padding: 9px;
   border-left: 1px solid #CCCCCC;
   border-right: 1px solid #CCCCCC;
   border-bottom: 1px solid #CCCCCC;
+}
+.table-content > .form-actions {
+  margin-bottom: 0;
 }
 .table-content fieldset {
   padding: 0 15px 0 0;
