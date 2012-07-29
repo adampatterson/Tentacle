@@ -19,6 +19,10 @@ class dev_controller {
 		//ChromePhp::warn('this is a warning');
 		//ChromePhp::error('this is an error');
 		
+		if(class_exists('test_model'))
+		{
+		echo 'yup';
+		}
 		
 		load::helper('dbug');
 		//new dBug( $_SERVER );
@@ -81,14 +85,12 @@ class dev_controller {
 		$trigger 		= Trigger::current();
 
 		$subnav["settings"] = $trigger->filter($subnav["settings"], "settings_nav");
-		//$pages["settings"] = array_keys($subnav["settings"]);
 
-		clean_out( 	$subnav["settings"] );
-		
-		foreach ($subnav["settings"] as $sub_page) {
-			echo $sub_page['title'].'</br>';
-			echo $sub_page['href'].'</br>';
+		foreach ($subnav["settings"] as $key => $value) {
+ 			$subnav["settings"][$key] = array('title' => $value['title'], 'href' => $value['href'], 'rout' => $key);
 		}
+		clean_out( $subnav["settings"] );
+		
     }
 
 	public function email()
@@ -352,6 +354,14 @@ class dev_controller {
 	
 	}
 	
+	public function script_cache()
+	{
+		load::helper('cache');
+
+		//cache::css();
+		cache::script();
+		
+	}
 
 	public function dbtest ()
 	{
@@ -498,50 +508,141 @@ class dev_controller {
 	}
 	
 	
+	public function menu()
+	{
+		 //example data
+		 $items = array(
+		    array('id'=>1, 'title'=>'Home', 'parent_id'=>0),
+		    array('id'=>2, 'title'=>'News', 'parent_id'=>1),
+		    array('id'=>3, 'title'=>'Sub News', 'parent_id'=>2),
+		    array('id'=>4, 'title'=>'Articles', 'parent_id'=>0),
+		    array('id'=>5, 'title'=>'Article', 'parent_id'=>4),
+		    array('id'=>6, 'title'=>'Article2', 'parent_id'=>4)
+		 );
+
+		 //create new list grouped by parent id
+		 $itemsByParent = array();
+		 foreach ($items as $item) {
+		    if (!isset($itemsByParent[$item['parent_id']])) {
+		        $itemsByParent[$item['parent_id']] = array();
+		    }
+
+		    $itemsByParent[$item['parent_id']][] = $item;
+		 }
+
+		 //print list recursively 
+		 function printList($items, $parentId = 0) {
+		    echo '<ul>';
+		    foreach ($items[$parentId] as $item) {
+		        echo '<li>';
+		        echo $item['title'];
+		        $curId = $item['id'];
+		        //if there are children
+		        if (!empty($items[$curId])) {
+		            printList($items, $curId);
+		        }           
+		        echo '</li>';
+		    }
+		    echo '</ul>';
+		 }
+
+		printList($itemsByParent);
+	}
+	
+	
+	public function oembed_two()
+	{
+		?>
+		<form name="oembed_form" action="http://localhost/tentacle/dev/oembed_two" method="post">
+		<input type="text" name="url" value="<?=$_POST['url']?>" size="50">
+		<input type="submit" name="Show" value="Show Video">
+		</form>
+		<?
+		$oembedUrls = array (
+		  'www.youtube.com' => 'http://www.youtube.com/oembed?url=$1&format=json',
+		  'www.dailymotion.com' => 'http://www.dailymotion.com/api/oembed?url=$1&format=json',
+		  'www.vimeo.com' => 'http://vimeo.com/api/oembed.xml?url=$1&format=json',
+		  'vimeo.com' => 'http://vimeo.com/api/oembed.xml?url=$1&format=json',
+		  'www.blip.tv' => 'http://blip.tv/oembed/?url=$1&format=json',
+		  'www.hulu.com' => 'http://www.hulu.com/api/oembed?url=$1&format=json',
+		  'www.viddler.com' => 'http://lab.viddler.com/services/oembed/?url=$1&format=json',
+		  'www.qik.com' => 'http://qik.com/api/oembed?url=$1&format=json',
+		  'www.revision3.com' => 'http://revision3.com/api/oembed/?url=$1&format=json',
+		  'www.scribd.com' => 'http://www.scribd.com/services/oembed?url=$1&format=json',
+		  'www.wordpress.tv' => 'http://wordpress.tv/oembed/?url=$1&format=json',
+		  'www.5min.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+		  'www.collegehumor.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+		  'www.thedailyshow.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+		  'www.funnyordie.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+		  'www.livejournal.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+		  'www.metacafe.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+		  'www.xkcd.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+		  'www.yfrog.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+		  'yfrog.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+		  'www.flickr.com' => 'http://www.flickr.com/services/oembed?url=$1&format=json'
+		);
+
+		if (!empty($_POST['url'])){
+			$parts = parse_url($_POST['url']);
+			
+			$host = $parts['host'];
+			if (empty($host) || !array_key_exists($host,$oembedUrls)){
+				echo 'Unrecognized host';
+			} else {
+				$oembedContents = @file_get_contents(str_replace('$1',$_POST['url'],$oembedUrls[$host]));
+				
+				$oembedData = @json_decode( $oembedContents );
+				
+				  if ( $host == 'www.flickr.com' || $host == 'flickr.com' || $host == 'yfrog.com' ) {
+						$embedCode = '<img src="'. $oembedData->url .'" />';
+		 			} else {
+				 		$embedCode =  $oembedData->html;
+					}
+				echo "Embed code for <a href='".$_POST['url']."' target='_blank'>".$_POST['url']."</a> :<br>".$embedCode;
+			}
+		}
+
+	}
+	
 	public function oembed (  )
 	{
+		
+
+
 		echo '<h1>oEmbed</h1>';
-		echo '<p>Page ID <strong>102</strong></p>';
+		echo '<p>Page ID <strong>117</strong></p>';
 		
 		$page = load::model( 'page' );
-		$page = $page->get( '102' );
+		$page = $page->get( '117' );
 		
-		?>
+		//$url = 'http://www.youtube.com/watch?v=TWRzm2c-v4Q';
+		$url = 'http://vimeo.com/44185686';
+		//$url = 'http://www.flickr.com/photos/brianrbielawa/5534988483/';
 		
-		<h2>Parsing</h2>
-			<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.min.js"></script>
-			<script type="text/javascript" src="<?=TENTACLE_JS; ?>oembed/jquery.oembed.js"></script>
-		<script>
-
-		 $(document).ready(function () {
-
-                 $('#info').keyup(function(){
-                     tagdata = [];
-                     eventdata = [];
-                     var scriptruns = [];
-                     var text = $('#info').val();
-                     text = $('<span>'+text+'</span>').text(); //strip html
-                     text = text.replace(/(\s|>|^)(https?:[^\s<]*)/igm,'$1<div><a href="$2" class="oembed">$2</a></div>');
-                     $('#out').empty().html('<span>'+text+'</span>');
-
-                     $(".oembed").oembed(null,{
-                         apikeys: {
-                             etsy : 'd0jq4lmfi5bjbrxq2etulmjr',
-                         }
-                     });
-
-                 });
-
-             });
-
-		</script>
+		echo $url;
 		
-		<textarea id="info" style="width:80%; margin-right:auto; margin-left: auto; height:200px;"></textarea>
-		<hr/>
-		<div id="out"></div>
+		tentacle::library('oembed','AutoEmbed.class');
+
+		clean_out( $page->content );
 		
-		<?
+		$AE = new AutoEmbed();
 		
+		//embed_tag_for($page->content);
+
+		
+		// load the embed source from a remote url
+		if (!$AE->parseUrl($url)) {
+		    echo 'it did not work';
+		} else {
+			echo 'it works <br />';
+			//$imageURL = $AE->getImageURL();
+			
+			$AE->setWidth('1280');
+			$AE->setHeight('720');
+			
+			echo $AE->getEmbedCode();
+			echo '<img src="'.$imageURL.'" />';
+		}		
 	}
 	
 	public function system ()
@@ -1508,6 +1609,40 @@ class dev_controller {
 		
 	}
 	
+	public function dbug_test()
+	{
+        function test() {
+            throw new Exception;
+        }
+
+        try {
+            test();
+        } catch(Exception $e) {
+            echo 'getMessage</br><pre>';
+            echo $e->getMessage();
+
+            echo '</pre></br>getCode</br><pre>';
+            echo $e->getCode();
+
+            echo '</pre></br>getFile</br><pre>';
+            echo $e->getFile();
+
+            echo '</pre></br>getLine</br><pre>';
+            echo $e->getLine();
+
+            echo '</pre></br>getPrevious</br><pre>';
+            echo $e->getPrevious();
+
+            echo '</pre></br>getTraceAsString</br><pre>';
+            echo $e->getTraceAsString();
+
+            echo '</pre></br>getTrace</br><pre>';
+            print_r($e->getTrace() );
+
+            echo '</pre>';
+        }
+	}
+	
 	public function wordpress_import()
 	{	
 		load::helper('import');
@@ -1544,6 +1679,15 @@ class dev_controller {
 		
 		if($trigger->exists("preview"))
 			echo $trigger->filter($text,"preview");
+	}
+
+	public function dbug()
+	{
+		//trigger_error('broken');
+		//load::helper('file');
+		//trigger_error('Notice', E_USER_NOTICE);
+		//trigger_error('Error', E_USER_ERROR);
+		//trigger_error('Warning', E_USER_WARNING);
 	}
 
 }// END Dev
