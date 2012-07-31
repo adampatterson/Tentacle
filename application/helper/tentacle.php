@@ -305,10 +305,10 @@ class tentacle
 */
 	function colorify_value($value, $expected) {
 		if (strcasecmp($value, $expected) == 0) {
-			return '<span class="label success">'.$value.'</span>';
+			return '<span class="label label-success">'.$value.'</span>';
 		}
 		else {
-			return '<span class="label error">'.$value.'</span>';
+			return '<span class="label label-error">'.$value.'</span>';
 		}
 	}
 	

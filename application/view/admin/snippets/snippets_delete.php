@@ -10,15 +10,15 @@
 				<div class="one-half">
 					<div class="table">
 						<form action="<?= BASE_URL ?>action/delete_snippet/<?= $id ?>" method="post">
+							
 							<fieldset>
-								<p>
-									<label>
-									<input id="delete_user" type="checkbox" value="delete" name="delete_user">
-									Confirm
-									</label>
-								</p>
+
+								<label><input id="delete_user" type="checkbox" value="delete" name="delete_user"> Confirm</label>
+	
 								<input type="hidden" value="" name="delete_user">
+								
 							</fieldset>
+							
 							<div class="form-actions">
 								<input type="submit" value="Delete User" class="btn btn-primary btn-large" />
 								<a href="<?=ADMIN;?>snippets_manage/" class="red">Cancel</a>

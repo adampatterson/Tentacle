@@ -11,7 +11,7 @@
 						</a>
 						<strong><?= $theme->theme_name ?></strong> <? current_theme($theme->theme_id); ?>
 						<div class="well">
-							<a class="btn small primary" href="<?= BASE_URL ?>action/update_settings/appearance/<?= $theme->theme_id ?>">Activate</a>
+							<a class="btn btn-small btn-primary" href="<?= BASE_URL ?>action/update_settings/appearance/<?= $theme->theme_id ?>">Activate</a>
 							<!--<a class="btn small" href="#">Preview</a>-->
 						</div>
 						<? foreach (get_settings($theme->theme_id) as $setting): ?>
@@ -26,7 +26,7 @@
 				<? foreach (get_themes() as $theme):  
 					if ($theme->index == ''): ?>
 					<li>
-						<strong><?= $theme->theme_name ?></strong> <span class="label important">Error</span>
+						<strong><?= $theme->theme_name ?></strong> <span class="label label-important">Error</span>
 						<? foreach (get_settings($theme->theme_id) as $setting): ?>
 							<p><?= $setting->theme_description; ?></p>
 						<? endforeach; ?>

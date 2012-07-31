@@ -16,8 +16,8 @@
 				</script>
 			<?php endif;?>
 			<form id='validation' action="<?= BASE_URL ?>action/add_user/" method="post">
-				<fieldset>
-					<div class="clearfix">
+				<fieldset class="form-horizontal">
+					
 						<style>
 							.email_cross, .user_cross{display:none}
 							.email_tick, .user_tick{display:none}
@@ -96,61 +96,68 @@
 								}
 							}
 						</script>
-						<label for="username">Username <span class="description">(required)</span></label>
-						<div class="input">
+					
+					<div class="control-group">
+						<label class="control-label" for="user_name">Username <span class="description">(required)</span></label>
+						<div class="controls">
 							<input id="username" type="text" required="true" value="" name="user_name">
 							<img class="user_tick" src="http://papermashup.com/demos/check-username/tick.png" width="16" height="16"/>
 							<img class="user_cross" src="http://papermashup.com/demos/check-username/cross.png" width="16" height="16"/>
 						</div>
 					</div>
-					<div class="clearfix">
-						<label for="useremail">E-mail <span class="description">(required)</span></label>
-						<div class="input">
-							<input type="text" value="" id="useremail" name="email">
+					
+					<div class="control-group">
+						<label class="control-label" for="email">E-Mail <span class="description">(required)</span></label>
+						<div class="controls">
+							<input type="text" id="email" name="email">
 							<img class="email_tick" src="http://papermashup.com/demos/check-username/tick.png" width="16" height="16"/>
 							<img class="email_cross" src="http://papermashup.com/demos/check-username/cross.png" width="16" height="16"/>
 						</div>
 					</div>
-					<div class="clearfix">
-						<label for="first_name">First Name</label>
-						<div class="input">
-							<input type="text" value="" id="first_name" name="first_name">
-						</div>
-					</div>
-					<div class="clearfix">
-						<label for="last_name">Last Name</label>
-						<div class="input">
-							<input type="text" value="" id="last_name" name="last_name">
-						</div>
-					</div>
-					<div class="clearfix">
-						<label for="display_name">Display Name</label>
-						<div class="input">
-							<input type="text" value="" id="display_name" name="display_name">
-						</div>
-					</div>
-					<div class="clearfix">
-						<label for="url">Website</label>
-						<div class="input">
-							<input type="text" value="" class="code" id="url" name="url">
-						</div>
-					</div>
-					<div class="clearfix">
-						<label for="password">Password <span class="description">(twice, required)</span></label>
-						<div class="input">
-							<input type="password" autocomplete="off" id="password" name="password" required />
-						</div>
-						<div class="input">
-							<input type="password" autocomplete="off" id="confirm_password" name="confirm_password" required />
-							<span class="help-block">Hint: The password should be at least seven characters long. To make it stronger, use upper and lower case letters, numbers and symbols like ! " ? $ % ^ &amp; ).</span>
+
+					<div class="control-group">
+						<label class="control-label" for="first_name">First Name</label>
+						<div class="controls">
+							<input type="text" id="first_name" name="first_name">
 						</div>
 					</div>
 
-					<div class="clearfix">
-						<label for="send_password">Send password?</label>
-						<div class="input">
-							<input type="checkbox" id="send_password" name="send_password" value="yes">
-							<span class="help-block"> Send this password to the new user by email.</span>
+					<div class="control-group">
+						<label class="control-label" for="last_name">Last Name</label>
+						<div class="controls">
+							<input type="text" id="last_name" name="last_name">
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="display_name">Display Name</label>
+						<div class="controls">
+							<input type="text" id="display_name" name="display_name">
+						</div>
+					</div>
+				
+					<div class="control-group">
+						<label class="control-label" for="website">Website</label>
+						<div class="controls">
+							<input type="text" value="" class="code" id="url" name="url">
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<label class="control-label"  for="password">Password <span class="description">(twice, required)</span></label>
+						<div class="controls">
+							<input type="password" autocomplete="off" id="password" name="password" required />
+						</div>
+						<div class="controls">
+							<input type="password" autocomplete="off" id="confirm_password" name="confirm_password" required />
+							<p class="help-block">Hint: The password should be at least seven characters long. To make it stronger, use upper and lower case letters, numbers and symbols like ! " ? $ % ^ &amp; ).</p>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label">Send password?</label>
+						<div class="controls">
+							<label for="send_password" class="checkbox"><input type="checkbox" id="send_password" name="send_password" class="checkbox" value="yes">Send this password to the new user by email.</label>
 						</div>
 					</div>
 <? /*
@@ -167,29 +174,23 @@
 						</div>
 					</div>
 */ ?>
-					<div class="clearfix">
-						<label for="editor" class="alignleft">Editor</label>
-						<div class="input">
-							<ul class="inputs-list">
-								<li>
-									<label title="wysiwyg">
-										<input type="radio" checked="checked" value="wysiwyg" name="editor">
-										<span>WYSIWYG</span> </label>
-								</li>
-								<li>
-									<label title="html">
-										<input type="radio" value="html" name="editor">
-										<span>HTML</span> </label>
-								</li>
-							</ul>
+					<div class="control-group">
+						<label for="editor" class="control-label">Editor</label>
+						<div class="controls">	
+							<label title="wysiwyg" class="radio"><input type="radio" checked="checked" value="wysiwyg" name="editor" class="radio">WYSIWYG</label>
+							<label title="html" class="radio"><input type="radio" value="html" name="editor" class="radio">HTML</label>
 						</div>
 					</div>
+					
 					<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
+					
 				</fieldset>
-				<div class="actions">
-					<input type="submit" value="Save" class="btn medium primary" id="save" />
+				
+				<div class="form-actions">
+					<input type="submit" value="Save" class="btn btn-primary" id="save" />
 					<a href="<?=ADMIN;?>users_manage/" class="red">Cancel</a>
 				</div>
+				
 			</form>
 		</div>
 		<div class="one-half">
