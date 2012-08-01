@@ -7,12 +7,13 @@
 			<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> General settings</h1>
 			<div class="one-half">
 				<fieldset>
-					<div class="clearfix">
-						<label for="blogname">Site Title</label>
-						<div class="input">
+					<div class="control-group">
+						<label class="control-label" for="blogname">Site Title</label>
+						<div class="controls">
 							<input type="text" value="<?= get_option('blogname'); ?>" name="blogname">
 						</div>
 					</div>
+					
 <? /*
 					<div class="clearfix">
 						<label for="custom_logo">Custom Logo</label>
@@ -27,11 +28,11 @@
 						</div>
 					</div>
 */ ?>
-					<div class="clearfix">
-						<label for="blogdescription">Tagline</label>
-						<div class="input">
+					<div class="control-group">
+						<label class="control-label" for="blogdescription">Tagline</label>
+						<div class="controls">
 							<input type="text" value="<?= get_option('blogdescription'); ?>" name="blogdescription">
-							<span class="help-block">In a few words, explain what this site is about.</span>
+							<p class="help-block">In a few words, explain what this site is about.</p>
 						</div>
 					</div>
 					
@@ -43,9 +44,9 @@
 						</div>
 					</div>
 */ ?>
-					<div class="clearfix">
-						<label for="admin_email">E-mail address</label>
-						<div class="input">
+					<div class="control-group">
+						<label class="control-label" for="admin_email">E-mail address</label>
+						<div class="controls">
 							<input type="text" value="<?= get_option('admin_email'); ?>" name="admin_email">
 							<span class="help-block">This address is used for admin purposes, like new user notification.</span>
 						</div>
@@ -54,9 +55,10 @@
 			</div>
 			<div class="one-half">
 				<fieldset>
-					<div class="clearfix">
-						<label for="default_category">Default Post Category</label>
-						<div class="input">
+					
+					<div class="control-group">
+						<label class="control-label" for="default_category">Default Post Category</label>
+						<div class="controls">
 							<select class="postform" id="default_category" name="default_category">
 								<? foreach ($categories as $category): ?>
 									<option id="category-<?= $category->id  ?>" value="<?= $category->id  ?>" <? selected( get_option('default_category'), $category->id  ); ?>> <?= $category->name  ?></option>
@@ -64,6 +66,7 @@
 							</select>
 						</div>
 					</div>
+					
 				</fieldset>
 <? /*
 				<fieldset>
@@ -185,15 +188,16 @@
 				The sizes listed below determine the maximum dimensions in pixels to use when inserting an image into the body of a post.
 			</p>
 			<fieldset>
-				<div class="clearfix">
+				<div class="control-group">
 					<label>Thumbnail size</label>
-					<div class="input">
+					<div class="controls">
 						<div class="inline-inputs">
 							<input type="text" value="<?= get_option('image_thumb_size_w','150'); ?>" name="image_thumb_size_w" id="thumbnail_size_w" class='span2' />
 							x
 							<input type="text" value="<?= get_option('image_thumb_size_h','150'); ?>" name="image_thumb_size_h" id="thumbnail_size_h" class='span2' />
 						</div>
 					</div>
+				</div>
 <? /*
 					<div class="input">
 						<ul class="inputs-list">
@@ -206,10 +210,10 @@
 						</ul>
 					</div>
 */ ?>
-				</div>
-				<div class="clearfix">
+				
+				<div class="control-group">
 					<label>Medium size</label>
-					<div class="input">
+					<div class="controls">
 						<div class="inline-inputs">
 							<input type="text" value="<?= get_option('image_medium_size_w','300'); ?>" name="image_medium_size_w" id="medium_size_w" class='span2' />
 							x
@@ -217,9 +221,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="clearfix">
+				
+				<div class="control-group">
 					<label>Large size</label>
-					<div class="input">
+					<div class="controls">
 						<div class="inline-inputs">
 							<input type="text" value="<?= get_option('image_large_size_w','600'); ?>" name="image_large_size_w" class='span2' />
 							x
@@ -230,8 +235,8 @@
 			</fieldset>
 		</div>
 		<div class="one-full">
-			<div class="actions">
-				<button class="btn medium primary" type="submit">
+			<div class="form-actions">
+				<button class="btn btn-primary" type="submit">
 					Save Changes
 				</button>
 			</div>

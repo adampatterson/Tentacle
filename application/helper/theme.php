@@ -204,7 +204,7 @@ function current_theme( $theme_id = '' )
 	
 	if ( $theme_id == $options->get( 'appearance' ) )
 	{
-		echo '<span class="label success">Active</span>';
+		echo '<span class="label label-success">Active</span>';
 	}
 }
 
