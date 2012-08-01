@@ -83,62 +83,56 @@
 							<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
 							<fieldset>
 								<h3>&nbsp;</h3>
-								<div class="clearfix">
+								
+								<div class="control-group">
 									<label class="control-label" for="title">Title</label>
-									<div class="input">
-										<input type="text" class="input-xlarge span5" id="title" name="title" value="<?=$image->title ?>">
+									<div class="controls">
+										<input type="text" class="span5" id="title" name="title" value="<?=$image->title ?>">
 									</div>
 								</div>
-								<div class="clearfix">
+								
+								<div class="control-group">
 									<label class="control-label" for="alt_text">Alternate Text</label>
-									<div class="input">
-										<input type="text" class="input-xlarge span5" id="alt_text" name="alt_text" value="<?=$image->alt ?>" >
+									<div class="controls">
+										<input type="text" class="span5" id="alt_text" name="alt_text" value="<?=$image->alt ?>" >
 									</div>
 								</div>
-								<div class="clearfix">
+								
+								<div class="control-group">
 									<label class="control-label" for="caption">Caption</label>
-									<div class="input">
-										<input type="text" class="input-xlarge span5" id="caption" name="caption" value="<?= $image->caption ?>">
+									<div class="controls">
+										<input type="text" class="span5" id="caption" name="caption" value="<?= $image->caption ?>">
 									</div>
 								</div>
-								<div class="clearfix">
+								
+								<div class="control-group">
 									<label class="control-label" for="link_url">Link URL</label>
-									<div class="input">
-										<input type="text" class="input-xlarge span5" id="link_url" name="link_url" value="<?= $image->link ?>" >
+									<div class="controls">
 										<div class="input-append">
-							                <button class="btn" type="button" id="none">None</button> <button class="btn" type="button" id="file">File</button>
+											<input type="text" class="span3" id="link_url" name="link_url" value="<?= $image->link ?>" ><button class="btn" type="button" id="none">None</button><button class="btn" type="button" id="file">File</button>
 							             </div>
 									</div>
 								</div>
-								<div class="clearfix">
+
+								<div class="control-group">
 									<label class="control-label">Size</label>
-									<div class="input">
-										<ul class="inputs-list">
-											<li>
-												<label>
-													<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="" />
-														Thumbnail ( <?= get_option('image_thumb_size_w').' x '.get_option('image_thumb_size_h'); ?> )
-												</label>
-											</li>
-											<li>
-												<label>
-													<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" />
-													Medium ( <?= get_option('image_medium_size_w').' x '.get_option('image_medium_size_h'); ?> )
-												</label>
-											</li>
-											<li>
-												<label>
-													<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" />
-													Large ( <?= get_option('image_large_size_w').' x '.get_option('image_large_size_h'); ?> )
-												</label>
-											</li>
-											<li>
-												<label>
-													<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" />
-													Full Size
-												</label>
-											</li>
-										</ul>
+									<div class="controls">
+										<label class="radio">
+											<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="" />
+												Thumbnail ( <?= get_option('image_thumb_size_w').' x '.get_option('image_thumb_size_h'); ?> )
+										</label>
+										<label class="radio">
+											<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" />
+											Medium ( <?= get_option('image_medium_size_w').' x '.get_option('image_medium_size_h'); ?> )
+										</label>
+										<label class="radio">
+											<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" />
+											Large ( <?= get_option('image_large_size_w').' x '.get_option('image_large_size_h'); ?> )
+										</label>
+										<label class="radio">
+											<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" />
+											Full Size
+										</label>
 									</div>
 								</div>
 							</div>
