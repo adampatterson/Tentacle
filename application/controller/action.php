@@ -811,30 +811,23 @@ class action_controller {
 		
 		
 		if (input::post( 'send_password' ) == 'yes') {
-			load::helper('email');
-			
 			$send_email = load::model( 'email' );
 
-			// $subject = 'Welcome to Tentacle CMS';
-			// $html = email_header($subject);
+			load::helper('email');
+
+			$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
+			$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
 
 			$message = '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
 						<p><strong>Username</strong>: '.$user_name.'<br />
 						<strong>Password</strong>: '.$password.'</p>
-						<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>';
+						<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
+						<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
 
-			// $html .= email_footer();
-			// 
-			// 			$mail = new email();
-			// 			$mail->to($email);
-			// 			$mail->from($email);
-			// 			$mail->subject($subject);
-			// 			$mail->content( $html );
-			// 			$mail->send();
-			
-			$user_email = $send_email->send( 'Tentacle CMS', $message, $email, $email );
+			$user_email = $send_email->send( 'Welcome to Tentacle CMS', $message, $email );
 		}
-			
+		
+		
 		url::redirect('install/done');
 	}
 }
