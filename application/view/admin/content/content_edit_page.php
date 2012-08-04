@@ -170,7 +170,7 @@
 								<div class="control-group">
 									<label class="control-label" for='bread_crumb'>Breadcrumb title</label>
 									<div class="controls">
-											<input type="text" placeholder="Edit title" name='bread_crumb' value='<?= $get_post_meta->bread_crumb ?>' />
+											<input type="text" placeholder="Edit title" name='bread_crumb' value='<?= $get_page_meta->bread_crumb ?>' />
 											<span class="help-block">This title will appear in the breadcrumb trail.</span>
 									</div>
 								</div>
@@ -178,7 +178,7 @@
 								<div class="control-group">
 									<label class="control-label" for="meta_keywords">Meta Keywords</label>
 									<div class="controls">
-										<input type="text" placeholder="Keywords" name='meta_keywords' value='<?= $get_post_meta->meta_keywords ?>' />
+										<input type="text" placeholder="Keywords" name='meta_keywords' value='<?= $get_page_meta->meta_keywords ?>' />
 										<span class="help-block">Separate each keyword with a comma ( , )</span>
 									</div>
 								</div>
@@ -186,7 +186,7 @@
 								<div class="control-group">
 									<label class="control-label" for="meta_description">Meta Description</label>
 									<div class="controls">
-										<textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'><?= $get_post_meta->meta_description ?></textarea>
+										<textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'><?= $get_page_meta->meta_description ?></textarea>
 										<span class="help-block">A short summary of the page's content</span>
 									</div>
 								</div>

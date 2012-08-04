@@ -156,7 +156,7 @@ class admin_controller {
 		}
 
 		$get_page_meta = $page->get_page_meta( $page_id );
-		
+
 		load::view ('admin/content/content_edit_page', array(  'get_page'=>$get_page, 'get_page_meta'=>$get_page_meta, 'pages'=>$page_hiarchy, 'page_id'=>$page_id, 'tags'=>$tags, 'tag_relations'=>$tag_relations) );		
 	}
 
