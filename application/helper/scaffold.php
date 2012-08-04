@@ -74,11 +74,16 @@ class  Scaffold
 					}// switch 
 	
 	                elseif($input['input'] == 'option'):
-						$return_data .= '<select>';
-							foreach ($input['options'] as $option) {	
-								$return_data .= '<option value="'.$option.'">'.$option.'</option>';
-							}
-						$return_data .= '</select><br />';
+						$return_data .= '<div class="clearfix">
+											<label for="'.$input_name.'">'.$input['name'].'</label>
+											<div class="input">
+												<select name="'.$input_name.'">';
+											foreach ($input['options'] as $option) {	
+												$return_data .= '<option value="'.$option.'">'.$option.'</option>';
+											}
+						$return_data .= '		</select>
+											</div>
+										</div>';
 	                elseif ($input['input'] == 'multiline'):
 	                    $return_data .= '<div class="clearfix">
 											<label for="'.$input_name.'">'.$input['name'].'</label>
