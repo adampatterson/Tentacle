@@ -82,11 +82,14 @@
 						</script>
 					<?php endif; ?>
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Update <small><?= $get_page->title ?></small></h1>
-					<ul class="tabs" data-tabs="tabs" >
+					
+					<ul class="nav nav-tabs" id="content-tabs">
 						<li class="active"><a href="#content">Content</a></li>
 						<li class=""><a href="#options">Options</a></li>
 					</ul>
-					<div class="tab-content tab-body" id="my-tab-content">
+					
+					<div class="tab-content tab-body">
+						
 						<div id="content" class="active tab-pane">
 							<? //clean_out($get_page_meta ) ?>
 							<input type="text" name="title" placeholder='Title' value='<?= $get_page->title ?>' class='xlarge' required='required' />
@@ -164,6 +167,7 @@
 								<div class="clear"></div>
 							</div>
 						</div>
+						
 						<div id="options" class="tab-pane">
 							<fieldset>
 								
@@ -235,9 +239,10 @@
 								</div>
 */ ?>
 							</fieldset>
-							<div class="clear"></div>
 						</div>
+						
 					</div>
+					
 				</div>
 			</div>
 		</div>

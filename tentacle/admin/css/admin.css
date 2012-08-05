@@ -147,7 +147,7 @@ table.manage_content td:last-child {
 .tabs:after {
   clear: both;
 }
-#wrap ul.tabs {
+#wrap ul.nav-tabs {
   list-style: none;
   margin: 20px 0 0 0;
   padding: 0;
@@ -155,28 +155,26 @@ table.manage_content td:last-child {
   zoom: 1;
   border: 0;
 }
-#wrap ul.tabs li {
+#wrap ul.nav-tabs li {
   display: inline;
   margin-bottom: 0px;
   float: left;
 }
-#wrap ul.tabs li a {
+#wrap ul.nav-tabs li a {
   background-color: #CCCCCC;
   border-radius: 7px 7px 0 0;
   color: #000000;
   font-size: 18px;
-  padding: 0px 10px;
+  padding: 10px;
   text-decoration: none;
   display: block;
 }
-#wrap ul.tabs li a.active,
-#wrap ul.tabs li a:hover {
+#wrap ul.nav-tabs li a.active,
+#wrap ul.nav-tabs li a:hover {
   background-color: #333;
   color: #fff;
-  border-radius: 7px 7px 0 0;
-  border: 0;
 }
-#wrap ul.tabs li a:focus {
+#wrap ul.nav-tabs li a:focus {
   outline: 0;
 }
 .tab-body {

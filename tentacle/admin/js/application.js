@@ -27,7 +27,10 @@ $(document).ready(function(){
 		
 	// Admin Tabs:
 	// ====================================
-		$('.tabs').tabs()
+		$('#content-tabs a').click(function (e) {
+		  e.preventDefault();
+		  $(this).tab('show');
+		})
 
     //Close button:
 	// ====================================

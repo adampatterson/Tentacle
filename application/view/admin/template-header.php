@@ -29,6 +29,8 @@
 	<script type="text/javascript" src="<?= TENTACLE_JS; ?>jquery.notice.js"></script>
 	<script type="text/javascript" src="<?= TENTACLE_JS; ?>jquery.inputtags.js"></script>
 
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap.2.0.4.min.js"></script>
+<? /* 
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-tabs.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-alerts.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-dropdown.js"></script>
@@ -37,9 +39,10 @@
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-twipsy.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-popover.js"></script>
 	
-	<!--<script type="text/javascript" src="<?=TENTACLE_JS; ?>spin.min.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>spin.min.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>sisyphus.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.validate.js"></script>-->
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.validate.js"></script>
+*/?>
 	
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
