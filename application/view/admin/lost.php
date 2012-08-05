@@ -1,25 +1,30 @@
-<? load::view('admin/template-login-header', array('title' => 'Lost Login','assets'=>'marketing')); ?>
-  <div id="login-header"><a href="<?=BASE_URL; ?>">← Back to site name</a></div>
-  <!-- #login-header -->
-  <div id="login-logo"><a href="<?=BASE_URL; ?>"><img src="<?=BASE_URL; ?>tentacle/admin/images/tentacle_logo_large.png" width="238" height="85" alt="Tentacle" /></a></div>
-  <!-- #login-logo -->
-  <div id="login-wrapper">
-    <div id="login-content">
-      <form action="<?= BASE_URL ?>action/login/" method="post">
+<? load::view('admin/template-login-header', array('title' => 'Recover your password','assets'=>'marketing')); ?>
+<div id="login-header">
+	<a href="<?=BASE_URL;?>">← Back to site name</a>
+</div>
+<?php if( $note = note::get('sent_message') ): ?>
+	<div class="alert alert-success">
+		<h3 class="<?= $note['type']; ?>"><?= $note['content'];?></h3>
+	</div>
+<?php endif; ?>
+<div id="login-content">
+	<div id="login-logo">
+		<a href="<?=BASE_URL;?>"><img src="<?=BASE_URL;?>tentacle/admin/images/tentacle_logo_large.png" width="258" height="63" alt="Tentacle" /></a>
+	</div>
+	<form action="<?= BASE_URL ?>action/lost/" method="post">
 		<dl>
-			<dt><label for='username'>Username</label></dt>
-			<dd><input type='text' id='username' name='username' /></dd>
+			<dd>
+				<input type='text' id='username' name='username' placeholder='Username or E-Mail' />
+			</dd>
+			<dd>
+				<input type="submit" value="Recover" class="btn btn-primary btn-large pull-right" />
+			</dd>
 		</dl>
-
-        <div class="login-row">
-        	<div class="actions">
-        		<input type="submit" value="Recover" class="button" />
-        	</div>
-        </div>
-      </form>
-    </div>
-    <!-- #login-content -->
-  </div>
-  <!-- #login-content -->
-<? load::view('admin/template-login-footer');
- ?>
+		<?php if($note = note::get('session')): ?>
+			<input type='hidden' name='history' value="<?= $note['content'];?> " />
+		<?php endif;?>
+	</form>
+</div>
+<!-- #login-content -->
+</div> <!-- #login-content -->
+<? load::view('admin/template-login-footer');?>

@@ -146,10 +146,10 @@
 					<div class="control-group">
 						<label class="control-label"  for="password">Password <span class="description">(twice, required)</span></label>
 						<div class="controls">
-							<input type="password" autocomplete="off" id="password" name="password" required />
+							<input type="password" autocomplete="off" id="password" name="password" />
 						</div>
 						<div class="controls">
-							<input type="password" autocomplete="off" id="confirm_password" name="confirm_password" required />
+							<input type="password" autocomplete="off" id="confirm_password" name="confirm_password" />
 							<p class="help-block">Hint: The password should be at least seven characters long. To make it stronger, use upper and lower case letters, numbers and symbols like ! " ? $ % ^ &amp; ).</p>
 						</div>
 					</div>

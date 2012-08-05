@@ -65,12 +65,6 @@ class admin_controller {
 		url::redirect('admin/index');
 	}
 
-	/**
-	* Lost Password
-	* ----------------------------------------------------------------------------------------------*/
-	public function lost(){
-		load::view ('admin/lost');
-	}
 
 	/**
 	* Activate account
@@ -80,16 +74,35 @@ class admin_controller {
 		$user = load::model( 'user' );
 		$hash_user = $user->get_hash( $hash );
 		
-		clean_out( $hash_user );
+		die;
 		
-		/*
-		user::update($hash_user->email)
-			->data('activity_key','')
-			->save();
-		*/
+		note::set('success','sent_message','Your password has been reset.');
 		
-		//load::view ('admin/lost');
+		url::redirect( 'admin/login' );
 	}
+	
+	
+	/**
+	* Lost Password
+	* ----------------------------------------------------------------------------------------------*/
+	public function lost(){
+		load::view( 'admin/lost' );
+	}
+	
+	
+	/**
+	* Set Password
+	* ----------------------------------------------------------------------------------------------*/
+	public function set_password( $hash=''){
+		
+		if ( $hash == '' ) {
+			url::redirect( '/' );
+		} else {
+			load::view( 'admin/set_password', array( 'hash'=> $hash ) );
+		}
+		
+	}
+	
 	
 	/**
 	* resources

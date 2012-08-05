@@ -118,12 +118,24 @@ class user_model
 		}
 	}
 	
+	public function set_password(  )
+	{
+		$user = self::get_hash( input::post('hash') );
+		
+		user::update($user->email)
+			->password( input::post('password') )
+			->data( 'activation_key', '' )
+			->save();
+			
+		return $user;
+	}
 	
 	/**
 	* Get from Hash
 	* ----------------------------------------------------------------------------------------------*/
-	public function get_hash ( $hash )
+	public function get_hash( $hash )
 	{
+	
 		$user_hash = db::query("SELECT * FROM users WHERE
 			data LIKE '%".$hash."%'
 			ORDER BY id ASC");

@@ -73,51 +73,101 @@ class action_controller {
 	* ----------------------------------------------------------------------------------------------*/
 	public function lost()
 	{
- 
-    	$username = input::post('username');
+ 		$username = input::post('username');
 
-	    $users_table = db('users');               
-	    $user = $users_table->select('*')
-	                    ->where('email','=',$username)
-	                    ->execute();
-            
+		$users_table = db('users');  
+
+		if ( strstr( $username, '@', true) ) {
+			$user = $users_table->select('*')
+		                    ->where('email','=',$username)
+		                    ->execute();
+		} else {
+			$user = $users_table->select('*')
+		                    ->where('username','=',$username)
+		                    ->execute();
+		}
+		           
 	    if ( isset($user[0]->email)) 
 		{
 	        // Generate a Hash from the users IP
        
-	        $ip = $_SERVER['REMOTE_ADDR'];
 
-	        $hashed_ip = sha1($ip.time());
-       
-	        $users_table->update(array(
-	            'forgot_password'=>$hashed_ip
-	            ))
-	            ->where('email','=',$username)
-	            ->execute();
-       
-	        // Attach that Hash to the users email address.
-	        $mail = new email();
-	        $mail->to($username);
-	        $hash_address = BASE_URL.'user/reset/'.$hashed_ip;
-	        // @todo get install admings email address
-	        $mail->from('Tentacle');
-	        $mail->subject('Missing Password');
-	        $mail->content('<strong>Click the link to reset your password.</strong><br />'.$hash_address);
-	        $mail->send();
+			$user_name    = $user[0]->username;
+			$email        = $user[0]->email;
 
-	        note::set("error","forgot",NOTE_LOST);
-       
-	        url::redirect('/'); 
-       
-	    } 
-		else 
-		{
+			$first_name   = $user[0]->first_name;
+			$last_name    = $user[0]->last_name;
+
+			$encrypted_password = sha1( $password );
+
+			$registered = time();
+			$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].$registered);
+			
+			user::update($username)
+			           ->data('activation_key',$hashed_ip)
+			           ->save();
+
+			$send_email = load::model( 'email' );
+
+			load::helper('email');
+
+			$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
+			$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
+
+			$message = '<p>A password reset has been issued for <strong>Username</strong>: '.$user_name.' </p>
+						<p><strong>Click the link to create a new password.</strong><br />'.BASE_URL.'admin/set_password/'.$hash_ip.'</p>';
+
+			$user_email = $send_email->send( 'Recover your password', $message, $email );
+
+			note::set("success","sent_message",'An email has been sent with instructions.');
+			url::redirect('admin');
+			
+	    } else {
 	        // @todo set lost password error message for not match
 	        echo 'No match, Set an error message';
 	    }
+	
 
 	} // END Function Action Login
 
+
+	/**
+	* Activate account
+	* ----------------------------------------------------------------------------------------------*/
+	public function activate( $hash='' ){
+
+		$user = load::model( 'user' );
+		$user_details = $user->get_hash( $hash );
+		
+		user::update($user_details->email)
+		           ->data('activation_key','')
+				   ->data('status','')
+		           ->save();
+
+		note::set('success','sent_message','Your email has been confirmed.');
+	
+		url::redirect( 'admin' );
+	}
+
+
+	/**
+	* Set password from hash
+	* ----------------------------------------------------------------------------------------------*/
+	public function set_password( )
+	{	
+		$user = load::model( 'user' );
+		$user_details = $user->set_password( );
+
+		user::update($user_details->email)
+		           ->data('activation_key','')
+				   ->data('status','')
+		           ->save();
+
+		note::set('success','sent_message','Your password has been reset.');
+		
+		url::redirect( 'admin' );
+	}
+	
 
 	/**
 	* Check for Unique user name
@@ -381,31 +431,27 @@ class action_controller {
 	
 			load::helper('email');
 
-			$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
-			$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
-
-
-			//$subject = 'Welcome to Tentacle CMS';
-			//$html = email_header($subject);
-
-			$message = '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
-						<p><strong>Username</strong>: '.$user_name.'<br />
-						<strong>Password</strong>: '.$password.'</p>
-						<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
-						<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
-
-			$user_email = $send_email->send( 'Welcome to Tentacle CMS', $message, $email );
+			$hashed_ip = sha1( $_SERVER['REMOTE_ADDR'].time() );
 			
-			//$html .= email_footer();
+			user::update($user_name)
+			           ->data('activation_key',$hashed_ip)
+					   ->data('status','inactive')
+			           ->save();
+		
+			if ($password == '') {
+				$message = '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
+							<p><strong>Username</strong>: '.$user_name.'</p>
+							<p><strong>Click the link to activate your account.</strong><br /> '.BASE_URL.'admin/set_password/'.$hashed_ip.'</p>
+							<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
+			} else {
+				$message = '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
+							<p><strong>Username</strong>: '.$user_name.'<br />
+							<strong>Password</strong>: '.$password.'</p>
+							<p><strong>Click the link to activate your account.</strong><br /> '.BASE_URL.'action/activate/'.$hashed_ip.'</p>
+							<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
+			}
 
-			//echo $html;
-
-			// $mail = new email();
-			// 			$mail->to($email);
-			// 			$mail->from(get_option('admin_email'));
-			// 			$mail->subject($subject);
-			// 			$mail->content( $html );
-			// 			$mail->send();
+			$user_email = $send_email->send( 'Welcome to Tentacle CMS', $message, $email );	
 		}
 		
 		$history = input::post( 'history' );
@@ -805,8 +851,7 @@ class action_controller {
 		$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].$registered);
 		$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
 		
-		
-		
+
 		$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
 
 		$build = $pdo->exec( "INSERT INTO `users` (`email`, `username`, `password`, `type`, `data`, `registered`, `status`)
@@ -825,7 +870,6 @@ class action_controller {
 			$message = '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
 						<p><strong>Username</strong>: '.$user_name.'<br />
 						<strong>Password</strong>: '.$password.'</p>
-						<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
 						<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
 
 			$user_email = $send_email->send( 'Welcome to Tentacle CMS', $message, $email );
