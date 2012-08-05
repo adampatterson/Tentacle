@@ -437,8 +437,12 @@ class action_controller {
 	{
 		tentacle::valid_user();
 		
-		$user = load::model( 'user' );
-		$user_delete = $user->delete( $id );
+		$confirm = input::post('delete_user');
+		
+		if ( $confirm == 'delete' ) {
+			$user = load::model( 'user' );
+			$user_delete = $user->delete( $id );
+		}
 		
 		url::redirect('admin/users_manage/');
 	}

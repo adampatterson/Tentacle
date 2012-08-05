@@ -14,10 +14,11 @@
 								</p>
 								<p>
 									<label>
+										<input type="hidden" value="" name="delete_user">
 										<input id="delete_user" type="checkbox" value="delete" name="delete_user">
 										Confirm </label>
 								</p>
-								<input type="hidden" value="" name="delete_user">
+								
 							</fieldset>
 							<div class="actions">
 								<input type="submit" value="Delete User" class="btn primary medium" />
