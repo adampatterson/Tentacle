@@ -161,11 +161,6 @@ $(document).ready(function(){
 	$(".alert-message").alert()
 	
 	
-	/* Dropdown for topbar nav */
-	// ====================================
-	$('#topbar').dropdown()
-
-
 	/* Modal Window */
 	// ====================================
 	$('#my-modal').modal()
@@ -177,11 +172,6 @@ $(document).ready(function(){
 	    e.preventDefault();
 	  });
 	
-	/* Tooltips */
-	// =============================
-        $("a[rel=twipsy]").twipsy({
-          live: true
-        })
 
 	/* Popover */
   	// =============================

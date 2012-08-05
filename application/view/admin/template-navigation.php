@@ -7,11 +7,12 @@
         <span class="icon-bar"></span>
       </a>
 	  <a class="brand" href="<?= BASE_URL ?>"><?= get_option('blogname'); ?></a>
+		
       <div class="nav-collapse">
-		<ul class="nav" data-dropdown="dropdown">
+		<ul class="nav">
 			<li class="<? if (
 		    CURRENT_PAGE == 'admin/dashboard') echo 'active'; ?>"><a href="<?= ADMIN ?>">Dashboard</a></li>
-			<li class="dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Content <b class="caret"></b></a>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Content <b class="caret"></b></a>
 			  <ul class="dropdown-menu">
 				<li class="<? current_page('admin/content_add_page'); ?>"><a href="<?= ADMIN ?>content_add_page/">Write a new page</a></li>
 		        <li class="<? current_page('admin/content_manage_pages'); ?>"><a href="<?= ADMIN ?>content_manage_pages/">Manage pages</a></li>
@@ -39,13 +40,13 @@
 	?>
 			  </ul>
 			</li>
-			<li class="dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Snippets <b class="caret"></b></a>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Snippets <b class="caret"></b></a>
 			  <ul class="dropdown-menu">
 				<li class="<? current_page('admin/snippets_add'); ?>"><a href="<?= ADMIN ?>snippets_add/">Add a new snippet</a></li>
 				<li class="<? current_page('admin/snippets_manage'); ?>"><a href="<?= ADMIN ?>snippets_manage/">Manage snippets</a></li>
 			  </ul>
 			</li>
-			<li class="dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Users <b class="caret"></b></a>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
 			  <ul class="dropdown-menu">
 				<li class="<? current_page('admin/users_manage'); ?>"><a href="<?= ADMIN ?>users_manage/">Manage users</a></li>
 				<li class="<? current_page('admin/users_add'); ?>"><a href="<?= ADMIN ?>users_add/">Add a new user</a></li>
@@ -53,7 +54,7 @@
 			  </ul>
 			</li>
 			<!--<li class="<? if ( CURRENT_PAGE == 'admin/addons_install' ) echo 'active'; ?> menu"><a href="<?= ADMIN ?>addons_install/" class="">Addon's</a></li>-->
-			<li class="dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Settings <b class="caret"></b></a>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
 			  <ul class="dropdown-menu">
 				<li><a class="<? current_page('admin/settings_appearance'); ?>" href="<?= ADMIN ?>settings_appearance/">Appearance</a></li>
 				<li class="<? current_page('admin/settings_general'); ?>"><a href="<?= ADMIN ?>settings_general/">General</a></li>
@@ -84,7 +85,7 @@
 				}
 
 				if (isset($subnav["settings"])) { ?>
-				<li class="dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Module Settings</a>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Module Settings  <b class="caret"></b></a>
 		            <ul class="dropdown-menu">
 		               <?
 						foreach ( $subnav["settings"] as $sub_page ) {
@@ -99,7 +100,7 @@
 		    CURRENT_PAGE == 'admin/about_system_details') echo 'active'; ?>"><a href="<?= ADMIN ?>about_system_details/">About</a> </li>
 		  </ul>
 		<ul class="nav pull-right">
-			<li class="dropdown" data-dropdown="dropdown" >
+			<li class="dropdown" data-toggle="dropdown" >
 				<a href="#" class="dropdown-toggle">Help <b class="caret"></b></a>
 				<ul class="dropdown-menu">
 					<li><a href="https://github.com/adampatterson/Tentacle/wiki" target="_blank">Knowledge Base</a></li>
