@@ -115,7 +115,7 @@ class action_controller {
 			$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
 
 			$message = '<p>A password reset has been issued for <strong>Username</strong>: '.$user_name.' </p>
-						<p><strong>Click the link to create a new password.</strong><br />'.BASE_URL.'admin/set_password/'.$hash_ip.'</p>';
+						<p><strong>Click the link to create a new password.</strong><br />'.BASE_URL.'admin/set_password/'.$hashed_ip.'</p>';
 
 			$user_email = $send_email->send( 'Recover your password', $message, $email );
 
@@ -440,15 +440,15 @@ class action_controller {
 		
 			if ($password == '') {
 				$message = '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
-							<p><strong>Username</strong>: '.$user_name.'</p>
-							<p><strong>Click the link to activate your account.</strong><br /> '.BASE_URL.'admin/set_password/'.$hashed_ip.'</p>
-							<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
+							<p><strong>Username</strong>: '.$user_name.'<br />
+							<p><strong>Click the link to create a password.</strong><br /> '.BASE_URL.'admin/set_password/'.$hashed_ip.'</p>
+							<strong>From:</strong> <a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
 			} else {
 				$message = '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
 							<p><strong>Username</strong>: '.$user_name.'<br />
 							<strong>Password</strong>: '.$password.'</p>
 							<p><strong>Click the link to activate your account.</strong><br /> '.BASE_URL.'action/activate/'.$hashed_ip.'</p>
-							<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
+							<strong>From:</strong> <a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
 			}
 
 			$user_email = $send_email->send( 'Welcome to Tentacle CMS', $message, $email );	
