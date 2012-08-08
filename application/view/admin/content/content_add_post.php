@@ -128,7 +128,7 @@
 									<textarea id="Content" name="content" rows="15" cols="80" class="tinymce"></textarea>
 								</p>
                                
- 								<a class="fancybox fancybox.iframe" id="insert-media" href="<?= BASE_URL ?>admin/media_insert" title="Insert Media" data-width="600" data-height="825">[ Insert Media ]</a>
+ 								<a class="fancybox fancybox.iframe" id="insert-media" href="<?= BASE_URL ?>admin/media_insert" title="Insert Media" data-width="680" data-height="725">[ Insert Media ]</a>
 							
 							<? else: ?>
 								<p>

@@ -100,7 +100,7 @@
 									<textarea id="Content" name="content" rows="15" cols="80" class="tinymce"><?= stripslashes( $get_page->content ) ?></textarea>
 								</p>
                               
-								<a class="fancybox fancybox.iframe" id="insert-media" href="<?= BASE_URL ?>admin/media_insert" title="Insert Media" data-width="600" data-height="825">[ Insert Media ]</a>
+								<a class="fancybox fancybox.iframe" id="insert-media" href="<?= BASE_URL ?>admin/media_insert" title="Insert Media" data-width="680" data-height="725">[ Insert Media ]</a>
 							
 							<? else: ?>
 
@@ -123,18 +123,21 @@
 									if( file_exists( $template ))
 									{
 										
-											include($template);
-											
-											if ( isset( $scaffold_data ) ) {
-												$scaffold = new Scaffold ();
-												$scaffold->populateThis( $scaffold_data, $get_page_meta );
-											}
+										include($template);
+										
+										if ( isset( $scaffold_data ) ) {
+											$scaffold = new Scaffold ();
+											$scaffold->populateThis( $scaffold_data, $get_page_meta );
+										}
+										
 									} else { ?>
+										
 										<br/><br/>
 										<div class="alert-message warning">
 											<p><strong>A template file appears to be a missing from your theme:</strong> <br />
 											<?= '/tentacle/themes/'.get_option('appearance').'/'.$get_page->template.'.php'?></p>
 										</div>
+										
 									<? }
 								}
 								?>
