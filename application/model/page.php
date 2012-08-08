@@ -174,7 +174,7 @@ class page_model
 		} elseif ( $id == '' ) {
 			$get_pages = $pages->select( '*' )
 				->where ( 'type', '=', 'page' )
-				->order_by ( 'menu_order', 'ASC' )
+				->order_by ( 'menu_order', 'DESC' )
 				->clause ('AND')
 				->where ( 'status', '!=', 'trash' )
 				->execute();

@@ -109,7 +109,7 @@ class  Scaffold
 
         $return_data = "";
 		
-        if ( $data[ 'display' ] != 'front' ):
+        if ( $data[ 'display' ] == 'admin' ):
 			foreach ($data as $input):
 			
 				$input_name = underscore( camelize( $input['name']) );
