@@ -43,7 +43,7 @@
 				<tr>
 					<td>
 					<!-- <input type="checkbox" /> -->
-					<img src="<?=ADMIN_URL;?>images/icons/24_paper.png" width="24" height="24" alt="Page" /><strong class="title"><a href="<?= ADMIN ?>content_update_post/<?= $post -> id;?>"><?= $post -> title;?></a></strong></td>
+					<img src="<?=ADMIN_URL;?>images/icons/24_paper.png" width="24" height="24" alt="Page" /><strong class="title"><a href="<?= ADMIN ?>content_update_post/<?= $post->id;?>"><?= $post->title;?></a></strong></td>
 					<td>
 						<? foreach( $relations = $category->get_relations( $post->id ) as $relation ): ?>
 				            	 <a href="#<?=$relation->slug ?>"><?= $relation->name ?></a>
@@ -51,9 +51,9 @@
 					</td>
 					<td ><!--<img src="<?=ADMIN_URL; ?>images/icons/16_note-dis.png" width="16" height="16" alt="Notes" />--></td>
 					<td ><?= $user_meta->first_name;?> <?= $user_meta->last_name;?></td>
-					<td ><?= $post -> id;?></td>
-					<td><?= $post -> status;?></td>
-					<td><a href="<?= ADMIN ?>content_update_post/<?= $post->id;?>" class="btn btn-small">Edit</a> <a href="<?= BASE_URL ?>action/trash_post/<?= $post -> id;?>" class="btn btn-small btn-danger">Trash</a></td>
+					<td ><?= $post->id;?></td>
+					<td><?= status_tag( $post->status ) ?></td>
+					<td><a href="<?= ADMIN ?>content_update_post/<?= $post->id;?>" class="btn btn-small">Edit</a> <a href="<?= BASE_URL ?>action/trash_post/<?= $post->id;?>" class="btn btn-small btn-danger">Trash</a></td>
 				</tr>
 				<? endforeach;?>
 			</tbody>

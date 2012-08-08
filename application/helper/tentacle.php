@@ -242,6 +242,7 @@ class tentacle
 		}
 	}
 	
+	
 	/**
 	* Function: dashboard_feed
 	* Display blog feed in the dashboard.
@@ -288,6 +289,34 @@ class tentacle
 		echo '</ul>';
 	}
 
+
+	/**
+	* Function: status_tag
+	* Used to return Labels on the admin side.
+	*
+	* Parameters:
+	*     $value - string/int
+	*
+	* Returns:
+	*     html
+	*/
+	function status_tag($value) {
+		switch ($value) {
+			case 'draft':
+				return '<span class="label label-info">'.$value.'</span>';
+				break;
+			case 'published':
+				return '<span class="label label-success">'.$value.'</span>';
+				break;
+			case 'trashed':
+				return '<span class="label label-warning">'.$value.'</span>';
+				break;
+			default:
+				return '<span class="label">'.$value.'</span>';
+				break;
+		}
+	}
+	
 	
 // Server Overview
 //----------------------------------------------------------------------------------------------
@@ -302,7 +331,7 @@ class tentacle
 	*
 	* Returns:
 	*     html
-*/
+	*/
 	function colorify_value($value, $expected) {
 		if (strcasecmp($value, $expected) == 0) {
 			return '<span class="label label-success">'.$value.'</span>';
