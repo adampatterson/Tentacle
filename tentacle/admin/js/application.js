@@ -1,16 +1,5 @@
 $(document).ready(function(){
 	
-    // FancyBox modal
-	// ====================================
-	$(".fancybox").fancybox({
-	  fitToView: false,
-	  afterLoad: function(){
-	   this.width = $(this.element).data("width");
-	   this.height = $(this.element).data("height");
-	  }
-	 }); // fancybox
-	
-
     // Minimize Content Box
 	// ====================================
 		$(".content-box-header h3").css({ "cursor":"s-resize" }); // Give the h3 in Content Box Header a different cursor
@@ -24,7 +13,7 @@ $(document).ready(function(){
 			  $(this).parent().find(".content-box-tabs").toggle(); // Toggle the tabs
 			}
 		);
-		
+
 	// Admin Tabs:
 	// ====================================
 		$('#content-tabs a').click(function (e) {

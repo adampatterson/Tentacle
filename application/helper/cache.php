@@ -46,6 +46,9 @@ class cache
 		
 	}
 	
+	/**
+	*	Create an array containing paths to javascript files. They for now should be loaded in order of their requirements.
+	*/
 	static public function script( $scriptFiles = '' )
 	{
 		tentacle::library('jsmin','jsmin');

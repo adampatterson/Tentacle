@@ -95,10 +95,6 @@
 			{% } %}
 			</script>
 			
-
-			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-			<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
 			<!-- The Templates plugin is included to render the upload/download listings -->
 			<script src="http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"></script>
 			<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
@@ -109,17 +105,17 @@
 			<script src="http://blueimp.github.com/cdn/js/bootstrap.min.js"></script>
 			<script src="http://blueimp.github.com/Bootstrap-Image-Gallery/js/bootstrap-image-gallery.min.js"></script>
 			<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
+			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/jquery.iframe-transport.js"></script>
 			<!-- The basic File Upload plugin -->
-			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/jquery.fileupload.js"></script>
+			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/jquery.fileupload.js"></script>
 			<!-- The File Upload image processing plugin -->
-			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/jquery.fileupload-ip.js"></script>
+			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/jquery.fileupload-ip.js"></script>
 			<!-- The File Upload user interface plugin -->
-			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/jquery.fileupload-ui.js"></script>
+			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/jquery.fileupload-ui.js"></script>
 			<!-- The localization script -->
-			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/locale.js"></script>
+			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/locale.js"></script>
 			<!-- The main application script -->
-			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/main.js"></script>
+			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/main.js"></script>
 			<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
 			<!--[if gte IE 8]><script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/cors/jquery.xdr-transport.js"></script><![endif]-->
 

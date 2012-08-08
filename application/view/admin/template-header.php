@@ -37,19 +37,20 @@
 	
 <? if ( in_array('fancybox', $assets ) ): ?>
 	<!-- fancyBox MODAL -->
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/jquery.fancybox.js?v=2.0.6"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/jquery.fancybox.pack.js?v=2.0.6"></script>
 	<link rel="stylesheet" type="text/css" href="<?=TENTACLE_JS; ?>fancyBox/source/jquery.fancybox.css?v=2.0.6" media="screen" />
-
-	<!-- Add Button helper (this is optional) -->
-	<link rel="stylesheet" type="text/css" href="<?=TENTACLE_JS; ?>fancyBox/source/helpers/jquery.fancybox-buttons.css?v=1.0.2" />
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/helpers/jquery.fancybox-buttons.js?v=1.0.2"></script>
-
-	<!-- Add Thumbnail helper (this is optional) -->
-	<link rel="stylesheet" type="text/css" href="<?=TENTACLE_JS; ?>fancyBox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.2" />
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.2"></script>
-
-	<!-- Add Media helper (this is optional) -->
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/helpers/jquery.fancybox-media.js?v=1.0.0"></script>
+	
+	<script type="text/javascript">
+		// FancyBox modal
+		// ====================================
+		$(".fancybox").fancybox({
+		  fitToView: false,
+		  afterLoad: function(){
+		   this.width = $(this.element).data("width");
+		   this.height = $(this.element).data("height");
+		  }
+		 }); // fancybox
+	</script>	
 <? endif; ?>
 
 	<script type="text/javascript" charset="utf-8">
