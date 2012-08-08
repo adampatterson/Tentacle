@@ -1,5 +1,5 @@
-<?	load::view('admin/template-header', array('title' => 'Delete snippet','assets'=>'application')); ?>
-<?	load::view('admin/template-sidebar');?>
+<?	load::view('admin/templates/template-header', array('title' => 'Delete snippet','assets'=>'application')); ?>
+<?	load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 		<div id="post-body">
 				
@@ -38,4 +38,4 @@
 		</div><!-- #post-body -->
 </div>
 <!-- #wrap -->
-<?load::view('admin/template-footer');?>
+<?load::view('admin/templates/template-footer');?>

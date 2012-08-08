@@ -1,5 +1,5 @@
-<? load::view('admin/template-header', array('title' => 'SEO settings','assets'=>'application')); ?>
-<? load::view('admin/template-sidebar');?>
+<? load::view('admin/templates/template-header', array('title' => 'SEO settings','assets'=>'application')); ?>
+<? load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
   <div class="full-content">
     <div id="post-body">
@@ -53,4 +53,4 @@
   <!-- .full-content -->
 </div>
 <!-- #wrap -->
-<? load::view('admin/template-footer');?>
+<? load::view('admin/templates/template-footer');?>

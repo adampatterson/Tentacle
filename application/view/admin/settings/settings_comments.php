@@ -1,5 +1,5 @@
-<? load::view('admin/template-header', array('title' => 'Comment settings', 'assets' => 'application'));?>
-<? load::view('admin/template-sidebar');?>
+<? load::view('admin/templates/template-header', array('title' => 'Comment settings', 'assets' => 'application'));?>
+<? load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 	<form action="<?= BASE_URL ?>action/udpate_settings_post/" method="post" class="form-stacked">
 		<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
@@ -217,4 +217,4 @@
 		</div>
 	</form>
 </div><!-- #wrap -->
-<? load::view('admin/template-footer');?>
+<? load::view('admin/templates/template-footer');?>

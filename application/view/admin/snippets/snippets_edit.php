@@ -1,5 +1,5 @@
-<? load::view('admin/template-header',array('title'=>'Edit snippet','assets'=>'application')); ?>
-<? load::view('admin/template-sidebar'); ?>
+<? load::view('admin/templates/template-header',array('title'=>'Edit snippet','assets'=>'application')); ?>
+<? load::view('admin/templates/template-sidebar'); ?>
 <div id="wrap">
   <div class="has-right-sidebar">
     <div class="contet-sidebar">
@@ -59,4 +59,4 @@
 	</div><!-- .full-content -->
 </div>
 <!-- #wrap -->
-<? load::view('admin/template-footer'); ?>
+<? load::view('admin/templates/template-footer'); ?>

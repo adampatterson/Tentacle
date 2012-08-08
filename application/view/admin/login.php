@@ -1,4 +1,4 @@
-<? load::view('admin/template-login-header', array('title' => 'Login', 'assets' => 'marketing'));?>
+<? load::view('admin/templates/template-login-header', array('title' => 'Login', 'assets' => 'marketing'));?>
 <div id="login-header">
 	<a href="<?=BASE_URL;?>">← Back to site name</a>
 </div>
@@ -30,4 +30,4 @@
 </div>
 <!-- #login-content -->
 </div> <!-- #login-content -->
-<? load::view('admin/template-login-footer');?>
+<? load::view('admin/templates/template-login-footer');?>

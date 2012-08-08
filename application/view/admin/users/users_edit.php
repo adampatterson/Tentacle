@@ -1,5 +1,5 @@
-<? load::view('admin/template-header', array('title' => 'User Profile', 'assets' => 'application'));?>
-<? load::view('admin/template-sidebar');?>
+<? load::view('admin/templates/template-header', array('title' => 'User Profile', 'assets' => 'application'));?>
+<? load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 	<div class="one-full">
 		<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Manage User</h1>
@@ -106,4 +106,4 @@
 	</div>
 </div>
 <!-- #wrap -->
-<? load::view('admin/template-footer');
+<? load::view('admin/templates/template-footer');

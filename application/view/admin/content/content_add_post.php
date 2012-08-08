@@ -1,5 +1,5 @@
-<? load::view('admin/template-header', array('title' => 'Write a new post', 'assets' => array('fancybox') ) );?>
-<? load::view('admin/template-sidebar');?>
+<? load::view('admin/templates/template-header', array('title' => 'Write a new post', 'assets' => array('fancybox') ) );?>
+<? load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 	<!--
 	<script type="text/javascript">
@@ -215,4 +215,4 @@
 	</form>
 </div>
 <!-- #wrap -->
-<? load::view('admin/template-footer');?>
+<? load::view('admin/templates/template-footer');?>

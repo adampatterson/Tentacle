@@ -1,5 +1,5 @@
-<? load::view('admin/template-header', array('title' => 'Manage Pages', 'assets' => 'application'));?>
-<? load::view('admin/template-sidebar');?>
+<? load::view('admin/templates/template-header', array('title' => 'Manage Pages', 'assets' => 'application'));?>
+<? load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 	<div class="title">
 		<h1 class="align-left"><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Manage pages</h1>
@@ -100,4 +100,4 @@
 	</table>
 </div>
 <!-- #wrap -->
-<? load::view('admin/template-footer');?>
+<? load::view('admin/templates/template-footer');?>

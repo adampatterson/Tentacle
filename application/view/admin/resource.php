@@ -1,4 +1,4 @@
-<? load::view('admin/template-header', array('title' => 'Resource', 'assets' => 'application'));?>
+<? load::view('admin/templates/template-header', array('title' => 'Resource', 'assets' => 'application'));?>
 <div id="wrap">
 	<div class="full-content">
 		<div id="post-body">
@@ -1654,4 +1654,4 @@
 </div>
 <!-- #wrapper-admin -->
 </div> <!-- #body-wrappe -->
-<? load::view('admin/template-footer');?>
+<? load::view('admin/templates/template-footer');?>

@@ -69,7 +69,7 @@
 <body id="admin-window" class="<?= route::controller().' '. route::method();?>" lang="en">
 	<header>
 		<nav>
-			<? load::view( 'admin/template-navigation' ); ?>
+			<? load::view( 'admin/templates/template-navigation' ); ?>
 		</nav>
 	</header>
 	<div id="body-wrapper">

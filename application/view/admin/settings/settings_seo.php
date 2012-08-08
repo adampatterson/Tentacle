@@ -1,5 +1,5 @@
-<? load::view('admin/template-header', array('title' => 'SEO settings', 'assets' => 'application'));?>
-<? load::view('admin/template-sidebar');?>
+<? load::view('admin/templates/template-header', array('title' => 'SEO settings', 'assets' => 'application'));?>
+<? load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 	<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> SEO settings</h1>
 	<form action="<?= BASE_URL ?>action/udpate_settings_post/"  class="form-stacked" method="post">
@@ -198,4 +198,4 @@
 	</form>
 </div>
 <!-- #wrap -->
-<? load::view('admin/template-footer');?>
+<? load::view('admin/templates/template-footer');?>

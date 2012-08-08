@@ -1,5 +1,5 @@
-<? load::view('admin/template-header', array('title' => "Install New Addon's", 'assets' => 'application'));?>
-<? load::view('admin/template-sidebar');?>
+<? load::view('admin/templates/templates/template-header', array('title' => "Install New Addon's", 'assets' => 'application'));?>
+<? load::view('admin/templates/templates/template-sidebar');?>
 <div id="wrap">
 	<div class="full-content">
 		<div id="post-body">
@@ -20,4 +20,4 @@
 	</div><!-- .full-content -->
 </div>
 <!-- #wrap -->
-<? load::view('admin/template-footer');?>
+<? load::view('admin/templates/templates/template-footer');?>

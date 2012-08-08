@@ -1,5 +1,5 @@
-<? load::view('admin/template-header',array('title'=>'Import settings','assets'=>'application')); ?>
-<? load::view('admin/template-sidebar'); ?>
+<? load::view('admin/templates/template-header',array('title'=>'Import settings','assets'=>'application')); ?>
+<? load::view('admin/templates/template-sidebar'); ?>
 <div id="wrap">
 	<form action="post" class="form-stacked">
 		<div class="one-full">
@@ -17,4 +17,4 @@
 		</div>
 	</form>
 </div><!-- #wrap -->
-<? load::view('admin/template-footer'); ?>
+<? load::view('admin/templates/template-footer'); ?>

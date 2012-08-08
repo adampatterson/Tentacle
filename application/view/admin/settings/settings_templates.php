@@ -1,5 +1,5 @@
-<? load::view('admin/template-header',array('title'=>'Notification Templates','assets'=>'application','assets'=>'application')); ?>
-<? load::view('admin/template-sidebar'); ?>
+<? load::view('admin/templates/template-header',array('title'=>'Notification Templates','assets'=>'application','assets'=>'application')); ?>
+<? load::view('admin/templates/template-sidebar'); ?>
 <div id="wrap">
 	<div class="one-full">
 		<div class="title">
@@ -49,4 +49,4 @@
 		</table>
 	</div>
 </div><!-- #wrap -->
-<? load::view('admin/template-footer'); ?>
+<? load::view('admin/templates/template-footer'); ?>

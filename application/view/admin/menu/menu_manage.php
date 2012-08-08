@@ -1,5 +1,5 @@
-<? load::view('admin/template-header', array('title' => 'Manage menus', 'assets' => 'application'));?>
-<? load::view('admin/template-sidebar');?>
+<? load::view('admin/templates/template-header', array('title' => 'Manage menus', 'assets' => 'application'));?>
+<? load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 	<div class="one-full">
 		<div class="title pad-right">
@@ -36,4 +36,4 @@
 		</div>
 	</div>
 </div><!-- #wrap -->
-<? load::view('admin/template-footer');?>
+<? load::view('admin/templates/template-footer');?>
