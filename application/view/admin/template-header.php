@@ -30,24 +30,12 @@
 	<script type="text/javascript" src="<?= TENTACLE_JS; ?>jquery.inputtags.js"></script>
 
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap.2.0.4.min.js"></script>
-<? /* 
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-tabs.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-alerts.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-dropdown.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-scrollspy.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-modal.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-twipsy.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap-popover.js"></script>
-	
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>spin.min.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>sisyphus.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.validate.js"></script>
-*/?>
 	
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	
+<? if ( in_array('fancybox', $assets ) ): ?>
 	<!-- fancyBox MODAL -->
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/jquery.fancybox.js?v=2.0.6"></script>
 	<link rel="stylesheet" type="text/css" href="<?=TENTACLE_JS; ?>fancyBox/source/jquery.fancybox.css?v=2.0.6" media="screen" />
@@ -62,6 +50,7 @@
 
 	<!-- Add Media helper (this is optional) -->
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/helpers/jquery.fancybox-media.js?v=1.0.0"></script>
+<? endif; ?>
 
 	<script type="text/javascript" charset="utf-8">
 		var base_url = "<?= BASE_URL ?>";

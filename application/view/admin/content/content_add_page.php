@@ -1,4 +1,4 @@
-<? load::view('admin/template-header', array('title' => 'Write a new page', 'assets' => 'application'));?>
+<? load::view('admin/template-header', array('title' => 'Write a new page', 'assets' => array('fancybox') ) );?>
 <? load::view('admin/template-sidebar');?>
 <div id="wrap">
 	<!--
@@ -83,7 +83,6 @@
 						<div id="content" class="active tab-pane">
 							<input type="text" name="title" placeholder='Title' class='xlarge' required='required' />
 							<? if (user_editor() == 'wysiwyg'): ?>
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>tiny_mce/jquery.tinymce.js"></script>
 
 								<p class="wysiwyg">
 									<textarea id="Content" name="content" rows="15" cols="80" class="tinymce"></textarea>
@@ -92,39 +91,9 @@
 								<a class="fancybox fancybox.iframe" id="insert-media" href="<?= BASE_URL ?>admin/media_insert" title="Insert Media" data-width="600" data-height="825">[ Insert Media ]</a>
 							
 							<? else: ?>
-								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.22/lib/codemirror.css">
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/lib/codemirror.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/xml/xml.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/css/css.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/javascript/javascript.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/clike/clike.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/php/php.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/htmlmixed/htmlmixed.js"></script>
 
 								<p><textarea id="code" name="content" cols="40" rows="5" placeholder='Content'></textarea></p>
 
-								<script>
-								      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-										lineNumbers: true,
-										tabSize: 4,
-										indentUnit: 4,
-										indentWithTabs: true,
-										theme: "default",
-										mode: "application/x-httpd-php",
-										onCursorActivity: function() {
-										    editor.setLineClass(hlLine, null);
-											hlLine = editor.setLineClass(editor.getCursor().line, "activeline");
-										},
-										onKeyEvent: function(cm, e) {
-											// Hook into ctrl-space
-											if (e.keyCode == 32 && (e.ctrlKey || e.metaKey) && !e.altKey) {
-												e.stop();
-												return CodeMirror.simpleHint(cm, CodeMirror.javascriptHint);
-											}
-										}
-									});
-									var hlLine = editor.setLineClass(0, "activeline");
-								    </script>
 							<? endif; ?>
 							<div class="clear"></div>
 							<div id="scaffold">
@@ -353,4 +322,4 @@
 	</form>
 </div>
 <!-- #wrap -->
-<? load::view('admin/template-footer');?> 
+<? load::view('admin/template-footer');?>

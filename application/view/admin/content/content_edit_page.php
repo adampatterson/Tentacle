@@ -1,4 +1,4 @@
-<? load::view('admin/template-header', array('title' => 'Edit '.$get_page->title, 'assets' => 'application'));?>
+<? load::view('admin/template-header', array('title' => 'Edit '.$get_page->title, 'assets' => array('fancybox') ) );?>
 <? load::view('admin/template-sidebar');?>
 <div id="wrap">
 	<!--
@@ -95,7 +95,6 @@
 							<input type="text" name="title" placeholder='Title' value='<?= $get_page->title ?>' class='xlarge' required='required' />
 							<!--<p>Permalink: http://www.sitename/com/path/ <a href="#">Edit</a></p>-->
 							<? if(user_editor() == 'wysiwyg'):?>
-								<script type="text/javascript" src="<?=TENTACLE_JS; ?>tiny_mce/jquery.tinymce.js"></script>
 
 								<p class="wysiwyg">
 									<textarea id="Content" name="content" rows="15" cols="80" class="tinymce"><?= stripslashes( $get_page->content ) ?></textarea>
@@ -104,54 +103,29 @@
 								<a class="fancybox fancybox.iframe" id="insert-media" href="<?= BASE_URL ?>admin/media_insert" title="Insert Media" data-width="600" data-height="825">[ Insert Media ]</a>
 							
 							<? else: ?>
-								<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.22/lib/codemirror.css">
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/lib/codemirror.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/xml/xml.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/css/css.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/javascript/javascript.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/clike/clike.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/php/php.js"></script>
-								<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/htmlmixed/htmlmixed.js"></script>
 
 								<p>
 									<textarea id="code" name="content" cols="40" rows="5" placeholder='Content' class='CodeMirror-scroll'><?= stripslashes($get_page->content) ?></textarea>
 								</p>
 
-								<script>
-									var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-										lineNumbers: true,
-										theme: "default",
-										mode: "text/html",
-										onCursorActivity: function() {
-											editor.setLineClass(hlLine, null);
-											hlLine = editor.setLineClass(editor.getCursor().line, "activeline");
-										},
-							 			onKeyEvent: function(cm, e) {
-											// Hook into ctrl-space
-											if (e.keyCode == 32 && (e.ctrlKey || e.metaKey) && !e.altKey) {
-												e.stop();
-												return CodeMirror.simpleHint(cm, CodeMirror.javascriptHint);
-											}
-										}
-									});
-									var hlLine = editor.setLineClass(0, "activeline");
-								</script>
 							<? endif; ?>
 							<div class="clear"></div>
 							<div id="scaffold">
 								<?
 								define( 'SCAFFOLD' , 'TRUE' );
+								
 
 								if ( $get_page->template != '' && $get_page->template != 'default' ) {
-
+									
 									$template = THEMES_DIR.'/'.get_option('appearance').'/'.$get_page->template.'.php';
 
 									// Load the saved template, then if the user changes override the saved template.
 									if( file_exists( $template ))
 									{
+										
 											include($template);
 											
-											if ( isset( $scaffold ) ) {
+											if ( isset( $scaffold_data ) ) {
 												$scaffold = new Scaffold ();
 												$scaffold->populateThis( $scaffold_data, $get_page_meta );
 											}
