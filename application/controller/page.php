@@ -75,7 +75,7 @@ class page_controller {
 
 		}	
 		
-		//if(user::valid()) load::view( 'admin/template-navigation' );
+		//if(user::valid()) load::view( 'admin/templates/template-navigation' );
 		//if(user::valid()) render_debug();
 
 	}// END index
