@@ -39,7 +39,7 @@
 	});
 </script>
 	
-<div class="row">	
+<div class="span8">	
 	
 	
 <div class="accordion" id="accordion">
@@ -54,18 +54,25 @@
 	?>
 	<div class="accordion-group">
 		<div class="accordion-heading">
-			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?=$image->id ?>" href="#collapse<?=$image->id ?>">
-				<img src="<?= IMAGE_URL.$file_meta[0].'_sq'.'.'.$file_meta[1]; ?>" class="thumbnail" width="30" height="30" /> <?=$image->title ?>
-			</a>
+			<div class="row">
+				<div class="span1">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?=$image->id ?>" href="#collapse<?=$image->id ?>">
+						<img src="<?= IMAGE_URL.$file_meta[0].'_sq'.'.'.$file_meta[1]; ?>" class="thumbnail" width="30" height="30" />
+					</a>
+				</div>
+				<div class="span4">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?=$image->id ?>" href="#collapse<?=$image->id ?>"><?=$image->title ?></a>
+				</div>
+			</div>
 		</div>
 		<div id="collapse<?=$image->id ?>" class="accordion-body collapse" style="height: 0px; ">
 			<div class="accordion-inner">
 				
 				<div class="row">
-					<div class="span4">
+					<div class="span33">
 						<img src="<?= IMAGE_URL.$file_meta[0].'_sq'.'.'.$file_meta[1]; ?>" class="thumbnail"/>
 					</div>
-					<div class="span6">
+					<div class="span4">
 						<dl class="dl-horizontal">
 							<dt>File name:</dt>
 							<dd><?=$image->name ?></dd>
@@ -139,10 +146,10 @@
 						</div>
 						<div class="row">
 							<div class="actions">
-								<a class="btn primary" id="insert">Insert Image</a>
-								<input type="submit" name="update" value="Update" id="update" class="btn success">
+								<a class="btn btn-primary" id="insert">Insert Image</a>
+								<input type="submit" name="update" value="Update" id="update" class="btn btn-success">
 								<!--<a class="btn primary" id="insert">Insert Image</a>-->
-								<button class="btn danger">Delete</button>
+								<button class="btn btn-danger">Delete</button>
 								<a class="btn" href="javascript:parent.jQuery.fancybox.close();">Cancel</a>
 							</div>
 						</fieldset>

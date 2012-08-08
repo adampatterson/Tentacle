@@ -30,5 +30,5 @@
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
-<body id="admin-window" class="<?= route::controller().' '. route::method();?>" lang="en">
-	<div id="body-wrapper">
+<body id="modal-window" class="<?= route::controller().' '. route::method();?>" lang="en">
+	<div id="modal-wrapper">
