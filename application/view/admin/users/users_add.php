@@ -1,4 +1,4 @@
-<?	load::view('admin/templates/template-header', array('title' => 'Add a new user', 'assets' => 'application'));?>
+<?	load::view('admin/templates/template-header', array('title' => 'Add a new user', 'assets' => array('application')));?>
 <?	load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 	<div class="one-full">
@@ -199,4 +199,4 @@
 	</div>
 </div>
 <!-- #wrap -->
-<?load::view('admin/templates/template-footer');?>
+<?load::view('admin/templates/template-footer', array( 'assets'=> array('') ) );?>

@@ -1,4 +1,4 @@
-<? load::view('admin/templates/template-header', array('title' => 'Dashboard', 'assets' => 'application'));?>
+<? load::view('admin/templates/template-header', array('title' => 'Dashboard', 'assets' => array('application')));?>
 <? load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 	<div class="full-content">
@@ -35,4 +35,4 @@
 		</div><!-- .post-body -->
 	</div><!-- .full-content -->
 </div><!-- #wrap -->
-<? load::view('admin/templates/template-footer');?>
+<? load::view('admin/templates/template-footer', array( 'assets' => array( '' ) ) ); ?>

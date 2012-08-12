@@ -1,4 +1,4 @@
-<? load::view('admin/templates/template-header', array('title' => 'Manage Pages', 'assets' => 'application'));?>
+<? load::view('admin/templates/template-header', array('title' => 'Manage Pages', 'assets' => array('application')));?>
 <? load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 	<div class="title">
@@ -100,4 +100,4 @@
 	</table>
 </div>
 <!-- #wrap -->
-<? load::view('admin/templates/template-footer');?>
+<? load::view('admin/templates/template-footer', array( 'assets' => array( '' ) ) ); ?>

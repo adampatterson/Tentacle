@@ -1,4 +1,4 @@
-<? load::view('admin/templates/template-header', array('title' => 'Add a new snippet', 'assets' => 'application'));?>
+<? load::view('admin/templates/template-header', array('title' => 'Add a new snippet', 'assets' => array('application')));?>
 <? load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 	<div class="has-right-sidebar">
@@ -48,4 +48,4 @@
 	</div><!-- .full-content -->
 </div>
 <!-- #wrap -->
-<? load::view('admin/templates/template-footer');?>
+<? load::view('admin/templates/template-footer', array( 'assets' => array( '' ) ) ); ?>

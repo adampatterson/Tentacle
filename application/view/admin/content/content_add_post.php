@@ -215,4 +215,4 @@
 	</form>
 </div>
 <!-- #wrap -->
-<? load::view('admin/templates/template-footer');?>
+<? load::view('admin/templates/template-footer', array( 'assets' => array( '' ) ) ); ?>

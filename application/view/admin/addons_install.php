@@ -1,4 +1,4 @@
-<? load::view('admin/templates/templates/template-header', array('title' => "Install New Addon's", 'assets' => 'application'));?>
+<? load::view('admin/templates/templates/template-header', array('title' => "Install New Addon's", 'assets' => array('application')));?>
 <? load::view('admin/templates/templates/template-sidebar');?>
 <div id="wrap">
 	<div class="full-content">

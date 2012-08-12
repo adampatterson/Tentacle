@@ -1,4 +1,4 @@
-<? load::view('admin/templates/template-header', array('title' => 'Privacy settings', 'assets' => 'application'));?>
+<? load::view('admin/templates/template-header', array('title' => 'Privacy settings', 'assets' => array('application')));?>
 <? load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 	<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Privacy settings</h1>

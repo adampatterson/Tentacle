@@ -1,4 +1,4 @@
-<?	load::view('admin/templates/template-header', array('title' => 'Add a new user', 'assets' => 'application'));?>
+<?	load::view('admin/templates/template-header', array('title' => 'Add a new user', 'assets' => array('application')));?>
 <?	load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 	<div class="full-content">
@@ -21,7 +21,7 @@
 								
 							</fieldset>
 							<div class="actions">
-								<input type="submit" value="Delete User" class="btn primary medium" />
+								<input type="submit" value="Delete User" class="btn btn-primary medium" />
 								<a href="<?=ADMIN;?>users_manage/" class="red">Cancel</a>
 							</div>
 						</form>
@@ -35,4 +35,4 @@
 	</div><!-- .full-content -->
 </div>
 <!-- #wrap -->
-<?load::view('admin/templates/template-footer');?>
+<?load::view('admin/templates/template-footer', array( 'assets'=> array('') ) );?>

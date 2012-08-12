@@ -4,6 +4,7 @@ class dev_controller {
 
 	public function index()
 	{
+	
 		//include TENTACLE_LIB.'chromephp/ChromePhp.php';
 		
 		//ChromePhp::log('hello world');
@@ -21,7 +22,7 @@ class dev_controller {
 		
 		if(class_exists('test_model'))
 		{
-		echo 'yup';
+			echo 'yup';
 		}
 		
 		load::helper('dbug');
@@ -311,6 +312,7 @@ class dev_controller {
 		
 	}
 	
+	
 	public function ga_token ()
 	{
 		load::helper ('google_analytics');
@@ -351,8 +353,8 @@ class dev_controller {
 		$setting = load::model( 'settings' );
 
 		$update_agree = $setting->update( 'tracking', $return_array['test'] );
-	
 	}
+	
 	
 	public function script_cache()
 	{

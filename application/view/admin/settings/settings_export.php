@@ -1,4 +1,4 @@
-<? load::view('admin/templates/template-header', array('title' => 'Export', 'assets' => 'application'));?>
+<? load::view('admin/templates/template-header', array('title' => 'Export', 'assets' => array('application')));?>
 <? load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 	<form action="<?= BASE_URL ?>action/udpate_settings_post/" method="post" class="form-stacked">
@@ -45,4 +45,4 @@
 		</div>
 	</form>
 </div><!-- #wrap -->
-<? load::view('admin/templates/template-footer');?>
+<? load::view('admin/templates/template-footer', array( 'assets' => array( '' ) ) ); ?>

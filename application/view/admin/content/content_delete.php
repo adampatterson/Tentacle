@@ -34,4 +34,4 @@
 		</div><!-- #post-body -->
 </div>
 <!-- #wrap -->
-<?load::view('admin/templates/template-footer');?>
+<?load::view('admin/templates/template-footer', 'assets' => array('') );?>

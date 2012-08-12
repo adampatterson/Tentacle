@@ -1,4 +1,4 @@
-<? load::view('admin/templates/template-header', array('title' => 'Manage media', 'assets' => 'application'));?>
+<? load::view('admin/templates/template-header', array('title' => 'Manage media', 'assets' => array('application')));?>
 <!-- Bootstrap CSS fixes for IE6 -->
 <!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
 <!-- Bootstrap Image Gallery styles -->
@@ -122,4 +122,4 @@
 		</div>
 	</div>
 </div>
-<? load::view('admin/templates/template-footer');?>
+<? load::view('admin/templates/template-footer', array( 'assets' => array( '' ) ) ); ?>

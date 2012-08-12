@@ -1,4 +1,4 @@
-<? load::view('admin/templates/template-header', array('title' => 'General settings', 'assets' => 'application'));?>
+<? load::view('admin/templates/template-header', array('title' => 'General settings', 'assets' => array('application')));?>
 <? load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 	<form action="<?= BASE_URL ?>action/udpate_settings_post/" method="post" class="form-stacked">
@@ -244,4 +244,4 @@
 	</form>
 </div>
 <!-- #wrap -->
-<? load::view('admin/templates/template-footer');?>
+<? load::view('admin/templates/template-footer', array( 'assets' => array( '' ) ) ); ?>

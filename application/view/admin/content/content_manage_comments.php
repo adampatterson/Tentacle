@@ -1,4 +1,4 @@
-<? load::view('admin/templates/template-header', array('title' => 'Manage comments', 'assets' => 'application'));?>
+<? load::view('admin/templates/template-header', array('title' => 'Manage comments', 'assets' => array('application')));?>
 <? load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 	<div id="post-body">
@@ -87,4 +87,4 @@
 	<!-- #post-body -->
 </div>
 <!-- #wrap -->
-<? load::view('admin/templates/template-footer');?>
+<? load::view('admin/templates/template-footer', array( 'assets' => array( '' ) ) ); ?>

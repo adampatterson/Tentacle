@@ -1,4 +1,4 @@
-<? load::view('admin/templates/template-modal-header', array('title' => 'Insert media' ));?>
+<? load::view('admin/templates/template-modal-header', array('title' => 'Insert media', 'assets'=> array('') ) );?>
 
 <script type="text/javascript">
 
@@ -398,4 +398,4 @@
 	</form>
 </div>
 */?>
-<? load::view('admin/templates/template-modal-footer');?>
+<? load::view('admin/templates/template-modal-footer', array( 'assets'=> array('') ) );?>

@@ -1,4 +1,4 @@
-<? load::view('admin/templates/template-header', array('title' => 'Manage users', 'assets' => 'application'));?>
+<? load::view('admin/templates/template-header', array('title' => 'Manage users', 'assets' => array('application')));?>
 <? load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 	<div class="title pad-right">
@@ -32,4 +32,4 @@
 	</div>
 </div>
 <!-- #wrap -->
-<? load::view('admin/templates/template-footer');?>
+<? load::view('admin/templates/template-footer', array( 'assets' => array( '' ) ) ); ?>
