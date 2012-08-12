@@ -20,7 +20,7 @@
 				<input type='password' id='password' name='password' placeholder='Password' />
 			</dd>
 			<dd>
-				<input type="submit" value="Sign in" class="btn btn-primary btn-large pull-right" />
+				<a href="<?= BASE_URL ?>admin/lost/" class="pull-left forgot secondary">Lost password</a><input type="submit" value="Sign in" class="btn btn-primary btn-large pull-right" />
 			</dd>
 		</dl>
 		<?php if($note = note::get('session')): ?>
