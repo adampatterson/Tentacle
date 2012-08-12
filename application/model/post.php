@@ -58,7 +58,7 @@ class post_model
 
 		$scaffold_data = $_POST;
 
-		$remove_keys = array( 'title', 'content', 'status', 'parent_page', 'page_template', 'page-or-post', 'history', 'tags'  );
+		$remove_keys = array( 'title', 'content', 'status', 'parent_page', 'page_template', 'page-or-post', 'history', 'tags', 'publish', 'year', 'month', 'day', 'hour', 'minute' );
 
 		foreach ( $remove_keys as $remove_key ):
 			unset( $scaffold_data[ $remove_key ] );
@@ -143,7 +143,7 @@ class post_model
 	
 		$scaffold_data = $_POST;
 
-		$remove_keys = array( 'title', 'content', 'status', 'parent_page', 'page_template', 'page-or-post', 'history', 'minute', 'hour', 'day', 'month', 'year', 'save', 'tags'  );
+		$remove_keys = array( 'title', 'content', 'status', 'parent_page', 'page_template', 'page-or-post', 'history', 'publish', 'minute', 'hour', 'day', 'month', 'year', 'save', 'tags'  );
 		
 		foreach ( $remove_keys as $remove_key ):
 			unset( $scaffold_data[ $remove_key ] );
