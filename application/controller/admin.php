@@ -403,7 +403,10 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		load::view ('admin/media/media_manage');
+		$media = load::model( 'media' );
+		$get_media = $media->get();
+		
+		load::view ('admin/media/media_manage', array( 'media'=> $get_media ) );
 	}
 
 	/**

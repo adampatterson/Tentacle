@@ -28,6 +28,17 @@
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	
+	<? if ( in_array('jupload', $assets ) ): ?>
+
+		<!-- Bootstrap CSS fixes for IE6 -->
+		<!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
+		<!-- Bootstrap Image Gallery styles -->
+		<link rel="stylesheet" href="http://blueimp.github.com/Bootstrap-Image-Gallery/css/bootstrap-image-gallery.min.css">
+		<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+		<link rel="stylesheet" href="<?= TENTACLE_CSS ?>/jquery.fileupload-ui.css">
+
+	<? endif; ?>
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
 <body id="modal-window" class="<?= route::controller().' '. route::method();?>" lang="en">

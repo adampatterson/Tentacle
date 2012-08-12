@@ -3,9 +3,10 @@ class media_model
 {
     public function add( $file )
     {
-		$file_meta = explode('.', $file );
+		$file_meta 		= explode('.', $file );
 		
-		$file_name = $file_meta[0];
+		$file_name 		= $file_meta[0];
+		$file_extension = $file_meta[1];
 
 		$slug			= sanitize($file_name);
 		$author 		= user::id();
@@ -16,6 +17,7 @@ class media_model
 		$row = $media->insert(array(
 			'uri'			=> IMAGE_URI.$file,
 			'slug'			=> $slug,
+			'name'			=> $file_name.'.'.$file_extension,
 			'title'			=> $file_name,
 			'date'			=> time(),
 			'alt'			=> $file_name,
