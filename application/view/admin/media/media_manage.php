@@ -136,8 +136,6 @@
 				<? foreach ( $media as $image ): ?>
 				<? $file_meta = explode('.', $image->name ); 
 
-				ChromePHP::log($file_meta);
-
 				IMAGE_DIR.$file_meta[0].'_sq'.'.'.$file_meta[1];
 
 				IMAGE_T;
@@ -187,21 +185,21 @@
 										<div class="control-group">
 											<label class="control-label" for="title">Title</label>
 											<div class="controls">
-												<input type="text" class="span5" id="title" name="title" value="<?=$image->title ?>">
+												<input type="text" class="span5 post" data-image-id="<?= $image->id ?>" id="title" name="title" value="<?=$image->title ?>">
 											</div>
 										</div>
 
 										<div class="control-group">
 											<label class="control-label" for="alt_text">Alternate Text</label>
 											<div class="controls">
-												<input type="text" class="span5" id="alt_text" name="alt_text" value="<?=$image->alt ?>" >
+												<input type="text" class="span5 post" data-image-id="<?= $image->id ?>" id="alt_text" name="alt_text" value="<?=$image->alt ?>" >
 											</div>
 										</div>
 
 										<div class="control-group">
 											<label class="control-label" for="caption">Caption</label>
 											<div class="controls">
-												<input type="text" class="span5" id="caption" name="caption" value="<?= $image->caption ?>">
+												<input type="text" class="span5 post" data-image-id="<?= $image->id ?>" id="caption" name="caption" value="<?= $image->caption ?>">
 											</div>
 										</div>
 
@@ -209,7 +207,7 @@
 											<label class="control-label" for="link_url">Link URL</label>
 											<div class="controls">
 												<div class="input-append">
-													<input type="text" class="span3" id="link_url" name="link_url" value="<?= $image->link ?>" ><button class="btn" type="button" id="none">None</button><button class="btn" type="button" id="file">File</button>
+													<input type="text" class="span3 post" data-image-id="<?= $image->id ?>" id="link_url" name="link_url" value="<?= $image->link ?>" ><button class="btn" type="button" id="none">None</button><button class="btn" type="button" id="file">File</button>
 									             </div>
 											</div>
 										</div>
@@ -219,7 +217,7 @@
 											<div class="controls">
 												<label class="radio">
 													<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="" />
-														Thumbnail ( <?= get_option('image_thumb_size_w').' x '.get_option('image_thumb_size_h'); ?> )
+													Thumbnail ( <?= get_option('image_thumb_size_w').' x '.get_option('image_thumb_size_h'); ?> )
 												</label>
 												<label class="radio">
 													<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" />
@@ -238,7 +236,7 @@
 									</div>
 									<div class="row">
 										<div class="actions">
-											<input type="submit" name="update" value="Update" id="update" class="btn btn-success">
+											<!--<input type="submit" name="update" value="Update" id="update" class="btn btn-success">-->
 											<button class="btn btn-danger">Delete</button>
 										</div>
 									</fieldset>
@@ -250,6 +248,49 @@
 				</div><!-- /#collapse<?=$image->id ?> -->
 				<? endforeach; ?>	
 			</div>
+			
+			
+			<script type="text/javascript" charset="utf-8">
+
+				$(document).ready(function(){
+					$('.post').focusout(update_media);
+				});
+
+				function update_media() {	
+					
+					var input_name = $(this).attr("name");
+					var image_id = $(this).data('image-id');
+					var input_value = $(this).val();
+					
+					var jsonObject = [{id:image_id, name:input_name, input_value:input_value}];
+					
+					jQuery.ajax({
+						type: "POST",
+						url: "<?= BASE_URL ?>ajax/update_media",
+						/*data: input_name+'='+ input_value,*/
+						data: {students: JSON.stringify(jsonObject) },
+						dataType: "json",
+						cache: false,
+						success: function(response){
+							if(response == '1')
+							{
+								$('#username').css('border', '1px #C33 solid');	
+								$('.user_tick').hide();
+								$('.user_cross').fadeIn();
+								$("#save").attr("disabled", "disabled");
+							}
+							else
+							{
+								$('#username').css('border', '1px #090 solid');
+								$('.user_cross').hide();
+								$('.user_tick').fadeIn();
+								$("#save").removeAttr("disabled");
+							}
+						}
+					});
+				}
+			</script>
+			
 		</div>
 	</div>
 </div>
