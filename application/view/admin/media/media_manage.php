@@ -162,7 +162,7 @@
 								<div class="span3">
 									<img src="<?= IMAGE_URL.$file_meta[0].'_sq'.'.'.$file_meta[1]; ?>" class="thumbnail"/>
 								</div>
-								<div class="span4">
+								<div class="span4 well">
 									<dl class="dl-horizontal">
 										<dt>File name:</dt>
 										<dd><?=$image->name ?></dd>
