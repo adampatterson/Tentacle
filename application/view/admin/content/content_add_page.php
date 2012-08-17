@@ -103,12 +103,14 @@
 								if ( session::get( 'template' ) != 'index' && session::get( 'template' ) != ''   ) {
 									
 									@include(THEMES_DIR.'/'.get_option('appearance').'/'.session::get('template').'.php');
-
+										
 									if ( isset( $scaffold_data ) ) {
 									
-										$scaffold = new Scaffold ();
+										$data = YAML::load( $scaffold_data );
+										
+										$scaffold = new Scaffold();
 
-										$scaffold->processThis( $scaffold_data );
+										$scaffold->processThis( $data );
 									}
 								}
 								?>

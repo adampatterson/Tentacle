@@ -126,8 +126,12 @@
 										include($template);
 										
 										if ( isset( $scaffold_data ) ) {
-											$scaffold = new Scaffold ();
-											$scaffold->populateThis( $scaffold_data, $get_page_meta );
+
+											$data = YAML::load( $scaffold_data );
+
+											$scaffold = new Scaffold();
+
+											$scaffold->populateThis( $data, $get_page_meta );
 										}
 										
 									} else { ?>

@@ -49,7 +49,7 @@ class  Scaffold
 												<label for="scaffold'.$input_name.'">'.$input['name'].'</label>
 												<div class="input">
 													<input type="text" class="xlarge" name="'.$input_name.'" />
-													<!--<span class="help-block">'.$input['notes'].'</span>-->
+													<span class="help-block">'.$input['notes'].'</span>
 												</div>
 											</div>';
 						break;

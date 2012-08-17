@@ -49,6 +49,44 @@ class dev_controller {
 	}
 
 	
+public function	yaml_test () {
+$yaml = '
+display: admin
+paged: paged
+posts_per_page: 2
+name:
+  name: Name
+  input: input
+  type: text
+  notes: This is a note
+password:
+  name: Password
+  input: input
+  type: password
+  notes: This is another
+country:
+  name: Country
+  input: option
+  notes: Option notes.
+  options:
+    - Canada
+    - USA
+    - UK
+message:
+  name: Message
+  input: multiline
+  type: text
+  notes: Yes, more notes.
+button:
+  button_name: Button Name
+  type: button
+  input: input';
+		
+		$info = YAML::load( $yaml );
+		
+		var_dump($info);
+	}
+	
 	public function demo_clean()
 	{
 		$config = config::get('db');
