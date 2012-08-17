@@ -23,6 +23,6 @@ if( !defined( 'SCAFFOLD' ) ):?>
 	</div><!--/span12-->
 </div><!--/row-->
 
-<? theme::part('partials/footer'); ?> 
+<? theme::part('partials/footer-code'); ?> 
 
 <? endif; ?>
