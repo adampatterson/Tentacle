@@ -99,7 +99,7 @@ define('IMAGE_URI'	   , 'tentacle/storage/images/');
 *
 * @global string $tentacle_version
 */
-define('TENTACLE_VERSION', 'v0.7');
+define('TENTACLE_VERSION', 'v0.7.1');
  
  
 /**
