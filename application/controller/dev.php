@@ -398,8 +398,8 @@ button:
 	{
 		load::helper('cache');
 
-		//cache::css();
-		cache::script();
+		cache::css();
+		//cache::script();
 		
 	}
 
@@ -1083,14 +1083,14 @@ button:
 		?><h2>Side By Side</h2> <?
 		
 		// Generate a side by side diff
-		tentacle::file(TENTACLE_LIB.'/diff/Diff/Renderer/Html','SideBySide');
+		load::file(TENTACLE_LIB.'/diff/Diff/Renderer/Html','SideBySide');
 		$renderer = new Diff_Renderer_Html_SideBySide;
 		echo $diff->Render($renderer);
 		
 		?><h2>Inline</h2> <?
 
 		// Generate an inline diff
-		tentacle::file(TENTACLE_LIB.'/diff/Diff/Renderer/Html','Inline');
+		load::file(TENTACLE_LIB.'/diff/Diff/Renderer/Html','Inline');
 		$renderer = new Diff_Renderer_Html_Inline;
 		echo $diff->render($renderer);
 		
