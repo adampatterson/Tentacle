@@ -960,10 +960,6 @@ button:
 	public function define_test ($admin_var ="")
 	{
 		//echo dirname($_SERVER['PHP_SELF']). '<br />';
-	
-		echo IMAGE_URI. '<br />';
-		
-	
 		echo '<strong>DS:</strong> ' .DS . '<br />';
 		
 		echo "<strong>realpath(''):</strong>" .realpath('') . '<br />';
@@ -972,8 +968,11 @@ button:
 		echo '<strong>APP_PATH:</strong> ' . APP_PATH . '<br />';
 		echo '<strong>STORAGE_DIR:</strong> ' . STORAGE_DIR . '<br />';
 		echo '<strong>THEMES_DIR:</strong> ' . THEMES_DIR . '<br />';
+		echo '<strong>THEMES_URL:</strong> ' . THEMES_URL . '<br />';
 		echo '<strong>ADMIN_DIR:</strong> ' . ADMIN_DIR . '<br />';
 		echo '<strong>IMAGE_DIR:</strong> ' . IMAGE_DIR . '<br />';
+		echo '<strong>IMAGE_URL:</strong> ' . IMAGE_URL . '<br />';
+		echo '<strong>IMAGE_URI:</strong> ' . IMAGE_URI . '<br /><br />';
 
 		echo '<strong>CONFIG:</strong> ' . CONFIG . '<br />';
 
@@ -1683,11 +1682,6 @@ button:
         }
 	}
 	
-	public function wordpress_import()
-	{	
-		load::helper('import');
-	}// END Function
-
 	public function chyrp_import()
 	{	
 		load::helper('import');
@@ -1706,6 +1700,13 @@ button:
 	public function movabletype_import()
 	{	
 		load::helper('import');
+	}// END Function
+	
+	public function wordpress_import()
+	{	
+		load::helper('import');
+		
+		$wordpress_file = '';
 	}// END Function
 	
 	public function module()
