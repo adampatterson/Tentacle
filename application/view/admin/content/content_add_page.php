@@ -90,6 +90,31 @@
                                 	
 								<a class="fancybox fancybox.iframe" id="insert-media" href="<?= BASE_URL ?>admin/media_insert" title="Insert Media" data-width="680" data-height="725">[ Insert Media ]</a>
 							
+							<? elseif (user_editor() == 'redactor'): ?>
+							
+								<link rel="stylesheet" href="<?= TENTACLE_JS ?>redactor/css/redactor.css" />
+								<script src="<?= TENTACLE_JS ?>redactor/redactor.js"></script>
+
+								<script type="text/javascript">
+								$(document).ready(
+									
+									function()
+									{
+										$('#redactor_content').redactor({
+											imageUpload: base_url + 'action/editor_image_upload/',
+											fileUpload: base_url + 'action/editor_file_upload/',
+											imageGetJson: base_url + 'action/editor_json/',
+											//autosave: 'scripts/save.php', 
+											//interval: 30,
+											//fixed: true 						
+										});
+									}
+									
+								);					
+								</script>
+								
+								<p><textarea id="redactor_content" name="content" cols="40" rows="20" placeholder='Content'></textarea></p>
+								
 							<? else: ?>
 
 								<p><textarea id="code" name="content" cols="40" rows="5" placeholder='Content'></textarea></p>

@@ -749,6 +749,67 @@ class action_controller {
 		
 	}
 	
+	public function editor_file_upload()
+	{
+		$dir = STORAGE_DIR.'images/'; // Relative to the root
+		
+		copy($_FILES['file']['tmp_name'], $dir.$_FILES['file']['name']);
+
+		$array = array(
+			'filelink' => '/files/'.$_FILES['file']['name'],
+			'filename' => $_FILES['file']['name']
+		);
+
+		echo stripslashes(json_encode($array));
+	}
+	
+	public function editor_image_upload()
+	{
+		$_FILES['file']['type'] = strtolower($_FILES['file']['type']);
+
+		if ($_FILES['file']['type'] == 'image/png' 
+		|| $_FILES['file']['type'] == 'image/jpg' 
+		|| $_FILES['file']['type'] == 'image/gif' 
+		|| $_FILES['file']['type'] == 'image/jpeg'
+		|| $_FILES['file']['type'] == 'image/pjpeg')
+		{	
+		    // setting file's mysterious name
+		    $file = md5(date('YmdHis')).'.jpg';
+
+		    // copying
+		    copy($_FILES['file']['tmp_name'], IMAGE_DIR.$file);
+
+		    // displaying file    
+			$array = array(
+				'filelink' => IMAGE_URL.$file
+			);
+
+			echo stripslashes(json_encode($array));   
+		}
+	}
+	
+	public function editor_save()
+	{
+		echo 'saved';
+	}
+	
+	public function editor_json()
+	{ ?>
+		[
+			{ "thumb": "json/images/1_m.jpg", "image": "json/images/1.jpg", "title": "Image 1", "folder": "Folder 1" },
+			{ "thumb": "json/images/2_m.jpg", "image": "json/images/2.jpg", "title": "Image 2", "folder": "Folder 1" },
+			{ "thumb": "json/images/3_m.jpg", "image": "json/images/3.jpg", "title": "Image 3", "folder": "Folder 1" },
+			{ "thumb": "json/images/4_m.jpg", "image": "json/images/4.jpg", "title": "Image 4", "folder": "Folder 1" },
+			{ "thumb": "json/images/5_m.jpg", "image": "json/images/5.jpg", "title": "Image 5", "folder": "Folder 1" },
+			{ "thumb": "json/images/1_m.jpg", "image": "json/images/1.jpg", "title": "Image 6", "folder": "Folder 1" },
+			{ "thumb": "json/images/2_m.jpg", "image": "json/images/2.jpg", "title": "Image 7", "folder": "Folder 1" },
+			{ "thumb": "json/images/3_m.jpg", "image": "json/images/3.jpg", "title": "Image 8", "folder": "Folder 1" },
+			{ "thumb": "json/images/4_m.jpg", "image": "json/images/4.jpg", "title": "Image 9", "folder": "Folder 1" },
+			{ "thumb": "json/images/5_m.jpg", "image": "json/images/5.jpg", "title": "Image 10", "folder": "Folder 2" },
+			{ "thumb": "json/images/1_m.jpg", "image": "json/images/1.jpg", "title": "Image 11", "folder": "Folder 2" },
+			{ "thumb": "json/images/2_m.jpg", "image": "json/images/2.jpg", "title": "Image 12", "folder": "Folder 2" }	
+		]
+<?	}
 	
 	/**
 	 * 
