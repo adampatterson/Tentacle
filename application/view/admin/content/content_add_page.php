@@ -112,8 +112,8 @@
 									
 								);					
 								</script>
-								
-								<p><textarea id="redactor_content" name="content" cols="40" rows="20" placeholder='Content'></textarea></p>
+								<br /><br />
+								<textarea id="redactor_content" name="content" cols="40" rows="20" placeholder='Content'></textarea>
 								
 							<? else: ?>
 
