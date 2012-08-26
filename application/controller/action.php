@@ -751,12 +751,10 @@ class action_controller {
 	
 	public function editor_file_upload()
 	{
-		$dir = STORAGE_DIR.'images/'; // Relative to the root
-		
-		copy($_FILES['file']['tmp_name'], $dir.$_FILES['file']['name']);
+		copy($_FILES['file']['tmp_name'], STORAGE_DIR.'/files/'.$_FILES['file']['name']);
 
 		$array = array(
-			'filelink' => '/files/'.$_FILES['file']['name'],
+			'filelink' => STORAGE_URL.'/files/'.$_FILES['file']['name'],
 			'filename' => $_FILES['file']['name']
 		);
 
@@ -777,11 +775,11 @@ class action_controller {
 		    $file = md5(date('YmdHis')).'.jpg';
 
 		    // copying
-		    copy($_FILES['file']['tmp_name'], IMAGE_DIR.$file);
+		    copy($_FILES['file']['tmp_name'], STORAGE_DIR.'/images/'.$file);
 
 		    // displaying file    
 			$array = array(
-				'filelink' => IMAGE_URL.$file
+				'filelink' => STORAGE_URL.'/images/'.$file
 			);
 
 			echo stripslashes(json_encode($array));   

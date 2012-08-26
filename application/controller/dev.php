@@ -967,6 +967,7 @@ button:
 		echo '<strong>CORE_ROOT:</strong> ' . CORE_ROOT . '<br />';
 		echo '<strong>APP_PATH:</strong> ' . APP_PATH . '<br />';
 		echo '<strong>STORAGE_DIR:</strong> ' . STORAGE_DIR . '<br />';
+		echo '<strong>STORAGE_URL:</strong> ' . STORAGE_URL . '<br />';
 		echo '<strong>THEMES_DIR:</strong> ' . THEMES_DIR . '<br />';
 		echo '<strong>THEMES_URL:</strong> ' . THEMES_URL . '<br />';
 		echo '<strong>ADMIN_DIR:</strong> ' . ADMIN_DIR . '<br />';
