@@ -29,7 +29,7 @@
 	<script type="text/javascript" src="<?= TENTACLE_JS; ?>jquery.notice.js"></script>
 	<script type="text/javascript" src="<?= TENTACLE_JS; ?>jquery.inputtags.js"></script>
 
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap.2.0.4.min.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap.2.1.min.js"></script>
 	
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

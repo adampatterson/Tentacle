@@ -148,7 +148,6 @@ table.manage_content td:last-child {
   clear: both;
 }
 #wrap ul.nav-tabs {
-  list-style: none;
   margin: 20px 0 0 0;
   padding: 0;
   list-style: none;
@@ -494,7 +493,6 @@ div.tagsinput {
   width: 300px;
   height: 100px;
   overflow-y: auto;
-  border-radius: 3px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
