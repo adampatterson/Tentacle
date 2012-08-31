@@ -9,8 +9,6 @@ License: GNU General Public License
 License URI: license.txt
 */
 
-$scaffold_data = array();
-
 // If SCAFFOLD is not set then display the theme content.
 if( !defined( 'SCAFFOLD' ) ):?>
 <? theme::part('partials/header',array('title'=>$post->title, 'assets'=>'docs', 'prettify'=>true)); ?>
