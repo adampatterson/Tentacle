@@ -152,7 +152,7 @@ class tentacle
 		
 		if ($v->version > TENTACLE_VERSION)
 		{
-	        _e('<p class="well"><span class="label important">Important</span> There is a newer version of Tentacle, Visit <a href="'.$v->download.'">'.$v->download.'</a> to download <strong>Version '. $v->version.'</strong></p>');
+	        _e('<p class="well"><span class="label label-important">Important</span> There is a newer version of Tentacle, Visit <a href="'.$v->download.'">'.$v->download.'</a> to download <strong>Version '. $v->version.'</strong></p>');
 				return true;
 			}
 	}
