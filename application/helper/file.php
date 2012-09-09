@@ -68,6 +68,16 @@ function recursive_glob($pattern='*', $flags = 0, $path='')
 }
 
 
+/**
+* Function: string_to_parts
+*	Takes a file path and returns a mix of pieces.
+*
+* Parameters:
+*	$file - String
+*
+* Returns:
+*	$file_clean - Array
+*/
 function string_to_parts($file) {
 
 	$file_parts = explode('/', $file);
@@ -94,6 +104,16 @@ function string_to_parts($file) {
 }
 
 
+/**
+* Function: array_clean
+*	Deletes empty Keys
+*
+* Parameters:
+*	$source - Array
+*
+* Returns:
+*	$source - Array
+*/
 function array_clean($source)
 {
     foreach ($source as $key => $val) {
@@ -101,9 +121,9 @@ function array_clean($source)
             unset($source[$key]);
         }
     }
+
     return $source;
 }
-
 
 /**
  * Get the size of a directory.
