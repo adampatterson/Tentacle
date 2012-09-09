@@ -134,3 +134,6 @@
 		return $url;
 	}
 	
+	function get_next_post () {}
+	function get_previous_post () {}
+	function get_post_status () {}
