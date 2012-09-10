@@ -37,6 +37,22 @@
 	
 	
 	/**
+	* Function: is_updates
+	*	Are there any updates?
+	*
+	* Returns:
+	*	Bool
+	*/
+	function is_updates() {
+		if ( get_option( 'is_updates' ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	
+	/**
 	* Function: is_mobile
 	*	Is the page being viewed with a mobile device?
 	*
@@ -75,7 +91,6 @@
 	function is_sticky () {}
 	function is_admin () {}
 	function is_archive () {}
-	function is_attachment () {}
 	function is_post_type_archive () {}
 	function is_author () {}
 	function is_user_logged_in () {}
