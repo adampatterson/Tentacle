@@ -1,8 +1,19 @@
-<? load::view('admin/templates/template-header',array('title'=>'System Details','assets'=>'application')); ?>
+<? load::view('admin/templates/template-header', array('title' => 'Upgraded', 'assets' => array('application')));?>
 <? load::view('admin/templates/template-sidebar'); ?>
 <div id="wrap">
 	<div class="full-content">
 	    <div class="one-full">
+			<?php if( $note = note::get('upgrade_message')): ?>
+				<script type="text/javascript">
+					$(document).ready(function() {
+						jQuery.noticeAdd({
+							text : '<?= $note['content'];?>',
+							stay : false,
+							type : '<?= $note['type']; ?>'
+						});
+					});
+				</script>
+			<?php endif; ?>
 	     	<h1 class='title'><img src="<?=ADMIN_URL; ?>images/icons/icon_pages_32.png" alt="" /> Welcome to Tentacle <?= TENTACLE_VERSION; ?></h1>
 			<p>Thank you for updating to the latest version!</p>
 			
@@ -46,4 +57,4 @@
 	</div><!-- .full-content -->
 </div>
 <!-- #wrap -->
-<? load::view('admin/templates/template-footer'); ?>
+<? load::view('admin/templates/template-footer', array( 'assets' => array( '' ) ) ); ?>
