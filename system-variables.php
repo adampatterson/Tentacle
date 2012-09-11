@@ -90,6 +90,10 @@ define('IMAGE_URI'	   , 'tentacle/storage/images/');
 
 # See application/helper/tentacle.php for other constants set using functionality not loaded yet.
 
+/*
+ *  Serpent Timeout
+ */
+define( 'CHECK_TIMEOUT', 5 );
 
 /*
  *  Component Versions
@@ -100,7 +104,7 @@ define('IMAGE_URI'	   , 'tentacle/storage/images/');
 *
 * @global string $tentacle_version
 */
-define('TENTACLE_VERSION', 'v0.7.1');
+define('TENTACLE_VERSION', 'v0.7');
  
  
 /**
