@@ -153,84 +153,28 @@ class action_controller {
 	/**
 	* Upgrade Tentacle
 	* ----------------------------------------------------------------------------------------------*/
-	public function upgrade()
+	public function do_core_upgrade()
 	{
-		// Path from Serpent API
-		$client = curl_init('http://nodeload.github.com/adampatterson/Tentacle/zipball/beta-wip');
+		$serpent = load::model( 'serpent' );
 
-		curl_setopt($client, CURLOPT_RETURNTRANSFER, 1);
-
-		$filedata = curl_exec($client);
-
-		file_put_contents(APP_PATH.'temp/update.zip', $filedata);
-
-		if (file_exists(APP_PATH.'temp/update.zip')) {
-			echo '<p>File downloaded!</p>';
-		}
-
-		$zip = new ZipArchive;
-
-		if ($zip->open(APP_PATH.'temp/update.zip') === TRUE) {
-		    $zip->extractTo(APP_PATH.'temp/');
-		    $zip->close();
-
-				$archive_folder = '';
-
-				chdir(APP_PATH.'temp');
-				$update = recursive_glob('*.*');
-				$update_parts = string_to_parts($update[1]);
-				$update_path = $update_parts['path'];
-
-				chdir(APP_PATH.'temp/'.$update_path);
-				$update_files = recursive_glob('*.*');
-
-
-				echo '<ul class="list">';
-
-				foreach ($update_files as $file) {
-					$parts = string_to_parts($file);
-
-					$update_file_path = APP_PATH.'temp/'.$update_path;
-					$site_folder_path = APP_PATH.'site/'.$parts['path'];
-					$site_file_path = APP_PATH.'site/'.$parts['full'];
-
-					if (!is_dir($site_folder_path)) {
-						echo "<li><strong>Creating folder:</strong> ".$parts['path'].'</li>';
-
-						if (!mkdir($site_folder_path, 0755, true)) {
-						    die('Failed to create folders...');
-						}
-					}
-
-					if (file_exists($site_file_path)) {
-						echo "<li><strong>Updated:</strong> ".$parts['full']."</li>";
-					} else {
-						echo "<li><strong>Added:</strong> ".$parts['full']."</li>";
-					}
-
-					$file = file_get_contents( $update_file_path.$parts['full'] );
-
-					$fp = fopen( $site_file_path, 'w' );
-
-					fwrite($fp, $file);
-					fclose($fp);
-				}
-
-				echo '</ul>';
-
-				# Clean up!
-				delete_dir($update_path);
-				delete_dir(APP_PATH.'update');
-				delete_dir(APP_PATH.'__MACOSX');
-				unlink(APP_PATH.'update.zip');
-
-				echo '<p>Tentacle CMS was updated successfully!</p>';
-
+		$core_update = $serpent->get_core();
+		
+		// Make sure some one did not rewquest this URL directly.
+		if ( is_update( TENTACLE_VERSION, $core_update->version ) )
+		{
+			// Download and update Core Files.
+			//tentacle_upgrade_core( upgrade::make_nodeload($core_update->download) );
+			
+			// Migrate forward on the Database.
+			//tentacle_upgrade();
+			
+			note::set('success','upgrade_message','Tentacle has been successfully upgraded.');
 		} else {
-		    echo 'Something Went Wrong!';
+			note::set('success','upgrade_message','There was nothing to upgrade.');
 		}
+		
+		url::redirect( 'admin/updated' );
 	}
-
 
 
 	/**

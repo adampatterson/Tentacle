@@ -2,24 +2,25 @@
 class admin_controller {
 	
 	/**
-	* Upgrade Database / License Agree
-	* ----------------------------------------------------------------------------------------------*/	
-	public function upgrade ()
-	{	
-		load::helper ('upgrade');
-		
-		tentacle_upgrade();
-		
-		url::redirect('admin/upgraded');
+	* Manage Updates
+	* ----------------------------------------------------------------------------------------------*/
+	public function updates()
+	{
+		load::view ('admin/updates');	
 	}
 	
-	public function upgraded ()
+	
+	public function updated ()
 	{	
 		tentacle::valid_user();
 
 		load::view ('admin/upgraded');
 	}
 	
+	
+	/**
+	* License Agree
+	* ----------------------------------------------------------------------------------------------*/
 	public function agree ()
 	{
 		tentacle::valid_user();
@@ -521,10 +522,26 @@ class admin_controller {
 		$theme = load::helper ('theme');
 		
 		$options = load::model( 'settings' );
-		
 		$get = $options->get( 'appearance' );
 		
+		$serpent = load::model( 'serpent' );
+		$themes = $serpent->get_theme( );
+		
 		load::view ('admin/settings/settings_appearance', array('theme'=>$theme ));
+	}
+	
+	
+	/**
+	* Module Settings
+	* ----------------------------------------------------------------------------------------------*/
+	public function settings_modules ()
+	{
+		tentacle::valid_user();
+	
+		$serpent = load::model( 'serpent' );
+		$modules = $serpent->get_module( );
+	
+		load::view ('admin/settings/settings_modules', array( 'modules'=>$modules ) );
 	}
 
 	/**
@@ -569,34 +586,6 @@ class admin_controller {
 
 		load::view ('admin/settings/settings_general', array( 'categories'=>$categories ) );
 	}
-
-    /**
-     * Module settings
-     * ----------------------------------------------------------------------------------------------*/
-    public function settings_module ($page=null)
-    {
-        tentacle::valid_user();
-
-        if ( $page === null ) {
-            echo 'standard page';
-        } else {
-            ?>
-			<!DOCTYPE html>
-			<html lang="en"> 
-			<head>
-			<meta charset="utf-8"> 
-			<title>Barnacle Settings</title>
-				<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-				<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
-			</head>
-			<body>
-				<h1>Barnacle Settings</h1>
-				<p>Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad.</p>
-			</body>
-			</html>
-			<?
-        }
-    }
 
 	/**
 	* SEO Settings
@@ -670,6 +659,7 @@ class admin_controller {
 	
 		load::view ('admin/settings/settings_writing', array( 'categories'=>$categories ) );
 	}
+
 
 	/**
 	 * 
