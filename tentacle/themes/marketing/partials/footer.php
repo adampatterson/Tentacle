@@ -28,5 +28,18 @@
 	<script src="<?= PATH ?>/assets/js/application.js"></script>
 
 	<a href="https://github.com/adampatterson/Tentacle/tree/beta-wip" class="visible-desktop"><img style="position: absolute; top: 60px; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
+	
+	<!-- Piwik --> 
+	<script type="text/javascript">
+	var pkBaseURL = (("https:" == document.location.protocol) ? "https://hq.adampatterson.ca/analytics/" : "http://hq.adampatterson.ca/analytics/");
+	document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+	</script><script type="text/javascript">
+	try {
+	var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+	piwikTracker.trackPageView();
+	piwikTracker.enableLinkTracking();
+	} catch( err ) {}
+	</script><noscript><p><img src="http://hq.adampatterson.ca/analytics/piwik.php?idsite=2" style="border:0" alt="" /></p></noscript>
+	<!-- End Piwik Tracking Code -->
 </body>
 </html>
