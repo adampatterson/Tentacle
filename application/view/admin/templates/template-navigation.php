@@ -11,8 +11,7 @@
 		
       <div class="nav-collapse">
 		<ul class="nav">
-			<li class="<? if (
-		    CURRENT_PAGE == 'admin/dashboard') echo 'active'; ?>"><a href="<?= ADMIN ?>">Dashboard</a></li>
+			<li class="<? if (CURRENT_PAGE == 'admin/dashboard') echo 'active'; ?>"><a href="<?= ADMIN ?>">Dashboard</a></li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Content <b class="caret"></b></a>
 			  <ul class="dropdown-menu">
 				<li class="<? current_page('admin/content_add_page'); ?>"><a href="<?= ADMIN ?>content_add_page/">Write a new page</a></li>
@@ -58,7 +57,11 @@
 			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
 			  <ul class="dropdown-menu">
 				<li><a class="<? current_page('admin/settings_appearance'); ?>" href="<?= ADMIN ?>settings_appearance/">Appearance</a></li>
+				<li class="divider"></li>
+				<li><a class="<? current_page('admin/settings_modules'); ?>" href="<?= ADMIN ?>settings_modules/">Modules</a></li>
+				<li class="divider"></li>
 				<li class="<? current_page('admin/settings_general'); ?>"><a href="<?= ADMIN ?>settings_general/">General</a></li>
+				<li class="<? current_page('admin/updates'); ?>"><a href="<?= ADMIN ?>updates/">Updates</a></li>
 				<?
 	/*
 				<li class="<? current_page('admin/settings_seo'); ?>"><a href="<?= ADMIN ?>settings_seo/">SEO</a></li>
@@ -101,14 +104,13 @@
 		    CURRENT_PAGE == 'admin/about_system_details') echo 'active'; ?>"><a href="<?= ADMIN ?>about_system_details/">About</a> </li>
 		  </ul>
 		<ul class="nav pull-right">
-			<li class="dropdown" data-toggle="dropdown" >
-				<a href="#" class="dropdown-toggle">Help <b class="caret"></b></a>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-heart"></i> Help <b class="caret"></b></a>
 				<ul class="dropdown-menu">
 					<li><a href="https://github.com/adampatterson/Tentacle/wiki" target="_blank">Knowledge Base</a></li>
 					<li><a href="https://github.com/adampatterson/Tentacle/wiki/Reporting-a-bug" target="_blank">Submit an Issue</a></li>
 				</ul>
 			</li>
-			<li> <a href="<?= ADMIN ?>logout/"><i class="icon-off icon-white"></i></a></li>
+			<li> <a href="<?= ADMIN ?>logout/"><i class="icon-off"></i></a></li>
 		</ul>
 		<p class="pull-right welcome">Welcome <a href="<?= ADMIN ?>users_profile/"><?= user_name(); ?></a></p>
       </div><!--/.nav-collapse -->
