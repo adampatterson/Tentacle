@@ -11,14 +11,14 @@
 <? if(user_editor() == 'wysiwyg'): ?>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>tiny_mce/jquery.tinymce.js"></script>
 <? else: ?>
-	<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror-2.22/lib/codemirror.css">
-	<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/lib/codemirror.js"></script>
-	<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/xml/xml.js"></script>
-	<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/css/css.js"></script>
-	<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/javascript/javascript.js"></script>
-	<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/clike/clike.js"></script>
-	<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/php/php.js"></script>
-	<script src="<?=TENTACLE_JS; ?>CodeMirror-2.22/mode/htmlmixed/htmlmixed.js"></script>
+	<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror/lib/codemirror.css">
+	<script src="<?=TENTACLE_JS; ?>CodeMirror/lib/codemirror.js"></script>
+	<script src="<?=TENTACLE_JS; ?>CodeMirror/mode/xml/xml.js"></script>
+	<script src="<?=TENTACLE_JS; ?>CodeMirror/mode/css/css.js"></script>
+	<script src="<?=TENTACLE_JS; ?>CodeMirror/mode/javascript/javascript.js"></script>
+	<script src="<?=TENTACLE_JS; ?>CodeMirror/mode/clike/clike.js"></script>
+	<script src="<?=TENTACLE_JS; ?>CodeMirror/mode/php/php.js"></script>
+	<script src="<?=TENTACLE_JS; ?>CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
 	
 	<script>
 		var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
