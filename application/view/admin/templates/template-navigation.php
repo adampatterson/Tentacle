@@ -19,8 +19,9 @@
 				<li class="divider"></li>
 		        <li class="<? current_page('admin/content_add_post'); ?>"><a href="<?= ADMIN ?>content_add_post/">Write a new post</a></li>
 		        <li class="<? current_page('admin/content_manage_posts'); ?>"><a href="<?= ADMIN ?>content_manage_posts/">Manage posts</a></li>
-
-
+				<li class="divider"></li>
+				<li class="<? current_page('admin/snippets_add'); ?>"><a href="<?= ADMIN ?>snippets_add/">Add a new snippet</a></li>
+				<li class="<? current_page('admin/snippets_manage'); ?>"><a href="<?= ADMIN ?>snippets_manage/">Manage snippets</a></li>
 				<li class="divider"></li>
 	<?
 				/*	        
@@ -40,12 +41,6 @@
 	?>
 			  </ul>
 			</li>
-			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Snippets <b class="caret"></b></a>
-			  <ul class="dropdown-menu">
-				<li class="<? current_page('admin/snippets_add'); ?>"><a href="<?= ADMIN ?>snippets_add/">Add a new snippet</a></li>
-				<li class="<? current_page('admin/snippets_manage'); ?>"><a href="<?= ADMIN ?>snippets_manage/">Manage snippets</a></li>
-			  </ul>
-			</li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
 			  <ul class="dropdown-menu">
 				<li class="<? current_page('admin/users_manage'); ?>"><a href="<?= ADMIN ?>users_manage/">Manage users</a></li>
@@ -56,10 +51,6 @@
 			<!--<li class="<? if ( CURRENT_PAGE == 'admin/addons_install' ) echo 'active'; ?> menu"><a href="<?= ADMIN ?>addons_install/" class="">Addon's</a></li>-->
 			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
 			  <ul class="dropdown-menu">
-				<li><a class="<? current_page('admin/settings_appearance'); ?>" href="<?= ADMIN ?>settings_appearance/">Appearance</a></li>
-				<li class="divider"></li>
-				<li><a class="<? current_page('admin/settings_modules'); ?>" href="<?= ADMIN ?>settings_modules/">Modules</a></li>
-				<li class="divider"></li>
 				<li class="<? current_page('admin/settings_general'); ?>"><a href="<?= ADMIN ?>settings_general/">General</a></li>
 				<li class="<? current_page('admin/updates'); ?>"><a href="<?= ADMIN ?>updates/">Updates</a></li>
 				<?
@@ -77,29 +68,43 @@
 				?>
 			  </ul>
 			</li>
-	         <?
-			$trigger= Trigger::current();
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Modules <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				<li><a class="<? current_page('admin/settings_modules'); ?>" href="<?= ADMIN ?>settings_modules/">Manage Modules</a></li>
+				<li><a href="#">Add a new Module</a></li>
+				<li class="divider"></li>
+				<?
+				$trigger= Trigger::current();
 
-			$subnav["settings"] = $trigger->filter($subnav["settings"], "settings_nav");
+				$subnav["settings"] = $trigger->filter($subnav["settings"], "settings_nav");
 
-			if($subnav["settings"] != null) {
+				if($subnav["settings"] != null) {
 
-				foreach ($subnav["settings"] as $key => $value) {
-		 			$subnav["settings"][$key] = array('title' => $value['title'], 'rout' => $key);
-				}
+					foreach ($subnav["settings"] as $key => $value) {
+			 			$subnav["settings"][$key] = array('title' => $value['title'], 'rout' => $key);
+					}
 
-				if (isset($subnav["settings"])) { ?>
-				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Module Settings  <b class="caret"></b></a>
-		            <ul class="dropdown-menu">
-		               <?
-						foreach ( $subnav["settings"] as $sub_page ) {
-							echo '<li><a href="settings_module/'.$sub_page['rout'].'">'.$sub_page['title'].'</a></li>';
-						}
-						?>
-		            </ul>
-		        </li>
-				<? }
-			}  ?>
+					if (isset($subnav["settings"])) { ?>
+			
+			               <?
+							foreach ( $subnav["settings"] as $sub_page ) {
+								echo '<li><a href="settings_module/'.$sub_page['rout'].'">'.$sub_page['title'].'</a></li>';
+							}
+							?>
+			     
+					<? }
+				}  ?>
+				
+				</ul>
+			</li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				<li><a class="<? current_page('admin/settings_modules'); ?>" href="<?= ADMIN ?>settings_modules/">Manage Themes</a></li>
+				<li><a href="#">Add a new Theme</a></li>
+				<li class="divider"></li>
+				<li><a href="#">Theme Settings</a></li>
+				</ul>
+			</li>
 			<li class="<? if (
 		    CURRENT_PAGE == 'admin/about_system_details') echo 'active'; ?>"><a href="<?= ADMIN ?>about_system_details/">About</a> </li>
 		  </ul>
