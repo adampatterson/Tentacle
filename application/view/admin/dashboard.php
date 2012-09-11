@@ -6,7 +6,7 @@
 			<div class="one-full">
 				<div class="title pad-right">
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Welcome <strong><?= user_name();?></strong></h1>
-						<? tentacle::check_version(); ?>
+						<? upgrade::check_core_version(); ?>
 				<!--<div class="one-half">
 						<h2>Content</h2>
 						<ul>

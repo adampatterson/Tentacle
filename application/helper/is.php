@@ -51,6 +51,21 @@
 		}
 	}
 	
+	/**
+	* Function: is_update
+	*	Is the new version newer than the current version.
+	*
+	* Returns:
+	*	Bool
+	*/
+	function is_update( $current, $new ) {
+		if ($current < $new) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	
 	/**
 	* Function: is_mobile

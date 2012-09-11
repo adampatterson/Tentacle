@@ -128,35 +128,7 @@ class tentacle
 		$url = (!empty($url)) ? rtrim($url, '/') : '/';
 		
 		return $url;
-	}	
-	
-
-	/**
-	* Function: check_version
-	* Checks what the latest Tentacle version is that is available at tentaclecms.com
-	*
-	* Returns:
-	*     A string containing a message and a link to the latest version of Tentacle.
-	*/
-	 public static function check_version()
-	 {
-		if ( !defined( 'TENTACLE_VERSION' ) || !TENTACLE_VERSION )
-	         return;
-
-		if ( !defined( 'CHECK_TIMEOUT') ) define( 'CHECK_TIMEOUT', 5 );
-		$scc = stream_context_create( array( 'http' => array( 'timeout' => CHECK_TIMEOUT ) ) );
-
-		$version = file_get_contents( 'http://api.tentaclecms.com/get/core/', 0, $scc );
-	
-		$v = json_decode( $version );
-		
-		if ($v->version > TENTACLE_VERSION)
-		{
-	        _e('<p class="well"><span class="label label-important">Important</span> There is a newer version of Tentacle, Visit <a href="'.$v->download.'">'.$v->download.'</a> to download <strong>Version '. $v->version.'</strong></p>');
-				return true;
-			}
 	}
-
 } // END class
 
 	/**

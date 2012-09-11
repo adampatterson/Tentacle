@@ -1,11 +1,121 @@
 <?
+load::helper('file');
+
 /**
 * File: Upgrade
 */
+class upgrade {
+	/**
+	* Function: check_core_version
+	* Checks what the latest Tentacle version is that is available at tentaclecms.com
+	*
+	* Parameters:
+	*     $latest - string ( from Serpent )
+	* 
+	* Returns:
+	*     A string containing a message and a link to the latest version of Tentacle.
+	*/
+	 public static function check_core_version($latest='')
+	 {
+		$serpent = load::model( 'serpent' );
+		$v = $serpent->get_core();
+		
+		if ( is_update( TENTACLE_VERSION, $v->version ) )
+		{
+	        _e('<p class="well"><span class="label label-important">Important</span> Currently you are running <strong>'.TENTACLE_VERSION.'</strong>, There is a newer version of Tentacle CMS available, Click <a href="'.ADMIN.'updates/'.'">here</a> and Upgrade to <strong>'. $v->version.'</strong></p>');
+				return true;
+		}
+	}
+	
+	
+	public static function make_nodeload($url)
+	{
+		return str_replace("https://", "http://nodeload.", $url);
+	}
+	
+}
+// 
+// function tentacle_upgrade_core($update) {
+// 	// Path from Serpent API
+// 	$client = curl_init($update);
+// 
+// 	curl_setopt($client, CURLOPT_RETURNTRANSFER, 1);
+// 
+// 	$filedata = curl_exec($client);
+// 
+// 	file_put_contents(STORAGE_DIR.'/temp/update.zip', $filedata);
+// 
+// 	if (file_exists(STORAGE_DIR.'/temp/update.zip')) {
+// 		echo '<p>File downloaded!</p>';
+// 	}
+// 
+// 	$zip = new ZipArchive;
+// 
+// 	if ($zip->open(STORAGE_DIR.'/temp/update.zip') === TRUE) {
+// 	    $zip->extractTo(STORAGE_DIR.'/temp/');
+// 	    $zip->close();
+// 
+// 			$archive_folder = '';
+// 
+// 			chdir(STORAGE_DIR.'/temp');
+// 			$update = recursive_glob('*.*');
+// 			$update_parts = string_to_parts($update[1]);
+// 			$update_path = $update_parts['path'];
+// 
+// 			chdir(STORAGE_DIR.'/temp/'.$update_path);
+// 			$update_files = recursive_glob('*.*');
+// 
+// 			echo '<ul class="list">';
+// 
+// 			foreach ($update_files as $file) {
+// 				$parts = string_to_parts($file);
+// 
+// 				$update_file_path = STORAGE_DIR.'/temp/'.$update_path;
+// 				$site_folder_path = CORE_ROOT.'/'.$parts['path'];
+// 				$site_file_path = CORE_ROOT.'/'.$parts['full'];
+// 
+// 				if (!is_dir($site_folder_path)) {
+// 					echo "<li><strong>Creating folder:</strong> ".$parts['path'].'</li>';
+// 
+// 					if (!mkdir($site_folder_path, 0755, true)) {
+// 					    die('Failed to create folders...');
+// 					}
+// 				}
+// 
+// 				if (file_exists($site_file_path)) {
+// 					echo "<li><strong>Updated:</strong> ".$parts['full']."</li>";
+// 				} else {
+// 					echo "<li><strong>Added:</strong> ".$parts['full']."</li>";
+// 				}
+// 
+// 				$file = file_get_contents( $update_file_path.$parts['full'] );
+// 
+// 				$fp = fopen( $site_file_path, 'w' );
+// 
+// 				fwrite($fp, $file);
+// 				fclose($fp);
+// 			}
+// 
+// 			echo '</ul>';
+// 
+// 			# Clean up!
+// 			delete_dir($update_path);
+// 			unlink(STORAGE_DIR.'/temp/update.zip');
+// 
+// 			echo '<p>Tentacle CMS was updated successfully!</p>';
+// 
+// 	} else {
+// 	    echo 'Something Went Wrong!';
+// 	}
+// }
+
 
 /**
 * Function: tentacle_upgrade
 * Upgrade process will load SQL from within the SQL model.
+*
+* Returns:
+* 		bool
 */
 function tentacle_upgrade() {
 	// current db version is stored in the database
