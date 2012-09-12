@@ -209,190 +209,7 @@ button:
 	 * 
 	 * 
 	 */
-	
-	public function ga_account ()
-	{
-		load::helper ('google_analytics');
 
-		define('ga_email','email@gmail.com');
-		define('ga_password','password');
-
-		$ga = new gapi(ga_email,ga_password);
-
-		$ga->requestAccountData();
-
-		foreach($ga->getResults() as $result)
-		{
-		  echo $result . ' (' . $result->getProfileId() . ")<br />";
-		}	
-	}
-	
-	
-	public function ga_filter ()
-	{
-		load::helper ('google_analytics');	
-
-		define('ga_email','email@gmail.com');
-		define('ga_password','password');
-		define('ga_profile_id','account');
-
-		$ga = new gapi(ga_email,ga_password);
-
-		/**
-		 * Note: OR || operators are calculated first, before AND &&.
-		 * There are no brackets () for precedence and no quotes are
-		 * required around parameters.
-		 * 
-		 * Do not use brackets () for precedence, these are only valid for 
-		 * use in regular expressions operators!
-		 * 
-		 * The below filter represented in normal PHP logic would be:
-		 * country == 'United States' && ( browser == 'Firefox || browser == 'Chrome')
-		 */
-
-		$filter = 'country == United States && browser == Firefox || browser == Chrome';
-
-		$ga->requestReportData(ga_profile_id,array('browser','browserVersion'),array('pageviews','visits'),'-visits',$filter);
-		?>
-		<table>
-		<tr>
-		  <th>Browser &amp; Browser Version</th>
-		  <th>Pageviews</th>
-		  <th>Visits</th>
-		</tr>
-		<?php
-		foreach($ga->getResults() as $result):
-		?>
-		<tr>
-		  <td><?php echo $result ?></td>
-		  <td><?php echo $result->getPageviews() ?></td>
-		  <td><?php echo $result->getVisits() ?></td>
-		</tr>
-		<?php
-		endforeach
-		?>
-		</table>
-
-		<table>
-		<tr>
-		  <th>Total Results</th>
-		  <td><?php echo $ga->getTotalResults() ?></td>
-		</tr>
-		<tr>
-		  <th>Total Pageviews</th>
-		  <td><?php echo $ga->getPageviews() ?>
-		</tr>
-		<tr>
-		  <th>Total Visits</th>
-		  <td><?php echo $ga->getVisits() ?></td>
-		</tr>
-		<tr>
-		  <th>Results Updated</th>
-		  <td><?php echo $ga->getUpdated() ?></td>
-		</tr>
-		</table>
-		<?
-	}
-	
-	
-	public function ga_report () {
-		
-		load::helper ('google_analytics');
-	
-		define('ga_email','email@gmail.com');
-		define('ga_password','password');
-		define('ga_profile_id','account');
-		
-		
-		$ga = new gapi(ga_email,ga_password);
-
-		$ga->requestReportData(ga_profile_id,array('browser','browserVersion'),array('pageviews','visits'));
-		
-		?>
-		<table>
-		<tr>
-		  <th>Browser &amp; Browser Version</th>
-		  <th>Pageviews</th>
-		  <th>Visits</th>
-		</tr>
-		<?php
-		foreach($ga->getResults() as $result):
-		?>
-		<tr>
-		  <td><?php echo $result ?></td>
-		  <td><?php echo $result->getPageviews() ?></td>
-		  <td><?php echo $result->getVisits() ?></td>
-		</tr>
-		<?php
-		endforeach
-		?>
-		</table>
-
-		<table>
-		<tr>
-		  <th>Total Results</th>
-		  <td><?php echo $ga->getTotalResults() ?></td>
-		</tr>
-		<tr>
-		  <th>Total Pageviews</th>
-		  <td><?php echo $ga->getPageviews() ?>
-		</tr>
-		<tr>
-		  <th>Total Visits</th>
-		  <td><?php echo $ga->getVisits() ?></td>
-		</tr>
-		<tr>
-		  <th>Results Updated</th>
-		  <td><?php echo $ga->getUpdated() ?></td>
-		</tr>
-		</table>
-		<?
-		
-	}
-	
-	
-	public function ga_token ()
-	{
-		load::helper ('google_analytics');
-	
-		define('ga_email','adamapatterson@gmail.com');
-		define('ga_password','pineapple23');
-		define('ga_profile_id','14303668');
-		
-		
-		$ga = new gapi(ga_email,ga_password,isset($_SESSION['ga_auth_token'])?$_SESSION['ga_auth_token']:null);
-		$_SESSION['ga_auth_token'] = $ga->getAuthToken();
-
-		echo 'Token: ' . $_SESSION['ga_auth_token'];
-	}
-	
-	
-	public function tracking()
-	{
-		header( "Content-type: image/gif"); 
-		header( "Expires: Wed, 5 Feb 1986 06:06:06 GMT"); 
-		header( "Cache-Control: no-cache"); 
-		header( "Cache-Control: must-revalidate"); 
-
-		printf ('%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%', 71,73,70,56,57,97,1,0,1,0,128,255,0,192,192,192,0,0,0,33,249,4,1,0,0,0,0,44,0,0,0,0,1,0,1,0,0,2,2,68,1,0,59);
-
-		//?utmwv=4.3&utmn=1464271798&utmhn=www.example.com&utmcs=UTF-8&utmsr=1920x1200&utmsc=32-bit&utmul=en-us&utmje=1&utmfl=10.0%20r22&utmdt=Page%20title&utmhid=1805038256&utmr=0&utmp=/&utmac=cookie%20value
-	
-		$url = parse_url($_SERVER['REQUEST_URI']);
-		
-		$query_string = $url['query'];
-		
-		//clean_out( get_tracking_array( $query_string ) );
-		
-		$return_array = get_tracking_array( $query_string );
-		
-		//echo $return_array['test'];
-
-		$setting = load::model( 'settings' );
-
-		$update_agree = $setting->update( 'tracking', $return_array['test'] );
-	}
-	
 	
 	public function script_cache()
 	{
@@ -401,90 +218,6 @@ button:
 		cache::css();
 		//cache::script();
 		
-	}
-
-	public function dbtest ()
-	{
-	?>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" charset="utf-8">
-		var base_url = "<?= BASE_URL ?>";
-	
-		jQuery(document).ready(function($) {
-			// Add that cool orange bkg to the input that has focus
-			$('input, select').bind({
-				focusin: function() {
-					var wrapper = $(this).closest('.input');
-					$(wrapper).addClass('block-message pyro');
-				},
-				focusout: function() {
-					var wrapper = $(this).closest('.input');
-					$(wrapper).removeClass('block-message pyro');
-				}
-			});
-		
-			$('input[name=password]').bind('keyup focus', function() {
-
-				$.post(base_url + 'ajax/confirm_database', {
-						server: $('input[name=hostname]').val(),
-			            port: $('input[name=port]').val(),
-						username: $('input[name=username]').val(),
-						password: $('input[name=password]').val()
-					}, function(data) {
-						if (data.success == 'true') {
-							 $('#confirm_db').html(data.message).removeClass('block-message error').addClass('block-message success');
-						} else {
-							$('#confirm_db').html(data.message).removeClass('block-message success').addClass('block-message error');
-						}
-					}, 'json'
-				);
-			});
-		});
-	</script>
-	<style type="text/css" media="screen">
-		.error {
-			color: red;
-		}
-		.success {
-			color: green;
-		}
-	</style>
-	<form action="" id="install_frm" method="post" accept-charset="utf-8">
-
-		<section class="title">
-			<h3>Database Settings</h3>
-		</section>
-
-		<section class="item">
-
-			<div class="input">
-				<label for="hostname">MySQL Hostname</label>
-				<input type="text" name="hostname" value="localhost" id="hostname">
-			</div>
-
-			<div class="input">
-				<label for="username">MySQL Username</label>
-				<input type="text" name="username" value="root" id="username">
-			</div>
-
-			<div class="input">
-				<label for="password">MySQL Password</label>
-				<input type="password" name="password" value="root" id="password">
-
-			</div>
-
-			<div class="input">
-				<label for="port">MySQL Port</label>
-				<input type="text" name="port" value="3306" id="port">
-
-			</div>
-
-			<div id="confirm_db">test</div>
-		</section>
-
-	</form>
-	
-	<?		
 	}
 
 	public function sortable ()
@@ -1707,7 +1440,48 @@ button:
 	{	
 		load::helper('import');
 		
-		$wordpress_file = '';
+		$wordpress_file = TEMP.'wordpress.xml';
+		
+		$wordpress_xml = file_get_contents($wordpress_file);
+		
+		$xml = new SimpleXmlElement($wordpress_xml);
+		if (!$xml or !substr_count($xml->channel->generator, "wordpress.org"))
+		    echo 'Invalid Wordpress XML';
+		
+		foreach ($xml->channel->item as $entry){
+
+			echo $entry->title.'<br>'; 			// Posts title
+			echo $entry->link.'<br>';			// URI to post
+			echo $entry->pubDate.'<br>';		// Date
+			//echo $entry->description.'<br>';	// NA
+			
+			$namespaces = $entry->getNamespaces(true);
+			
+			$dc = $entry->children($namespaces['dc']); 
+			$content = $entry->children($namespaces['content']); 
+			$excerpt = $entry->children($namespaces['excerpt']); 
+			$wp = $entry->children($namespaces['wp']); 
+			
+			echo $dc->creator.'<br>';           // Authors name
+			echo $content->encoded.'<br>';      // the post or pages content
+			//echo $excerpt->encoded.'<br>';    // the post or pages excerpt
+			echo $wp->post_id.'<br>';           // The post ID, try to keep this if possible
+			echo $wp->post_date.'<br>';         // Date
+			//echo $wp->post_date_gmt.'<br>';   // NA
+			echo $wp->comment_status.'<br>';    // open or closed
+			echo $wp->ping_status.'<br>'; 		// open or closed
+			echo $wp->post_name.'<br>'; 		// the slug
+			echo $wp->status.'<br>'; 			// published, draft, trash
+			echo $wp->post_parent.'<br>'; 		// The ID that an attachment might belloing to or a post.
+			echo $wp->menu_order.'<br>';        // Apply to pages
+			echo $wp->post_type.'<br>';         // attachemnt, page, or post
+			//echo $wp->post_password.'<br>';   // NA
+			//echo $wp->is_sticky.'<br>';       // NA
+			echo $wp->attachment_url.'<br>';    // Path to the image ( download these and place them in the storage folder )
+			
+			echo '<hr />';
+		}
+		
 	}// END Function
 	
 	public function module()
