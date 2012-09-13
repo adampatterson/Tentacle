@@ -163,17 +163,17 @@ class action_controller {
 		if ( is_update( TENTACLE_VERSION, $core_update->version ) )
 		{
 			// Download and update Core Files.
-			//tentacle_upgrade_core( upgrade::make_nodeload($core_update->download) );
+			upgrade::core( upgrade::make_nodeload($core_update->download) );
 			
 			// Migrate forward on the Database.
-			//tentacle_upgrade();
+			//upgrade_db();
 			
 			note::set('success','upgrade_message','Tentacle has been successfully upgraded.');
 		} else {
 			note::set('success','upgrade_message','There was nothing to upgrade.');
 		}
 		
-		url::redirect( 'admin/updated' );
+		//url::redirect( 'admin/updated' );
 	}
 
 
