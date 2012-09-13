@@ -6,6 +6,8 @@ class admin_controller {
 	* ----------------------------------------------------------------------------------------------*/
 	public function updates()
 	{
+		tentacle::valid_user();
+		
 		load::view ('admin/updates');	
 	}
 	
