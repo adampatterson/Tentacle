@@ -173,7 +173,7 @@ class action_controller {
 			note::set('success','upgrade_message','There was nothing to upgrade.');
 		}
 		
-		//url::redirect( 'admin/updated' );
+		url::redirect( 'admin/updated' );
 	}
 
 
