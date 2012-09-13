@@ -80,6 +80,7 @@ define('GRAVATAR_SIZE' , "60" );
 # Folders
 define('STORAGE_DIR'   , TENTACLE_URI.'/storage');
 define('STORAGE_URL'   , TENTACLE_URL.'storage');
+define('TEMP'		   , STORAGE_DIR.'/temp/');
 define('THEMES_DIR'    , TENTACLE_URI.'/themes/');
 define('THEMES_URL'    , TENTACLE_URL.'themes');
 define('ADMIN_DIR'     , TENTACLE_URI.'/admin');
