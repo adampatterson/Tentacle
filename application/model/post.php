@@ -3,7 +3,7 @@ class post_model
 {
 	// Add Post
 	//----------------------------------------------------------------------------------------------
-	public function add ( ) 
+	public function add ( $import = '' ) 
 	{
 		$title         = input::post( 'title' );
 		$slug          = sanitize($title);
