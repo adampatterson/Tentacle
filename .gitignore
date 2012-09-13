@@ -21,3 +21,5 @@ application/helper/import.php
 application/helper/export.php
 /tentacle.tmproj
 tentacle/storage/images/*
+tentacle/storage/temp/*
+tentacle/storage/upgrade/*
