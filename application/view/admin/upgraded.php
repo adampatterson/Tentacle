@@ -15,8 +15,9 @@
 				</script>
 			<?php endif; ?>
 	     	<h1 class='title'><img src="<?=ADMIN_URL; ?>images/icons/icon_pages_32.png" alt="" /> Welcome to Tentacle <?= TENTACLE_VERSION; ?></h1>
-			<p>Thank you for updating to the latest version!</p>
-			
+			<div class="alert alert-success">
+				<p>Thank you for updating to the latest version!</p>
+			</div>
 			<h2>Authors</h2>
 			<hr />
 			<h3>Adam Patterson</h3>

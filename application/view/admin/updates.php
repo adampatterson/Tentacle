@@ -5,9 +5,9 @@
 	    <div class="one-full">
 	     	<h1 class='title'><img src="<?=ADMIN_URL; ?>images/icons/icon_pages_32.png" alt="" /> Updates available</h1>
 			
-			<a href="<?=BASE_URL; ?>action/do_core_upgrade/">Update Core.</a>
+			<a href="<?=BASE_URL; ?>action/do_core_upgrade/" class="btn btn-success">Update Tentacle</a>
 			
-			<h2>Whats New</h2>
+			<h2>Whats new in this release</h2>
 			<hr />
 			<p>Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad.</p>
 			
