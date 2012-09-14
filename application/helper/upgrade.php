@@ -8,23 +8,33 @@ class upgrade {
 	/**
 	* Function: check_core_version
 	* Checks what the latest Tentacle version is that is available at tentaclecms.com
-	*
-	* Parameters:
-	*     $latest - string ( from Serpent )
 	* 
 	* Returns:
 	*     A string containing a message and a link to the latest version of Tentacle.
 	*/
-	 public static function check_core_version($latest='')
+	 public static function check_core_version()
 	 {
 		$serpent = load::model( 'serpent' );
 		$v = $serpent->get_core();
 		
-		if ( is_update( TENTACLE_VERSION, $v->version ) )
-		{
+		if ( is_update( TENTACLE_VERSION, $v->version ) ):
 	        _e('<p class="well"><span class="label label-important">Important</span> Currently you have <strong>'.TENTACLE_VERSION.'</strong>, There is a newer version of Tentacle CMS available, Click <a href="'.ADMIN.'updates/'.'">here</a> and Upgrade to <strong>'. $v->version.'</strong></p>');
 				return true;
-		}
+		endif;
+	}
+	
+	 public static function check_core_version_footer()
+	 {
+		$serpent = load::model( 'serpent' );
+		$v = $serpent->get_core();
+		
+		if ( is_update( TENTACLE_VERSION, $v->version ) ):
+			_e('<a href="'.ADMIN.'updates/" class="badge badge-success">'.$v->version.'</a>');        
+			return true;
+		else:
+			_e(TENTACLE_VERSION);			
+			return false;
+		endif;
 	}
 	
 	

@@ -37,13 +37,13 @@
 	
 	
 	/**
-	* Function: is_updates
+	* Function: is_availible_updates
 	*	Are there any updates?
 	*
 	* Returns:
 	*	Bool
 	*/
-	function is_updates() {
+	function is_availible_updates() {
 		if ( get_option( 'is_updates' ) ) {
 			return true;
 		} else {
