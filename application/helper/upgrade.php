@@ -29,7 +29,7 @@ class upgrade {
 		$v = $serpent->get_core();
 		
 		if ( is_update( TENTACLE_VERSION, $v->version ) ):
-			_e('<a href="'.ADMIN.'updates/" class="badge badge-success">'.$v->version.'</a>');        
+			_e('<a href="'.ADMIN.'updates/" class="badge badge-success">Get '.$v->version.'</a>');        
 			return true;
 		else:
 			_e(TENTACLE_VERSION);			
@@ -140,8 +140,7 @@ class upgrade {
 */
 function upgrade_db() {
 	// current db version is stored in the database
-	// DB version is saved in the config file in TENTACLE_DB_VERSION
-	if ( get_db_version() == get_current_db_version() )
+	// DB version is saved in the config file in TENTACLE_DB_VERSIONdf
 		return;
 
 	upgrade_all();
