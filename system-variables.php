@@ -105,7 +105,7 @@ define( 'CHECK_TIMEOUT', 5 );
 *
 * @global string $tentacle_version
 */
-define('TENTACLE_VERSION', 'v0.7.5');
+define('TENTACLE_VERSION', 'v0.7.6');
  
  
 /**
