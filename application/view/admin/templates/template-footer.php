@@ -2,7 +2,7 @@
 <!-- #body-wrapper -->
 <? //render_debug(); ?>
 <footer class="footer">
-<div class="nav navbar-fixed-bottom">
+<div class="navbar-fixed-bottom">
 	<div class="navbar-inner">
 		<div class="navbar navbar-fixed-bottom" style="position: absolute;">
 			<div class="navbar-inner">
@@ -11,10 +11,10 @@
 						<li><a href="https://github.com/adampatterson/Tentacle/wiki" target="_blank">Documentation</a></li>
 						<li><a href="https://github.com/adampatterson/Tentacle/issues">Feedback</a></li>
 						<li><a href="https://github.com/adampatterson/Tentacle/wiki/Credits">Credits</a></li>
-						<li><a href="#"><? upgrade::check_core_version_footer(); ?></a></li>
+						<li><p><? upgrade::check_core_version_footer(); ?></p></li>
 					</ul>
 					<ul class="nav pull-right">
-						<li><a href="http://tentaclecms.com"><span>Thanks for creating with</<span> <img src="<?= TENTACLE_URL.'/admin/images/tentacle_logo_footer.png' ?>" alt="Tentacle CMS" /></a></li>
+						<li><p><small>Thanks for creating with<small> <a href="http://tentaclecms.com"><img src="<?= TENTACLE_URL.'/admin/images/tentacle_logo_footer.png' ?>" alt="Tentacle CMS" /></a></p></li>
 					</ul>
 				</div>
 			</div>
