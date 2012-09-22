@@ -213,6 +213,80 @@ class tentacle
 			}
 		}
 	}
+
+
+    /**
+     * Function: increment
+     * Used for counting things like updates or notifications.
+     *
+     * Parameters:
+     *     $key - string
+     *
+     * Returns:
+     *     int
+     */
+    function increment( $key ) {
+        $settings = load::model( 'settings' );
+
+        $get = $settings->get($key);
+
+        $incremented = $get+1;
+
+        $update = $settings->update($key, $incremented);
+
+        return $incremented;
+    }
+
+
+    /**
+     * Function: deincrement
+     * Used for counting things like updates or notifications.
+     *
+     * Parameters:
+     *     $key - string
+     *
+     * Returns:
+     *     int
+     */
+    function deincrement( $key ) {
+        $settings = load::model( 'settings' );
+
+        $get = $settings->get($key);
+
+        $incremented = $get-1;
+
+        $update = $settings->update($key, $incremented);
+
+        return $incremented;
+    }
+
+
+    /**
+     * Function: total_update
+     * Total number of updates
+     *
+     * Parameters:
+     *     $key - string
+     *
+     * Returns:
+     *     int
+     */
+	function total_update( $key='' ) {
+		$settings = load::model( 'settings' );
+
+        $themes = $settings->get('themes');
+		$modules = $settings->get('modules');
+		
+		if ( $key == 'themes' ) {
+			$total = $settings->get('themes');
+		} elseif ( $key == 'modules' ) {
+			$total = $settings->get('modules');
+		} else {
+			$total = $themes+$modules;
+		}
+
+        return $total;
+	}
 	
 	
 	/**
