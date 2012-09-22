@@ -1,19 +1,24 @@
 </div>
 <!-- #body-wrapper -->
 <? //render_debug(); ?>
-<footer>
+<footer class="footer">
 <div class="nav navbar-fixed-bottom">
 	<div class="navbar-inner">
-		<div class="container-fluid">
-			<p class="pull-left"><a href="https://github.com/adampatterson/Tentacle/wiki" target="_blank">Documentation</a> | 
-				<a href="https://github.com/adampatterson/Tentacle/issues" target="_blank">Feedback</a> | 
-				<a href="https://github.com/adampatterson/Tentacle/wiki/Credits" target="_blank">Credits</a> | 
-				<? upgrade::check_core_version_footer(); ?>
-			<p>
-			<p class="pull-right">
-				<span>Thanks for creating with</<span> <a href="http://tentaclecms.com"><img src="<?= TENTACLE_URL.'/admin/images/tentacle_logo_footer.png' ?>" alt="Tentacle CMS" /></a>
-			</p>
-		</div>
+		<div class="navbar navbar-fixed-bottom" style="position: absolute;">
+			<div class="navbar-inner">
+				<div class="container" style="width: auto; padding: 0 20px;">
+					<ul class="nav">
+						<li><a href="https://github.com/adampatterson/Tentacle/wiki" target="_blank">Documentation</a></li>
+						<li><a href="https://github.com/adampatterson/Tentacle/issues">Feedback</a></li>
+						<li><a href="https://github.com/adampatterson/Tentacle/wiki/Credits">Credits</a></li>
+						<li><a href="#"><? upgrade::check_core_version_footer(); ?></a></li>
+					</ul>
+					<ul class="nav pull-right">
+						<li><a href="http://tentaclecms.com"><span>Thanks for creating with</<span> <img src="<?= TENTACLE_URL.'/admin/images/tentacle_logo_footer.png' ?>" alt="Tentacle CMS" /></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>	
 	</div>
 </div>
 </footer>
