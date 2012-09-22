@@ -3,17 +3,6 @@
 <div id="wrap">
 	<div class="full-content">
 	    <div class="one-full">
-			<?php if( $note = note::get('upgrade_message')): ?>
-				<script type="text/javascript">
-					$(document).ready(function() {
-						jQuery.noticeAdd({
-							text : '<?= $note['content'];?>',
-							stay : false,
-							type : '<?= $note['type']; ?>'
-						});
-					});
-				</script>
-			<?php endif; ?>
 	     	<h1 class='title'><img src="<?=ADMIN_URL; ?>images/icons/icon_pages_32.png" alt="" /> Welcome to Tentacle <?= TENTACLE_VERSION; ?></h1>
 			<div class="alert alert-success">
 				Thank you for updating to the latest version!
