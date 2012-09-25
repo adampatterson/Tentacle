@@ -24,7 +24,7 @@ class dev_controller {
 		{
 			echo 'yup';
 		}
-		
+
 		load::helper('dbug');
 		//new dBug( $_SERVER );
 		
@@ -109,7 +109,7 @@ button:
 			
 		$build = $pdo->exec( "INSERT INTO `posts` (`id`, `parent`, `author`, `date`, `modified`, `title`, `content`, `excerpt`, `comment_status`, `ping_status`, `password`, `slug`, `type`, `menu_order`, `uri`, `visible`, `status`, `template`)
 			VALUES
-				(6, 0, 1, 1322853969, 1328247576, 'Home', '<p><strong>Tentacle is an OpenSource Content Management System, it is free to use.</strong></p>\r\n<p>The goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>\r\n', '', 'open', 'open', '', 'home', 'page', 1, 'home/', 'public', 'published', 'default'),
+				(6, 0, 1, 1322853969, 1328247576, 'Home', '<p><strong>Tentacle is an OpenSource Content Management System, it is free to use.</strong></p>\r\n<p>The goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p><p><strong>Username:</strong> demo<br /><strong>Password:</strong> demo<br /><a href="http://demo.tentaclecms.com/demo/admin/">Admin</a></p>\r\n', '', 'open', 'open', '', 'home', 'page', 1, 'home/', 'public', 'published', 'default'),
 				(112, 0, 1, 1328502285, 1328560008, 'Welcome to Tentacle CMS', '<p>This is your first post!</p>\r\n', '', 'open', 'open', '', 'welcome-to-tentacle-cms', 'post', 0, 'welcome-to-tentacle-cms/', 'public', 'published', 'default'),
 				(113, 0, 1, 1340070422, 1340070422, 'Blog', '', '', 'open', 'open', '', 'blog', 'page', 2, 'blog/', 'public', 'published', 'template-blog');" );
 		
@@ -1001,6 +1001,22 @@ button:
 	<?
 	}
 	
+	
+	public function counting()
+	{
+        echo increment('themes')."<br />";
+
+        deincrement('template');
+	
+		echo increment('modules')."<br />";
+
+        deincrement('test');
+	
+		echo 'themes '.total_update('themes')."<br />";
+		echo 'modules '.total_update('modules')."<br />";
+		echo total_update();
+	}
+	
 
 	/**
 	 * inflector function
@@ -1438,6 +1454,25 @@ button:
 	
 	public function wordpress_import()
 	{	
+		/*
+		Post this with JSON.
+		
+		$data = array("name" => "Hagrid", "age" => "36");                                                                    
+		$data_string = json_encode($data);                                                                                   
+
+		$ch = curl_init('http://api.local/rest/users');                                                                      
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);                                                                  
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
+		    'Content-Type: application/json',                                                                                
+		    'Content-Length: ' . strlen($data_string))                                                                       
+		);                                                                                                                   
+
+		$result = curl_exec($ch);
+		*/
+		
+		
 		load::helper('import');
 		
 		$wordpress_file = TEMP.'wordpress.xml';
@@ -1504,6 +1539,226 @@ button:
 		//trigger_error('Notice', E_USER_NOTICE);
 		//trigger_error('Error', E_USER_ERROR);
 		//trigger_error('Warning', E_USER_WARNING);
+	}
+	
+	public function search()
+	{
+		?>
+		<h1>Fulltext search engine example</h1>
+		<hr/>
+
+		<form method="post" action"searchengine.php">
+
+		<input type="text" name="SearchText" />
+		<input type="submit" value="Search" />
+		</form>
+
+		<hr/>
+
+		<?php
+
+		if ( isset( $_POST['SearchText'] ) )
+		{
+			$SearchText = $_POST['SearchText'];	
+
+		    print( "<h2>You searched for: $SearchText</h2>" );
+		    $db =& eZDB::globalDatabase();
+
+		    // Strip multiple whitespace
+		    $SearchText = preg_replace("(\s+)", " ", $db->escapeString( $SearchText ) );
+
+		    // Split text on whitespace
+		    $searchArray =& split( " ", $SearchText );
+
+		    // Get the total number of objects
+		    $objectCount = array();
+		    $db->array_query( $objectCount, "SELECT COUNT(*) AS count FROM object" );
+		    $totalObjectCount = $objectCount[0]["count"];
+
+		    // Search words can at most be present in 70% of the objects
+		    $stopWordFrequency = 0.7;
+
+		    $wordSQL = "";
+		    $i = 0;
+		    // Build the word query string
+		    foreach ( $searchArray as $searchWord )
+		    {
+		        if ( $i == 0 )
+		            $wordSQL .= "word.word='" .strToLower( $searchWord ) ."' ";
+		        else
+		            $wordSQL .= " OR word.word='" .strToLower( $searchWord ) ."' ";
+		        $i++;
+		    }
+
+		    $searchQuery = "SELECT object.id, object_word_link.frequency
+		                    FROM object, object_word_link, word
+		                    WHERE object.id=object_word_link.object_id
+		                    AND word.id=object_word_link.word_id
+		                    AND ( $wordSQL )
+		                    AND ( ( word.object_count / $totalObjectCount ) < $stopWordFrequency )
+		                    ORDER BY object_word_link.frequency DESC";
+		    $objectRes = array();
+
+		    $db->array_query( $objectRes, $searchQuery );
+
+
+		    if ( count( $objectRes ) > 0 )
+		    {
+		        foreach ( $objectRes as $object )
+		        {
+		            print( "<a href=\"viewitem.php?ObjectID=" . $object["id"] . "&SearchText=$SearchText\">
+		                 Found object id:" . $object["id"] . " with frequency: " . $object["frequency"] . " </a> <br>" );
+		        }
+		    }
+		    else
+		    {
+		        print( "Search did not return any results<br>" );
+		    }
+		}
+
+		?>
+
+		<a href="<?= BASE_URL ?>dev/search_additem/">Add item to the search database</a>
+		<?
+	}
+	
+	public function search_additem()
+	{
+		?>
+		<h1>Fulltext search engine example</h1>
+		<hr/>
+
+		Enter text to index:<br/>
+		<form method="post" action"<?= BASE_URL ?>dev/search_additem/">
+
+		<textarea name="IndexText" cols="50" rows="10"></textarea>
+		<br>
+		<input type="submit" value="Add item" />
+		</form>
+
+
+		<hr>
+
+		<?php
+		if ( isset( $_POST['IndexText'] ) )
+		{
+			$IndexText = $_POST['IndexText'];
+
+		    $IndexText = trim( strToLower( $IndexText )  );
+			
+			$object_table = db('object');
+			$row = $object_table->insert(array(
+			  'data'=>'test'
+			));
+			
+		    // Strip multiple whitespaces
+			$IndexText = strip_tags( $IndexText );
+		    $IndexText = str_replace(".", " ", $IndexText );
+		    $IndexText = str_replace(",", " ", $IndexText );
+		    $IndexText = str_replace("'", " ", $IndexText );
+		    $IndexText = str_replace("\"", " ", $IndexText );
+
+		    $IndexText = str_replace("\n", " ", $IndexText );
+		    $IndexText = str_replace("\r", " ", $IndexText );
+		    $IndexText = preg_replace("(\s+)", " ", $IndexText );
+
+		    // Split text on whitespace
+		    $indexArray = explode( " ", $IndexText );
+
+		    // Count the total words in index text
+		    $totalWordCount = count( $indexArray );
+
+		    // Count the number of instances of each word
+		    $wordCountArray = array_count_values( $indexArray );
+
+		    // Strip double words
+		    $indexArray = array_unique( $indexArray );
+
+		    // Count unique words
+		    $uniqueWordCount = count( $indexArray );
+
+		    // Print information about word count
+		    print( "Total number of words in text: $totalWordCount, unique words: $uniqueWordCount <br>" );
+
+		    foreach ( $indexArray as $indexWord )
+		    {
+		        // Store word if it does not exist.
+		        $wordRes = array();
+				
+				$word_table = db('word');
+				$wordRes = $word_table->select('*')
+				              ->where('word','=',$indexWord)
+				              ->execute();
+				
+		        // OLD $db->array_query( $wordRes, "SELECT * FROM word WHERE word='$indexWord'" );
+
+		        if ( count( $wordRes ) == 1 )
+		        {
+/*=============================*/
+		            $wordID = $wordRes[0]["id"];
+		            $db->query( "UPDATE word SET object_count=( object_count + 1 ) WHERE id='$wordID'" );
+		
+		        }
+		        else
+		        {
+		            $wordID = $db->nextID( "word", "id" );
+		            $db->query( "INSERT INTO word ( id, word, object_count ) VALUES ( '$wordID', '$indexWord', '1' )" );
+		        }
+
+		        print( "Indexing word: '$indexWord' <br>" );
+
+		        // Calculate the relevans ranking for this word
+		        $frequency = ( $wordCountArray[$indexWord] / $totalWordCount );
+		        print( "Internal normalized word frequency: $frequency <br>" );
+
+		        $linkID = $db->nextID( "object_word_link", "id" );
+		        $db->query( "INSERT INTO
+		                       object_word_link ( id, word_id, object_id, frequency )
+		                     VALUES ( '$nextID', '$wordID', '$objectID', '$frequency' )" );
+		    }
+		}
+
+		?>
+
+		<a href="<?= BASE_URL ?>dev/search/">Test search engine</a>
+	<?		
+	}
+	
+	public function search_view()
+	{
+		?>
+		<h1>Fulltext search engine example</h1>
+		<hr/>
+
+		<?php
+		include_once( "classes/ezdb.php" );
+
+		$ObjectID = $_GET['ObjectID'];
+
+		if ( is_numeric( $ObjectID ) )
+		{
+		    $db =& eZDB::globalDatabase();
+
+		    $fetchQuery = "SELECT * FROM object WHERE id='$ObjectID'";
+		    $objectRes = array();
+
+		    $db->array_query( $objectRes, $fetchQuery );
+
+		    print( "Contents of object $ObjectID:<br><hr>" );
+
+		    $data = $objectRes[0]["data"];
+
+		    // highlight search result
+		    print( preg_replace( "#($SearchText)#s", "<b>$1</b>", $data ) );
+
+		    print( "<hr>" );
+		}
+
+		?>
+
+		<a href="<?= BASE_URL ?>dev/search_additem/">Add item to the search database</a>
+		<a href="<?= BASE_URL ?>dev/search/">Test search engine</a>
+		<?	
 	}
 
 }// END Dev
