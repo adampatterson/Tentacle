@@ -109,7 +109,7 @@ button:
 			
 		$build = $pdo->exec( "INSERT INTO `posts` (`id`, `parent`, `author`, `date`, `modified`, `title`, `content`, `excerpt`, `comment_status`, `ping_status`, `password`, `slug`, `type`, `menu_order`, `uri`, `visible`, `status`, `template`)
 			VALUES
-				(6, 0, 1, 1322853969, 1328247576, 'Home', '<p><strong>Tentacle is an OpenSource Content Management System, it is free to use.</strong></p>\r\n<p>The goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p><p><strong>Username:</strong> demo<br /><strong>Password:</strong> demo<br /><a href="http://demo.tentaclecms.com/demo/admin/">Admin</a></p>\r\n', '', 'open', 'open', '', 'home', 'page', 1, 'home/', 'public', 'published', 'default'),
+				(6, 0, 1, 1322853969, 1328247576, 'Home', '<p><strong>Tentacle is an OpenSource Content Management System, it is free to use.</strong></p>\r\n<p>The goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p><p><strong>Username:</strong> demo<br /><strong>Password:</strong> demo<br /><a href=\'http://demo.tentaclecms.com/demo/admin/\'>Admin</a></p>\r\n', '', 'open', 'open', '', 'home', 'page', 1, 'home/', 'public', 'published', 'default'),
 				(112, 0, 1, 1328502285, 1328560008, 'Welcome to Tentacle CMS', '<p>This is your first post!</p>\r\n', '', 'open', 'open', '', 'welcome-to-tentacle-cms', 'post', 0, 'welcome-to-tentacle-cms/', 'public', 'published', 'default'),
 				(113, 0, 1, 1340070422, 1340070422, 'Blog', '', '', 'open', 'open', '', 'blog', 'page', 2, 'blog/', 'public', 'published', 'template-blog');" );
 		
@@ -1636,85 +1636,93 @@ button:
 		<input type="submit" value="Add item" />
 		</form>
 
-
 		<hr>
 
 		<?php
 		if ( isset( $_POST['IndexText'] ) )
 		{
-			$IndexText = $_POST['IndexText'];
-
-		    $IndexText = trim( strToLower( $IndexText )  );
+			$word_table = db('search_word');
+			$object_table = db('search_object');
+			$object_word_link = db('search_object_word_link');
+		
+		    $Index_text = trim( strToLower( $_POST['IndexText'] )  );
 			
-			$object_table = db('object');
-			$row = $object_table->insert(array(
-			  'data'=>'test'
+			
+			$object_id = $object_table->insert(array(
+			  'data'=>$Index_text
 			));
 			
 		    // Strip multiple whitespaces
-			$IndexText = strip_tags( $IndexText );
-		    $IndexText = str_replace(".", " ", $IndexText );
-		    $IndexText = str_replace(",", " ", $IndexText );
-		    $IndexText = str_replace("'", " ", $IndexText );
-		    $IndexText = str_replace("\"", " ", $IndexText );
+			$Index_text = strip_tags( $Index_text );
+		    $Index_text = str_replace(".", " ", $Index_text );
+		    $Index_text = str_replace(",", " ", $Index_text );
+		    $Index_text = str_replace("'", " ", $Index_text );
+		    $Index_text = str_replace("\"", " ", $Index_text );
 
-		    $IndexText = str_replace("\n", " ", $IndexText );
-		    $IndexText = str_replace("\r", " ", $IndexText );
-		    $IndexText = preg_replace("(\s+)", " ", $IndexText );
+		    $Index_text = str_replace("\n", " ", $Index_text );
+		    $Index_text = str_replace("\r", " ", $Index_text );
+		    $Index_text = preg_replace("(\s+)", " ", $Index_text );
 
 		    // Split text on whitespace
-		    $indexArray = explode( " ", $IndexText );
+		    $index_array = explode( " ", $Index_text );
 
 		    // Count the total words in index text
-		    $totalWordCount = count( $indexArray );
+		    $totalWordCount = count( $index_array );
 
 		    // Count the number of instances of each word
-		    $wordCountArray = array_count_values( $indexArray );
+		    $wordCountArray = array_count_values( $index_array );
 
 		    // Strip double words
-		    $indexArray = array_unique( $indexArray );
+		    $index_array = array_unique( $index_array );
 
 		    // Count unique words
-		    $uniqueWordCount = count( $indexArray );
+		    $uniqueWordCount = count( $index_array );
 
 		    // Print information about word count
 		    print( "Total number of words in text: $totalWordCount, unique words: $uniqueWordCount <br>" );
 
-		    foreach ( $indexArray as $indexWord )
+		    foreach ( $index_array as $index_word )
 		    {
-		        // Store word if it does not exist.
-		        $wordRes = array();
-				
-				$word_table = db('word');
-				$wordRes = $word_table->select('*')
-				              ->where('word','=',$indexWord)
-				              ->execute();
-				
-		        // OLD $db->array_query( $wordRes, "SELECT * FROM word WHERE word='$indexWord'" );
 
-		        if ( count( $wordRes ) == 1 )
+				$word = $word_table->count()
+				              ->where('word','=',$index_word)
+				              ->execute();
+
+		        if ( $word == 1 )
 		        {
-/*=============================*/
-		            $wordID = $wordRes[0]["id"];
-		            $db->query( "UPDATE word SET object_count=( object_count + 1 ) WHERE id='$wordID'" );
-		
+					$object_count = $word_table->select('*')
+					              ->where('word','=',$index_word)
+					              ->execute();
+					
+					$update_word = $word_table->update(array(
+						'object_count'	=> $object_count[0]->object_count + 1,
+						))		
+						->where( 'word', '=', $index_word )
+						->execute();
+						
+					$word_id = $object_count[0]->id;
 		        }
 		        else
 		        {
-		            $wordID = $db->nextID( "word", "id" );
-		            $db->query( "INSERT INTO word ( id, word, object_count ) VALUES ( '$wordID', '$indexWord', '1' )" );
+					$word = $word_table->insert(array(
+					  	'word'=>$index_word,
+						'object_count'=>'1'
+					));
+
+					$word_id = $word->id;
 		        }
 
-		        print( "Indexing word: '$indexWord' <br>" );
+		        print( "Indexing word: '$index_word' <br>" );
 
 		        // Calculate the relevans ranking for this word
-		        $frequency = ( $wordCountArray[$indexWord] / $totalWordCount );
+		        $frequency = ( $wordCountArray[$index_word] / $totalWordCount );
 		        print( "Internal normalized word frequency: $frequency <br>" );
-
-		        $linkID = $db->nextID( "object_word_link", "id" );
-		        $db->query( "INSERT INTO
-		                       object_word_link ( id, word_id, object_id, frequency )
-		                     VALUES ( '$nextID', '$wordID', '$objectID', '$frequency' )" );
+		
+				$object_word_id = $object_word_link->insert(array(
+				  	'word_id'		=> $word_id,
+					'object_id'		=> $object_id->id,
+					'frequency' 	=> $frequency
+				));
 		    }
 		}
 
