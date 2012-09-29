@@ -5,7 +5,7 @@
 	    <div class="one-full">
 	     	<h1 class='title'><img src="<?=ADMIN_URL; ?>images/icons/icon_pages_32.png" alt="" /> Welcome to Tentacle <?= TENTACLE_VERSION; ?></h1>
 			<div class="alert alert-success">
-				Thank you for updating to the latest version!
+				Thank you for updating to the latest Code or Database version!
 			</div>
 			<h2>Authors</h2>
 			<hr />

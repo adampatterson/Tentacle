@@ -34,7 +34,7 @@ class settings_model
 					'autoload' => $autoload
 				) )
 				->where( 'key', '=', $key )
-				->execute();
+				->execute();			
 		endif;		
 	}
 	

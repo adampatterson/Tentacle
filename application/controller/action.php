@@ -166,12 +166,21 @@ class action_controller {
 			upgrade::core( upgrade::make_nodeload($core_update->download) );
 			
 			// Migrate forward on the Database.
-			//upgrade_db();
+			upgrade_db();
 			
 			note::set('success','upgrade_message','Tentacle has been successfully upgraded.');
 		} else {
 			note::set('success','upgrade_message','There was nothing to upgrade.');
 		}
+		
+		url::redirect( 'admin/updated' );
+	}
+
+	public function do_db_upgrade()
+	{
+		upgrade_db();
+		
+		note::set('success','upgrade_message','Tentacles Database has been updated.');
 		
 		url::redirect( 'admin/updated' );
 	}

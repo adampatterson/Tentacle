@@ -48,7 +48,7 @@ class admin_controller {
 			url::redirect('admin/agree');
 		
 		if ( get_db_version() != get_current_db_version() )
-			url::redirect('admin/upgrade');
+			url::redirect('admin/updates');
 		
 		$id = user::id( );
 

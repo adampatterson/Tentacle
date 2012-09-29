@@ -141,8 +141,6 @@ class upgrade {
 function upgrade_db() {
 	// current db version is stored in the database
 	// DB version is saved in the config file in TENTACLE_DB_VERSIONdf
-		return;
-
 	upgrade_all();
 }
 

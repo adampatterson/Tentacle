@@ -263,10 +263,10 @@ class tentacle
 
     /**
      * Function: total_update
-     * Total number of updates
+     * Total number of updates total or for themes/modules
      *
      * Parameters:
-     *     $key - string
+     *     $key - string ( )
      *
      * Returns:
      *     int

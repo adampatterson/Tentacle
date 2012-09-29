@@ -4,8 +4,12 @@
 	<div class="full-content">
 	    <div class="one-full">
 	     	<h1 class='title'><img src="<?=ADMIN_URL; ?>images/icons/icon_pages_32.png" alt="" /> Updates available</h1>
-			
-			<a href="<?=BASE_URL; ?>action/do_core_upgrade/" class="btn btn-success">Update Tentacle</a>
+
+			<? if ( get_db_version() != get_current_db_version() ): ?>
+				<a href="<?=BASE_URL; ?>action/do_db_upgrade/" class="btn btn-success">Update the Database</a>
+			<? else:?>
+				<a href="<?=BASE_URL; ?>action/do_core_upgrade/" class="btn btn-success">Update Tentacle</a>
+			<? endif; ?>
 			
 			<h2>Whats new in this release</h2>
 			<hr />

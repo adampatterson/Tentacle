@@ -399,6 +399,18 @@ class sql_model
 		$build = $pdo->exec( "INSERT INTO `options` (`key`, `value`, `autoload`) VALUES('active_modules', 'a:1:{i:0;s:5:\"ipsum\";}', 'yes');" );
 	}	
 
+	public function get_112 ()
+	{
+		$config = config::get('db');
+		
+		try {
+			$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
+		} catch(PDOException $e) {
+			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
+		}
+		
+		$build = $pdo->exec( "ALTER TABLE `posts` ADD FULLTEXT(title, content);" );
+	}
 	
 	public function set_db ( $version )
 	{
@@ -412,4 +424,5 @@ class sql_model
 		
 		$build = $pdo->exec( "UPDATE  `options` SET  `value` =  '{$version}' WHERE  `options`.`key` ='db_version';" );
 	}
+
 }
