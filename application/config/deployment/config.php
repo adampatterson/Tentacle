@@ -9,7 +9,7 @@ config::set( 'autoload_library', array( 'db', 'session', 'user', 'url', 'paginat
 if ( strpos( BASE_URI,'install' ) == true ) {
 	config::set( 'autoload_helper', array(  ) ); 	
 } else {
-	config::set( 'autoload_helper', array( 'theme', 'scaffold', 'state', 'get', 'is', 'tentacle', 'upgrade', 'navigation', 'gravatar', 'shortcode', 'inflector', 'string', 'user') );
+	config::set( 'autoload_helper', array( 'theme', 'scaffold', 'state', 'get', 'is', 'tentacle', 'upgrade', 'navigation', 'gravatar', 'shortcode', 'inflector', 'string', 'user', 'cache') );
 }
 
 /* Sessions */
