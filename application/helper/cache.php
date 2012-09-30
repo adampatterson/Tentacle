@@ -65,6 +65,14 @@ class cache
 	}
 
 	
+	public function look_up( $key)	
+	{
+		$setting = load::model('settings');
+		
+		return $setting->look_up( '_transient_'.$key );
+	}
+	
+	
 	/**
 	*	Create an array containing paths to javascript files. They for now should be loaded in order of their requirements.
 	*/

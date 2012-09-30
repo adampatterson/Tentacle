@@ -7,11 +7,16 @@ class settings_model
 	{
 		$setting = db('options');
 		
-		$setting->insert( array(
-				'key' => $key,
-				'value' => $value,
-				'autoload' => $autoload
-			), FALSE );
+		$result = $this->look_up( $key );
+				
+		if ( $result == false ):
+		
+			$setting->insert( array(
+					'key' => $key,
+					'value' => $value,
+					'autoload' => $autoload
+				), FALSE );
+		endif;	
 	}
 	
 	
@@ -63,7 +68,7 @@ class settings_model
 
 	// Lookup Setting
 	//----------------------------------------------------------------------------------------------	
-	public function look_up ( $key = '')	
+	public function look_up( $key = '')	
 	{
 		$setting = db ( 'options' );
 		

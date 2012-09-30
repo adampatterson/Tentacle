@@ -287,13 +287,31 @@ class tentacle
 
         return $total;
 	}
-	
-	
+
+
+	/**
+	* Function: parse_args
+	*	Merge user defined arguments into defaults array.
+	*
+	* Parameters:
+	*	$args - Array
+	*	$defaults - Array
+	*
+	* Returns:
+	*	$args - Array
+	*/
+	function parse_args( $args, $defaults ) {
+		if ( is_array( $defaults ) )
+			return array_merge( $defaults, $args );
+		return $args ;
+	}
+
+
 	/**
 	* Function: dashboard_feed
 	* Display blog feed in the dashboard.
 	*
-	* Parameters:
+	* Arguments:
 	*     $feed - string
 	*     $count - int
 	*	  $only_titles - true/false
@@ -301,17 +319,37 @@ class tentacle
 	* Returns:
 	*     html
 	*/
-	function dashboard_feed( $feed, $count = 0, $only_titles = false ) {
-		// Use cURL to fetch text
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $feed);
-		curl_setopt($ch, CURLOPT_HEADER, 0);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		$rss = curl_exec($ch);
-		curl_close($ch);
+	function dashboard_feed( $args = array() ) {
+		
+		$defaults = array( 'feed' => null, 'count' => 4, 'only_titles' => false, 'cache' => true);
+		$args = parse_args( $args, $defaults );
+		
+		$feed 			= $args['feed'];
+		$count 			= $args['count'];
+		$only_titles 	= $args['only_titles'];
+		$feed_cache 	= $args['cache'];
 
-		// Manipulate string into object
-		$rss = simplexml_load_string($rss);
+		$cache = new cache();
+		
+		if ( $cache->look_up('dashboard') == false || $cache == false):
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $feed);
+			curl_setopt($ch, CURLOPT_HEADER, 0);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			$rss = curl_exec($ch);
+			curl_close($ch);
+
+			$rss = new SimpleXmlElement($rss);
+			$rss = $rss->asXML();
+			
+			$cache_data = $cache->set( 'dashboard', $rss, '+30 minutes' );
+			
+			$rss = simplexml_load_string($cache_data);
+		else:
+			$cache_data = $cache->get('dashboard');
+			
+			$rss = simplexml_load_string($cache_data);
+		endif;
 
 		if ( $count == 0 ) {
 			$cnt = count($rss->channel->item);
@@ -325,14 +363,15 @@ class tentacle
 			$url = $rss->channel->item[$i]->link;
 			$title = $rss->channel->item[$i]->title;
 			$desc = $rss->channel->item[$i]->description;
-			
+
 			if ( $only_titles == false ):
 				echo '<li><h3><a href="'.$url.'">'.$title.'</a></h3><p>'.$desc.'</p></li>';
 			else:
 				echo '<li><h3><a href="'.$url.'">'.$title.'</a></h3></li>';
 			endif;
 		}
-		echo '</ul>';
+		echo '</ul>';	
+
 	}
 
 

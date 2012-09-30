@@ -9,7 +9,7 @@
 						<? upgrade::check_core_version(); ?>
 					<div class="span8 well">
 						<h2>Tentacle News</h2>
-						<? dashboard_feed("http://tentaclecms.com/blog/feed/"); ?>
+						<? dashboard_feed(array( 'feed' => 'http://tentaclecms.com/blog/feed/' ) ); ?>
 					</div>
 					<!-- <div class="span4 well">
 							<h2>Content</h2>

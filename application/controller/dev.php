@@ -19,33 +19,18 @@ class dev_controller {
 		// warnings and errors
 		//ChromePhp::warn('this is a warning');
 		//ChromePhp::error('this is an error');
-		
-		if(class_exists('test_model'))
-		{
-			echo 'yup';
-		}
 
-		load::helper('dbug');
-		//new dBug( $_SERVER );
-		
-		$array = array('one'=>1,'two'=>2,'three'=>3);
-		
-		clean_out( $array );
-		
-		$array['one'] = 'four';
+		$array = array('one'=>1,'two'=>2,'three'=>3, 'four'=>4, 'five'=>5, 'six'=>6);
 
-		clean_out( $array );
-		
-		
 		$object = (object) $array;
 		
 		clean_out( $object );
 		
-		$object->one = 'three';
+		$cache = new cache();
 		
-		clean_out( $object );
-		
-		echo serialize(array('barnacles','ndoc'));
+		//$cache->set( 'test', $object, '+30 minutes' );
+		//$cache->get('test');
+		var_dump($cache->look_up('dashboard'));
 	}
 
 	
@@ -840,57 +825,33 @@ button:
 	public function bench () 
 	{
         ?><h2>Bench</h2><?
-        
-		/*        
-        mySerialize( $obj ) {
-           return base64_encode(gzcompress(serialize($obj)));
-        }
-        
-        myUnserialize( $txt ) {
-           return unserialize(gzuncompress(base64_decode($txt)));
-        } 
-		*/
-
-        function random_string ( $len = 1000 ){
-            $base='ABCDEFGHKLMNOPQRSTWXYZabcdefghjkmnpqrstwxyz123456789';
-            $max=strlen($base)-1;
-            $activatecode='';
-            mt_srand((double)microtime()*1000000);
-            while (strlen($activatecode)<$len+1)
-              $activatecode.=$base{mt_rand(0,$max)};
-
-            return $activatecode; }
 
         $number_tests = 10;
 
-        echo '<ol>';
-
         $i   = 0;
+
+		$time_test = array();
+		
         while($i < $number_tests) {
 
             $time_start = microtime(true);
-            $fuse =  random_string(0);
-            $random_array = explode($fuse, random_string('20000'));
-
-            $compress = gzcompress( base64_encode( serialize( $random_array ) ) );
-            /*
-            $insert = db('testing')->insert(array(
-				'data'=>$compress
-				));
-
-			$select = db('testing')->select('*')->where('id','=',$insert->id)->execute();
-            */
-            $decompress =  unserialize( base64_decode( gzuncompress( $compress ) ) );
-
-            echo '<li>'. $time.' <strong>$insert->id</strong></li>';
+            	
+			dashboard_feed(array( 'feed'=>'http://tentaclecms.com/blog/feed/', 'cache'=> false) );
 
             ++$i;
             $time_end = microtime(true);
-            $time = $time_end-$time_start;
 
+            $time_test[] = $time_end-$time_start;
         }
 
-        echo '</ol>';
+		echo array_sum($time_test) / $number_tests;
+
+		echo '<hr/><ol>';
+
+		foreach ($time_test as $time) {
+			echo '<li>'.$time.'</li>';
+		}
+		echo '</ol>';
 
 	} // END Bench
 
@@ -1562,18 +1523,22 @@ button:
 			$SearchText = $_POST['SearchText'];	
 
 		    print( "<h2>You searched for: $SearchText</h2>" );
-		    $db =& eZDB::globalDatabase();
 
 		    // Strip multiple whitespace
-		    $SearchText = preg_replace("(\s+)", " ", $db->escapeString( $SearchText ) );
+		    $SearchText = preg_replace("(\s+)", " ", db::quote( $SearchText ) );
 
 		    // Split text on whitespace
-		    $searchArray =& split( " ", $SearchText );
+		    $searchArray = explode( " ", $SearchText );
 
 		    // Get the total number of objects
-		    $objectCount = array();
-		    $db->array_query( $objectCount, "SELECT COUNT(*) AS count FROM object" );
-		    $totalObjectCount = $objectCount[0]["count"];
+			$object_table = db('search_object');
+		
+			$object = $object_table->total();
+			
+			print_r($object);
+			die;
+		    
+			$totalObjectCount = $objectCount[0]["count"];
 
 		    // Search words can at most be present in 70% of the objects
 		    $stopWordFrequency = 0.7;
@@ -1645,26 +1610,26 @@ button:
 			$object_table = db('search_object');
 			$object_word_link = db('search_object_word_link');
 		
-		    $Index_text = trim( strToLower( $_POST['IndexText'] )  );
+		    $index_text = trim( strToLower( $_POST['IndexText'] )  );
 			
 			
-			$object_id = $object_table->insert(array(
-			  'data'=>$Index_text
+			$object = $object_table->insert(array(
+			  'data'=>$index_text
 			));
 			
 		    // Strip multiple whitespaces
-			$Index_text = strip_tags( $Index_text );
-		    $Index_text = str_replace(".", " ", $Index_text );
-		    $Index_text = str_replace(",", " ", $Index_text );
-		    $Index_text = str_replace("'", " ", $Index_text );
-		    $Index_text = str_replace("\"", " ", $Index_text );
+			$index_text = strip_tags( $index_text );
+		    $index_text = str_replace(".", " ", $index_text );
+		    $index_text = str_replace(",", " ", $index_text );
+		    $index_text = str_replace("'", " ", $index_text );
+		    $index_text = str_replace("\"", " ", $index_text );
 
-		    $Index_text = str_replace("\n", " ", $Index_text );
-		    $Index_text = str_replace("\r", " ", $Index_text );
-		    $Index_text = preg_replace("(\s+)", " ", $Index_text );
+		    $index_text = str_replace("\n", " ", $index_text );
+		    $index_text = str_replace("\r", " ", $index_text );
+		    $index_text = preg_replace("(\s+)", " ", $index_text );
 
 		    // Split text on whitespace
-		    $index_array = explode( " ", $Index_text );
+		    $index_array = explode( " ", $index_text );
 
 		    // Count the total words in index text
 		    $totalWordCount = count( $index_array );
@@ -1701,6 +1666,8 @@ button:
 						->execute();
 						
 					$word_id = $object_count[0]->id;
+					
+					echo $word_id.'<br />';
 		        }
 		        else
 		        {
@@ -1710,6 +1677,8 @@ button:
 					));
 
 					$word_id = $word->id;
+					
+					echo $word_id.'<br />';
 		        }
 
 		        print( "Indexing word: '$index_word' <br>" );
@@ -1720,7 +1689,7 @@ button:
 		
 				$object_word_id = $object_word_link->insert(array(
 				  	'word_id'		=> $word_id,
-					'object_id'		=> $object_id->id,
+					'object_id'		=> $object->id,
 					'frequency' 	=> $frequency
 				));
 		    }
