@@ -9,33 +9,51 @@ class cache
 	{
 		# code...
 	}
-	
-	
-	public function add( $key, $data, $group, $expire )
+
+
+	public function set( $key, $data, $expire='+60 minutes' )
 	{
+		$cache['expire'] = strtotime($expire);
+		$cache['data'] = $data;
 		
+		$cache_data = serialize( $cache );
+		
+		$settings = load::model( 'settings' );
+		
+		$set = $settings->add('_transient_'.$key, $cache_data, null );
+		
+		return $this->get($key);
+    }
+	
+	
+	public function get( $key )
+	{
+		$settings = load::model( 'settings' );
+		$get = $settings->get('_transient_'.$key);
+		
+		$cache_data = unserialize($get);
+		
+		if ($cache_data['expire'] < time() ) {
+			// if the cache has expired then reload the cache.
+			$this->delete( $key );
+			return false;
+		} else {
+			return $cache_data['data'];
+		}
 	}
 	
 	
-	public function set( $key, $data, $group, $expire )
+	public function delete( $key ) 
 	{
+		$settings = load::model( 'settings' );
 		
-	}
-	
-	
-	public function get( $key, $group )
-	{
+		$delete_cache = $settings->delete( '_transient_'.$key );
 		
+		return true;
 	}
-	
-	
-	public function delete( $id, $group ) 
-	{
-		
-	}
-	
-	
-	public function replace( $key, $data, $group, $expire )
+
+
+	public function clear() 
 	{
 		
 	}
@@ -45,6 +63,7 @@ class cache
 	{
 		
 	}
+
 	
 	/**
 	*	Create an array containing paths to javascript files. They for now should be loaded in order of their requirements.
