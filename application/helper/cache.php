@@ -11,6 +11,18 @@ class cache
 	}
 
 
+	/**
+	* Function: set
+	*	Set cache
+	*
+	* Parameters:
+	*	$key - string
+	*	$data - Array or Object
+	*	$expires - http://php.net/manual/en/function.strtotime.php
+	*
+	* Returns:
+	*	Object
+	*/
 	public function set( $key, $data, $expire='+60 minutes' )
 	{
 		$cache['expire'] = strtotime($expire);
@@ -26,6 +38,16 @@ class cache
     }
 	
 	
+	/**
+	* Function: get
+	*	Get cache
+	*
+	* Parameters:
+	*	$key - string
+	*
+	* Returns:
+	*	Object / False
+	*/	
 	public function get( $key )
 	{
 		$settings = load::model( 'settings' );
@@ -43,6 +65,16 @@ class cache
 	}
 	
 	
+	/**
+	* Function: delete
+	*	Delete cache
+	*
+	* Parameters:
+	*	$key - string
+	*
+	* Returns:
+	*	True
+	*/
 	public function delete( $key ) 
 	{
 		$settings = load::model( 'settings' );
@@ -64,7 +96,16 @@ class cache
 		
 	}
 
-	
+	/**
+	* Function: look_up
+	*	Find a cache object by key
+	*
+	* Parameters:
+	*	$key - String
+	*
+	* Returns:
+	*	Boolean
+	*/
 	public function look_up( $key)	
 	{
 		$setting = load::model('settings');
