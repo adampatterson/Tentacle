@@ -1,6 +1,6 @@
 <?
 /**
-* //File: Cache
+* File: Cache
 */
 class cache
 {
