@@ -331,7 +331,7 @@ class tentacle
 
 		$cache = new cache();
 		
-		if ( $cache->look_up('dashboard') == false || $cache == false):
+		if ( $cache->look_up('dashboard') == false):
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $feed);
 			curl_setopt($ch, CURLOPT_HEADER, 0);
