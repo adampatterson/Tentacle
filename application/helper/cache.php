@@ -108,9 +108,19 @@ class cache
 	*/
 	public function look_up( $key)	
 	{
-		$setting = load::model('settings');
+		$settings = load::model('settings');
+
+		$get = $settings->get('_transient_'.$key);
 		
-		return $setting->look_up( '_transient_'.$key );
+		$cache_data = unserialize($get);
+		
+		if ($cache_data['expire'] < time() ) {
+			// if the cache has expired then reload the cache.
+			$this->delete( $key );
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 	
