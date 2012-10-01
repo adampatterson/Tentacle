@@ -99,8 +99,7 @@
 			</li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-				<li><a class="<? current_page('admin/settings_modules'); ?>" href="<?= ADMIN ?>settings_modules/">Manage Themes</a></li>
-				<li><a class="<? current_page('admin/settings_appearance'); ?>" href="<?= ADMIN ?>settings_appearance/">Appearance</a></li>
+				<li><a class="<? current_page('admin/settings_appearance'); ?>" href="<?= ADMIN ?>settings_appearance/">Manage Themes</a></li>
 				<li><a href="#">Add a new Theme</a></li>
 				<li class="divider"></li>
 				<li><a href="#">Theme Settings</a></li>
