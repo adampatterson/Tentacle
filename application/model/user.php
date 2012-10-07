@@ -135,12 +135,17 @@ class user_model
 	* ----------------------------------------------------------------------------------------------*/
 	public function get_hash( $hash )
 	{
-	
 		$user_hash = db::query("SELECT * FROM users WHERE
 			data LIKE '%".$hash."%'
 			ORDER BY id ASC");
 			
-		return $user_hash[0];
+		$total = count($user_hash);
+		
+		if ($total != 1) {
+			return false;
+		} else {
+			return $user_hash[0];
+		}
 	}
 	
 	

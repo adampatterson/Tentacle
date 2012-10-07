@@ -139,14 +139,17 @@ class action_controller {
 		$user = load::model( 'user' );
 		$user_details = $user->get_hash( $hash );
 		
-		user::update($user_details->email)
-		           ->data('activation_key','')
-				   ->data('status','')
-		           ->save();
+		if ($user_details != false) {
+			user::update($user_details->email)
+			           ->data('activation_key','')
+					   ->data('status','')
+			           ->save();
+			note::set('success','sent_message','Your email has been confirmed.');
 
-		note::set('success','sent_message','Your email has been confirmed.');
-	
-		url::redirect( 'admin' );
+			url::redirect( 'admin' );
+		} else {
+			url::redirect( );
+		}
 	}
 
 
