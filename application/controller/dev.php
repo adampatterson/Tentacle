@@ -1564,7 +1564,7 @@ button:
 		    {
 		        foreach ( $objectRes as $object )
 		        { ?>
-                    <a href="<?= BASE_URL ?>dev/search_view/?ObjectID=<?= $object->id ?>&SearchText=$SearchText\">Found object id: <?= $object->id ?> with frequency: <?= $object->frequency?></a> <br>
+                    <a href="<?= BASE_URL ?>dev/search_view/?ObjectID=<?= $object->id ?>&SearchText=<?=$SearchText ?>">Found object id: <?= $object->id ?> with frequency: <?= $object->frequency?></a> <br>
                 <? }
 		    }
 		    else
@@ -1695,19 +1695,15 @@ button:
 	}
 	
 	public function search_view()
-	{
-		?>
+	{ ?>
 		<h1>Fulltext search engine example</h1>
 		<hr/>
 
-		<?php
-		include_once( "classes/ezdb.php" );
-
+    <?php
 		$ObjectID = $_GET['ObjectID'];
 
 		if ( is_numeric( $ObjectID ) )
 		{
-		    $db =& eZDB::globalDatabase();
 
 		    $fetchQuery = "SELECT * FROM object WHERE id='$ObjectID'";
 		    $objectRes = array();
