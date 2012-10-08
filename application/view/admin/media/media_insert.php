@@ -17,16 +17,19 @@
 
 		$('#insert').click(function() {
 
-			var Title				= $('#title').val();
-			var AltText				= $('#alt_text').val();
-			var Caption				= $('#caption').val();
-			var Link				= $('#link_url').val();
-			
-			if ( Link ) {
-				var HtmlLink 		= '<a href="'+Link+'"><img src="http://placehold.it/200x200" alt="'+AltText+'" /></a>';
-			} else {
-				var HtmlLink 		= '<img src="http://placehold.it/200x200" alt="'+AltText+'" />';
-			}
+			var title				    = $('#title').val();
+			var alt_text				= $('#alt_text').val();
+			var caption				    = $('#caption').val();
+			var link_url				= $('#link_url').val();
+            var image_size              = $('.image_size:checked').val();
+
+            console.log(Size);
+
+			if (!Link) {
+                var HtmlLink = '<img src="http://placehold.it/200x200" alt="' + alt_text + '" title="' + title + '"  />';
+            } else {
+                var HtmlLink = '<a href="' + link_url + '"><img src="http://placehold.it/200x200" alt="' + alt_text + '" title="' + title + '" /></a>';
+            }
 
 			console.log(HtmlLink);
 			
@@ -53,7 +56,7 @@
 					<? foreach ( $media as $image ): ?>
 					<? $file_meta = explode('.', $image->name ); 
 
-					ChromePHP::log($file_meta);
+					//ChromePHP::log($file_meta);
 
 					IMAGE_DIR.$file_meta[0].'_sq'.'.'.$file_meta[1];
 
@@ -135,19 +138,19 @@
 												<label class="control-label">Size</label>
 												<div class="controls">
 													<label class="radio">
-														<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="" />
+														<input type="radio" name="image_size" class="image_size" value="<?= get_option('image_thumb_size_w'); ?>" checked="" />
 															Thumbnail ( <?= get_option('image_thumb_size_w').' x '.get_option('image_thumb_size_h'); ?> )
 													</label>
 													<label class="radio">
-														<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" />
+														<input type="radio" name="image_size" class="image_size" value="<?= get_option('image_medium_size_w'); ?>" />
 														Medium ( <?= get_option('image_medium_size_w').' x '.get_option('image_medium_size_h'); ?> )
 													</label>
 													<label class="radio">
-														<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" />
+														<input type="radio" name="image_size" class="image_size" value="<?= get_option('image_large_size_w'); ?>" />
 														Large ( <?= get_option('image_large_size_w').' x '.get_option('image_large_size_h'); ?> )
 													</label>
 													<label class="radio">
-														<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" />
+														<input type="radio" name="image_size" class="image_size" value="" />
 														Full Size
 													</label>
 												</div>
