@@ -1525,7 +1525,7 @@ button:
 		    print( "<h2>You searched for: $SearchText</h2>" );
 
 		    // Strip multiple whitespace
-		    $SearchText = preg_replace("(\s+)", " ", db::quote( $SearchText ) );
+		    $SearchText = preg_replace("(\s+)", " ", $SearchText );
 
 		    // Split text on whitespace
 		    $searchArray = explode( " ", $SearchText );
@@ -1534,11 +1534,8 @@ button:
 			$object_table = db('search_object');
 		
 			$object = $object_table->total();
-			
-			print_r($object);
-			die;
-		    
-			$totalObjectCount = $objectCount[0]["count"];
+
+			$totalObjectCount = $object;
 
 		    // Search words can at most be present in 70% of the objects
 		    $stopWordFrequency = 0.7;
@@ -1549,31 +1546,26 @@ button:
 		    foreach ( $searchArray as $searchWord )
 		    {
 		        if ( $i == 0 )
-		            $wordSQL .= "word.word='" .strToLower( $searchWord ) ."' ";
+		            $wordSQL .= "search_word.word='" .strToLower( $searchWord ) ."' ";
 		        else
-		            $wordSQL .= " OR word.word='" .strToLower( $searchWord ) ."' ";
+		            $wordSQL .= " OR search_word.word='" .strToLower( $searchWord ) ."' ";
 		        $i++;
 		    }
 
-		    $searchQuery = "SELECT object.id, object_word_link.frequency
-		                    FROM object, object_word_link, word
-		                    WHERE object.id=object_word_link.object_id
-		                    AND word.id=object_word_link.word_id
+            $objectRes = db::query("SELECT search_object.id, search_object_word_link.frequency
+		                    FROM search_object, search_object_word_link, search_word
+		                    WHERE search_object.id=search_object_word_link.object_id
+		                    AND search_word.id=search_object_word_link.word_id
 		                    AND ( $wordSQL )
-		                    AND ( ( word.object_count / $totalObjectCount ) < $stopWordFrequency )
-		                    ORDER BY object_word_link.frequency DESC";
-		    $objectRes = array();
-
-		    $db->array_query( $objectRes, $searchQuery );
-
+		                    AND ( ( search_word.object_count / $totalObjectCount ) < $stopWordFrequency )
+		                    ORDER BY search_object_word_link.frequency DESC");
 
 		    if ( count( $objectRes ) > 0 )
 		    {
 		        foreach ( $objectRes as $object )
-		        {
-		            print( "<a href=\"viewitem.php?ObjectID=" . $object["id"] . "&SearchText=$SearchText\">
-		                 Found object id:" . $object["id"] . " with frequency: " . $object["frequency"] . " </a> <br>" );
-		        }
+		        { ?>
+                    <a href="<?= BASE_URL ?>dev/search_view/?ObjectID=<?= $object->id ?>&SearchText=$SearchText\">Found object id: <?= $object->id ?> with frequency: <?= $object->frequency?></a> <br>
+                <? }
 		    }
 		    else
 		    {
@@ -1622,6 +1614,7 @@ button:
 		    $index_text = str_replace(".", " ", $index_text );
 		    $index_text = str_replace(",", " ", $index_text );
 		    $index_text = str_replace("'", " ", $index_text );
+            $index_text = str_replace("-", " ", $index_text );
 		    $index_text = str_replace("\"", " ", $index_text );
 
 		    $index_text = str_replace("\n", " ", $index_text );
