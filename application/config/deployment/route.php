@@ -125,9 +125,16 @@ route::set('dev/([-_a-zA-Z0-9]+)',array(
 // dev route
 route::set('dev/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
     'controller'=>'dev',
-    'function'=>'$1'
+    'function'=>'$1',
+    'arguments'=>array('$2')
 	));
-	
+
+route::set('dev/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
+    'controller'=>'dev',
+    'function'=>'$1',
+    'arguments'=>array('$2','$3')
+));
+
 // dev index
 route::set('dev',array(
     'controller'=>'dev',

@@ -1562,9 +1562,12 @@ button:
 
 		    if ( count( $objectRes ) > 0 )
 		    {
-		        foreach ( $objectRes as $object )
+
+                $url_string = str_replace(' ', '_', $SearchText);
+
+                foreach ( $objectRes as $object )
 		        { ?>
-                    <a href="<?= BASE_URL ?>dev/search_view/?ObjectID=<?= $object->id ?>&SearchText=<?=$SearchText ?>">Found object id: <?= $object->id ?> with frequency: <?= $object->frequency?></a> <br>
+                    <a href="<?= BASE_URL ?>dev/search_view/<?= $object->id ?>/<?=$url_string ?>">Found object id: <?= $object->id ?> with frequency: <?= $object->frequency?></a> <br>
                 <? }
 		    }
 		    else
@@ -1574,7 +1577,7 @@ button:
 		}
 
 		?>
-
+         </br></br>
 		<a href="<?= BASE_URL ?>dev/search_additem/">Add item to the search database</a>
 		<?
 	}
@@ -1689,39 +1692,35 @@ button:
 		}
 
 		?>
-
+        </br></br>
 		<a href="<?= BASE_URL ?>dev/search/">Test search engine</a>
 	<?		
 	}
 	
-	public function search_view()
-	{ ?>
-		<h1>Fulltext search engine example</h1>
-		<hr/>
+	public function search_view( $id='', $SearchText='' )
+	{
+		echo '<h1>Fulltext search engine example</h1><hr/>';
 
-    <?php
-		$ObjectID = $_GET['ObjectID'];
-
-		if ( is_numeric( $ObjectID ) )
+		if ( is_numeric( $id ) )
 		{
 
-		    $fetchQuery = "SELECT * FROM object WHERE id='$ObjectID'";
-		    $objectRes = array();
+            $objectRes = db::query("SELECT * FROM search_object WHERE id='$id'");
 
-		    $db->array_query( $objectRes, $fetchQuery );
+		    print( "Contents of object $id:<br><hr>" );
 
-		    print( "Contents of object $ObjectID:<br><hr>" );
+		    $data = $objectRes[0]->data;
 
-		    $data = $objectRes[0]["data"];
+            $SearchText = str_replace('_', ' ', $SearchText);
 
 		    // highlight search result
-		    print( preg_replace( "#($SearchText)#s", "<b>$1</b>", $data ) );
-
+            echo '<pre>';
+		    print( preg_replace( "#($SearchText)#s", "<strong>$1</strong>", $data ) );
+            echo '</pre>';
 		    print( "<hr>" );
 		}
 
 		?>
-
+        </br></br>
 		<a href="<?= BASE_URL ?>dev/search_additem/">Add item to the search database</a>
 		<a href="<?= BASE_URL ?>dev/search/">Test search engine</a>
 		<?	
