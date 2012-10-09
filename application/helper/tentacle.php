@@ -25,17 +25,22 @@ class tentacle
 	/**
 	* Function: library
 	* Loads libraries specific to Tentacle
-    * $file is both teh folder and the file the load.
+    * $file is both the folder and the file to load unless the library requires a different name.
 	*
 	* Parameters:
 	*     $file - string
-	*
+	*     $folder - String
+    *
 	* Returns:
 	*     Required library
 	*/
-	public static function library($file)
+	public static function library($folder, $file ='')
 	{
-		return load::file(TENTACLE_LIB.$file,$file,'library');
+        if($file == '')  {
+            return load::file(TENTACLE_LIB.$folder,$folder,'library');
+        } else {
+            return load::file(TENTACLE_LIB.$folder,$file,'library');
+        }
 	}
 
 	

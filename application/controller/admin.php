@@ -42,7 +42,7 @@ class admin_controller {
 	public function dashboard ()
 	{
 		tentacle::valid_user();
-		
+
 		if ( is_agree() == false )
 			url::redirect('admin/agree');
 		

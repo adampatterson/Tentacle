@@ -756,7 +756,7 @@ button:
 		<?php
 
 		// Include the diff class
-		tentacle::library('diff','diff');
+		tentacle::library('diff');
 
 			$a_raw = '<html>
 				<head>
@@ -1167,7 +1167,7 @@ button:
 	{	
 		echo '<h2>Spyc</h2>';
 		
-		tentacle::library('spyc','spyc');
+		tentacle::library('spyc');
 	}// END Function
 	
 	
@@ -1248,7 +1248,7 @@ button:
 	{
 			load::helper('navigation');
 
-			tentacle::library('dbug','dbug');
+			tentacle::library('dbug');
 			
 			$args = array();
 			
