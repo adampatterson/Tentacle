@@ -730,7 +730,7 @@ class action_controller {
 		
 		error_reporting(E_ALL | E_STRICT);
 
-		tentacle::library('','upload.class');
+		tentacle::library('upload');
 
 		$upload_handler = new UploadHandler();
 

@@ -33,9 +33,9 @@ class tentacle
 	* Returns:
 	*     Required library
 	*/
-	public static function library($folder='/',$library)
+	public static function library($file)
 	{
-		return load::file(TENTACLE_LIB.$folder,$library,'library');
+		return load::file(TENTACLE_LIB.$file,$file,'library');
 	}
 
 	
