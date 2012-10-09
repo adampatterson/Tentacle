@@ -25,10 +25,10 @@ class tentacle
 	/**
 	* Function: library
 	* Loads libraries specific to Tentacle
+    * $file is both teh folder and the file the load.
 	*
 	* Parameters:
-	*     $folder - path
-	*     $file - name
+	*     $file - string
 	*
 	* Returns:
 	*     Required library
