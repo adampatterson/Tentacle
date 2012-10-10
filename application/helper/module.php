@@ -128,7 +128,7 @@ class Modules {
 
 
     /**
-     * Function: addAlias
+     * Function: add_alias
      * Allows a module to respond to a trigger with multiple functions and custom priorities.
      *
      * Parameters:
@@ -136,7 +136,7 @@ class Modules {
      *     $function - Name of the class function to respond with.
      *     $priority - Priority of the response.
      */
-    protected function addAlias($name, $function, $priority = 10) {
+    protected function add_alias($name, $function, $priority = 10) {
         Trigger::current()->priorities[$name][] = array("priority" => $priority, "function" => array($this, $function));
     }
 

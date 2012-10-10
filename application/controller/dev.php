@@ -180,19 +180,17 @@ button:
 
 	public function extensions ()
 	{
-		clean_out( get_loaded_extensions() );
-		
+        $modules = load::model('module');
+
+        $deactivate = $modules->activate('test');
+
+        var_dump($deactivate);
 	}
 
 	/**
-	 * 
-	 * 
-	 * 
 	 * ========================= Google Analytics
 	 * http://code.google.com/p/gapi-google-analytics-php-interface/wiki/GAPIDocumentation
 	 * http://richardneililagan.com/2010/06/accessing-google-analytics-using-php-via-gapi/
-	 * 
-	 * 
 	 */
 
 	
