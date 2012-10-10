@@ -30,7 +30,8 @@
 		}
 	}
 
-    function get_modules() {
+
+    function get_enabled_module() {
         return enabled_module();
     }
 
