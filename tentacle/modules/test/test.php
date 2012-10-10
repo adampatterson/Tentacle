@@ -2,7 +2,7 @@
 class Test extends Modules {
 
 	public function __init() {
-		$this->addAlias("spider_function", "test");
+		$this->add_alias("spider_function", "test");
 	}
 	
 	public function test() {

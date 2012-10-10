@@ -111,7 +111,7 @@ class page_model
 		
 		// Run content through HTMLawd and Samrty Text
 		$page          = db('posts');
-		
+
 		$row = $page->update(array(
 			'title'	=>$title,
 			'slug'		=>$slug,
