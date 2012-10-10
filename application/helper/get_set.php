@@ -15,20 +15,38 @@
 	* Returns:
 	*	String
 	*/
-	function get_option( $option, $default = false ) 
+	function get_option( $key, $default = false )
 	{
-		$setting = db ( 'options' );
-		
-		$get_settings = $setting->select( '*' )
-			->where( 'key', '=', $option )
-			->execute();
-		
-		if ( isset($get_settings[0]->value)) {
-			return $get_settings[0]->value;
+        $settings = load::model( 'settings' );
+        $get = $settings->get( $key );
+
+		if ( $get != false ) {
+			return $get;
 		} else {
 			return $default;
 		}
 	}
+
+
+    /**
+     * Function: set_option
+     *	Set a new option ( Key Value ) if the option exists it will be updated.
+     *
+     * Parameters:
+     *	$key - String
+     *	$value - String
+     *
+     * Returns:
+     *	$value - String
+     */
+    function set_option( $key = '', $value = '' )
+    {
+        $settings = load::model( 'settings' );
+
+        $add = $settings->update( $key, $value );
+
+        return $value;
+    }
 
 
     function get_enabled_module() {
