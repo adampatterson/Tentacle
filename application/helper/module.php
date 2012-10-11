@@ -115,14 +115,14 @@ class Modules {
 
 
     /**
-     * Function: setPriority
+     * Function: set_priority
      * Sets the priority of an action for the module this function is called from.
      *
      * Parameters:
      *     $name - Name of the trigger to respond to.
      *     $priority - Priority of the response.
      */
-    protected function setPriority($name, $priority) {
+    protected function set_priority($name, $priority) {
         Trigger::current()->priorities[$name][] = array("priority" => $priority, "function" => array($this, $name));
     }
 
