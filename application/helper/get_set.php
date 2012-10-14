@@ -169,9 +169,31 @@
 		$snippet_single = $snippet->get_slug( $slug );
 
 		return $snippet_single->content;
-		}
+	}
 		
 		
+	/**
+	* Function: get_json
+	*	Simple function that woks with JSON and returns the $value of the $key
+	*
+	* Parameters:
+	*	$key - string
+	* 	$json - JSON
+	*
+	* Returns:
+	*	$value - string	
+	*
+	*/
+	function get_json( $key, $json ) 
+	{
+		foreach ($json as $json_key => $value ) {
+			if ($key == $json_key) {
+				return $value;
+			}
+		}	
+	}
+	
+				
 	function get_next_post () {}
 	function get_previous_post () {}
 	function get_post_status () {}
