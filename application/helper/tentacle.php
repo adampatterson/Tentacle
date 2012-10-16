@@ -298,6 +298,8 @@ class tentacle
 	* Function: parse_args
 	*	Merge user defined arguments into defaults array.
 	*
+	*	From WordPress
+	*
 	* Parameters:
 	*	$args - Array
 	*	$defaults - Array
@@ -306,6 +308,11 @@ class tentacle
 	*	$args - Array
 	*/
 	function parse_args( $args, $defaults ) {
+		if ( is_object( $args ) )
+			$r = get_object_vars( $args );
+		elseif( is_array( $args ) )
+			$r =& $args;
+			
 		if ( is_array( $defaults ) )
 			return array_merge( $defaults, $args );
 		return $args ;
