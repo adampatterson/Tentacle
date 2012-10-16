@@ -182,6 +182,8 @@ button:
 	{
         $modules = load::model('module');
 
+		var_dump($modules->get());
+
         $deactivate = $modules->activate('test');
 
         var_dump($deactivate);
