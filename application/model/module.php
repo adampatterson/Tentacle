@@ -3,13 +3,16 @@
 class module_model
 {
     // Get all and acive modules
-    public function get($active=false) {
+    public function get($active='') {
+        $modules = new Modules();
+        $get_modules = $modules->get_modules();
 
-        if ($active == true) {
-            return enabled_module();
-        } else {
-            $modules = new Modules();
-            return $modules->get_modules();
+        if ($active == 'active') {
+            return $get_modules['enabled_modules'];
+        } elseif ($active == 'inactive') {
+            return $get_modules['disabled_modules'];
+		} else {
+            return $get_modules;
         }
     }
 
@@ -21,7 +24,7 @@ class module_model
 
             $updated_modules = serialize(array_merge(enabled_module(), $module));
             $modules = load::model('settings')->update('active_modules', $updated_modules);
-
+            return true;
         else:
             return false;
         endif;

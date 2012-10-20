@@ -43,8 +43,8 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		if ( is_agree() == false )
-			url::redirect('admin/agree');
+		//if ( is_agree() == false )
+		// 			url::redirect('admin/agree');
 		
 		if ( get_db_version() != get_current_db_version() )
 			url::redirect('admin/updates');
@@ -540,9 +540,12 @@ class admin_controller {
 		tentacle::valid_user();
 	
 		$serpent = load::model( 'serpent' );
-		$modules = $serpent->get_module( );
-	
-		load::view ('admin/settings/settings_modules', array( 'modules'=>$modules ) );
+		$serpent_modules = $serpent->get_module( );
+		
+		$modules = load::model( 'module' );
+		$get_module = $modules->get();
+
+		load::view ('admin/settings/settings_modules', array( 'serpent_modules'=>$serpent_modules, 'modules'=>$get_module ) );
 	}
 
 	/**

@@ -33,6 +33,74 @@ class dev_controller {
 		var_dump($cache->look_up('dashboard'));
 	}
 
+	public function speed($test='')
+	{
+		echo '<h1>Speed Test</h1>';
+		# Stop output from code to be tested
+			function output_buffer() { return NULL; }
+			ob_start('output_buffer');
+			
+			$loops = 5000;
+			$exact_timer = true;
+			
+			ob_flush();
+			flush();
+			
+/*
+Test one
+*/
+				$start_time1 = microtime($exact_timer); # Start the first timer
+				for($i = 0; $i < $loops; $i++):
+
+
+					$post 		= load::model( 'post' );
+					$posts 		= $post->get( );
+
+
+				endfor;
+				$total_time = microtime($exact_timer) - $start_time1; # Stop the first timer, and figure out the total
+
+
+			ob_flush();
+			flush();
+
+/*
+Test two
+*/
+				$start_time2 = microtime($exact_timer); # Start the second timer
+				for($i = 0; $i < $loops; $i++):
+
+
+					$get = db::query("SELECT * from `posts` where `type` = 'page' AND `status` != 'trash' ORDER BY `menu_order` ASC");
+					
+	
+				endfor;
+				$total_time2 = microtime($exact_timer) - $start_time2; # Stop the second timer, and figure out the total
+
+
+			ob_end_flush(); # Enable output again
+
+			# Echo the results for AJAX
+			$results = array(
+				'total_time1' => $total_time,
+				'total_time2' => $total_time2
+			);
+
+			if($total_time < $total_time2):
+				$res = ( ( $total_time / $total_time2 ) * 100 ) - 100;
+
+				echo 'Your first test was faster by <strong>'.abs(round($res)).'%</strong>, it took <strong>'.$total_time.'</strong> seconds to execute vs <strong>'.$total_time2.'</strong>.';
+
+			elseif($total_time > $total_time2):
+				$res = ( ( $total_time2 / $total_time ) * 100 ) - 100;
+
+				echo 'Your second test was faster by <strong>'.abs(round($res)).'%</strong>, it took <strong>'.$total_time2.'</strong> seconds to execute vs <strong>'.$total_time.'</strong>.';
+
+			elseif($total_time === $total_time2):
+				echo 'The code samples scored equal times. Use either.';
+			endif;
+	}
+
 	
 public function	yaml_test () {
 $yaml = '
@@ -182,11 +250,17 @@ button:
 	{
         $modules = load::model('module');
 
-		var_dump($modules->get());
+		//var_dump($modules->get('active'));
 
-        $deactivate = $modules->activate('test');
+        var_dump($modules->get('active'));
 
-        var_dump($deactivate);
+		var_dump($modules->get('inactive'));
+
+        //$activate = $modules->activate('test');
+
+		//$deactivate = $modules->deactivate('test');
+
+        //var_dump($deactivate);
 	}
 
 	/**
@@ -813,47 +887,6 @@ button:
 		echo $diff->render($renderer);
 		
 	} // END DIFF
-
-
-	/**
-	* bench function
-	*
-	* @return void
-	* @author Adam Patterson
-	**/
-
-	public function bench () 
-	{
-        ?><h2>Bench</h2><?
-
-        $number_tests = 10;
-
-        $i   = 0;
-
-		$time_test = array();
-		
-        while($i < $number_tests) {
-
-            $time_start = microtime(true);
-            	
-			dashboard_feed(array( 'feed'=>'http://tentaclecms.com/blog/feed/', 'cache'=> false) );
-
-            ++$i;
-            $time_end = microtime(true);
-
-            $time_test[] = $time_end-$time_start;
-        }
-
-		echo array_sum($time_test) / $number_tests;
-
-		echo '<hr/><ol>';
-
-		foreach ($time_test as $time) {
-			echo '<li>'.$time.'</li>';
-		}
-		echo '</ol>';
-
-	} // END Bench
 
 
 	/**
@@ -1694,7 +1727,7 @@ button:
 		?>
         </br></br>
 		<a href="<?= BASE_URL ?>dev/search/">Test search engine</a>
-	<?		
+	<?
 	}
 	
 	public function search_view( $id='', $SearchText='' )

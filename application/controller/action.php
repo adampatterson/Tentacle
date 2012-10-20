@@ -537,6 +537,36 @@ class action_controller {
 	 * 
 	 * 
 	 * 
+	 * ========================= Module Activation
+	 * 
+	 * 
+	 * 
+	 * 
+	 */	
+	
+	
+	public function enable_module( $slug )
+	{
+		$modules = load::model('module');
+		$activate = $modules->activate( $slug );
+		
+		url::redirect('admin/settings_modules/');
+	}
+	
+	
+	public function disable_module( $slug )
+	{
+		$modules = load::model('module');
+		$deactivate = $modules->deactivate( $slug );
+		
+		url::redirect('admin/settings_modules/');
+	}
+	
+	
+	/**
+	 * 
+	 * 
+	 * 
 	 * ========================= Snippets
 	 * 
 	 * 
