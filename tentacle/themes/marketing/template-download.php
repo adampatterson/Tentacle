@@ -82,7 +82,7 @@ if(!defined('SCAFFOLD')):
 							<input type='hidden' name='history' value="<?= $note['content'];?> " />
 						<?php endif;?>
 
-					    <input type="submit" value="Join" class="btn btn-primary" />
+					    <input type="submit" value="Join" class="btn btn-primary" onClick="_gaq.push(['_trackEvent', 'Download Page', 'Button', 'Mailing List']);" />
 
 					</form>
 				</div>
