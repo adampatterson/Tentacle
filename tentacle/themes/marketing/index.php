@@ -170,13 +170,18 @@ if(!defined('SCAFFOLD')):
 						*/?>
 					</div>
 					
-					<div class="span4 offset1">
+					<div class="span3 offset1">
 						<h2>Report a Bug</h2>
 						<p class="lead">If you found a bug in the CMS use the <a href="https://github.com/adampatterson/Tentacle/issues">Issue Tracker</a> on GitHub to report it.</p>
 
 						<p class="lead"><strong>Please try to provide us with as much clear information as possible.</strong></p>
 
-						<p><a href="https://github.com/adampatterson/Tentacle/issues" class="btn btn-primary">Submit an Issue</a></p>
+						<p><a href="https://github.com/adampatterson/Tentacle/issues" class="btn btn-primary" onClick="_gaq.push(['_trackEvent', 'Content', 'Button', 'Git Issue']);">Submit an Issue</a></p>
+					</div>
+					<div class="span3  offset1">
+						<h2>Contribute</h2>
+						<p class="lead">Tentacle CMS is hosted on Github, Contributing is easy!</p>
+						<p class="lead"><a href="https://github.com/adampatterson/Tentacle/issues" class="btn btn-primary" onClick="_gaq.push(['_trackEvent', 'Content', 'Button', 'Git Source']);">Start today!</a></p>
 					</div>
 				</div>
 				
