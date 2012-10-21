@@ -20,29 +20,30 @@ if(!defined('SCAFFOLD')):
 		<div class="container">
 			<div class="row visible-desktop">
 				<div class="span5">
-					<h1><small>Create &amp; Manage Content your way!</small></h1>
+					<br />
+					<h1>Create &amp; Manage Content your way!</h1>
 					<p class="lead">Tentacle makes it easy to Design, Develop, and Write content for the web.</p>
 					<p class="lead">Its goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
-					<p class="lead"><a class="btn btn-large btn-success" href="http://tentaclecms.com/blog/downloads/tentacle-beta" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5 Beta']);">&nbsp;&nbsp;&nbsp;Download&nbsp;&nbsp;&nbsp;</a></p>
+					<p class="lead"><a class="btn btn-large btn-success btn-block offset1" href="<?= BASE_URL ?>download/" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5 Beta']);">&nbsp;&nbsp;&nbsp;Download Now!&nbsp;&nbsp;&nbsp;</a></p>
 				</div>
 				<div class="span7">
-					<p class="lead"><img src="<?= PATH ?>/assets/img/tentacle-app.png" alt="Tentacle" class="full" /></p>
+					<img src="<?= PATH ?>/assets/img/tentacle-cms.png" alt="Tentacle" />
 				</div>
 			</div>
 			
 			<div class="row visible-tablet">
 				<div class="span5">
-					<h1><small>Create &amp; Manage Content your way!</small></h1>
+					<h1>Create &amp; Manage Content your way!</h1>
 				</div>
 				<div class="span7">
-					<p class="lead"><img src="<?= PATH ?>/assets/img/tentacle-app.png" alt="Tentacle" class="full" /></p>
+					<p class="lead"><img src="<?= PATH ?>/assets/img/tentacle-app-medium.png" alt="Tentacle" class="full" /></p>
 				</div>
 			</div>
 			<div class="row visible-tablet">
 				<div class="span12">
 					<p class="lead">Tentacle makes it easy to Design, Develop, and Write content for the web.</p>
-					<p class="lead">Its goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
-					<p class="lead"><a class="btn btn-large btn-success" href="http://tentaclecms.com/blog/downloads/tentacle-beta" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5 Beta']);">&nbsp;&nbsp;&nbsp;Download&nbsp;&nbsp;&nbsp;</a></p>
+					<p class="lead">It's goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
+					<p class="lead"><a class="btn btn-large btn-success" href="http://tentaclecms.com/download/" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5 Beta']);">&nbsp;&nbsp;&nbsp;Download Now!&nbsp;&nbsp;&nbsp;</a></p>
 				</div>
 			</div>
 			
@@ -50,7 +51,7 @@ if(!defined('SCAFFOLD')):
 				<div class="span12">
 					<h1><small>Create &amp; Manage Content your way!</small></h1>
 					<p class="lead">Tentacle makes it easy to Design, develop, and Write content for the web.</p>
-					<p class="lead">Its goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
+					<p class="lead">It's goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
 				</div>
 			</div>
 <?/* 
@@ -69,7 +70,7 @@ if(!defined('SCAFFOLD')):
 	</header>
 	<div class="container">
 		<div class="row bump" id="why">
-			<div class="span12">
+			<div class="span8">
 				<h1>Why Tentacle?</h1>
 				
 				<hr />
@@ -82,7 +83,22 @@ if(!defined('SCAFFOLD')):
 
 				<p class="lead">With an approval process in place content can be added as a draft, approved and versioned. We went another step in that you can modify approved content without publishing immediately publishing the changes to the live site.</p>
 				
-				<p><a class="btn btn-default btn-large" href="https://github.com/adampatterson/Tentacle/wiki/Philosophy">Read more about our Philosophy</a></p>
+				<p><a class="btn btn-primary btn-large" href="https://github.com/adampatterson/Tentacle/wiki/Philosophy">Read more about our Philosophy</a></p>
+			</div>
+			
+			<div class="span4" id='get-it'>
+	
+				<h1>Take it for a spin!</h1>
+				
+				<hr />
+				
+				<p class="lead">The demo installation of Tentacle will be reset every few hours, We are still in beta so please let us know if any issues you see.</p>
+
+				<p class="lead"><strong>Login:</strong> <a href="http://demo.tentaclecms.com/admin/">http://demo.tentaclecms.com/admin/</a><br />
+				<strong>username:</strong> demo<br />
+				<strong>password:</strong> demo</p>
+				<p><a class="btn btn-large btn-primary" href="http://demo.tentaclecms.com/admin/" onClick="javascript: _gaq.push(['_trackPageview', 'demo.tentaclecms.com/admin/']); _gaq.push(['_trackEvent', 'Link', 'Demo', 'v 0.5.8 Beta']);">&nbsp;&nbsp;&nbsp;View the demo&nbsp;&nbsp;&nbsp;</a></p>
+				
 			</div>
 		</div>
 <?/* 
@@ -129,40 +145,23 @@ if(!defined('SCAFFOLD')):
 					</ul>
 			</div>
 		</div>
-*/ ?>
-		<div class="row bump" id='get-it'>
-			<div class="span12" id="overview">
-				<div class="container">
-					<h1>Take Her for a spin!</h1>
-					<p class="lead">The demo installation of Tentacle will be reset every few hours, We are still in beta so please let us know if any issues you see.</p>
-
-					<p><strong>Login:</strong> <a href="http://demo.tentaclecms.com/admin/">http://demo.tentaclecms.com/admin/</a><br />
-					<strong>username:</strong> demo<br />
-					<strong>password:</strong> demo</p>
-					<p><a class="btn btn-large" href="http://demo.tentaclecms.com/admin/" onClick="javascript: _gaq.push(['_trackPageview', 'demo.tentaclecms.com/admin/']); _gaq.push(['_trackEvent', 'Link', 'Demo', 'v 0.5.8 Beta']);">&nbsp;&nbsp;&nbsp;View the demo&nbsp;&nbsp;&nbsp;</a></p>
-				</div>
-			</div>
-		</div>
-		
+	
 		<div class="row bump" id='get-it'>
 			<div class="span12 center jumbotron subhead" id="overview">
 				<div class="container">
 					<h1><small>Use Tentacle CMS today</small></h1>
-					<p><a class="btn btn-large btn-success" href="http://tentaclecms.com/blog/downloads/tentacle-beta" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5.8 Beta']);">&nbsp;&nbsp;&nbsp;Get it!&nbsp;&nbsp;&nbsp;</a></p>
+					<p><a class="btn btn-large btn-success" href="http://tentaclecms.com/download/" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5.8 Beta']);">&nbsp;&nbsp;&nbsp;Get it!&nbsp;&nbsp;&nbsp;</a></p>
 				</div>
 			</div>
 		</div>
-		
+ */?>			
 		<div class="row bump" id="support">
 			<div class="span12">
-				<h1>We are here to help!</h1>
-				
-				<hr />
-				
+
 				<div class="row">
 
 					<div class="span4">
-						<h3>Join our Mailing List</h3>
+						<h2>Join our Mailing List</h2>
 						<p class="lead">Get the lowdown on announcements and cool new features.</p>
 						
 						<form method="post" action="http://www.industrymailout.com/Industry/SubscribeRedirect.aspx" >
@@ -192,7 +191,7 @@ if(!defined('SCAFFOLD')):
 								<input type='hidden' name='history' value="<?= $note['content'];?> " />
 							<?php endif;?>
 					
-						    <input type="submit" value="Join it!" class="btn btn-default" />
+						    <input type="submit" value="Join it!" class="btn btn-primary" />
 
 						</form>
 						<? /*
@@ -203,18 +202,18 @@ if(!defined('SCAFFOLD')):
 					</div>
 					
 					<div class="span4">	
-						<h3>IRC</h3>
+						<h2>IRC</h2>
 						<p class="lead">Join us in the IRC channel from <a href="http://freenode.net/">Freenode.net</a>, A great resource for Designers and Developers.</p>
-						<p><a href="http://webchat.freenode.net/?channel=tentacle" class="btn btn-default" >#tentacle</a></p>
+						<p><a href="http://webchat.freenode.net/?channel=tentacle" class="btn btn-primary" >#tentacle</a></p>
 					</div>
 					
 					<div class="span4">
-						<h3>Report a Bug</h3>
+						<h2>Report a Bug</h2>
 						<p class="lead">If you found a bug in the CMS use the <a href="https://github.com/adampatterson/Tentacle/issues">Issue Tracker</a> on GitHub to report it.</p>
 
 						<p class="lead"><strong>Please try to provide us with as much clear information as possible.</strong></p>
 
-						<p><a href="https://github.com/adampatterson/Tentacle/issues" class="btn btn-default">Submit and Issue</a></p>
+						<p><a href="https://github.com/adampatterson/Tentacle/issues" class="btn btn-primary">Submit an Issue</a></p>
 					</div>
 				</div>
 				

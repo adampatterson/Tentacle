@@ -3,6 +3,13 @@
   <head>
 	<meta charset="utf-8">
 	<title><?= get_option('blogname').' - '.$title ?></title>
+
+	<? if (isset($download) && $download == true): /*?>
+		<!-- <meta content="0; URL=http://tentaclecms.com/blog/downloads/tentacle-beta" http-equiv="Refresh" /> -->
+	<? 
+	*/
+	endif;?>
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
