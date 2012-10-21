@@ -49,7 +49,7 @@ if(!defined('SCAFFOLD')):
 
 				<p class="lead">With an approval process in place content can be added as a draft, approved and versioned. We went another step in that you can modify approved content without publishing immediately publishing the changes to the live site.</p>
 				
-				<p><a class="btn btn-primary btn-large" href="https://github.com/adampatterson/Tentacle/wiki/Philosophy" onClick="_gaq.push(['_trackEvent', 'Content', 'Button', 'WIki']);">>Read more about our Philosophy</a></p>
+				<p><a class="btn btn-primary btn-large" href="https://github.com/adampatterson/Tentacle/wiki/Philosophy" onClick="_gaq.push(['_trackEvent', 'Content', 'Button', 'WIki']);">Read more about our Philosophy</a></p>
 			</div>
 			
 			<div class="span4" id='get-it'>
@@ -60,7 +60,7 @@ if(!defined('SCAFFOLD')):
 				
 				<p class="lead">The demo installation of Tentacle will be reset every few hours, We are still in beta so please let us know if any issues you see.</p>
 
-				<p class="lead"><strong>Login:</strong> <a href="http://demo.tentaclecms.com/admin/" onClick="_gaq.push(['_trackEvent', 'Content', 'Link', 'Demo']);">>http://demo.tentaclecms.com/admin/</a><br />
+				<p class="lead"><strong>Login:</strong> <a href="http://demo.tentaclecms.com/admin/" onClick="_gaq.push(['_trackEvent', 'Content', 'Link', 'Demo']);">http://demo.tentaclecms.com/admin/</a><br />
 				<strong>username:</strong> demo<br />
 				<strong>password:</strong> demo</p>
 				<p><a class="btn btn-large btn-primary" href="http://demo.tentaclecms.com/admin/" onClick="_gaq.push(['_trackEvent', 'Content', 'Button', 'Demo']);">&nbsp;&nbsp;&nbsp;View the demo&nbsp;&nbsp;&nbsp;</a></p>
@@ -170,7 +170,7 @@ if(!defined('SCAFFOLD')):
 					<div class="span4">	
 						<h2>IRC</h2>
 						<p class="lead">Join us in the IRC channel from <a href="http://freenode.net/">Freenode.net</a>, A great resource for Designers and Developers.</p>
-						<p><a href="http://webchat.freenode.net/?channel=tentacle" class="btn btn-primary" onClick="_gaq.push(['_trackEvent', 'Content', 'Link', 'IRC']);"> >#tentacle</a></p>
+						<p><a href="http://webchat.freenode.net/?channel=tentacle" class="btn btn-primary" onClick="_gaq.push(['_trackEvent', 'Content', 'Link', 'IRC']);">#tentacle</a></p>
 					</div>
 					
 					<div class="span4">
