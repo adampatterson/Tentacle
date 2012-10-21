@@ -8,8 +8,7 @@ _/      _/_/_/  _/    _/      _/_/    _/_/_/    _/_/_/  _/    _/_/_/
 ======================================================================-->
 
 <link href="<?= PATH ?>/assets/css/bootstrap.css" rel="stylesheet">
-<link href="<?= PATH ?>/assets/css/bootstrap-responsive.min.css" rel="stylesheet">
-<link href="<?= PATH ?>/style.css" rel="stylesheet">
+<link href="<?= PATH ?>/assets/css/style.css" rel="stylesheet">
 
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>

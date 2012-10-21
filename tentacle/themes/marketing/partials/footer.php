@@ -1,9 +1,6 @@
 	<footer>
 		<div class="container">
 			<div class="row">
-				<div class="span4">
-					
-				</div>
 				<div class="span6">
 					<ul class="unstyled">
 						<li class="lead">Made by <a href="http://adampatterson.ca" target="_blank">Adam Patterson</a> | <a href="mailto:hello@tentaclecms.com">hello@tentaclecms.com</a> | <a href="https://twitter.com/#!/TentacleCMS">@TentacleCMS</a></li>

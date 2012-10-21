@@ -18,54 +18,19 @@ if(!defined('SCAFFOLD')):
 <? theme::part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>'marketing' ) ); ?>
 	<header class="jumbotron subhead" id="overview">
 		<div class="container">
-			<div class="row visible-desktop">
+			<div class="row">
 				<div class="span5">
 					<br />
 					<h1>Create &amp; Manage Content your way!</h1>
 					<p class="lead">Tentacle makes it easy to Design, Develop, and Write content for the web.</p>
 					<p class="lead">Its goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
-					<p class="lead"><a class="btn btn-large btn-success btn-block offset1" href="<?= BASE_URL ?>download/" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5 Beta']);">&nbsp;&nbsp;&nbsp;Download Now!&nbsp;&nbsp;&nbsp;</a></p>
+					<p class="lead"><a class="btn btn-large btn-success btn-block" href="<?= BASE_URL ?>download/" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5 Beta']);">&nbsp;&nbsp;&nbsp;Download Now!&nbsp;&nbsp;&nbsp;</a></p>
 				</div>
-				<div class="span7">
+				<div class="app-image pull-right">
 					<img src="<?= PATH ?>/assets/img/tentacle-cms.png" alt="Tentacle" />
 				</div>
 			</div>
-			
-			<div class="row visible-tablet">
-				<div class="span5">
-					<h1>Create &amp; Manage Content your way!</h1>
-				</div>
-				<div class="span7">
-					<p class="lead"><img src="<?= PATH ?>/assets/img/tentacle-app-medium.png" alt="Tentacle" class="full" /></p>
-				</div>
-			</div>
-			<div class="row visible-tablet">
-				<div class="span12">
-					<p class="lead">Tentacle makes it easy to Design, Develop, and Write content for the web.</p>
-					<p class="lead">It's goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
-					<p class="lead"><a class="btn btn-large btn-success" href="http://tentaclecms.com/download/" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5 Beta']);">&nbsp;&nbsp;&nbsp;Download Now!&nbsp;&nbsp;&nbsp;</a></p>
-				</div>
-			</div>
-			
-			<div class="row visible-phone">
-				<div class="span12">
-					<h1><small>Create &amp; Manage Content your way!</small></h1>
-					<p class="lead">Tentacle makes it easy to Design, develop, and Write content for the web.</p>
-					<p class="lead">It's goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
-				</div>
-			</div>
-<?/* 
-			<div class="subnav">
-				<ul class="nav nav-pills">
-					<li><a href="#why">Why</a></li>
-					<li><a href="#features">Features</a></li>
-					<li><a href="#support">Support</a></li>
-					<li><a href="#hosting">Hosting</a></li>
-					<li><a href="#documentation">Documentation</a></li>
-					<li><a href="#get-it">Get it</a></li>
-				</ul>
-			</div>
-*/?>
+	
 		</div>
 	</header>
 	<div class="container">
@@ -220,84 +185,8 @@ if(!defined('SCAFFOLD')):
 			</div>
 		</div>
 
-<?/* 
-		<div class="row bump" id="hosting">
-			<div class="span12">
-				<h1>Hosting</h1>
-				<p><a class="btn" href="#">View details &raquo;</a></p>
-			</div>
-		</div>
-*/?>
-
 	</div>
-	<? /* 
-	<script type="text/javascript">
-	$("document").ready(function (){
 
-	       // load the overlay
-
-	        if (document.cookie.indexOf('visited=true') == -1) {
-	            var fifteenDays = 1000*60*60*24*15;
-	            var expires = new Date((new Date()).valueOf() + fifteenDays);
-	            document.cookie = "visited=true;expires=" + expires.toUTCString();
-	            $.colorbox({width:"580px", inline:true, href:"#subscribe_popup"});
-	        }
-
-	        $(".open_popup").colorbox({width:"580px", inline:true, href:"#subscribe_popup"});
-
-	 });
-	
-	</script>
-	
-	<script type="text/javascript" charset="utf-8">
-		$('#myModal').modal('hide')
-	</script>
-	
- <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>
-	<div class="modal hide fade" id="myModal" style="width: 300px;">
-		<form method="post" action="http://www.industrymailout.com/Industry/SubscribeRedirect.aspx" >
-			<div class="modal-header">
-			<a class="close" data-dismiss="modal">×</a>
-			<h3>Mailing list</h3>
-		</div>
-		<div class="modal-body">
-
-			<input type="hidden" name="mailinglistid" value="27205" />
-			<input type="hidden" name="success" value="http://tentaclecms.com" />
-			<input type="hidden" name="errorparm" value="error" />
-
-
-			<div class="control-group">
-				<label for="firstname">First Name</label>
-				<div class="controls">
-					<input type="text" name="givenname" maxlength="50" class="span3 input-xlarge" id="firstname" >
-				</div>
-			</div>
-
-			<div class="control-group">
-				<label for="lastname">Last Name</label>
-				<div class="controls">
-					<input type="text" name="familyname" maxlength="50" class="span3 input-xlarge" id="lastname" >
-				</div>
-			</div>
-
-			<div class="control-group">
-				<label for="email">Email</label>
-				<div class="controls">
-					<input type="text" name="email" required="required" value="" class="email span3 input-xlarge" id="email">
-				</div>
-			</div>
-
-			<?php if($note = note::get('session')): ?>
-				<input type='hidden' name='history' value="<?= $note['content'];?> " />
-			<?php endif;?>
-		  </div>
-		  <div class="modal-footer">
-		    <input type="submit" value="Join the List!" class="btn btn-default btn-large btn-primary" />
-		  </div>
-		</form>
-	</div>
-	*/?>
 	<? theme::part( 'partials/footer' ); 
 	endif;
 	?>

@@ -54,10 +54,9 @@ theme::part( 'partials/header',array( 'title'=>'Say Hello!', 'assets'=>'marketin
 	<div class="bump">&nbsp;</div>
 	<div class="row bump">
 		
-		<div class="hero-unit">
-			<h1><?= $post->title; ?></h1>
-			<?= render_content( $post->content ); ?>
-		
+		<h1><?= $post->title; ?></h1>
+		<?= render_content( $post->content ); ?>
+		<div class="span8">
 			<form action="<?= HISTORY ?>" method="post" accept-charset="utf-8" class="form-horizontal" name="contact">
 				<input type="hidden" name="history" value="<?= HISTORY ?>"/>
 				<fieldset>
@@ -91,8 +90,14 @@ theme::part( 'partials/header',array( 'title'=>'Say Hello!', 'assets'=>'marketin
 		          </div>
 		        </fieldset>
 			</form>
-		</div><!-- /hero-unit -->
-
+		</div>
+		<div class="span4">
+			<ul>
+				<li><a href="https://github.com/adampatterson/Tentacle/issues">Issue Tracker</a> on GitHub.</li>
+				<li><a href="http://webchat.freenode.net/?channel=tentacle" >#tentacle</a></li>
+				<li></li>
+			</ul>
+		</div>
 	</div>
 </div>
 <? theme::part('partials/footer'); ?> 
