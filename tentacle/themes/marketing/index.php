@@ -35,7 +35,7 @@ if(!defined('SCAFFOLD')):
 	</header>
 	<div class="container">
 		<div class="row bump" id="why">
-			<div class="span8">
+			<div class="span7">
 				<h1>Why Tentacle?</h1>
 				
 				<hr />
@@ -46,24 +46,28 @@ if(!defined('SCAFFOLD')):
 
 				<p class="lead">Designers can stick to what they know and use HTML, CSS, PHP, JS to do their bidding.</p>
 
-				<p class="lead">With an approval process in place content can be added as a draft, approved and versioned. We went another step in that you can modify approved content without publishing immediately publishing the changes to the live site.</p>
+				<!--<p class="lead">With an approval process in place content can be added as a draft, approved and versioned. We went another step in that you can modify approved content without publishing immediately publishing the changes to the live site.</p>-->
 				
 				<p><a class="btn btn-primary btn-large" href="https://github.com/adampatterson/Tentacle/wiki/Philosophy" onClick="_gaq.push(['_trackEvent', 'Content', 'Button', 'WIki']);">Read more about our Philosophy</a></p>
 			</div>
 			
-			<div class="span4" id='get-it'>
-	
-				<h1>Take it for a spin!</h1>
+			<div class="span4 offset1" id='get-it'>
+				<div class="row">
+					<h1>Take it for a spin!</h1>
 				
-				<hr />
-				
-				<p class="lead">The demo installation of Tentacle will be reset every few hours, We are still in beta so please let us know if any issues you see.</p>
+					<hr />
 
-				<p class="lead"><strong>Login:</strong> <a href="http://demo.tentaclecms.com/admin/" onClick="_gaq.push(['_trackEvent', 'Content', 'Link', 'Demo']);">http://demo.tentaclecms.com/admin/</a><br />
-				<strong>username:</strong> demo<br />
-				<strong>password:</strong> demo</p>
-				<p><a class="btn btn-large btn-primary" href="http://demo.tentaclecms.com/admin/" onClick="_gaq.push(['_trackEvent', 'Content', 'Button', 'Demo']);">&nbsp;&nbsp;&nbsp;View the demo&nbsp;&nbsp;&nbsp;</a></p>
+					<p class="lead"><a href="http://try.tentaclecms.com/" onClick="_gaq.push(['_trackEvent', 'Content', 'Link', 'Demo']);">http://try.tentaclecms.com/</a><br />
+					<strong>username:</strong> demo<br />
+					<strong>password:</strong> demo</p>
+					<p><a class="btn btn-medium btn-primary" href="http://try.tentaclecms.com/admin/" onClick="_gaq.push(['_trackEvent', 'Content', 'Button', 'Demo']);">&nbsp;&nbsp;&nbsp;View the demo&nbsp;&nbsp;&nbsp;</a></p>
+				</div>
 				
+				<div class="row">
+					<h2>IRC</h2>
+					<p class="lead">Join us in the IRC channel from <a href="http://freenode.net/">Freenode.net</a>, A great resource for Designers and Developers.</p>
+					<p><a href="http://webchat.freenode.net/?channel=tentacle" class="btn btn-primary btn-medium " onClick="_gaq.push(['_trackEvent', 'Content', 'Link', 'IRC']);">#tentacle</a></p>
+				</div>
 			</div>
 		</div>
 <?/* 
@@ -166,13 +170,7 @@ if(!defined('SCAFFOLD')):
 						*/?>
 					</div>
 					
-					<div class="span4">	
-						<h2>IRC</h2>
-						<p class="lead">Join us in the IRC channel from <a href="http://freenode.net/">Freenode.net</a>, A great resource for Designers and Developers.</p>
-						<p><a href="http://webchat.freenode.net/?channel=tentacle" class="btn btn-primary" onClick="_gaq.push(['_trackEvent', 'Content', 'Link', 'IRC']);">#tentacle</a></p>
-					</div>
-					
-					<div class="span4">
+					<div class="span4 offset1">
 						<h2>Report a Bug</h2>
 						<p class="lead">If you found a bug in the CMS use the <a href="https://github.com/adampatterson/Tentacle/issues">Issue Tracker</a> on GitHub to report it.</p>
 
