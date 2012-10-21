@@ -39,22 +39,22 @@
 				</ul>
 				<ul class="nav pull-right">
 					<li>
-						<a href="https://twitter.com/#!/TentacleCMS" target="_blank">@TentacleCMS</a>
+						<a href="https://twitter.com/#!/TentacleCMS" target="_blank"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Twitter']);">@TentacleCMS</a>
 					</li>
 					<li class="">
-						<a href="http://try.tentaclecms.com" target="_blank">Try it!</a>
+						<a href="http://try.tentaclecms.com" target="_blank" onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Demo']);">Try it!</a>
 					</li>
 					<li class="">
-						<a href="http://tentaclecms.com/blog/">Blog</a>
+						<a href="http://tentaclecms.com/blog/"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Blog']);">Blog</a>
 					</li>
 					<li class="">
-						<a href="http://tentaclecms.com/docs/">Documentation</a>
+						<a href="http://tentaclecms.com/docs/"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Documentation']);">Documentation</a>
 					</li>
 					<li>
-						<a href="http://community.tentaclecms.com/">Community</a>
+						<a href="http://community.tentaclecms.com/"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Community']);">Community</a>
 					</li>
 					<li class="">
-						<a href="mailto:hello@tentaclecms.com">Contact Us</a>
+						<a href="mailto:hello@tentaclecms.com" onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Contact']);">Contact Us</a>
 					</li>
 				</ul>
 			</div>

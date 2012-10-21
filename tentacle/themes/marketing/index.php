@@ -24,7 +24,8 @@ if(!defined('SCAFFOLD')):
 					<h1>Create &amp; Manage Content your way!</h1>
 					<p class="lead">Tentacle makes it easy to Design, Develop, and Write content for the web.</p>
 					<p class="lead">Its goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
-					<p class="lead"><a class="btn btn-large btn-success btn-block" href="<?= BASE_URL ?>download/" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5 Beta']);">&nbsp;&nbsp;&nbsp;Download Now!&nbsp;&nbsp;&nbsp;</a></p>
+					<p class="lead">
+						<a href="<?= BASE_URL ?>download/" onClick="_gaq.push(['_trackEvent', 'Header Link', 'Download', 'v 0.7.6 Beta']);" class="btn btn-primary btn-large">&nbsp;&nbsp;&nbsp;Download Now!&nbsp;&nbsp;&nbsp;</a></p>
 				</div>
 				<div class="app-image pull-right">
 					<img src="<?= PATH ?>/assets/img/tentacle-cms.png" alt="Tentacle" />
@@ -48,7 +49,7 @@ if(!defined('SCAFFOLD')):
 
 				<p class="lead">With an approval process in place content can be added as a draft, approved and versioned. We went another step in that you can modify approved content without publishing immediately publishing the changes to the live site.</p>
 				
-				<p><a class="btn btn-primary btn-large" href="https://github.com/adampatterson/Tentacle/wiki/Philosophy">Read more about our Philosophy</a></p>
+				<p><a class="btn btn-primary btn-large" href="https://github.com/adampatterson/Tentacle/wiki/Philosophy" onClick="_gaq.push(['_trackEvent', 'Content', 'Button', 'WIki']);">>Read more about our Philosophy</a></p>
 			</div>
 			
 			<div class="span4" id='get-it'>
@@ -59,10 +60,10 @@ if(!defined('SCAFFOLD')):
 				
 				<p class="lead">The demo installation of Tentacle will be reset every few hours, We are still in beta so please let us know if any issues you see.</p>
 
-				<p class="lead"><strong>Login:</strong> <a href="http://demo.tentaclecms.com/admin/">http://demo.tentaclecms.com/admin/</a><br />
+				<p class="lead"><strong>Login:</strong> <a href="http://demo.tentaclecms.com/admin/" onClick="_gaq.push(['_trackEvent', 'Content', 'Link', 'Demo']);">>http://demo.tentaclecms.com/admin/</a><br />
 				<strong>username:</strong> demo<br />
 				<strong>password:</strong> demo</p>
-				<p><a class="btn btn-large btn-primary" href="http://demo.tentaclecms.com/admin/" onClick="javascript: _gaq.push(['_trackPageview', 'demo.tentaclecms.com/admin/']); _gaq.push(['_trackEvent', 'Link', 'Demo', 'v 0.5.8 Beta']);">&nbsp;&nbsp;&nbsp;View the demo&nbsp;&nbsp;&nbsp;</a></p>
+				<p><a class="btn btn-large btn-primary" href="http://demo.tentaclecms.com/admin/" onClick="_gaq.push(['_trackEvent', 'Content', 'Button', 'Demo']);">&nbsp;&nbsp;&nbsp;View the demo&nbsp;&nbsp;&nbsp;</a></p>
 				
 			</div>
 		</div>
@@ -156,7 +157,7 @@ if(!defined('SCAFFOLD')):
 								<input type='hidden' name='history' value="<?= $note['content'];?> " />
 							<?php endif;?>
 					
-						    <input type="submit" value="Join it!" class="btn btn-primary" />
+						    <input type="submit" value="Join it!" class="btn btn-primary" onClick="_gaq.push(['_trackEvent', 'Content', 'Button', 'Mailing List']);" />
 
 						</form>
 						<? /*
@@ -169,7 +170,7 @@ if(!defined('SCAFFOLD')):
 					<div class="span4">	
 						<h2>IRC</h2>
 						<p class="lead">Join us in the IRC channel from <a href="http://freenode.net/">Freenode.net</a>, A great resource for Designers and Developers.</p>
-						<p><a href="http://webchat.freenode.net/?channel=tentacle" class="btn btn-primary" >#tentacle</a></p>
+						<p><a href="http://webchat.freenode.net/?channel=tentacle" class="btn btn-primary" onClick="_gaq.push(['_trackEvent', 'Content', 'Link', 'IRC']);"> >#tentacle</a></p>
 					</div>
 					
 					<div class="span4">
