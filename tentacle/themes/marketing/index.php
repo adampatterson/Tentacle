@@ -34,7 +34,7 @@ if(!defined('SCAFFOLD')):
 		</div>
 	</header>
 	<div class="container">
-		<div class="row bump" id="why">
+		<div class="row" id="why">
 			<div class="span7">
 				<h1>Why Tentacle?</h1>
 				
