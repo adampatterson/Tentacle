@@ -6,7 +6,14 @@
 					<h4>Contact us</h4>
 					<ul class="unstyled">
 						<li class="lead"><a href="mailto:hello@tentaclecms.com">hello@tentaclecms.com</a></li>
-						<li class="lead"><a href="https://twitter.com/#!/TentacleCMS">@TentacleCMS</a></li>
+						<li class="lead"><a href="https://twitter.com/tentaclecms" class="twitter-follow-button" data-show-count="false">Follow @tentaclecms</a></li>
+					
+					<li class="lead"><iframe src="http://ghbtns.com/github-btn.html?user=adampatterson&repo=Tentacle&type=watch&count=true"
+					  allowtransparency="true" frameborder="0" scrolling="0" width="62px" height="20px"></iframe></li>
+					<li class="lead"><iframe src="http://ghbtns.com/github-btn.html?user=adampatterson&repo=Tentacle&type=fork&count=true"
+					  allowtransparency="true" frameborder="0" scrolling="0" width="62px" height="20px"></iframe></li>
+					<li class="lead"><iframe src="http://ghbtns.com/github-btn.html?user=adampatterson&type=follow&count=true"
+					  allowtransparency="true" frameborder="0" scrolling="0" width="62px" height="20px"></iframe></li>
 					</ul>
 				</div>
 			
@@ -52,7 +59,7 @@
 			</div>
 		</div> <!-- /container -->
 	</footer>
-
+ 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="<?= PATH ?>/assets/js/bootstrap.min.js"></script>
 	<script src="<?= PATH ?>/assets/js/application.js"></script>
