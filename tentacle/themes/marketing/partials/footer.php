@@ -1,18 +1,54 @@
 	<footer>
+		<hr />
 		<div class="container">
-			<div class="row">
-				<div class="span6">
+			<div class="row bump">
+				<div class="span3">
+					<h4>Contact us</h4>
 					<ul class="unstyled">
-						<li class="lead">Made by <a href="http://adampatterson.ca" target="_blank">Adam Patterson</a> | <a href="mailto:hello@tentaclecms.com">hello@tentaclecms.com</a> | <a href="https://twitter.com/#!/TentacleCMS">@TentacleCMS</a></li>
+						<li class="lead"><a href="mailto:hello@tentaclecms.com">hello@tentaclecms.com</a></li>
+						<li class="lead"><a href="https://twitter.com/#!/TentacleCMS">@TentacleCMS</a></li>
 					</ul>
 				</div>
-
-<? /*			
-				<div class="span4">
-					<h3>Blog</h3>
-					<? dashboard_feed("http://tentaclecms.com/blog/feed/", 4, true ); ?>
+			
+				<div class="span3">
+					<h4>Subscribe to our newsletter</h4>
+					<p>Get the lowdown on announcements and cool new features.</p>
+					<p class="lead"><a href="http://www.industrymailout.com/Industry/Subscribe.aspx?m=27205" target="_blank" onClick="_gaq.push(['_trackEvent', 'Footer', 'Link', 'Mailing List']);" >Click here to subscribe</a></p>
 				</div>
-*/?>
+				
+				<div class="span3">
+					<h4>Report a Bug</h4>
+					<p class="lead">If you found a bug in the CMS use the on GitHub to report it.</p>
+					<p class="lead"><a href="https://github.com/adampatterson/Tentacle/issues" onClick="_gaq.push(['_trackEvent', 'Content', 'Button', 'Git Issue']);">Submit an Issue</a></p>
+				</div>
+				<div class="span3">
+					<h4>Contribute</h4>
+					<p class="lead">Tentacle CMS is hosted on Github, Contributing is easy!</p>
+					<p class="lead"><a href="https://github.com/adampatterson/Tentacle/issues" onClick="_gaq.push(['_trackEvent', 'Content', 'Button', 'Git Source']);">Contribute today!</a></p>
+				</div>
+
+			</div>
+			<div class="row">
+				<ul class="nav nav-pills">
+					<li>
+						<a href="https://twitter.com/#!/TentacleCMS" target="_blank"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Twitter']);">@TentacleCMS</a>
+					</li>
+					<li class="">
+						<a href="http://try.tentaclecms.com" target="_blank" onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Demo']);">Try it!</a>
+					</li>
+					<li class="">
+						<a href="http://tentaclecms.com/blog/"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Blog']);">Blog</a>
+					</li>
+					<li class="">
+						<a href="http://tentaclecms.com/docs/"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Documentation']);">Documentation</a>
+					</li>
+					<li>
+						<a href="http://community.tentaclecms.com/"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Community']);">Community</a>
+					</li>
+					<li class="">
+						<a href="mailto:hello@tentaclecms.com" onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Contact']);">Contact Us</a>
+					</li>
+				</ul>
 			</div>
 		</div> <!-- /container -->
 	</footer>
