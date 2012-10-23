@@ -104,7 +104,7 @@ table.manage_content td:last-child {
 /*
 * Editor
 * ------------------------------------------------------------------------------------------- */
-.tinymce {
+.editor {
   width: 98%;
 }
 .wysiwyg {

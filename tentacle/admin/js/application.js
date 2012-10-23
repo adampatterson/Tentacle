@@ -235,7 +235,9 @@ $(document).ready(function(){
 	    $(".published-on").toggle();
 	})
 
-
+	$('textarea.editor').wysihtml5();
+	
+/*
 	$('textarea.tinymce').tinymce({
 		// Location of TinyMCE script
 		script_url : js_url + 'tiny_mce/tiny_mce.js',
@@ -246,7 +248,7 @@ $(document).ready(function(){
 		plugins : "autolink,lists,pagebreak,style,advhr,advimage,advlink,inlinepopups,insertdatetime,media,contextmenu,directionality,fullscreen,noneditable,xhtmlxtras,advlist",
 
 		// Theme options
-		theme_advanced_buttons1 			: "bold,italic,|,justifyleft,justifycenter,justifyright,|,bullist,numlist,blockquote,|,link,unlink,|,hr,removeformat,|,media,pagebreak,|,code,|,formatselect,|,openSwampyBrowser",
+		theme_advanced_buttons1 			: "bold,italic,|,justifyleft,justifycenter,justifyright,bullist,numlist,blockquote,|,link,unlink,|,hr,removeformat,|,media,pagebreak,|,code,|,formatselect,|,openSwampyBrowser",
 		theme_advanced_buttons2 			: "",
 		theme_advanced_buttons3 			: "",
 		theme_advanced_buttons4 			: "",
@@ -256,7 +258,7 @@ $(document).ready(function(){
 		theme_advanced_resizing 			: true,
 
 		// Example content CSS (should be your site CSS)
-		content_css : editor_path + 'style.css'
+		//content_css : editor_path + 'style.css'
 	});
 
 
@@ -264,7 +266,7 @@ $(document).ready(function(){
 		$("#txtMessage").insertAtCaret($(this).html());
 		return false
 	});
-	
+*/
 
 });
 
