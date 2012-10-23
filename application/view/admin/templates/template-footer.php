@@ -23,7 +23,9 @@
 </div>
 </footer>
 <? if(user_editor() == 'wysiwyg'): ?>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>tiny_mce/jquery.tinymce.js"></script>
+	<link rel="stylesheet" type="text/css" href="<?=TENTACLE_JS; ?>bootstrap-wysihtml5/bootstrap-wysihtml5.css"></link>
+	<script src="<?=TENTACLE_JS; ?>bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
+	<script src="<?=TENTACLE_JS; ?>bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
 <? else: ?>
 	<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror/lib/codemirror.css">
 	<script src="<?=TENTACLE_JS; ?>CodeMirror/lib/codemirror.js"></script>
