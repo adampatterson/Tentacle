@@ -22,7 +22,6 @@
 	</div>
 </div>
 </footer>
-	<script src="<?=TENTACLE_JS; ?>bootstrap.2.1.min.js"></script>
 <? if(user_editor() == 'wysiwyg'): ?>
 	<link rel="stylesheet" type="text/css" href="<?=TENTACLE_JS; ?>bootstrap-wysihtml5/bootstrap-wysihtml5.css"></link>
 	<script src="<?=TENTACLE_JS; ?>bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
