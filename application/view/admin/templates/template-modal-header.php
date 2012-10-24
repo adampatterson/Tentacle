@@ -22,7 +22,7 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery-ui-1.8.16.custom.min.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>modernizr-2.0.6.min.js"></script>	
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap.2.0.4.min.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap.2.1.min.js"></script>
 	
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
