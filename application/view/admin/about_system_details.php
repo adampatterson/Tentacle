@@ -18,7 +18,19 @@
 
 				if (!($memory_limit = ini_get('memory_limit')))
 					$memory_limit = 'N/A';
-
+				
+				if(!(function_exists('gd_info'))) {
+					$gb_enabled = 'N/A';
+				} else {
+					$gb_enabled = 'enabled';
+				}
+				
+				if (!class_exists('PDO')) {
+					$pdo_enabled = 'N/A';
+				} else {
+					$pdo_enabled = 'enabled';
+				}
+				
 				$php_info = parse_php_info();
 			?>
 			<table class="form-table">
@@ -37,20 +49,26 @@
 				<tr>
 					<td>PHP Memory Limit</td><td><?php echo $memory_limit; ?></td>
 				</tr>
+				<tr>
+					<td>GD Enabled</td><td><?php echo colorify_value($gb_enabled, 'enabled') ?></td>
+				</tr>
+				<tr>
+					<td>PDO Enabled</td><td><?php echo colorify_value($pdo_enabled, 'enabled') ?></td>
+				</tr>
 				<?php foreach ($php_info['gd'] as $key => $val) {
-						if (!preg_match('/(WBMP|XBM|Freetype|T1Lib)/i', $key)) {
-							echo '<tr>';
-							echo '<td>'.$key.'</td>';
-							if (stripos($key, 'support') === false) {
-								echo '<td>'.$val.'</td>';
+								if (preg_match('/(WBMP|XBM|Freetype|T1Lib)/i', $key)) {
+									echo '<tr>';
+									echo '<td>'.$key.'</td>';
+									if (stripos($key, 'support') === false) {
+										echo '<td>'.$val.'</td>';
+									}
+									else {					
+										echo '<td>'.colorify_value($val, 'enabled').'</td>';
+									}
+									echo '</tr>';
+								}
 							}
-							else {
-								echo '<td>'.colorify_value($val, 'enabled').'</td>';
-							}
-							echo '</tr>';
-						}
-					}
-				?>
+						?>
 			</table>
 		</div>
 		<!--
