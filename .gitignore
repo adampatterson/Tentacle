@@ -23,3 +23,4 @@ application/helper/export.php
 tentacle/storage/images/*
 tentacle/storage/temp/*
 tentacle/storage/upgrade/*
+/manifest.yml
