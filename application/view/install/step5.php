@@ -52,7 +52,7 @@
 					<div class="clearfix">
 						<label for="password">Password <span class="description">(required)</span></label>
 						<div class="input">
-							<input autocomplete="off" id="password" name="password" required="true" />
+							<input type="password" autocomplete="off" id="password" name="password" required="true" />
 							<span class="help-block">Hint: The password should be at least seven characters long. To make it stronger, use upper and lower case letters, numbers and symbols like ! " ? $ % ^ &amp; ).</span>
 						</div>
 					</div>

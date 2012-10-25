@@ -35,8 +35,13 @@ class admin_controller {
 	* ----------------------------------------------------------------------------------------------*/
 	public function index ()
 	{
-		if(user::valid()) { url::redirect('admin/dashboard'); }
-		load::view ('admin/login');
+		is_blog_installed(); 
+		
+		if(user::valid()) { 
+			url::redirect('admin/dashboard'); 
+		} else{
+			load::view ('admin/login');
+		}
 	}
 	
 	public function dashboard ()

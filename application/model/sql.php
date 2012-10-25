@@ -425,6 +425,20 @@ class sql_model
 		$build = $pdo->exec( "DROP TABLE `downloads`;" );
 	}
 	
+	public function touch_db()
+	{
+		$config = config::get('db');
+		
+		try {
+			$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
+		} catch(PDOException $e) {
+			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
+		}
+		
+		$touch = $pdo->exec( "SELECT  * FROM `options`" );
+		
+		return $touch;
+	}
 	
 	public function set_db ( $version )
 	{

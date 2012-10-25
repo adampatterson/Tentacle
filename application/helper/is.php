@@ -12,11 +12,15 @@
 	*	Bool
 	*/
 	function is_blog_installed() {
-		if ( get_option( 'is_blog_installed' ) ) {
-			return true;
+		$touch = load::model( 'sql' );
+		
+		$touch_db = $touch->touch_db();
+
+		if ( $touch_db === false ) {
+			url::redirect('install/step5');
 		} else {
-			return false;
-		}
+			return true;
+		}		
 	}
 	
 	

@@ -2,6 +2,9 @@
 class page_controller {
 	
     public function index(  ){
+		
+		is_blog_installed();
+		
 		$uri 			= URI;
 
 		load::helper('template');

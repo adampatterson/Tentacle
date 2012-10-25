@@ -10,6 +10,8 @@ class install_controller
 	{	
 		if ( !file_exists( 'application/config/deployment/db.php' ) ):
 			load::view ('install/step1');
+		elseif(file_exists( 'application/config/deployment/db.php' ) && load::model( 'sql' )->touch_db() == false ):
+			url::redirect('install/step5');
 		else:
 			load::view ('install/nothing');
 		endif;
@@ -62,9 +64,13 @@ class install_controller
         $sql->get_110();
 
         $sql->get_111();
+
+        $sql->get_112();
+
+        $sql->get_113();
 		
 		// Set the current Install version
-		$sql->set_db('111');
+		$sql->set_db('113');
 								
 		load::view ('install/step5');
 	}
