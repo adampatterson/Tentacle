@@ -1022,28 +1022,24 @@ button:
 	{
 		echo '<h2>Inflector</h2>';
 	
-		load::helper ('inflector');
-	
-		$inflector = new inflector();
-	
 		$string = 'In pellentesque faucibus vestibulum';
 		$camel = 'inPellentesqueFaucibusVestibulum';
 		$upper = 'UPPER';
 		$lower = 'lower';
 	
-		echo '<strong>Camelize Turned</strong> '. $string .' <strong>to</strong> '. $inflector->camelize($string).'<br />';
+		echo '<strong>Camelize Turned</strong> '. $string .' <strong>to</strong> '. camelize($string).'<br />';
 	
-		echo '<strong>Underscore Turned</strong> '. $camel .' <strong>to</strong> '. $inflector->underscore($camel).'<br />';
+		echo '<strong>Underscore Turned</strong> '. $camel .' <strong>to</strong> '. underscore($camel).'<br />';
 
-		echo '<strong>Dash Turned</strong> '. $camel .' <strong>to</strong> '. $inflector->dash($camel).'<br />';
+		echo '<strong>Dash Turned</strong> '. $camel .' <strong>to</strong> '. dash($camel).'<br />';
 	
-		echo '<strong>Humanize Turned</strong> '. $string .' <strong>to</strong> '. $inflector->humanize($string).'<br />';
+		echo '<strong>Humanize Turned</strong> '. $string .' <strong>to</strong> '. humanize($string).'<br />';
 	
-		if ($inflector::is_upper($upper)) {
+		if (is_upper($upper)) {
 			echo '<strong>is_upper</strong> says '. $upper .' is all upper case.<br />';
 		}
 	
-		if ($inflector::is_lower($lower)) {
+		if (is_lower($lower)) {
 			echo '<strong>is_upper</strong> says '. $lower.' is all lower case.<br />';
 		}
 	}// END inflector
