@@ -11,7 +11,7 @@
 *	$dir - String
 *
 * Returns:
-*	Boolian
+*	Boolean
 */
 function delete_dir($dir) { 
    if (substr($dir, strlen($dir)-1, 1) != '/') 
