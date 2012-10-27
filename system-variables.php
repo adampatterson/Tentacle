@@ -52,7 +52,8 @@ define( 'DS'			, DIRECTORY_SEPARATOR );
 define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port );
 
 # @todo BASE_URL may need some testing in other environments
-define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.$directory.'/' );
+//define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.$directory.'/' );
+define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$directory.'/' );
 
 # Application's Base URL
 define('ROOT'		   , BASE_URI );
