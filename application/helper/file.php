@@ -129,6 +129,7 @@ function array_clean($source)
     return $source;
 }
 
+
 /**
  * Get the size of a directory.
  *
@@ -154,6 +155,7 @@ function get_dirsize( $directory ) {
 	set_transient( 'dirsize_cache', $dirsize, 3600 );
 	return $dirsize[ $directory ][ 'size' ];
 }
+
 
 /**
  * Get the size of a directory recursively.
@@ -190,4 +192,17 @@ function recurse_dirsize( $directory ) {
 		closedir($handle);
 	}
 	return $size;
+}
+
+
+function get_url_contents ( $Url ) {
+    if (!function_exists('curl_init')){ 
+        die('CURL is not installed!');
+    }
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $Url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $output = curl_exec($ch);
+    curl_close($ch);
+    return $output;
 }

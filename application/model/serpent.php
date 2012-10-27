@@ -2,27 +2,33 @@
 class serpent_model {
 	public function get_core()
 	{
+		load::helper('file');
+		
 		$scc = stream_context_create( array( 'http' => array( 'timeout' => CHECK_TIMEOUT ) ) );
 
-		$version = file_get_contents( 'http://api.tentaclecms.com/get/core/', 0, $scc );
+		$version = get_url_contents('http://api.tentaclecms.com/get/core/');
 	
 		return json_decode( $version );
 	}
 	
 	public function get_theme($single = '')
 	{
+		load::helper('file');
+		
 		$scc = stream_context_create( array( 'http' => array( 'timeout' => CHECK_TIMEOUT ) ) );
 
-		$themes = file_get_contents( 'http://api.tentaclecms.com/get/themes/'.$single, 0, $scc );
+		$themes = get_url_contents( 'http://api.tentaclecms.com/get/themes/'.$single );
 	
 		return json_decode( $themes );
 	}
 	
 	public function get_module($single = '')
 	{
+		load::helper('file');
+		
 		$scc = stream_context_create( array( 'http' => array( 'timeout' => CHECK_TIMEOUT ) ) );
 		
-		$modules = file_get_contents( 'http://api.tentaclecms.com/get/plugins/'.$single, 0, $scc );
+		$modules = get_url_contents( 'http://api.tentaclecms.com/get/plugins/'.$single );
 
 		return json_decode( $modules );
 	}
