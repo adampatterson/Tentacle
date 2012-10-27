@@ -4,17 +4,7 @@
 	<div class="one-full">
 		<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Add a new user</h1>
 		<div class="one-half">
-			<?php if($note = note::get('user_add')): ?>
-				<script type="text/javascript">
-					$(document).ready(function() {
-						jQuery.noticeAdd({
-							text : '<?= $note['content'];?>',
-							stay : false,
-							type : '<?= $note['type']; ?>'
-						});
-					});
-				</script>
-			<?php endif;?>
+
 			<form id='validation' action="<?= BASE_URL ?>action/add_user/" method="post">
 				<fieldset class="form-horizontal">
 					

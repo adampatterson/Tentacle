@@ -12,11 +12,7 @@
 		<div id="post-body">
 			<div id="post-body-content">
 		     <h1 class='title'><img src="<?=ADMIN_URL; ?>images/icons/icon_pages_32.png" alt="" /> Edit snippet</h1>
-				<?php if($note = note::get('snippet_edit')): ?>
-					<div class='flash success'>
-						<?= $note['content']; ?>
-					</div>
-				<?php endif; ?>
+
 				<form action="<?= BASE_URL ?>action/update_snippet/<?= $snippet->id; ?>" method="post">
 					<fieldset>
 						

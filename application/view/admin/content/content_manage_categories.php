@@ -2,17 +2,7 @@
 <? load::view('admin/templates/template-sidebar');?>
 <div id='wrap'>
 	<div class='one-full'>
-		<?php if( $note = note::get('category_add') or $note = note::get('category_update')): ?>
-			<script type="text/javascript">
-				$(document).ready(function() {
-					jQuery.noticeAdd({
-						text : '<?= $note['content'];?>',
-						stay : false,
-						type : '<?= $note['type']; ?>'
-					});
-				});
-			</script>
-		<?php endif; ?>
+
 		<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Manage Categories</h1>
 		<div class='one-half'>
 			<form action='<?= BASE_URL ?>action/add_category/' method='post'>

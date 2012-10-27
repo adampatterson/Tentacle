@@ -21,15 +21,13 @@
 	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>bootstrap.css">
 	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>general.css">
 	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>admin.css">
-
+	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery-ui-1.8.16.custom.min.js"></script>
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>modernizr-2.0.6.min.js"></script>
-	
-	<script type="text/javascript" src="<?= TENTACLE_JS; ?>jquery.notice.js"></script>
 	<script type="text/javascript" src="<?= TENTACLE_JS; ?>jquery.inputtags.js"></script>
-
 	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap.2.1.min.js"></script>
+	<script type="text/javascript" src="<?=TENTACLE_JS; ?>notifications.js"></script>
 	
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -63,6 +61,8 @@
 	<link rel="stylesheet" href="<?= TENTACLE_CSS ?>/jquery.fileupload-ui.css">
 
 <? endif; ?>
+	
+<?= notification() ?>
 
 	<script type="text/javascript" charset="utf-8">
 		var base_url = "<?= BASE_URL ?>";

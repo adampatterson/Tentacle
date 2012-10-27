@@ -10,9 +10,8 @@
 		</div>
 		<div class="one-full">
 			
-			<script>$(function(){$.sticky('<b>Hello!</b><p>Sticky & Nice icons is here..</p>','icon arrowdown',{p:'ptc'})})</script>
+			<!--<script>$(function(){$.sticky('<b>Hello!</b><p>Sticky & Nice icons is here..</p>','icon arrowdown',{p:'ptc'})})</script>-->
 			
-			<div class="btn-group">
 			<a class="btn" onclick="$.sticky('<b>Default!</b><p>Default message goes here..</p>');">Default</a>
 			<a class="btn icon error" onclick="$.sticky('<b>Error!</b><p>Error message goes here..</p>', 'icon error', {p:'ptr'});">Error</a>
 			<a class="btn icon info" onclick="$.sticky('<b>Info!</b><p>Info message goes here..</p>', 'icon info', {p:'ptr'});">Info</a>
@@ -26,10 +25,7 @@
 			<a class="btn icon arrowup" onclick="$.sticky('<b>Position!</b><p>Position top-left..</p>', 'icon arrowup', {p:'ptl'});">Position: top-left</a>
 			<a class="btn icon arrowup" onclick="$.sticky('<b>Position!</b><p>Position top-center..</p>', 'icon arrowup', {p:'ptc'});">Position: top-center</a>
 			<a class="btn icon arrowdown" onclick="$.sticky('<b>Position!</b><p>Position bottom-center..</p>', 'icon arrowdown', {p:'pbc'});">Position: bottom-center</a>
-			</div>
 			
-			<script type="text/javascript" src="<?=TENTACLE_JS; ?>notifications.js"></script>
-			<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>notifications.css" />
 		</div>
 	</div><!-- .full-content -->
 </div><!-- #wrap -->

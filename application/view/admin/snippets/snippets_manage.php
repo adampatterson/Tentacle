@@ -12,17 +12,7 @@
     <div id="post-body">
       <div id="post-body-content">
       	<div class="title pad-right">
-			<?php if( $note = note::get('snippet_update')): ?>
-				<script type="text/javascript">
-					$(document).ready(function() {
-						jQuery.noticeAdd({
-							text : '<?= $note['content'];?>',
-							stay : false,
-							type : '<?= $note['type']; ?>'
-						});
-					});
-				</script>
-			<?php endif; ?>
+
         	<h1 class="title align-left"><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Manage snippets</h1>
 			<a href="<?=ADMIN; ?>snippets_add/" class="btn btn-primary">Add new snippet</a>       	 	
        	</div>

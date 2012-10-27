@@ -95,17 +95,7 @@
 			</div>
 			<div id="post-body">
 				<div id="post-body-content">
-					<?php if( $note = note::get('page_add') or $note = note::get('page_update')): ?>
-						<script type="text/javascript">
-							$(document).ready(function() {
-								jQuery.noticeAdd({
-									text : '<?= $note['content'];?>',
-									stay : false,
-									type : '<?= $note['type']; ?>'
-								});
-							});
-						</script>
-					<?php endif; ?>
+
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Update <small><?= $get_post->title ?></small></h1>
 					
 					<ul class="nav nav-tabs" id="content-tabs">

@@ -3,12 +3,7 @@
 <div id="wrap">
 	<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Edit category</h1>
 	<div class="table">
-		<?php if($note = note::get('category_edit')):
-		?>
-		<div class='flash success'>
-			<?= $note['content'];?>
-		</div>
-		<?php endif;?>
+
 		<form action="<?= BASE_URL ?>action/update_category/<?= $id;?>" method="post">
 			
 			<div class="control-group">
