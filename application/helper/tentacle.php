@@ -598,7 +598,7 @@ class tentacle
 	function render_content ( $content='' ) {
 		return stripslashes( $content );
 	}	
-	
+
 
 	/**
 	* Function: _e

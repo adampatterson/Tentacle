@@ -1,6 +1,6 @@
 RewriteEngine on
 
-RewriteCond $1 !^(index\.php|tentacle|_reference|favicon\.ico|apple_icon\.png|setup|googlec09c5f65801ea65d\.html)
+RewriteCond $1 !^(index\.php|tentacle|favicon\.ico|setup|googlec09c5f65801ea65d\.html)
 RewriteRule ^(.*)$ index.php?__dingo_page=$1 [L]
 
 #http://dpaste.com/768810/

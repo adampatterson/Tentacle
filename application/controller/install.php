@@ -8,6 +8,10 @@ class install_controller
 {
 	public function step1 ( )
 	{	
+		if ( !file_exists( '.htaccess' ) ):
+			//write_htaccess();
+		endif;
+		
 		if ( !file_exists( 'application/config/deployment/db.php' ) ):
 			load::view ('install/step1');
 		elseif(file_exists( 'application/config/deployment/db.php' ) && load::model( 'sql' )->touch_db() == false ):

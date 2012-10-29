@@ -5,6 +5,10 @@ class dev_controller {
 	public function index()
 	{
 	
+		write_htaccess();
+		
+		die;
+	
 		//include TENTACLE_LIB.'chromephp/ChromePhp.php';
 		
 		//ChromePhp::log('hello world');
@@ -752,6 +756,7 @@ button:
 	public function define_test ($admin_var ="")
 	{
 		//echo dirname($_SERVER['PHP_SELF']). '<br />';
+	
 		echo '<strong>DS:</strong> ' .DS . '<br />';
 		
 		echo "<strong>realpath(''):</strong>" .realpath('') . '<br />';
