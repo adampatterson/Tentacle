@@ -24,7 +24,7 @@
 </footer>
 <? if(user_editor() == 'wysiwyg'): ?>
 	<link rel="stylesheet" type="text/css" href="<?=TENTACLE_JS; ?>bootstrap-wysihtml5/bootstrap-wysihtml5.css"></link>
-	<script src="<?=TENTACLE_JS; ?>bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
+	<script src="<?=TENTACLE_JS; ?>bootstrap-wysihtml5/wysihtml5-0.3.0.min.js"></script>
 	<script src="<?=TENTACLE_JS; ?>bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
 <? else: ?>
 	<link rel="stylesheet" href="<?=TENTACLE_JS; ?>CodeMirror/lib/codemirror.css">
@@ -54,7 +54,7 @@
 			}
 		});
 		var hlLine = editor.setLineClass(0, "activeline");
-		</script>
+	</script>
 <? endif; ?>
 
 <? if( in_array('jupload', $assets ) ): ?>

@@ -4730,6 +4730,88 @@ a.badge:hover {
   line-height: 30px;
   color: inherit;
 }
+.queue {
+  position: fixed;
+  background: #fff;
+  box-shadow: 0 0 5px #bbbbbb;
+}
+.sticky-note {
+  padding-right: 20px;
+}
+.sticky {
+  font-size: 14px;
+  display: none;
+  padding: 10px;
+  position: relative;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.ptr,
+.pbr {
+  right: 0;
+  width: 300px;
+}
+.ptl,
+.pbl {
+  left: 0;
+  width: 200px;
+}
+.ptc,
+.pbc {
+  left: 50%;
+  width: 940px;
+  margin-left: -470px;
+}
+.ptr,
+.ptc,
+.ptl {
+  top: 40px;
+}
+.pbr,
+.pbl,
+.pbc {
+  bottom: 0;
+}
+.sticky.danger,
+.sticky.error {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+}
+.sticky.success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+}
+.sticky.info {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #3a87ad;
+}
+.sticky .close {
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 14px;
+  color: #000000;
+}
+.ptc {
+  border-radius: 0 0 10px 10px;
+}
+.pbc {
+  border-radius: 10px 10px 0 0;
+}
+.ptl {
+  border-radius: 0 0 10px 0;
+}
+.ptr,
+.sticky:last-child {
+  border-radius: 0 0 0 10px;
+}
+.pbr {
+  border-radius: 10px 0 0 0;
+}
+.pbl {
+  border-radius: 0 10px 0 0;
+}
 .pull-right {
   float: right;
 }

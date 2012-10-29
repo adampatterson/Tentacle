@@ -7,14 +7,15 @@
 	padding-right: 20px
 }
 .sticky {
-	font-size: 12px;
+	font-size: 14px;
 	display: none;
 	padding: 10px;
-	position: relative
+	position: relative;
+	text-shadow: 0 1px 0 rgba(255,255,255,.5);
 }
 .ptr, .pbr {
 	right: 0;
-	width: 200px
+	width: 300px
 }
 .ptl, .pbl {
 	left: 0;
@@ -31,17 +32,20 @@
 .pbr, .pbl, .pbc {
 	bottom: 0
 }
-.sticky.danger, .sticky.danger:hover, .sticky.error, .sticky.error:hover, .sticky.success, .sticky.success:hover, .sticky.info, .sticky.info:hover {
-	color: #ffffff
-}
 .sticky.danger, .sticky.error {
-	background: #c43c35
+	background-color: @errorBackground;
+	border-color: @errorBorder;
+	color: @errorText;
 }
 .sticky.success {
-	background: #57a957
+	background-color: @successBackground;
+	border-color: @successBorder;
+	color: @successText;
 }
 .sticky.info {
-	background: #339bb9
+	background-color: @infoBackground;
+	border-color: @infoBorder;
+	color: @infoText;
 }
 .sticky .close {
 	cursor: pointer;
