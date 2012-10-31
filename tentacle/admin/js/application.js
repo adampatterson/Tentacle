@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	
+	
     // Minimize Content Box
 	// ====================================
 		$(".content-box-header h3").css({ "cursor":"s-resize" }); // Give the h3 in Content Box Header a different cursor
@@ -112,33 +113,8 @@ $(document).ready(function(){
 	    $(".published-on").toggle();
 	})
 
-	$('textarea.editor').wysihtml5({ 
-		imagesUrl: 'sample_images.json',
-		imageUpload: function(el) {
-      var checkComplete, form;
-      form = $(el).find('.image-upload-form');
-      checkComplete = function() {
-        var iframeContents, response, url;
-        iframeContents = el.find('iframe').contents().find('body').text();
-        if (iframeContents === "") {
-          return setTimeout(checkComplete, 2000);
-        } else {
-          response = $.parseJSON(iframeContents);
-          url = response[0].url;
-          self.editor.composer.commands.exec("insertImage", url);
-          $('div.progress.upload').remove();
-          $('.bootstrap-wysihtml5-insert-image-modal').modal('hide');
-          return form.find('.progress').hide();
-        }
-      };
-      return form.on('change', function() {
-        form.attr('target', 'upload-iframe').attr('action', '/assets');
-        form.find('.progress').show();
-        form.submit();
-        return checkComplete();
-      });
-    }
-	});
-
+/*
+	$('textarea.editor').wysihtml5();
+*/
 
 });
