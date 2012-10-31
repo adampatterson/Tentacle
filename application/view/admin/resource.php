@@ -9,23 +9,21 @@
 			</div>
 		</div>
 		<div class="one-full">
-			
-			<!--<script>$(function(){$.sticky('<b>Hello!</b><p>Sticky & Nice icons is here..</p>','icon arrowdown',{p:'ptc'})})</script>-->
-			
-			<a class="btn" onclick="$.sticky('<b>Default!</b><p>Default message goes here..</p>');">Default</a>
-			<a class="btn icon error" onclick="$.sticky('<b>Error!</b><p>Error message goes here..</p>', 'icon error', {p:'ptr'});">Error</a>
-			<a class="btn icon info" onclick="$.sticky('<b>Info!</b><p>Info message goes here..</p>', 'icon info', {p:'ptr'});">Info</a>
-			<a class="btn icon success" onclick="$.sticky('<b>Success!</b><p>Success message goes here..</p>', 'icon success', {p:'ptr'});">Success</a>
-			<a class="btn icon quote" onclick="$('blockquote').sticky();">Quote</a>
-			<a class="btn icon new-window" onclick="$('.block-message').sticky();">Block Message</a>
-			<a class="btn icon remove" onclick="$.sticky('<b>Sticky!</b><p>Sticky message goes here..</p>', 'icon remove', {x:false,p:'ptr'});">Sticky message.</a>
-
-			<a class="btn icon arrowdown" onclick="$.sticky('<b>Position!</b><p>Position bottom-left..</p>', 'icon arrowdown', {p:'pbl'});">Position: bottom-left</a>
-			<a class="btn icon arrowright" onclick="$.sticky('<b>Position!</b><p>Position bottom-right..</p>', 'icon arrowright', {p:'pbr'});">Position: bottom-right</a>
-			<a class="btn icon arrowup" onclick="$.sticky('<b>Position!</b><p>Position top-left..</p>', 'icon arrowup', {p:'ptl'});">Position: top-left</a>
-			<a class="btn icon arrowup" onclick="$.sticky('<b>Position!</b><p>Position top-center..</p>', 'icon arrowup', {p:'ptc'});">Position: top-center</a>
-			<a class="btn icon arrowdown" onclick="$.sticky('<b>Position!</b><p>Position bottom-center..</p>', 'icon arrowdown', {p:'pbc'});">Position: bottom-center</a>
-			
+			<div id="element-to-edit">asdsad</div>
+			<script type="text/javascript" src="https://raw.github.com/PANmedia/Raptor/master/packages/raptor.0deps.min.js"></script>
+			<script type="text/javascript">
+			    
+				$('#element-to-edit').editor({
+				    autoEnable: true,            // Enable the editor automaticly
+				    plugins: {                   // Plugin options
+				        dock: {                  // Dock specific plugin options
+				            docked: true,        // Start the editor already docked
+				            dockToElement: true, // Dock the editor inplace of the element
+				            persist: false       // Do not save the docked state
+				        }
+				    }
+				});
+			</script>
 		</div>
 	</div><!-- .full-content -->
 </div><!-- #wrap -->
