@@ -12,7 +12,7 @@
 		<li>Done</li>
 	</ul>
     <div class="row">
-      <div class="span14">
+      <div class="span12">
         <h2>Overview</h2>
 	<p>Welcome to your install. Before getting started we need some information on the database. You will need to know the following items before proceeding.</p>
 	<ol>
@@ -27,7 +27,7 @@
 		&nbsp;
 	</div>
 	<div class="textright one-half">
-		<a href="<?= BASE_URL; ?>install/step2/" class="btn medium primary">let's go!</a>
+		<a href="<?= BASE_URL; ?>install/step2/" class="btn btn-primary">let's go!</a>
 	</div>
   </div>
 </div>

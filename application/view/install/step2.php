@@ -12,7 +12,7 @@
 		<li>Done</li>
 	</ul>
     <div class="row">
-      <div class="span14">
+      <div class="span12">
         <h2>System Check</h2>
 		<p>
 		The following tests have been run to determine if <strong>Tentacle CMS</strong> will work in your environment.
@@ -115,13 +115,15 @@
 
 		<?php if ($failed === TRUE): ?>
 			<div class="alert-message error">
-				<p><strong>✘</strong> Tentacle may not work correctly with your environment.</p>
+				<p>Tentacle may not work correctly with your environment.</p>
 			</div>
-			<div class="one-half">
-				<a href="<?= BASE_URL; ?>/" class="btn medium danger">Back</a>
-			</div>
-			<div class="textright one-half">
-				<a href="#" class="btn medium primary disabled">Next</a>
+			<div class="row">
+				<div class="span6">
+					<a href="<?= BASE_URL; ?>/" class="btn btn-danger">Back</a>
+				</div>
+				<div class="span6 pull-right">
+					<a href="#" class="btn disabled pull-right">Next</a>
+				</div>
 			</div>
 		<?php else: 
 			url::redirect('install/step3');
@@ -129,11 +131,11 @@
 			<div class="alert-message success">
 				<p><strong>✔</strong> Your environment passed all requirements.</p>
 			</div>
-			<div class="one-half">
-				<a href="<?= BASE_URL; ?>install/step1" class="btn medium secondary">Back</a>
+			<div class="span6">
+				<a href="<?= BASE_URL; ?>install/step1" class="btn btn-danger">Back</a>
 			</div>
-			<div class="textright one-half">
-				<a href="<?= BASE_URL; ?>install/step3/" class="btn medium primary">Next</a>
+			<div class="span6 pull-right">
+				<a href="<?= BASE_URL; ?>install/step3/" class="btn btn-primary pull-right">Next</a>
 			</div>
 		<?php endif ?>
       </div>

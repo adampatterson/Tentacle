@@ -12,27 +12,31 @@
 		<li>Done</li>
 	</ul>
     <div class="row">
-      <div class="span14">
+      <div class="span12">
         <h2>Testing the config file</h2>
 		<? if (file_exists('application/config/deployment/db.php')): ?>
-			<div class="alert-message success">
-				<p><strong>✔</strong> All right everything is ready to roll, Lets install the MySQL!</p>
+			<div class="alert alert-success">
+				All right everything is ready to roll, Lets install the MySQL!
 			</div>
-			<div class="one-half">
-				<a href="<?= BASE_URL; ?>install/step3/" class="btn medium danger">Back</a>
-			</div>
-			<div class="textright one-half">
-				<a href="<?= BASE_URL; ?>install/step5/" class="btn medium primary">Next</a>
+			<div class="row">
+				<div class="span6">
+					<a href="<?= BASE_URL; ?>install/step3/" class="btn btn-danger">Back</a>
+				</div>
+				<div class="span6 pull-right">
+					<a href="<?= BASE_URL; ?>install/step5/" class="btn btn-primary pull-right">Next</a>
+				</div>
 			</div>
 		<? else: ?>
-			<div class="alert-message error">
-				<p><strong>✘</strong> Something went wrong.</p>
+			<div class="alert alert-error">
+				<p>Something went wrong.</p>
 			</div>
-			<div class="one-half">
-				<a href="<?= BASE_URL; ?>install/step3/" class="btn medium secondary">Back</a>
-			</div>
-			<div class="textright one-half">
-				<a href="#" class="btn medium primary disabled">Next</a>
+			<div class="row">
+				<div class="span6">
+					<a href="<?= BASE_URL; ?>install/step3/" class="btn">Back</a>
+				</div>
+				<div class="span6  pull-right">
+					<a href="#" class="btn btn-primary pull-right">Next</a>
+				</div>
 			</div>
 		<? endif; ?>
       </div>
