@@ -9,18 +9,58 @@
 			</div>
 		</div>
 		<div class="one-full">
-			<div id="element-to-edit">asdsad</div>
+			<textarea id="element-to-edit" class="editor">asdsad</textarea>
+			<style type="text/css" media="screen">
+				.ui-widget-content  .ui-icon-fancy-modal {
+				    background-image: url(http://www.winsteps.com/blahdocs/images/smiley.gif);   
+				}
+			</style>
 			<script type="text/javascript" src="https://raw.github.com/PANmedia/Raptor/master/packages/raptor.0deps.min.js"></script>
+			<link rel="stylesheet" href="<?= TENTACLE_CSS ?>custom-theme/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" title="no title" charset="utf-8">
 			<script type="text/javascript">
 			    
-				$('#element-to-edit').editor({
-				    autoEnable: true,            // Enable the editor automaticly
-				    plugins: {                   // Plugin options
-				        dock: {                  // Dock specific plugin options
-				            docked: true,        // Start the editor already docked
-				            dockToElement: true, // Dock the editor inplace of the element
-				            persist: false       // Do not save the docked state
+				$.ui.editor.registerUi({
+				    fancyModal: {
+				        init: function(editor, options) {
+				            return this.editor.uiButton({
+				                title: 'Fancy Modal',
+				                /**
+				                 * This function will be called when the user clicks your fancyModal button                
+				                 */
+				                click: function() {
+				                    // Open your modal here, prepare your HTML
+				                    var someHTML = 'Some HTML';
+				                    alert('About to replace selection with "' + someHTML + '"');
+
+				                    // Replace the selection (inserting at caret position if 0 selection)
+				                    $.ui.editor.selectionReplace(someHTML);
+				                }
+				            });
 				        }
+				    }
+				});
+			
+				$('#element-to-edit').editor({
+					autoEnable: true,
+				    replace: true,
+				    //enableUi: false,
+				    draggable: false,
+					uiOrder: [
+					            ['textBold', 'textItalic', 'textUnderline', 'textStrike','quoteBlock','hr'], 
+								['floatLeft', 'floatNone', 'floatRight'],
+								['alignLeft', 'alignCenter', 'alignRight'],
+								['listUnordered', 'listOrdered'],
+								['link', 'unlink'],
+								['embed', 'tag', 'viewSource', 'clearFormatting', 'clean'],
+								['undo', 'redo'],
+								['fancyModal'],
+					        ],    
+				    plugins: {
+				        dock: {
+				            docked: true,
+				            dockToElement: true,
+							persist: false 
+				        },
 				    }
 				});
 			</script>
