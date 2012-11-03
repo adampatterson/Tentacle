@@ -429,15 +429,22 @@ class sql_model
 	{
 		$config = config::get('db');
 		
-		try {
-			$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
-		} catch(PDOException $e) {
-			dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
+		$server = $config['default']['host'];
+		$username = $config['default']['username'];
+		$password = $config['default']['password'];
+
+		$host = $server;
+
+		$link = @mysql_connect($host, $username, $password, TRUE);
+
+		if (!$link)
+		{
+			return false;
 		}
-		
-		$touch = $pdo->exec( "SELECT  * FROM `options`" );
-		
-		return $touch;
+		else
+		{
+			return true;
+		}
 	}
 	
 	public function set_db ( $version )
