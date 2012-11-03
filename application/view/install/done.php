@@ -12,7 +12,7 @@
 		<li class="active"><a href='#'>Done</a></li>
 	</ul>
     <div class="row">
-      <div class="span14">
+      <div class="span12">
         <h2>Congratulations!</h2>
 		<div class="alert-message block-message success">
 			<h3>You have successfully installed Tentacle CMS.</h3>
@@ -23,7 +23,7 @@
 				<li>Credits</li>
 			</ul>
 			<div class="alert-actions">
-			    <a class="btn large success" href="<?= BASE_URL ?>admin/">Log in</a>
+			    <a class="btn btn-large btn-primary" href="<?= BASE_URL ?>admin/">Log in</a>
 			</div>
 		</div>
       </div>
