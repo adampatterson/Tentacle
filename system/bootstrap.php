@@ -698,21 +698,41 @@ class load
     }
 
 
-    // Library
-    // ---------------------------------------------------------------------------
-    public static function library($library)
+    /**
+     * Function: library
+     * Loads libraries specific to Tentacle
+     * $file is both the folder and the file to load unless the library requires a different name.
+     *
+     * Parameters:
+     *     $file - string
+     *     $folder - String
+     *
+     * Returns:
+     *     Required library
+     */
+    public static function library($folder, $file ='')
     {
-        return self::file(SYSTEM.'/library',$library,'library');
+
+        if( file_exists(SYSTEM.'/library/'.$folder.'/'.$folder.'.php' ) ):
+           return self::file(SYSTEM.'/library/'.$folder,$folder,'library');
+
+        elseif( file_exists(SYSTEM.'/library/'.$folder.'/'.$file.'.php' ) ):
+           return self::file(SYSTEM.'/library/'.$folder,$file,'library');
+
+        else:
+           return self::file(SYSTEM.'/library',$folder,'library');
+        endif;
     }
 
 
     // Driver
     // ---------------------------------------------------------------------------
+    /*
     public static function driver($library,$driver)
     {
         return self::file(SYSTEM."/driver/$library",$driver,'drver');
     }
-
+    */
 
 
     // Helper

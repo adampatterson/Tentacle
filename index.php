@@ -37,6 +37,6 @@ if ( !defined( 'SETUP' ) && strpos( BASE_URI,'install' ) !== true ) {
 // End of configuration
 //----------------------------------------------------------------------------------------------
 define('DINGO',1);
-require_once(SYSTEM.'/core/bootstrap.php');
+require_once(SYSTEM.'/bootstrap.php');
 
 bootstrap::run();

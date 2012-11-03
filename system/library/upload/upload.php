@@ -124,7 +124,7 @@ class UploadHandler
 		$clean_files = array_diff( $files, $filtered );
 
 
-		include TENTACLE_LIB.'chromephp/ChromePhp.php';
+		include TENTACLE_LIB . 'chromephp/ChromePhp.php';
 		
 		ChromePhp::log($this);
 	
