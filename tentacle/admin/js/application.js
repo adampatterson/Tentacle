@@ -51,35 +51,23 @@ $(document).ready(function(){
 	
 	/* Tags */
 	// ====================================
-	$('.tags').tagsInput();
-
+	if ($('body').hasClass('tags')) {
+		$('.tags').tagsInput();
+	}
 	
 	/* Alert */
 	// ====================================
-	$(".alert-message").alert()
-	
+	if ($('body').hasClass('alert-message')) {
+		$(".alert-message").alert();
+	}
 	
 	/* Modal Window */
 	// ====================================
-	$('#my-modal').modal()
+	if ($('body').hasClass('alert-message')) {
+		$('#my-modal').modal()
+	}
 
 
-	/* Disable certain links in docs */
-	// =============================
-	  $('').click(function(e) {
-	    e.preventDefault();
-	  });
-	
-
-	/* Popover */
-  	// =============================
-        $("a[rel=popover]")
-          .popover({
-            offset: 10
-          })
-          .click(function(e) {
-            e.preventDefault()
-          })
 
 	/* Publish on */
   	// =============================
