@@ -12,8 +12,7 @@
 	_/      _/_/_/  _/    _/      _/_/    _/_/_/    _/_/_/  _/    _/_/_/     
 	======================================================================-->
 	<link href="<?=TENTACLE_CSS; ?>bootstrap.css" rel="stylesheet">
-	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>general.css">
-	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>admin.css">
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>application.css">
 	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>login.css">
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

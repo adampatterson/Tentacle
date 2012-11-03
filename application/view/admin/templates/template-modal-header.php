@@ -15,8 +15,7 @@
 	_/      _/_/_/  _/    _/      _/_/    _/_/_/    _/_/_/  _/    _/_/_/     
 	======================================================================-->                                                                 
 
-	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>bootstrap.css">
-	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>general.css">
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>application.css">
 	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>admin.css">
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

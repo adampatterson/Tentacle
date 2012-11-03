@@ -18,8 +18,7 @@
 <!--
 	<script type="text/javascript" src="<?= MINIFY ?>b=http/dev.tcms.me/tentacle/admin/js&amp;f=jquery.min.js,jquery-ui-1.8.16.custom.min.js,modernizr-2.0.6.min.js,jquery.notice.js,jquery.inputtags.js,spin.min.js"></script>
 -->
-	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>bootstrap.css">
-	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>general.css">
+	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>application.css">
 	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>admin.css">
 	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
