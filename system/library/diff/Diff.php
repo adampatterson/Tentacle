@@ -168,7 +168,7 @@ class Diff
 			return $this->groupedCodes;
 		}
 
-		require_once dirname(__FILE__) . '/Diff/SequenceMatcher.php';
+		require_once dirname(__FILE__) . '/SequenceMatcher.php';
 		$sequenceMatcher = new Diff_SequenceMatcher($this->a, $this->b);
 		$this->groupedCodes = $sequenceMatcher->getGroupedOpcodes();
 		return $this->groupedCodes;

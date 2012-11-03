@@ -4,11 +4,6 @@ class dev_controller {
 
 	public function index()
 	{
-	
-		write_htaccess();
-		
-		die;
-	
 		//include TENTACLE_LIB.'chromephp/ChromePhp.php';
 		
 		//ChromePhp::log('hello world');
@@ -443,8 +438,6 @@ button:
 	public function oembed (  )
 	{
 		
-
-
 		echo '<h1>oEmbed</h1>';
 		echo '<p>Page ID <strong>117</strong></p>';
 		
@@ -457,7 +450,7 @@ button:
 		
 		echo $url;
 		
-		tentacle::library('oembed','AutoEmbed.class');
+		load::library('oembed','AutoEmbed.class');
 
 		clean_out( $page->content );
 		
@@ -835,7 +828,7 @@ button:
 		<?php
 
 		// Include the diff class
-		tentacle::library('diff');
+		load::library('diff');
 
 			$a_raw = '<html>
 				<head>
@@ -880,14 +873,14 @@ button:
 		?><h2>Side By Side</h2> <?
 		
 		// Generate a side by side diff
-		load::file(TENTACLE_LIB.'/diff/Diff/Renderer/Html','SideBySide');
+		load::file(SYSTEM.'/library/diff/Renderer/Html','SideBySide');
 		$renderer = new Diff_Renderer_Html_SideBySide;
 		echo $diff->Render($renderer);
 		
 		?><h2>Inline</h2> <?
 
 		// Generate an inline diff
-		load::file(TENTACLE_LIB.'/diff/Diff/Renderer/Html','Inline');
+		load::file(SYSTEM.'/library/diff/Renderer/Html','Inline');
 		$renderer = new Diff_Renderer_Html_Inline;
 		echo $diff->render($renderer);
 		
@@ -1192,20 +1185,6 @@ button:
 	
 	
 	/**
-	 * spyc function
-	 *
-	 * @return void
-	 * @author Adam Patterson
-	 **/
-	public function spyc()
-	{	
-		echo '<h2>Spyc</h2>';
-		
-		tentacle::library('spyc');
-	}// END Function
-	
-	
-	/**
 	 * track function
 	 *
 	 * @return void
@@ -1282,7 +1261,7 @@ button:
 	{
 			load::helper('navigation');
 
-			tentacle::library('dbug');
+			load::library('dbug');
 			
 			$args = array();
 			

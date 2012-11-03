@@ -32,7 +32,7 @@ function extract_zip( $filename, $extract_to = '/' )
     }
 	else
 	{
-	    tentacle::library( 'pclZip' );
+	    load::library( 'pclZip' );
 	    $zip = new PclZip( $filename );
 	    if ($zip->extract() == 0)
 	    {

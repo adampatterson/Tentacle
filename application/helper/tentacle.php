@@ -21,29 +21,6 @@ define ( 'IMAGE_L', get_option( 'image_large_size_w' ) );
 // tentacle core loaders
 class tentacle 
 {
-
-	/**
-	* Function: library
-	* Loads libraries specific to Tentacle
-    * $file is both the folder and the file to load unless the library requires a different name.
-	*
-	* Parameters:
-	*     $file - string
-	*     $folder - String
-    *
-	* Returns:
-	*     Required library
-	*/
-	public static function library($folder, $file ='')
-	{
-        if($file == '')  {
-            return load::file(TENTACLE_LIB.$folder,$folder,'library');
-        } else {
-            return load::file(TENTACLE_LIB.$folder,$file,'library');
-        }
-	}
-
-	
 	/**
 	* Function: valid_user
 	* Valid User / Redirect.

@@ -129,7 +129,7 @@ class cache
 	*/
 	static public function script( $scriptFiles = '' )
 	{
-		tentacle::library('jsmin');
+		load::library('jsmin');
 		
 		/* Add your CSS files to this array (THESE ARE ONLY EXAMPLES) */
 		$scriptFiles = array(
