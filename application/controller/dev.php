@@ -873,14 +873,14 @@ button:
 		?><h2>Side By Side</h2> <?
 		
 		// Generate a side by side diff
-		load::file(SYSTEM.'/library/diff/Renderer/Html','SideBySide');
+		load::file(APPLICATION.'/library/diff/Renderer/Html','SideBySide');
 		$renderer = new Diff_Renderer_Html_SideBySide;
 		echo $diff->Render($renderer);
 		
 		?><h2>Inline</h2> <?
 
 		// Generate an inline diff
-		load::file(SYSTEM.'/library/diff/Renderer/Html','Inline');
+		load::file(APPLICATION.'/library/diff/Renderer/Html','Inline');
 		$renderer = new Diff_Renderer_Html_Inline;
 		echo $diff->render($renderer);
 		

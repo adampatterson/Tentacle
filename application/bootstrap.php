@@ -84,7 +84,7 @@ class bootstrap
         set_exception_handler('dingo_exception');
 
 
-        config::set('system',SYSTEM);
+        config::set('system',APPLICATION);
         config::set('application',APPLICATION);
         config::set('config',CONFIG);
 
@@ -713,14 +713,14 @@ class load
     public static function library($folder, $file ='')
     {
 
-        if( file_exists(SYSTEM.'/library/'.$folder.'/'.$folder.'.php' ) ):
-           return self::file(SYSTEM.'/library/'.$folder,$folder,'library');
+        if( file_exists(APPLICATION.'/library/'.$folder.'/'.$folder.'.php' ) ):
+           return self::file(APPLICATION.'/library/'.$folder,$folder,'library');
 
-        elseif( file_exists(SYSTEM.'/library/'.$folder.'/'.$file.'.php' ) ):
-           return self::file(SYSTEM.'/library/'.$folder,$file,'library');
+        elseif( file_exists(APPLICATION.'/library/'.$folder.'/'.$file.'.php' ) ):
+           return self::file(APPLICATION.'/library/'.$folder,$file,'library');
 
         else:
-           return self::file(SYSTEM.'/library',$folder,'library');
+           return self::file(APPLICATION.'/library',$folder,'library');
         endif;
     }
 

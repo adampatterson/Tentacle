@@ -15,9 +15,6 @@ define('ERROR_LOGGING',TRUE);
 # Error Log File Location
 define('ERROR_LOG_FILE','log.txt');
 
-# Dingo Location
-define( 'SYSTEM'        ,'system' );
-
 # Application Location
 define( 'APPLICATION'   ,'application' );
 
