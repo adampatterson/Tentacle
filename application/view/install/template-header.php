@@ -18,8 +18,8 @@
 			var base_url = "<?= BASE_URL ?>";
 		</script>
 		
-		<link type="text/css" rel="stylesheet" href="<?= TENTACLE_CSS ?>application.css">
-		<link type="text/css" rel="stylesheet" href="<?= TENTACLE_CSS ?>setup.css">
+		<link type="text/css" rel="stylesheet" href="<?= ADMIN_CSS ?>application.css">
+		<link type="text/css" rel="stylesheet" href="<?= ADMIN_CSS ?>setup.css">
 		
 	  </head>
 

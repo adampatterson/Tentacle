@@ -15,13 +15,13 @@
 	_/      _/_/_/  _/    _/      _/_/    _/_/_/    _/_/_/  _/    _/_/_/     
 	======================================================================-->                                                                 
 
-	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>bootstrap-1.4.0.min.css">
-	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>general.css">
-	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>admin.css">
+	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>bootstrap-1.4.0.min.css">
+	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>general.css">
+	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>admin.css">
 	
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.min.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery-ui-1.8.16.custom.min.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>nestedSortable-1.3.4/jquery.ui.nestedSortable.js"></script>
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.min.js"></script>
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery-ui-1.8.16.custom.min.js"></script>
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>nestedSortable-1.3.4/jquery.ui.nestedSortable.js"></script>
 	
 <meta name="viewport"/>
 </head>

@@ -4,7 +4,7 @@
 <!-- Bootstrap Image Gallery styles -->
 <link rel="stylesheet" href="http://blueimp.github.com/Bootstrap-Image-Gallery/css/bootstrap-image-gallery.min.css">
 <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
-<link rel="stylesheet" href="<?= TENTACLE_CSS ?>/jquery.fileupload-ui.css">
+<link rel="stylesheet" href="<?= ADMIN_CSS ?>/jquery.fileupload-ui.css">
 <!-- Shim to make HTML5 elements usable in older Internet Explorer versions -->
 <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <div id="wrap">
@@ -14,7 +14,7 @@
 				<h1 class='align-left'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Manage media</h1>
 			</div>
     			<!-- The file upload form used as target for the file upload widget -->    
-			<!--<form id="fileupload" action="<?= TENTACLE_JS ?>jQuery-File-Upload/server/php/" method="POST" enctype="multipart/form-data">-->
+			<!--<form id="fileupload" action="<?= ADMIN_JS ?>jQuery-File-Upload/server/php/" method="POST" enctype="multipart/form-data">-->
 			<form id="fileupload" action="<?= BASE_URL ?>action/upload_media/" method="POST" enctype="multipart/form-data">
 		        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
 		        <div class="actions fileupload-buttonbar">
@@ -105,19 +105,19 @@
 			<script src="http://blueimp.github.com/cdn/js/bootstrap.min.js"></script>
 			<script src="http://blueimp.github.com/Bootstrap-Image-Gallery/js/bootstrap-image-gallery.min.js"></script>
 			<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/jquery.iframe-transport.js"></script>
+			<script src="<?= ADMIN_JS ?>jQuery-File-Upload/jquery.iframe-transport.js"></script>
 			<!-- The basic File Upload plugin -->
-			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/jquery.fileupload.js"></script>
+			<script src="<?= ADMIN_JS ?>jQuery-File-Upload/jquery.fileupload.js"></script>
 			<!-- The File Upload image processing plugin -->
-			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/jquery.fileupload-ip.js"></script>
+			<script src="<?= ADMIN_JS ?>jQuery-File-Upload/jquery.fileupload-ip.js"></script>
 			<!-- The File Upload user interface plugin -->
-			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/jquery.fileupload-ui.js"></script>
+			<script src="<?= ADMIN_JS ?>jQuery-File-Upload/jquery.fileupload-ui.js"></script>
 			<!-- The localization script -->
-			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/locale.js"></script>
+			<script src="<?= ADMIN_JS ?>jQuery-File-Upload/locale.js"></script>
 			<!-- The main application script -->
-			<script src="<?= TENTACLE_JS ?>jQuery-File-Upload/main.js"></script>
+			<script src="<?= ADMIN_JS ?>jQuery-File-Upload/main.js"></script>
 			<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
-			<!--[if gte IE 8]><script src="<?= TENTACLE_JS ?>jQuery-File-Upload/js/cors/jquery.xdr-transport.js"></script><![endif]-->
+			<!--[if gte IE 8]><script src="<?= ADMIN_JS ?>jQuery-File-Upload/js/cors/jquery.xdr-transport.js"></script><![endif]-->
 
 		</div>
 	</div>

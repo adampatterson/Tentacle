@@ -16,7 +16,7 @@
 				}
 			</style>
 			<script type="text/javascript" src="https://raw.github.com/PANmedia/Raptor/master/packages/raptor.0deps.min.js"></script>
-			<link rel="stylesheet" href="<?= TENTACLE_CSS ?>custom-theme/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" title="no title" charset="utf-8">
+			<link rel="stylesheet" href="<?= ADMIN_CSS ?>custom-theme/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" title="no title" charset="utf-8">
 			<script type="text/javascript">
 			    
 				$.ui.editor.registerUi({

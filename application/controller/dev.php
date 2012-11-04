@@ -759,7 +759,6 @@ button:
 		echo '<strong>STORAGE_URL:</strong> ' . STORAGE_URL . '<br />';
 		echo '<strong>THEMES_DIR:</strong> ' . THEMES_DIR . '<br />';
 		echo '<strong>THEMES_URL:</strong> ' . THEMES_URL . '<br />';
-		echo '<strong>ADMIN_DIR:</strong> ' . ADMIN_DIR . '<br />';
 		echo '<strong>IMAGE_DIR:</strong> ' . IMAGE_DIR . '<br />';
 		echo '<strong>IMAGE_URL:</strong> ' . IMAGE_URL . '<br />';
 		echo '<strong>IMAGE_URI:</strong> ' . IMAGE_URI . '<br /><br />';
@@ -785,8 +784,8 @@ button:
 		echo "ADMIN_URI: ". ADMIN_URI ."<br />";
 		echo "TENTACLE_LIB: ". TENTACLE_LIB ."<br />";
 		echo "TENTACLE_PLUGIN: ". TENTACLE_PLUGIN ."<br />";
-		echo "TENTACLE_JS: ". TENTACLE_JS ."<br />";
-		echo "TENTACLE_CSS: ". TENTACLE_CSS ."<br />";
+		echo "ADMIN_JS: ". ADMIN_JS ."<br />";
+		echo "ADMIN_CSS: ". ADMIN_CSS ."<br />";
 		echo "MINIFY: ". MINIFY ."<br />";
 		echo "<br />";
 		
@@ -967,8 +966,8 @@ button:
 		echo get_gravatar('adamapatterson@gmail.com');
 		
 		?>
-			<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery.min.js"></script>
-			<script type="text/javascript" src="<?=TENTACLE_JS; ?>md5.js"></script>
+			<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.min.js"></script>
+			<script type="text/javascript" src="<?=ADMIN_JS; ?>md5.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			$(document).ready(function(){
 

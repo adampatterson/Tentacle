@@ -11,9 +11,9 @@
 	 _/    _/        _/    _/    _/      _/    _/  _/        _/  _/          
 	_/      _/_/_/  _/    _/      _/_/    _/_/_/    _/_/_/  _/    _/_/_/     
 	======================================================================-->
-	<link href="<?=TENTACLE_CSS; ?>bootstrap.css" rel="stylesheet">
-	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>application.css">
-	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>login.css">
+	<link href="<?=ADMIN_CSS; ?>bootstrap.css" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>application.css">
+	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>login.css">
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->

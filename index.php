@@ -69,17 +69,15 @@ define('TENTACLE_URL'     , BASE_URL.'tentacle/');
 define('TENTACLE_URI'     , APP_ROOT.'/tentacle');
 
 # Admin's Base URL
-define('ADMIN'            , BASE_URL.'admin/');
-define('ADMIN_URL'        , TENTACLE_URL.'admin/');
-define('ADMIN_URI'        , TENTACLE_URI.'/admin/');
+define('ADMIN'            , BASE_URL.'tentacle/');
+define('ADMIN_URL'        , BASE_URL.'tentacle/');
+define('ADMIN_URI'        , APP_ROOT.'tentacle/');
+define('ADMIN_JS'   	  , BASE_URL.'tentacle/js/');
+define('ADMIN_CSS'     	  , BASE_URL.'tentacle/css/');
 
 define('TENTACLE_LIB'     , APP_ROOT.'/application/library/');
 
-define('TENTACLE_JS'   	  , ADMIN_URL.'js/');
-define('TENTACLE_CSS'     , ADMIN_URL.'css/');
 
-# http:#code.google.com/p/minify/
-define('MINIFY'        	  , ADMIN_URL.'lib/min/');
 
 # Image Size
 define('GRAVATAR_SIZE' 	  , "60" );
@@ -94,8 +92,6 @@ define('THEMES_DIR'    	  , APP_ROOT.'/themes/');
 define('THEMES_URL'    	  , BASE_URL.'themes');
 
 define('TENTACLE_PLUGIN'  , APP_ROOT.'/modules');
-
-define('ADMIN_DIR'     	  , APP_ROOT.'/tentacle/admin');
 
 define('IMAGE_DIR'     	  , APP_ROOT.'/storage/images/');
 define('IMAGE_URL'	   	  , BASE_URL.'storage/images/');

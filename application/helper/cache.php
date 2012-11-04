@@ -142,7 +142,7 @@ class cache
 		 */
 		$buffer = "";
 		foreach ($scriptFiles as $scriptFile) {
-		  $buffer .= file_get_contents(TENTACLE_JS.$scriptFile);
+		  $buffer .= file_get_contents(ADMIN_JS.$scriptFile);
 		}
 
 		// Enable GZip encoding.
@@ -174,7 +174,7 @@ class cache
 		 */
 		$buffer = "";
 		foreach ($cssFiles as $cssFile) {
-		  $buffer .= file_get_contents(TENTACLE_CSS.$cssFile);
+		  $buffer .= file_get_contents(ADMIN_CSS.$cssFile);
 		}
 
 		// Remove comments

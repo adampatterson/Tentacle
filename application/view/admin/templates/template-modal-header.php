@@ -15,13 +15,13 @@
 	_/      _/_/_/  _/    _/      _/_/    _/_/_/    _/_/_/  _/    _/_/_/     
 	======================================================================-->                                                                 
 
-	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>application.css">
-	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>admin.css">
+	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>application.css">
+	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>admin.css">
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery-ui-1.8.16.custom.min.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>modernizr-2.0.6.min.js"></script>	
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap.2.1.min.js"></script>
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery-ui-1.8.16.custom.min.js"></script>
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>modernizr-2.0.6.min.js"></script>
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap.2.1.min.js"></script>
 	
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -34,7 +34,7 @@
 		<!-- Bootstrap Image Gallery styles -->
 		<link rel="stylesheet" href="http://blueimp.github.com/Bootstrap-Image-Gallery/css/bootstrap-image-gallery.min.css">
 		<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
-		<link rel="stylesheet" href="<?= TENTACLE_CSS ?>/jquery.fileupload-ui.css">
+		<link rel="stylesheet" href="<?= ADMIN_CSS ?>/jquery.fileupload-ui.css">
 
 	<? endif; ?>
 	

@@ -18,15 +18,15 @@
 <!--
 	<script type="text/javascript" src="<?= MINIFY ?>b=http/dev.tcms.me/tentacle/admin/js&amp;f=jquery.min.js,jquery-ui-1.8.16.custom.min.js,modernizr-2.0.6.min.js,jquery.notice.js,jquery.inputtags.js,spin.min.js"></script>
 -->
-	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>application.css">
-	<link type="text/css" rel="stylesheet" href="<?=TENTACLE_CSS; ?>admin.css">
+	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>application.css">
+	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>admin.css">
 	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>jquery-ui-1.8.16.custom.min.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>modernizr-2.0.6.min.js"></script>
-	<script type="text/javascript" src="<?= TENTACLE_JS; ?>jquery.inputtags.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>bootstrap.2.1.min.js"></script>
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>notifications.js"></script>
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery-ui-1.8.16.custom.min.js"></script>
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>modernizr-2.0.6.min.js"></script>
+	<script type="text/javascript" src="<?= ADMIN_JS; ?>jquery.inputtags.js"></script>
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap.2.1.min.js"></script>
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>notifications.js"></script>
 	
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -34,8 +34,8 @@
 	
 <? if ( in_array('fancybox', $assets ) ): ?>
 	<!-- fancyBox MODAL -->
-	<script type="text/javascript" src="<?=TENTACLE_JS; ?>fancyBox/source/jquery.fancybox.pack.js?v=2.0.6"></script>
-	<link rel="stylesheet" type="text/css" href="<?=TENTACLE_JS; ?>fancyBox/source/jquery.fancybox.css?v=2.0.6" media="screen" />
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>fancyBox/source/jquery.fancybox.pack.js?v=2.0.6"></script>
+	<link rel="stylesheet" type="text/css" href="<?=ADMIN_JS; ?>fancyBox/source/jquery.fancybox.css?v=2.0.6" media="screen" />
 	
 	<script type="text/javascript">
 		// FancyBox modal
@@ -57,7 +57,7 @@
 	<!-- Bootstrap Image Gallery styles -->
 	<link rel="stylesheet" href="http://blueimp.github.com/Bootstrap-Image-Gallery/css/bootstrap-image-gallery.min.css">
 	<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
-	<link rel="stylesheet" href="<?= TENTACLE_CSS ?>/jquery.fileupload-ui.css">
+	<link rel="stylesheet" href="<?= ADMIN_CSS ?>/jquery.fileupload-ui.css">
 
 <? endif; ?>
 	
@@ -65,7 +65,7 @@
 
 	<script type="text/javascript" charset="utf-8">
 		var base_url = "<?= BASE_URL ?>";
-		var js_url = '<?= TENTACLE_JS ?>';
+		var js_url = '<?= ADMIN_JS ?>';
 		var editor_path = '<?= PATH ?>/';
 	</script>
 

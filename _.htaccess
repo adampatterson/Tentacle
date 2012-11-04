@@ -1,3 +1,0 @@
-RewriteEngine on
-RewriteCond $1 !^(index\.php|tentacle|_reference|favicon\.ico|apple_icon\.png|setup)
-RewriteRule ^(.*)$ index.php?__dingo_page=$1 [L]
