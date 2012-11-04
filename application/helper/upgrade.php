@@ -80,8 +80,8 @@ class upgrade {
 					$parts = string_to_parts($file);
 
 					$update_file_path = STORAGE_DIR.'/upgrade/'.$update_path;
-					$site_folder_path = CORE_ROOT.'/'.$parts['path'];
-					$site_file_path = CORE_ROOT.'/'.$parts['full'];
+					$site_folder_path = APP_ROOT.'/'.$parts['path'];
+					$site_file_path = APP_ROOT.'/'.$parts['full'];
 
 					if (!is_dir($site_folder_path)) {
 						echo "<li><strong>Creating folder:</strong> ".$parts['path'].'</li>';

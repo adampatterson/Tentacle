@@ -881,13 +881,13 @@ function dingo_error($level,$message,$file='current file',$line='(unknown)',$bac
     {
         ob_clean();
 
-        if(file_exists(APPLICATION.'/'.config::get('folder_errors').'/fatal.php'))
+        if(file_exists(APPLICATION.'/view/error/fatal.php'))
         {
-            require(APPLICATION.'/'.config::get('folder_errors').'/fatal.php');
+            require(APPLICATION.'/view/error/fatal.php');
         }
         else
         {
-            echo 'Dingo could not locate error file at '.APPLICATION.'/'.config::get('folder_errors').'/fatal.php';
+            echo 'Dingo could not locate error file at '.APPLICATION.'/view/error/fatal.php';
         }
 
         ob_end_flush();
@@ -897,13 +897,13 @@ function dingo_error($level,$message,$file='current file',$line='(unknown)',$bac
     {
         ob_clean();
 
-        if(file_exists(APPLICATION.'/'.config::get('folder_errors').'/exception.php'))
+        if(file_exists(APPLICATION.'/view/error/exception.php'))
         {
-            require(APPLICATION.'/'.config::get('folder_errors').'/exception.php');
+            require(APPLICATION.'/view/error/exception.php');
         }
         else
         {
-            echo 'Dingo could not locate exception file at '.APPLICATION.'/'.config::get('folder_errors').'/exception.php';
+            echo 'Dingo could not locate exception file at '.APPLICATION.'/view/error/exception.php';
         }
 
         ob_end_flush();
@@ -911,13 +911,13 @@ function dingo_error($level,$message,$file='current file',$line='(unknown)',$bac
     }
     elseif(DEBUG)
     {
-        if(file_exists(APPLICATION.'/'.config::get('folder_errors').'/nonfatal.php'))
+        if(file_exists(APPLICATION.'/view/error/nonfatal.php'))
         {
-            require(APPLICATION.'/'.config::get('folder_errors').'/nonfatal.php');
+            require(APPLICATION.'/view/error/nonfatal.php');
         }
         else
         {
-            echo 'Dingo could not locate error file at '.APPLICATION.'/'.config::get('folder_errors').'/nonfatal.php';
+            echo 'Dingo could not locate error file at '.APPLICATION.'/view/error/nonfatal.php';
         }
     }
 

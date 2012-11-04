@@ -753,9 +753,8 @@ button:
 		echo '<strong>DS:</strong> ' .DS . '<br />';
 		
 		echo "<strong>realpath(''):</strong>" .realpath('') . '<br />';
-		
-		echo '<strong>CORE_ROOT:</strong> ' . CORE_ROOT . '<br />';
-		echo '<strong>APP_PATH:</strong> ' . APP_PATH . '<br />';
+
+		echo '<strong>APP_ROOT:</strong> ' . APP_ROOT . '<br />';
 		echo '<strong>STORAGE_DIR:</strong> ' . STORAGE_DIR . '<br />';
 		echo '<strong>STORAGE_URL:</strong> ' . STORAGE_URL . '<br />';
 		echo '<strong>THEMES_DIR:</strong> ' . THEMES_DIR . '<br />';
@@ -1447,11 +1446,9 @@ button:
 		*/
 		
 		
-		load::helper('import');
-		
-		$wordpress_file = TEMP.'wordpress.xml';
-		
-		$wordpress_xml = file_get_contents($wordpress_file);
+		//load::helper('import');
+
+		$wordpress_xml = file_get_contents(TEMP.'tentaclecms.wordpress.2012-11-04.xml');
 		
 		$xml = new SimpleXmlElement($wordpress_xml);
 		if (!$xml or !substr_count($xml->channel->generator, "wordpress.org"))
