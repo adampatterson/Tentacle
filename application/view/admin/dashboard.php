@@ -1,5 +1,5 @@
 <? load::view('admin/templates/template-header', array('title' => 'Dashboard', 'assets' => array('application')));?>
-<? load::view('admin/templates/template-sidebar');?>
+
 <div id="wrap">
 	<div class="full-content">
 		<div id="post-body">

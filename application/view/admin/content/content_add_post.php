@@ -1,5 +1,5 @@
 <? load::view('admin/templates/template-header', array('title' => 'Write a new post', 'assets' => array('fancybox') ) );?>
-<? load::view('admin/templates/template-sidebar');?>
+
 <div id="wrap">
 	<!--
 	<script type="text/javascript">

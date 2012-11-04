@@ -1,4 +1,4 @@
-<? load::view('admin/templates/template-header', array('title' => 'Resource', 'assets' => array('application')));?>
+<? load::view('admin/templates/template-header', array('title' => 'Resource', 'assets' => array('fancybox')));?>
 <div id="wrap">
 	<div class="full-content">
 		<div id="post-body">
@@ -10,13 +10,14 @@
 		</div>
 		<div class="one-full">
 			<textarea id="element-to-edit" class="editor">asdsad</textarea>
+			<a class="fancybox fancybox.iframe" id="insert-media" href="<?= BASE_URL ?>admin/media_insert" title="Insert Media" data-width="680" data-height="725">[ Insert Media ]</a>
 			<style type="text/css" media="screen">
 				.ui-widget-content  .ui-icon-fancy-modal {
 				    background-image: url(http://www.winsteps.com/blahdocs/images/smiley.gif);   
 				}
 			</style>
 			<script type="text/javascript" src="https://raw.github.com/PANmedia/Raptor/master/packages/raptor.0deps.min.js"></script>
-			<link rel="stylesheet" href="<?= ADMIN_CSS ?>custom-theme/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" title="no title" charset="utf-8">
+			<!-- <link rel="stylesheet" href="<?= ADMIN_CSS ?>custom-theme/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" title="no title" charset="utf-8"> -->
 			<script type="text/javascript">
 			    
 				$.ui.editor.registerUi({

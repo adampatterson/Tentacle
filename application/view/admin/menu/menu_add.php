@@ -1,5 +1,5 @@
 <? load::view('admin/templates/template-header', array('title' => 'Create a new menu','assets'=>'application')); ?>
-<? load::view('admin/templates/template-sidebar');?>
+
 <div id="wrap">
 	<div class="has-right-sidebar">
 		<div class="contet-sidebar">

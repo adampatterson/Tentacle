@@ -1,5 +1,5 @@
 <? load::view('admin/templates/template-header', array('title' => 'Manage users', 'assets' => array('application')));?>
-<? load::view('admin/templates/template-sidebar');?>
+
 <div id="wrap">
 	<div class="title pad-right">
 		<h1 class="align-left title"><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Manage users</h1>
