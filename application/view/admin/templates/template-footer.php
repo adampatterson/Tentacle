@@ -23,9 +23,13 @@
 </div>
 </footer>
 <? if(user_editor() == 'wysiwyg'): ?>
+	<!-- WYSIHTML5 -->
 	<link rel="stylesheet" type="text/css" href="<?=ADMIN_JS; ?>bootstrap-wysihtml5/bootstrap-wysihtml5.css"></link>
 	<script src="<?=ADMIN_JS; ?>bootstrap-wysihtml5/wysihtml5-0.3.0.min.js"></script>
 	<script src="<?=ADMIN_JS; ?>bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		$('.editor').wysihtml5();
+	</script>
 <? elseif(user_editor() == 'raptor'): ?>
 
 <? else: ?>
