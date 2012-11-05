@@ -24,7 +24,7 @@ if(!defined('SCAFFOLD')):
 					<p class="lead">Tentacle makes it easy to Design, Develop, and Write content for the web.</p>
 					<p class="lead">Its goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
 					<p class="lead">
-						<br /><a href="<?= BASE_URL ?>download/" onClick="_gaq.push(['_trackEvent', 'Header Link', 'Download', 'v 0.8.1 Beta']);" class="btn btn-primary btn-large">&nbsp;&nbsp;&nbsp;Download Now!&nbsp;&nbsp;&nbsp;</a></p>
+						<br /><a href="<?= BASE_URL ?>download/" onClick="_gaq.push(['_trackEvent', 'Header Link', 'Download', 'v 0.8.1 Beta']);" class="btn btn-primary btn-large">&nbsp;&nbsp;&nbsp;Download v0.8.1 Beta&nbsp;&nbsp;&nbsp;</a></p>
 				</div>
 				<div class="app-image pull-right">
 					<img src="<?= PATH ?>/assets/img/tentacle-cms.png" alt="Tentacle" />
