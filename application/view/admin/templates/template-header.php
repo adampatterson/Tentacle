@@ -15,17 +15,14 @@
 	_/      _/_/_/  _/    _/      _/_/    _/_/_/    _/_/_/  _/    _/_/_/     
 	======================================================================-->                                                                 
 
-<!--
-	<script type="text/javascript" src="<?= MINIFY ?>b=http/dev.tcms.me/tentacle/admin/js&amp;f=jquery.min.js,jquery-ui-1.8.16.custom.min.js,modernizr-2.0.6.min.js,jquery.notice.js,jquery.inputtags.js,spin.min.js"></script>
--->
 	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>application.css">
 	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>admin.css">
 	
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery-ui-1.8.16.custom.min.js"></script>
-	<script type="text/javascript" src="<?=ADMIN_JS; ?>modernizr-2.0.6.min.js"></script>
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.min.js"></script>
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery-ui.min.js"></script>
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>modernizr.min.js"></script>
 	<script type="text/javascript" src="<?= ADMIN_JS; ?>jquery.inputtags.js"></script>
-	<script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap.2.1.min.js"></script>
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?=ADMIN_JS; ?>notifications.js"></script>
 	
 	<!--[if lt IE 9]>
@@ -38,15 +35,13 @@
 	<link rel="stylesheet" type="text/css" href="<?=ADMIN_JS; ?>fancyBox/source/jquery.fancybox.css?v=2.0.6" media="screen" />
 	
 	<script type="text/javascript">
-		// FancyBox modal
-		// ====================================
 		$(".fancybox").fancybox({
-		  fitToView: false,
-		  afterLoad: function(){
-		   this.width = $(this.element).data("width");
-		   this.height = $(this.element).data("height");
-		  }
-		 }); // fancybox
+			fitToView: false,
+			afterLoad: function(){
+				this.width = $(this.element).data("width");
+				this.height = $(this.element).data("height");
+			}
+		}); // fancybox
 	</script>	
 <? endif; ?>
 
