@@ -45,12 +45,8 @@ class upgrade {
 
 
 	public static function core($update) {
-		// Path from Serpent API
-		$client = curl_init($update);
-
-		curl_setopt($client, CURLOPT_RETURNTRANSFER, 1);
-
-		$filedata = curl_exec($client);
+		
+		$filedata = get_url_contents($update);
 
 		if (!is_dir(STORAGE_DIR.'/upgrade/')) {
 			if (!mkdir(STORAGE_DIR.'/upgrade/', 0755, true)) {

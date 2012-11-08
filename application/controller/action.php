@@ -166,7 +166,7 @@ class action_controller {
 		if ( is_update( TENTACLE_VERSION, $core_update->version ) )
 		{
 			// Download and update Core Files.
-			upgrade::core( upgrade::make_nodeload($core_update->download) );
+			upgrade::core( $core_update->download );
 			
 			// Migrate forward on the Database.
 			upgrade_db();
