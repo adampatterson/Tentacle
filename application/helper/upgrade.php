@@ -52,6 +52,12 @@ class upgrade {
 
 		$filedata = curl_exec($client);
 
+		if (!is_dir(STORAGE_DIR.'/upgrade/')) {
+			if (!mkdir(STORAGE_DIR.'/upgrade/', 0755, true)) {
+			    die('Failed to create folders...');
+			}
+		}
+
 		file_put_contents(STORAGE_DIR.'/upgrade/update.zip', $filedata);
 
 		if (file_exists(STORAGE_DIR.'/upgrade/update.zip')) {
@@ -67,9 +73,8 @@ class upgrade {
 				$archive_folder = '';
 
 				chdir(STORAGE_DIR.'/upgrade');
-				$update = recursive_glob('*.*');
-				$update_parts = string_to_parts($update[1]);
-				$update_path = $update_parts['path'];
+				$update_path = array_filter(glob('*'), 'is_dir');
+				$update_path = $update_path[0];
 
 				chdir(STORAGE_DIR.'/upgrade/'.$update_path);
 				$update_files = recursive_glob('*.*');
@@ -79,7 +84,7 @@ class upgrade {
 				foreach ($update_files as $file) {
 					$parts = string_to_parts($file);
 
-					$update_file_path = STORAGE_DIR.'/upgrade/'.$update_path;
+					$update_file_path = STORAGE_DIR.'/upgrade/'.$update_path.'/';
 					$site_folder_path = APP_ROOT.'/'.$parts['path'];
 					$site_file_path = APP_ROOT.'/'.$parts['full'];
 
@@ -101,7 +106,7 @@ class upgrade {
 
 					$fp = fopen( $site_file_path, 'w' );
 
-					//fwrite($fp, $file);
+					fwrite($fp, $file);
 					fclose($fp);
 				}
 
@@ -111,10 +116,10 @@ class upgrade {
 				delete_dir($update_path);
 				unlink(STORAGE_DIR.'/upgrade/update.zip');
 
-				echo '<p>Tentacle CMS was updated successfully!</p>';
+				note::set('success','upgrade_message','Tentacle has been successfully upgraded.');
 
 		} else {
-		    echo 'Something Went Wrong!';
+		    note::set('error','upgrade_message','Something went wrong!');
 		}
 	}
 	

@@ -170,8 +170,7 @@ class action_controller {
 			
 			// Migrate forward on the Database.
 			upgrade_db();
-			
-			note::set('success','upgrade_message','Tentacle has been successfully upgraded.');
+
 		} else {
 			note::set('success','upgrade_message','There was nothing to upgrade.');
 		}
