@@ -8,12 +8,12 @@
 						<li class="lead"><a href="mailto:hello@tentaclecms.com">hello@tentaclecms.com</a></li>
 						<li class="lead"><a href="https://twitter.com/tentaclecms" class="twitter-follow-button" data-show-count="false">Follow @tentaclecms</a></li>
 					
-					<li class="lead"><iframe src="http://ghbtns.com/github-btn.html?user=adampatterson&repo=Tentacle&type=watch&count=true"
-					  allowtransparency="true" frameborder="0" scrolling="0" width="62px" height="20px"></iframe></li>
-					<li class="lead"><iframe src="http://ghbtns.com/github-btn.html?user=adampatterson&repo=Tentacle&type=fork&count=true"
-					  allowtransparency="true" frameborder="0" scrolling="0" width="62px" height="20px"></iframe></li>
+					<li class="lead"><iframe src="http://ghbtns.com/github-btn.html?user=adampatterson&repo=tentacle&type=watch&count=true"
+					  allowtransparency="true" frameborder="0" scrolling="0" width="180px" height="20px"></iframe></li>
+					<li class="lead"><iframe src="http://ghbtns.com/github-btn.html?user=adampatterson&repo=tentacle&type=fork&count=true"
+					  allowtransparency="true" frameborder="0" scrolling="0" width="180px" height="20px"></iframe></li>
 					<li class="lead"><iframe src="http://ghbtns.com/github-btn.html?user=adampatterson&type=follow&count=true"
-					  allowtransparency="true" frameborder="0" scrolling="0" width="62px" height="20px"></iframe></li>
+					  allowtransparency="true" frameborder="0" scrolling="0" width="180px" height="20px"></iframe></li>
 					</ul>
 				</div>
 			
