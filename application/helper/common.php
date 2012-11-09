@@ -91,246 +91,246 @@ class date
     {
         return $this->time_ago_in_words($fromTime, $includeSeconds);
     }
-} // class date
 
 
-/**
-* Function: current_date
-*	
-*
-* Parameters:
-*	$unit - 
-*	$get_time - 
-*
-* Returns:
-*	String
-*/
-function current_date( $unit, $get_time = false ){
+	/**
+	* Function: current_date
+	*	
+	*
+	* Parameters:
+	*	$unit - 
+	*	$get_time - 
+	*
+	* Returns:
+	*	String
+	*/
+	function current_date( $unit, $get_time = false ){
 	
-	$time_stamp = time();
+		$time_stamp = time();
 	
-	switch ($unit) {
-		case 'year':
-			if ( isset( $get_time ) ):
-				echo strftime("%Y", $get_time );
-			else:
-				echo strftime("%Y", $time_stamp );
-			endif;
-		break;
-			
-		case 'month':
-				if ( $get_time):
-					$curr_month = strftime("%m", $get_time );
-					
-					$month = array (1=>"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-					$select = "<select id=\"month\" name=\"month\" tabindex=\"4\">\n";
-					foreach ($month as $key => $val) {
-					    $select .= "\t<option value=\"".$key."\"";
-					    if ($key == $curr_month) {
-					        $select .= " selected=\"selected\">".$val."</option>\n";
-					    } else {
-					        $select .= ">".$val."</option>\n";
-					    }
-					}
-					$select .= "</select>";
-					echo $select;
-					
+		switch ($unit) {
+			case 'year':
+				if ( isset( $get_time ) ):
+					echo strftime("%Y", $get_time );
 				else:
-					$curr_month = date("m");
-					$month = array (1=>"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-					$select = "<select id=\"month\" name=\"month\" tabindex=\"4\">\n";
-					foreach ($month as $key => $val) {
-					    $select .= "\t<option value=\"".$key."\"";
-					    if ($key == $curr_month) {
-					        $select .= " selected=\"selected\">".$val."</option>\n";
-					    } else {
-					        $select .= ">".$val."</option>\n";
-					    }
-					}
-					$select .= "</select>";
-					echo $select;
-				
+					echo strftime("%Y", $time_stamp );
 				endif;
 			break;
+			
+			case 'month':
+					if ( $get_time):
+						$curr_month = strftime("%m", $get_time );
+					
+						$month = array (1=>"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+						$select = "<select id=\"month\" name=\"month\" tabindex=\"4\">\n";
+						foreach ($month as $key => $val) {
+						    $select .= "\t<option value=\"".$key."\"";
+						    if ($key == $curr_month) {
+						        $select .= " selected=\"selected\">".$val."</option>\n";
+						    } else {
+						        $select .= ">".$val."</option>\n";
+						    }
+						}
+						$select .= "</select>";
+						echo $select;
+					
+					else:
+						$curr_month = date("m");
+						$month = array (1=>"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+						$select = "<select id=\"month\" name=\"month\" tabindex=\"4\">\n";
+						foreach ($month as $key => $val) {
+						    $select .= "\t<option value=\"".$key."\"";
+						    if ($key == $curr_month) {
+						        $select .= " selected=\"selected\">".$val."</option>\n";
+						    } else {
+						        $select .= ">".$val."</option>\n";
+						    }
+						}
+						$select .= "</select>";
+						echo $select;
+				
+					endif;
+				break;
 		
-		case 'day':
-			if ( $get_time):
-				echo strftime("%d", $get_time );
-			else:
-				echo strftime("%d", $time_stamp );
-			endif;
-			break;
+			case 'day':
+				if ( $get_time):
+					echo strftime("%d", $get_time );
+				else:
+					echo strftime("%d", $time_stamp );
+				endif;
+				break;
 
-		case 'hour':
-			if ( $get_time):
-				echo strftime("%H", $get_time );
-			else:
-				echo strftime("%H", $time_stamp );
-			endif;
-			break;
+			case 'hour':
+				if ( $get_time):
+					echo strftime("%H", $get_time );
+				else:
+					echo strftime("%H", $time_stamp );
+				endif;
+				break;
 		
-		case 'minute':
-			if ( $get_time):
-				echo strftime("%S", $get_time );
-			else:
-				echo strftime("%S", $time_stamp );
-			endif;
-			break;
+			case 'minute':
+				if ( $get_time):
+					echo strftime("%S", $get_time );
+				else:
+					echo strftime("%S", $time_stamp );
+				endif;
+				break;
 		
-		default:
-			return false;
-			break;
+			default:
+				return false;
+				break;
+		}
 	}
-}
 
 
-/**
-* Function: time_in_timezone
-* Returns the appropriate time() for representing a timezone.
-*
-* Returns:
-* 	The appropriate time() for representing a timezone.
-*/
- function time_in_timezone($timezone) {
-     $orig = get_timezone();
-     set_timezone($timezone);
-     $time = date("F jS, Y, g:i A");
-     set_timezone($orig);
-     return strtotime($time);
- }
+	/**
+	* Function: time_in_timezone
+	* 	Returns the appropriate time() for representing a timezone.
+	*
+	* Returns:
+	* 	The appropriate time() for representing a timezone.
+	*/
+	 function time_in_timezone($timezone) {
+	     $orig = get_timezone();
+	     set_timezone($timezone);
+	     $time = date("F jS, Y, g:i A");
+	     set_timezone($orig);
+	     return strtotime($time);
+	 }
 
 
-/**
-* Function: timezones
-* 	Returns an array of timezones that have unique offsets. Doesn't count deprecated timezones.
-* Returns: 
-*	$zones - Array of timezones that have unique offsets. Doesn't count deprecated timezones.
-*/
- function timezones() {
-     $zones = array();
+	/**
+	* Function: timezones
+	* 	Returns an array of timezones that have unique offsets. Doesn't count deprecated timezones.
+	*
+	* Returns: 
+	*	$zones - Array of timezones that have unique offsets. Doesn't count deprecated timezones.
+	*/
+	function timezones() {
+	    $zones = array();
 
-     $deprecated = array("Brazil/Acre", "Brazil/DeNoronha", "Brazil/East", "Brazil/West", "Canada/Atlantic", "Canada/Central", "Canada/East-Saskatchewan", "Canada/Eastern", "Canada/Mountain", "Canada/Newfoundland", "Canada/Pacific", "Canada/Saskatchewan", "Canada/Yukon", "CET", "Chile/Continental", "Chile/EasterIsland", "CST6CDT", "Cuba", "EET", "Egypt", "Eire", "EST", "EST5EDT", "Etc/GMT", "Etc/GMT+0", "Etc/GMT+1", "Etc/GMT+10", "Etc/GMT+11", "Etc/GMT+12", "Etc/GMT+2", "Etc/GMT+3", "Etc/GMT+4", "Etc/GMT+5", "Etc/GMT+6", "Etc/GMT+7", "Etc/GMT+8", "Etc/GMT+9", "Etc/GMT-0", "Etc/GMT-1", "Etc/GMT-10", "Etc/GMT-11", "Etc/GMT-12", "Etc/GMT-13", "Etc/GMT-14", "Etc/GMT-2", "Etc/GMT-3", "Etc/GMT-4", "Etc/GMT-5", "Etc/GMT-6", "Etc/GMT-7", "Etc/GMT-8", "Etc/GMT-9", "Etc/GMT0", "Etc/Greenwich", "Etc/UCT", "Etc/Universal", "Etc/UTC", "Etc/Zulu", "Factory", "GB", "GB-Eire", "GMT", "GMT+0", "GMT-0", "GMT0", "Greenwich", "Hongkong", "HST", "Iceland", "Iran", "Israel", "Jamaica", "Japan", "Kwajalein", "Libya", "MET", "Mexico/BajaNorte", "Mexico/BajaSur", "Mexico/General", "MST", "MST7MDT", "Navajo", "NZ", "NZ-CHAT", "Poland", "Portugal", "PRC", "PST8PDT", "ROC", "ROK", "Singapore", "Turkey", "UCT", "Universal", "US/Alaska", "US/Aleutian", "US/Arizona", "US/Central", "US/East-Indiana", "US/Eastern", "US/Hawaii", "US/Indiana-Starke", "US/Michigan", "US/Mountain", "US/Pacific", "US/Pacific-New", "US/Samoa", "UTC", "W-SU", "WET", "Zulu");
+	    $deprecated = array("Brazil/Acre", "Brazil/DeNoronha", "Brazil/East", "Brazil/West", "Canada/Atlantic", "Canada/Central", "Canada/East-Saskatchewan", "Canada/Eastern", "Canada/Mountain", "Canada/Newfoundland", "Canada/Pacific", "Canada/Saskatchewan", "Canada/Yukon", "CET", "Chile/Continental", "Chile/EasterIsland", "CST6CDT", "Cuba", "EET", "Egypt", "Eire", "EST", "EST5EDT", "Etc/GMT", "Etc/GMT+0", "Etc/GMT+1", "Etc/GMT+10", "Etc/GMT+11", "Etc/GMT+12", "Etc/GMT+2", "Etc/GMT+3", "Etc/GMT+4", "Etc/GMT+5", "Etc/GMT+6", "Etc/GMT+7", "Etc/GMT+8", "Etc/GMT+9", "Etc/GMT-0", "Etc/GMT-1", "Etc/GMT-10", "Etc/GMT-11", "Etc/GMT-12", "Etc/GMT-13", "Etc/GMT-14", "Etc/GMT-2", "Etc/GMT-3", "Etc/GMT-4", "Etc/GMT-5", "Etc/GMT-6", "Etc/GMT-7", "Etc/GMT-8", "Etc/GMT-9", "Etc/GMT0", "Etc/Greenwich", "Etc/UCT", "Etc/Universal", "Etc/UTC", "Etc/Zulu", "Factory", "GB", "GB-Eire", "GMT", "GMT+0", "GMT-0", "GMT0", "Greenwich", "Hongkong", "HST", "Iceland", "Iran", "Israel", "Jamaica", "Japan", "Kwajalein", "Libya", "MET", "Mexico/BajaNorte", "Mexico/BajaSur", "Mexico/General", "MST", "MST7MDT", "Navajo", "NZ", "NZ-CHAT", "Poland", "Portugal", "PRC", "PST8PDT", "ROC", "ROK", "Singapore", "Turkey", "UCT", "Universal", "US/Alaska", "US/Aleutian", "US/Arizona", "US/Central", "US/East-Indiana", "US/Eastern", "US/Hawaii", "US/Indiana-Starke", "US/Michigan", "US/Mountain", "US/Pacific", "US/Pacific-New", "US/Samoa", "UTC", "W-SU", "WET", "Zulu");
 
-     foreach (timezone_identifiers_list() as $zone)
-         if (!in_array($zone, $deprecated))
-             $zones[] = array("name" => $zone,
-                              "now" => time_in_timezone($zone));
+	    foreach (timezone_identifiers_list() as $zone)
+	        if (!in_array($zone, $deprecated))
+	            $zones[] = array("name" => $zone,
+	                             "now" => time_in_timezone($zone));
 
 		function by_time($a, $b) {
-         return (int) ($a["now"] > $b["now"]);
-     }
+	        return (int) ($a["now"] > $b["now"]);
+	    }
 
-     usort($zones, "by_time");
+	    usort($zones, "by_time");
 
-     return $zones;
- }
-
-
-/**
- * Function: set_timezone
- * Sets the timezone.
- *
- * Parameters:
- *     $timezone - The timezone to set.
- */
- function set_timezone($timezone) {
-     if (function_exists("date_default_timezone_set"))
-         date_default_timezone_set($timezone);
-     else
-         ini_set("date.timezone", $timezone);
- }
+	    return $zones;
+	}
 
 
-/**
-* Function: get_timezone()
-* Returns the current timezone.
-*
-* Returns:
-*	Time Zone
-*/
- function get_timezone() {
-     if (function_exists("date_default_timezone_set"))
-         return date_default_timezone_get();
-     else
-         return ini_get("date.timezone");
- }
+	/**
+	 * Function: set_timezone
+	 * Sets the timezone.
+	 *
+	 * Parameters:
+	 *     $timezone - The timezone to set.
+	 */
+	 function set_timezone($timezone) {
+	    if (function_exists("date_default_timezone_set"))
+	        date_default_timezone_set($timezone);
+	    else
+	        ini_set("date.timezone", $timezone);
+	}
 
 
-/**
-* Function: relative_time
-* Returns the difference between the given timestamps or now.
-*
-* Parameters:
-*     $time - Timestamp to compare to.
-*     $from - Timestamp to compare from. If not specified, defaults to now.
-*
-* Returns:
-*     A string formatted like "3 days ago" or "3 days from now".
-*/
- function relative_time($when, $from = null) {
-     fallback($from, time());
-
-     $time = (is_numeric($when)) ? $when : strtotime($when) ;
-
-     $difference = $from - $time;
-
-     if ($difference < 0) {
-         $word = "from now";
-         $difference = -$difference;
-     } elseif ($difference > 0)
-         $word = "ago";
-     else
-         return "just now";
-
-     $units = array("second"     => 1,
-                    "minute"     => 60,
-                    "hour"       => 60 * 60,
-                    "day"        => 60 * 60 * 24,
-                    "week"       => 60 * 60 * 24 * 7,
-                    "month"      => 60 * 60 * 24 * 30,
-                    "year"       => 60 * 60 * 24 * 365,
-                    "decade"     => 60 * 60 * 24 * 365 * 10,
-                    "century"    => 60 * 60 * 24 * 365 * 100,
-                    "millennium" => 60 * 60 * 24 * 365 * 1000);
-
-     $possible_units = array();
-     foreach ($units as $name => $val)
-         if (($name == "week" and $difference >= ($val * 2)) or # Only say "weeks" after two have passed.
-             ($name != "week" and $difference >= $val))
-             $unit = $possible_units[] = $name;
-
-     $precision = (int) in_array("year", $possible_units);
-     $amount = round($difference / $units[$unit], $precision);
-
-     return $amount." ".pluralize($unit, $amount)." ".$word;
- }
+	/**
+	* Function: get_timezone()
+	* Returns the current timezone.
+	*
+	* Returns:
+	*	Time Zone
+	*/
+	function get_timezone() {
+	    if (function_exists("date_default_timezone_set"))
+	        return date_default_timezone_get();
+	    else
+	        return ini_get("date.timezone");
+	}
 
 
-/**
-* Function: now
-* Alias to strtotime, for prettiness like now("+1 day").
-*/
- function now($when) {
-     return strtotime($when);
- }
+	/**
+	* Function: relative_time
+	* Returns the difference between the given timestamps or now.
+	*
+	* Parameters:
+	*     $time - Timestamp to compare to.
+	*     $from - Timestamp to compare from. If not specified, defaults to now.
+	*
+	* Returns:
+	*     A string formatted like "3 days ago" or "3 days from now".
+	*/
+	function relative_time($when, $from = null) {
+	    fallback($from, time());
 
+	    $time = (is_numeric($when)) ? $when : strtotime($when) ;
+
+	    $difference = $from - $time;
+
+	    if ($difference < 0) {
+	        $word = "from now";
+	        $difference = -$difference;
+	    } elseif ($difference > 0)
+	        $word = "ago";
+	    else
+	        return "just now";
+
+	    $units = array("second"     => 1,
+	                   "minute"     => 60,
+	                   "hour"       => 60 * 60,
+	                   "day"        => 60 * 60 * 24,
+	                   "week"       => 60 * 60 * 24 * 7,
+	                   "month"      => 60 * 60 * 24 * 30,
+	                   "year"       => 60 * 60 * 24 * 365,
+	                   "decade"     => 60 * 60 * 24 * 365 * 10,
+	                   "century"    => 60 * 60 * 24 * 365 * 100,
+	                   "millennium" => 60 * 60 * 24 * 365 * 1000);
+
+	    $possible_units = array();
+	    foreach ($units as $name => $val)
+	        if (($name == "week" and $difference >= ($val * 2)) or # Only say "weeks" after two have passed.
+	            ($name != "week" and $difference >= $val))
+	            $unit = $possible_units[] = $name;
+
+	    $precision = (int) in_array("year", $possible_units);
+	    $amount = round($difference / $units[$unit], $precision);
+
+	    return $amount." ".pluralize($unit, $amount)." ".$word;
+	}
+
+
+	/**
+	* Function: now
+	* 	Alias to strtotime, for prettiness like now("+1 day").
+	*/
+	 function now($when) {
+	     return strtotime($when);
+	 }
+} // class date
 
 /**
 * Function: number_to_phone
-* Formats a $number into a US phone number. You can customize the format
-* in the $options array:
-*  - areaCode    - Adds parentheses around the area code.
-*  - delimiter   - Specifies the delimiter to use, defaults to "-".
-*  - extension   - Specifies an extension to add to the end of the
-*                           generated number
-*  - countryCode - Sets the country code for the phone number.
-* 
-*  - number_to_phone(1235551234)                              => 123-555-1234
-*  - number_to_phone(1235551234, array('areaCode' => true))   => (123) 555-1234
-*  - number_to_phone(1235551234, array('delimiter' => " "))   => 123 555 1234
-*  - number_to_phone(1235551234, array('areaCode'  => true, 
-*                                        'extension' => 555))   => (123) 555-1234 x 555
-*  - number_to_phone(1235551234, array('countryCode => 1))    => +01 (123) 555-1234
+*   Formats a $number into a US phone number. You can customize the format
+*   in the $options array:
+*    - areaCode    - Adds parentheses around the area code.
+*    - delimiter   - Specifies the delimiter to use, defaults to "-".
+*    - extension   - Specifies an extension to add to the end of the
+*                             generated number
+*    - countryCode - Sets the country code for the phone number.
+*   
+*    - number_to_phone(1235551234)                              => 123-555-1234
+*    - number_to_phone(1235551234, array('areaCode' => true))   => (123) 555-1234
+*    - number_to_phone(1235551234, array('delimiter' => " "))   => 123 555 1234
+*    - number_to_phone(1235551234, array('areaCode'  => true, 
+*                                          'extension' => 555))   => (123) 555-1234 x 555
+*    - number_to_phone(1235551234, array('countryCode => 1))    => +01 (123) 555-1234
 *
 * Parameters:
 *	$number - integer - Phone number to format
@@ -370,18 +370,18 @@ function number_to_phone($number, $options = array())
 
 /**
 * Function: number_to_currency
-* Formats a $number into a currency string. You can customize the format
-* in the $options array.
+* 	Formats a $number into a currency string. You can customize the format
+* 	in the $options array.
 *
-*  - precision  - Sets the level of precision, defaults to 2
-*  - unit       - Sets the denomination of the currency, defaults to "$"
-*  - separator  - Sets the separator between the units, defaults to "."
-*  - delimiter  - Sets the thousands delimiter, defaults to ","
+*  	- precision  - Sets the level of precision, defaults to 2
+*  	- unit       - Sets the denomination of the currency, defaults to "$"
+*  	- separator  - Sets the separator between the units, defaults to "."
+*  	- delimiter  - Sets the thousands delimiter, defaults to ","
 *
-*  - number_to_currency(1234567890.50)     => $1,234,567,890.50
-*  - number_to_currency(1234567890.506)    => $1,234,567,890.51
-*  - number_to_currency(1234567890.506, array('precision' => 3))  => $1,234,567,890.506
-*  - number_to_currency(1234567890.50,  array('unit' => "&pound;", 
+*  	- number_to_currency(1234567890.50)     => $1,234,567,890.50
+*  	- number_to_currency(1234567890.506)    => $1,234,567,890.51
+*  	- number_to_currency(1234567890.506, array('precision' => 3))  => $1,234,567,890.506
+* 	 - number_to_currency(1234567890.50,  array('unit' => "&pound;", 
 *                                                'separator' => ",", 
 *                                                'delimiter' => "")  => &pound;1234567890,50
 * Parameters:
@@ -414,15 +414,15 @@ function number_to_currency($number, $options = array())
 
 /**
 * Function: number_to_percentage
-* Formats a $number as a percentage string. You can customize the
-* format in the $options array.
+* 	Formats a $number as a percentage string. You can customize the
+* 	format in the $options array.
 *
-*  - precision  - Sets the level of precision, defaults to 3
-*  - separator  - Sets the separator between the units, defaults to "."
+*  	- precision  - Sets the level of precision, defaults to 3
+*  	- separator  - Sets the separator between the units, defaults to "."
 *
-*  - number_to_percentage(100)    => 100.000%
-*  - number_to_percentage(100, array('precision' => 0))   => 100%
-*  - number_to_percentage(302.0574, array('precision' => 2))   => 302.06%
+*  	- number_to_percentage(100)    => 100.000%
+*  	- number_to_percentage(100, array('precision' => 0))   => 100%
+*  	- number_to_percentage(302.0574, array('precision' => 2))   => 302.06%
 *     
 * Parameters:
 * 	$number - integer|float - Number to format to a percentage
@@ -453,13 +453,13 @@ function number_to_percentage($number, $options = array())
 
 /**
 * Function: number_with_delimiter
-* Formats a $number with grouped thousands using $delimiter. You
-* can customize the format using optional $delimiter and 
-* $separator parameters.
-*
-*  - number_with_delimiter(12345678)        => 12,345,678
-*  - number_with_delimiter(12345678.05)     => 12,345,678.05
-*  - number_with_delimiter(12345678, ".")   => 12.345.678    
+*   Formats a $number with grouped thousands using $delimiter. You
+*   can customize the format using optional $delimiter and 
+*   $separator parameters.
+*   
+*    - number_with_delimiter(12345678)        => 12,345,678
+*    - number_with_delimiter(12345678.05)     => 12,345,678.05
+*    - number_with_delimiter(12345678, ".")   => 12.345.678    
 *
 * Parameters:
 * 	$number - integer|float - Number to format
@@ -471,15 +471,16 @@ function number_to_percentage($number, $options = array())
 */
 function number_with_delimiter($number, $delimiter = ',', $separator = '.')
 {
-   if (! strlen($number)) {
+   if (! strlen($number)):
        return $number;
-   }
+	endif;
 
-   $parts = explode('.', (string)$number);
-   $parts[0] = preg_replace('/(\d)(?=(\d\d\d)+(?!\d))/',
-                            "\\1$delimiter", $parts[0]);
-   return implode($separator, $parts);
+	$parts = explode('.', (string)$number);
+	$parts[0] = preg_replace('/(\d)(?=(\d\d\d)+(?!\d))/',
+	                        "\\1$delimiter", $parts[0]);
+	return implode($separator, $parts);
 }
+
 
 /** 
 * Formats a $number with the specified level of $precision. 
@@ -496,11 +497,11 @@ function number_with_delimiter($number, $delimiter = ',', $separator = '.')
 *	String - Formatted number
 */
 function number_with_precision($number, $precision = 3) {
-   if (is_numeric($number)) {
+   if (is_numeric($number)):
        return sprintf("%01.{$precision}f", $number);
-   } else {
+   else:
        return $number;
-   }
+   endif;
 }
 
 
@@ -786,29 +787,33 @@ function truncate($text, $length = 100, $ending = "...", $exact = false, $html =
     return $truncate;
 }
 
+
 /**
- * Limit a string to a given maximum length in a smarter way than just using
- * substr. Namely, cut from the MIDDLE instead of from the end so that if
- * we're doing this on (for instance) a bunch of binder names that start off
- * with the same verbose description, and then are different only at the
- * very end, they'll still be different from one another after truncating.
- *
- * <code>
- *  <?php
- *  ...
- *  $str = "The quick brown fox jumps over the lazy dog tomorrow morning.";
- *  $shortStr = truncateMiddle($str, 40);
- *  // $shortStr = "The quick brown fox... tomorrow morning."
- *  ...
- *  ?>
- * </code>
- *
- * @todo    This is not a Rails helper...
- * @param   string  $str
- * @param   int     $maxLength
- * @param   string  $joiner
- * @return  string
- */
+* Function: truncate_middle
+*   Limit a string to a given maximum length in a smarter way than just using
+*   substr. Namely, cut from the MIDDLE instead of from the end so that if
+*   we're doing this on (for instance) a bunch of binder names that start off
+*   with the same verbose description, and then are different only at the
+*   very end, they'll still be different from one another after truncating.	
+*
+* 	<code>
+* 	 <?php
+* 	 ...
+* 	 $str = "The quick brown fox jumps over the lazy dog tomorrow morning.";
+* 	 $shortStr = truncateMiddle($str, 40);
+* 	 // $shortStr = "The quick brown fox... tomorrow morning."
+* 	 ...
+* 	 ?>
+* 	</code>
+*
+* Parameters:
+*	$str - String
+*   $maxLength - Int
+*   $joiner - String
+*
+* Returns:
+*	String
+*/
 function truncate_middle($str, $maxLength=80, $joiner='...')
 {
     if (strlen($str) <= $maxLength) {
@@ -827,16 +832,20 @@ function truncate_middle($str, $maxLength=80, $joiner='...')
     return $trimmedString;
 }
 
+
 /**
- *  fix function
- *
- * @author Adam Patterson
- *
- * @param $string - String to fix.
- * @param $quotes - Encode quotes?
- *
- * @return a HTML-sanitized version of a string.
- */
+* Function: fix
+*	
+* Parameters:
+*	$string - String to fix.
+*   $quotes - Encode quotes?
+*
+* Returns:
+*	a HTML-sanitized version of a string.
+*
+* See Also:
+*	<>
+*/
 function fix($string, $quotes = false) {
     $quotes = ($quotes) ? ENT_QUOTES : ENT_NOQUOTES ;
     return htmlspecialchars($string, $quotes, "utf-8");
@@ -844,40 +853,41 @@ function fix($string, $quotes = false) {
 
 
 /**
- * unfix function
- *
- * @author Adam Patterson
- *
- * @param $string - String to unfix.
- *
- * @return String
- */
-
+* Function: unfix
+*	
+* Parameters:
+*	$string - String to unfix.
+*
+* Returns:
+*	String
+*/
 function unfix($string) {
     return htmlspecialchars_decode($string, ENT_QUOTES);
 }
 
 
 /**
- * sanitize function
- *
- * @author Adam Patterson
- *
- * @param $string - The string to sanitize.
- * @param $force_lowercase - Force the string to lowercase?
- * @param $anal - If set to *true*, will remove all non-alphanumeric characters.
- * @param $trunc - Number of characters to truncate to (default 100, 0 to disable).
- *
- * @return sanitized string, typically for URLs.
- */
+* Function: sanitized
+*
+* Parameters:
+*	$string - The string to sanitize.
+*   $force_lowercase - Force the string to lowercase?
+*   $anal - If set to *true*, will remove all non-alphanumeric characters.
+*   $trunc - Number of characters to truncate to (default 100, 0 to disable).
+*
+* Returns:
+*	Sanitized string, typically for URLs.
+*/
 function sanitize($string, $force_lowercase = true, $anal = false, $trunc = 100) {
     $strip = array("~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "=", "+", "[", "{", "]",
         "}", "\\", "|", ";", ":", "\"", "'", "&#8216;", "&#8217;", "&#8220;", "&#8221;", "&#8211;", "&#8212;",
         "—", "–", ",", "<", ".", ">", "/", "?");
+
     $clean = trim(str_replace($strip, "", strip_tags($string)));
     $clean = preg_replace('/\s+/', "-", $clean);
     $clean = ($anal ? preg_replace("/[^a-zA-Z0-9]/", "", $clean) : $clean);
     $clean = ($trunc ? substr($clean, 0, $trunc) : $clean);
+
     return ($force_lowercase) ?
         (function_exists('mb_strtolower')) ?
             mb_strtolower($clean, 'UTF-8') :
@@ -1294,6 +1304,29 @@ function url_title($url)
 
     return $url;
 }
+
+
+/**
+* Function: notification
+*	Displays a notification on the admin side
+*
+* Returns:
+*	HTML
+*/
+function notification( ){
+	if ($notes = note::all()):
+		foreach ($notes as $note): ?>
+		
+			<script>$(function(){
+					$.sticky(
+						'<p><?= $note['content'];?></p>','icon <?= $note['type']; ?>',{p:'ptr'}
+					)})
+			</script>
+		<?
+		endforeach;
+	endif;
+}
+
 
 /*
 //All major credit cards regex
