@@ -106,7 +106,7 @@
         });
 
 
-        $('#element-to-edit').editor({
+        $('.wysiwyg textarea').editor({
             autoEnable: true,
             replace: true,
             //enableUi: false,
