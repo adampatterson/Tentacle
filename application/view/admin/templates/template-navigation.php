@@ -88,7 +88,7 @@
 			
 			               <?
 							foreach ( $subnav["settings"] as $sub_page ) {
-								echo '<li><a href="settings_module/'.$sub_page['rout'].'">'.$sub_page['title'].'</a></li>';
+								echo '<li><a href="'.$sub_page['rout'].'">'.$sub_page['title'].'</a></li>';
 							}
 							?>
 			     

@@ -1,5 +1,4 @@
 <? load::view('admin/templates/template-header',array('title'=>'Notification Templates','assets'=>'application','assets'=>'application')); ?>
-<? load::view('admin/templates/template-sidebar'); ?>
 <div id="wrap">
 	<div class="one-full">
 		<div class="title">

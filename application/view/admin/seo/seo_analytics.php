@@ -1,5 +1,4 @@
 <? load::view('admin/templates/template-header',array('title'=>'Analytics','assets'=>'application')); ?>
-<? load::view('admin/templates/template-sidebar'); ?>
 <div id="wrap">
 	<div class="full-content">
 		<div id="post-body">

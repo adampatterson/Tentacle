@@ -1,5 +1,4 @@
 <? load::view('admin/templates/template-header', array('title' => 'Manage snippets','assets'=>array('application'))); ?>
-<? load::view('admin/templates/template-sidebar'); ?>
 <div id="wrap">
   <div class="has-right-sidebar">
     <div class="contet-sidebar">

@@ -1,5 +1,4 @@
 <? load::view( 'admin/templates/template-header',array( 'title'=>'Appearance settings','assets'=>array( 'application' ) ) ); ?>
-<? load::view('admin/templates/template-sidebar'); ?>
 <div id="wrap">
 	<div class="title">
 		<h1 class='align-left'><img src="<?=ADMIN_URL; ?>images/icons/icon_pages_32.png" alt="" /> Appearance settings</h1>

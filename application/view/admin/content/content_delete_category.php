@@ -1,5 +1,4 @@
 <?	load::view('admin/templates/template-header', array('title' => 'Delete category', 'assets'=>array('application'))); ?>
-<?	load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 	<div id="post-body">
 		<div class="one-full">

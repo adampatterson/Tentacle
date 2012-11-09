@@ -1,5 +1,4 @@
 <? load::view('admin/templates/template-header', array('title' => 'Upgraded', 'assets' => array('application')));?>
-<? load::view('admin/templates/template-sidebar'); ?>
 <div id="wrap">
 	<div class="full-content">
 	    <div class="one-full">

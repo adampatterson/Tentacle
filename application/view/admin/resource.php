@@ -9,37 +9,99 @@
 			</div>
 		</div>
 		<div class="one-full">
+			<script type="text/javascript" src="<?= ADMIN_JS; ?>jquery.reveal.js"></script>
+			
+			<script type="text/javascript" charset="utf-8">
+				var raptorMediaLibrary = {"url":"<?= BASE_URL ?>admin/media_insert"};
+			</script>	
+
 			<textarea id="element-to-edit" class="editor">asdsad</textarea>
-			<a class="fancybox fancybox.iframe" id="insert-media" href="<?= BASE_URL ?>admin/media_insert" title="Insert Media" data-width="680" data-height="725">[ Insert Media ]</a>
+			
 			<style type="text/css" media="screen">
 				.ui-widget-content  .ui-icon-fancy-modal {
 				    background-image: url(http://www.winsteps.com/blahdocs/images/smiley.gif);   
 				}
 			</style>
-			<script type="text/javascript" src="https://raw.github.com/PANmedia/Raptor/master/packages/raptor.0deps.min.js"></script>
-			<!-- <link rel="stylesheet" href="<?= ADMIN_CSS ?>custom-theme/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" title="no title" charset="utf-8"> -->
-			<script type="text/javascript">
-			    
-				$.ui.editor.registerUi({
-				    fancyModal: {
-				        init: function(editor, options) {
-				            return this.editor.uiButton({
-				                title: 'Fancy Modal',
-				                /**
-				                 * This function will be called when the user clicks your fancyModal button                
-				                 */
-				                click: function() {
-				                    // Open your modal here, prepare your HTML
-				                    var someHTML = 'Some HTML';
-				                    alert('About to replace selection with "' + someHTML + '"');
+			<script type="text/javascript" src="<?= ADMIN_JS; ?>raptor/raptor.0deps.min.js"></script>
 
-				                    // Replace the selection (inserting at caret position if 0 selection)
-				                    $.ui.editor.selectionReplace(someHTML);
-				                }
-				            });
+			<script type="text/javascript">
+		
+
+				    $.ui.editor.registerUi({
+
+				        /**
+				         * @name $.editor.ui.tentacleMediaLibrary
+				         * @augments $.ui.editor.defaultUi
+				         * @class Invokes wordpress media library
+				         */
+				        tentacleMediaLibrary: /** @lends $.editor.ui.tentacleMediaLibrary.prototype */ {
+
+				            dialog: null,
+
+				            /**
+				             * @see $.ui.editor.defaultUi#init
+				             */
+				            init: function(editor) {
+
+				                this.bindSendToEditor();
+
+				                return editor.uiButton({
+				                    title: 'Media Library',
+				                    icon: 'ui-icon-fancy-modal',
+				                    click: function() {
+				                        this.show();
+				                    }
+				                });
+				            },
+
+				            bindSendToEditor: function() {
+				                var ui = this;
+				                window.send_to_editor = function(html) {
+
+				                    $.ui.editor.selectionRestore();
+				                    $.ui.editor.selectionReplace(html);
+
+				                    ui.dialog.dialog('destroy');
+				                    ui.dialog = null;
+				                };
+				            },
+
+				            show: function() {
+				                var ui = this;
+
+				                $.ui.editor.selectionSave();
+				                this.dialog = $('<div style="display:none"><iframe src="' + raptorMediaLibrary.url + '?type=image&TB_iframe=true" /></div>').appendTo('body');
+				                this.dialog.dialog({
+				                    title: 'Media Library',
+				                    position: 'center center',
+				                    resizable: true,
+				                    modal: true,
+				                    closeOnEscape: true,
+				                    minWidth: 695,
+				                    minHeight: 440,
+				                    dialogClass: ui.options.baseClass + '-dialog',
+				                    resize: function() {
+				                        ui.resizeIframe();
+				                    },
+				                    open: function() {
+				                        ui.resizeIframe();
+				                    },
+				                    close: function() {
+				                        $.ui.editor.selectionRestore();
+				                        if (ui.dialog) {
+				                            ui.dialog.dialog('destroy');
+				                            ui.dialog = null;
+				                        }
+				                    }
+				                });
+				            },
+				            resizeIframe: function() {
+				                $(this.dialog).find('iframe').height($(this.dialog).height() - 30);
+				                $(this.dialog).find('iframe').width($(this.dialog).width());
+				            }
 				        }
-				    }
-				});
+				    });
+		
 			
 				$('#element-to-edit').editor({
 					autoEnable: true,
@@ -54,7 +116,7 @@
 								['link', 'unlink'],
 								['embed', 'tag', 'viewSource', 'clearFormatting', 'clean'],
 								['undo', 'redo'],
-								['fancyModal'],
+								['tentacleMediaLibrary'],
 					        ],    
 				    plugins: {
 				        dock: {

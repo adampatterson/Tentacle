@@ -1,5 +1,4 @@
 <?	load::view('admin/templates/template-header', array('title' => 'Delete snippet','assets' => array('application') ) );?>
-<?	load::view('admin/templates/template-sidebar');?>
 <div id="wrap">
 		<div id="post-body">
 				

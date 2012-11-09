@@ -44,12 +44,12 @@
 						</div>
 			
 						<div class="control-group published-on">
-							<? current_date('month'); ?>
+							<? date::current('month'); ?>
 						</div>
 						
 						<div class="control-group published-on">
 		 					<div class="form-inline">
-								<input type="text" id="day" name="day" value="<? current_date( 'day' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> - <input type="text" id="year" name="year" value="<? current_date( 'year' ) ?>" size="4" maxlength="4" tabindex="4" autocomplete="off" class="span1"> @ <input type="text" id="hour" name="hour" value="<? current_date( 'hour' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> : <input type="text" id="minute" name="minute" value="<? current_date( 'minute' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
+								<input type="text" id="day" name="day" value="<? date::current( 'day' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> - <input type="text" id="year" name="year" value="<? date::current( 'year' ) ?>" size="4" maxlength="4" tabindex="4" autocomplete="off" class="span1"> @ <input type="text" id="hour" name="hour" value="<? date::current( 'hour' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> : <input type="text" id="minute" name="minute" value="<? current_date( 'minute' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
 							</div>
 						</div>
 						
