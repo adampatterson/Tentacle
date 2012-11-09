@@ -40,5 +40,5 @@ if( !defined( 'SCAFFOLD' ) ):?>
 	<? endforeach;?>
 
 </div><!-- /container -->
-<? theme::part('footer'); ?> 
+<? theme::part( 'partials/footer' );
 <? endif; ?>

@@ -15,5 +15,5 @@ if( !defined( 'SCAFFOLD' ) ):?>
 		</div><!--/span9-->
 	</div><!--/row-->
 </div><!-- /container -->
-<? theme::part('footer'); ?> 
+<? theme::part( 'partials/footer' );
 <? endif; ?>

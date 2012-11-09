@@ -1,4 +1,4 @@
-<? theme::part('header',array('title'=>'404', 'assets'=>'marketing')); ?>
+<? theme::part('partials/header',array('title'=>'404', 'assets'=>'marketing')); ?>
 <div class="row-fluid">
   <div class="span12">
     <div class="hero-unit">
@@ -7,4 +7,4 @@
     </div>
   </div><!--/span-->
 </div><!--/row-->
-<? theme::part('footer'); ?> 
+<? theme::part( 'partials/footer' );
