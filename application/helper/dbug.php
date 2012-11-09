@@ -51,5 +51,3 @@ function logger($sql)
 	//new dBug($_ENV, null, true);
 	new dBug($GLOBALS['dbug_query'], null, true);
    }
-
-?>
