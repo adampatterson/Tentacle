@@ -23,25 +23,21 @@
 			var link_url				= $('#link_url').val();
             var image_size              = $('.image_size:checked').val();
 
-            console.log(Size);
-
-			if (!Link) {
+			if (!link_url) {
                 var HtmlLink = '<img src="http://placehold.it/200x200" alt="' + alt_text + '" title="' + title + '"  />';
             } else {
                 var HtmlLink = '<a href="' + link_url + '"><img src="http://placehold.it/200x200" alt="' + alt_text + '" title="' + title + '" /></a>';
             }
 
-			console.log(HtmlLink);
-			
-			parent.top.tinyMCE.get('Content').execCommand('mceInsertContent',false, HtmlLink );
-			parent.jQuery.fancybox.close();
-			
+            var win = window.dialogArguments || opener || parent || top;
+            win.send_to_editor(HtmlLink);
+
 			return false;
 		});
 		
 	});
 </script>
-	
+
 <div class="span9">	
 
 	<div class="tabbable">

@@ -23,15 +23,114 @@
 </div>
 </footer>
 <? if(user_editor() == 'wysiwyg'): ?>
-	<!-- WYSIHTML5 -->
-	<link rel="stylesheet" type="text/css" href="<?=ADMIN_JS; ?>bootstrap-wysihtml5/bootstrap-wysihtml5.css"></link>
-	<script src="<?=ADMIN_JS; ?>bootstrap-wysihtml5/wysihtml5-0.3.0.min.js"></script>
-	<script src="<?=ADMIN_JS; ?>bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
-	<script type="text/javascript" charset="utf-8">
-		$('.editor').wysihtml5();
-	</script>
-<? elseif(user_editor() == 'raptor'): ?>
+    <style type="text/css" media="screen">
+        .ui-widget-content  .ui-icon-fancy-modal {
+            background-image: url(http://www.winsteps.com/blahdocs/images/smiley.gif);
+        }
+    </style>
+    <script type="text/javascript" src="<?= ADMIN_JS; ?>raptor/raptor.0deps.min.js"></script>
+    <script type="text/javascript">
+        $.ui.editor.registerUi({
 
+            /**
+             * @name $.editor.ui.tentacleMediaLibrary
+             * @augments $.ui.editor.defaultUi
+             * @class Invokes wordpress media library
+             */
+            tentacleMediaLibrary: /** @lends $.editor.ui.tentacleMediaLibrary.prototype */ {
+
+                dialog: null,
+
+                /**
+                 * @see $.ui.editor.defaultUi#init
+                 */
+                init: function(editor) {
+
+                    this.bindSendToEditor();
+
+                    return editor.uiButton({
+                        title: 'Media Library',
+                        icon: 'ui-icon-fancy-modal',
+                        click: function() {
+                            this.show();
+                        }
+                    });
+                },
+
+                bindSendToEditor: function() {
+                    var ui = this;
+                    window.send_to_editor = function(html) {
+
+                        $.ui.editor.selectionRestore();
+                        $.ui.editor.selectionReplace(html);
+
+                        ui.dialog.dialog('destroy');
+                        ui.dialog = null;
+                    };
+                },
+
+                show: function() {
+                    var ui = this;
+
+                    $.ui.editor.selectionSave();
+                    this.dialog = $('<div style="display:none"><iframe src="' + raptorMediaLibrary.url + '?type=image&TB_iframe=true" /></div>').appendTo('body');
+                    this.dialog.dialog({
+                        title: 'Media Library',
+                        position: 'center center',
+                        resizable: true,
+                        modal: true,
+                        closeOnEscape: true,
+                        minWidth: 695,
+                        minHeight: 440,
+                        dialogClass: ui.options.baseClass + '-dialog',
+                        resize: function() {
+                            ui.resizeIframe();
+                        },
+                        open: function() {
+                            ui.resizeIframe();
+                        },
+                        close: function() {
+                            $.ui.editor.selectionRestore();
+                            if (ui.dialog) {
+                                ui.dialog.dialog('destroy');
+                                ui.dialog = null;
+                            }
+                        }
+                    });
+                },
+                resizeIframe: function() {
+                    $(this.dialog).find('iframe').height($(this.dialog).height() - 30);
+                    $(this.dialog).find('iframe').width($(this.dialog).width());
+                }
+            }
+        });
+
+
+        $('#element-to-edit').editor({
+            autoEnable: true,
+            replace: true,
+            //enableUi: false,
+            draggable: false,
+            uiOrder: [
+                ['textBold', 'textItalic', 'textUnderline', 'textStrike','quoteBlock','hr'],
+                ['floatLeft', 'floatNone', 'floatRight'],
+                ['alignLeft', 'alignCenter', 'alignRight'],
+                ['listUnordered', 'listOrdered'],
+                ['link', 'unlink'],
+                ['embed', 'viewSource', 'clearFormatting', 'clean'],
+                ['tagMenu'],
+                ['undo', 'redo'],
+                ['tentacleMediaLibrary'],
+            ],
+            plugins: {
+                dock: {
+                    docked: true,
+                    dockToElement: true,
+                    persist: false
+                }
+            }
+        });
+    </script>
 <? else: ?>
 	<link rel="stylesheet" href="<?=ADMIN_JS; ?>CodeMirror/lib/codemirror.css">
 	<script src="<?=ADMIN_JS; ?>CodeMirror/lib/codemirror.js"></script>
