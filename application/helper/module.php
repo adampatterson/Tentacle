@@ -18,7 +18,7 @@ function init_extensions() {
 		
 		require TENTACLE_PLUGIN."/".$module."/".$module.".php";
 
-		$camelized = camelize($module);
+		$camelized = string::camelize($module);
 		if (!class_exists($camelized))
 			continue;
 
@@ -209,7 +209,7 @@ class Modules {
 		                                        $info["description"]);
 
 		    $info["author"]["link"] = !empty($info["author"]["url"]) ?
-		                                  '<a href="'.fix($info["author"]["url"]).'">'.fix($info["author"]["name"]).'</a>' :
+		                                  '<a href="'.string::fix($info["author"]["url"]).'">'.string::fix($info["author"]["name"]).'</a>' :
 		                                  $info["author"]["name"] ;
 
 		    $category = (module_enabled($folder)) ? "enabled_modules" : "disabled_modules" ;

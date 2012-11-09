@@ -1,4 +1,7 @@
 <?
+/*
+* Class: Date
+*/
 class date
 {
     /**
@@ -13,7 +16,7 @@ class date
     * Returns:
     *	String
     */
-    public function distance_of_time_in_words($fromTime, $toTime = 0, $includeSeconds = false)
+    public static function distance_of_time_in_words($fromTime, $toTime = 0, $includeSeconds = false)
     {
         $distanceInMinutes = round(((abs($toTime - $fromTime)/60)));
         $distanceInSeconds = round(abs($toTime - $fromTime));
@@ -70,9 +73,9 @@ class date
     * Returns:
     *	String
     */
-    public function time_ago_in_words($fromTime, $includeSeconds=false)
+    public static function time_ago_in_words($fromTime, $includeSeconds=false)
     {
-        return $this->distance_of_time_in_words($fromTime, time(), $includeSeconds);
+        return date::distance_of_time_in_words($fromTime, time(), $includeSeconds);
     }
 
 
@@ -81,30 +84,29 @@ class date
     *	Distance of time $fromTime to now in words.
     *
     * Parameters:
-    *	$fromTime - 
-	*	$includeSeconds - 
+    *	$from_time
+	*	$include_seconds
     *
     * Returns:
     *	String
     */
-    public function distance_of_time_in_words_to_now($fromTime, $includeSeconds=false)
+    public static function distance_of_time_in_words_to_now($from_time, $include_seconds=false)
     {
-        return $this->time_ago_in_words($fromTime, $includeSeconds);
+        return date::time_ago_in_words($from_time, $include_seconds);
     }
 
 
 	/**
-	* Function: current_date
-	*	
+	* Function: current
 	*
 	* Parameters:
-	*	$unit - 
-	*	$get_time - 
+	*	$unit
+	*	$get_time 
 	*
 	* Returns:
 	*	String
 	*/
-	function current_date( $unit, $get_time = false ){
+	public static function current( $unit, $get_time = false ){
 	
 		$time_stamp = time();
 	
@@ -190,11 +192,11 @@ class date
 	* Returns:
 	* 	The appropriate time() for representing a timezone.
 	*/
-	 function time_in_timezone($timezone) {
-	     $orig = get_timezone();
-	     set_timezone($timezone);
+	 public static function time_in_timezone($timezone) {
+	     $orig = date::get_timezone();
+	     date::set_timezone($timezone);
 	     $time = date("F jS, Y, g:i A");
-	     set_timezone($orig);
+	     date::set_timezone($orig);
 	     return strtotime($time);
 	 }
 
@@ -206,7 +208,7 @@ class date
 	* Returns: 
 	*	$zones - Array of timezones that have unique offsets. Doesn't count deprecated timezones.
 	*/
-	function timezones() {
+	public static function timezones() {
 	    $zones = array();
 
 	    $deprecated = array("Brazil/Acre", "Brazil/DeNoronha", "Brazil/East", "Brazil/West", "Canada/Atlantic", "Canada/Central", "Canada/East-Saskatchewan", "Canada/Eastern", "Canada/Mountain", "Canada/Newfoundland", "Canada/Pacific", "Canada/Saskatchewan", "Canada/Yukon", "CET", "Chile/Continental", "Chile/EasterIsland", "CST6CDT", "Cuba", "EET", "Egypt", "Eire", "EST", "EST5EDT", "Etc/GMT", "Etc/GMT+0", "Etc/GMT+1", "Etc/GMT+10", "Etc/GMT+11", "Etc/GMT+12", "Etc/GMT+2", "Etc/GMT+3", "Etc/GMT+4", "Etc/GMT+5", "Etc/GMT+6", "Etc/GMT+7", "Etc/GMT+8", "Etc/GMT+9", "Etc/GMT-0", "Etc/GMT-1", "Etc/GMT-10", "Etc/GMT-11", "Etc/GMT-12", "Etc/GMT-13", "Etc/GMT-14", "Etc/GMT-2", "Etc/GMT-3", "Etc/GMT-4", "Etc/GMT-5", "Etc/GMT-6", "Etc/GMT-7", "Etc/GMT-8", "Etc/GMT-9", "Etc/GMT0", "Etc/Greenwich", "Etc/UCT", "Etc/Universal", "Etc/UTC", "Etc/Zulu", "Factory", "GB", "GB-Eire", "GMT", "GMT+0", "GMT-0", "GMT0", "Greenwich", "Hongkong", "HST", "Iceland", "Iran", "Israel", "Jamaica", "Japan", "Kwajalein", "Libya", "MET", "Mexico/BajaNorte", "Mexico/BajaSur", "Mexico/General", "MST", "MST7MDT", "Navajo", "NZ", "NZ-CHAT", "Poland", "Portugal", "PRC", "PST8PDT", "ROC", "ROK", "Singapore", "Turkey", "UCT", "Universal", "US/Alaska", "US/Aleutian", "US/Arizona", "US/Central", "US/East-Indiana", "US/Eastern", "US/Hawaii", "US/Indiana-Starke", "US/Michigan", "US/Mountain", "US/Pacific", "US/Pacific-New", "US/Samoa", "UTC", "W-SU", "WET", "Zulu");
@@ -233,7 +235,7 @@ class date
 	 * Parameters:
 	 *     $timezone - The timezone to set.
 	 */
-	 function set_timezone($timezone) {
+	 public static function set_timezone($timezone) {
 	    if (function_exists("date_default_timezone_set"))
 	        date_default_timezone_set($timezone);
 	    else
@@ -248,7 +250,7 @@ class date
 	* Returns:
 	*	Time Zone
 	*/
-	function get_timezone() {
+	public static function get_timezone() {
 	    if (function_exists("date_default_timezone_set"))
 	        return date_default_timezone_get();
 	    else
@@ -267,7 +269,7 @@ class date
 	* Returns:
 	*     A string formatted like "3 days ago" or "3 days from now".
 	*/
-	function relative_time($when, $from = null) {
+	public static function relative_time($when, $from = null) {
 	    fallback($from, time());
 
 	    $time = (is_numeric($when)) ? $when : strtotime($when) ;
@@ -310,701 +312,718 @@ class date
 	* Function: now
 	* 	Alias to strtotime, for prettiness like now("+1 day").
 	*/
-	 function now($when) {
+	 public static function now($when) {
 	     return strtotime($when);
 	 }
-} // class date
+} // date
 
-/**
-* Function: number_to_phone
-*   Formats a $number into a US phone number. You can customize the format
-*   in the $options array:
-*    - areaCode    - Adds parentheses around the area code.
-*    - delimiter   - Specifies the delimiter to use, defaults to "-".
-*    - extension   - Specifies an extension to add to the end of the
-*                             generated number
-*    - countryCode - Sets the country code for the phone number.
-*   
-*    - number_to_phone(1235551234)                              => 123-555-1234
-*    - number_to_phone(1235551234, array('areaCode' => true))   => (123) 555-1234
-*    - number_to_phone(1235551234, array('delimiter' => " "))   => 123 555 1234
-*    - number_to_phone(1235551234, array('areaCode'  => true, 
-*                                          'extension' => 555))   => (123) 555-1234 x 555
-*    - number_to_phone(1235551234, array('countryCode => 1))    => +01 (123) 555-1234
-*
-* Parameters:
-*	$number - integer - Phone number to format
-*	$options array  Format options
-*
-* Returns:
-* 	String - Formatted phone number
+
+/*
+* Class: Number
 */
-function number_to_phone($number, $options = array())
+class number 
 {
-   $areaCode    = isset($options['areaCode'])  ? $options['areaCode'] : null;
-   $delimiter   = isset($options['delimiter']) ? $options['delimiter'] : '-';
-   $extension   = isset($options['extension']) ? trim($options['extension']) : null;
-   $countryCode = isset($options['countryCode']) ? $options['countryCode'] : null;
+	/**
+	* Function: to_phone
+	*   Formats a $number into a US phone number. You can customize the format
+	*   in the $options array:
+	*    - areaCode    - Adds parentheses around the area code.
+	*    - delimiter   - Specifies the delimiter to use, defaults to "-".
+	*    - extension   - Specifies an extension to add to the end of the
+	*                             generated number
+	*    - countryCode - Sets the country code for the phone number.
+	*   
+	*    - to_phone(1235551234)                              => 123-555-1234
+	*    - to_phone(1235551234, array('areaCode' => true))   => (123) 555-1234
+	*    - to_phone(1235551234, array('delimiter' => " "))   => 123 555 1234
+	*    - to_phone(1235551234, array('areaCode'  => true, 
+	*                                          'extension' => 555))   => (123) 555-1234 x 555
+	*    - to_phone(1235551234, array('countryCode => 1))    => +01 (123) 555-1234
+	*
+	* Parameters:
+	*	$number - integer - Phone number to format
+	*	$options array  Format options
+	*
+	* Returns:
+	* 	String - Formatted phone number
+	*/
+	public static function to_phone($number, $options = array())
+	{
+	   $areaCode    = isset($options['areaCode'])  ? $options['areaCode'] : null;
+	   $delimiter   = isset($options['delimiter']) ? $options['delimiter'] : '-';
+	   $extension   = isset($options['extension']) ? trim($options['extension']) : null;
+	   $countryCode = isset($options['countryCode']) ? $options['countryCode'] : null;
 
-   $str = '';
+	   $str = '';
 
-   if ($countryCode) {
-       $str .= "+$countryCode$delimiter";
-   }
+	   if ($countryCode) {
+	       $str .= "+$countryCode$delimiter";
+	   }
 
-   if ($areaCode) {
-       $str .= preg_replace('/([0-9]{1,3})([0-9]{3})([0-9]{4}$)/',
-                            "(\\1) \\2$delimiter\\3", $number);
-   } else {
-       $str .= preg_replace('/([0-9]{1,3})([0-9]{3})([0-9]{4})$/',
-                            "\\1$delimiter\\2$delimiter\\3", $number);
-   }
+	   if ($areaCode) {
+	       $str .= preg_replace('/([0-9]{1,3})([0-9]{3})([0-9]{4}$)/',
+	                            "(\\1) \\2$delimiter\\3", $number);
+	   } else {
+	       $str .= preg_replace('/([0-9]{1,3})([0-9]{3})([0-9]{4})$/',
+	                            "\\1$delimiter\\2$delimiter\\3", $number);
+	   }
 
-   if (strlen($extension)) {
-       $str .= " x $extension";
-   }
+	   if (strlen($extension)) {
+	       $str .= " x $extension";
+	   }
 
-   return $str;
-}
+	   return $str;
+	}
 
 
-/**
-* Function: number_to_currency
-* 	Formats a $number into a currency string. You can customize the format
-* 	in the $options array.
-*
-*  	- precision  - Sets the level of precision, defaults to 2
-*  	- unit       - Sets the denomination of the currency, defaults to "$"
-*  	- separator  - Sets the separator between the units, defaults to "."
-*  	- delimiter  - Sets the thousands delimiter, defaults to ","
-*
-*  	- number_to_currency(1234567890.50)     => $1,234,567,890.50
-*  	- number_to_currency(1234567890.506)    => $1,234,567,890.51
-*  	- number_to_currency(1234567890.506, array('precision' => 3))  => $1,234,567,890.506
-* 	 - number_to_currency(1234567890.50,  array('unit' => "&pound;", 
-*                                                'separator' => ",", 
-*                                                'delimiter' => "")  => &pound;1234567890,50
-* Parameters:
-*	$number - float - Currency value to format
-*	$options - options - Format options
-*
-*	Returns: 
-* 	string - Formatted currency value
+	/**
+	* Function: to_currency
+	* 	Formats a $number into a currency string. You can customize the format
+	* 	in the $options array.
+	*
+	*  	- precision  - Sets the level of precision, defaults to 2
+	*  	- unit       - Sets the denomination of the currency, defaults to "$"
+	*  	- separator  - Sets the separator between the units, defaults to "."
+	*  	- delimiter  - Sets the thousands delimiter, defaults to ","
+	*
+	*  	- to_currency(1234567890.50)     => $1,234,567,890.50
+	*  	- to_currency(1234567890.506)    => $1,234,567,890.51
+	*  	- to_currency(1234567890.506, array('precision' => 3))  => $1,234,567,890.506
+	* 	 - to_currency(1234567890.50,  array('unit' => "&pound;", 
+	*                                                'separator' => ",", 
+	*                                                'delimiter' => "")  => &pound;1234567890,50
+	* Parameters:
+	*	$number - float - Currency value to format
+	*	$options - options - Format options
+	*
+	*	Returns: 
+	* 	string - Formatted currency value
+	*/
+	public static function to_currency($number, $options = array())
+	{
+	   if (! strlen($number)) {
+	       return $number;
+	   }
+
+	   $precision = isset($options['precision']) ? $options['precision'] : 2;
+	   $unit      = isset($options['unit']) ? $options['unit'] : '$';
+	   $delimiter = isset($options['delimiter']) ? $options['delimiter'] : ',';
+	   if ($precision > 0) {
+	       $separator = isset($options['separator']) ? $options['separator'] : '.'; 
+	   } else {
+	       $separator = '';
+	   }
+
+	   $parts = explode('.', with_precision($number, $precision));
+	   return $unit . with_delimiter($parts[0], $delimiter)
+	                . $separator . (isset($parts[1]) ? $parts[1] : '');
+	}
+
+
+	/**
+	* Function: to_percentage
+	* 	Formats a $number as a percentage string. You can customize the
+	* 	format in the $options array.
+	*
+	*  	- precision  - Sets the level of precision, defaults to 3
+	*  	- separator  - Sets the separator between the units, defaults to "."
+	*
+	*  	- to_percentage(100)    => 100.000%
+	*  	- to_percentage(100, array('precision' => 0))   => 100%
+	*  	- to_percentage(302.0574, array('precision' => 2))   => 302.06%
+	*     
+	* Parameters:
+	* 	$number - integer|float - Number to format to a percentage
+	* 	$options - Array - Format options
+	*
+	* Returns:
+	* 	String - Formatted percentage value
+	*/
+	public static function to_percentage($number, $options = array())
+	{
+	   if (! strlen($number)) {
+	       return $number;
+	   }
+
+	   $precision = isset($options['precision']) ? $options['precision'] : 3;
+	   $separator = isset($options['separator']) ? $options['separator'] : '.';
+
+	   $number = with_precision($number, $precision);
+	   $parts = explode('.', $number);
+
+	   if (! isset($parts[1])) {
+	       return $parts[0] .= '%';
+	   } else {
+	       return $parts[0] . $separator . $parts[1] . '%';
+	   }
+	}
+
+
+	/**
+	* Function: with_delimiter
+	*   Formats a $number with grouped thousands using $delimiter. You
+	*   can customize the format using optional $delimiter and 
+	*   $separator parameters.
+	*   
+	*    - with_delimiter(12345678)        => 12,345,678
+	*    - with_delimiter(12345678.05)     => 12,345,678.05
+	*    - with_delimiter(12345678, ".")   => 12.345.678    
+	*
+	* Parameters:
+	* 	$number - integer|float - Number to format
+	*	$delimiter - String - Sets the thousands delimiter, defaults to ","
+	*	$separator - String - Sets the separator between the units, defaults to "."
+	*
+	* Returns:
+	* 	String - Formatted number
+	*/
+	public static function with_delimiter($number, $delimiter = ',', $separator = '.')
+	{
+	   if (! strlen($number)):
+	       return $number;
+		endif;
+
+		$parts = explode('.', (string)$number);
+		$parts[0] = preg_replace('/(\d)(?=(\d\d\d)+(?!\d))/',
+		                        "\\1$delimiter", $parts[0]);
+		return implode($separator, $parts);
+	}
+
+
+	/** 
+	* Formats a $number with the specified level of $precision. 
+	* The default level of precision is 3.
+	*
+	*  - with_precision(111.2345)    => 111.235
+	*  - with_precision(111.2345, 2) => 111.24
+	*
+	* Parameters:
+	*	$number - integer|float - Number to format
+	*   $precison - integer - Level of precision
+	*
+	* Returns:
+	*	String - Formatted number
+	*/
+	public static function with_precision($number, $precision = 3)
+	{
+	   if (is_numeric($number)):
+	       return sprintf("%01.{$precision}f", $number);
+	   else:
+	       return $number;
+	   endif;
+	}
+
+
+	/** 
+	* Function: to_human_size
+	* Formats the bytes in $size into a more understandable representation.
+	* Useful for reporting file sizes to users. This method returns NULL if
+	* $size cannot be converted into a number. You can change the default
+	* precision of 1 in $precision.
+	*
+	*  - to_human_size(123)           => 123 Bytes
+	*  - to_human_size(1234)          => 1.2 KB
+	*  - to_human_size(12345)         => 12.1 KB
+	*  - to_human_size(1234567)       => 1.2 MB
+	*  - to_human_size(1234567890)    => 1.1 GB
+	*  - to_human_size(1234567890123) => 1.1 TB
+	*  - to_human_size(1234567, 2)    => 1.18 MB
+	*
+	* Parameters:
+	*  $size - integer|float - Size to format
+	*	$preceision - integer - Level of precision
+	*
+	* Returns:
+	*	String - Formatted size value
+	*/
+	public static function to_human_size($size, $precision = 1)
+	{
+	   if (! is_numeric($size)) {
+	       return null;
+	   }
+
+	   if ($size == 1) {
+	       $size = '1 Byte';
+	   } else if ($size < 1024) {
+	       $size = sprintf('%d Bytes', $size);
+	   } else if ($size < 1048576) {
+	       $size = sprintf("%.{$precision}f KB", $size / 1024);
+	   } else if ($size < 1073741824) {
+	       $size = sprintf("%.{$precision}f MB", $size / 1048576);
+	   } else if ($size < 1099511627776) {
+	       $size = sprintf("%.{$precision}f GB", $size / 1073741824);
+	   } else {
+	       $size = sprintf("%.{$precision}f TB", $size / 1099511627776);
+	   }
+
+	   return str_replace('.0', '', $size);
+	}
+} // number
+
+
+/*
+* Class: string
 */
-function number_to_currency($number, $options = array())
+class string 
 {
-   if (! strlen($number)) {
-       return $number;
-   }
-
-   $precision = isset($options['precision']) ? $options['precision'] : 2;
-   $unit      = isset($options['unit']) ? $options['unit'] : '$';
-   $delimiter = isset($options['delimiter']) ? $options['delimiter'] : ',';
-   if ($precision > 0) {
-       $separator = isset($options['separator']) ? $options['separator'] : '.'; 
-   } else {
-       $separator = '';
-   }
-
-   $parts = explode('.', number_with_precision($number, $precision));
-   return $unit . number_with_delimiter($parts[0], $delimiter)
-                . $separator . (isset($parts[1]) ? $parts[1] : '');
-}
-
-
-/**
-* Function: number_to_percentage
-* 	Formats a $number as a percentage string. You can customize the
-* 	format in the $options array.
-*
-*  	- precision  - Sets the level of precision, defaults to 3
-*  	- separator  - Sets the separator between the units, defaults to "."
-*
-*  	- number_to_percentage(100)    => 100.000%
-*  	- number_to_percentage(100, array('precision' => 0))   => 100%
-*  	- number_to_percentage(302.0574, array('precision' => 2))   => 302.06%
-*     
-* Parameters:
-* 	$number - integer|float - Number to format to a percentage
-* 	$options - Array - Format options
-*
-* Returns:
-* 	String - Formatted percentage value
-*/
-function number_to_percentage($number, $options = array())
-{
-   if (! strlen($number)) {
-       return $number;
-   }
-
-   $precision = isset($options['precision']) ? $options['precision'] : 3;
-   $separator = isset($options['separator']) ? $options['separator'] : '.';
-
-   $number = number_with_precision($number, $precision);
-   $parts = explode('.', $number);
-
-   if (! isset($parts[1])) {
-       return $parts[0] .= '%';
-   } else {
-       return $parts[0] . $separator . $parts[1] . '%';
-   }
-}
-
-
-/**
-* Function: number_with_delimiter
-*   Formats a $number with grouped thousands using $delimiter. You
-*   can customize the format using optional $delimiter and 
-*   $separator parameters.
-*   
-*    - number_with_delimiter(12345678)        => 12,345,678
-*    - number_with_delimiter(12345678.05)     => 12,345,678.05
-*    - number_with_delimiter(12345678, ".")   => 12.345.678    
-*
-* Parameters:
-* 	$number - integer|float - Number to format
-*	$delimiter - String - Sets the thousands delimiter, defaults to ","
-*	$separator - String - Sets the separator between the units, defaults to "."
-*
-* Returns:
-* 	String - Formatted number
-*/
-function number_with_delimiter($number, $delimiter = ',', $separator = '.')
-{
-   if (! strlen($number)):
-       return $number;
-	endif;
-
-	$parts = explode('.', (string)$number);
-	$parts[0] = preg_replace('/(\d)(?=(\d\d\d)+(?!\d))/',
-	                        "\\1$delimiter", $parts[0]);
-	return implode($separator, $parts);
-}
-
-
-/** 
-* Formats a $number with the specified level of $precision. 
-* The default level of precision is 3.
-*
-*  - number_with_precision(111.2345)    => 111.235
-*  - number_with_precision(111.2345, 2) => 111.24
-*
-* Parameters:
-*	$number - integer|float - Number to format
-*  $precison - integer - Level of precision
-*
-* Returns:
-*	String - Formatted number
-*/
-function number_with_precision($number, $precision = 3) {
-   if (is_numeric($number)):
-       return sprintf("%01.{$precision}f", $number);
-   else:
-       return $number;
-   endif;
-}
-
-
-/** 
-* Function: number_to_human_size
-* Formats the bytes in $size into a more understandable representation.
-* Useful for reporting file sizes to users. This method returns NULL if
-* $size cannot be converted into a number. You can change the default
-* precision of 1 in $precision.
-*
-*  - number_to_human_size(123)           => 123 Bytes
-*  - number_to_human_size(1234)          => 1.2 KB
-*  - number_to_human_size(12345)         => 12.1 KB
-*  - number_to_human_size(1234567)       => 1.2 MB
-*  - number_to_human_size(1234567890)    => 1.1 GB
-*  - number_to_human_size(1234567890123) => 1.1 TB
-*  - number_to_human_size(1234567, 2)    => 1.18 MB
-*
-* Parameters:
-*  $size - integer|float - Size to format
-*	$preceision - integer - Level of precision
-*
-* Returns:
-*	String - Formatted size value
-*/
-function number_to_human_size($size, $precision = 1) {
-   if (! is_numeric($size)) {
-       return null;
-   }
-
-   if ($size == 1) {
-       $size = '1 Byte';
-   } else if ($size < 1024) {
-       $size = sprintf('%d Bytes', $size);
-   } else if ($size < 1048576) {
-       $size = sprintf("%.{$precision}f KB", $size / 1024);
-   } else if ($size < 1073741824) {
-       $size = sprintf("%.{$precision}f MB", $size / 1048576);
-   } else if ($size < 1099511627776) {
-       $size = sprintf("%.{$precision}f GB", $size / 1073741824);
-   } else {
-       $size = sprintf("%.{$precision}f TB", $size / 1099511627776);
-   }
-
-   return str_replace('.0', '', $size);
-}
-
-
-/**
- * Function: camelize
- * Converts a given string to camel-case.
- *
- * Parameters:
- *     $string - The string to camelize.
- *     $keep_spaces - Whether or not to convert underscores to spaces or remove them.
- *
- * Returns:
- *     A CamelCased string.
- *
- * See Also:
- *     <decamelize>
- */
-function camelize($string, $keep_spaces = false)
-{
-    $lower = strtolower($string);
-    $deunderscore = str_replace("_", " ", $lower);
-    $dehyphen = str_replace("-", " ", $deunderscore);
-    $final = ucwords($dehyphen);
-
-    if (!$keep_spaces)
-        $final = str_replace(" ", "", $final);
-
-    return $final;
-}
-
-
-/**
- * Function: decamelize
- * Decamelizes a string.
- *
- * Parameters:
- *     $string - The string to decamelize.
- *
- * Returns:
- * 	  a de_camel_cased string.
- *
- * See Also:
- *     <camelize>
- */
-function decamelize($string)
-{
-    return strtolower(preg_replace("/([a-z])([A-Z])/", "\\1 \\2", $string));
-}
-
-
-/**
- * Function: underscore
- * Return an underscore_syntaxed (like_this_dear_reader) from something LikeThisDearReader.
- *
- * Parameters:
- *     string $string CamelCased word to be "underscorized"
- *
- * Returns:
- *     string Underscored version of the $string
- *
- * See Also:
- *     <dash>
- */
-function underscore($string)
-{
-    return strtolower(preg_replace('/(?<=\\w)([A-Z])/', '_\\1', $string));
-}
-
-/**
- * Function: dash
- * Return an dashed-syntaxed (like-this-dear-reader) from something LikeThisDearReader.
- *
- * Parameters:
- *     string $string CamelCased word to be "underscorized"
- *
- * Returns:
- *     string Underscored version of the $string
- *
- * See Also:
- *     <underscore>
- */
-function dash($string)
-{
-    return strtolower(preg_replace('/(?<=\\w)([A-Z])/', '-\\1', $string));
-}
-
-/**
- * Function: humanize
- * Return a Humanized syntaxed (Like this dear reader) from something like-this-dear-reader.
- *
- * Parameters:
- *     string $string CamelCased word to be "underscorized"
- *
- * Returns:
- *	  string Underscored version of the $string
- */
-function humanize($string)
-{
-    $string = str_replace('_', ' ', $string);
-    $string = str_replace('-', ' ', $string);
-
-    return ucfirst( $string );
-}
-
-
-/**
- * Function: is_upper
- * Determines if a string contains all uppercase characters.
- *
- * Parameters:
- *     string $string string to check
- *
- * Returns:
- *	  bool
- *
- * See Also:
- *     <is_lower>
- */
-function is_upper($string)
-{
-    return (strtoupper($string) === $string);
-}
-
-
-/**
- * Function: is_lower
- * Determines if a string contains all lowercase characters.
- *
- * Parameters:
- *     string $string string to check
- *
- * Returns:
- *     bool
- *
- * See Also:
- *     <is_upper>
- */
-function is_lower($string)
-{
-    return (strtolower($string) === $string);
-}
-
-
-/**
- * Function: truncate
- * Truncates a string to the given length, optionally taking into account HTML tags, and/or keeping words in tact.
- * @author CakePHP team, code style modified.
- *
- * Parameters:
- *     $text - String to shorten.
- *     $length - Length to truncate to.
- *     $ending - What to place at the end, e.g. "...".
- *     $exact - Break words?
- *     $html - Auto-close cut-off HTML tags?*
- * Returns:
- *     String
- *
- * See Also:
- *     <truncate_middle>
- */
-function truncate($text, $length = 100, $ending = "...", $exact = false, $html = false) {
-    if (is_array($ending))
-        extract($ending);
-
-    if ($html) {
-        if (strlen(preg_replace("/<[^>]+>/", "", $text)) <= $length)
-            return $text;
-
-        $totalLength = strlen($ending);
-        $openTags = array();
-        $truncate = "";
-        preg_match_all("/(<\/?([\w+]+)[^>]*>)?([^<>]*)/", $text, $tags, PREG_SET_ORDER);
-        foreach ($tags as $tag) {
-            if (!preg_match('/img|br|input|hr|area|base|basefont|col|frame|isindex|link|meta|param/s', $tag[2])
-                and preg_match('/<[\w]+[^>]*>/s', $tag[0]))
-                array_unshift($openTags, $tag[2]);
-            elseif (preg_match('/<\/([\w]+)[^>]*>/s', $tag[0], $closeTag)) {
-                $pos = array_search($closeTag[1], $openTags);
-                if ($pos !== false)
-                    array_splice($openTags, $pos, 1);
-            }
-
-            $truncate .= $tag[1];
-
-            $contentLength = strlen(preg_replace("/&[0-9a-z]{2,8};|&#[0-9]{1,7};|&#x[0-9a-f]{1,6};/i", " ", $tag[3]));
-            if ($contentLength + $totalLength > $length) {
-                $left = $length - $totalLength;
-                $entitiesLength = 0;
-                if (preg_match_all("/&[0-9a-z]{2,8};|&#[0-9]{1,7};|&#x[0-9a-f]{1,6};/i", $tag[3], $entities, PREG_OFFSET_CAPTURE))
-                    foreach ($entities[0] as $entity)
-                        if ($entity[1] + 1 - $entitiesLength <= $left) {
-                            $left--;
-                            $entitiesLength += strlen($entity[0]);
-                        } else
-                            break;
-
-                $truncate .= substr($tag[3], 0 , $left + $entitiesLength);
-
-                break;
-            } else {
-                $truncate .= $tag[3];
-                $totalLength += $contentLength;
-            }
-
-            if ($totalLength >= $length)
-                break;
-        }
-    } else {
-        if (strlen($text) <= $length)
-            return $text;
-        else
-            $truncate = substr($text, 0, $length - strlen($ending));
-    }
-
-    if (!$exact) {
-        $spacepos = strrpos($truncate, " ");
-
-        if (isset($spacepos)) {
-            if ($html) {
-                $bits = substr($truncate, $spacepos);
-                preg_match_all('/<\/([a-z]+)>/', $bits, $droppedTags, PREG_SET_ORDER);
-                if (!empty($droppedTags))
-                    foreach ($droppedTags as $closingTag)
-                        if (!in_array($closingTag[1], $openTags))
-                            array_unshift($openTags, $closingTag[1]);
-            }
-
-            $truncate = substr($truncate, 0, $spacepos);
-        }
-    }
-
-    $truncate .= $ending;
-
-    if ($html)
-        foreach ($openTags as $tag)
-            $truncate .= '</'.$tag.'>';
-
-    return $truncate;
-}
-
-
-/**
-* Function: truncate_middle
-*   Limit a string to a given maximum length in a smarter way than just using
-*   substr. Namely, cut from the MIDDLE instead of from the end so that if
-*   we're doing this on (for instance) a bunch of binder names that start off
-*   with the same verbose description, and then are different only at the
-*   very end, they'll still be different from one another after truncating.	
-*
-* 	<code>
-* 	 <?php
-* 	 ...
-* 	 $str = "The quick brown fox jumps over the lazy dog tomorrow morning.";
-* 	 $shortStr = truncateMiddle($str, 40);
-* 	 // $shortStr = "The quick brown fox... tomorrow morning."
-* 	 ...
-* 	 ?>
-* 	</code>
-*
-* Parameters:
-*	$str - String
-*   $maxLength - Int
-*   $joiner - String
-*
-* Returns:
-*	String
-*/
-function truncate_middle($str, $maxLength=80, $joiner='...')
-{
-    if (strlen($str) <= $maxLength) {
-        return $str;
-    }
-    $maxLength = $maxLength - strlen($joiner);
-    if ($maxLength <= 0) {
-        return $str;
-    }
-    $startPieceLength = (int) ceil($maxLength / 2);
-    $endPieceLength = (int) floor($maxLength / 2);
-    $trimmedString = substr($str, 0, $startPieceLength) . $joiner;
-    if ($endPieceLength > 0) {
-        $trimmedString .= substr($str, (-1 * $endPieceLength));
-    }
-    return $trimmedString;
-}
-
-
-/**
-* Function: fix
-*	
-* Parameters:
-*	$string - String to fix.
-*   $quotes - Encode quotes?
-*
-* Returns:
-*	a HTML-sanitized version of a string.
-*
-* See Also:
-*	<>
-*/
-function fix($string, $quotes = false) {
-    $quotes = ($quotes) ? ENT_QUOTES : ENT_NOQUOTES ;
-    return htmlspecialchars($string, $quotes, "utf-8");
-}
-
-
-/**
-* Function: unfix
-*	
-* Parameters:
-*	$string - String to unfix.
-*
-* Returns:
-*	String
-*/
-function unfix($string) {
-    return htmlspecialchars_decode($string, ENT_QUOTES);
-}
-
-
-/**
-* Function: sanitized
-*
-* Parameters:
-*	$string - The string to sanitize.
-*   $force_lowercase - Force the string to lowercase?
-*   $anal - If set to *true*, will remove all non-alphanumeric characters.
-*   $trunc - Number of characters to truncate to (default 100, 0 to disable).
-*
-* Returns:
-*	Sanitized string, typically for URLs.
-*/
-function sanitize($string, $force_lowercase = true, $anal = false, $trunc = 100) {
-    $strip = array("~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "=", "+", "[", "{", "]",
-        "}", "\\", "|", ";", ":", "\"", "'", "&#8216;", "&#8217;", "&#8220;", "&#8221;", "&#8211;", "&#8212;",
-        "—", "–", ",", "<", ".", ">", "/", "?");
-
-    $clean = trim(str_replace($strip, "", strip_tags($string)));
-    $clean = preg_replace('/\s+/', "-", $clean);
-    $clean = ($anal ? preg_replace("/[^a-zA-Z0-9]/", "", $clean) : $clean);
-    $clean = ($trunc ? substr($clean, 0, $trunc) : $clean);
-
-    return ($force_lowercase) ?
-        (function_exists('mb_strtolower')) ?
-            mb_strtolower($clean, 'UTF-8') :
-            strtolower($clean) :
-        $clean;
-}
-
-
-/**
-* Function: random
-*
-* Parameters:
-*	$length - How long the string should be.
-*   $specialchars - Use special characters in the resulting string?
-*
-* Returns:
-*	A string of random characters.
-*/
-function random($length, $specialchars = false) {
-    $pattern = "1234567890abcdefghijklmnopqrstuvwxyz";
-
-    if ($specialchars)
-        $pattern.= "!@#$%^&*()?~";
-
-    $len = strlen($pattern) - 1;
-
-    $key = "";
-    for($i = 0; $i < $length; $i++)
-        $key.= $pattern[rand(0, $len)];
-
-    return $key;
-}
-
-
-/**
-* Function: normalize
-*	
-*
-* Parameters:
-*	$string - String to normalize.
-*
-* Returns:
-*	$normalized - string with normalized content
-*/
-function normalize($string) {
-    $trimmed = trim($string);
-    $newlines = str_replace("\n\n", " ", $trimmed);
-    $newlines = str_replace("\n", "", $newlines);
-    $normalized = preg_replace("/[\s\n\r\t]+/", " ", $newlines);
+	/**
+	 * Function: camelize
+	 * Converts a given string to camel-case.
+	 *
+	 * Parameters:
+	 *     $string - The string to camelize.
+	 *     $keep_spaces - Whether or not to convert underscores to spaces or remove them.
+	 *
+	 * Returns:
+	 *     A CamelCased string.
+	 *
+	 * See Also:
+	 *     <decamelize>
+	 */
+	public static function camelize($string, $keep_spaces = false)
+	{
+	    $lower = strtolower($string);
+	    $deunderscore = str_replace("_", " ", $lower);
+	    $dehyphen = str_replace("-", " ", $deunderscore);
+	    $final = ucwords($dehyphen);
+
+	    if (!$keep_spaces)
+	        $final = str_replace(" ", "", $final);
+
+	    return $final;
+	}
+
+
+	/**
+	 * Function: decamelize
+	 * Decamelizes a string.
+	 *
+	 * Parameters:
+	 *     $string - The string to decamelize.
+	 *
+	 * Returns:
+	 * 	  a de_camel_cased string.
+	 *
+	 * See Also:
+	 *     <camelize>
+	 */
+	public static function decamelize($string)
+	{
+	    return strtolower(preg_replace("/([a-z])([A-Z])/", "\\1 \\2", $string));
+	}
+
+
+	/**
+	 * Function: underscore
+	 * Return an underscore_syntaxed (like_this_dear_reader) from something LikeThisDearReader.
+	 *
+	 * Parameters:
+	 *     string $string CamelCased word to be "underscorized"
+	 *
+	 * Returns:
+	 *     string Underscored version of the $string
+	 *
+	 * See Also:
+	 *     <dash>
+	 */
+	public static function underscore($string)
+	{
+	    return strtolower(preg_replace('/(?<=\\w)([A-Z])/', '_\\1', $string));
+	}
+
+
+	/**
+	 * Function: dash
+	 * Return an dashed-syntaxed (like-this-dear-reader) from something LikeThisDearReader.
+	 *
+	 * Parameters:
+	 *     string $string CamelCased word to be "underscorized"
+	 *
+	 * Returns:
+	 *     string Underscored version of the $string
+	 *
+	 * See Also:
+	 *     <underscore>
+	 */
+	public static function dash($string)
+	{
+	    return strtolower(preg_replace('/(?<=\\w)([A-Z])/', '-\\1', $string));
+	}
+
+
+	/**
+	 * Function: humanize
+	 * Return a Humanized syntaxed (Like this dear reader) from something like-this-dear-reader.
+	 *
+	 * Parameters:
+	 *     string $string CamelCased word to be "underscorized"
+	 *
+	 * Returns:
+	 *	  string Underscored version of the $string
+	 */
+	public static function humanize($string)
+	{
+	    $string = str_replace('_', ' ', $string);
+	    $string = str_replace('-', ' ', $string);
+
+	    return ucfirst( $string );
+	}
+
+
+	/**
+	 * Function: is_upper
+	 * Determines if a string contains all uppercase characters.
+	 *
+	 * Parameters:
+	 *     string $string string to check
+	 *
+	 * Returns:
+	 *	  bool
+	 *
+	 * See Also:
+	 *     <is_lower>
+	 */
+	public static function is_upper($string)
+	{
+	    return (strtoupper($string) === $string);
+	}
+
+
+	/**
+	 * Function: is_lower
+	 * Determines if a string contains all lowercase characters.
+	 *
+	 * Parameters:
+	 *     string $string string to check
+	 *
+	 * Returns:
+	 *     bool
+	 *
+	 * See Also:
+	 *     <is_upper>
+	 */
+	public static function is_lower($string)
+	{
+	    return (strtolower($string) === $string);
+	}
+
+
+	/**
+	 * Function: truncate
+	 * Truncates a string to the given length, optionally taking into account HTML tags, and/or keeping words in tact.
+	 * @author CakePHP team, code style modified.
+	 *
+	 * Parameters:
+	 *     $text - String to shorten.
+	 *     $length - Length to truncate to.
+	 *     $ending - What to place at the end, e.g. "...".
+	 *     $exact - Break words?
+	 *     $html - Auto-close cut-off HTML tags?*
+	 * Returns:
+	 *     String
+	 *
+	 * See Also:
+	 *     <truncate_middle>
+	 */
+	public static function truncate($text, $length = 100, $ending = "...", $exact = false, $html = false) {
+	    if (is_array($ending))
+	        extract($ending);
+
+	    if ($html) {
+	        if (strlen(preg_replace("/<[^>]+>/", "", $text)) <= $length)
+	            return $text;
+
+	        $totalLength = strlen($ending);
+	        $openTags = array();
+	        $truncate = "";
+	        preg_match_all("/(<\/?([\w+]+)[^>]*>)?([^<>]*)/", $text, $tags, PREG_SET_ORDER);
+	        foreach ($tags as $tag) {
+	            if (!preg_match('/img|br|input|hr|area|base|basefont|col|frame|isindex|link|meta|param/s', $tag[2])
+	                and preg_match('/<[\w]+[^>]*>/s', $tag[0]))
+	                array_unshift($openTags, $tag[2]);
+	            elseif (preg_match('/<\/([\w]+)[^>]*>/s', $tag[0], $closeTag)) {
+	                $pos = array_search($closeTag[1], $openTags);
+	                if ($pos !== false)
+	                    array_splice($openTags, $pos, 1);
+	            }
+
+	            $truncate .= $tag[1];
+
+	            $contentLength = strlen(preg_replace("/&[0-9a-z]{2,8};|&#[0-9]{1,7};|&#x[0-9a-f]{1,6};/i", " ", $tag[3]));
+	            if ($contentLength + $totalLength > $length) {
+	                $left = $length - $totalLength;
+	                $entitiesLength = 0;
+	                if (preg_match_all("/&[0-9a-z]{2,8};|&#[0-9]{1,7};|&#x[0-9a-f]{1,6};/i", $tag[3], $entities, PREG_OFFSET_CAPTURE))
+	                    foreach ($entities[0] as $entity)
+	                        if ($entity[1] + 1 - $entitiesLength <= $left) {
+	                            $left--;
+	                            $entitiesLength += strlen($entity[0]);
+	                        } else
+	                            break;
+
+	                $truncate .= substr($tag[3], 0 , $left + $entitiesLength);
+
+	                break;
+	            } else {
+	                $truncate .= $tag[3];
+	                $totalLength += $contentLength;
+	            }
+
+	            if ($totalLength >= $length)
+	                break;
+	        }
+	    } else {
+	        if (strlen($text) <= $length)
+	            return $text;
+	        else
+	            $truncate = substr($text, 0, $length - strlen($ending));
+	    }
+
+	    if (!$exact) {
+	        $spacepos = strrpos($truncate, " ");
+
+	        if (isset($spacepos)) {
+	            if ($html) {
+	                $bits = substr($truncate, $spacepos);
+	                preg_match_all('/<\/([a-z]+)>/', $bits, $droppedTags, PREG_SET_ORDER);
+	                if (!empty($droppedTags))
+	                    foreach ($droppedTags as $closingTag)
+	                        if (!in_array($closingTag[1], $openTags))
+	                            array_unshift($openTags, $closingTag[1]);
+	            }
+
+	            $truncate = substr($truncate, 0, $spacepos);
+	        }
+	    }
+
+	    $truncate .= $ending;
+
+	    if ($html)
+	        foreach ($openTags as $tag)
+	            $truncate .= '</'.$tag.'>';
+
+	    return $truncate;
+	}
+
+
+	/**
+	* Function: truncate_middle
+	*   Limit a string to a given maximum length in a smarter way than just using
+	*   substr. Namely, cut from the MIDDLE instead of from the end so that if
+	*   we're doing this on (for instance) a bunch of binder names that start off
+	*   with the same verbose description, and then are different only at the
+	*   very end, they'll still be different from one another after truncating.	
+	*
+	* 	<code>
+	* 	 <?php
+	* 	 ...
+	* 	 $str = "The quick brown fox jumps over the lazy dog tomorrow morning.";
+	* 	 $shortStr = truncateMiddle($str, 40);
+	* 	 // $shortStr = "The quick brown fox... tomorrow morning."
+	* 	 ...
+	* 	 ?>
+	* 	</code>
+	*
+	* Parameters:
+	*	$str - String
+	*   $maxLength - Int
+	*   $joiner - String
+	*
+	* Returns:
+	*	String
+	*/
+	public static function truncate_middle($str, $maxLength=80, $joiner='...')
+	{
+	    if (strlen($str) <= $maxLength) {
+	        return $str;
+	    }
+	    $maxLength = $maxLength - strlen($joiner);
+	    if ($maxLength <= 0) {
+	        return $str;
+	    }
+	    $startPieceLength = (int) ceil($maxLength / 2);
+	    $endPieceLength = (int) floor($maxLength / 2);
+	    $trimmedString = substr($str, 0, $startPieceLength) . $joiner;
+	    if ($endPieceLength > 0) {
+	        $trimmedString .= substr($str, (-1 * $endPieceLength));
+	    }
+	    return $trimmedString;
+	}
+
+
+	/**
+	* Function: fix
+	*	
+	* Parameters:
+	*	$string - String to fix.
+	*   $quotes - Encode quotes?
+	*
+	* Returns:
+	*	a HTML-sanitized version of a string.
+	*
+	* See Also:
+	*	<>
+	*/
+	public static function fix($string, $quotes = false) {
+	    $quotes = ($quotes) ? ENT_QUOTES : ENT_NOQUOTES ;
+	    return htmlspecialchars($string, $quotes, "utf-8");
+	}
+
+
+	/**
+	* Function: unfix
+	*	
+	* Parameters:
+	*	$string - String to unfix.
+	*
+	* Returns:
+	*	String
+	*/
+	public static function unfix($string) {
+	    return htmlspecialchars_decode($string, ENT_QUOTES);
+	}
+
+
+	/**
+	* Function: sanitized
+	*
+	* Parameters:
+	*	$string - The string to sanitize.
+	*   $force_lowercase - Force the string to lowercase?
+	*   $anal - If set to *true*, will remove all non-alphanumeric characters.
+	*   $trunc - Number of characters to truncate to (default 100, 0 to disable).
+	*
+	* Returns:
+	*	Sanitized string, typically for URLs.
+	*/
+	public static function sanitize($string, $force_lowercase = true, $anal = false, $trunc = 100) {
+	    $strip = array("~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "=", "+", "[", "{", "]",
+	        "}", "\\", "|", ";", ":", "\"", "'", "&#8216;", "&#8217;", "&#8220;", "&#8221;", "&#8211;", "&#8212;",
+	        "—", "–", ",", "<", ".", ">", "/", "?");
+
+	    $clean = trim(str_replace($strip, "", strip_tags($string)));
+	    $clean = preg_replace('/\s+/', "-", $clean);
+	    $clean = ($anal ? preg_replace("/[^a-zA-Z0-9]/", "", $clean) : $clean);
+	    $clean = ($trunc ? substr($clean, 0, $trunc) : $clean);
+
+	    return ($force_lowercase) ?
+	        (function_exists('mb_strtolower')) ?
+	            mb_strtolower($clean, 'UTF-8') :
+	            strtolower($clean) :
+	        $clean;
+	}
+
+
+	/**
+	* Function: random
+	*
+	* Parameters:
+	*	$length - How long the string should be.
+	*   $specialchars - Use special characters in the resulting string?
+	*
+	* Returns:
+	*	A string of random characters.
+	*/
+	public static function random($length, $specialchars = false) {
+	    $pattern = "1234567890abcdefghijklmnopqrstuvwxyz";
+
+	    if ($specialchars)
+	        $pattern.= "!@#$%^&*()?~";
+
+	    $len = strlen($pattern) - 1;
+
+	    $key = "";
+	    for($i = 0; $i < $length; $i++)
+	        $key.= $pattern[rand(0, $len)];
+
+	    return $key;
+	}
+
+
+	/**
+	* Function: normalize
+	*	
+	*
+	* Parameters:
+	*	$string - String to normalize.
+	*
+	* Returns:
+	*	$normalized - string with normalized content
+	*/
+	public static function normalize($string) {
+	    $trimmed = trim($string);
+	    $newlines = str_replace("\n\n", " ", $trimmed);
+	    $newlines = str_replace("\n", "", $newlines);
+	    $normalized = preg_replace("/[\s\n\r\t]+/", " ", $newlines);
     
-	return $normalized;
-}
+		return $normalized;
+	}
 
 
-/**
-* Function: pluralize
-*	pluralize(3, 'bean','beans')
-*
-* Parameters:
-*	$n - number
-*   $singular
-*	$plural
-*
-* Returns:
-*	echo - string
-*/
-function pluralize($n, $singular, $plural)
-{
-    if ($n == 1) {
-        echo $n . ' ' . $singular;
-    } else {
-        echo $n . ' ' . $plural;
-    }
-}
+	/**
+	* Function: pluralize
+	*	pluralize(3, 'bean','beans')
+	*
+	* Parameters:
+	*	$n - number
+	*   $singular
+	*	$plural
+	*
+	* Returns:
+	*	echo - string
+	*/
+	public static function pluralize($n, $singular, $plural)
+	{
+	    if ($n == 1) {
+	        echo $n . ' ' . $singular;
+	    } else {
+	        echo $n . ' ' . $plural;
+	    }
+	}
 
 
-/**
-* Function: escape_string
-*
-* Parameters:
-*	$string - $sting - string containing slashes.
-*	
-*
-* Returns:
-*	$string - String without slashes
-*/
-function escape_string($string)
-{
-    $string = stripslashes($string);
+	/**
+	* Function: escape_string
+	*
+	* Parameters:
+	*	$string - $sting - string containing slashes.
+	*	
+	*
+	* Returns:
+	*	$string - String without slashes
+	*/
+	public static function escape_string($string)
+	{
+	    $string = stripslashes($string);
 
-    return $string;
-}
+	    return $string;
+	}
 
 
-/**
-* Function: widont
-* 	Prevents [widow words](http://www.shauninman.com/archive/2006/08/22/widont_wordpress_plugin)
-* 	by inserting a non-breaking space between the last two words.
-*
-* Parameters:
-*	$string - String to remove widow words from
-*
-* Returns:
-*	$string - String
-*/
-function widont($string)
-{
-    $str = rtrim($string);
-    $space = strrpos($string, ' ');
+	/**
+	* Function: widont
+	* 	Prevents [widow words](http://www.shauninman.com/archive/2006/08/22/widont_wordpress_plugin)
+	* 	by inserting a non-breaking space between the last two words.
+	*
+	* Parameters:
+	*	$string - String to remove widow words from
+	*
+	* Returns:
+	*	$string - String
+	*/
+	public static function widont($string)
+	{
+	    $str = rtrim($string);
+	    $space = strrpos($string, ' ');
 
-    if ($space !== FALSE)
-    {
-        $string = substr($string, 0, $space).'&nbsp;'.substr($string, $space + 1);
-    }
+	    if ($space !== FALSE)
+	    {
+	        $string = substr($string, 0, $space).'&nbsp;'.substr($string, $space + 1);
+	    }
 
-    return $string;
-}
+	    return $string;
+	}
+} // string
 
 
 /**
