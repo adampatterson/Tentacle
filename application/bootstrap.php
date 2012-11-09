@@ -652,7 +652,7 @@ class load
     public static function error($type = 'general',$title = NULL,$message = NULL)
     {
         ob_clean();
-        require_once(config::get('application').'/'.config::get('folder_errors')."/$type.php");
+        require_once(config::get('application').'/view/error'."/$type.php");
         ob_end_flush();
         exit;
     }
