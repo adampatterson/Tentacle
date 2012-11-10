@@ -28,23 +28,6 @@
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	
-<? if ( in_array('fancybox', $assets ) ): ?>
-	<!-- fancyBox MODAL -->
-	<script type="text/javascript" src="<?=ADMIN_JS; ?>fancyBox/source/jquery.fancybox.pack.js?v=2.0.6"></script>
-	<link rel="stylesheet" type="text/css" href="<?=ADMIN_JS; ?>fancyBox/source/jquery.fancybox.css?v=2.0.6" media="screen" />
-	
-	<script type="text/javascript">
-		$(".fancybox").fancybox({
-			fitToView: false,
-			afterLoad: function(){
-				this.width = $(this.element).data("width");
-				this.height = $(this.element).data("height");
-			}
-		}); // fancybox
-	</script>	
-<? endif; ?>
-
 <? if ( in_array('jupload', $assets ) ): ?>
 
 	<!-- Bootstrap CSS fixes for IE6 -->

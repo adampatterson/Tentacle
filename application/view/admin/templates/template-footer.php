@@ -23,12 +23,14 @@
 </div>
 </footer>
 <? if(user_editor() == 'wysiwyg'): ?>
-    <style type="text/css" media="screen">
+
+    <script type="text/javascript" src="<?= ADMIN_JS; ?>raptor/raptor.0deps.js"></script>
+	<link rel="stylesheet" href="<?= ADMIN_JS; ?>raptor/theme.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<style type="text/css" media="screen">
         .ui-widget-content  .ui-icon-fancy-modal {
             background-image: url(http://www.winsteps.com/blahdocs/images/smiley.gif);
         }
     </style>
-    <script type="text/javascript" src="<?= ADMIN_JS; ?>raptor/raptor.0deps.min.js"></script>
     <script type="text/javascript">
         $.ui.editor.registerUi({
 
@@ -73,7 +75,7 @@
                     var ui = this;
 
                     $.ui.editor.selectionSave();
-                    this.dialog = $('<div style="display:none"><iframe src="' + raptorMediaLibrary.url + '?type=image&TB_iframe=true" /></div>').appendTo('body');
+                    this.dialog = $('<div style="display:none"><iframe src="<?= ADMIN ?>/media_insert" /></div>').appendTo('body');
                     this.dialog.dialog({
                         title: 'Media Library',
                         position: 'center center',

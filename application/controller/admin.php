@@ -209,9 +209,7 @@ class admin_controller {
 	public function content_add_post ()
 	{
 		tentacle::valid_user();
-		
-		load::helper ('date');
-		
+
 		$category = load::model( 'category' );
 		$categories = $category->get_all_categories( );
 		$tag = load::model( 'tags' );

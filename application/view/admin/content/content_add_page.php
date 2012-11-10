@@ -1,4 +1,4 @@
-<? load::view('admin/templates/template-header', array('title' => 'Write a new page', 'assets' => array('fancybox') ) );?>
+<? load::view('admin/templates/template-header', array('title' => 'Write a new page', 'assets' => array('application') ) );?>
 
 <div id="wrap">
 	<!--
@@ -87,8 +87,6 @@
 								<p class="wysiwyg">
 									<textarea id="Content" name="content" rows="15" cols="80" class="editor"></textarea>
 								</p>
-                                	
-								<a class="fancybox fancybox.iframe" id="insert-media" href="<?= BASE_URL ?>admin/media_insert" title="Insert Media" data-width="680" data-height="725">[ Insert Media ]</a>
 							
 							<? else: ?>
 
