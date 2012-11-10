@@ -6,7 +6,7 @@ class post_model
 	public function add ( $import = '' ) 
 	{
 		$title         = input::post( 'title' );
-		$slug          = sanitize($title);
+		$slug          = string::sanitize($title);
 		$content       = input::post( 'content' );
 		$status        = input::post( 'status' );
 		$publish       = input::post( 'publish' );
@@ -25,7 +25,6 @@ class post_model
 		$page          = db('posts');
 
 		if ( $publish == 'published-on') {
-			load::helper ('date');
 
 			$date = new date();
 
@@ -85,7 +84,7 @@ class post_model
 	{
 		// create a new version of the content.
 		$title         = input::post( 'title' );
-		$slug          = sanitize($title);
+		$slug          = string::sanitize($title);
 		$content       = input::post( 'content' );
 		$status        = input::post( 'status' );
 		$publish       = input::post( 'publish' );
@@ -97,7 +96,6 @@ class post_model
 		endif;
 
 		if ( $publish == 'published-on') {
-			load::helper ('date');
 
 			$date = new date();
 

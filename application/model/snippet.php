@@ -26,8 +26,8 @@ class snippet_model
 		$snippet_content = input::post( 'content' );
 		$filter          = input::post( 'filter' );
 		
-		$slug            = camelize($name);
-		$slug            = underscore($slug);
+		$slug            = string::camelize($name);
+		$slug            = string::underscore($slug);
 
 		$snippet = db('snippet');
 
@@ -52,8 +52,8 @@ class snippet_model
 		$snippet_content = input::post( 'content' );
 		$filter          = input::post( 'filter' );
 		
-		$slug            = camelize( $name );
-		$slug            = underscore( $slug );
+		$slug            = string::camelize( $name );
+		$slug            = string::underscore( $slug );
 		
 		$snippet = db('snippet');
 

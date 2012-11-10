@@ -12,7 +12,7 @@ class page_model
 	public function add ( ) 
 	{
 		$title         = $_POST['title'];
-		$slug          = sanitize($title);
+		$slug          = string::sanitize($title);
 		$content       = $_POST['content'];
 		$status        = $_POST['status'];
 		$parent_page   = $_POST['parent_page'];
@@ -86,7 +86,7 @@ class page_model
 		// create a new version of the content.
 
 		$title         = $_POST['title'];
-		$slug          = sanitize($title);
+		$slug          = string::sanitize($title);
 		$content       = $_POST['content'];
 		$status        = $_POST['status'];
 		$parent_page   = $_POST['parent_page'];

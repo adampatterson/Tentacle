@@ -27,8 +27,8 @@
     <script type="text/javascript" src="<?= ADMIN_JS; ?>raptor/raptor.0deps.js"></script>
 	<link rel="stylesheet" href="<?= ADMIN_JS; ?>raptor/theme.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<style type="text/css" media="screen">
-        .ui-widget-content  .ui-icon-fancy-modal {
-            background-image: url(http://www.winsteps.com/blahdocs/images/smiley.gif);
+        .ui-widget-content  .ui-icon-media-modal {
+            background-image: url(<?= ADMIN_JS ?>raptor/theme/images/image.png);
         }
     </style>
     <script type="text/javascript">
@@ -52,7 +52,7 @@
 
                     return editor.uiButton({
                         title: 'Media Library',
-                        icon: 'ui-icon-fancy-modal',
+                        icon: 'ui-icon-media-modal',
                         click: function() {
                             this.show();
                         }
@@ -129,7 +129,10 @@
                     docked: true,
                     dockToElement: true,
                     persist: false
-                }
+                },
+		        placeholder: {
+		            content: ''
+		        }
             }
         });
     </script>

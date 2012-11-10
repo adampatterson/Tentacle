@@ -8,7 +8,7 @@ class media_model
 		$file_name 		= $file_meta[0];
 		$file_extension = $file_meta[1];
 
-		$slug			= sanitize($file_name);
+		$slug			= string::sanitize($file_name);
 		$author 		= user::id();
 
 		// Run content through HTMLawd and Samrty Text

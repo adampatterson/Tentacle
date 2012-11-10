@@ -8,8 +8,8 @@ class category_model {
 		$term_name = input::post( 'name' );         
 		$term_slug = input::post( 'slug' );
 		
-		$term_slug = camelize( $term_slug );
-		$term_slug = underscore( $term_slug );;
+		$term_slug = string::camelize( $term_slug );
+		$term_slug = string::underscore( $term_slug );;
 		
 		$category  = db( 'terms' );
 
@@ -38,8 +38,8 @@ class category_model {
 		$term_name = input::post( 'name' );
 		$term_slug = input::post( 'slug' );
 		
-		$term_slug = camelize( $term_slug );
-		$term_slug = underscore( $term_slug );
+		$term_slug = string::camelize( $term_slug );
+		$term_slug = string::underscore( $term_slug );
 		
 		$category  = db( 'terms' );
 		

@@ -25,3 +25,4 @@ tentacle/storage/temp/*
 tentacle/storage/upgrade/*
 /manifest.yml
 tentacle/themes/marketing
+/tentacle/js/raptor/theme/
