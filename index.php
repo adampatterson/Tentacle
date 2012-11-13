@@ -103,7 +103,7 @@ define( 'CHECK_TIMEOUT', 5 );
 /**
  * The Tentacle version
  */
-define('TENTACLE_VERSION', 'v0.8.2');
+define('TENTACLE_VERSION', 'v0.8.3');
 
 /**
  * Holds the Tentacle DB revision, increments when changes are made to the Tentacle sql model.
