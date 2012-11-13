@@ -23,7 +23,7 @@
 	<script type="text/javascript" src="<?=ADMIN_JS; ?>modernizr.min.js"></script>
 	<script type="text/javascript" src="<?= ADMIN_JS; ?>jquery.inputtags.js"></script>
 	<script type="text/javascript" src="<?=ADMIN_JS; ?>notifications.js"></script>
-	
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-dropdown.js"></script>
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -46,12 +46,7 @@
 		var editor_path = '<?= PATH ?>/';
 	</script>
 
-	<link rel="shortcut icon" href="images/favicon.ico">
-	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
 <body id="admin-window" class="<?= route::controller().' '. route::method();?>" lang="en">
 	<header>

@@ -171,7 +171,7 @@
 <? endif; ?>
 
 <? if( in_array('jupload', $assets ) ): ?>
-		<script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap.min.js"></script>
+
 		
 		<!-- The Templates plugin is included to render the upload/download listings -->
 		<script src="http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"></script>
