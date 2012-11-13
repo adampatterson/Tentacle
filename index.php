@@ -73,6 +73,7 @@ define('ADMIN_URL'        , BASE_URL.'tentacle/');
 define('ADMIN_URI'        , APP_ROOT.'tentacle/');
 define('ADMIN_JS'   	  , BASE_URL.'tentacle/js/');
 define('ADMIN_CSS'     	  , BASE_URL.'tentacle/css/');
+define('ADMIN_IMG'     	  , BASE_URL.'tentacle/images/');
 
 define('TENTACLE_LIB'     , APP_ROOT.'/application/library/');
 

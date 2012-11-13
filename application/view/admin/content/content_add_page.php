@@ -322,4 +322,4 @@
 	</form>
 </div>
 <!-- #wrap -->
-<? load::view( 'admin/templates/template-footer', array('assets' => array('jupload') ) );?>
+<? load::view( 'admin/templates/template-footer', array('assets' => array('') ) );?>

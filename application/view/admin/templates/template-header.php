@@ -17,12 +17,11 @@
 
 	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>application.css">
 	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>admin.css">
-	
-	<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.min.js"></script>
-	<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery-ui.min.js"></script>
+
+	<script type="text/javascript" src="<?= ADMIN_JS; ?>jquery.min.js"></script>
+	<script type="text/javascript" src="<?= ADMIN_JS; ?>jquery-ui.min.js"></script>
 	<script type="text/javascript" src="<?=ADMIN_JS; ?>modernizr.min.js"></script>
 	<script type="text/javascript" src="<?= ADMIN_JS; ?>jquery.inputtags.js"></script>
-	<script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?=ADMIN_JS; ?>notifications.js"></script>
 	
 	<!--[if lt IE 9]>

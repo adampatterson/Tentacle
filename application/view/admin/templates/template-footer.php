@@ -24,11 +24,14 @@
 </footer>
 <? if(user_editor() == 'wysiwyg'): ?>
 
-    <script type="text/javascript" src="<?= ADMIN_JS; ?>raptor/raptor.0deps.js"></script>
-	<link rel="stylesheet" href="<?= ADMIN_JS; ?>raptor/theme.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <script type="text/javascript" src="<?= ADMIN_JS; ?>raptor.min.js"></script>
+	
+    <link type="text/css" rel="stylesheet" href="<?= ADMIN_CSS; ?>jquery-ui.css">
+    <link type="text/css" rel="stylesheet" href="<?= ADMIN_CSS; ?>raptor-theme.css">
+	
 	<style type="text/css" media="screen">
         .ui-widget-content  .ui-icon-media-modal {
-            background-image: url(<?= ADMIN_JS ?>raptor/theme/images/image.png);
+            background-image: url(<?= ADMIN_IMG ?>editor/image.png);
         }
     </style>
     <script type="text/javascript">
@@ -168,6 +171,7 @@
 <? endif; ?>
 
 <? if( in_array('jupload', $assets ) ): ?>
+		<script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap.min.js"></script>
 		
 		<!-- The Templates plugin is included to render the upload/download listings -->
 		<script src="http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"></script>
