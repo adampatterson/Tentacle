@@ -225,9 +225,7 @@ class admin_controller {
 	public function content_update_post ( $post_id )
 	{
 		tentacle::valid_user();
-	
-		load::helper ('date');
-	
+
 		$post = load::model( 'post' );
 		$get_post = $post->get( $post_id );
 		

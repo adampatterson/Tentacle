@@ -161,7 +161,7 @@ button:
 			
 		$build = $pdo->exec( "INSERT INTO `posts` (`id`, `parent`, `author`, `date`, `modified`, `title`, `content`, `excerpt`, `comment_status`, `ping_status`, `password`, `slug`, `type`, `menu_order`, `uri`, `visible`, `status`, `template`)
 			VALUES
-				(6, 0, 1, 1322853969, 1328247576, 'Home', '<p><strong>Tentacle is an OpenSource Content Management System, it is free to use.</strong></p>\r\n<p>The goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p><p><strong>Username:</strong> demo<br /><strong>Password:</strong> demo<br /><a href=\'http://demo.tentaclecms.com/demo/admin/\'>Admin</a></p>\r\n', '', 'open', 'open', '', 'home', 'page', 1, 'home/', 'public', 'published', 'default'),
+				(6, 0, 1, 1322853969, 1328247576, 'Home', '<p><strong>Tentacle is an OpenSource Content Management System, it is free to use.</strong></p>\r\n<p>The goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p><p><strong>Username:</strong> demo<br /><strong>Password:</strong> demo<br /><a href=\'http://demo.tentaclecms.com/admin/\'>Admin</a></p>\r\n', '', 'open', 'open', '', 'home', 'page', 1, 'home/', 'public', 'published', 'default'),
 				(112, 0, 1, 1328502285, 1328560008, 'Welcome to Tentacle CMS', '<p>This is your first post!</p>\r\n', '', 'open', 'open', '', 'welcome-to-tentacle-cms', 'post', 0, 'welcome-to-tentacle-cms/', 'public', 'published', 'default'),
 				(113, 0, 1, 1340070422, 1340070422, 'Blog', '', '', 'open', 'open', '', 'blog', 'page', 2, 'blog/', 'public', 'published', 'template-blog');" );
 		
@@ -1057,16 +1057,16 @@ button:
 		$html_string = '<strong>Strings & Stuff</strong>';
 		$san_string = '&lt;strong&gt;Strings &amp; Stuff&lt;/strong&gt;';
 		$slash_string = 'Is your name O\'reilly?';
-		echo '<h4>truncate()</h4> '.truncate($long_string, 30).'<br />';
-		echo '<h4>truncate_middle()</h4> '.truncate_middle($long_string, 30).'<br />';
-		echo '<h4>fix()</h4> '.fix($html_string, true).'<br />';
-		echo '<h4>unfix()</h4> '.unfix($san_string).'<br />';
-		echo '<h4>sanitize()</h4> '.sanitize($string).'<br />';
-		echo '<h4>random()</h4> '.random(20, true).'<br />';
-		echo '<h4>normalize()</h4> '.normalize($string).'<br />';
-		echo '<h4>pluralize()</h4>'.pluralize(3, 'bean','beans');
-		echo '<h4>escapeStr()</h4> '.escapeStr($slash_string).'<br />';
-		echo '<h4>widont()</h4> '.widont($long_string).'<br />';
+		echo '<h4>truncate()</h4> '.string::truncate($long_string, 30).'<br />';
+		echo '<h4>truncate_middle()</h4> '.string::truncate_middle($long_string, 30).'<br />';
+		echo '<h4>fix()</h4> '.string::fix($html_string, true).'<br />';
+		echo '<h4>unfix()</h4> '.string::unfix($san_string).'<br />';
+		echo '<h4>sanitize()</h4> '.string::sanitize($string).'<br />';
+		echo '<h4>random()</h4> '.string::random(20, true).'<br />';
+		echo '<h4>normalize()</h4> '.string::normalize($string).'<br />';
+		echo '<h4>pluralize()</h4>'.string::pluralize(3, 'bean','beans');
+		echo '<h4>escapeStr()</h4> '.string::escape_string($slash_string).'<br />';
+		echo '<h4>widont()</h4> '.string::widont($long_string).'<br />';
 		echo '<h4>highlight()</h4>'.highlight($long_string, 'faucibus').'<br />';
 	
 	}// END Function
@@ -1114,8 +1114,7 @@ button:
 	public function date( $date='' ) 
 	{
 		echo '<h2>Date</h2>';
-		load::helper ('date');
-		
+
 		$date = new date();
 	
 		$minute	= 30;
@@ -1140,23 +1139,21 @@ button:
 	public function time()
 	{
 		echo '<h2>Time</h2>';
-		load::helper ('time');
 
-		echo '<h4>time_in_timezone()</h4>'.time_in_timezone('Pacific/Chatham');
+		echo '<h4>time_in_timezone()</h4>'.date::time_in_timezone('Pacific/Chatham');
 		
-		echo '<h4>timezones()</h4>';
+		echo '<h4>date::timezones()</h4>';
 		//print_r(timezones());
 		
-		echo '<h4>set_timezone()</h4><p>Used in time_in_timezone()</p>';
+		echo '<h4>date::set_timezone()</h4><p>Used in date::time_in_timezone()</p>';
 		
-		echo '<h4>get_timezone()</h4>'.get_timezone();
+		echo '<h4>date::get_timezone()</h4>'.date::get_timezone();
 		
-		echo '<h4>relative_time()</h4><p>Does not work.</p>';
+		echo '<h4>date::relative_time()</h4><p>Does not work.</p>';
 		
-		echo '<h4>now()</h4><p>'.now('+1 day').'</p>';
+		echo '<h4>now()</h4><p>'.date::now('+1 day').'</p>';
 		
-		load::helper ('date');
-		echo current_date('year');
+		echo date::current('year');
 		
 	}// END Function
 	
