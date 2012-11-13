@@ -17,12 +17,10 @@ blog/
 tentacle/storage/temp/*
 tentacle/storage/file.zip
 googlec09c5f65801ea65d.html
-application/helper/import.php
-application/helper/export.php
 /tentacle.tmproj
-tentacle/storage/images/*
-tentacle/storage/temp/*
-tentacle/storage/upgrade/*
+storage/images/*
+storage/temp/*
+storage/upgrade/*
 /manifest.yml
-tentacle/themes/marketing
+themes/marketing
 /tentacle/js/raptor/theme/
