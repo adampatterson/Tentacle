@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-	  <a class="brand" href="<?= BASE_URL ?>"><?= get_option('blogname'); ?></a>
+	  <a class="brand" href="<?= BASE_URL ?>"><?= get::option('blogname'); ?></a>
 		
       <div class="nav-collapse">
 		<ul class="nav">

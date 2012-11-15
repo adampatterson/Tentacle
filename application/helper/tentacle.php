@@ -10,13 +10,13 @@
  * Create a URI ( anything after the domain/folder/ )
  */
 define ( 'URI'			, tentacle::get_request_url() );
-define ( 'ACTIVE_THEME' , get_option( 'appearance' ) );
+define ( 'ACTIVE_THEME' , get::option( 'appearance' ) );
 define ( 'PATH'			, THEMES_URL.'/'.ACTIVE_THEME );
 define ( 'PATH_URI'  	, THEMES_DIR.ACTIVE_THEME );
 define ( 'HISTORY' 		, BASE_URL.URI.'/' );
-define ( 'IMAGE_T', get_option( 'image_thumb_size_w' ) );
-define ( 'IMAGE_M', get_option( 'image_medium_size_w' ) );
-define ( 'IMAGE_L', get_option( 'image_large_size_w' ) );
+define ( 'IMAGE_T', get::option( 'image_thumb_size_w' ) );
+define ( 'IMAGE_M', get::option( 'image_medium_size_w' ) );
+define ( 'IMAGE_L', get::option( 'image_large_size_w' ) );
 
 // tentacle core loaders
 class tentacle 
@@ -424,34 +424,45 @@ class tentacle
 	* Returns:
 	*     html
 	*/
-	function parse_php_info() {
+	function parse_php_info()
+	{
 		ob_start();
 		phpinfo(INFO_MODULES);
-		$s = ob_get_contents();
+		$phpinfo_html = ob_get_contents();
 		ob_end_clean();
-		$s = strip_tags($s,'<h2><th><td>');
-		$s = preg_replace('/<th[^>]*>([^<]+)<\/th>/',"<info>\\1</info>",$s);
-		$s = preg_replace('/<td[^>]*>([^<]+)<\/td>/',"<info>\\1</info>",$s);
-		$vTmp = preg_split('/(<h2>[^<]+<\/h2>)/',$s,-1,PREG_SPLIT_DELIM_CAPTURE);
-		$vModules = array();
-		for ($i=1;$i<count($vTmp);$i++) {
-			if (preg_match('/<h2>([^<]+)<\/h2>/',$vTmp[$i],$vMat)) {
-				$vName = trim($vMat[1]);
-				$vTmp2 = explode("\n",$vTmp[$i+1]);
-				foreach ($vTmp2 AS $vOne) {
-					$vPat = '<info>([^<]+)<\/info>';
-					$vPat3 = "/$vPat\s*$vPat\s*$vPat/";
-					$vPat2 = "/$vPat\s*$vPat/";
-					if (preg_match($vPat3,$vOne,$vMat)) { // 3cols
-						$vModules[$vName][trim($vMat[1])] = array(trim($vMat[2]),trim($vMat[3]));
+
+		$phpinfo_html = strip_tags($phpinfo_html, "<h2><th><td>");
+		$phpinfo_html = preg_replace("#<th[^>]*>([^<]+)<\/th>#", "<info>$1</info>", $phpinfo_html);
+		$phpinfo_html = preg_replace("#<td[^>]*>([^<]+)<\/td>#", "<info>$1</info>", $phpinfo_html);
+		$phpinfo_html = preg_split("#(<h2[^>]*>[^<]+<\/h2>)#", $phpinfo_html, -1, PREG_SPLIT_DELIM_CAPTURE);
+		$modules = array();
+
+		for($i=1; $i < count($phpinfo_html); $i++)
+		{
+			if(preg_match("#<h2[^>]*>([^<]+)<\/h2>#", $phpinfo_html[$i], $match))
+			{
+				$name = trim($match[1]);
+				$tmp2 = explode("\n", $phpinfo_html[$i+1]);
+				foreach($tmp2 as $one)
+				{
+					$pat = '<info>([^<]+)<\/info>';
+					$pat3 = "/$pat\s*$pat\s*$pat/";
+					$pat2 = "/$pat\s*$pat/";
+
+					// 3 columns
+					if(preg_match($pat3, $one, $match))
+					{
+						$modules[$name][trim($match[1])] = array(trim($match[2]), trim($match[3]));
 					}
-					elseif (preg_match($vPat2,$vOne,$vMat)) { // 2cols
-						$vModules[$vName][trim($vMat[1])] = trim($vMat[2]);
+					// 2 columns
+					else if(preg_match($pat2, $one, $match))
+					{
+						$modules[$name][trim($match[1])] = trim($match[2]);
 					}
 				}
 			}
 		}
-		return $vModules;
+		return $modules;
 	}
 
 

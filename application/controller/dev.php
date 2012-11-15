@@ -32,6 +32,13 @@ class dev_controller {
 		var_dump($cache->look_up('dashboard'));
 	}
 
+	public function stats()
+	{
+		load::helper('serverstats');
+
+		
+	}
+
 	public function speed($test='')
 	{
 		echo '<h1>Speed Test</h1>';
@@ -335,7 +342,7 @@ button:
 		
 		echo '<hr />';
 		
-		//echo get_snippet('footer');
+		//echo get::snippet('footer');
 	}
 	
 	
@@ -697,24 +704,7 @@ button:
 	}
 
 	
-	/**
-	* scaffold function
-	*
-	* @return void
-	* @author Adam Patterson
-	**/
-
-	public function scaffold ()
-	{
-		load::library ('file');
-		$scaffold = new Scaffold ();
-		define ('ACTIVE_THEME', '/default');
-		//load::view('admin_view', array( 'scaffold'=>$scaffold, 'data'=>$data));
-		tentacle::render ('data', array ('scaffold' => $scaffold));
-		
-	}// END scaffold
-
-	/**
+    /**
 	 * theme functions
 	 *
 	 * @return void
@@ -722,7 +712,6 @@ button:
 	 **/
 	public function theme()
 	{ 
-		
 		define( 'SCAFFOLD' , 'TRUE' );
 		
 		echo '<h2>Detected Themes</h2>';
@@ -736,7 +725,7 @@ button:
 			clean_out(get_settings('tentacle'));
 		
 		echo '<h2>Themes Resources</h2>';
-			//clean_out(get_resources(THEMES_DIR.'tentacle'));
+			clean_out(get::resources(THEMES_DIR.'tentacle'));
 	}
 	
 	
@@ -961,9 +950,9 @@ button:
 	{
 		load::helper ('gravatar');
 		
-		echo '<h2>get_gravatar()</h2>';
+		echo '<h2>get::gravatar()</h2>';
 		
-		echo get_gravatar('adamapatterson@gmail.com');
+		echo get::gravatar('adamapatterson@gmail.com');
 		
 		?>
 			<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.min.js"></script>
@@ -1151,9 +1140,14 @@ button:
 		
 		echo '<h4>date::relative_time()</h4><p>Does not work.</p>';
 		
-		echo '<h4>now()</h4><p>'.date::now('+1 day').'</p>';
+		echo '<h4>now()</h4><p>'.date::now().'</p>';
+
+        echo '<h4>now(\'+1 day\')</h4><p>'.date::now('+1 day').'</p>';
 		
 		echo date::current('year');
+        echo date::current('month');
+        echo date::current('day');
+        echo date::current('hour');
 		
 	}// END Function
 	

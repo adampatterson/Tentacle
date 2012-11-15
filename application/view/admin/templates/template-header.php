@@ -21,6 +21,7 @@
 	<script type="text/javascript" src="<?= ADMIN_JS; ?>jquery.min.js"></script>
 	<script type="text/javascript" src="<?= ADMIN_JS; ?>jquery-ui.min.js"></script>
 	<script type="text/javascript" src="<?=ADMIN_JS; ?>modernizr.min.js"></script>
+    <script type="text/javascript" src="<?= ADMIN_JS; ?>jquery.reveal.js"></script>
 	<script type="text/javascript" src="<?= ADMIN_JS; ?>jquery.inputtags.js"></script>
 	<script type="text/javascript" src="<?=ADMIN_JS; ?>notifications.js"></script>
 	<script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-dropdown.js"></script>

@@ -17,7 +17,7 @@ class upgrade {
 		$serpent = load::model( 'serpent' );
 		$v = $serpent->get_core();
 		
-		if ( is_update( TENTACLE_VERSION, $v->version ) ):
+		if ( is::update( TENTACLE_VERSION, $v->version ) ):
 	        _e('<p class="well"><span class="label label-important">Important</span> Currently you have <strong>'.TENTACLE_VERSION.'</strong>, There is a newer version of Tentacle CMS available, Click <a href="'.ADMIN.'updates/'.'">here</a> and Upgrade to <strong>'. $v->version.'</strong></p>');
 				return true;
 		endif;
@@ -28,7 +28,7 @@ class upgrade {
 		$serpent = load::model( 'serpent' );
 		$v = $serpent->get_core();
 		
-		if ( is_update( TENTACLE_VERSION, $v->version ) ):
+		if ( is::update( TENTACLE_VERSION, $v->version ) ):
 			_e('<a href="'.ADMIN.'updates/" class="badge badge-success">Get '.$v->version.'</a>');        
 			return true;
 		else:
@@ -46,7 +46,7 @@ class upgrade {
 
 	public static function core($update) {
 		
-		$filedata = get_url_contents($update);
+		$filedata = get::url_contents($update);
 
 		if (!is_dir(STORAGE_DIR.'/upgrade/')) {
 			if (!mkdir(STORAGE_DIR.'/upgrade/', 0755, true)) {
@@ -156,13 +156,13 @@ function upgrade_db() {
 function upgrade_all() {
 	
 	// We are up-to-date.  Nothing to do.
-	if ( get_db_version() == get_current_db_version() )
+	if ( get::db_version() == get::current_db_version() )
 		return false;
 
 	$sql = load::model( 'sql' );
 		
-	$i = get_current_db_version()+1;
-	while ($i <= get_db_version()):
+	$i = get::current_db_version()+1;
+	while ($i <= get::db_version()):
 	    echo $i;
 	
 		$version = 'get_'.$i;
@@ -173,7 +173,7 @@ function upgrade_all() {
 	
 	$setting = load::model( 'settings' );
 	
-	$update_db = $setting->update( 'db_version', get_db_version() );
+	$update_db = $setting->update( 'db_version', get::db_version() );
 
 	return true;
 }

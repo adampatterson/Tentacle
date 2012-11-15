@@ -7,7 +7,7 @@ class email_model
 	{
 		
 		if ($from == '') {
-			$from = get_option('admin_email');
+			$from = get::option('admin_email');
 		}
 
 		load::helper('email');

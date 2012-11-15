@@ -217,15 +217,15 @@
 											<div class="controls">
 												<label class="radio">
 													<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="" />
-													Thumbnail ( <?= get_option('image_thumb_size_w').' x '.get_option('image_thumb_size_h'); ?> )
+													Thumbnail ( <?= get::option('image_thumb_size_w').' x '.get::option('image_thumb_size_h'); ?> )
 												</label>
 												<label class="radio">
 													<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" />
-													Medium ( <?= get_option('image_medium_size_w').' x '.get_option('image_medium_size_h'); ?> )
+													Medium ( <?= get::option('image_medium_size_w').' x '.get::option('image_medium_size_h'); ?> )
 												</label>
 												<label class="radio">
 													<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" />
-													Large ( <?= get_option('image_large_size_w').' x '.get_option('image_large_size_h'); ?> )
+													Large ( <?= get::option('image_large_size_w').' x '.get::option('image_large_size_h'); ?> )
 												</label>
 												<label class="radio">
 													<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" />

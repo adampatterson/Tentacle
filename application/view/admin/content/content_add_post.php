@@ -44,7 +44,7 @@
 						</div>
 			
 						<div class="control-group published-on">
-							<? date::current('month'); ?>
+							<? date::current('month', true); ?>
 						</div>
 						
 						<div class="control-group published-on">
@@ -59,7 +59,7 @@
 								<div class="clearfix">
 									<div class="input">
 										<ul class="unstyled">
-											<?  $post_types = get_post_type ( get_option( 'appearance' ) );
+											<?  $post_types = get_post_type ( get::option( 'appearance' ) );
 												foreach ($post_types as $post_type ): ?>
 													<li><label class="radio"><input type="radio" name="post_type" class="post-format" value="<?= $post_type['part_id']; ?>" <? checked( $post_type['part_id'], 'type-post' ); ?>> <span><?= $post_type['part_name']; ?></span></label></li>
 											<?	endforeach; ?>
@@ -113,11 +113,28 @@
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>
 							</p>-->
 							<? if(user_editor() == 'wysiwyg'): ?>
-								
 								<p class="wysiwyg">
 									<textarea id="Content" name="content" rows="15" cols="80" class="editor"></textarea>
 								</p>
-								
+
+
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    $('#myButton').click(function(e) {
+                                        e.preventDefault();
+                                        $('#myModal').reveal();
+                                    });
+                                });
+                            </script>
+
+                            <a href="#" id="myButton" >Click Me For A Modal</a>
+
+                            <div id="myModal" class="reveal-modal">
+                                <h1>Modal Title</h1>
+                                <p>Any content could go in here.</p>
+                                <a class="close-reveal-modal">&#215;</a>
+                            </div>
+
 							<? else: ?>
 								<p>
 									<textarea id="code" name="content" cols="40" rows="5" placeholder='Content'></textarea>

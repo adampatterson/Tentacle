@@ -50,7 +50,7 @@
 				<td ><?= $user_meta->first_name?> <?= $user_meta->last_name?></td>
 				<td ><?= $page->id?></td>
 				<td><?= status_tag( $page->status ) ?></td>
-				<td><a href="<?= ADMIN ?>content_add_page/<?= $page->id;?>" class="btn small">Add</a> <a href="<?= ADMIN ?>content_update_page/<?= $page->id;?>" class="btn btn-small">Edit</a> <!-- <a href="#" class="btn small">Duplicate</a> --> <a href="<?= BASE_URL ?>action/trash_page/<?= $page -> id;?>" class="btn btn-small btn-danger">Trash</a></td>
+				<td><a href="<?= ADMIN ?>content_add_page/<?= $page->id;?>" class="btn btn-small">Add</a> <a href="<?= ADMIN ?>content_update_page/<?= $page->id;?>" class="btn btn-small">Edit</a> <!-- <a href="#" class="btn small">Duplicate</a> --> <a href="<?= BASE_URL ?>action/trash_page/<?= $page -> id;?>" class="btn btn-small btn-danger">Trash</a></td>
 				<!--<td><a href=""><img src="<?=ADMIN_URL;?>images/icons/16_edit.png" width="16" height="16" alt="Edit" /></a> <img src="<?=ADMIN_URL;?>images/icons/16_delete.png" width="16" height="16" alt="Delete" /> <a href="<?= ADMIN ?>content_add_page/<?= $page->id;?>" title="Add sub-page"><img src="<?=ADMIN_URL;?>images/icons/16_add.png" width="15" height="16" alt="Add" /></a></td>-->
 			</tr>
 			<? endforeach;?>

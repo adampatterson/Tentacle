@@ -35,7 +35,7 @@ class admin_controller {
 	* ----------------------------------------------------------------------------------------------*/
 	public function index ()
 	{
-		is_blog_installed(); 
+		is::blog_installed();
 		
 		if(user::valid()) { 
 			url::redirect('admin/dashboard'); 
@@ -48,10 +48,10 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		//if ( is_agree() == false )
+		//if ( is::agree() == false )
 		// 			url::redirect('admin/agree');
 		
-		if ( get_db_version() != get_current_db_version() )
+		if ( get::db_version() != get::current_db_version() )
 			url::redirect('admin/updates');
 		
 		$id = user::id( );
@@ -62,7 +62,8 @@ class admin_controller {
 		
 		load::view ( 'admin/dashboard', array( 'user'=>$user_single, 'user_meta'=>$user_meta ) );
 	}
-	
+
+
 	/**
 	* Logout
 	* ----------------------------------------------------------------------------------------------*/

@@ -92,7 +92,7 @@ function module_enabled( $name ) {
  *
  */
 function enabled_module() {
-    return unserialize(get_option('active_modules'));
+    return unserialize(get::option('active_modules'));
 }
 
 

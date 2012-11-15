@@ -10,7 +10,7 @@
 					<div class="control-group">
 						<label class="control-label" for="blogname">Site Title</label>
 						<div class="controls">
-							<input type="text" value="<?= get_option('blogname'); ?>" name="blogname">
+							<input type="text" value="<?= get::option('blogname'); ?>" name="blogname">
 						</div>
 					</div>
 					
@@ -31,7 +31,7 @@
 					<div class="control-group">
 						<label class="control-label" for="blogdescription">Tagline</label>
 						<div class="controls">
-							<input type="text" value="<?= get_option('blogdescription'); ?>" name="blogdescription">
+							<input type="text" value="<?= get::option('blogdescription'); ?>" name="blogdescription">
 							<p class="help-block">In a few words, explain what this site is about.</p>
 						</div>
 					</div>
@@ -40,14 +40,14 @@
 					<div class="clearfix">
 						<label for="siteurl">Base (URL)</label>
 						<div class="input">
-							<input type="text" class="code" value="<?= get_option('siteurl'); ?>" name="siteurl">
+							<input type="text" class="code" value="<?= get::option('siteurl'); ?>" name="siteurl">
 						</div>
 					</div>
 */ ?>
 					<div class="control-group">
 						<label class="control-label" for="admin_email">E-mail address</label>
 						<div class="controls">
-							<input type="text" value="<?= get_option('admin_email'); ?>" name="admin_email">
+							<input type="text" value="<?= get::option('admin_email'); ?>" name="admin_email">
 							<span class="help-block">This address is used for admin purposes, like new user notification.</span>
 						</div>
 					</div>
@@ -61,7 +61,7 @@
 						<div class="controls">
 							<select class="postform" id="default_category" name="default_category">
 								<? foreach ($categories as $category): ?>
-									<option id="category-<?= $category->id  ?>" value="<?= $category->id  ?>" <? selected( get_option('default_category'), $category->id  ); ?>> <?= $category->name  ?></option>
+									<option id="category-<?= $category->id  ?>" value="<?= $category->id  ?>" <? selected( get::option('default_category'), $category->id  ); ?>> <?= $category->name  ?></option>
 								<? endforeach;?>
 							</select>
 						</div>
@@ -192,9 +192,9 @@
 					<label>Thumbnail size</label>
 					<div class="controls">
 						<div class="inline-inputs">
-							<input type="text" value="<?= get_option('image_thumb_size_w','150'); ?>" name="image_thumb_size_w" id="thumbnail_size_w" class='span2' />
+							<input type="text" value="<?= get::option('image_thumb_size_w','150'); ?>" name="image_thumb_size_w" id="thumbnail_size_w" class='span2' />
 							x
-							<input type="text" value="<?= get_option('image_thumb_size_h','150'); ?>" name="image_thumb_size_h" id="thumbnail_size_h" class='span2' />
+							<input type="text" value="<?= get::option('image_thumb_size_h','150'); ?>" name="image_thumb_size_h" id="thumbnail_size_h" class='span2' />
 						</div>
 					</div>
 				</div>
@@ -215,9 +215,9 @@
 					<label>Medium size</label>
 					<div class="controls">
 						<div class="inline-inputs">
-							<input type="text" value="<?= get_option('image_medium_size_w','300'); ?>" name="image_medium_size_w" id="medium_size_w" class='span2' />
+							<input type="text" value="<?= get::option('image_medium_size_w','300'); ?>" name="image_medium_size_w" id="medium_size_w" class='span2' />
 							x
-							<input type="text" value="<?= get_option('image_medium_size_h','300'); ?>" name="image_medium_size_h" id="medium_size_h" class='span2' />
+							<input type="text" value="<?= get::option('image_medium_size_h','300'); ?>" name="image_medium_size_h" id="medium_size_h" class='span2' />
 						</div>
 					</div>
 				</div>
@@ -226,9 +226,9 @@
 					<label>Large size</label>
 					<div class="controls">
 						<div class="inline-inputs">
-							<input type="text" value="<?= get_option('image_large_size_w','600'); ?>" name="image_large_size_w" class='span2' />
+							<input type="text" value="<?= get::option('image_large_size_w','600'); ?>" name="image_large_size_w" class='span2' />
 							x
-							<input type="text" value="<?= get_option('image_large_size_h','600'); ?>" name="image_large_size_h" class='span2' />
+							<input type="text" value="<?= get::option('image_large_size_h','600'); ?>" name="image_large_size_h" class='span2' />
 						</div>
 					</div>
 				</div>

@@ -3,7 +3,7 @@ class page_controller {
 	
     public function index(  ){
 		
-		is_blog_installed();
+		is::blog_installed();
 		
 		$uri 			= URI;
 
@@ -12,7 +12,7 @@ class page_controller {
 		# Prepare the trigger class
 		$trigger 		= Trigger::current();
 		
-		$scaffold 		= new Scaffold ();
+		$scaffold 		= new scaffold ();
 		
 		if ( $uri == '' || $uri == 'home'):
 			$uri 		= 'home/';

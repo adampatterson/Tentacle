@@ -13,7 +13,7 @@
 */
 
 
-class  Scaffold 
+class  scaffold
 {
 	
     static public function constructForm() 
@@ -27,9 +27,12 @@ class  Scaffold
         $return_data = "";
 
         if ( $scaffold_data[ 'display' ] == 'admin' ):
+            // Remove the display key because it is not used for rendering the forms.
+            unset($scaffold_data[ 'display' ]);
+
 			foreach ($scaffold_data as $input):
 			
-				$input_name = underscore( camelize( $input['name']) );
+				$input_name = string::underscore( string::camelize( $input['name']) );
 
 	            //print_r($input);
 	            /*  
@@ -102,7 +105,7 @@ class  Scaffold
         
     } // function process  
   
-    static public function populateThis( $data ='', $get_page_meta )
+    static public function populateThis( $data, $get_page_meta )
     {
 	if ( $page_id = '' )
 		return false;
@@ -110,9 +113,13 @@ class  Scaffold
         $return_data = "";
 		
         if ( $data[ 'display' ] == 'admin' ):
-			foreach ($data as $input):
-			
-				$input_name = underscore( camelize( $input['name']) );
+
+            // Remove the display key because it is not used for rendering the forms.
+            unset($data[ 'display' ]);
+
+			foreach ($data as $key => $input):
+
+                $input_name = string::underscore( string::camelize( $input['name']) );
 				
 	            if ($input['input'] == 'input'):
 	                switch($input['type']) {

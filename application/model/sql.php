@@ -275,7 +275,7 @@ class sql_model
 		
 		$build = $pdo->exec( "INSERT INTO `options` (`id`, `key`, `value`, `autoload`)
 		VALUES
-			(NULL, 'is_blog_installed', 'true', 'yes')" );
+			(NULL, 'is::blog_installed', 'true', 'yes')" );
 
 	}
 	
@@ -305,7 +305,7 @@ class sql_model
 
 		$build = $pdo->exec( "INSERT INTO `options` (`id`, `key`, `value`, `autoload`)
 		VALUES
-			(NULL, 'is_agree', '', 'yes')" );
+			(NULL, 'is::agree', '', 'yes')" );
 	}
 	
 	public function get_105 ()

@@ -78,17 +78,17 @@ class snippet_model
 		$snippets = db ( 'snippet' );
 
 		if ( $id == '' ) {
-			$get_snippets = $snippets->select( '*' )
+			$get::snippets = $snippets->select( '*' )
 				->order_by ( 'name', 'DESC' )
 				->execute();
 					
-			return $get_snippets;
+			return $get::snippets;
 		} else {	
-			$get_snippets = $snippets->select( '*' )
+			$get::snippets = $snippets->select( '*' )
 				->where ( 'id', '=', $id )
 				->execute();	
 			
-			return $get_snippets[0];
+			return $get::snippets[0];
 		}		
 	}
 	
@@ -99,11 +99,11 @@ class snippet_model
 	{
 		$snippets = db ( 'snippet' );
 
-		$get_snippet = $snippets->select( '*' )
+		$get::snippet = $snippets->select( '*' )
 			->where ( 'slug', '=', $slug )
 			->execute();
 				
-		return $get_snippet[0];
+		return $get::snippet[0];
 	}
 
 

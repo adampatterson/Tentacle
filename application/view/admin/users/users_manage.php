@@ -19,7 +19,7 @@
 				<? foreach ($users as $user):
 				?>
 				<tr>
-					<td class="user"><a href="<?= ADMIN ?>users_edit/<?= $user->id ?>"> <?php echo get_gravatar($user -> email, 32);?>
+					<td class="user"><a href="<?= ADMIN ?>users_edit/<?= $user->id ?>"> <?php echo get::gravatar($user -> email, 32);?>
 					<strong><?= $user->username
 					?></strong></a></td>
 					<td><?= $user->email ?></td>

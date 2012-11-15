@@ -52,7 +52,7 @@
 							<div class="controls">
 								<select id="page_template" name="page_template" onchange="window.location = this.options[this.selectedIndex].value;">
 									<!--<option value="<?= BASE_URL ?>action/render_admin/add_page/default" selected='selected'>Default</option>-->
-									<? $templates = get_templates( get_option( 'appearance' ) ); 
+									<? $templates = get_templates( get::option( 'appearance' ) );
 									foreach ( $templates as $template ): ?>
 										<option value="<?= BASE_URL ?>action/render_admin/add_page/<?= $template->template_id ?>" <? selected( session::get( 'template' ), $template->template_id ); ?>><?= $template->template_name ?></option>
 									<? endforeach; ?>
@@ -100,13 +100,13 @@
 								
 								if ( session::get( 'template' ) != 'index' && session::get( 'template' ) != ''   ) {
 									
-									@include(THEMES_DIR.'/'.get_option('appearance').'/'.session::get('template').'.php');
+									@include(THEMES_DIR.'/'.get::option('appearance').'/'.session::get('template').'.php');
 										
 									if ( isset( $scaffold_data ) ) {
 									
 										$data = YAML::load( $scaffold_data );
 										
-										$scaffold = new Scaffold();
+										$scaffold = new scaffold();
 
 										$scaffold->processThis( $data );
 									}

@@ -70,7 +70,7 @@ class transiant_model
 				$alloptions = wp_load_alloptions();
 				if ( !isset( $alloptions[$transient_option] ) ) {
 					$transient_timeout = '_transient_timeout_' . $transient;
-					if ( get_option( $transient_timeout ) < time() ) {
+					if ( get::option( $transient_timeout ) < time() ) {
 						delete_option( $transient_option  );
 						delete_option( $transient_timeout );
 						return false;
@@ -78,7 +78,7 @@ class transiant_model
 				}
 			}
 
-			$value = get_option( $transient_option );
+			$value = get::option( $transient_option );
 		}
 
 		return apply_filters( 'transient_' . $transient, $value );
@@ -114,7 +114,7 @@ class transiant_model
 		} else {
 			$transient_timeout = '_transient_timeout_' . $transient;
 			$transient = '_transient_' . $transient;
-			if ( false === get_option( $transient ) ) {
+			if ( false === get::option( $transient ) ) {
 				$autoload = 'yes';
 				if ( $expiration ) {
 					$autoload = 'no';

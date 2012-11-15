@@ -53,7 +53,7 @@
 					
 								<select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
 									<option value="<?= BASE_URL ?>action/render_admin/update_page/default/<?= $get_page->id ?>" <? if ($get_page->template == 'default') echo 'selected' ?>>Default</option>
-									<? $templates = get_templates( get_option( 'appearance' ) ); 
+									<? $templates = get_templates( get::option( 'appearance' ) );
 									foreach ( $templates as $template ):
 									?>
 										<option value="<?= BASE_URL ?>action/render_admin/update_page/<?= $template->template_id ?>/<?= $get_page->id ?>" <? selected( $get_page->template, $template->template_id ); ?>><?= $template->template_name ?></option>
@@ -105,7 +105,7 @@
 
 								if ( $get_page->template != '' && $get_page->template != 'default' ) {
 									
-									$template = THEMES_DIR.'/'.get_option('appearance').'/'.$get_page->template.'.php';
+									$template = THEMES_DIR.'/'.get::option('appearance').'/'.$get_page->template.'.php';
 
 									// Load the saved template, then if the user changes override the saved template.
 									if( file_exists( $template ))
@@ -117,7 +117,7 @@
 
 											$data = YAML::load( $scaffold_data );
 
-											$scaffold = new Scaffold();
+											$scaffold = new scaffold();
 
 											$scaffold->populateThis( $data, $get_page_meta );
 										}
@@ -127,7 +127,7 @@
 										<br/><br/>
 										<div class="alert-message warning">
 											<p><strong>A template file appears to be a missing from your theme:</strong> <br />
-											<?= '/tentacle/themes/'.get_option('appearance').'/'.$get_page->template.'.php'?></p>
+											<?= '/tentacle/themes/'.get::option('appearance').'/'.$get_page->template.'.php'?></p>
 										</div>
 										
 									<? }

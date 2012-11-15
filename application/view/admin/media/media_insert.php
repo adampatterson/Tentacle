@@ -134,16 +134,16 @@
 												<label class="control-label">Size</label>
 												<div class="controls">
 													<label class="radio">
-														<input type="radio" name="image_size" class="image_size" value="<?= get_option('image_thumb_size_w'); ?>" checked="" />
-															Thumbnail ( <?= get_option('image_thumb_size_w').' x '.get_option('image_thumb_size_h'); ?> )
+														<input type="radio" name="image_size" class="image_size" value="<?= get::option('image_thumb_size_w'); ?>" checked="" />
+															Thumbnail ( <?= get::option('image_thumb_size_w').' x '.get::option('image_thumb_size_h'); ?> )
 													</label>
 													<label class="radio">
-														<input type="radio" name="image_size" class="image_size" value="<?= get_option('image_medium_size_w'); ?>" />
-														Medium ( <?= get_option('image_medium_size_w').' x '.get_option('image_medium_size_h'); ?> )
+														<input type="radio" name="image_size" class="image_size" value="<?= get::option('image_medium_size_w'); ?>" />
+														Medium ( <?= get::option('image_medium_size_w').' x '.get::option('image_medium_size_h'); ?> )
 													</label>
 													<label class="radio">
-														<input type="radio" name="image_size" class="image_size" value="<?= get_option('image_large_size_w'); ?>" />
-														Large ( <?= get_option('image_large_size_w').' x '.get_option('image_large_size_h'); ?> )
+														<input type="radio" name="image_size" class="image_size" value="<?= get::option('image_large_size_w'); ?>" />
+														Large ( <?= get::option('image_large_size_w').' x '.get::option('image_large_size_h'); ?> )
 													</label>
 													<label class="radio">
 														<input type="radio" name="image_size" class="image_size" value="" />

@@ -9,7 +9,7 @@
 					<h2>Google Analytics UID</h2>
 				<div class="clearfix">
 					<div class="input">
-						<input type="text" value="<?= get_option('ga_uiddBw5CvburAxi537Rp9qi5uG2174Vb6JwHwIRwPSLIK8'); ?>" id="ga_uid" name="ga_uid" size="50">
+						<input type="text" value="<?= get::option('ga_uiddBw5CvburAxi537Rp9qi5uG2174Vb6JwHwIRwPSLIK8'); ?>" id="ga_uid" name="ga_uid" size="50">
 						<span class="help-block">The UID is needed for Google Analytics to log your website stats. If you are having trouble finding your UID {click here}.</span>
 					</div>
 				</div>
@@ -20,7 +20,7 @@
 				<div class="clearfix">
 					<label for="verification_services_google">Google Webmaster Tools</label>
 					<div class="input">
-						<input size="50" name="verification_services_google" value="<?= get_option('verification_services_google'); ?>" type="text">
+						<input size="50" name="verification_services_google" value="<?= get::option('verification_services_google'); ?>" type="text">
 						<span class="help-block">Example:
 							<code>
 								&lt;meta name='google-site-verification' content='<strong><span class="red">dBw5CvburAxi537Rp9qi5uG2174Vb6JwHwIRwPSLIK8</span></strong>'&gt;
@@ -50,7 +50,7 @@
 				<h2>Meta Description</h2>
 				<div class="clearfix">
 					<div class="input">
-						<textarea rows="5" cols="40" name="meta_description" placeholder='Enter your meta description'><?= get_option('meta_description'); ?></textarea>
+						<textarea rows="5" cols="40" name="meta_description" placeholder='Enter your meta description'><?= get::option('meta_description'); ?></textarea>
 					</div>
 				</div>
 			</div>

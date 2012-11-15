@@ -163,7 +163,7 @@ class action_controller {
 		$core_update = $serpent->get_core();
 		
 		// Make sure some one did not rewquest this URL directly.
-		if ( is_update( TENTACLE_VERSION, $core_update->version ) )
+		if ( is::update( TENTACLE_VERSION, $core_update->version ) )
 		{
 			// Download and update Core Files.
 			upgrade::core( $core_update->download );

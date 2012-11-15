@@ -6,7 +6,7 @@ class serpent_model {
 		
 		$scc = stream_context_create( array( 'http' => array( 'timeout' => CHECK_TIMEOUT ) ) );
 
-		$version = get_url_contents('http://api.tentaclecms.com/get/core/');
+		$version = get::url_contents('http://api.tentaclecms.com/get/core/');
 	
 		return json_decode( $version );
 	}
@@ -17,7 +17,7 @@ class serpent_model {
 		
 		$scc = stream_context_create( array( 'http' => array( 'timeout' => CHECK_TIMEOUT ) ) );
 
-		$themes = get_url_contents( 'http://api.tentaclecms.com/get/themes/'.$single );
+		$themes = get::url_contents( 'http://api.tentaclecms.com/get/themes/'.$single );
 	
 		return json_decode( $themes );
 	}
@@ -28,7 +28,7 @@ class serpent_model {
 		
 		$scc = stream_context_create( array( 'http' => array( 'timeout' => CHECK_TIMEOUT ) ) );
 		
-		$modules = get_url_contents( 'http://api.tentaclecms.com/get/plugins/'.$single );
+		$modules = get::url_contents( 'http://api.tentaclecms.com/get/plugins/'.$single );
 
 		return json_decode( $modules );
 	}
