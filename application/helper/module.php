@@ -2,7 +2,6 @@
 /**
 * File: Module
 */
-load::library('YAML');
 
 /**
 * Function: init_extensions
