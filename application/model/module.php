@@ -53,4 +53,20 @@ class module_model
             return false;
         endif;
     }
+
+    // look up a URI from the rout.
+    public function navigation( $rout = '' ) {
+        $trigger 		= Trigger::current();
+
+        $subnav["settings"] = $trigger->filter($subnav["settings"], "settings_nav");
+
+        foreach ($subnav["settings"] as $key => $value) {
+            $subnav["settings"][$key] = array(
+                'title'     => $value['title'],
+                'rout'      => $value['rout'],
+                'uri'       => $value['uri']
+            );
+        }
+        return $subnav["settings"];
+    }
 }
