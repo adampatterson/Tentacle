@@ -116,25 +116,10 @@
 								<p class="wysiwyg">
 									<textarea id="Content" name="content" rows="15" cols="80" class="editor"></textarea>
 								</p>
-
-
-                            <script type="text/javascript">
-                                $(document).ready(function() {
-                                    $('#myButton').click(function(e) {
-                                        e.preventDefault();
-                                        $('#myModal').reveal();
-                                    });
-                                });
-                            </script>
-
-                            <a href="#" id="myButton" >Click Me For A Modal</a>
-
-                            <div id="myModal" class="reveal-modal">
-                                <h1>Modal Title</h1>
-                                <p>Any content could go in here.</p>
-                                <a class="close-reveal-modal">&#215;</a>
-                            </div>
-
+								<? /* 
+   	                         	<a href="#" id="myButton" >Click Me For A Modal</a>
+								<iframe id="myModal" class="reveal-modal" src="<?= ADMIN ?>/media_insert"></iframe>
+								*/ ?>
 							<? else: ?>
 								<p>
 									<textarea id="code" name="content" cols="40" rows="5" placeholder='Content'></textarea>

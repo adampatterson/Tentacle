@@ -34,6 +34,14 @@
             background-image: url(<?= ADMIN_IMG ?>editor/image.png);
         }
     </style>
+	<script type="text/javascript">
+        $(document).ready(function() {
+            $('#myButton').click(function(e) {
+                e.preventDefault();
+                $('#myModal').reveal();
+            });
+        });
+    </script>
     <script type="text/javascript">
         $.ui.editor.registerUi({
 
@@ -58,6 +66,7 @@
                         icon: 'ui-icon-media-modal',
                         click: function() {
                             this.show();
+							//$('#myModal').reveal();
                         }
                     });
                 },
@@ -85,8 +94,8 @@
                         resizable: true,
                         modal: true,
                         closeOnEscape: true,
-                        minWidth: 695,
-                        minHeight: 440,
+                        minWidth: 780,
+                        minHeight: 575,
                         dialogClass: ui.options.baseClass + '-dialog',
                         resize: function() {
                             ui.resizeIframe();
