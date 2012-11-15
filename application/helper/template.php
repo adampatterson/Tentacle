@@ -78,11 +78,10 @@
 		// Separates classes with a single space, collates classes for body element
 		echo 'class="'.route::controller().' '. route::method().' '.join( ' ', explode("/", URI ) ).'"';
 		
-		
-		
 		//echo 'class="' . join( ' ', get_body_class( $class ) ) . '"';
 	}
-	
+
+
 	/**
 	 * Converts the URI for a post into a class
 	 *
@@ -360,4 +359,3 @@
     function add_header () {}
     function add_sidebar () {}
     function add_footer () {}
-?>

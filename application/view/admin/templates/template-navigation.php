@@ -72,29 +72,21 @@
 				<ul class="dropdown-menu">
 				<li><a class="<? current_page('admin/settings_modules'); ?>" href="<?= ADMIN ?>settings_modules/">Manage Modules</a></li>
 				<li><a href="#">Add a new Module</a></li>
-				<li class="divider"></li>
+<!--				<li class="divider"></li>-->
 				<?
-				$trigger= Trigger::current();
+                /*
+				$modules = load::model('module');
 
-				$subnav["settings"] = $trigger->filter($subnav["settings"], "settings_nav");
+                    $subnav = $modules->navigation();
 
-				if($subnav["settings"] != null) {
+					if (isset($subnav)):
 
-					foreach ($subnav["settings"] as $key => $value) {
-			 			$subnav["settings"][$key] = array('title' => $value['title'], 'rout' => $key);
-					}
+                        foreach ( $subnav as $sub_page ):
+                            echo '<li><a href="'.ADMIN.'settings_modules/'.$sub_page['rout'].'">'.$sub_page['title'].'</a></li>';
+                        endforeach;
 
-					if (isset($subnav["settings"])) { ?>
-			
-			               <?
-							foreach ( $subnav["settings"] as $sub_page ) {
-								echo '<li><a href="'.$sub_page['rout'].'">'.$sub_page['title'].'</a></li>';
-							}
-							?>
-			     
-					<? }
-				}  ?>
-				
+				    endif;
+                */ ?>
 				</ul>
 			</li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes <b class="caret"></b></a>

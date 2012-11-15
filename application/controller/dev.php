@@ -180,15 +180,9 @@ button:
 
 
     public function module_nav () {
-		$trigger 		= Trigger::current();
+		$module = load::model('module');
 
-		$subnav["settings"] = $trigger->filter($subnav["settings"], "settings_nav");
-
-		foreach ($subnav["settings"] as $key => $value) {
- 			$subnav["settings"][$key] = array('title' => $value['title'], 'href' => $value['href'], 'rout' => $key);
-		}
-		clean_out( $subnav["settings"] );
-		
+		clean_out($module->navigation());
     }
 
 	public function email()

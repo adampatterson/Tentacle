@@ -671,43 +671,4 @@ class tentacle
 
 		    return $tmp;
 		}
-
-
-		/**
-		* Function: get_tracking_array
-		* Get an array from the query string, this can be used for tracking downloads or other statistics. 
-		*
-		* Parameters:
-		*	  $url - String
-		* 	
-		* Returns:
-		*     $query_array - Array
-		*/
-		function get_tracking_array(  )
-		{
-            $url = parse_url($_SERVER['REQUEST_URI']);
-
-            $query_string = $url['query'];
-
-			if ( $query_string != '' )
-			{
-
-		  	  $query_array = array();
-
-				$raw_query = explode( '&', $query_string );
-
-			    foreach( $raw_query as $key => $key_value )
-				{
-
-					$raw_value = explode( '=', $key_value );
-
-					$query_array[$raw_value[0]] = $raw_value[1];
-			    }
-			    return $query_array;
-			} else {
-				return false;
-			}
-
-		}
-
 ?>

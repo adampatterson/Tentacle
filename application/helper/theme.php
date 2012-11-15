@@ -56,7 +56,7 @@ class theme {
 	        require(THEMES_DIR.ACTIVE_THEME."/$part.php");
 	        return FALSE;
 	    } // else
-	} // END load_part
+	}
 
 
 	// Model

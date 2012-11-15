@@ -17,7 +17,7 @@
 function process_image( $file = '', $insert = FALSE )
 {
 	//get the file array
-	//$file = get_tracking_array( );
+	//$file = get::tracking_array( );
 
     $file_path = IMAGE_DIR.$file;
 
