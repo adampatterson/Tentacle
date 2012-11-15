@@ -537,9 +537,9 @@ class admin_controller {
 	/**
 	* Module Settings
 	* ----------------------------------------------------------------------------------------------*/
-	public function settings_modules ()
+	public function settings_modules ( $module_view = false )
 	{
-		tentacle::valid_user();
+        tentacle::valid_user();
 	
 		$serpent = load::model( 'serpent' );
 		$serpent_modules = $serpent->get_module( );
@@ -547,7 +547,11 @@ class admin_controller {
 		$modules = load::model( 'module' );
 		$get_module = $modules->get();
 
-		load::view ('admin/settings/settings_modules', array( 'serpent_modules'=>$serpent_modules, 'modules'=>$get_module ) );
+        if ( $module_view == true ) {
+            load::module_view($module_view);
+        } else {
+            load::view ('admin/settings/settings_modules', array( 'serpent_modules'=>$serpent_modules, 'modules'=>$get_module ) );
+        }
 	}
 
 	/**
