@@ -23,6 +23,8 @@ class cache
 	* Returns:
 	*	Object
 	*/
+
+
 	public function set( $key, $data, $expire='+60 minutes' )
 	{
 		$cache['expire'] = strtotime($expire);

@@ -116,10 +116,13 @@
 								<p class="wysiwyg">
 									<textarea id="Content" name="content" rows="15" cols="80" class="editor"></textarea>
 								</p>
-								<? /* 
+								<? /*
    	                         	<a href="#" id="myButton" >Click Me For A Modal</a>
-								<iframe id="myModal" class="reveal-modal" src="<?= ADMIN ?>/media_insert"></iframe>
-								*/ ?>
+								<div id="myModal" class="reveal-modal">
+									<a class="close-reveal-modal">&#215;</a>
+									<iframe width="720" height="550" src="<?= ADMIN ?>/media_insert"></iframe>
+								</div>
+								 */ ?>
 							<? else: ?>
 								<p>
 									<textarea id="code" name="content" cols="40" rows="5" placeholder='Content'></textarea>

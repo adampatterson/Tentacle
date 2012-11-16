@@ -4,39 +4,12 @@ class dev_controller {
 
 	public function index()
 	{
-		//include TENTACLE_LIB.'chromephp/ChromePhp.php';
-		
-		//ChromePhp::log('hello world');
-		//ChromePhp::log($_SERVER);
 
-		// using labels
-		foreach ($_SERVER as $key => $value)
-		{
-		    //ChromePhp::log($key, $value);
-		}
-
-		// warnings and errors
-		//ChromePhp::warn('this is a warning');
-		//ChromePhp::error('this is an error');
-
-		$array = array('one'=>1,'two'=>2,'three'=>3, 'four'=>4, 'five'=>5, 'six'=>6);
-
-		$object = (object) $array;
-		
-		clean_out( $object );
-		
-		$cache = new cache();
-		
-		//$cache->set( 'test', $object, '+30 minutes' );
-		//$cache->get('test');
-		var_dump($cache->look_up('dashboard'));
 	}
 
 	public function stats()
 	{
 		load::helper('serverstats');
-
-		
 	}
 
 	public function speed($test='')

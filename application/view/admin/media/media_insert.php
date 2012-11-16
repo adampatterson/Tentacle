@@ -1,19 +1,7 @@
 <? load::view('admin/templates/template-modal-header', array('title' => 'Insert media', 'assets'=> array('jupload') ) );?>
 
 <script type="text/javascript">
-
 	$(document).ready(function(){
-
-		//$('#none').click(function( none) {
-		//	$( none.target ).closest('#link_url').val('')
-		//	$('#link_url').val('');
-		//	return false;
-		//});
-		
-		//$('#file').click(function() {	
-		//	$('#link_url').val('http://placehold.it/200x200');
-		//	return false;
-		//});
 
 		$('#insert').click(function() {
 

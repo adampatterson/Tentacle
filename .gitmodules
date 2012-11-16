@@ -4,21 +4,12 @@
 [submodule "modules/ndoc"]
 	path = modules/ndoc
 	url = git@github.com:adampatterson/tentacle-ndoc.git
-[submodule "themes/duplex"]
-	path = themes/duplex
-	url = git@github.com:adampatterson/tentacle-duplex.git
 [submodule "themes/immersion"]
 	path = themes/immersion
 	url = git@github.com:adampatterson/tentacle-immersion.git
 [submodule "themes/organic_structure"]
 	path = themes/organic_structure
 	url = git@github.com:adampatterson/tentacle-organic-structure.git
-[submodule "themes/redux"]
-	path = themes/redux
-	url = git@github.com:adampatterson/tentacle-redux.git
-[submodule "themes/repro"]
-	path = themes/repro
-	url = git@github.com:adampatterson/tentacle-repro.git
 [submodule "themes/tentacle"]
 	path = themes/tentacle
 	url = git@github.com:adampatterson/tentacle-default.git

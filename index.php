@@ -11,8 +11,8 @@
 * Tentacle CMS Copyright:
 *     Copyright (c) 2012 Tentacle CMS - Adam Patterson
 */
-if (version_compare(PHP_VERSION, "5.2.0", "<"))
-    exit("Tentacle CMS requires PHP 5.2.0 or greater.");
+if (version_compare(PHP_VERSION, "5.3.3", "<"))
+    exit("Tentacle CMS requires PHP 5.3.3 or greater.");
 
 error_reporting(E_STRICT|E_ALL);
 
