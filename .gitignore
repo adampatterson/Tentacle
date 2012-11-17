@@ -4,8 +4,6 @@
 /.project
 /tentacle/admin/.sass-cache/
 /application/config/deployment/db.php
-Tentacle Resource
-_Tentacle Resource
 .idea/
 .settings/
 tentacle/admin/css/bootstrap-2/
@@ -22,5 +20,3 @@ storage/images/*
 storage/temp/*
 storage/upgrade/*
 /manifest.yml
-themes/marketing
-/tentacle/js/raptor/theme/
