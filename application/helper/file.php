@@ -100,9 +100,14 @@ function string_to_parts($file) {
 		$file_path .= $part.'/';
 	}
 	
-	$file_clean['path'] = $file_path;
-	$file_clean['name'] = $file_name;
-	$file_clean['full'] = $file_path.$file_name;
+	$file_clean['path'] 			= $file_path;
+	$file_clean['name'] 			= $file_name;
+	$file_clean['full'] 			= $file_path.$file_name;
+	
+	$name_parts 					= explode('.', $file_name );
+	
+	$file_clean['file_name'] 		= $name_parts[0];
+	$file_clean['extension'] 		= $name_parts[1];
 
 	return $file_clean;
 }
