@@ -20,40 +20,44 @@ if(!defined('SCAFFOLD')):
 	<div class="container">
 		<div class="bump">&nbsp;</div>
 					
-			<div class="row bump">
+			<div class="row">
+				
 				<div class="span6">
 					<h1>Thanks!</h1>
-					<p class="lead"><br />Click <a href="http://tentaclecms.com/blog/downloads/tentacle-beta">here</a> if your download does not automatically start.</p>
-					<p class="lead">Tentacle CMS is a new, and with that we rely of your feedback. If you have any issues at all please contact ups, or Submit an issue buy following <a href="https://github.com/adampatterson/Tentacle/wiki/Reporting-a-bug">these steps</a>.</p>
-			
-				
-				<div class="row">
-
-					<div class="span3">
-						<h2>Requirements</h2>
-						<ul>
-							<li>PHP 5.3 or greater</li>
-							<li>MySQL with PDO compatible</li>
-							<li>cURL</li>
-							<li>Apache Mod URL</li>
-						</ul>
+					<div class="alert alert-error">
+					  <strong>Notice!</strong> We are in early beta, because of this updates are constant and errors might be a common occurrence.
 					</div>
 					
-					<div class="span3">
-						<h2>Installation</h2>
-						<ul>
-							<li>Download</li>
-							<li>Extract the Tentacle archive and upload the contents to your web server.</li>
-							<li>Navigate to your application in a web browser.</li>
-							<li>Follow the setup!</li>
-						</ul>
+					<p class="lead">Click <a href="http://tentaclecms.com/blog/downloads/tentacle-beta">here</a> if your download does not automatically start.</p>
+					<p class="lead">Tentacle CMS is a new, and with that we rely of your feedback. If you have any issues at all please contact ups, or Submit an issue buy following <a href="https://github.com/adampatterson/Tentacle/wiki/Reporting-a-bug">these steps</a>.</p>
+				
+					<div class="row">
+
+						<div class="span3">
+							<h2>Requirements</h2>
+							<ul>
+								<li>PHP 5.3 or greater</li>
+								<li>MySQL with PDO compatible</li>
+								<li>cURL</li>
+								<li>Apache Mod URL</li>
+							</ul>
+						</div>
+					
+						<div class="span3">
+							<h2>Installation</h2>
+							<ul>
+								<li>Download</li>
+								<li>Extract the Tentacle archive and upload the contents to your web server.</li>
+								<li>Navigate to your application in a web browser.</li>
+								<li>Follow the setup!</li>
+							</ul>
+						</div>
 					</div>
-				</div>
 		
 				</div>
 				<div class="span5 offset1">
 					<h1>Keep in touch</h1>
-					<p class="lead"><br />Get the lowdown on announcements and cool new features.</p>
+					<p class="lead">Get the lowdown on announcements and cool new features.</p>
 	
 					<form method="post" action="http://www.industrymailout.com/Industry/SubscribeRedirect.aspx" >
 
