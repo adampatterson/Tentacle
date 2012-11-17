@@ -25,6 +25,7 @@
 	<script type="text/javascript" src="<?= ADMIN_JS; ?>jquery.inputtags.js"></script>
 	<script type="text/javascript" src="<?=ADMIN_JS; ?>notifications.js"></script>
 	<script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-dropdown.js"></script>
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-tab.js"></script>
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
