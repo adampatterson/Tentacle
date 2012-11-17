@@ -5,17 +5,31 @@
 
 		$('#insert').click(function() {
 
-			var title				    = $('#title').val();
-			var alt_text				= $('#alt_text').val();
-			var caption				    = $('#caption').val();
-			var link_url				= $('#link_url').val();
-            var image_size              = $('.image_size:checked').val();
+			var title				    = $('.title').val();
+			var alt_text				= $('.alt_text').val();
+			var caption				    = $('.caption').val();
+			var link_url				= $('.link_url').val();
+
+			var filename				= $('.filename').val();
+			var filenextension			= $('.extension').val();
+			
+            var size		          	= $('.image_size:checked').val();
+			
+			if ( size != '' ) {
+				var image_size			= '_'+size;
+			} else {
+				var image_size			= '';
+			};
+
+			var image_url				= '<?= IMAGE_URL ?>' + filename + image_size + '.' + filenextension;
 
 			if (!link_url) {
-                var HtmlLink = '<img src="http://placehold.it/200x200" alt="' + alt_text + '" title="' + title + '"  />';
+                var HtmlLink = '<img src="'+ image_url +'" alt="' + alt_text + '" title="' + title + '"  />';
             } else {
-                var HtmlLink = '<a href="' + link_url + '"><img src="http://placehold.it/200x200" alt="' + alt_text + '" title="' + title + '" /></a>';
+                var HtmlLink = '<a href="' + link_url + '"><img src="'+ image_url +'" alt="' + alt_text + '" title="' + title + '" /></a>';
             }
+
+			console.log(image_url);
 
             var win = window.dialogArguments || opener || parent || top;
             win.send_to_editor(HtmlLink);
@@ -37,23 +51,15 @@
 			<div class="tab-pane active" id="library">
 				
 				<div class="accordion" id="accordion">
-					<? foreach ( $media as $image ): ?>
-					<? $file_meta = explode('.', $image->name ); 
-
-					//ChromePHP::log($file_meta);
-
-					IMAGE_DIR.$file_meta[0].'_sq'.'.'.$file_meta[1];
-
-					IMAGE_T;
-					IMAGE_M;
-					IMAGE_L;
-					?>
+					<? foreach ( $media as $image ):
+					
+					$file_meta = string_to_parts($image->name); ?>
 					<div class="accordion-group">
 						<div class="accordion-heading">
 							<div class="row">
 								<div class="span1">
 									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?=$image->id ?>" href="#collapse<?=$image->id ?>">
-										<img src="<?= IMAGE_URL.$file_meta[0].'_sq'.'.'.$file_meta[1]; ?>" class="thumbnail" width="30" height="30" />
+										<img src="<?= IMAGE_URL.$file_meta['file_name'].'_sq'.'.'.$file_meta['extension']; ?>" class="thumbnail" width="30" height="30" />
 									</a>
 								</div>
 								<div class="span4">
@@ -66,7 +72,7 @@
 
 								<div class="row">
 									<div class="span3">
-										<img src="<?= IMAGE_URL.$file_meta[0].'_sq'.'.'.$file_meta[1]; ?>" class="thumbnail"/>
+										<img src="<?= IMAGE_URL.$file_meta['file_name'].'_sq'.'.'.$file_meta['extension']; ?>" class="thumbnail"/>
 									</div>
 									<div class="span4 well">
 										<dl class="dl-horizontal">
@@ -84,28 +90,31 @@
 								</div>
 								<div class="row">
 									<form action="<?= BASE_URL ?>action/update_media/<?= $image->id ?>" method="post" class="form-horizontal" name="<?= $image->slug ?>">
-										<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
+										<input type="hidden" name="history"  value="<?= CURRENT_PAGE ?>"/>
+										<input type="hidden" name="filename" class="filename" value="<?=$file_meta['file_name'] ?>" />
+										<input type="hidden" name="extension" class="extension" value="<?=$file_meta['extension'] ?>" />
+										
 										<fieldset>
 											<h3>&nbsp;</h3>
 
 											<div class="control-group">
 												<label class="control-label" for="title">Title</label>
 												<div class="controls">
-													<input type="text" class="span5" id="title" name="title" value="<?=$image->title ?>">
+													<input type="text" class="span5 title" name="title" value="<?=$image->title ?>">
 												</div>
 											</div>
 
 											<div class="control-group">
 												<label class="control-label" for="alt_text">Alternate Text</label>
 												<div class="controls">
-													<input type="text" class="span5" id="alt_text" name="alt_text" value="<?=$image->alt ?>" >
+													<input type="text" class="span5 alt_text" name="alt_text" value="<?=$image->alt ?>" >
 												</div>
 											</div>
 
 											<div class="control-group">
 												<label class="control-label" for="caption">Caption</label>
 												<div class="controls">
-													<input type="text" class="span5" id="caption" name="caption" value="<?= $image->caption ?>">
+													<input type="text" class="span5 caption" name="caption" value="<?= $image->caption ?>">
 												</div>
 											</div>
 
@@ -113,7 +122,7 @@
 												<label class="control-label" for="link_url">Link URL</label>
 												<div class="controls">
 													<div class="input-append">
-														<input type="text" class="span3" id="link_url" name="link_url" value="<?= $image->link ?>" ><button class="btn" type="button" id="none">None</button><button class="btn" type="button" id="file">File</button>
+														<input type="text" class="span3 link_url" name="link_url" value="<?= $image->link ?>" ><button class="btn" type="button" id="none">None</button><button class="btn" type="button" id="file">File</button>
 										             </div>
 												</div>
 											</div>
