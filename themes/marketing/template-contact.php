@@ -21,7 +21,7 @@ if( !defined( 'SCAFFOLD' ) ):
 		$email	 			= $_POST['email'];
 		$message		 	= $_POST['message'];
 	
-		$to 				= get_option('admin_email');
+		$to 				= get::option('admin_email');
 	
 		$messageBody .= 	"<h4>From:</h4> ".$name ." @ <a href='$email'>$email</a>";
 
