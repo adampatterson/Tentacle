@@ -7,7 +7,11 @@ class Barnacles extends Modules {
     }
 
     public function settings_nav($navs) {
-    	$navs["barnacle_settings"] = array("title" => "Barnacles");
+    	$navs["barnacle_settings"] = array(
+            'title' => 'Barnacles',
+            'rout'   => 'barnacle_settings',
+            'uri'   => 'barnacles/view'
+        );
 
     	return $navs;
     }
