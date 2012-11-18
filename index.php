@@ -134,6 +134,12 @@ if ( !defined( 'SETUP' ) && strpos( BASE_URI,'install' ) !== true ) {
 	define( 'CONFIGURATION' ,'setup' );	
 }
 
+/*
+if ( DEBUG ) {
+	require_once('application/library/ChromePhp/PhpConsole.php');
+	PhpConsole::start();
+}
+*/
 // End of configuration
 //----------------------------------------------------------------------------------------------
 define('DINGO',1);
