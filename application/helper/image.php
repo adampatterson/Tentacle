@@ -16,87 +16,61 @@
 */
 function process_image( $file = '', $insert = FALSE )
 {
-	//get the file array
-	//$file = get::tracking_array( );
-
     $file_path = IMAGE_DIR.$file;
 
-	$file_meta = explode('.', $file );	
-	
+	$meta = explode('.', $file );
+
     if( file_exists( $file_path ))
-    {         
-		$image = new image( $file_path );
-		
-		if ($image->width > $image->height ) {
-			// Thumb
-			$image = new image( $file_path );
-			
-			$image->resize( IMAGE_T,NULL );
-			
-			$size = '_'.IMAGE_T;
+    {
+		$i = new image( $file_path );
 
-            $image->save( IMAGE_DIR.$file_meta[0].$size.'.'.$file_meta[1] );
-            $image->close();
+		// Thumb
+			$thumb = new image( $file_path );
 
-			// Medium
-			$image = new image( $file_path );
-			
-			$image->resize( IMAGE_M, NULL );
-			
-			$size = '_'.IMAGE_M;
+			if ($i->width > $i->height ){
+				$thumb->resize( 100, 0 );
+			} else {
+				$thumb->resize( 0, 100 );
+			}
 
-            $image->save( IMAGE_DIR.$file_meta[0].$size.'.'.$file_meta[1] );
-            $image->close();
+			$thumb->save( IMAGE_DIR.$meta[0].'_100'.'.'.$meta[1] );
+			$thumb->close();
 
-			// Medium
-			$image = new image( $file_path );
-			
-			$image->resize( IMAGE_L,NULL );
-			
-			$size = '_'.IMAGE_L;
 
-            $image->save( IMAGE_DIR.$file_meta[0].$size.'.'.$file_meta[1] );
-            $image->close();
-		} else {
-			// Thumb
-			$image = new image( $file_path );
-			
-			$image->resize( NULL,IMAGE_T );
-			
-			$size = '_'.IMAGE_T;
+		// Medium
+			$medium = new image( $file_path );
 
-            $image->save( IMAGE_DIR.$file_meta[0].$size.'.'.$file_meta[1] );
-            $image->close();
+			if ($i->width > $i->height ) {
+				$medium->resize( 200, 0 );
+			}else{
+				$medium->resize( 0, 200 );
+			}
 
-			// Medium
-			$image = new image( $file_path );
-			
-			$image->resize(NULL,IMAGE_M);
-			
-			$size = '_'.IMAGE_M;
+			$medium->save( IMAGE_DIR.$meta[0].'_200'.'.'.$meta[1] );
+			$medium->close();
 
-            $image->save( IMAGE_DIR.$file_meta[0].$size.'.'.$file_meta[1] );
-            $image->close();
 
-			// Medium
-			$image = new image( $file_path );
-			
-			$image->resize(NULL,IMAGE_L);
-			
-			$size = '_'.IMAGE_L;
+		// Large
+			$large = new image( $file_path );
 
-            $image->save( IMAGE_DIR.$file_meta[0].$size.'.'.$file_meta[1] );
-            $image->close();
-		}
-			// Medium
-			$image = new image( $file_path );
-			
-			$image->dynamic_resize(IMAGE_T,IMAGE_T);
-			
-			$size = '_sq';
+			if ($i->width > $i->height ) {
+				$large->resize( 300,0 );
+			}else{
+				$large->resize( 0, 300 );
+			}
 
-            $image->save( IMAGE_DIR.$file_meta[0].$size.'.'.$file_meta[1] );
-            $image->close();
-    }
+			$large->save( IMAGE_DIR.$meta[0].'_300'.'.'.$meta[1] );
+			$large->close();
+
+		// Square
+			$square = new image( $file_path );
+
+			$square->square( 100 );
+
+			$square->save( IMAGE_DIR.$meta[0].'_sq.'.$meta[1] );
+			$square->close();
+    } else {
+		dingo_error("Image file not found: The image file ($file_path) could not be found.",E_USER_ERROR);
+	}
 } // Process
 ?>
