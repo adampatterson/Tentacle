@@ -160,7 +160,7 @@
 			    echo "</div>\n";
 			 }
 
-		require_once( APPLICATION.'/'.config::get('folder_helpers').'/exception.php' );
+		require_once( APP_ROOT.'/application/helper/exception.php' );
 	?>
 </div>
 </body>

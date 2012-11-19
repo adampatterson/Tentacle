@@ -29,21 +29,20 @@
 	  <li><strong>PHP Max Upload Size</strong> <?php echo $upload_max; ?></li>
 	  <li><strong>PHP Max Post Size</strong> <?php echo $post_max; ?></li>
 	  <li><strong>PHP Memory Limit</strong> <?php echo $memory_limit; ?></li>
-	
 		<?php foreach ($php_info['gd'] as $key => $val) {
-				if (!preg_match('/(WBMP|XBM|Freetype|T1Lib)/i', $key)) {
-					echo '<li>';
-					echo '<strong>'.$key.'</strong> ';
-					if (stripos($key, 'support') === false) {
-						echo $val;
+						if (preg_match('/(WBMP|XBM|Freetype|T1Lib)/i', $key)) {
+							echo '<li>';
+							echo '<strong>'.$key.'</strong> ';
+							if (stripos($key, 'support') === false) {
+								echo '<td>'.$val.'</td>';
+							}
+							else {					
+								echo colorify_value($val, 'enabled');
+							}
+								echo '</li>';
+						}
 					}
-					else {
-						echo colorify_value($val, 'enabled');
-					}
-					echo '</li>';
-				}
-			}
-		?>
+				?>
       <li><strong>Operating System:</strong> <?php echo PHP_OS ?></li>
       <?php
          if (array_key_exists('SERVER_SOFTWARE', $_SERVER))
