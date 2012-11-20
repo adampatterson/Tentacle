@@ -5,10 +5,10 @@ If you have found a bug in Tentacle then you can use the [Issue Tracker](https:/
 *Please try to provide us with as much information as possible.*
 
  + Tell us what you did to get the error/unexpected behaviour.
- + What did you expect to happen?</li>
- + Did you get an error message?</li>
- + What browser/operating system do you have?</li>
- + Who is hosting the site?</li>
+ + What did you expect to happen?
+ + Did you get an error message?
+ + What browser/operating system do you have?
+ + Who is hosting the site?
  + What version of PHP you are using.
  + What web-server (Apache, Cherokee, etc).
  + What operating system.
