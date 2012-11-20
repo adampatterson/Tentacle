@@ -91,7 +91,7 @@ function module_enabled( $name ) {
  *
  */
 function enabled_module() {
-    return unserialize(get::option('active_modules'));
+    return unserialize(ACTIVE_MODULES);
 }
 
 
@@ -142,13 +142,16 @@ class Modules {
 
 	public function get_modules(){
 		$context["enabled_modules"] = $context["disabled_modules"] = array();
-
-		if (!$open = @opendir(un_slash(TENTACLE_PLUGIN)))
-		    return trigger_error("Could not read modules directory.",E_USER_ERROR);
-
+		
 		$classes = array();
+		// Move to the modile folder
+		chdir(TENTACLE_PLUGIN);
+		$module_path = array_filter(glob('*'), 'is_dir');
 
-		while (($folder = readdir($open)) !== false) {
+		// Reset to the app root
+		chdir(APP_ROOT);
+				
+		foreach ($module_path as $folder) {
 		    if (!file_exists(TENTACLE_PLUGIN."/".$folder."/".$folder.".php") or !file_exists(TENTACLE_PLUGIN."/".$folder."/info.yaml")) continue;
 			
 			/*

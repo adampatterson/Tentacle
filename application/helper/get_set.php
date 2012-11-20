@@ -448,6 +448,8 @@ class is {
         } else {
             return true;
         }
+
+		return true;
     }
 
 

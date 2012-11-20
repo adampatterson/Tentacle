@@ -156,8 +156,11 @@ class bootstrap
 
         // Load the modules here so that we can set route's, and use the Hooks in all areas of the application.
         // Check to see if we are installed so we dont explode.
-        if (class_exists('get') && get::option('is_blog_installed')) {
-            load::library('YAML');
+        if (class_exists('get') && get::option('is_blog_installed')) {           			
+
+			define('ACTIVE_MODULES', get::option('active_modules'));
+
+			load::library('YAML');
             load::helper('module');
             init_extensions();
         }
