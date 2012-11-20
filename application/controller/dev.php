@@ -1,10 +1,18 @@
 <?php
 class dev_controller {	
 	
-
 	public function index()
 	{
 
+	}
+
+	public function image()
+	{
+		load::helper('image');
+
+		$file = 'AppFog.png';
+		
+		process_image($file);
 	}
 
 	public function stats()
@@ -1449,6 +1457,11 @@ button:
 	
 	public function module()
 	{
+        $module = new Modules();
+
+        var_dump($module->get_modules());
+
+		/*
 		# Prepare the trigger class
 		$trigger = Trigger::current();
 		
@@ -1458,239 +1471,7 @@ button:
 		
 		if($trigger->exists("preview"))
 			echo $trigger->filter($text,"preview");
-	}
-
-	public function dbug()
-	{
-		//trigger_error('broken');
-		//load::helper('file');
-		//trigger_error('Notice', E_USER_NOTICE);
-		//trigger_error('Error', E_USER_ERROR);
-		//trigger_error('Warning', E_USER_WARNING);
-	}
-	
-	public function search()
-	{
-		?>
-		<h1>Fulltext search engine example</h1>
-		<hr/>
-
-		<form method="post" action"searchengine.php">
-
-		<input type="text" name="SearchText" />
-		<input type="submit" value="Search" />
-		</form>
-
-		<hr/>
-
-		<?php
-
-		if ( isset( $_POST['SearchText'] ) )
-		{
-			$SearchText = $_POST['SearchText'];	
-
-		    print( "<h2>You searched for: $SearchText</h2>" );
-
-		    // Strip multiple whitespace
-		    $SearchText = preg_replace("(\s+)", " ", $SearchText );
-
-		    // Split text on whitespace
-		    $searchArray = explode( " ", $SearchText );
-
-		    // Get the total number of objects
-			$object_table = db('search_object');
-		
-			$object = $object_table->total();
-
-			$totalObjectCount = $object;
-
-		    // Search words can at most be present in 70% of the objects
-		    $stopWordFrequency = 0.7;
-
-		    $wordSQL = "";
-		    $i = 0;
-		    // Build the word query string
-		    foreach ( $searchArray as $searchWord )
-		    {
-		        if ( $i == 0 )
-		            $wordSQL .= "search_word.word='" .strToLower( $searchWord ) ."' ";
-		        else
-		            $wordSQL .= " OR search_word.word='" .strToLower( $searchWord ) ."' ";
-		        $i++;
-		    }
-
-            $objectRes = db::query("SELECT search_object.id, search_object_word_link.frequency
-		                    FROM search_object, search_object_word_link, search_word
-		                    WHERE search_object.id=search_object_word_link.object_id
-		                    AND search_word.id=search_object_word_link.word_id
-		                    AND ( $wordSQL )
-		                    AND ( ( search_word.object_count / $totalObjectCount ) < $stopWordFrequency )
-		                    ORDER BY search_object_word_link.frequency DESC");
-
-		    if ( count( $objectRes ) > 0 )
-		    {
-
-                $url_string = str_replace(' ', '_', $SearchText);
-
-                foreach ( $objectRes as $object )
-		        { ?>
-                    <a href="<?= BASE_URL ?>dev/search_view/<?= $object->id ?>/<?=$url_string ?>">Found object id: <?= $object->id ?> with frequency: <?= $object->frequency?></a> <br>
-                <? }
-		    }
-		    else
-		    {
-		        print( "Search did not return any results<br>" );
-		    }
-		}
-
-		?>
-         </br></br>
-		<a href="<?= BASE_URL ?>dev/search_additem/">Add item to the search database</a>
-		<?
-	}
-	
-	public function search_additem()
-	{
-		?>
-		<h1>Fulltext search engine example</h1>
-		<hr/>
-
-		Enter text to index:<br/>
-		<form method="post" action"<?= BASE_URL ?>dev/search_additem/">
-
-		<textarea name="IndexText" cols="50" rows="10"></textarea>
-		<br>
-		<input type="submit" value="Add item" />
-		</form>
-
-		<hr>
-
-		<?php
-		if ( isset( $_POST['IndexText'] ) )
-		{
-			$word_table = db('search_word');
-			$object_table = db('search_object');
-			$object_word_link = db('search_object_word_link');
-		
-		    $index_text = trim( strToLower( $_POST['IndexText'] )  );
-			
-			
-			$object = $object_table->insert(array(
-			  'data'=>$index_text
-			));
-			
-		    // Strip multiple whitespaces
-			$index_text = strip_tags( $index_text );
-		    $index_text = str_replace(".", " ", $index_text );
-		    $index_text = str_replace(",", " ", $index_text );
-		    $index_text = str_replace("'", " ", $index_text );
-            $index_text = str_replace("-", " ", $index_text );
-		    $index_text = str_replace("\"", " ", $index_text );
-
-		    $index_text = str_replace("\n", " ", $index_text );
-		    $index_text = str_replace("\r", " ", $index_text );
-		    $index_text = preg_replace("(\s+)", " ", $index_text );
-
-		    // Split text on whitespace
-		    $index_array = explode( " ", $index_text );
-
-		    // Count the total words in index text
-		    $totalWordCount = count( $index_array );
-
-		    // Count the number of instances of each word
-		    $wordCountArray = array_count_values( $index_array );
-
-		    // Strip double words
-		    $index_array = array_unique( $index_array );
-
-		    // Count unique words
-		    $uniqueWordCount = count( $index_array );
-
-		    // Print information about word count
-		    print( "Total number of words in text: $totalWordCount, unique words: $uniqueWordCount <br>" );
-
-		    foreach ( $index_array as $index_word )
-		    {
-
-				$word = $word_table->count()
-				              ->where('word','=',$index_word)
-				              ->execute();
-
-		        if ( $word == 1 )
-		        {
-					$object_count = $word_table->select('*')
-					              ->where('word','=',$index_word)
-					              ->execute();
-					
-					$update_word = $word_table->update(array(
-						'object_count'	=> $object_count[0]->object_count + 1,
-						))		
-						->where( 'word', '=', $index_word )
-						->execute();
-						
-					$word_id = $object_count[0]->id;
-					
-					echo $word_id.'<br />';
-		        }
-		        else
-		        {
-					$word = $word_table->insert(array(
-					  	'word'=>$index_word,
-						'object_count'=>'1'
-					));
-
-					$word_id = $word->id;
-					
-					echo $word_id.'<br />';
-		        }
-
-		        print( "Indexing word: '$index_word' <br>" );
-
-		        // Calculate the relevans ranking for this word
-		        $frequency = ( $wordCountArray[$index_word] / $totalWordCount );
-		        print( "Internal normalized word frequency: $frequency <br>" );
-		
-				$object_word_id = $object_word_link->insert(array(
-				  	'word_id'		=> $word_id,
-					'object_id'		=> $object->id,
-					'frequency' 	=> $frequency
-				));
-		    }
-		}
-
-		?>
-        </br></br>
-		<a href="<?= BASE_URL ?>dev/search/">Test search engine</a>
-	<?
-	}
-	
-	public function search_view( $id='', $SearchText='' )
-	{
-		echo '<h1>Fulltext search engine example</h1><hr/>';
-
-		if ( is_numeric( $id ) )
-		{
-
-            $objectRes = db::query("SELECT * FROM search_object WHERE id='$id'");
-
-		    print( "Contents of object $id:<br><hr>" );
-
-		    $data = $objectRes[0]->data;
-
-            $SearchText = str_replace('_', ' ', $SearchText);
-
-		    // highlight search result
-            echo '<pre>';
-		    print( preg_replace( "#($SearchText)#s", "<strong>$1</strong>", $data ) );
-            echo '</pre>';
-		    print( "<hr>" );
-		}
-
-		?>
-        </br></br>
-		<a href="<?= BASE_URL ?>dev/search_additem/">Add item to the search database</a>
-		<a href="<?= BASE_URL ?>dev/search/">Test search engine</a>
-		<?	
+		*/
 	}
 
 }// END Dev
