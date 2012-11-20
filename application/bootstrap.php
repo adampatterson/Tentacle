@@ -1,5 +1,4 @@
 <?php if(!defined('DINGO')){die('External Access to File Denied');}
-
 /**
  * Dingo Framework Bootstrap Class
  *
@@ -675,6 +674,29 @@ class load
     }
 
 
+    public static function module_view( $module, $path, $data = '' )
+    {
+        // If theme does not exist display error
+        if(!file_exists(TENTACLE_PLUGIN.$module."$path.php"))
+        {
+            dingo_error(E_USER_WARNING,'The requested module view ('.THEMES_DIR.ACTIVE_THEME."/$path.php) could not be found.");
+            return FALSE;
+        } // if
+        else
+        {
+            // If data is array, convert keys to variables
+
+            if(is_array($data))
+            {
+                extract($data, EXTR_OVERWRITE);
+            }
+
+            require(THEMES_DIR.ACTIVE_THEME."/$path.php");
+            return FALSE;
+        } // else
+    }
+
+
     // View
     // ---------------------------------------------------------------------------
     public static function view($view,$data = NULL)
@@ -882,13 +904,13 @@ function dingo_error($level,$message,$file='current file',$line='(unknown)',$bac
     {
         ob_clean();
 
-        if(file_exists(APPLICATION.'/view/error/fatal.php'))
+        if(file_exists(APP_ROOT.'/application/view/error/fatal.php'))
         {
-            require(APPLICATION.'/view/error/fatal.php');
+            require(APP_ROOT.'/application/view/error/fatal.php');
         }
         else
         {
-            echo 'Dingo could not locate error file at '.APPLICATION.'/view/error/fatal.php';
+            echo 'Dingo could not locate error file at '.APPLICATION.'/application/view/error/fatal.php';
         }
 
         ob_end_flush();
@@ -898,13 +920,13 @@ function dingo_error($level,$message,$file='current file',$line='(unknown)',$bac
     {
         ob_clean();
 
-        if(file_exists(APPLICATION.'/view/error/exception.php'))
+        if(file_exists(APP_ROOT.'/application/view/error/exception.php'))
         {
-            require(APPLICATION.'/view/error/exception.php');
+            require(APP_ROOT.'/application/view/error/exception.php');
         }
         else
         {
-            echo 'Dingo could not locate exception file at '.APPLICATION.'/view/error/exception.php';
+			echo 'Dingo could not locate exception file at '.APPLICATION.'/view/error/exception.php';
         }
 
         ob_end_flush();
@@ -912,9 +934,9 @@ function dingo_error($level,$message,$file='current file',$line='(unknown)',$bac
     }
     elseif(DEBUG)
     {
-        if(file_exists(APPLICATION.'/view/error/nonfatal.php'))
+        if(file_exists(APP_ROOT.'/application/view/error/nonfatal.php'))
         {
-            require(APPLICATION.'/view/error/nonfatal.php');
+            require(APP_ROOT.'/application/view/error/nonfatal.php');
         }
         else
         {
