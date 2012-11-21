@@ -739,13 +739,13 @@ class load
     public static function library($folder, $file ='')
     {
 
-        if( file_exists(APPLICATION.'/library/'.$folder.'/'.$folder.'.php' ) ):
-           return self::file(APPLICATION.'/library/'.$folder,$folder,'library');
-
-        elseif( file_exists(APPLICATION.'/library/'.$folder.'/'.$file.'.php' ) ):
+        if( file_exists(APPLICATION.'/library/'.$folder.'/'.$file.'.php' ) ):
            return self::file(APPLICATION.'/library/'.$folder,$file,'library');
-
-        else:
+		
+		elseif( file_exists(APPLICATION.'/library/'.$folder.'/'.$folder.'.php' ) ):
+           return self::file(APPLICATION.'/library/'.$folder,$folder,'library');
+        
+		else:
            return self::file(APPLICATION.'/library',$folder,'library');
         endif;
     }
@@ -972,6 +972,19 @@ function dingo_error_log($error)
     $fh = fopen(ERROR_LOG_FILE,'a');
     flock($fh,LOCK_EX);
     fwrite($fh,"[$date] {$error['prefix']}: {$error['message']} IN {$error['file']} ON LINE {$error['line']}\n");
+    flock($fh,LOCK_UN);
+    fclose($fh);
+}
+
+// Logging
+// ---------------------------------------------------------------------------
+function dev_log($message)
+{
+    $date = date('g:i A M d Y');
+
+    $fh = fopen(DEV_LOG_FILE,'a');
+    flock($fh,LOCK_EX);
+    fwrite($fh,"[$date] developers log: {$message}\n");
     flock($fh,LOCK_UN);
     fclose($fh);
 }
