@@ -3,7 +3,7 @@ class dev_controller {
 	
 	public function index()
 	{
-
+		
 	}
 
 	public function image()
@@ -955,6 +955,24 @@ button:
 	<?
 	}
 	
+	public function request()
+	{
+		if (function_exists('fopen')) {
+			echo 'fopen exists<br>';
+		}
+		
+		if (function_exists( 'fsockopen' )) {
+			echo 'fsockopen exists<br>';
+		}
+		
+		if (function_exists('fopen') || (function_exists('ini_get') && ini_get('allow_url_fopen') != true) ) {
+			echo 'fopen ini_get allow_url_fopen<br>';
+		}
+		
+		if ( function_exists('curl_init') && function_exists('curl_exec') ){
+			echo 'curl_init curl_exec exists<br>';
+		}
+	}
 	
 	public function counting()
 	{
@@ -1209,64 +1227,60 @@ button:
 			if (isset($app)) {
 			    $result = download_and_extract_zip($appname,$appdata);
 			}
-			else
-			{
+			else {
 			   // ob_end_clean();
 			 echo '<a href="?app=file" class="button">Unzip File!</a>';
 			 }
 		}
-		else
-		{
+		else {
 			echo 'Can not load the file.';			
 		}
 	}// END Function
 	
 	public function navigation ()
 	{
-			load::helper('navigation');
-
-			load::library('dbug');
-			
-			$args = array();
-			
-			define ( 'FRONT'		,'true' );
-
-			$page = load::model( 'page' );
-			$pages = $page->get( );
-			// Current URI to be used with .current page
-			$uri = URI;
-			
-			$get_page_level = 0;
-
-			$page_tree = $page->get_page_tree( $pages );
-			_e('<h3>Page Tree - $page->get_page_tree( $pages )</h3>');
-			//clean_out( $page_tree );
-			
-			$page_array = $page->get_page_children( 0, $pages, 0 );
-			_e('<h3>Page Array - $page->get_page_children( 0, $pages, 0 )</h3>');
-			//clean_out( $page_array );
-			
-			$page_object = (object)$page_array;
-			
-			$get_page_level = $page->get_page_level( $page_object, 'portfolio/design/' );
-			//_e('<h3>Page Array - $page->get_page_level( $page_object, \'portfolio/design/print/\' )</h3>');
-			//clean_out( $get_page_level );
-			
-			$get_page_by_level = $page->get_page_by_level( $page_object, $get_page_level );
-			_e('<h3>Page Array - $page->get_page_by_level( $page_object, $get_page_level )</h3>');
-			clean_out( $get_page_by_level );
-			
-			
-			$get_home = $page->get_home( );
-			
-			$get_flat_page_hierarchy = $page->get_flat_page_hierarchy( $pages );
-			
-			$get_descendant_ids = $page->get_descendant_ids( 3 );
-			
-			$page_children = $page->get_page_children( 0, $pages );
+		load::helper('navigation');
 		
-			// Generate the HTML output.
-			//nav_generate ( (array)$page_array, $args );
+		$args = array();
+		
+		define ( 'FRONT'		,'true' );
+
+		$page = load::model( 'page' );
+		$pages = $page->get( );
+		// Current URI to be used with .current page
+		$uri = URI;
+		
+		$get_page_level = 0;
+
+		$page_tree = $page->get_page_tree( $pages );
+		_e('<h3>Page Tree - $page->get_page_tree( $pages )</h3>');
+		//clean_out( $page_tree );
+		
+		$page_array = $page->get_page_children( 0, $pages, 0 );
+		_e('<h3>Page Array - $page->get_page_children( 0, $pages, 0 )</h3>');
+		//clean_out( $page_array );
+		
+		$page_object = (object)$page_array;
+		
+		$get_page_level = $page->get_page_level( $page_object, 'portfolio/design/' );
+		//_e('<h3>Page Array - $page->get_page_level( $page_object, \'portfolio/design/print/\' )</h3>');
+		//clean_out( $get_page_level );
+		
+		$get_page_by_level = $page->get_page_by_level( $page_object, $get_page_level );
+		_e('<h3>Page Array - $page->get_page_by_level( $page_object, $get_page_level )</h3>');
+		clean_out( $get_page_by_level );
+		
+		
+		$get_home = $page->get_home( );
+		
+		$get_flat_page_hierarchy = $page->get_flat_page_hierarchy( $pages );
+		
+		$get_descendant_ids = $page->get_descendant_ids( 3 );
+		
+		$page_children = $page->get_page_children( 0, $pages );
+	
+		// Generate the HTML output.
+		//nav_generate ( (array)$page_array, $args );
 
 	}
 	
@@ -1372,23 +1386,23 @@ button:
 	
 	public function chyrp_import()
 	{	
-		load::helper('import');
-	}// END Function
+		load::library('import');
+	}
 
 	public function tumblr_import()
 	{	
-		load::helper('import');
-	}// END Function
+		load::library('import');
+	}
 	
 	public function textpattern_import()
 	{	
-		load::helper('import');
-	}// END Function
+		load::library('import');
+	}
 	
 	public function movabletype_import()
 	{	
-		load::helper('import');
-	}// END Function
+		load::library('import');
+	}
 	
 	public function wordpress_import()
 	{	
@@ -1453,25 +1467,14 @@ button:
 			echo '<hr />';
 		}
 		
-	}// END Function
-	
-	public function module()
-	{
-        $module = new Modules();
-
-        var_dump($module->get_modules());
-
-		/*
-		# Prepare the trigger class
-		$trigger = Trigger::current();
-		
-		$text = '[ipsum] [test]';
-		
-		echo $text.'<hr>';
-		
-		if($trigger->exists("preview"))
-			echo $trigger->filter($text,"preview");
-		*/
 	}
-
-}// END Dev
+	
+	
+	public function serverstats()
+	{
+		load::helper('serverstats');
+		
+		$stats = build_server_stats(0, '', 'utf8');
+		var_dump($stats);
+	}
+}
