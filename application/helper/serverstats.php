@@ -146,7 +146,8 @@ function build_server_stats($is_install=1, $prev_version='', $charset='')
 		'upload_max_filesize' 	=> 'upload_max_filesize',
 		'safe_mode' 			=> 'safe_mode',
 		'memory_limit'			=> 'memory_limit',
-		'get_browser'			=> 'get_browser');
+		'get_browser'			=> 'get_browser',
+		'short_open_tag'		=> 'short_open_tag');
 
 		$classe_string = '';
 		foreach($classes as $name => $what)
