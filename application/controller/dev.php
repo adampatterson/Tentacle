@@ -840,13 +840,6 @@ button:
 	} // END DIFF
 
 
-	/**
-	* hash function
-	*
-	* @return void
-	* @author Adam Patterson
-	**/
-
 	public function hash () 
 	{
 		
@@ -854,7 +847,7 @@ button:
 		* create a hash from a users domain name an email address
 		* send hash to remote servier for verification.
 		*/
-		load::helper ('hash');
+		load::library('hash');
 
 		$hash = new Crypt_Hash('sha512');
 
@@ -864,23 +857,15 @@ button:
 		
 		$hash_string = '7oHB0wNEzMsXmeQStp3wHgFOutaT0in3FvVnZbXJ0NjV7rEJHfYBbfrsfPpnADPPQs0xka9tTJ+eZaTBbGN/ow==';
 		
-		$hash->setKey($email.$token);
+		$hash->setKey($email.$token);	
 		
 		if (base64_encode($hash->hash($domain)) == $hash_string )
 		{
-			echo 'We have a match!';
+			echo 'We have a match!<br>';
 		}
 
 	} // END Hash
  
-
-
-	/**
-	* smushit function
-	*
-	* @return void
-	* @author Adam Patterson
-	**/
 
 	public function smushit ()
 	{
@@ -905,13 +890,6 @@ button:
 	}// END SmushIt
 	
 
-	
-	/**
-	* gravatar function
-	*
-	* @return void
-	* @author Adam Patterson
-	**/
 	public function gravatar ()
 	{
 		load::helper ('gravatar');
@@ -946,6 +924,7 @@ button:
 	<?
 	}
 	
+	
 	public function request()
 	{
 		if (function_exists('fopen')) {
@@ -964,6 +943,7 @@ button:
 			echo 'curl_init curl_exec exists<br>';
 		}
 	}
+	
 	
 	public function counting()
 	{
