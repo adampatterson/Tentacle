@@ -1,6 +1,7 @@
 /_reference
 /application/config/development
 /log.txt
+/log-dev.txt
 /.project
 /tentacle/admin/.sass-cache/
 /application/config/deployment/db.php
