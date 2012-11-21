@@ -27,7 +27,7 @@ class user
 	
 	
 	public static function passwordhash(){
-		return new PasswordHash(8, TRUE);
+		return new PasswordHash(8, FALSE);
 	}
 	
 	// Valid
@@ -78,8 +78,6 @@ class user
 			{
 				$user = self::$table->select('*')
 									->where('id','=',$i)
-									->clause('AND')
-									->where('password','=',$password)
 									->limit(1)
 									->execute();
 			}
@@ -89,8 +87,6 @@ class user
 			{
 				$user = self::$table->select('*')
 									->where('username','=',$i)
-									->clause('AND')
-									->where('password','=',$password)
 									->limit(1)
 									->execute();
 			}
@@ -100,19 +96,20 @@ class user
 			{
 				$user = self::$table->select('*')
 									->where('email','=',$i)
-									->clause('AND')
-									->where('password','=',$password)
 									->limit(1)
 									->execute();
 			}
 			
-			// If valid login credentials
-			if(!empty($user[0]))
-			{
-				// If not banned, mark as valid
-				if($user[0]->type != 'banned')
+			$user = $user[0];
+			if (self::passwordhash()->CheckPassword($password, $user->password) ) {
+				// If valid login credentials
+				if(!empty($user))
 				{
-					$valid = TRUE;
+					// If not banned, mark as valid
+					if($user->type != 'banned')
+					{
+						$valid = TRUE;
+					}
 				}
 			}
 		}
@@ -176,58 +173,57 @@ class user
 		// Try to log in
 		if($i AND $password)
 		{
-			$hash = self::hash($password);
-			
-			if (self::passwordhash()->CheckPassword($password, $hash) ) {
-			
-				// Find by ID
-				if(preg_match('/^([0-9]+)$/',$i))
-				{
-					$user = self::$table->select('*')
-										->where('id','=',$i)
-										->limit(1)
-										->execute();
-				}
-			
-				// Find by Username
-				elseif(preg_match('/^([\-_ a-z0-9]+)$/is',$i))
-				{
-					$user = self::$table->select('*')
-										->where('username','=',$i)
-										->limit(1)
-										->execute();
-				}
-			
-				// Find by E-mail
-				else
-				{
-					$user = self::$table->select('*')
-										->where('email','=',$i)
-										->limit(1)
-										->execute();
-				}
-			}
-			
-			// If valid login credentials
-			if(!empty($user[0]))
+			// Find by ID
+			if(preg_match('/^([0-9]+)$/',$i))
 			{
-				$user = $user[0];
-				self::$_id = $user->id;
-				self::$_email = $user->email;
-				self::$_username = $user->username;
-				self::$_password = $user->password;
-				self::$_type = $user->type;
-				self::$_data = $user->data;
-				
-				// If not banned, mark as valid
-				if(self::$_type != 'banned')
+				$user = self::$table->select('*')
+									->where('id','=',$i)
+									->limit(1)
+									->execute();
+			}
+		
+			// Find by Username
+			elseif(preg_match('/^([\-_ a-z0-9]+)$/is',$i))
+			{
+				$user = self::$table->select('*')
+									->where('username','=',$i)
+									->limit(1)
+									->execute();
+			}
+		
+			// Find by E-mail
+			else
+			{
+				$user = self::$table->select('*')
+									->where('email','=',$i)
+									->limit(1)
+									->execute();
+			}
+		
+			$user = $user[0];
+	
+			if (self::passwordhash()->CheckPassword($password, $user->password) ) {
+				// If valid login credentials
+				if(!empty($user))
 				{
-					self::$_valid = TRUE;
-					session::set('user_email',self::$_email);
-					session::set('user_password',self::$_password);
+				
+					self::$_id = $user->id;
+					self::$_email = $user->email;
+					self::$_username = $user->username;
+					self::$_password = $user->password;
+					self::$_type = $user->type;
+					self::$_data = $user->data;
+
+					// If not banned, mark as valid
+					if(self::$_type != 'banned')
+					{
+						self::$_valid = TRUE;
+						session::set('user_email',self::$_email);
+						session::set('user_password',self::$_password);
+					}
 				}
 			}
-			
+
 			return self::$_valid;
 		}
 	}
@@ -490,7 +486,7 @@ class user_update
 	}
 	
 	public static function passwordhash(){
-		return new PasswordHash(8, TRUE);
+		return new PasswordHash(8, FALSE);
 	}
 	
 	// ID
