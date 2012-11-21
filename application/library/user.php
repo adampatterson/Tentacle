@@ -9,6 +9,8 @@
  * @docs            http://www.dingoframework.com/docs/user-library
  */
 
+load::library('hash','passwordhash');
+
 class user
 {
 	public static $table;
@@ -23,6 +25,10 @@ class user
 	
 	public static $_valid = FALSE;
 	
+	
+	public static function passwordhash(){
+		return new PasswordHash(8, TRUE);
+	}
 	
 	// Valid
 	// ---------------------------------------------------------------------------
@@ -170,39 +176,36 @@ class user
 		// Try to log in
 		if($i AND $password)
 		{
-			$password = self::hash($password);
-		
-			// Find by ID
-			if(preg_match('/^([0-9]+)$/',$i))
-			{
-				$user = self::$table->select('*')
-									->where('id','=',$i)
-									->clause('AND')
-									->where('password','=',$password)
-									->limit(1)
-									->execute();
-			}
+			$hash = self::hash($password);
 			
-			// Find by Username
-			elseif(preg_match('/^([\-_ a-z0-9]+)$/is',$i))
-			{
-				$user = self::$table->select('*')
-									->where('username','=',$i)
-									->clause('AND')
-									->where('password','=',$password)
-									->limit(1)
-									->execute();
-			}
+			if (self::passwordhash()->CheckPassword($password, $hash) ) {
 			
-			// Find by E-mail
-			else
-			{
-				$user = self::$table->select('*')
-									->where('email','=',$i)
-									->clause('AND')
-									->where('password','=',$password)
-									->limit(1)
-									->execute();
+				// Find by ID
+				if(preg_match('/^([0-9]+)$/',$i))
+				{
+					$user = self::$table->select('*')
+										->where('id','=',$i)
+										->limit(1)
+										->execute();
+				}
+			
+				// Find by Username
+				elseif(preg_match('/^([\-_ a-z0-9]+)$/is',$i))
+				{
+					$user = self::$table->select('*')
+										->where('username','=',$i)
+										->limit(1)
+										->execute();
+				}
+			
+				// Find by E-mail
+				else
+				{
+					$user = self::$table->select('*')
+										->where('email','=',$i)
+										->limit(1)
+										->execute();
+				}
 			}
 			
 			// If valid login credentials
@@ -412,9 +415,8 @@ class user
 	// Hash
 	// ---------------------------------------------------------------------------
 	public static function hash($i)
-	{
-		# @todo implement better hashing options here.
-		return sha1($i);
+	{	
+		return self::passwordhash()->HashPassword($i);
 	}
 }
 
@@ -487,6 +489,9 @@ class user_update
 		}
 	}
 	
+	public static function passwordhash(){
+		return new PasswordHash(8, TRUE);
+	}
 	
 	// ID
 	// ---------------------------------------------------------------------------
@@ -565,7 +570,7 @@ class user_update
 	// ---------------------------------------------------------------------------
 	public function hash($i)
 	{
-		return sha1($i);
+		return self::passwordhash()->HashPassword($i);
 	}
 }
 
