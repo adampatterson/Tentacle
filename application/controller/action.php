@@ -62,7 +62,7 @@ class action_controller {
 	    } 
 		else 
 		{
-	       note::set("error","login",NOTE_PASSWORD);
+	       note::set("error","login",'Password Error');
 	       url::redirect('admin/index'); 
 	    }
 	}
