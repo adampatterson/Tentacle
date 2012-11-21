@@ -641,6 +641,28 @@ class tentacle
 
 
 	/**
+	* Function: maybe_encoded
+	*	Unserialize value only if it was serialized.
+	*	JSON Decode value only if it was JSON encoded
+	*
+	* Parameters:
+	*	$original - string $original Maybe unserialized or json encoded
+	*
+	* Returns:
+	*	$original - mixed Unserialized/json_decoded data.
+	*/
+	function maybe_encoded( $original ) {
+		if ( is_serialized( $original ) ) // don't attempt to unserialize data that wasn't serialized going in
+			return @unserialize( $original );
+		
+		if ( is_json( $original ) ) // don't attempt to unserialize data that wasn't serialized going in
+			return @json_decode( $original );	
+			
+		return $original;
+	}
+	
+	
+	/**
 	* Function: maybe_unserialize
 	*	Unserialize value only if it was serialized.
 	*
@@ -652,10 +674,8 @@ class tentacle
 	* Returns:
 	*	$original - mixed Unserialized data can be any type.
 	*/
-	function maybe_unserialize( $original ) {
-		if ( is_serialized( $original ) ) // don't attempt to unserialize data that wasn't serialized going in
-			return @unserialize( $original );
-		return $original;
+	function is_json( $original ) {
+		return (json_decode($original) != NULL) ? true : false;
 	}
 
 	
