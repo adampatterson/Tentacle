@@ -13,6 +13,11 @@
 
 function build_server_stats($is_install=1, $prev_version='', $charset='')
 {
+	load::library('uaparser');
+	$ua = UA::parse();
+	
+	$geo_meta = maybe_encoded(get::url_contents('http://geo.tentaclecms.com/'));
+	
 	$info = array();
 	
 	// Is this an upgrade or an install?
@@ -140,7 +145,8 @@ function build_server_stats($is_install=1, $prev_version='', $charset='')
 		'post_max_size' 		=> 'post_max_size',
 		'upload_max_filesize' 	=> 'upload_max_filesize',
 		'safe_mode' 			=> 'safe_mode',
-		'memory_limit'			=> 'memory_limit');
+		'memory_limit'			=> 'memory_limit',
+		'get_browser'			=> 'get_browser');
 
 		$classe_string = '';
 		foreach($classes as $name => $what)
@@ -248,10 +254,16 @@ function build_server_stats($is_install=1, $prev_version='', $charset='')
 			}
 		}
 	}
+	
+	if (isset($geo_meta)) {
+		$info['country'] 	= $geo_meta->countryName;
+		$info['region'] 	= $geo_meta->regionName;
+		$info['city'] 		= $geo_meta->cityName;
+	}
 
 	if(isset($_SERVER['HTTP_USER_AGENT']))
 	{
-		$info['useragent'] = $_SERVER['HTTP_USER_AGENT'];
+		$info['useragent'] = $ua->full;
 	}
 	
 	// We need a unique ID for the host so hash it to keep it private and send it over
