@@ -28,8 +28,9 @@ define('DEBUG', TRUE);
 # Turn Error Logging On?
 define('ERROR_LOGGING',TRUE);
 
-# Error Log File Location
+# Log File Location
 define('ERROR_LOG_FILE','log.txt');
+define('DEV_LOG_FILE','log-dev.txt');
 
 # Application Location
 define( 'APPLICATION'   ,'application' );
