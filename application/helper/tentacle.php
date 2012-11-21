@@ -640,6 +640,71 @@ class tentacle
 	}
 
 
+	/**
+	* Function: maybe_unserialize
+	*	Unserialize value only if it was serialized.
+	*
+	* 	From WordPress
+	*
+	* Parameters:
+	*	$original - string $original Maybe unserialized original, if is needed.
+	*
+	* Returns:
+	*	$original - mixed Unserialized data can be any type.
+	*/
+	function maybe_unserialize( $original ) {
+		if ( is_serialized( $original ) ) // don't attempt to unserialize data that wasn't serialized going in
+			return @unserialize( $original );
+		return $original;
+	}
+
+	
+	/**
+	* Function: is_serialized
+	* 	Check value to find if it was serialized.
+	*
+	* 	If $data is not an string, then returned value will always be false.
+	* 	Serialized data is always a string.
+	*
+	* 	From WordPress
+	*
+	* Parameters:
+	*	$data - mixed $data Value to check to see if was serialized.
+	* Returns:
+	* 	bool - False if not serialized and true if it was.
+	*/
+	function is_serialized( $data ) {
+		// if it isn't a string, it isn't serialized
+		if ( ! is_string( $data ) )
+			return false;
+		$data = trim( $data );
+	 	if ( 'N;' == $data )
+			return true;
+		$length = strlen( $data );
+		if ( $length < 4 )
+			return false;
+		if ( ':' !== $data[1] )
+			return false;
+		$lastc = $data[$length-1];
+		if ( ';' !== $lastc && '}' !== $lastc )
+			return false;
+		$token = $data[0];
+		switch ( $token ) {
+			case 's' :
+				if ( '"' !== $data[$length-2] )
+					return false;
+			case 'a' :
+			case 'O' :
+				return (bool) preg_match( "/^{$token}:[0-9]+:/s", $data );
+			case 'b' :
+			case 'i' :
+			case 'd' :
+				return (bool) preg_match( "/^{$token}:[0-9.E-]+;\$/", $data );
+		}
+		return false;
+	}
+
+
 	// TEMP Array to Object
 	//----------------------------------------------------------------------------------------------
 
