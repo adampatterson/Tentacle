@@ -3,16 +3,7 @@ class dev_controller {
 	
 	public function index()
 	{
-		
-	}
 
-	public function image()
-	{
-		load::helper('image');
-
-		$file = 'AppFog.png';
-		
-		process_image($file);
 	}
 
 	public function stats()
