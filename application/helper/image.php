@@ -70,7 +70,7 @@ function process_image( $file = '', $insert = FALSE )
 			$square->save( IMAGE_DIR.$meta[0].'_sq.'.$meta[1] );
 			$square->close();
     } else {
-		dingo_error("Image file not found: The image file ($file_path) could not be found.",E_USER_ERROR);
+		dingo_error(E_USER_ERROR, "Image file not found: The image file ($file_path) could not be found.");
 	}
 } // Process
 ?>

@@ -115,7 +115,7 @@ class image {
 		// Check to see if image exists
 		if(!file_exists($path))
 		{
-			dingo_error("Image file not found: The image file ($path) could not be found.",E_USER_ERROR);
+			dingo_error(E_USER_ERROR, "Image file not found: The image file ($path) could not be found.");
 		}
 		
 		$file = @fopen($path, 'r');
