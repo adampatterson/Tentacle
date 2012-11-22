@@ -52,16 +52,6 @@ class ajax_controller {
 		echo json_encode($data);
 	}
 
-	/**
-	* Update an image on the fly from the media manager/media insert
-	* ----------------------------------------------------------------------------------------------*/
-	public function update_media()
-	{
-		# $title 		= 
-		# $alt_text 	= 
-		# $caption 		= 
-		# $link_url		= 
-	}
 	
 	/**
 	* Delete an image on the fly from the media manager/media insert

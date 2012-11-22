@@ -1,5 +1,5 @@
 <? load::view('admin/partials/template-modal-header', array('title' => 'Insert media', 'assets'=> array('jupload') ) );?>
-
+<!--
 <script type="text/javascript">
 	$(document).ready(function(){
 
@@ -29,7 +29,7 @@
                 var HtmlLink = '<a href="' + link_url + '"><img src="'+ image_url +'" alt="' + alt_text + '" title="' + title + '" /></a>';
             }
 
-			console.log(image_url);
+			//console.log(image_url);
 
             var win = window.dialogArguments || opener || parent || top;
             win.send_to_editor(HtmlLink);
@@ -39,7 +39,7 @@
 		
 	});
 </script>
-
+-->
 <div class="span9">	
 
 	<div class="tabbable">
@@ -89,7 +89,7 @@
 									</div>
 								</div>
 								<div class="row">
-									<form action="<?= BASE_URL ?>action/update_media/<?= $image->id ?>" method="post" class="form-horizontal" name="<?= $image->slug ?>">
+									<form action="<?= BASE_URL ?>action/insert_media/<?= $image->id ?>" method="post" class="form-horizontal" name="<?= $image->slug.'_'.$image->id ?>">
 										<input type="hidden" name="history"  value="<?= CURRENT_PAGE ?>"/>
 										<input type="hidden" name="filename" class="filename" value="<?=$file_meta['file_name'] ?>" />
 										<input type="hidden" name="extension" class="extension" value="<?=$file_meta['extension'] ?>" />
@@ -143,7 +143,7 @@
 														Large ( <?= get::option('image_large_size_w').' x '.get::option('image_large_size_h'); ?> )
 													</label>
 													<label class="radio">
-														<input type="radio" name="image_size" class="image_size" value="" />
+														<input type="radio" name="image_size" class="image_size" value="full" />
 														Full Size
 													</label>
 												</div>
@@ -151,8 +151,7 @@
 										</div>
 										<div class="row">
 											<div class="actions">
-												<a class="btn btn-primary" id="insert">Insert Image</a>
-												<input type="submit" name="update" value="Update" id="update" class="btn btn-success">
+												<input type="submit" name="update" value="Insert Image" id="update" class="btn btn-primary">
 												<!--<a class="btn primary" id="insert">Insert Image</a>-->
 												<button class="btn btn-danger">Delete</button>
 												<a class="btn" href="javascript:parent.jQuery.fancybox.close();">Cancel</a>

@@ -413,6 +413,16 @@ class admin_controller {
 		load::view ('admin/media/media_manage', array( 'media'=> $get_media ) );
 	}
 
+	public function media_update($id)
+	{
+		tentacle::valid_user();
+
+		$media = load::model( 'media' );
+		$get_image = $media->get($id);
+
+		load::view ('admin/media/media_update', array( 'image'=> $get_image ) );
+	}
+
 	/**
 	* Download Media
 	* ----------------------------------------------------------------------------------------------*/

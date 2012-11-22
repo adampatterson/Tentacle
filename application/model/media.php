@@ -35,18 +35,17 @@ class media_model
 		// Run content through HTMLawd and Samrty Text
 		$media          = db('media');
 
+		$title          = input::post('title');
+		$caption        = input::post('caption');
+		$alt            = input::post('alt_text');
+
 		$row = $media->update(array(
-			'uri'			=> $uri,
-			'slug'			=> $slug,
+			//'uri'			=> $uri,
+			//'slug'			=> $slug,
 			'title'			=> $title,
 			'caption'		=> $caption,
-			'description'	=> $description,
-			'date'			=> time(),
-			'exif'			=> $exif,
-			'alt'			=> $alt,
-			'count'			=> $count,
-			'type'			=> $type,
-			'author'		=> $author
+			//'description'	=> $description,
+			'alt'			=> $alt
 			))		
 			->where( 'id', '=', $id )
 			->execute();

@@ -28,12 +28,12 @@ function process_image( $file = '', $insert = FALSE )
 			$thumb = new image( $file_path );
 
 			if ($i->width > $i->height ){
-				$thumb->resize( 100, 0 );
+				$thumb->resize( IMAGE_T, 0 );
 			} else {
-				$thumb->resize( 0, 100 );
+				$thumb->resize( 0, IMAGE_T );
 			}
 
-			$thumb->save( IMAGE_DIR.$meta[0].'_100'.'.'.$meta[1] );
+			$thumb->save( IMAGE_DIR.$meta[0].'_'.IMAGE_T'.'.$meta[1] );
 			$thumb->close();
 
 
@@ -41,12 +41,12 @@ function process_image( $file = '', $insert = FALSE )
 			$medium = new image( $file_path );
 
 			if ($i->width > $i->height ) {
-				$medium->resize( 200, 0 );
+				$medium->resize( IMAGE_M, 0 );
 			}else{
-				$medium->resize( 0, 200 );
+				$medium->resize( 0, IMAGE_M );
 			}
 
-			$medium->save( IMAGE_DIR.$meta[0].'_200'.'.'.$meta[1] );
+			$medium->save( IMAGE_DIR.$meta[0].'_'.IMAGE_M.'.'.$meta[1] );
 			$medium->close();
 
 
@@ -54,18 +54,18 @@ function process_image( $file = '', $insert = FALSE )
 			$large = new image( $file_path );
 
 			if ($i->width > $i->height ) {
-				$large->resize( 300,0 );
+				$large->resize( IMAGE_L,0 );
 			}else{
-				$large->resize( 0, 300 );
+				$large->resize( 0, IMAGE_L );
 			}
 
-			$large->save( IMAGE_DIR.$meta[0].'_300'.'.'.$meta[1] );
+			$large->save( IMAGE_DIR.$meta[0].'_'.IMAGE_L.'.'.$meta[1] );
 			$large->close();
 
 		// Square
 			$square = new image( $file_path );
 
-			$square->square( 100 );
+			$square->square( IMAGE_T );
 
 			$square->save( IMAGE_DIR.$meta[0].'_sq.'.$meta[1] );
 			$square->close();

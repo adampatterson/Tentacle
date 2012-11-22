@@ -794,15 +794,53 @@ class action_controller {
     }
 
 
+	public function insert_media( $id )
+	{
+		$media = load::model( 'media' );
+
+		$update = $media->update( $id );
+		
+		$title				    = input::post('title');
+		$alt_text				= input::post('alt_text');
+		$caption				= input::post('caption');
+		$link_url				= input::post('link_url');
+
+		$filename				= input::post('filename');
+		$extension				= input::post('extension');
+		
+        $size		          	= input::post('image_size');
+		
+		if ( $size == 'full' ) {
+			$image_size			= '';
+		} else {
+			$image_size			= '_'.$size;
+		}
+		
+		$image_url				= IMAGE_URL.$filename.$image_size.'.'.$extension;
+		
+		if ( $link_url == '' ) {
+            $html = '<img src="'.$image_url.'" alt="'.$alt_text.'" title="'.$title.'"  />';
+        } else {
+            $html = '<a href="'.$link_url.'"><img src="'.$image_url.'" alt="'.$alt_text.'" title="'.$title.'" /></a>';
+        }
+		
+		header("Content-type: text/html"); ?>
+<script type="text/javascript">
+/* <![CDATA[ */
+var win = window.dialogArguments || opener || parent || top;
+win.send_to_editor('<?=$html?>');
+/* ]]> */
+</script>
+<?	}
+	
+
 	public function update_media( $id )
 	{
 		$media = load::model( 'media' );
 
-		//$update = $media->update( $id );
-		
-		$history = input::post( 'history' );
+		$update = $media->update( $id );
 
-		url::redirect($history); 
+		url::redirect(input::post( 'history' )); 
 	}
 
 	
@@ -816,6 +854,7 @@ class action_controller {
 	{
 		
 	}
+	
 	
 	public function editor_file_upload()
 	{
