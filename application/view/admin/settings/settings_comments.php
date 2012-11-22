@@ -1,4 +1,4 @@
-<? load::view('admin/templates/template-header', array('title' => 'Comment settings', 'assets' => array('application')));?>
+<? load::view('admin/partials/template-header', array('title' => 'Comment settings', 'assets' => array('application')));?>
 
 <div id="wrap">
 	<form action="<?= BASE_URL ?>action/udpate_settings_post/" method="post" class="form-stacked">
@@ -217,4 +217,4 @@
 		</div>
 	</form>
 </div><!-- #wrap -->
-<? load::view('admin/templates/template-footer', array( 'assets' => array( '' ) ) ); ?>
+<? load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) ); ?>

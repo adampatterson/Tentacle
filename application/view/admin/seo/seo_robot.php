@@ -1,4 +1,4 @@
-<? load::view('admin/templates/template-header', array('title' => 'Robots','assets'=>'application')); ?>
+<? load::view('admin/partials/template-header', array('title' => 'Robots','assets'=>'application')); ?>
 <div id="wrap">
 	<div class="full-content">
 		<div id="post-body">
@@ -33,5 +33,5 @@
 		</div><!-- #post-body -->
 	</div><!-- .full-content -->
 </div><!-- #wrap -->
-<? load::view('admin/templates/template-footer');
+<? load::view('admin/partials/template-footer');
  ?>

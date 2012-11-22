@@ -1,4 +1,4 @@
-<? load::view('admin/templates/template-header', array('title' => 'Manage media', 'assets' => array('jupload') ) ); ?>
+<? load::view('admin/partials/template-header', array('title' => 'Manage media', 'assets' => array('jupload') ) ); ?>
 <div id="wrap">
 	<div id="post-body">
 		<div id="post-body-content">
@@ -294,4 +294,4 @@
 		</div>
 	</div>
 </div>
-<? load::view('admin/templates/template-footer', array( 'assets'=> array( 'jupload' ) ) );?>
+<? load::view('admin/partials/template-footer', array( 'assets'=> array( 'jupload' ) ) );?>

@@ -1,4 +1,4 @@
-<? load::view('admin/templates/template-login-header', array('title' => 'Recover your password','assets'=>'marketing')); ?>
+<? load::view('admin/partials/template-login-header', array('title' => 'Recover your password','assets'=>'marketing')); ?>
 <div id="login-header">
 	<a href="<?=BASE_URL;?>">← Back to site name</a>
 </div>
@@ -27,4 +27,4 @@
 </div>
 <!-- #login-content -->
 </div> <!-- #login-content -->
-<? load::view('admin/templates/template-login-footer');?>
+<? load::view('admin/partials/template-login-footer');?>

@@ -1,4 +1,4 @@
-<? load::view('admin/templates/template-modal-header', array('title' => 'Insert media', 'assets'=> array('jupload') ) );?>
+<? load::view('admin/partials/template-modal-header', array('title' => 'Insert media', 'assets'=> array('jupload') ) );?>
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -262,4 +262,4 @@
 	</div>
 	
 </div>
-<? load::view('admin/templates/template-modal-footer', array( 'assets'=> array('jupload') ) );?>
+<? load::view('admin/partials/template-modal-footer', array( 'assets'=> array('jupload') ) );?>

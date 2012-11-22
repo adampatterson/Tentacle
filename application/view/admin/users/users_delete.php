@@ -1,4 +1,4 @@
-<?	load::view('admin/templates/template-header', array('title' => 'Add a new user', 'assets' => array('application')));?>
+<?	load::view('admin/partials/template-header', array('title' => 'Add a new user', 'assets' => array('application')));?>
 <div id="wrap">
 	<div class="full-content">
 		<div id="post-body">
@@ -34,4 +34,4 @@
 	</div><!-- .full-content -->
 </div>
 <!-- #wrap -->
-<?load::view('admin/templates/template-footer', array( 'assets'=> array('') ) );?>
+<?load::view('admin/partials/template-footer', array( 'assets'=> array('') ) );?>
