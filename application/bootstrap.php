@@ -61,8 +61,10 @@ class bootstrap
     }
 
 
-    // Run
-    // ---------------------------------------------------------------------------
+    /**
+    * Function: run
+    *	Starts application.
+    */
     public static function run()
     {
         define('DINGO_VERSION','0.7.1');
@@ -70,17 +72,7 @@ class bootstrap
         // Start buffer
         ob_start();
 
-
-        // Load core files
-        //require_once(SYSTEM.'/core/core.php');
-        //require_once(SYSTEM.'/core/config.php');
-        //require_once(SYSTEM.'/core/api.php');
-        //require_once(SYSTEM.'/core/route.php');
-        //require_once(SYSTEM.'/core/load.php');
-        //require_once(SYSTEM.'/core/input.php');
-        //require_once(SYSTEM.'/core/error.php');
         require_once(APPLICATION.'/'.CONFIG.'/'.CONFIGURATION.'/config.php');
-
 
         set_error_handler('dingo_error');
         set_exception_handler('dingo_exception');
@@ -207,15 +199,31 @@ class dingo{}
 */
 class cookie
 {
-    // Set Cookie
-    // ---------------------------------------------------------------------------
+    /**
+    * Function: set
+    *	Sets a cookie with $settings
+    *
+    * Parameters:
+    *	$settings - array
+	*
+	* Returns:
+	*	setcookie with $settings
+    */
     public static function set($settings)
     {
 
-        if(!isset($settings['path'])){$settings['path']='/';}
-        if(!isset($settings['domain'])){$settings['domain']=FALSE;}
-        if(!isset($settings['secure'])){$settings['secure']=FALSE;}
-        if(!isset($settings['httponly'])){$settings['httponly']=FALSE;}
+        if(!isset($settings['path']))
+			$settings['path']='/';
+			
+        if(!isset($settings['domain']))
+			$settings['domain']=FALSE;
+			
+        if(!isset($settings['secure']))
+			$settings['secure']=FALSE;
+			
+        if(!isset($settings['httponly']))
+			$settings['httponly']=FALSE;
+			
         if(!isset($settings['expire']))
         {
             $ex = new DateTime();
@@ -240,14 +248,29 @@ class cookie
     }
 
 
-    // Delete Cookie
-    // ---------------------------------------------------------------------------
+    /**
+    * Function: set
+    *	Sets a cookie that will expire.
+    *
+    * Parameters:
+    *	$settings - array
+	*
+	* Returns:
+	*	setcookie with $settings
+    */
     public static function delete($settings)
     {
-        if(!isset($settings['path'])){$settings['path']='/';}
-        if(!isset($settings['domain'])){$settings['domain']=FALSE;}
-        if(!isset($settings['secure'])){$settings['secure']=FALSE;}
-        if(!isset($settings['httponly'])){$settings['httponly']=FALSE;}
+        if(!isset($settings['path']))
+			$settings['path']='/';
+			
+        if(!isset($settings['domain']))
+			$settings['domain']=FALSE;
+			
+        if(!isset($settings['secure']))
+			$settings['secure']=FALSE;
+			
+        if(!isset($settings['httponly']))
+			$settings['httponly']=FALSE;
 
         // If given array of settings
         if(is_array($settings))
@@ -276,19 +299,38 @@ class cookie
 */
 class config
 {
-    private static $x = array();
+    # Array: $x
+    # Hodls all of the configuratiuon settings.
+	public static $x = array();
 
 
-    // Set
-    // ---------------------------------------------------------------------------
+    /**
+    * Function: set
+    *	sets an array index of $name with the value of $val
+    *
+    * Parameters:
+    *	$name - String
+	*	$val - Mixed
+    *
+    * Returns:
+    *	Array
+    */
     public static function set($name,$val)
     {
         self::$x[$name] = $val;
     }
 
 
-    // Get
-    // ---------------------------------------------------------------------------
+    /**
+    * Function: get
+    *	Looks in the config array for $name
+    *
+    * Parameters:
+    *	$name - String
+    *
+    * Returns:
+    *	Mixed if TRUE / FALSE
+    */
     public static function get($name)
     {
         if(isset(self::$x[$name]))
@@ -302,8 +344,13 @@ class config
     }
 
 
-    // Remove
-    // ---------------------------------------------------------------------------
+    /**
+    * Function: remove
+    *	unsets $name from the config array
+    *
+    * Parameters:
+    *	$name - string
+    */
     public static function remove($name)
     {
         if(isset(self::$x[$name]))
@@ -313,8 +360,14 @@ class config
     }
 
 
-    // Rename
-    // ---------------------------------------------------------------------------
+    /**
+    * Function: rename
+    *	unsets $old and sets $new
+    *
+    * Parameters:
+    *	$old - string
+	*	$new - string
+    */
     public static function rename($old,$new)
     {
         self::$x[$new] = self::$x[$old];
@@ -371,7 +424,10 @@ class api
 */
 class route
 {
+	# Array: $rout
     static $route = array();
+ 
+	# Array: Current
     private static $current = array();
 
     /**
@@ -576,7 +632,7 @@ class route
 	*	Returns the loaded controller for the current route.
 	*
 	* Parameters:
-	*	
+	*	$path - String
 	*
 	* Returns:
 	*	
@@ -627,7 +683,7 @@ class load
 {
 	/**
 	* Function: file
-	*	
+	*	Used to load various files in the application.
 	*
 	* Parameters:
 	*	$folder - string
