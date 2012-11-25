@@ -26,8 +26,7 @@ class db
 {
 	private static $connections = array();
 	private static $pdo = array('mysql','pgsql');
-	
-	
+
 	// Add Connection
 	// ---------------------------------------------------------------------------
 	public static function add_connection($name)
@@ -820,6 +819,8 @@ class pdo_db_table
     public $name;
     public $_orm;
 
+    public $query_run;
+
 
     // ORM
     // ---------------------------------------------------------------------------
@@ -959,6 +960,8 @@ class pdo_db_table
             $sql = DingoSQL::build_insert($clean,$this->name,$this->db->driver);
             $this->db->query($sql);
 
+            $this->query_run = DingoSQL::build_insert($clean,$this->name,$this->db->driver);
+
             // Return Select
             //return $this->db->con->insert_id;
             if($query)
@@ -974,12 +977,12 @@ class pdo_db_table
     // ---------------------------------------------------------------------------
     public function execute($query)
     {
-
         // Selects
         if($query->type == 'select')
         {
             $data = $this->db->query(DingoSQL::build_select($query,$this->db->driver),$this->_orm);
-            ;
+
+            $this->query_run = DingoSQL::build_select($query,$this->db->driver);
             // Combos
             if(!empty($query->_combos))
             {
@@ -1011,22 +1014,29 @@ class pdo_db_table
             }
         }
         // Counts
+
         elseif($query->type == 'count')
         {
             $tmp = $this->db->query(DingoSQL::build_count($query,$this->db->driver));
             $data = $tmp[0]->num;
 
+            $this->query_run = DingoSQL::build_count($query,$this->db->driver);
         }
         // Updates
         elseif($query->type == 'update')
         {
             $data = $this->db->query(DingoSQL::build_update($query,$this->db->driver));
+
+            $this->query_run = DingoSQL::build_update($query,$this->db->driver);
         }
         // Deletes
         elseif($query->type == 'delete')
         {
             $data = $this->db->query(DingoSQL::build_delete($query,$this->db->driver));
+
+            $this->query_run = DingoSQL::build_delete($query,$this->db->driver);
         }
+
 
         return $data;
     }
