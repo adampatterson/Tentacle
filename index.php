@@ -3,7 +3,7 @@
 * Tentacle CMS - Create & Manage Content your way!
 *
 * Version:
-*     v0.5.8
+*     v0.8.3
 *
 * License:
 *     Modified CPL (See COPYING)
