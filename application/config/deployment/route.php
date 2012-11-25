@@ -1,6 +1,15 @@
 <?php if(!defined('DINGO')){die('External Access to File Denied');}
 
-//load::library('db');
+/*
+'int'           '([0-9]+)'
+'numeric'       '([0-9\.]+)'
+'alpha'         '([a-zA-Z]+)'
+'alpha-int'     '([a-zA-Z0-9]+)'
+'alpha-numeric' '([a-zA-Z0-9\.]+)'
+'words'         '([_a-zA-Z0-9\- ]+)'
+'any'           '(.*?)'
+'extension'     '([a-zA-Z]+)\.([a-zA-Z]+)'
+*/
 
 route::set('(.*)',array(
     'controller'=>'page',
