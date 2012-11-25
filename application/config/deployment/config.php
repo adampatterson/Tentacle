@@ -31,9 +31,6 @@ config::set('folder_views','view');             // Views
 config::set('folder_controllers','controller'); // Controllers
 config::set('folder_models','model');           // Models
 config::set('folder_helpers','helper');         // Helpers
-config::set('folder_structures','structure');   // Structures
-config::set('folder_plugins','plugin');         // Plugins
-config::set('folder_cache','cache');            // Cache
 config::set('folder_languages','language');     // Languages
 config::set('folder_errors','error');           // Errors
 config::set('folder_orm','orm');                // ORM
