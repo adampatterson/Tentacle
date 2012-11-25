@@ -7,6 +7,9 @@
  * @Project Page    http://www.dingoframework.com
  */
 
+/**
+* Class: bootstrap
+*/
 class bootstrap
 {
     // Get the requested URL, parse it, then clean it up
@@ -126,6 +129,7 @@ class bootstrap
 
 
         // Check if using valid REST API
+		/*
         if(api::get())
         {
             if(!empty($controller->controller_api) and
@@ -149,7 +153,7 @@ class bootstrap
                 //load::error('404');
             }
         }
-
+		*/
 
         // Autoload Components
         bootstrap::autoload($controller);
@@ -192,8 +196,15 @@ class bootstrap
 }
 
 
+/**
+* Class: dingo
+*/
 class dingo{}
 
+
+/**
+* Class: cookie
+*/
 class cookie
 {
     // Set Cookie
@@ -259,6 +270,10 @@ class cookie
     }
 }
 
+
+/**
+* Class: config
+*/
 class config
 {
     private static $x = array();
@@ -307,6 +322,8 @@ class config
     }
 }
 
+
+/**
 class api
 {
     private static $_reg = array();
@@ -347,16 +364,26 @@ class api
         return self::$_current;
     }
 }
+*/
 
-
+/**
+* Class: route
+*/
 class route
 {
     static $route = array();
     private static $current = array();
 
-
-    // Validate
-    // ---------------------------------------------------------------------------
+    /**
+	* Function: valid
+	*	Tests to see if the rout contains allowed characters, by default 'ALLOWED_CHARS' is set to '/^[ \!\,\~\&\.\:\+\@\-_a-zA-Z0-9]+$/' 
+	*
+	* Parameters:
+	*	$r - string - rout
+	*
+	* Returns:
+	*	Boolean 
+	*/
     public static function valid($r)
     {
         foreach($r['segments'] as $segment)
@@ -371,29 +398,50 @@ class route
     }
 
 
-    // Set
-    // ---------------------------------------------------------------------------
+	/**
+	* Function: set
+	*	Routs are set in route.php
+	*
+	* Parameters:
+	*	$url - url - string with regex
+	*	$r - rout - string with regex
+	*
+	* Returns:
+	*	$route - array
+	*/
     public static function set($url,$r)
     {
         self::$route[$url] = $r;
     }
 
 
-    // Get
-    // ---------------------------------------------------------------------------
+   /**
+   * Function: get
+   *	Returns an array containing the details of a rout stored in the route.php
+   *
+   * Parameters:
+   *	$url - the string used in rout::set
+   *
+   * Returns:
+   *	array
+   *
+   * See Also:
+   *	<set>
+   */
     public static function get($url)
     {
         $url = preg_replace('/^(\/)/','',$url);
         $new_url = $url;
 
         // REST API
+/*
         if(preg_match('/\.([\-_a-zA-Z]+)$/',$new_url))
         {
             $split = explode('.',$new_url);
             api::set(array_pop($split));
             $new_url = implode('.',$split);
         }
-
+*/
         // Static routes
         if(!empty(self::$route[$url]))
         {
@@ -489,7 +537,6 @@ class route
                 $new_url['arguments'] = array();
             }
 
-
             // Build string key for URL array
             // Controller
             $s = $new_url['controller'];
@@ -524,24 +571,48 @@ class route
     }
 
 
-    // Controller
-    // ---------------------------------------------------------------------------
+	/**
+	* Function: controller
+	*	Returns the loaded controller for the current route.
+	*
+	* Parameters:
+	*	
+	*
+	* Returns:
+	*	
+	*/
     public static function controller($path=FALSE)
     {
         return ($path) ? self::$current['controller'] : self::$current['controller_class'];
     }
 
 
-    // Method
-    // ---------------------------------------------------------------------------
+	/**
+	* Function: method
+	*	Returns the loaded method for the current route.
+	*
+	* Parameters:
+	*	
+	*
+	* Returns:
+	*	
+	*/
     public static function method()
     {
         return self::$current['function'];
     }
 
 
-    // Arguments
-    // ---------------------------------------------------------------------------
+	/**
+	* Function: arguments
+	*	Returns the arguments passed to the loaded method for the current route.
+	*
+	* Parameters:
+	*	
+	*
+	* Returns:
+	*	
+	*/
     public static function arguments()
     {
         return self::$current['arguments'];
@@ -549,10 +620,24 @@ class route
 }
 
 
+/**
+* Class: load
+*/
 class load
 {
-    // File
-    // ---------------------------------------------------------------------------
+	/**
+	* Function: file
+	*	
+	*
+	* Parameters:
+	*	$folder - string
+	*	$file - string
+	*	$name - string ( controller, configuration, language, library, helper, ORM )
+	*
+	* Returns:
+	*	Exception
+	*	require_once $folder/$file
+	*/
     public static function file($folder,$file,$name)
     {
 
@@ -576,25 +661,62 @@ class load
     }
 
 
-    // Controller
-    // ---------------------------------------------------------------------------
+	/**
+	* Function: controller
+	*	Controllers display pages, make database queries, and pass data to Views. 
+	*	Controllers provide the core functionality to the applications.
+	*
+	* Parameters:
+	*	$controller - string
+	*
+	* Returns:
+	*	require_once $controller
+	*
+	* See Also:
+	*	<parent_controller>
+	*/
     public static function controller($controller)
     {
         return self::file(APPLICATION.'/'.config::get('folder_controllers'),$controller,'controller');
     }
 
 
-    // Parent Controller
-    // ---------------------------------------------------------------------------
+	/**
+	* Function: parent_controller
+	*	it is possible to make controller classes extend from other controller classes.
+	*
+	* Parameters:
+	*	$controller - string
+	*
+	* Returns:
+	*	require_once $controller
+	*
+	* See Also:
+	*	<controller>
+	*/
     public static function parent_controller($controller)
     {
         return self::controller($controller);
     }
 
 
-    // Model
-    // ---------------------------------------------------------------------------
-    public static function model($model,$args=array())
+	/**
+    * Function: model
+    *	Used to load models for the app.
+ 	*	If the model class does not exist then and if the model can be found it will be required. 
+	*	If not an error is returned.
+	*
+	*	If the model class exists then we create a new instance of it.
+    *
+    * Parameters:
+    *	$model - string ( can be a path under the application folder )
+	*
+    * Returns:
+    *	FALSE
+	*	require_once $path
+	*	new $model_class()
+    */
+    public static function model($model)
     {
         // Model class
         $model_class = explode('/',$model);
@@ -621,9 +743,22 @@ class load
         return new $model_class();
     }
 
-
-    // Parent Model
-    // ---------------------------------------------------------------------------
+	
+	/**
+	* Function: parent_model
+	*	In Dingo, it is possible to make model classes extend from other model classes. 
+	*	For example you may have a model that looks like this:
+	*
+	* Parameters:
+	*	
+	*
+	* Returns:
+	*	FALSE
+	*	require_once $path / TRUE
+	*
+	* See Also:
+	*	<model>
+	*/
     public static function parent_model($model)
     {
         // Model class
@@ -650,8 +785,15 @@ class load
     }
 
 
-    // Error
-    // ---------------------------------------------------------------------------
+    /**
+    * Function: error
+    *	Used to load error views for the app.
+    *
+    * Parameters:
+    *	$type - string
+	*	$title - string
+	* 	$message - string
+    */
     public static function error($type = 'general',$title = NULL,$message = NULL)
     {
         ob_clean();
@@ -669,14 +811,32 @@ class load
     }
 
 
-    // Language
-    // ---------------------------------------------------------------------------
+    /**
+    * Function: language
+    *	A wrapper for require_once, It loads a file from application/language
+    *
+    * Parameters:
+    *	$helper - string	
+    */
     public static function language($language)
     {
         return self::file(APPLICATION.'/'.config::get('folder_languages'),$language,'language');
     }
 
 
+	/**
+	* Function: module_view
+	*	@todo: This is a work in progress
+	*	Used to load views that are located inside a module for the admin app.
+	* 
+	* Parameters:
+	*	$module
+	*	$path
+	* 	$data
+	*
+	* Returns:
+	*	FALSE
+	*/
     public static function module_view( $module, $path, $data = '' )
     {
         // If theme does not exist display error
@@ -700,8 +860,17 @@ class load
     }
 
 
-    // View
-    // ---------------------------------------------------------------------------
+    /**
+    * Function: view
+    *	Used to load views in the admin and install app.
+    *
+    * Parameters:
+    *	$view - String - The view to be loaded
+	*	$data - Mixed - Data that will be available to the view.
+    *
+    * Returns:
+    *	FALSE
+    */
     public static function view($view,$data = NULL)
     {
         // If view does not exist display error
@@ -726,8 +895,8 @@ class load
 
     /**
      * Function: library
-     * Loads libraries specific to Tentacle
-     * $file is both the folder and the file to load unless the library requires a different name.
+     * Loads libraries used in the core framework as well as for Tentacle.
+     * $folder is both the folder and the file to load unless the library requires a different name.
      *
      * Parameters:
      *     $file - string
@@ -761,8 +930,13 @@ class load
     */
 
 
-    // Helper
-    // ---------------------------------------------------------------------------
+    /**
+    * Function: helper
+    *	A wrapper for require_once, It loads a file from application/helper
+    *
+    * Parameters:
+    *	$helper - string	
+    */
     public static function helper($helper)
     {
         return self::file(APPLICATION.'/'.config::get('folder_helpers'),$helper,'helper');
@@ -786,7 +960,6 @@ class load
         // ORM class
         $orm_class = explode('/',$orm);
         $orm_class = end($orm_class).'_orm';
-
         return new $orm_class();
     }
 
@@ -799,43 +972,85 @@ class load
     }
 }
 
-
+/**
+* Class: input
+*/
 class input
 {
-    // Post
-    // ---------------------------------------------------------------------------
+    /**
+    * Function: post
+    *	Wrapper for $_POST
+    *
+    * Parameters:
+    *	$field - $_POST
+    *
+    * Returns:
+    *	$_POST or false
+    */
     public static function post($field)
     {
         return (isset($_POST[$field])) ? $_POST[$field] : false;
     }
 
 
-    // Get
-    // ---------------------------------------------------------------------------
+    /**
+    * Function: get
+    *	Wrapper for $_GET
+    *
+    * Parameters:
+    *	$field - $_GET
+    *
+    * Returns:
+    *	$_GET or false
+    */
     public static function get($field)
     {
         return (isset($_GET[$field])) ? $_GET[$field] : false;
     }
 
 
-    // Cookie
-    // ---------------------------------------------------------------------------
+    /**
+    * Function: cookie
+    *	Wrapper for $_COOKIE
+    *
+    * Parameters:
+    *	$field - $_COOKIE
+    *
+    * Returns:
+    *	$_COOKIE or false
+    */
     public static function cookie($field)
     {
         return (isset($_COOKIE[$field])) ? $_COOKIE[$field] : false;
     }
 
 
-    // Files
-    // ---------------------------------------------------------------------------
+    /**
+    * Function: files
+    *	Wrapper for $_FILES
+    *
+    * Parameters:
+    *	$field - $_FILES
+    *
+    * Returns:
+    *	$_FILES or false
+    */
     public static function files($field)
     {
         return (isset($_FILES[$field])) ? $_FILES[$field] : false;
     }
 
 
-    // Request
-    // ---------------------------------------------------------------------------
+    /**
+    * Function: request
+    *	Wrapper for $_REQUEST
+    *
+    * Parameters:
+    *	$field - $_REQUEST
+    *
+    * Returns:
+    *	$_REQUEST or false
+    */
     public static function request($field)
     {
         return (isset($_REQUEST[$field])) ? $_REQUEST[$field] : false;
@@ -843,8 +1058,21 @@ class input
 }
 
 
-// Errors
-// ---------------------------------------------------------------------------
+/**
+* Function: dingo_error
+*	Loads the correct Error view, Will use log.txt if ERROR_LOGGING == TRUE ( set in index.php )
+*
+* Parameters:
+*	$level - constant http://www.php.net/manual/en/errorfunc.constants.php
+*	$message - String
+*	$file - String
+*	$line - Int/String
+*	$backtrace - String
+*	$code - String
+*
+* See Also:
+*	<dingo_error_log>
+*/
 function dingo_error($level,$message,$file='current file',$line='(unknown)',$backtrace='', $code ='')
 {
     $fatal = false;
@@ -954,17 +1182,32 @@ function dingo_error($level,$message,$file='current file',$line='(unknown)',$bac
 }
 
 
-// Exceptions
-// ---------------------------------------------------------------------------
+/**
+* Function: dingo_exception
+*	Applies the Dingo Exception on dingo_error()
+*
+* Parameters:
+*	$ex - Object
+*
+* See Also:
+*	<dingo_error>
+*/
 function dingo_exception($ex)
 {
     dingo_error('exception',$ex->getMessage(),$ex->getFile(),$ex->getLine(), $ex->getTrace(), $ex->getCode() );
-    //echo "<p>Uncaught exception in {$exception->getFile()} on line {$exception->getLine()}: <strong>{$exception->getMessage()}</strong></p>";
 }
 
 
-// Error Logging
-// ---------------------------------------------------------------------------
+/**
+* Function: dingo_error_log
+*	Simply writes to the log.
+*
+* Parameters:
+*	$error - Array
+*
+* See Also:
+*	<dingo_error>
+*/
 function dingo_error_log($error)
 {
     $date = date('g:i A M d Y');
@@ -976,15 +1219,40 @@ function dingo_error_log($error)
     fclose($fh);
 }
 
-// Logging
-// ---------------------------------------------------------------------------
-function dev_log($message)
+
+/**
+* Function: dev_log
+*	Simply logs to a text file
+*
+* Parameters:
+*	$message - String
+*	$level - Int
+*/
+function dev_log($message, $level = '')
 {
     $date = date('g:i A M d Y');
 
+	if ($level == '') {
+		
+	}
+
+	switch ($i) {
+	    case 0:
+	        $level = 'General';
+	        break;
+	    case 1:
+	        $level = 'Warning';
+	        break;
+	    case 2:
+	        $level = 'Fatal';
+	        break;
+		default:
+			$level = 'General';
+	}
+
     $fh = fopen(DEV_LOG_FILE,'a');
     flock($fh,LOCK_EX);
-    fwrite($fh,"[$date] developers log: {$message}\n");
+    fwrite($fh,"[$date] {$level}: {$message}\n");
     flock($fh,LOCK_UN);
     fclose($fh);
 }
