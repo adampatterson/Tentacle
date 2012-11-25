@@ -1284,15 +1284,11 @@ function dingo_error_log($error)
 *	$message - String
 *	$level - Int
 */
-function dev_log($message, $level = '')
+function dev_log($message, $level = 0)
 {
     $date = date('g:i A M d Y');
 
-	if ($level == '') {
-		
-	}
-
-	switch ($i) {
+	switch ($level) {
 	    case 0:
 	        $level = 'General';
 	        break;
@@ -1308,7 +1304,26 @@ function dev_log($message, $level = '')
 
     $fh = fopen(DEV_LOG_FILE,'a');
     flock($fh,LOCK_EX);
-    fwrite($fh,"[$date] {$level}: {$message}\n");
+
+	if (is_array($message)) 
+	{
+		fwrite($fh,"[$date] {$level}:\n");
+		fwrite($fh,"===================================\n");
+		
+		foreach($message as $key => $value)
+		{
+			$message = $key.' ## '.$value;
+
+			fwrite($fh,"\t".$message."\n");
+		}
+		
+		fwrite($fh,"===================================\n");
+		
+	}
+	else
+	{
+		fwrite($fh,"[$date] {$level}: {$message}\n");
+	}
     flock($fh,LOCK_UN);
     fclose($fh);
 }
