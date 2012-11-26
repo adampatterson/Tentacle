@@ -331,7 +331,7 @@ class tentacle
 			$rss = new SimpleXmlElement($rss);
 			$rss = $rss->asXML();
 			
-			$cache_data = $cache->set( 'dashboard', $rss, '+30 minutes' );
+			$cache_data = $cache->set( 'dashboard', $rss, '+6 hours' );
 			
 			$rss = simplexml_load_string($cache_data);
 		else:
