@@ -3,7 +3,7 @@
 * Tentacle CMS - Create & Manage Content your way!
 *
 * Version:
-*     v0.8.3
+*     v0.8.5
 *
 * License:
 *     Modified CPL (See COPYING)
@@ -105,7 +105,7 @@ define( 'CHECK_TIMEOUT', 5 );
 /**
  * The Tentacle version
  */
-define('TENTACLE_VERSION', 'v0.8.3');
+define('TENTACLE_VERSION', 'v0.8.5');
 
 /**
  * Holds the Tentacle DB revision, increments when changes are made to the Tentacle sql model.
