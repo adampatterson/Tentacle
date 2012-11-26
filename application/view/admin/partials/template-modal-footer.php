@@ -1,30 +1,114 @@
 </div>
 
-<? if( in_array('jupload', $assets ) ): ?>
-		
-		<!-- The Templates plugin is included to render the upload/download listings -->
-		<script src="http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"></script>
-		<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-		<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
-		<!-- The Canvas to Blob plugin is included for image resizing functionality -->
-		<script src="http://blueimp.github.com/JavaScript-Canvas-to-Blob/canvas-to-blob.min.js"></script>
-		<!-- Bootstrap JS and Bootstrap Image Gallery are not required, but included for the demo -->
-		<script src="http://blueimp.github.com/Bootstrap-Image-Gallery/js/bootstrap-image-gallery.min.js"></script>
-		<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-		<script src="<?= ADMIN_JS ?>jQuery-File-Upload/jquery.iframe-transport.js"></script>
-		<!-- The basic File Upload plugin -->
-		<script src="<?= ADMIN_JS ?>jQuery-File-Upload/jquery.fileupload.js"></script>
-		<!-- The File Upload image processing plugin -->
-		<script src="<?= ADMIN_JS ?>jQuery-File-Upload/jquery.fileupload-fp.js"></script>
-		<!-- The File Upload user interface plugin -->
-		<script src="<?= ADMIN_JS ?>jQuery-File-Upload/jquery.fileupload-ui.js"></script>
-		<!-- The localization script -->
-		<script src="<?= ADMIN_JS ?>jQuery-File-Upload/locale.js"></script>
-		<!-- The main application script -->
-		<script src="<?= ADMIN_JS ?>jQuery-File-Upload/main.js"></script>
-		<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
-		<!--[if gte IE 8]><script src="<?= ADMIN_JS ?>jQuery-File-Upload/js/cors/jquery.xdr-transport.js"></script><![endif]-->
+<? if( in_array('filedrop', $assets ) ): ?>
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function(){
+	
+		var dropbox = $('#dropbox'),
+			message = $('.message', dropbox);
 
+		dropbox.filedrop({
+			// The name of the $_FILES entry:
+			paramname:'pic',
+
+			maxfiles: cms_maxfiles,
+	    	maxfilesize: cms_maxfilesize,
+			url: base_url+'action/upload_media/',
+
+			uploadFinished:function(i,file,response){	
+				$.data(file).addClass('done');
+
+				//console.log(response);
+
+				//window.location = base_url+response;
+				// response is the JSON object that post_file.php returns
+			},
+
+	    	error: function(err, file) {
+				switch(err) {
+					case 'BrowserNotSupported':
+						showMessage('Your browser does not support HTML5 file uploads!');
+						break;
+					case 'TooManyFiles':
+						alert('Too many files! Please select 5 at most!');
+						break;
+					case 'FileTooLarge':
+						alert(file.name+' is too large! Please upload files up to 2mb (configurable).');
+						break;
+					default:
+						break;
+				}
+			},
+
+			// Called before each upload is started
+			beforeEach: function(file){
+				if(!file.type.match(/^image\//)){
+					alert('Only images are allowed!');
+
+					// Returning false will cause the
+					// file to be rejected
+					return false;
+				}
+			},
+
+			uploadStarted:function(i, file, len){
+				createImage(file);
+			},
+
+			progressUpdated: function(i, file, progress) {
+				var new_progress = progress+'%';
+				$.data(file).find('.progress_bar').width(new_progress);
+			}
+
+		});
+
+		var template = '<div class="preview">'+
+							'<span class="imageHolder">'+
+								'<img />'+
+								'<span class="uploaded"></span>'+
+							'</span>'+
+							'<div class="progressHolder">'+
+								'<div class="progress_bar"></div>'+
+							'</div>'+
+						'</div>'; 
+
+
+		function createImage(file){
+
+			var preview = $(template), 
+				image = $('img', preview);
+
+			var reader = new FileReader();
+
+			image.width = 100;
+			image.height = 100;
+
+			reader.onload = function(e){
+
+				// e.target.result holds the DataURL which
+				// can be used as a source of the image:
+
+				image.attr('src',e.target.result);
+			};
+
+			// Reading the file as a DataURL. When finished,
+			// this will trigger the onload function above:
+			reader.readAsDataURL(file);
+
+			message.hide();
+			preview.appendTo(dropbox);
+
+			// Associating a preview container
+			// with the file, using jQuery's $.data():
+
+			$.data(file,preview);
+		}
+
+		function showMessage(msg){
+			message.html(msg);
+		}
+	});
+</script>
 <? endif; ?>
 
 <!-- #body-wrapper -->

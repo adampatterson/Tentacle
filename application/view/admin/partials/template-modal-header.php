@@ -27,16 +27,17 @@
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	
-	<? if ( in_array('jupload', $assets ) ): ?>
-
-		<!-- Bootstrap CSS fixes for IE6 -->
-		<!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
-		<!-- Bootstrap Image Gallery styles -->
-		<link rel="stylesheet" href="http://blueimp.github.com/Bootstrap-Image-Gallery/css/bootstrap-image-gallery.min.css">
-		<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
-		<link rel="stylesheet" href="<?= ADMIN_CSS ?>/jquery.fileupload-ui.css">
-
+	<? if ( in_array('filedrop', $assets ) ): ?>
+		<script type="text/javascript" src="<?=ADMIN_JS; ?>filedrop.js"></script>
 	<? endif; ?>
+	
+	<script type="text/javascript" charset="utf-8">
+		var base_url = "<?= BASE_URL ?>";
+		var js_url = '<?= ADMIN_JS ?>';
+		var editor_path = '<?= PATH ?>/';
+		var cms_maxfiles = 10;
+		var cms_maxfilesize = 5;
+	</script>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>

@@ -405,6 +405,7 @@ section > .row {
 	margin-bottom: 10px;
 }
 
+
 /*	--------------------------------------------------
 	Reveal Modals
 	-------------------------------------------------- */
@@ -452,5 +453,84 @@ section > .row {
 		text-shadow: 0 -1px 1px rbga(0,0,0,.6);
 		font-weight: bold;
 		cursor: pointer;
+	}
+}
+
+/*
+Media Upload
+* ------------------------------------------------------------------------------------------- */
+
+
+/*-------------------------
+	Image Previews
+--------------------------*/
+#dropbox {
+	.preview{
+		width:245px;
+		height: 215px;
+		margin: 20px;
+		position: relative;
+		text-align: center;
+		float: left;
+	
+		img{
+			max-width: 240px;
+			max-height:180px;
+			border:3px solid #fff;
+			display: block;
+		}
+		
+		&.done .uploaded{
+			display: block;
+		}
+	}
+	
+	.imageHolder{
+		display: inline-block;
+		position:relative;
+	}
+
+	.uploaded{
+		position: absolute;
+		top:0;
+		left:0;
+		height:100%;
+		width:100%;
+		background: url('../images/done.png') no-repeat center center rgba(255,255,255,0.5);
+		display: none;
+	}
+
+	/*-------------------------
+		Progress Bars
+	--------------------------*/
+
+	.progressHolder{
+		position: absolute;
+		background-color:#252f38;
+		height:12px;
+		width:100%;
+		left:0;
+		bottom: 0;
+	
+		box-shadow:0 0 2px #000;
+	}
+
+	.progress_bar{
+		background-color:#2586d0;
+		position: absolute;
+		height:100%;
+		left:0;
+		width:0;
+	
+		box-shadow: 0 0 1px rgba(255, 255, 255, 0.4) inset;
+	
+		-moz-transition:0.25s;
+		-webkit-transition:0.25s;
+		-o-transition:0.25s;
+		transition:0.25s;
+
+		&.done, &{
+			width:100% !important;
+		}
 	}
 }

@@ -725,35 +725,66 @@ class tentacle
 	}
 
 
+	/**
+	* Function: exit_status
+	*	json encoded status for action/add_file controller
+	*
+	* Parameters:
+	*	$str - String
+	*
+	* Returns:
+	*	JSON
+	*/
+	function exit_status($str){
+		echo json_encode(array('status'=>$str));
+		exit;
+	}
+
+	
+	/**
+	* Function: get_extension
+	*	This should be a temporary function, but is used for uploading media and used in the action/add_file controller.
+	*
+	* Parameters:
+	*	$file_name - string ( filename )
+	*
+	* Returns:
+	*	$ext - string ( extension of the file)
+	*/
+	function get_extension($file_name){
+		$ext = explode('.', $file_name);
+		$ext = array_pop($ext);
+		return strtolower($ext);
+	}
+
 	// TEMP Array to Object
 	//----------------------------------------------------------------------------------------------
 
-		/**
-		* Function: array_to_object
-		* Array to object - Takes an array as input and returns an object
-		*
-		* Parameters:
-		*	  $array - Array
-		* 	
-		* Returns:
-		*     $tmp - Object
-		*/
-		function array_to_object($array = array())
-		{
-		    $tmp = new stdClass;
+	/**
+	* Function: array_to_object
+	* Array to object - Takes an array as input and returns an object
+	*
+	* Parameters:
+	*	  $array - Array
+	* 	
+	* Returns:
+	*     $tmp - Object
+	*/
+	function array_to_object($array = array())
+	{
+	    $tmp = new stdClass;
 
-		    foreach ($array as $key => $value) {
-		        if (is_array($value)) {
-		            $tmp->$key = array_to_object($value);
-		        } else {
-		            if (is_numeric($key)) {
-		                exit('Cannot turn numeric arrays into objects!');
-		            }
+	    foreach ($array as $key => $value) {
+	        if (is_array($value)) {
+	            $tmp->$key = array_to_object($value);
+	        } else {
+	            if (is_numeric($key)) {
+	                exit('Cannot turn numeric arrays into objects!');
+	            }
 
-		            $tmp->$key = $value;
-		        }
-		    }
+	            $tmp->$key = $value;
+	        }
+	    }
 
-		    return $tmp;
-		}
-?>
+	    return $tmp;
+	}

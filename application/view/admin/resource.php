@@ -1,4 +1,4 @@
-<? load::view('admin/partials/template-header', array('title' => 'Resource', 'assets' => array('fancybox')));?>
+<? load::view('admin/partials/template-header', array('title' => 'Resource', 'assets' => array('filedrop')));?>
 <div id="wrap">
 	<div class="full-content">
 		<div id="post-body">
@@ -10,7 +10,8 @@
 		</div>
 		<div class="one-full">
 
-			<textarea id="element-to-edit" class="editor">asdsad</textarea>
+			<div id="dropbox" class="well" style="height: 200px;">&nbsp;</div>
+			
         </div>
 	</div><!-- .full-content -->
 </div><!-- #wrap -->

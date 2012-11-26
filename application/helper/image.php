@@ -33,7 +33,7 @@ function process_image( $file = '', $insert = FALSE )
 				$thumb->resize( 0, IMAGE_T );
 			}
 
-			$thumb->save( IMAGE_DIR.$meta[0].'_'.IMAGE_T'.'.$meta[1] );
+			$thumb->save( IMAGE_DIR.$meta[0].'_'.IMAGE_T.'.'.$meta[1] );
 			$thumb->close();
 
 

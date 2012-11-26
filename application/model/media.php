@@ -1,12 +1,14 @@
 <?
 class media_model
 {
-    public function add( $file )
+    # @todo: if the file name is the same do not add it to the databsdse.
+	public function add( $file )
     {
-		$file_meta 		= explode('.', $file );
+		$file_meta = string_to_parts($file);
 		
-		$file_name 		= $file_meta[0];
-		$file_extension = $file_meta[1];
+		$file_full      = $file_meta['name'];
+		$file_name      = $file_meta['file_name'];
+		$file_extension = $file_meta['extension'];
 
 		$slug			= string::sanitize($file_name);
 		$author 		= user::id();
@@ -17,7 +19,7 @@ class media_model
 		$row = $media->insert(array(
 			'uri'			=> IMAGE_URI.$file,
 			'slug'			=> $slug,
-			'name'			=> $file_name.'.'.$file_extension,
+			'name'			=> $file_full,
 			'title'			=> $file_name,
 			'date'			=> time(),
 			'alt'			=> $file_name,
@@ -25,9 +27,6 @@ class media_model
 			'type'			=> 'image',
 			'author'		=> $author
 		));
-
-		load::helper('image');
-		process_image($file, TRUE);
     }
 
 	public function update( $id )
