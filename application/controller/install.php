@@ -80,7 +80,10 @@ class install_controller
 	}
 	
 	public function done ( )
-	{
+	{		
+		load::helper('serverstats');
+		build_server_stats(1);
+			
 		load::view ( 'install/done' );	
 	}
 }
