@@ -696,7 +696,6 @@ class load
 	*/
     public static function file($folder,$file,$name)
     {
-
         try {
             // If file does not exist display error
             if(!file_exists("$folder/$file.php"))

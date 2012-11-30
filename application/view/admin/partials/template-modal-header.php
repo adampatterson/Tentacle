@@ -35,7 +35,7 @@
 		var base_url = "<?= BASE_URL ?>";
 		var js_url = '<?= ADMIN_JS ?>';
 		var editor_path = '<?= PATH ?>/';
-		var cms_maxfiles = 10;
+		var cms_maxfiles = 3;
 		var cms_maxfilesize = 5;
 	</script>
 	
