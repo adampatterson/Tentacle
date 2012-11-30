@@ -294,21 +294,18 @@ function build_server_stats($is_install=1, $prev_version='', $charset='')
 		$amp = "&amp;";
 	}
 
-/*
-	$server_stats_url = 'http://stats.tentaclecms.com/'.$string;
+	$server_stats_url = 'http://stats.tentaclecms.com/?'.$string;
 
 	$return = array();
 	$return['info_sent_success'] = false;
 	
-	if(get::url_contents($url) !== false)
+	if(get::url_contents($server_stats_url) !== false)
 	{
 		$return['info_sent_success'] = true;
 	}
-*/	
-	$return['info_image'] = "<img src='http://stats.tentaclecms.com/{$string}&amp;img=1' />";
+	
+	$return['info_image'] = "<img src='http://stats.tentaclecms.com/?{$string}&amp;img=1' />";
 	$return['info_get_string'] = $string;
-
-	var_dump($info);
 	
 	return $return;
 }
