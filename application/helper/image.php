@@ -14,6 +14,8 @@
 * Returns:
 *	NULL
 */
+# @todo: 	for performance image resizing should probably work on a cascading principal where you take 
+#			the original resize for the larger, large for the medium, medium for ...
 function process_image( $file = '', $insert = FALSE )
 {
     $file_path = IMAGE_DIR.$file;
