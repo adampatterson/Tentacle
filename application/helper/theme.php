@@ -122,16 +122,18 @@ class theme {
 	*/
 	public static function assets($assets = '', $format = null, $type = null) 
 	{
-		$exploded_assets = explode(',', $assets);
+        if ($assets != ''):
+            $exploded_assets = explode(',', $assets);
 
-		// Setup the return List
-		$asset_list = '';
-		
-		foreach ($exploded_assets as $asset):
-			$asset_list .= self::build($asset);
-		endforeach;
-		
-		 echo $asset_list;
+            // Setup the return List
+            $asset_list = '';
+
+            foreach ($exploded_assets as $asset):
+                $asset_list .= self::build($asset);
+            endforeach;
+
+            echo $asset_list;
+        endif;
 	}
 	
 	
