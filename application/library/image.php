@@ -54,10 +54,9 @@ class image {
 	// ---------------------------------------------------------------------------
 	public function __construct($file=FALSE)
 	{
-		if($file)
-		{
-			$this->open($file);
-		}
+		if($file) {
+            $this->open($file);
+        }
 	}
 
 	/**
@@ -123,10 +122,10 @@ class image {
 		if(!$file)
 			return false;
 
+        $this->orient_image($path);
+
 		fclose($file);
 		$info = getimagesize($path);
-
-		//$this->orient_image($path);
 
 		switch($info[2]) {
 			case 1:
@@ -361,33 +360,36 @@ class image {
 	}
 
 
-	protected function orient_image($file_path) {
-      	$exif = @exif_read_data($file_path);
+	public function orient_image($path) {
+
+      	$exif = @exif_read_data($path);
         if ($exif === false) {
             return false;
         }
-      	$orientation = intval(@$exif['Orientation']);
-      	if (!in_array($orientation, array(3, 6, 8))) { 
-      	    return false;
-      	}
-      	$image = @imagecreatefromjpeg($file_path);
-      	switch ($orientation) {
-        	  case 3:
-          	    $image = @imagerotate($image, 180, 0);
-          	    break;
-        	  case 6:
-          	    $image = @imagerotate($image, 270, 0);
-          	    break;
-        	  case 8:
-          	    $image = @imagerotate($image, 90, 0);
-          	    break;
-          	default:
-          	    return false;
-      	}
-      	$success = imagejpeg($image, $file_path);
-      	// Free up memory (imagedestroy does not delete files):
-      	@imagedestroy($image);
-      	return $success;
+
+        if ( array_key_exists('Orientation', $exif ) ) {
+
+            $orientation = intval(@$exif['Orientation']);
+            if (!in_array($orientation, array(3, 6, 8))) {
+                return false;
+            }
+
+            $image = @imagecreatefromjpeg($path);
+            switch ($orientation) {
+                  case 3:
+                    $image = @imagerotate($image, 180, 0);
+                    break;
+                  case 6:
+                    $image = @imagerotate($image, 270, 0);
+                    break;
+                  case 8:
+                    $image = @imagerotate($image, 90, 0);
+                    break;
+                default:
+                    return false;
+            }
+            $this->image = imagejpeg($image, $path);
+        }
     }
 
 
