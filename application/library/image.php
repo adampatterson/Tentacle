@@ -362,33 +362,35 @@ class image {
 
 	public function orient_image($path) {
 
-      	$exif = @exif_read_data($path);
-        if ($exif === false) {
-            return false;
-        }
-
-        if ( array_key_exists('Orientation', $exif ) ) {
-
-            $orientation = intval(@$exif['Orientation']);
-            if (!in_array($orientation, array(3, 6, 8))) {
+        if (exif_imagetype($path) == IMAGETYPE_JPEG) {
+            $exif = @exif_read_data($path);
+            if ($exif === false) {
                 return false;
             }
 
-            $image = @imagecreatefromjpeg($path);
-            switch ($orientation) {
-                  case 3:
-                    $image = @imagerotate($image, 180, 0);
-                    break;
-                  case 6:
-                    $image = @imagerotate($image, 270, 0);
-                    break;
-                  case 8:
-                    $image = @imagerotate($image, 90, 0);
-                    break;
-                default:
+            if ( array_key_exists('Orientation', $exif ) ) {
+
+                $orientation = intval(@$exif['Orientation']);
+                if (!in_array($orientation, array(3, 6, 8))) {
                     return false;
+                }
+
+                $image = @imagecreatefromjpeg($path);
+                switch ($orientation) {
+                      case 3:
+                        $image = @imagerotate($image, 180, 0);
+                        break;
+                      case 6:
+                        $image = @imagerotate($image, 270, 0);
+                        break;
+                      case 8:
+                        $image = @imagerotate($image, 90, 0);
+                        break;
+                    default:
+                        return false;
+                }
+                $this->image = imagejpeg($image, $path);
             }
-            $this->image = imagejpeg($image, $path);
         }
     }
 

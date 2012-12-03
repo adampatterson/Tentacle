@@ -13,6 +13,19 @@ class media_model
 		$slug			= string::sanitize($file_name);
 		$author 		= user::id();
 
+        $image = IMAGE_DIR.$file_meta['name'];
+
+        if (exif_imagetype($image) == IMAGETYPE_JPEG) {
+            $exif = @exif_read_data($image);
+            if ($exif === false) {
+                $exif = '';
+            } else {
+                $exif = serialize($exif);
+            }
+        } else {
+            $exif = '';
+        }
+
 		// Run content through HTMLawd and Samrty Text
 		$media          = db('media');
 
@@ -22,6 +35,7 @@ class media_model
 			'name'			=> $file_full,
 			'title'			=> $file_name,
 			'date'			=> time(),
+            'exif'          => $exif,
 			'alt'			=> $file_name,
 			'count'			=> 1,
 			'type'			=> 'image',
