@@ -169,20 +169,25 @@ class get {
      *	$output - curl contents
      */
     public static function url_contents ( $url ) {
-        if (!function_exists('curl_init'))
-            die('CURL is not installed!');
+        load::library('Snoopy','Snoopy.class');
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)");
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        $output = curl_exec($ch);
-        curl_close($ch);
+        $snoopy = new Snoopy;
 
-        return $output;
+        $snoopy->agent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)";
+        $snoopy->referer = BASE_URL;
+
+        $snoopy->rawheaders["Pragma"] = "no-cache";
+
+        $snoopy->maxredirs = 2;
+        $snoopy->offsiteok = false;
+        $snoopy->expandlinks = false;
+
+        if($snoopy->fetch($url)){
+            return $snoopy->results;
+        } else {
+            return $snoopy->error;
+        }
     }
-
 
     /**
      * Function: get::snippet
