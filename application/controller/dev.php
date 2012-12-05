@@ -18,7 +18,7 @@ class dev_controller {
 			function output_buffer() { return NULL; }
 			ob_start('output_buffer');
 			
-			$loops = 5000;
+			$loops = 100;
 			$exact_timer = true;
 			
 			ob_flush();
@@ -28,16 +28,17 @@ class dev_controller {
 Test one
 */
 				$start_time1 = microtime($exact_timer); # Start the first timer
-				for($i = 0; $i < $loops; $i++):
+				for($int = 0; $int < $loops; $int++):
+
+/* ========================== */
 
 
-					$post 		= load::model( 'post' );
-					$posts 		= $post->get( );
 
+/* ========================== */
 
 				endfor;
 				$total_time = microtime($exact_timer) - $start_time1; # Stop the first timer, and figure out the total
-
+				$total_memory = memory_usage();
 
 			ob_flush();
 			flush();
@@ -46,15 +47,17 @@ Test one
 Test two
 */
 				$start_time2 = microtime($exact_timer); # Start the second timer
-				for($i = 0; $i < $loops; $i++):
+				for($int = 0; $int < $loops; $int++):
+
+/* ========================== */
 
 
-					$get = db::query("SELECT * from `posts` where `type` = 'page' AND `status` != 'trash' ORDER BY `menu_order` ASC");
-					
+				
+/* ========================== */	
 	
 				endfor;
 				$total_time2 = microtime($exact_timer) - $start_time2; # Stop the second timer, and figure out the total
-
+				$total_memory2 = memory_usage();	
 
 			ob_end_flush(); # Enable output again
 
@@ -67,16 +70,18 @@ Test two
 			if($total_time < $total_time2):
 				$res = ( ( $total_time / $total_time2 ) * 100 ) - 100;
 
-				echo 'Your first test was faster by <strong>'.abs(round($res)).'%</strong>, it took <strong>'.$total_time.'</strong> seconds to execute vs <strong>'.$total_time2.'</strong>.';
-
+				echo '<p>your first test was faster by <strong>'.abs(round($res)).'%</strong>, it took <strong>'.$total_time.'</strong> seconds to execute vs <strong>'.$total_time2.'</strong>.</p>';
+				echo '<p>Your first test used <strong>'.$total_memory.'</strong> vs <strong>'.$total_memory2.'</strong></p>';
+				
 			elseif($total_time > $total_time2):
 				$res = ( ( $total_time2 / $total_time ) * 100 ) - 100;
 
-				echo 'Your second test was faster by <strong>'.abs(round($res)).'%</strong>, it took <strong>'.$total_time2.'</strong> seconds to execute vs <strong>'.$total_time.'</strong>.';
-
+				echo '<p>Your second test was faster by <strong>'.abs(round($res)).'%</strong>, it took <strong>'.$total_time2.'</strong> seconds to execute vs <strong>'.$total_time.'</strong>.</p>';
+				echo '<p>Your second test used <strong>'.$total_memory2.'</strong> vs <strong>'.$total_memory.'</strong></p>';
+				
 			elseif($total_time === $total_time2):
-				echo 'The code samples scored equal times. Use either.';
-			endif;
+				echo '<p>The code samples scored equal times. Use either.</p>';
+			endif;	
 	}
 
 	
@@ -1675,16 +1680,16 @@ button:
             // other methods: fetch, fetchform, fetchlinks, submittext and submitlinks
 
             // response code:
-            print "response code: ".$snoopy->response_code."<br/>\n";
+            //print "response code: ".$snoopy->response_code."<br/>\n";
 
             // print the headers:
 
-            print "<b>Headers:</b><br/>";
-            while(list($key,$val) = each($snoopy->headers)){
-                print $key.": ".$val."<br/>\n";
-            }
-
-            print "<br/>\n";
+            // print "<b>Headers:</b><br/>";
+            //            while(list($key,$val) = each($snoopy->headers)){
+            //                print $key.": ".$val."<br/>\n";
+            //            }
+            // 
+            //            print "<br/>\n";
 
             // print the texts of the website:
             print "<pre>".htmlspecialchars($snoopy->results)."</pre>\n";

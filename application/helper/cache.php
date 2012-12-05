@@ -25,7 +25,7 @@ class cache
 	*/
 
 
-	public function set( $key, $data, $expire='+60 minutes' )
+	public function set( $key, $data, $expire='+720 minutes' )
 	{
 		$cache['expire'] = strtotime($expire);
 		$cache['data'] = $data;
