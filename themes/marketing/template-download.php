@@ -59,7 +59,7 @@ if(!defined('SCAFFOLD')):
 					<h1>Keep in touch</h1>
 					<p class="lead">Get the lowdown on announcements and cool new features.</p>
 	
-					<form method="post" action="http://www.industrymailout.com/Industry/SubscribeRedirect.aspx" >
+					<form method="post" id="newsletter" action="http://www.industrymailout.com/Industry/SubscribeRedirect.aspx" >
 
 						<input type="hidden" name="mailinglistid" value="27205" />
 						<input type="hidden" name="success" value="http://tentaclecms.com" />
