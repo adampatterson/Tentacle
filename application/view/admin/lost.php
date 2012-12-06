@@ -9,7 +9,7 @@
 <?php endif; ?>
 <div id="login-content">
 	<div id="login-logo">
-		<a href="<?=BASE_URL;?>"><img src="<?=BASE_URL;?>tentacle/admin/images/tentacle_logo_large.png" width="258" height="63" alt="Tentacle" /></a>
+				<a href="<?=BASE_URL;?>"><img src="<?=ADMIN_URL;?>images/tentacle_logo_large.png" width="258" height="63" alt="Tentacle" /></a>
 	</div>
 	<form action="<?= BASE_URL ?>action/lost/" method="post">
 		<dl>
