@@ -13,7 +13,14 @@
 
 function build_server_stats($is_install=1, $prev_version='', $charset='')
 {
-	load::library('uaparser');
+    if ( $is_install == 1 ){
+        load::library('YAML');
+        load::helper('get_set');
+        load::helper('tentacle');
+    }
+
+    load::library('uaparser');
+
 	$ua = UA::parse();
 	
 	$geo_meta = maybe_encoded(get::url_contents('http://geo.tentaclecms.com/'));
