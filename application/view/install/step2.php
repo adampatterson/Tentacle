@@ -39,7 +39,7 @@
 			</tr>
 			<tr>
 				<th>Storage Directory</th>
-				<?php if (is_dir('storage/') AND is_writable('tentacle/storage/')): ?>
+				<?php if (is_dir('storage/') AND is_writable('storage/')): ?>
 					<td class="pass">/storage/</td>
 				<?php else: $failed = TRUE ?>
 					<td class="fail">The <code>/tentacle/storage/</code> directory is not writable.</td>
