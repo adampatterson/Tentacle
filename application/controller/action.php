@@ -963,7 +963,8 @@ win.send_to_editor('<?=$html?>');
 		$last_name    = input::post( 'last_name' );
 		$display_name = input::post( 'display_name' );
 
-		$encrypted_password = sha1( $password );
+        $hash_password = new PasswordHash(8, FALSE);
+        $encrypted_password = $hash_password->HashPassword($password );
 		
 		$registered = time();
 		$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].$registered);
