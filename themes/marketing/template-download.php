@@ -95,6 +95,6 @@ if(!defined('SCAFFOLD')):
 		</div>
 	</div>
 
-	<? theme::part( 'partials/footer' ); 
+	<? theme::part( 'partials/footer', array('track' => 'Download') ); 
 	endif;
 	?>
