@@ -81,9 +81,7 @@ class install_controller
 	
 	public function done ( )
 	{		
-        load::helper('install');
-        load::library('YAML');
-        load::helper('serverstats');
+		load::helper('serverstats');
 		build_server_stats(1);
 			
 		load::view ( 'install/done' );	

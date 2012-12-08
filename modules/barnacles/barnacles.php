@@ -8,9 +8,9 @@ class Barnacles extends Modules {
 
     public function settings_nav($navs) {
     	$navs["barnacle_settings"] = array(
-            'title' => 'Barnacles',
-            'rout'   => 'barnacle_settings',
-            'uri'   => 'barnacles/view'
+            'title'     => 'Barnacles',
+            'rout'      => 'barnacle_settings',
+            'uri'       => 'barnacles/view'
         );
 
     	return $navs;
@@ -32,4 +32,4 @@ function snippet( $slug ) {
 	$snippet_single = $snippet->get_slug( $slug['slug'] );
 
 	return $snippet_single->content;
-	}
+}

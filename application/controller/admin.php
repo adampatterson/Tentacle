@@ -558,7 +558,9 @@ class admin_controller {
 		$get_module = $modules->get();
 
         if ( $module_view == true ) {
+            load::view('admin/partials/template-header', array('title' => 'Dashboard', 'assets' => array('application')));
             load::module_view($module_view);
+            load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) );
         } else {
             load::view ('admin/settings/settings_modules', array( 'serpent_modules'=>$serpent_modules, 'modules'=>$get_module ) );
         }

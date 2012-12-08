@@ -74,19 +74,21 @@
 				<li><a href="#">Add a new Module</a></li>
 <!--				<li class="divider"></li>-->
 				<?
-                /*
-				$modules = load::model('module');
+                /**/
+				    $modules = load::model('module');
 
                     $subnav = $modules->navigation();
 
 					if (isset($subnav)):
+
+                        echo '<li class="divider"></li>';
 
                         foreach ( $subnav as $sub_page ):
                             echo '<li><a href="'.ADMIN.'settings_modules/'.$sub_page['rout'].'">'.$sub_page['title'].'</a></li>';
                         endforeach;
 
 				    endif;
-                */ ?>
+                /**/ ?>
 				</ul>
 			</li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes <b class="caret"></b></a>

@@ -892,27 +892,28 @@ class load
 	* Returns:
 	*	FALSE
 	*/
-    public static function module_view( $module, $path, $data = '' )
-    {
-        // If theme does not exist display error
-        if(!file_exists(TENTACLE_PLUGIN.$module."$path.php"))
-        {
-            dingo_error(E_USER_WARNING,'The requested module view ('.THEMES_DIR.ACTIVE_THEME."/$path.php) could not be found.");
-            return FALSE;
-        } // if
-        else
-        {
-            // If data is array, convert keys to variables
+	public static function module_view( $module, $path = '', $data = '' )
+	{
 
-            if(is_array($data))
-            {
-                extract($data, EXTR_OVERWRITE);
-            }
-
-            require(THEMES_DIR.ACTIVE_THEME."/$path.php");
-            return FALSE;
-        } // else
-    }
+	    // If theme does not exist display error
+	    if(!file_exists(TENTACLE_PLUGIN.$module."$path.php"))
+	    {
+	        dingo_error(E_USER_WARNING,'The requested module view ('.THEMES_DIR.ACTIVE_THEME."/$path.php) could not be found.");
+	        return FALSE;
+	    } // if
+	    else
+	    {
+	        // If data is array, convert keys to variables
+	
+	        if(is_array($data))
+	        {
+	            extract($data, EXTR_OVERWRITE);
+	        }
+	
+	        require(THEMES_DIR.ACTIVE_THEME."/$path.php");
+	        return FALSE;
+	    } // else
+	}
 
 
     /**
