@@ -3,7 +3,13 @@ class dev_controller {
 	
 	public function index()
 	{
-        echo memory_usage();
+		var_dump(is::mobile());
+		var_dump(is::blackberry());
+		var_dump(is::ipad());
+		var_dump(is::ipod());
+		var_dump(is::iphone());
+		var_dump(is::palmpre());
+		var_dump(is::android());
 	}
 
 	public function stats()

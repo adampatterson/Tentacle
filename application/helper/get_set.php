@@ -310,7 +310,7 @@ class is {
      * @access  public
      * @return  bool
      */
-    public function iphone()
+    public static function iphone()
     {
         return (bool) strpos($_SERVER['HTTP_USER_AGENT'], 'iPhone');
     }
@@ -322,7 +322,7 @@ class is {
      * @access  public
      * @return  bool
      */
-    public function ipod()
+    public static function ipod()
     {
         return (bool) strpos($_SERVER['HTTP_USER_AGENT'], 'iPod');
     }
@@ -334,7 +334,7 @@ class is {
      * @access  public
      * @return  bool
      */
-    public function ipad()
+    public static function ipad()
     {
         return (bool) strpos($_SERVER['HTTP_USER_AGENT'], 'iPad');
     }
@@ -346,7 +346,7 @@ class is {
      * @access  public
      * @return  bool
      */
-    public function android()
+    public static function android()
     {
         return (bool) strpos($_SERVER['HTTP_USER_AGENT'], 'Android');
     }
@@ -357,7 +357,7 @@ class is {
      * @access  public
      * @return  bool
      */
-    public function palmpre()
+    public static function palmpre()
     {
         return (bool) strpos($_SERVER['HTTP_USER_AGENT'], 'webOS');
     }
@@ -369,7 +369,7 @@ class is {
      * @access  public
      * @return  bool
      */
-    public function blackberry()
+    public static function blackberry()
     {
         return (bool) strpos($_SERVER['HTTP_USER_AGENT'], 'BlackBerry');
     }
