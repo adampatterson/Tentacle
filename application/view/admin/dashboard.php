@@ -9,7 +9,20 @@
 						<? upgrade::check_core_version(); ?>
 					<div class="span8 well">
 						<h2>Tentacle News</h2>
-						<? dashboard_feed(array( 'feed' => 'http://tentaclecms.com/blog/feed/' ) ); ?>
+						<? //dashboard_feed(array( 'feed' => 'http://tentaclecms.com/blog/feed/' ) ); ?>
+			
+						<ul class="feed"></ul>
+												
+						<script type="text/javascript">
+								$.getJSON("http://tentaclecms.com/blog/feed/?feed=json&jsonp=?",
+						       function(data){
+
+									$.each(data.slice(0,4), function(i, item){
+										$(".feed").append('<li><h3><a href="' + item.permalink + '">' + item.title + '</a></h3><p>' + item.excerpt +'</p></li>');
+									});
+						       });
+						</script>
+				
 					</div>
 					<!-- <div class="span4 well">
 							<h2>Content</h2>
