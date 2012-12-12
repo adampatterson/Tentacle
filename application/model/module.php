@@ -59,14 +59,21 @@ class module_model
         $trigger 		= Trigger::current();
 
         $subnav["settings"] = $trigger->filter($subnav["settings"], "settings_nav");
+		
+		if ( $subnav["settings"] != null) {
+			
+			foreach ($subnav["settings"] as $key => $value) {
+	            $subnav["settings"][$key] = array(
+	                'title'     => $value['title'],
+	                'rout'      => $value['rout'],
+	                'uri'       => $value['uri']
+	            );
+	        }
+	        return $subnav["settings"];
+		} else {
+			return false;
+		}
 
-        foreach ($subnav["settings"] as $key => $value) {
-            $subnav["settings"][$key] = array(
-                'title'     => $value['title'],
-                'rout'      => $value['rout'],
-                'uri'       => $value['uri']
-            );
-        }
-        return $subnav["settings"];
+        
     }
 }

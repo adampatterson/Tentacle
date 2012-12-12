@@ -881,36 +881,33 @@ class load
 
 	/**
 	* Function: module_view
-	*	@todo: This is a work in progress
 	*	Used to load views that are located inside a module for the admin app.
 	* 
 	* Parameters:
-	*	$module
-	*	$path
-	* 	$data
+	*	$path - String
+	* 	$data - Mixed
 	*
 	* Returns:
 	*	FALSE
 	*/
-	public static function module_view( $module, $path = '', $data = '' )
+	public static function module_view( $path = '', $data = '' )
 	{
 
-	    // If theme does not exist display error
-	    if(!file_exists(TENTACLE_PLUGIN.$module."$path.php"))
+	    // If module does not exist display error
+	    if(!file_exists(TENTACLE_PLUGIN."/$path.php"))
 	    {
-	        dingo_error(E_USER_WARNING,'The requested module view ('.THEMES_DIR.ACTIVE_THEME."/$path.php) could not be found.");
+	        dingo_error(E_USER_WARNING,'The requested module view ('.TENTACLE_PLUGIN."/$path.php) could not be found.");
 	        return FALSE;
 	    } // if
 	    else
 	    {
 	        // If data is array, convert keys to variables
-	
 	        if(is_array($data))
 	        {
 	            extract($data, EXTR_OVERWRITE);
 	        }
 	
-	        require(THEMES_DIR.ACTIVE_THEME."/$path.php");
+	        require(TENTACLE_PLUGIN."/$path.php");
 	        return FALSE;
 	    } // else
 	}

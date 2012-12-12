@@ -6,14 +6,20 @@ class Barnacles extends Modules {
 		add_shortcode( 'snippet', 'snippet' );
     }
 
-    public function settings_nav($navs) {
-    	$navs["barnacle_settings"] = array(
+    public function settings_nav() {
+		$nav[] = array(
             'title'     => 'Barnacles',
             'rout'      => 'barnacle_settings',
             'uri'       => 'barnacles/view'
         );
 
-    	return $navs;
+		$nav[] = array(
+            'title'     => 'Barnacles Two',
+            'rout'      => 'barnacle_settings_two',
+            'uri'       => 'barnacles/view'
+        );
+
+    	return $nav;
     }
 
 	public function shortcode($text='') {

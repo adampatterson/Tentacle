@@ -72,14 +72,12 @@
 				<ul class="dropdown-menu">
 				<li><a class="<? current_page('admin/settings_modules'); ?>" href="<?= ADMIN ?>settings_modules/">Manage Modules</a></li>
 				<li><a href="#">Add a new Module</a></li>
-<!--				<li class="divider"></li>-->
 				<?
-                /**/
 				    $modules = load::model('module');
 
                     $subnav = $modules->navigation();
 
-					if (isset($subnav)):
+					if ( $subnav != false):
 
                         echo '<li class="divider"></li>';
 
@@ -87,8 +85,8 @@
                             echo '<li><a href="'.ADMIN.'settings_modules/'.$sub_page['rout'].'">'.$sub_page['title'].'</a></li>';
                         endforeach;
 
-				    endif;
-                /**/ ?>
+				    endif; 
+				?>
 				</ul>
 			</li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes <b class="caret"></b></a>

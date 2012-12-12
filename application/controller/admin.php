@@ -555,16 +555,26 @@ class admin_controller {
 		$serpent_modules = $serpent->get_module( );
 		
 		$modules = load::model( 'module' );
+		$module_subnav = $modules->navigation();
 		$get_module = $modules->get();
-
+		
         if ( $module_view == true ) {
-            load::view('admin/partials/template-header', array('title' => 'Dashboard', 'assets' => array('application')));
-            load::module_view($module_view);
+            
+			load::view('admin/partials/template-header', array('title' => 'Dashboard', 'assets' => array('application')));
+
+			foreach ($module_subnav as $module) {		
+					
+				if ($module['rout'] == $module_view) {
+					load::module_view($module['uri'].'/'.$module['rout'], array('data'=> 'test'));
+				}
+			}
+			
             load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) );
         } else {
             load::view ('admin/settings/settings_modules', array( 'serpent_modules'=>$serpent_modules, 'modules'=>$get_module ) );
         }
 	}
+
 
 	/**
 	* Comment Settings
