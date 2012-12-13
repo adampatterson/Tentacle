@@ -36,7 +36,7 @@
 
 			</div>
 			<div class="row">
-				<ul class="nav nav-pills">
+				<ul class="nav nav-pills span8">
 					<?/* https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fwww.tentaclecms.com&text=I%20just%20downloaded%20Tentacle%20CMS,%20you%20should%20try%20it%20as%20well!%20Get%20it%20here:%20&tw_p=tweetbutton&url=http%3A%2F%2Fwww.tentaclecms.com */?>
 					<li>
 						<a href="https://twitter.com/#!/TentacleCMS" target="_blank"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Twitter']); mixpanel.track('Footer Navigation', { 'link': 'Twitter' });">@TentacleCMS</a>
@@ -57,8 +57,15 @@
 						<a href="mailto:hello@tentaclecms.com" onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Contact']); mixpanel.track('Footer Navigation', { 'link': 'Contact Us' });">Contact Us</a>
 					</li>
 				</ul>
+				<ul class="nav nav-pills pull-right">
+					<li>
+						<a href="https://mixpanel.com/f/partner"><img src="//cdn.mxpnl.com/site_media/images/partner/badge_light.png" alt="Mobile Analytics" /></a>
+					</li>
+				</ul>
 			</div>
-			
+			<div class="row bump">
+				<div class="span8">&nbsp;</div>
+			</div>
 		</div> <!-- /container -->
 	</footer>
  	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
