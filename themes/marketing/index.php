@@ -26,7 +26,7 @@ if(!defined('SCAFFOLD')):
 					<p class="lead">Tentacle makes it easy to Design, Develop, and Write content for the web.</p>
 					<p class="lead">Its goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
 					<p class="lead">
-						<br /><a href="<?= BASE_URL ?>download/" onClick="_gaq.push(['_trackEvent', 'Header Link', 'Download', 'v 0.8.5 Beta']); mixpanel.track('ob_gzhandler', { 'link': 'Download', 'version': 'v 0.8.5 Beta' });" class="btn btn-primary btn-large btn-block">&nbsp;&nbsp;&nbsp;Download v0.8.5 Beta&nbsp;&nbsp;&nbsp;</a>
+						<br /><a href="<?= BASE_URL ?>download/" onClick="_gaq.push(['_trackEvent', 'Header Link', 'Download', 'v 0.8.5 Beta']); mixpanel.track('Content', { 'link': 'Download', 'version': 'v 0.8.5 Beta' });" class="btn btn-primary btn-large btn-block">&nbsp;&nbsp;&nbsp;Download v0.8.5 Beta&nbsp;&nbsp;&nbsp;</a>
 					</p>
 				</div>
 				<div class="app-image pull-right">
