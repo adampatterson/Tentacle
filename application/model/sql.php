@@ -425,7 +425,7 @@ class sql_model
         $build = $pdo->exec( "DROP TABLE `downloads`;" );
     }
 
-    public function get_114 ( $version )
+    public function get_114 ( )
     {
         $config = config::get('db');
 
