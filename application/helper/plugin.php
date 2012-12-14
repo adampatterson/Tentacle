@@ -1,33 +1,33 @@
 <?
 /**
-* File: Module
+* File: Plugin
 */
 
 /**
 * Function: init_extensions
-* Initialize all Modules
+* Initialize all Plugins
 */
 function init_extensions() {
 
-	$modules = new Modules();
+	$plugins = new Plugins();
 
-	$enabled_modules  = $modules->get_modules();
+	$enabled_plugins  = $plugins->get_plugins();
 	
-	foreach ($enabled_modules['enabled_modules'] as $module => $info ) {
+	foreach ($enabled_plugins['enabled_plugins'] as $plugin => $info ) {
 		
-		require TENTACLE_PLUGIN."/".$module."/".$module.".php";
+		require TENTACLE_PLUGIN."/".$plugin."/".$plugin.".php";
 
-		$camelized = string::camelize($module);
+		$camelized = string::camelize($plugin);
 		if (!class_exists($camelized))
 			continue;
 
-		Modules::$instances[$module] = new $camelized;
-		Modules::$instances[$module]->safename = $module;
+		Plugins::$instances[$plugin] = new $camelized;
+		Plugins::$instances[$plugin]->safename = $plugin;
 
-		foreach (Modules::$instances as $module)
+		foreach (Plugins::$instances as $plugin)
 		{
-			if (method_exists($module, "__init"))
-				$module->__init();
+			if (method_exists($plugin, "__init"))
+				$plugin->__init();
 		}
 	}
 }
@@ -71,41 +71,41 @@ function fallback(&$variable) {
 
 
 /**
- * Function: module_enabled
- * Returns whether the given module is enabled or not.
+ * Function: plugin_enabled
+ * Returns whether the given plugin is enabled or not.
  *
  * Parameters:
- *     $name - The folder name of the module.
+ *     $name - The folder name of the plugin.
  *
  * Returns:
- *     Whether or not the requested module is enabled.
+ *     Whether or not the requested plugin is enabled.
  */
-function module_enabled( $name ) {
-    return in_array( $name, enabled_module() );
+function plugin_enabled( $name ) {
+    return in_array( $name, enabled_plugin() );
 }
 
 
 /**
- * Function: enabled_module
- * Returns an array of enabled modules.
+ * Function: enabled_plugin
+ * Returns an array of enabled plugins.
  *
  */
-function enabled_module() {
-    return unserialize(ACTIVE_MODULES);
+function enabled_plugin() {
+    return unserialize(ACTIVE_PLUGINS);
 }
 
 
 /**
- * Class: Modules
- * Contains various functions, acts as the backbone for all modules.
+ * Class: Plugins
+ * Contains various functions, acts as the backbone for all plugins.
  */
-class Modules {
+class Plugins {
     # Array: $instances
-    # Holds all Module instantiations.
+    # Holds all plugin instantiations.
     static $instances = array();
 
     # Boolean: $cancelled
-    # Is the module's execution cancelled?
+    # Is the plugin's execution cancelled?
     public $cancelled = false;
 
     # Array: $context
@@ -115,7 +115,7 @@ class Modules {
 
     /**
      * Function: set_priority
-     * Sets the priority of an action for the module this function is called from.
+     * Sets the priority of an action for the plugin this function is called from.
      *
      * Parameters:
      *     $name - Name of the trigger to respond to.
@@ -128,7 +128,7 @@ class Modules {
 
     /**
      * Function: add_alias
-     * Allows a module to respond to a trigger with multiple functions and custom priorities.
+     * Allows a plugin to respond to a trigger with multiple functions and custom priorities.
      *
      * Parameters:
      *     $name - Name of the trigger to respond to.
@@ -140,18 +140,18 @@ class Modules {
     }
 
 
-	public function get_modules(){
-		$context["enabled_modules"] = $context["disabled_modules"] = array();
+	public function get_plugins(){
+		$context["enabled_plugins"] = $context["disabled_plugins"] = array();
 		
 		$classes = array();
-		// Move to the modile folder
+		// Move to the plugin folder
 		chdir(TENTACLE_PLUGIN);
-		$module_path = array_filter(glob('*'), 'is_dir');
+		$plugin_path = array_filter(glob('*'), 'is_dir');
 
 		// Reset to the app root
 		chdir(APP_ROOT);
 				
-		foreach ($module_path as $folder) {
+		foreach ($plugin_path as $folder) {
 		    if (!file_exists(TENTACLE_PLUGIN."/".$folder."/".$folder.".php") or !file_exists(TENTACLE_PLUGIN."/".$folder."/info.yaml")) continue;
 			
 			/*
@@ -182,7 +182,7 @@ class Modules {
 		        $classes[$folder][] = "depends";
 
 		        foreach ((array) $info["depends"] as $dependency) {
-		            if (!module_enabled($dependency)) {
+		            if (!plugin_enabled($dependency)) {
 		                if (!in_array("missing_dependency", $classes[$folder]))
 		                    $classes[$folder][] = "missing_dependency";
 
@@ -214,7 +214,7 @@ class Modules {
 		                                  '<a href="'.string::fix($info["author"]["url"]).'">'.string::fix($info["author"]["name"]).'</a>' :
 		                                  $info["author"]["name"] ;
 
-		    $category = (module_enabled($folder)) ? "enabled_modules" : "disabled_modules" ;
+		    $category = (plugin_enabled($folder)) ? "enabled_plugins" : "disabled_plugins" ;
 		    $context[$category][$folder] = array("name" => $info["name"],
 		                                               "version" => $info["version"],
 		                                               "url" => $info["url"],
@@ -225,11 +225,11 @@ class Modules {
 		                                               "dependencies_needed" => $dependencies_needed);
 		}
 		
-		foreach ($context["enabled_modules"] as $module => &$attrs)
-		    $attrs["classes"] = $classes[$module];
+		foreach ($context["enabled_plugins"] as $plugin => &$attrs)
+		    $attrs["classes"] = $classes[$plugin];
 
-		foreach ($context["disabled_modules"] as $module => &$attrs)
-		    $attrs["classes"] = $classes[$module];
+		foreach ($context["disabled_plugins"] as $plugin => &$attrs)
+		    $attrs["classes"] = $classes[$plugin];
 		
 		
 		return $context;
@@ -304,9 +304,9 @@ class Modules {
              }
          }
 
-         foreach (Modules::$instances as $module)
-             if (!in_array(array($module, $name), $this->called[$name]) and is_callable(array($module, $name)))
-                 $return = call_user_func_array(array($module, $name), $arguments);
+         foreach (Plugins::$instances as $plugin)
+             if (!in_array(array($plugin, $name), $this->called[$name]) and is_callable(array($plugin, $name)))
+                 $return = call_user_func_array(array($plugin, $name), $arguments);
 
          return $return;
      }
@@ -353,9 +353,9 @@ class Modules {
                  $target = fallback($call, $target);
              }
 
-         foreach (Modules::$instances as $module)
-             if (!in_array(array($module, $name), $this->called[$name]) and is_callable(array($module, $name))) {
-                 $call = call_user_func_array(array($module, $name),
+         foreach (Plugins::$instances as $plugin)
+             if (!in_array(array($plugin, $name), $this->called[$name]) and is_callable(array($plugin, $name))) {
+                 $call = call_user_func_array(array($plugin, $name),
                                               array_merge(array(&$target), $arguments));
                  $target = fallback($call, $target);
              }
@@ -395,8 +395,8 @@ class Modules {
          if (isset($this->exists[$name]))
              return $this->exists[$name];
 
-         foreach (Modules::$instances as $module)
-             if (is_callable(array($module, $name)))
+         foreach (Plugins::$instances as $plugin)
+             if (is_callable(array($plugin, $name)))
                  return $this->exists[$name] = true;
 
          if (isset($this->priorities[$name]))
