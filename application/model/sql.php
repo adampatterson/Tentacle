@@ -435,7 +435,7 @@ class sql_model
             dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
         }
 
-        $build = $pdo->exec( "UPDATE  `options` SET  `key` =  'active_plugins' WHERE  `options`.`key` ='active_plugins';" );
+        $build = $pdo->exec( "UPDATE  `options` SET  `key` =  'active_plugins' WHERE  `options`.`key` ='active_modules';" );
     }
 
     public function touch_db()
