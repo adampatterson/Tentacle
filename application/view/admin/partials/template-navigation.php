@@ -68,21 +68,21 @@
 				?>
 			  </ul>
 			</li>
-			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Modules <b class="caret"></b></a>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Plugins <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-				<li><a class="<? current_page('admin/settings_modules'); ?>" href="<?= ADMIN ?>settings_modules/">Manage Modules</a></li>
-				<li><a href="#">Add a new Module</a></li>
+				<li><a class="<? current_page('admin/settings_plugins'); ?>" href="<?= ADMIN ?>settings_plugins/">Manage Plugins</a></li>
+				<li><a href="#">Add a new Plugin</a></li>
 				<?
-				    $modules = load::model('module');
+				    $plugins = load::model('plugin');
 
-                    $subnav = $modules->navigation();
+                    $subnav = $plugins->navigation();
 
 					if ( $subnav != false):
 
                         echo '<li class="divider"></li>';
 
                         foreach ( $subnav as $sub_page ):
-                            echo '<li><a href="'.ADMIN.'settings_modules/'.$sub_page['rout'].'">'.$sub_page['title'].'</a></li>';
+                            echo '<li><a href="'.ADMIN.'settings_plugins/'.$sub_page['rout'].'">'.$sub_page['title'].'</a></li>';
                         endforeach;
 
 				    endif; 

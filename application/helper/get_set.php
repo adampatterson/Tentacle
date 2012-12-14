@@ -53,8 +53,8 @@ class get {
         return TENTACLE_DB_VERSION;
     }
 
-    function enabled_module() {
-        return enabled_module();
+    function enabled_plugin() {
+        return enabled_plugin();
     }
 
 

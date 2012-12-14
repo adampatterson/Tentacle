@@ -62,7 +62,7 @@ class page_controller {
 			// If URI lookup fails redirect to the themes 404 page
 			if ( $post ) {
 				
-				// at this tage we are simply allowing the contnet attribute to be modified by the modules.
+				// at this tage we are simply allowing the contnet attribute to be modified by the plugins.
 				if($trigger->exists("preview"))
 					$post->content = $trigger->filter($post->content,"preview");
 					

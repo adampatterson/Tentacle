@@ -1,15 +1,15 @@
-[submodule "modules/ipsum"]
-	path = modules/ipsum
+[subplugin "plugins/ipsum"]
+	path = plugins/ipsum
 	url = git@github.com:adampatterson/tentacle-ipsum.git
-[submodule "modules/ndoc"]
-	path = modules/ndoc
+[subplugin "plugins/ndoc"]
+	path = plugins/ndoc
 	url = git@github.com:adampatterson/tentacle-ndoc.git
-[submodule "themes/immersion"]
+[subplugin "themes/immersion"]
 	path = themes/immersion
 	url = git@github.com:adampatterson/tentacle-immersion.git
-[submodule "themes/organic_structure"]
+[subplugin "themes/organic_structure"]
 	path = themes/organic_structure
 	url = git@github.com:adampatterson/tentacle-organic-structure.git
-[submodule "themes/tentacle"]
+[subplugin "themes/tentacle"]
 	path = themes/tentacle
 	url = git@github.com:adampatterson/tentacle-default.git

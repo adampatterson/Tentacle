@@ -22,14 +22,14 @@ class serpent_model {
 		return json_decode( $themes );
 	}
 	
-	public function get_module($single = '')
+	public function get_plugin($single = '')
 	{
 		load::helper('file');
 		
 		$scc = stream_context_create( array( 'http' => array( 'timeout' => CHECK_TIMEOUT ) ) );
 		
-		$modules = get::url_contents( 'http://api.tentaclecms.com/get/plugins/'.$single );
+		$plugins = get::url_contents( 'http://api.tentaclecms.com/get/plugins/'.$single );
 
-		return json_decode( $modules );
+		return json_decode( $plugins );
 	}
 }

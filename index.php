@@ -90,7 +90,7 @@ define('TEMP'		   	  , STORAGE_DIR.'/temp/');
 define('THEMES_DIR'    	  , APP_ROOT.'/themes/');
 define('THEMES_URL'    	  , BASE_URL.'themes');
 
-define('TENTACLE_PLUGIN'  , APP_ROOT.'/modules');
+define('TENTACLE_PLUGIN'  , APP_ROOT.'/plugins');
 
 define('IMAGE_DIR'     	  , APP_ROOT.'/storage/images/');
 define('IMAGE_URL'	   	  , BASE_URL.'storage/images/');
@@ -105,12 +105,12 @@ define( 'CHECK_TIMEOUT', 5 );
 /**
  * The Tentacle version
  */
-define('TENTACLE_VERSION', 'v0.8.5');
+define('TENTACLE_VERSION', 'v0.9');
 
 /**
  * Holds the Tentacle DB revision, increments when changes are made to the Tentacle sql model.
  */
-define('TENTACLE_DB_VERSION', '113');
+define('TENTACLE_DB_VERSION', '114');
 
 /**
  * Holds the required PHP versionw

@@ -19,7 +19,7 @@
 				<p>Everything is up to date.</p>
 			</div>
 			
-			<h2>Modules</h2>
+			<h2>Plugins</h2>
 			<div class="well">
 				<p>Everything is up to date.</p>
 			</div>

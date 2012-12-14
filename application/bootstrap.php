@@ -150,14 +150,14 @@ class bootstrap
         // Autoload Components
         bootstrap::autoload($controller);
 
-        // Load the modules here so that we can set route's, and use the Hooks in all areas of the application.
+        // Load the plugins here so that we can set route's, and use the Hooks in all areas of the application.
         // Check to see if we are installed so we dont explode.
         if (class_exists('get') && get::option('is_blog_installed')) {           			
 
-			define('ACTIVE_MODULES', get::option('active_modules'));
+			define('ACTIVE_PLUGINS', get::option('active_plugins'));
 
 			load::library('YAML');
-            load::helper('module');
+            load::helper('plugin');
             init_extensions();
         }
 
@@ -880,8 +880,8 @@ class load
 
 
 	/**
-	* Function: module_view
-	*	Used to load views that are located inside a module for the admin app.
+	* Function: plugin_view
+	*	Used to load views that are located inside a plugin for the admin app.
 	* 
 	* Parameters:
 	*	$path - String
@@ -890,13 +890,13 @@ class load
 	* Returns:
 	*	FALSE
 	*/
-	public static function module_view( $path = '', $data = '' )
+	public static function plugin_view( $path = '', $data = '' )
 	{
 
-	    // If module does not exist display error
+	    // If plugin does not exist display error
 	    if(!file_exists(TENTACLE_PLUGIN."/$path.php"))
 	    {
-	        dingo_error(E_USER_WARNING,'The requested module view ('.TENTACLE_PLUGIN."/$path.php) could not be found.");
+	        dingo_error(E_USER_WARNING,'The requested plugin view ('.TENTACLE_PLUGIN."/$path.php) could not be found.");
 	        return FALSE;
 	    } // if
 	    else

@@ -245,7 +245,7 @@ class tentacle
 
     /**
      * Function: total_update
-     * Total number of updates total or for themes/modules
+     * Total number of updates total or for themes/plugins
      *
      * Parameters:
      *     $key - string ( )
@@ -257,14 +257,14 @@ class tentacle
 		$settings = load::model( 'settings' );
 
         $themes = $settings->get('themes');
-		$modules = $settings->get('modules');
+		$plugins = $settings->get('plugins');
 		
 		if ( $key == 'themes' ) {
 			$total = $settings->get('themes');
-		} elseif ( $key == 'modules' ) {
-			$total = $settings->get('modules');
+		} elseif ( $key == 'plugins' ) {
+			$total = $settings->get('plugins');
 		} else {
-			$total = $themes+$modules;
+			$total = $themes+$plugins;
 		}
 
         return $total;
@@ -418,7 +418,7 @@ class tentacle
 	
 	/**
 	* Function: parse_php_info
-	* This function parses the phpinfo output to get details about a PHP module.
+	* This function parses the phpinfo output to get details about a PHP plugin.
 	* http://www.php.net/manual/en/function.phpinfo.php
     *
 	* Returns:
@@ -435,7 +435,7 @@ class tentacle
 		$phpinfo_html = preg_replace("#<th[^>]*>([^<]+)<\/th>#", "<info>$1</info>", $phpinfo_html);
 		$phpinfo_html = preg_replace("#<td[^>]*>([^<]+)<\/td>#", "<info>$1</info>", $phpinfo_html);
 		$phpinfo_html = preg_split("#(<h2[^>]*>[^<]+<\/h2>)#", $phpinfo_html, -1, PREG_SPLIT_DELIM_CAPTURE);
-		$modules = array();
+		$plugins = array();
 
 		for($i=1; $i < count($phpinfo_html); $i++)
 		{
@@ -452,17 +452,17 @@ class tentacle
 					// 3 columns
 					if(preg_match($pat3, $one, $match))
 					{
-						$modules[$name][trim($match[1])] = array(trim($match[2]), trim($match[3]));
+						$plugins[$name][trim($match[1])] = array(trim($match[2]), trim($match[3]));
 					}
 					// 2 columns
 					else if(preg_match($pat2, $one, $match))
 					{
-						$modules[$name][trim($match[1])] = trim($match[2]);
+						$plugins[$name][trim($match[1])] = trim($match[2]);
 					}
 				}
 			}
 		}
-		return $modules;
+		return $plugins;
 	}
 
 

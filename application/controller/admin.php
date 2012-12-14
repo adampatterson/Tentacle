@@ -10,7 +10,7 @@ class admin_controller {
 		
 		load::view ('admin/updates');	
 	}
-	
+
 	
 	public function updated ()
 	{	
@@ -545,33 +545,34 @@ class admin_controller {
 	
 	
 	/**
-	* Module Settings
+	* Plugin Settings
 	* ----------------------------------------------------------------------------------------------*/
-	public function settings_modules ( $module_view = false )
+	public function settings_plugins ( $plugin_view = false )
 	{
         tentacle::valid_user();
 	
 		$serpent = load::model( 'serpent' );
-		$serpent_modules = $serpent->get_module( );
+		// These will come from the Serpent API
+        $serpent_plugins = $serpent->get_plugin( );
 		
-		$modules = load::model( 'module' );
-		$module_subnav = $modules->navigation();
-		$get_module = $modules->get();
+		$plugins = load::model( 'plugin' );
+		$plugin_subnav = $plugins->navigation();
+		$get_plugin = $plugins->get();
 		
-        if ( $module_view == true ) {
+        if ( $plugin_view == true ) {
             
 			load::view('admin/partials/template-header', array('title' => 'Dashboard', 'assets' => array('application')));
 
-			foreach ($module_subnav as $module) {		
+			foreach ($plugin_subnav as $plugin) {
 					
-				if ($module['rout'] == $module_view) {
-					load::module_view($module['uri'].'/'.$module['rout'], array('data'=> 'test'));
+				if ($plugin['rout'] == $plugin_view) {
+					load::plugin_view($plugin['uri'].'/'.$plugin['rout'], array('data'=> 'test'));
 				}
 			}
 			
             load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) );
         } else {
-            load::view ('admin/settings/settings_modules', array( 'serpent_modules'=>$serpent_modules, 'modules'=>$get_module ) );
+            load::view ('admin/settings/settings_plugins', array( 'serpent_plugins'=>$serpent_plugins, 'plugins'=>$get_plugin ) );
         }
 	}
 

@@ -129,7 +129,7 @@ class upgrade {
 	}
 	
 	
-	public function module( $module )
+	public function plugin( $plugin )
 	{
 		
 	}

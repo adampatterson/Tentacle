@@ -162,10 +162,10 @@ button:
 	}
 
 
-    public function module_nav () {
-		$module = load::model('module');
+    public function plugin_nav () {
+		$plugin = load::model('plugin');
 
-		clean_out($module->navigation());
+		clean_out($plugin->navigation());
     }
 
 	public function email()
@@ -231,17 +231,17 @@ button:
 
 	public function extensions ()
 	{
-        $modules = load::model('module');
+        $plugins = load::model('plugin');
 
-		//var_dump($modules->get('active'));
+		//var_dump($plugins->get('active'));
 
-        var_dump($modules->get('active'));
+        var_dump($plugins->get('active'));
 
-		var_dump($modules->get('inactive'));
+		var_dump($plugins->get('inactive'));
 
-        //$activate = $modules->activate('test');
+        //$activate = $plugins->activate('test');
 
-		//$deactivate = $modules->deactivate('test');
+		//$deactivate = $plugins->deactivate('test');
 
         //var_dump($deactivate);
 	}
@@ -962,12 +962,12 @@ button:
 
         deincrement('template');
 	
-		echo increment('modules')."<br />";
+		echo increment('plugins')."<br />";
 
         deincrement('test');
 	
 		echo 'themes '.total_update('themes')."<br />";
-		echo 'modules '.total_update('modules')."<br />";
+		echo 'plugins '.total_update('plugins')."<br />";
 		echo total_update();
 	}
 	

@@ -539,7 +539,7 @@ class action_controller {
 	 * 
 	 * 
 	 * 
-	 * ========================= Module Activation
+	 * ========================= Plugin Activation
 	 * 
 	 * 
 	 * 
@@ -547,21 +547,21 @@ class action_controller {
 	 */	
 	
 	
-	public function enable_module( $slug )
+	public function enable_plugin( $slug )
 	{
-		$modules = load::model('module');
-		$activate = $modules->activate( $slug );
+		$plugins = load::model('plugin');
+		$activate = $plugins->activate( $slug );
 		
-		url::redirect('admin/settings_modules/');
+		url::redirect('admin/settings_plugins/');
 	}
 	
 	
-	public function disable_module( $slug )
+	public function disable_plugin( $slug )
 	{
-		$modules = load::model('module');
-		$deactivate = $modules->deactivate( $slug );
+		$plugins = load::model('plugin');
+		$deactivate = $plugins->deactivate( $slug );
 		
-		url::redirect('admin/settings_modules/');
+		url::redirect('admin/settings_plugins/');
 	}
 	
 	
