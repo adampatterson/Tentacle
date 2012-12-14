@@ -13,3 +13,6 @@
 [subplugin "themes/tentacle"]
 	path = themes/tentacle
 	url = git@github.com:adampatterson/tentacle-default.git
+[submodule "extensions/tentacle-ndoc"]
+	path = extensions/tentacle-ndoc
+	url = https://adampatterson@github.com/adampatterson/tentacle-ndoc.git
