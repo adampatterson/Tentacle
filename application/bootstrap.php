@@ -424,10 +424,10 @@ class api
 */
 class route
 {
-	# Array: $rout
+	# Array: rout
     static $route = array();
  
-	# Array: Current
+	# Array: current
     private static $current = array();
 
     /**
