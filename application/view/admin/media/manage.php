@@ -9,12 +9,10 @@
 		    <div class="one-full">
 	    		<div id="dropbox" class="well" style="height: 200px;">&nbsp;</div>
 		    </div>
-		
+
 			<div class="accordion" id="accordion">
 				<? foreach ( $media as $image ): ?>
-				<? $file_meta = explode('.', $image->name ); 
-
-				?>
+				<? $file_meta = explode('.', $image->name ); ?>
 				<div class="accordion-group">
 					<div class="accordion-heading">
 						<div class="row">
@@ -76,41 +74,11 @@
 											</div>
 										</div>
 
-										<div class="control-group">
-											<label class="control-label" for="link_url">Link URL</label>
-											<div class="controls">
-												<div class="input-append">
-													<input type="text" class="span3 post" data-image-id="<?= $image->id ?>" id="link_url" name="link_url" value="<?= $image->link ?>" ><button class="btn" type="button" id="none">None</button><button class="btn" type="button" id="file">File</button>
-									             </div>
-											</div>
-										</div>
-
-										<div class="control-group">
-											<label class="control-label">Size</label>
-											<div class="controls">
-												<label class="radio">
-													<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="" />
-													Thumbnail ( <?= get::option('image_thumb_size_w').' x '.get::option('image_thumb_size_h'); ?> )
-												</label>
-												<label class="radio">
-													<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" />
-													Medium ( <?= get::option('image_medium_size_w').' x '.get::option('image_medium_size_h'); ?> )
-												</label>
-												<label class="radio">
-													<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" />
-													Large ( <?= get::option('image_large_size_w').' x '.get::option('image_large_size_h'); ?> )
-												</label>
-												<label class="radio">
-													<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" />
-													Full Size
-												</label>
-											</div>
-										</div>
 									</div>
 									<div class="row">
 										<div class="actions">
-											<!--<input type="submit" name="update" value="Update" id="update" class="btn btn-success">-->
-											<button class="btn btn-danger">Delete</button>
+											<input type="submit" name="update" value="Update" id="update" class="btn btn-success">
+											<!--<button class="btn btn-danger">Delete</button>-->
 										</div>
 									</fieldset>
 								</form>
