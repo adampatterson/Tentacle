@@ -167,7 +167,7 @@ class post_model
 	//----------------------------------------------------------------------------------------------
 	public function get ( $id='' )
 	{
-		$posts = db ( 'posts' );
+        $posts = db ( 'posts' );
 
 		$current_time = time();
 
@@ -180,7 +180,7 @@ class post_model
 				->clause ('AND')
 				->where ( 'date', '<=', $current_time )
 				->execute();
-					
+
 			return $get_posts;
 			
 		} elseif ( $id == '' ) {
@@ -190,17 +190,21 @@ class post_model
 				->clause ('AND')
 				->where ( 'status', '!=', 'trash' )
 				->execute();
-					
-			return $get_posts;
-			
+
+            return $get_posts;
 		} else {
 			$get_posts = $posts->select( '*' )
 				->where ( 'id', '=', $id )
 				->clause ('AND')
 				->where ( 'type', '=', 'post' )
 				->execute();
-			
-			return $get_posts[0];
+
+            if( isset($get_posts[0])){
+                return $get_posts[0];
+            } else {
+                return false;
+            }
+
 		}
 	}
 	
@@ -213,7 +217,7 @@ class post_model
 	public function get_by_status ( $status='' )
 	{
 		$pages = db ( 'posts' );
-		
+
 		if ( $status != '' ) {
 			$get_pages = $pages->select( '*' )
 				->where ( 'type', '=', 'post' )
@@ -227,8 +231,8 @@ class post_model
 			return false;
 		}	
 	}
-	
-	
+
+
 	// Get Page Meta
 	//----------------------------------------------------------------------------------------------
 	/**

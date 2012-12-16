@@ -18,7 +18,7 @@ class page_controller {
 			$uri 		= 'home/';
 		elseif	( URI == '' || $uri == 'blog'):
 			$uri 		= 'blog/';
-		else:
+        else:
 			$uri 		= slash_it( $uri );
 		endif;
 		
@@ -47,36 +47,39 @@ class page_controller {
 
 			tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
 			
-		} else {
-			$page 		= load::model( 'page' );
-			$post 		= $page->get_by_uri( $uri );
-			
-			if ( !$post) {
-				$post 		= $page->get_by_slug( $uri );
-			}
-			
-			$post_meta 	= $page->get_page_meta( $post->id );
+		} elseif (URI == 'category') {
 
-			define("IS_POST", TRUE);
+            echo 'category';
 
-			// If URI lookup fails redirect to the themes 404 page
-			if ( $post ) {
-				
-				// at this tage we are simply allowing the contnet attribute to be modified by the plugins.
-				if($trigger->exists("preview"))
-					$post->content = $trigger->filter($post->content,"preview");
-					
-				if($trigger->exists("shortcode"))
-					$post->content = $trigger->filter($post->content,"shortcode");
+        } else {
+            $page 		= load::model( 'page' );
+            $post 		= $page->get_by_uri( $uri );
 
-				tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta, 'trigger', $trigger ) );
+            if ( !$post) {
+                $post 		= $page->get_by_slug( $uri );
+            }
 
-			} else {
-				// logging of 404's here.
-				tentacle::render ( '404' );
-			}
+            $post_meta 	= $page->get_page_meta( $post->id );
 
-		}	
+            define("IS_POST", TRUE);
+
+            // If URI lookup fails redirect to the themes 404 page
+            if ( $post ) {
+
+                // at this tage we are simply allowing the contnet attribute to be modified by the plugins.
+                if($trigger->exists("preview"))
+                    $post->content = $trigger->filter($post->content,"preview");
+
+                if($trigger->exists("shortcode"))
+                    $post->content = $trigger->filter($post->content,"shortcode");
+
+                tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta, 'trigger', $trigger ) );
+
+            } else {
+                // logging of 404's here.
+                tentacle::render ( '404' );
+            }
+        }
 		
 		//if(user::valid()) load::view( 'admin/partials/template-navigation' );
 		//if(user::valid()) render_debug();

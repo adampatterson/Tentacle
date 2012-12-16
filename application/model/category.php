@@ -61,11 +61,19 @@ class category_model {
 		$categories = db( 'terms' );
 		
 		if ( $id == '' ):
-			$get_categories = $categories->select( '*' )
-				->order_by( 'id', 'DESC' )
-				->execute();
-			return $get_categories;
-		else:
+            $get_categories = $categories->select( '*' )
+                ->order_by( 'id', 'DESC' )
+                ->execute();
+
+            return $get_categories;
+		elseif( is_string( $id ) ):
+            $get_categories = $categories->select( '*' )
+                ->where( 'slug', '=', $id )
+                ->order_by( 'id', 'DESC' )
+                ->execute();
+
+            return $get_categories[0];
+        else:
 			$get_category = $categories->select( '*' )
 				->where( 'id', '=', $id )
 				->order_by( 'id', 'DESC' )
@@ -83,7 +91,7 @@ class category_model {
     {
         $categories = db( 'terms' );
 
-        foreach( $list as $item ):    
+        foreach( $list as $item ):
 			$this->get( $item )->name; 	
         endforeach;
 		  
@@ -127,31 +135,43 @@ class category_model {
 	}
 
 
+    public function get_page_ids( $term_id = '' )
+    {
+        $post_id = db::query("SELECT
+                page_id
+            FROM
+                term_relationships
+            WHERE
+                term_id = ".$term_id );
+
+        return $post_id;
+    }
+
+
 	// Get the Category relations of a blog post.
 	//----------------------------------------------------------------------------------------------	
-	public function get_relations( $post_id = '' ) 
+	public function get_relations( $post_id = '' )
 	{	
-		
-		$term_relations = db::query("SELECT
-										terms.id,
-										terms.name,
-										terms.slug,
-										term_taxonomy.taxonomy,
-										term_taxonomy.description,
-										term_taxonomy.parent,
-										term_taxonomy.`count`,
-										term_relationships.page_id,
-										term_relationships.term_order
-									FROM
-										terms terms,
-										term_taxonomy term_taxonomy,
-										term_relationships term_relationships
-									WHERE
-										terms.id = term_taxonomy.term_id AND
-										terms.id = term_relationships.term_id AND
-										term_taxonomy.taxonomy = 'category' AND
-										term_relationships.page_id = ".$post_id );
-			
+        $term_relations = db::query("SELECT
+                                    terms.id,
+                                    terms.name,
+                                    terms.slug,
+                                    term_taxonomy.taxonomy,
+                                    term_taxonomy.description,
+                                    term_taxonomy.parent,
+                                    term_taxonomy.`count`,
+                                    term_relationships.page_id,
+                                    term_relationships.term_order
+                                FROM
+                                    terms terms,
+                                    term_taxonomy term_taxonomy,
+                                    term_relationships term_relationships
+                                WHERE
+                                    terms.id = term_taxonomy.term_id AND
+                                    terms.id = term_relationships.term_id AND
+                                    term_taxonomy.taxonomy = 'category' AND
+                                    term_relationships.page_id = ".$post_id );
+
 		return $term_relations;
 	}
 	

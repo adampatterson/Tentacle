@@ -140,7 +140,7 @@ class tags_model
 		$term         = db('term_relationships');
 
 		if ( $update == true)
-			$term_relations = db::query("DELETE FROM term_relationships WHERE page_id=".$post_id );
+			$term_relations = $this->delete_relations( $post_id );
 
 		$term->insert(array(
 			'page_id'		=> $post_id,
@@ -148,7 +148,20 @@ class tags_model
 		),FALSE);
 	}
 
-	
+
+    public function get_page_ids( $term_id = '' )
+    {
+        $post_id = db::query("SELECT
+                page_id
+            FROM
+                term_relationships
+            WHERE
+                term_id = ".$term_id );
+
+        return $post_id;
+    }
+
+
 	// Get the tag relations of a blog post.
 	//----------------------------------------------------------------------------------------------	
 	public function get_relations ( $post_id = '' ) 
