@@ -44,7 +44,19 @@
 						</div>
 					</div>
 */ ?>
-					<div class="control-group">
+                    <div class="control-group">
+                        <label class="control-label" for="blog_uri">Blog Path</label>
+                        <div class="controls">
+                            <select class="postform" id="blog_uri" name="blog_uri">
+                                <? foreach ($pages as $page): ?>
+                                    <option id="page-<?= $page['id']  ?>" value="<?= $page['slug'] ?>" <? selected( get::option('blog_uri'), $page['slug']  ); ?>> <?= $page['title'] ?></option>
+                                <? endforeach;?>
+                            </select>
+                            <span class="help-block">Set the path for your blog.</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
 						<label class="control-label" for="admin_email">E-mail address</label>
 						<div class="controls">
 							<input type="text" value="<?= get::option('admin_email'); ?>" name="admin_email">

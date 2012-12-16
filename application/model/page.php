@@ -11,12 +11,12 @@ class page_model
 	 */	
 	public function add ( ) 
 	{
-		$title         = $_POST['title'];
+		$title         = input::post( 'title' );
 		$slug          = string::sanitize($title);
-		$content       = $_POST['content'];
-		$status        = $_POST['status'];
-		$parent_page   = $_POST['parent_page'];
-		//$post_template = $_POST['page_template'];
+		$content       = input::post( 'content' );
+		$status        = input::post( 'status' );
+		$parent_page   = input::post( 'parent_page' );
+		//$post_template = input::post( 'page_template' );
 		
 		$dirty_template = session::get( 'template' );
 		
@@ -27,7 +27,7 @@ class page_model
 		endif;
 		
 		
-		$post_type     = $_POST['page-or-post'];
+		$post_type     = input::post( 'page-or-post' );
 		
 		$post_author   = user::id();
 		

@@ -110,7 +110,7 @@ define('TENTACLE_VERSION', 'v0.9');
 /**
  * Holds the Tentacle DB revision, increments when changes are made to the Tentacle sql model.
  */
-define('TENTACLE_DB_VERSION', '114');
+define('TENTACLE_DB_VERSION', '115');
 
 /**
  * Holds the required PHP versionw
@@ -120,7 +120,7 @@ define('REQUIRED_PHP_VERSION', '5.2');
 /**
  * Holds the required MySQL version
  */
-define('REQUIRED_MYSQL_VERSION', '4.1.2');
+define('REQUIRED_MYSQL_VERSION', '5.5');
 
 
 // @todo If the DB file exists but there are no tables, redirect as well.

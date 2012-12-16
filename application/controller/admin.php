@@ -617,7 +617,16 @@ class admin_controller {
 		$category = load::model( 'category' );
 		$categories = $category->get( );
 
-		load::view ('admin/settings/general', array( 'categories'=>$categories ) );
+        $page = load::model( 'page' );
+        $pages = $page->get();
+
+        $page_array = $page->get_page_children( 0, $pages, 0 );
+
+        $page_object = (object)$page_array;
+
+        $get_page_by_level = $page->get_page_by_level( $page_object, 0 );
+
+		load::view ('admin/settings/general', array( 'categories'=>$categories, 'pages'=>$get_page_by_level ) );
 	}
 
 	/**

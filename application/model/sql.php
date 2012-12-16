@@ -438,6 +438,19 @@ class sql_model
         $build = $pdo->exec( "UPDATE  `options` SET  `key` =  'active_plugins' WHERE  `options`.`key` ='active_modules';" );
     }
 
+    public function get_115 ()
+    {
+        $config = config::get('db');
+
+        try {
+            $pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
+        } catch(PDOException $e) {
+            dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
+        }
+
+        $build = $pdo->exec( "INSERT INTO `options` (`key`, `value`, `autoload`) VALUES('blog_uri', 'blog', 'yes');" );
+    }
+
     public function touch_db()
     {
         $config = config::get('db');

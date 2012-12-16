@@ -7,12 +7,13 @@ class post_model
 	{
 		$title         = input::post( 'title' );
 		$slug          = string::sanitize($title);
-		$content       = input::post( 'content' );
+        $uri 		   = slash_it( get::option('blog_uri') ).$slug.'/';
+        $content       = input::post( 'content' );
 		$status        = input::post( 'status' );
 		$publish       = input::post( 'publish' );
 
 		$post_template = input::post( 'post_type' );
-		
+
 		if ( $post_template == '' ):
 			$post_template = 'type-post';
 		endif;
@@ -46,6 +47,7 @@ class post_model
 		$row = $page->insert(array(
 			'title'		=>$title,
 			'slug'		=>$slug,
+            'uri'		=>$uri,
 			'content'	=>$content,
 			'status'	=>$status,
 			'author'	=>$post_author,
@@ -118,7 +120,7 @@ class post_model
 		
 		$post_author   = user::id();
 		
-		$uri 			= $slug.'/';
+		$uri 			= 'blog/'.$slug.'/';
 		
 		// Run content through HTMLawd and Samrty Text
 		$page          = db('posts');
