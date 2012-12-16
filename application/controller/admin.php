@@ -145,7 +145,7 @@ class admin_controller {
 		
 		$page_hiarchy = $page->get_page_children( 0, $pages );
 
-		load::view ( 'admin/content/content_add_page', array( 'pages' => $page_hiarchy, 'parent_page_id'=>$parent_page_id ) );		
+		load::view ( 'admin/content/add_page', array( 'pages' => $page_hiarchy, 'parent_page_id'=>$parent_page_id ) );		
 	}
 	
 	/**
@@ -178,7 +178,7 @@ class admin_controller {
 
 		$get_page_meta = $page->get_page_meta( $page_id );
 
-		load::view ('admin/content/content_edit_page', array(  'get_page'=>$get_page, 'get_page_meta'=>$get_page_meta, 'pages'=>$page_hiarchy, 'page_id'=>$page_id, 'tags'=>$tags, 'tag_relations'=>$tag_relations) );		
+		load::view ('admin/content/edit_page', array(  'get_page'=>$get_page, 'get_page_meta'=>$get_page_meta, 'pages'=>$page_hiarchy, 'page_id'=>$page_id, 'tags'=>$tags, 'tag_relations'=>$tag_relations) );
 	}
 
 	/**
@@ -187,21 +187,21 @@ class admin_controller {
 	public function content_manage_pages ( $status = '' )
 	{
 		tentacle::valid_user();
-		
+
 		$page = load::model( 'page' );
-		
+
 		if ( $status ):
 			$page_hiarchy = $page->get_by_status( $status );
 		else:
 			$pages = $page->get( );
-			
+
 			$page_hiarchy = $page->get_page_children( 0, $pages );
 		endif;
-		
-		$user = load::model('user'); 
+
+		$user = load::model('user');
 		$options = load::model( 'settings' );
 
-		load::view ('admin/content/content_manage_pages', array( 'pages'=>$page_hiarchy, 'user'=>$user ) );
+		load::view ('admin/content/manage_pages', array( 'pages'=>$page_hiarchy, 'user'=>$user ) );
 	}
 
 	/**
@@ -216,8 +216,8 @@ class admin_controller {
 		$tag = load::model( 'tags' );
 
 		$tags = $tag->get_all_tags();
-		
-		load::view ('admin/content/content_add_post', array( 'categories'=>$categories, 'tags'=>$tags ) );
+
+		load::view ('admin/content/add_post', array( 'categories'=>$categories, 'tags'=>$tags ) );
 	}
 
 	/**
@@ -229,19 +229,19 @@ class admin_controller {
 
 		$post = load::model( 'post' );
 		$get_post = $post->get( $post_id );
-		
+
 		$category = load::model( 'category' );
 		$categories = $category->get_all_categories( );
 		$category_relations = $category->get_relations( $post_id );
-		
+
 		$tag = load::model( 'tags' );
 		$tags = $tag->get_all_tags();
 		$tag_dirty_relations = $tag->get_relations( $post_id );
-		
+
 		foreach ( $tag_dirty_relations as $tag_single ) {
 			$tag_relations[] = $tag_single->name;
-		}  
-		
+		}
+
 		if ( isset( $tag_relations ) != '') {
 			$tag_relations = join(",", $tag_relations);
 		} else {
@@ -249,8 +249,8 @@ class admin_controller {
 		}
 
 		$get_post_meta = $post->get_post_meta( $post_id );
-		
-		load::view ('admin/content/content_edit_post', array(  'get_post'=>$get_post, 'get_post_meta'=>$get_post_meta, 'post_id' => $post_id, 'categories'=>$categories, 'category_relations'=>$category_relations, 'tags'=>$tags, 'tag_relations'=>$tag_relations) );		
+
+		load::view ('admin/content/edit_post', array(  'get_post'=>$get_post, 'get_post_meta'=>$get_post_meta, 'post_id' => $post_id, 'categories'=>$categories, 'category_relations'=>$category_relations, 'tags'=>$tags, 'tag_relations'=>$tag_relations) );
 	}
 
 	/**
@@ -259,31 +259,31 @@ class admin_controller {
 	public function content_manage_posts ( $status = '' )
 	{
 		tentacle::valid_user();
-				
+
 		$post = load::model( 'post' );
-		
+
 		if ( $status ):
 			$posts = $post->get_by_status( $status );
 		else:
 			$posts = $post->get( );
 		endif;
-		
+
 		$category = load::model( 'category' );
-		
-		$user = load::model('user'); 
-		
-		load::view ('admin/content/content_manage_posts', array( 'posts'=>$posts, 'user'=>$user, 'category'=>$category ) );
+
+		$user = load::model('user');
+
+		load::view ('admin/content/manage_posts', array( 'posts'=>$posts, 'user'=>$user, 'category'=>$category ) );
 	}
 
 	/**
-	 * 
-	 * 
-	 * 
+	 *
+	 *
+	 *
 	 * ========================= Content
-	 * 
-	 * 
-	 * 
-	 * 
+	 *
+	 *
+	 *
+	 *
 	 */
 
 	/**
@@ -292,8 +292,8 @@ class admin_controller {
 	public function content_manage_comments ()
 	{
 		tentacle::valid_user();
-		
-		load::view ('admin/content/content_manage_comments');
+
+		load::view ('admin/content/manage_comments');
 	}
 
 	/**
@@ -302,11 +302,11 @@ class admin_controller {
 	public function content_manage_categories ()
 	{
 		tentacle::valid_user();
-		
+
 		$category = load::model( 'category' );
 		$categories = $category->get();
-		
-		load::view ('admin/content/content_manage_categories', array( 'categories'=>$categories ) );	
+
+		load::view ('admin/content/manage_categories', array( 'categories'=>$categories ) );
 	}
 
 	/**
@@ -315,11 +315,11 @@ class admin_controller {
 	public function content_edit_category ( $id = '' )
 	{
 		tentacle::valid_user();
-		
+
 		$category = load::model( 'category' );
 		$category_single = $category->get( $id );
-		
-		load::view ('admin/content/content_edit_category', array( 'category'=>$category_single, 'id'=>$id ) );	
+
+		load::view ('admin/content/edit_category', array( 'category'=>$category_single, 'id'=>$id ) );
 	}
 	
 	/**
@@ -332,7 +332,7 @@ class admin_controller {
 		$category = load::model( 'category' );
 		$category_single = $category->get( $id );
 		
-		load::view ('admin/content/content_delete_category', array( 'category'=>$category_single, 'id'=>$id ) );	
+		load::view ('admin/content/delete_category', array( 'category'=>$category_single, 'id'=>$id ) );	
 	}
 	
 	/**
@@ -363,7 +363,7 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		load::view ('admin/menu/menu_manage');
+		load::view ('admin/menu/manage');
 	}
 
 	/**
@@ -387,7 +387,7 @@ class admin_controller {
 		$media = load::model( 'media' );
 		$get_media = $media->get();
 
-		load::view ( 'admin/media/media_insert', array( 'media'=> $get_media ) );
+		load::view ( 'admin/media/insert', array( 'media'=> $get_media ) );
 	}
 
 	/**
@@ -397,7 +397,7 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		load::view ('admin/media/media_add');
+		load::view ('admin/media/add');
 	}
 	
 	/**
@@ -410,7 +410,7 @@ class admin_controller {
 		$media = load::model( 'media' );
 		$get_media = $media->get();
 		
-		load::view ('admin/media/media_manage', array( 'media'=> $get_media ) );
+		load::view ('admin/media/manage', array( 'media'=> $get_media ) );
 	}
 
 	public function media_update($id)
@@ -420,7 +420,7 @@ class admin_controller {
 		$media = load::model( 'media' );
 		$get_image = $media->get($id);
 
-		load::view ('admin/media/media_update', array( 'image'=> $get_image ) );
+		load::view ('admin/media/update', array( 'image'=> $get_image ) );
 	}
 
 	/**
@@ -430,7 +430,7 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		load::view ('admin/media/media_downloads');
+		load::view ('admin/media/downloads');
 	}
 
 	/**
@@ -451,7 +451,7 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		load::view ('admin/snippets/snippets_add');
+		load::view ('admin/snippets/add');
 	}
 
 	/**
@@ -464,7 +464,7 @@ class admin_controller {
 		$snippet = load::model( 'snippet' );
 		$snippets = $snippet->get( );
 		
-		load::view ('admin/snippets/snippets_manage', array( 'snippets'=>$snippets ) );	
+		load::view ('admin/snippets/manage', array( 'snippets'=>$snippets ) );
 	}
 	
 	/**
@@ -477,7 +477,7 @@ class admin_controller {
 		$snippet = load::model( 'snippet' );
 		$snippet_single = $snippet->get( $id );
 		
-		load::view ('admin/snippets/snippets_edit', array( 'snippet'=>$snippet_single ) );
+		load::view ('admin/snippets/edit', array( 'snippet'=>$snippet_single ) );
 	}
 	
 	/**
@@ -490,7 +490,7 @@ class admin_controller {
 		$snippet = load::model( 'snippet' );
 		$snippet_single = $snippet->get( $id );
 
-		load::view ('admin/snippets/snippets_delete', array( 'snippet'=>$snippet_single, 'id'=>$id ) );
+		load::view ('admin/snippets/delete', array( 'snippet'=>$snippet_single, 'id'=>$id ) );
 	}
 
 	/**
@@ -540,7 +540,7 @@ class admin_controller {
 		$serpent = load::model( 'serpent' );
 		$themes = $serpent->get_theme( );
 		
-		load::view ('admin/settings/settings_appearance', array('theme'=>$theme ));
+		load::view ('admin/settings/appearance', array('theme'=>$theme ));
 	}
 	
 	
@@ -572,7 +572,7 @@ class admin_controller {
 			
             load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) );
         } else {
-            load::view ('admin/settings/settings_plugins', array( 'serpent_plugins'=>$serpent_plugins, 'plugins'=>$get_plugin ) );
+            load::view ('admin/settings/plugins', array( 'serpent_plugins'=>$serpent_plugins, 'plugins'=>$get_plugin ) );
         }
 	}
 
@@ -584,7 +584,7 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		load::view ('admin/settings/settings_comments');
+		load::view ('admin/settings/comments');
 	}
 
 	/**
@@ -594,7 +594,7 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		load::view ('admin/settings/settings_export');
+		load::view ('admin/settings/export');
 	}
 
 	/**
@@ -604,7 +604,7 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		load::view ('admin/settings/settings_templates');
+		load::view ('admin/settings/templates');
 	}
 
 	/**
@@ -617,7 +617,7 @@ class admin_controller {
 		$category = load::model( 'category' );
 		$categories = $category->get( );
 
-		load::view ('admin/settings/settings_general', array( 'categories'=>$categories ) );
+		load::view ('admin/settings/general', array( 'categories'=>$categories ) );
 	}
 
 	/**
@@ -627,7 +627,7 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		load::view ('admin/settings/settings_seo');
+		load::view ('admin/settings/seo');
 	}
 
 	/**
@@ -637,7 +637,7 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		load::view ('admin/settings/settings_seo_404');
+		load::view ('admin/settings/seo_404');
 	}
 
 	/**
@@ -647,7 +647,7 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		load::view ('admin/settings/settings_import');
+		load::view ('admin/settings/import');
 	}
 
 	/**
@@ -657,7 +657,7 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		load::view ('admin/settings/settings_media');
+		load::view ('admin/settings/media');
 	}
 
 	/**
@@ -667,7 +667,7 @@ class admin_controller {
 	{		
 		tentacle::valid_user();
 
-		load::view ('admin/settings/settings_privacy');
+		load::view ('admin/settings/privacy');
 	}
 
 	/**
@@ -677,7 +677,7 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		load::view ('admin/settings/settings_reading');
+		load::view ('admin/settings/reading');
 	}
 
 	/**
@@ -690,7 +690,7 @@ class admin_controller {
 		$category = load::model( 'category' );
 		$categories = $category->get( );
 	
-		load::view ('admin/settings/settings_writing', array( 'categories'=>$categories ) );
+		load::view ('admin/settings/writing', array( 'categories'=>$categories ) );
 	}
 
 
@@ -712,7 +712,7 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		load::view ('admin/users/users_add');
+		load::view ('admin/users/add');
 	}
 	
 	/**
@@ -726,7 +726,7 @@ class admin_controller {
 		$user_single = $user->get($id);
 		$user_meta = $user->get_meta($id);
 
-		load::view ( 'admin/users/users_edit', array( 'user'=>$user_single, 'user_meta'=>$user_meta ) );
+		load::view ( 'admin/users/edit', array( 'user'=>$user_single, 'user_meta'=>$user_meta ) );
 	}
 	
 	/**
@@ -739,7 +739,7 @@ class admin_controller {
 		$user = load::model( 'user' );
 		$users = $user->get( );
 		
-		load::view ( 'admin/users/users_manage', array( 'users'=>$users ) );
+		load::view ( 'admin/users/manage', array( 'users'=>$users ) );
 	}
 
 	/**
@@ -755,7 +755,7 @@ class admin_controller {
 		$user_single = $user->get( $id );
 		$user_meta = $user->get_meta( $id );
 
-		load::view ( 'admin/users/users_profile', array( 'user'=>$user_single, 'user_meta'=>$user_meta ) );
+		load::view ( 'admin/users/profile', array( 'user'=>$user_single, 'user_meta'=>$user_meta ) );
 	}
 
 	/**
@@ -768,7 +768,7 @@ class admin_controller {
 		$user = load::model( 'user' );
 		$user_meta = $user->get_meta( $id );
 
-		load::view ('admin/users/users_delete', array( 'user_meta'=>$user_meta, 'id'=>$id ) );
+		load::view ('admin/users/delete', array( 'user_meta'=>$user_meta, 'id'=>$id ) );
 	}
 
 	/**
