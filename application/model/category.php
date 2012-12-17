@@ -104,6 +104,8 @@ class category_model {
 	public function delete_relations( $post_id='' )
 	{
 		$term_relations = db::query("DELETE FROM term_relationships WHERE page_id=".$post_id );
+
+        return null;
 	}
 
 
@@ -124,7 +126,7 @@ class category_model {
 		$term         = db('term_relationships');
 
 		if ( $update == true)
-			$term_relations = db::query("DELETE FROM term_relationships WHERE page_id=".$post_id );
+			$term_relations = $this->delete_relations( $post_id );
 
 		foreach ( $categories as $term_id ):
 			$term->insert( array(
@@ -144,11 +146,15 @@ class category_model {
             WHERE
                 term_id = ".$term_id );
 
-        return $post_id;
+        foreach($post_id as $id) {
+            $post_array[] = $id->page_id;
+        }
+
+        return $post_array;
     }
 
 
-	// Get the Category relations of a blog post.
+	// Get all other categories associated with this page.
 	//----------------------------------------------------------------------------------------------	
 	public function get_relations( $post_id = '' )
 	{	

@@ -120,6 +120,8 @@ class tags_model
 	public function delete_relations ( $post_id='' )
 	{
 		$term_relations = db::query("DELETE FROM term_relationships WHERE page_id=".$post_id );
+
+        return null;
 	}
 
 

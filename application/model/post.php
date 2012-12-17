@@ -184,7 +184,18 @@ class post_model
 				->execute();
 
 			return $get_posts;
-			
+        } elseif ( is_array($id) ){
+
+            $id_string = '';
+
+            foreach($id as $id) {
+                $id_string .= $id.',';
+            }
+
+            $posts = db::query("SELECT * FROM posts WHERE ID IN (".rtrim($id_string, ",").") ");
+
+            return $posts;
+
 		} elseif ( $id == '' ) {
 			$get_posts = $posts->select( '*' )
 				->where ( 'type', '=', 'post' )
@@ -210,7 +221,8 @@ class post_model
 		}
 	}
 	
-	
+
+
 	// Get Page by Status
 	//----------------------------------------------------------------------------------------------
 	/**

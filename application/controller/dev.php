@@ -12,6 +12,28 @@ class dev_controller {
 		var_dump(is::android());
 	}
 
+
+    public function category_test() {
+        $category_name = "default";
+
+
+        $post 		= load::model( 'post' );
+        $category 	= load::model( 'category' );
+        $tag 		= load::model( 'tags' );
+        $author 	= load::model('user');
+
+        define("IS_POST", FALSE);
+
+
+        $category_id 	= $category->get( $category_name );
+
+        $post_list = $category->get_page_ids( $category_id->id );
+
+        $get_posts 		= $post->get( $post_list );
+
+        var_dump($get_posts);
+    }
+
 	public function stats()
 	{
 		load::helper('serverstats');
