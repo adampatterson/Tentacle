@@ -2,7 +2,7 @@
 
 class category_controller {
 
-    public function index($category_name = ""){
+    public function index($category_name = "default"){
 
         is::blog_installed();
 
@@ -37,16 +37,8 @@ class category_controller {
             $posts 		= $post->get( );
         } else {
             $category_id 	= $category->get( $category_name );
-
-            $post_list = $category->get_page_ids( $category_id->id );
-			
-            foreach($post_list as $post_single) {
-                $get_posts 		= $post->get( $post_single->page_id );
-
-                if($get_posts) {
-                    $posts[]  = $get_posts;
-                }
-            }
+            $post_list      = $category->get_page_ids( $category_id->id );
+            $posts 		    = $post->get( $post_list );
         }
 
         if($trigger->exists("preview"))
