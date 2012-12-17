@@ -48,8 +48,8 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		//if ( is::agree() == false )
-		// 			url::redirect('admin/agree');
+		if ( is::agree() == false )
+		 			url::redirect('admin/agree');
 		
 		if ( get::db_version() != get::current_db_version() )
 			url::redirect('admin/updates');
