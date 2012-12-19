@@ -171,8 +171,6 @@ class post_model
 	{
         $posts = db ( 'posts' );
 
-		$current_time = time();
-
 		if( defined( 'FRONT' ) ) {
 			$get_posts = $posts->select( '*' )
 				->where ( 'type', '=', 'post' )
@@ -180,22 +178,14 @@ class post_model
 				->clause ('AND')
 				->where ( 'status', '=', 'published' )
 				->clause ('AND')
-				->where ( 'date', '<=', $current_time )
+				->where ( 'date', '<=', time() )
 				->execute();
 
 			return $get_posts;
         } elseif ( is_array($id) ){
-
-            $id_string = '';
-
-            foreach($id as $id) {
-                $id_string .= $id.',';
-            }
-
-            $posts = db::query("SELECT * FROM posts WHERE ID IN (".rtrim($id_string, ",").") ");
+            $posts = db::query("SELECT * FROM posts WHERE ID IN (".join(',', $id).") ");
 
             return $posts;
-
 		} elseif ( $id == '' ) {
 			$get_posts = $posts->select( '*' )
 				->where ( 'type', '=', 'post' )
