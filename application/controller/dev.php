@@ -166,9 +166,9 @@ button:
 		
 		$build = $pdo->exec( "TRUNCATE TABLE `users`" );	
 			
-		$build = $pdo->exec( "INSERT INTO `users` (`id`, `email`, `username`, `password`, `type`, `data`, `registered`, `status`)
+		$build = $pdo->exec( "INSERT INTO `users` (`email`, `username`, `password`, `type`, `data`, `registered`, `status`)
 		VALUES
-			(1, 'demo@tentaclecms.com', 'demo', '$2a$08$Sj22IAyLvzxgSVZMxg/t1eS5bhiSnjcRNyM58ZubW6vQmds8LLiXi', 'administrator', '{\"first_name\":\"Demo\",\"last_name\":\"User\",\"activity_key\":\"\",\"url\":\"\",\"display_name\":\"Demo User\",\"editor\":\"wysiwyg\"}', 1340063724, 1);" );
+			('demo@tentaclecms.com', 'demo', '$2a$08$Sj22IAyLvzxgSVZMxg/t1eS5bhiSnjcRNyM58ZubW6vQmds8LLiXi', 'administrator', '{\"first_name\":\"Demo\",\"last_name\":\"User\",\"activity_key\":\"\",\"url\":\"\",\"display_name\":\"Demo User\",\"editor\":\"wysiwyg\"}', 1340063724, 1);" );
 			
 		$build = $pdo->exec( "INSERT INTO `posts` (`id`, `parent`, `author`, `date`, `modified`, `title`, `content`, `excerpt`, `comment_status`, `ping_status`, `password`, `slug`, `type`, `menu_order`, `uri`, `visible`, `status`, `template`)
 			VALUES
