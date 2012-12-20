@@ -24,7 +24,6 @@ class dev_controller {
 
         define("IS_POST", FALSE);
 
-
         $category_id 	= $category->get( $category_name );
 
         $post_list = $category->get_page_ids( $category_id->id );
@@ -169,7 +168,7 @@ button:
 			
 		$build = $pdo->exec( "INSERT INTO `users` (`id`, `email`, `username`, `password`, `type`, `data`, `registered`, `status`)
 		VALUES
-			(1, 'demo@tentaclecms.com', 'demo', '89e495e7941cf9e40e6980d14a16bf023ccd4c91', 'administrator', '{\"first_name\":\"Demo\",\"last_name\":\"User\",\"activity_key\":\"\",\"url\":\"\",\"display_name\":\"Demo User\",\"editor\":\"wysiwyg\"}', 1340063724, 1);" );
+			(1, 'demo@tentaclecms.com', 'demo', '$2a$08$Sj22IAyLvzxgSVZMxg/t1eS5bhiSnjcRNyM58ZubW6vQmds8LLiXi', 'administrator', '{\"first_name\":\"Demo\",\"last_name\":\"User\",\"activity_key\":\"\",\"url\":\"\",\"display_name\":\"Demo User\",\"editor\":\"wysiwyg\"}', 1340063724, 1);" );
 			
 		$build = $pdo->exec( "INSERT INTO `posts` (`id`, `parent`, `author`, `date`, `modified`, `title`, `content`, `excerpt`, `comment_status`, `ping_status`, `password`, `slug`, `type`, `menu_order`, `uri`, `visible`, `status`, `template`)
 			VALUES
@@ -688,19 +687,6 @@ button:
 		        break;
 		}
 	}
-	
-	
-	/**
-	* function_test function
-	*
-	* @return void
-	* @author Adam Patterson
-	**/
-
-	public function function_test ()
-	{
-		load::helper ('template');
-	}
 
 	
     /**
@@ -977,7 +963,7 @@ button:
 		}
 	}
 	
-	
+	# counting logic, used to increment update totals in the site.
 	public function counting()
 	{
         echo increment('themes')."<br />";
@@ -1169,32 +1155,6 @@ button:
 		echo '<h2>Track</h2>';
 		load::helper('track');
 	}// END Function
-	
-	
-	/**
-	 * create_user function
-	 *
-	 * @return void
-	 * @author Adam Patterson
-	 **/
-	public function create_user ()
-	{
-		/*user::create(array(
-			'username'=>'adampatterson',
-			'email'=>'adamapatterson@gmail.com',
-			'password'=>'pineapple23',
-			'type'=>'admin'
-		));
-	
-		user::update('adamapatterson@gmail.com')
-			->data('first_name','Adam')
-	        ->data('last_name','Patterson')
-			->data('activity_key','')
-			->data('url','http://www.adampatterson.ca')
-			->data('display_name','Adam Patterson')
-			->save(); */
-	}
-	
 	
 	
 	/**
@@ -1469,262 +1429,15 @@ button:
 	}
 
 
-    public function http_test_two()
-    {
-       load::library('httpclient','http');
-
-		set_time_limit(0);
-		$http=new http_class;
-
-		/* Connection timeout */
-		$http->timeout=0;
-
-		/* Data transfer timeout */
-		$http->data_timeout=0;
-
-		/* Output debugging information about the progress of the connection */
-		$http->debug=1;
-
-		/* Format dubug output to display with HTML pages */
-		$http->html_debug=1;
+    public function search($term = ''){
+        echo "<h1>Fulltext search test</h1>";
 
 
-		/*
-		 *  Need to emulate a certain browser user agent?
-		 *  Set the user agent this way:
-		 */
-		$http->user_agent="Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)";
+        $posts = db::query("SELECT *, MATCH
+            (title,content,excerpt) AGAINST('portfolio') AS
+  	        relevance FROM posts WHERE MATCH
+            (title,content,excerpt) AGAINST('portfolio') > 0 ORDER BY relevance DESC");
 
-		/*
-		 *  If you want to the class to follow the URL of redirect responses
-		 *  set this variable to 1.
-		 */
-		$http->follow_redirect=1;
-
-		/*
-		 *  How many consecutive redirected requests the class should follow.
-		 */
-		$http->redirection_limit=5;
-
-		/*
-		 *  If your DNS always resolves non-existing domains to a default IP
-		 *  address to force the redirection to a given page, specify the
-		 *  default IP address in this variable to make the class handle it
-		 *  as when domain resolution fails.
-		 */
-		$http->exclude_address="";
-
-		/*
-		 *  If you want to establish SSL connections and you do not want the
-		 *  class to use the CURL library, set this variable to 0 .
-		 */
-		$http->prefer_curl=0;
-
-		/*
-		 *  If basic authentication is required, specify the user name and
-		 *  password in these variables.
-		 */
-
-		$user="";
-		$password="";
-		$realm="";       /* Authentication realm or domain      */
-		$workstation=""; /* Workstation for NTLM authentication */
-		$authentication=(strlen($user) ? UrlEncode($user).":".UrlEncode($password)."@" : "");
-
-	/*
-		Do you want to access a page via SSL?
-		Just specify the https:// URL.
-		$url="https://www.openssl.org/";
-	*/
-
-		$url="http://api.tentaclecms.com/get/core/";
-
-		/*
-		 *  Generate a list of arguments for opening a connection and make an
-		 *  HTTP request from a given URL.
-		 */
-		$error=$http->GetRequestArguments($url,$arguments);
-
-		if(strlen($realm))
-			$arguments["AuthRealm"]=$realm;
-
-		if(strlen($workstation))
-			$arguments["AuthWorkstation"]=$workstation;
-
-		$http->authentication_mechanism=""; // force a given authentication mechanism;
-
-		/* Set additional request headers */
-		$arguments["Headers"]["Pragma"]="nocache";
-	/*
-		Is it necessary to specify a certificate to access a page via SSL?
-		Specify the certificate file this way.
-		$arguments["SSLCertificateFile"]="my_certificate_file.pem";
-		$arguments["SSLCertificatePassword"]="some certificate password";
-	*/
-
-	/*
-		Is it necessary to preset some cookies?
-		Just use the SetCookie function to set each cookie this way:
-
-		$cookie_name="LAST_LANG";
-		$cookie_value="de";
-		$cookie_expires="2010-01-01 00:00:00"; // "" for session cookies
-		$cookie_uri_path="/";
-		$cookie_domain=".php.net";
-		$cookie_secure=0; // 1 for SSL only cookies
-		$http->SetCookie($cookie_name, $cookie_value, $cookie_expiry, $cookie_uri_path, $cookie_domain, $cookie_secure);
-	*/
-
-
-		echo "<LI><H2>Opening connection to:</H2>\n<P><TT>",HtmlSpecialChars($arguments["HostName"]),"</TT></P>\n";
-		flush();
-		$error=$http->Open($arguments);
-		echo "</LI>\n";
-
-		if($error=="")
-		{
-			echo "<LI><H2>Sending request for page:</H2>\n<P><TT>";
-			echo HtmlSpecialChars($arguments["RequestURI"]),"\n";
-			if(strlen($user))
-				echo "\nLogin:    ",$user,"\nPassword: ",str_repeat("*",strlen($password));
-			echo "</TT></P>\n";
-			flush();
-			$error=$http->SendRequest($arguments);
-			echo "</LI>\n";
-
-			if($error=="")
-			{
-				echo "<LI><H2>Request:</H2>\n<PRE>\n".HtmlSpecialChars($http->request)."</PRE></LI>\n";
-				echo "<LI><H2>Request headers:</H2>\n<PRE>\n";
-				for(Reset($http->request_headers),$header=0;$header<count($http->request_headers);Next($http->request_headers),$header++)
-				{
-					$header_name=Key($http->request_headers);
-					if(GetType($http->request_headers[$header_name])=="array")
-					{
-						for($header_value=0;$header_value<count($http->request_headers[$header_name]);$header_value++)
-							echo $header_name.": ".$http->request_headers[$header_name][$header_value],"\r\n";
-					}
-					else
-						echo $header_name.": ".$http->request_headers[$header_name],"\r\n";
-				}
-				echo "</PRE>\n";
-				flush();
-
-				$headers=array();
-				$error=$http->ReadReplyHeaders($headers);
-				echo "</LI>\n";
-				if($error=="")
-				{
-					echo "<LI><H2>Response status code:</H2>\n<P>".$http->response_status;
-					switch($http->response_status)
-					{
-						case "301":
-						case "302":
-						case "303":
-						case "307":
-							echo " (redirect to <TT>".$headers["location"]."</TT>)<BR>\nSet the <TT>follow_redirect</TT> variable to handle redirect responses automatically.";
-							break;
-					}
-					echo "</P></LI>\n";
-					echo "<LI><H2>Response headers:</H2>\n<PRE>\n";
-					for(Reset($headers),$header=0;$header<count($headers);Next($headers),$header++)
-					{
-						$header_name=Key($headers);
-						if(GetType($headers[$header_name])=="array")
-						{
-							for($header_value=0;$header_value<count($headers[$header_name]);$header_value++)
-								echo $header_name.": ".$headers[$header_name][$header_value],"\r\n";
-						}
-						else
-							echo $header_name.": ".$headers[$header_name],"\r\n";
-					}
-					echo "</PRE></LI>\n";
-					flush();
-
-					echo "<LI><H2>Response body:</H2>\n<PRE>\n";
-
-					/*
-						You can read the whole reply body at once or
-						block by block to not exceed PHP memory limits.
-					*/
-
-					/*
-					$error = $http->ReadWholeReplyBody($body);
-					if(strlen($error) == 0)
-						echo HtmlSpecialChars($body);
-					*/
-
-					for(;;)
-					{
-						$error=$http->ReadReplyBody($body,1000);
-						if($error!=""
-						|| strlen($body)==0)
-							break;
-						echo HtmlSpecialChars($body);
-					}
-
-					echo "</PRE></LI>\n";
-					flush();
-				}
-			}
-			$http->Close();
-		}
-		if(strlen($error))
-			echo "<H2 align=\"center\">Error: ",$error,"</H2>\n";
+        var_dump($posts);
     }
-	
-	public function http_test()
-    {
-		load::library('Snoopy','Snoopy.class');
-
-        $snoopy = new Snoopy;
-
-// need an proxy?:
-//$snoopy->proxy_host = "my.proxy.host";
-//$snoopy->proxy_port = "8080";
-
-// set browser and referer:
-        $snoopy->agent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)";
-        $snoopy->referer = "http://www.adampatterson.ca/";
-
-// set some cookies:
-        $snoopy->cookies["SessionID"] = '238472834723489';
-        $snoopy->cookies["favoriteColor"] = "blue";
-
-// set an raw-header:
-        $snoopy->rawheaders["Pragma"] = "no-cache";
-
-// set some internal variables:
-        $snoopy->maxredirs = 2;
-        $snoopy->offsiteok = false;
-        $snoopy->expandlinks = false;
-
-// set username and password (optional)
-//$snoopy->user = "joe";
-//$snoopy->pass = "bloe";
-
-// fetch the text of the website www.google.com:
-        if($snoopy->fetch("http://api.tentaclecms.com/get/core/")){
-            // other methods: fetch, fetchform, fetchlinks, submittext and submitlinks
-
-            // response code:
-            //print "response code: ".$snoopy->response_code."<br/>\n";
-
-            // print the headers:
-
-            // print "<b>Headers:</b><br/>";
-            //            while(list($key,$val) = each($snoopy->headers)){
-            //                print $key.": ".$val."<br/>\n";
-            //            }
-            // 
-            //            print "<br/>\n";
-
-            // print the texts of the website:
-            print "<pre>".htmlspecialchars($snoopy->results)."</pre>\n";
-
-        }
-        else {
-            print "Snoopy: error while fetching document: ".$snoopy->error."\n";
-        }
-	}
 }
