@@ -39,6 +39,8 @@ class category_controller {
             $category_id 	= $category->get( $category_name );
             $post_list      = $category->get_page_ids( $category_id->id );
             $posts 		    = $post->get( $post_list );
+
+            //$posts 	= $category->get_by_slug( $category_name );
         }
 
         if($trigger->exists("preview"))
