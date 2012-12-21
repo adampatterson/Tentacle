@@ -182,10 +182,6 @@ class post_model
 				->execute();
 
 			return $get_posts;
-        } elseif ( is_array($id) ){
-            $posts = db::query("SELECT * FROM posts WHERE ID IN (".join(',', $id).") ");
-
-            return $posts;
 		} elseif ( $id == '' ) {
 			$get_posts = $posts->select( '*' )
 				->where ( 'type', '=', 'post' )

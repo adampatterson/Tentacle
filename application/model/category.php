@@ -82,21 +82,6 @@ class category_model {
 			return $get_category[0];
 		endif;
 	}
-
-
-    // Get Category List
-    // @todo: return a comma seporated list ( with links )
-    //----------------------------------------------------------------------------------------------
-    public function get_list( $list = array() )
-    {
-        $categories = db( 'terms' );
-
-        foreach( $list as $item ):
-			$this->get( $item )->name; 	
-        endforeach;
-		  
-		return $get_category[0];
-    }
 	
 
 	// Delete Category
@@ -136,6 +121,24 @@ class category_model {
 		endforeach;
 	}
 
+	
+    public function get_by_slug( $slug = '' ) {
+
+        $posts_by_slug = db::query("SELECT posts.*
+                                    FROM
+                                        term_relationships
+                                    INNER JOIN posts
+                                    ON term_relationships.page_id = posts.id
+                                    INNER JOIN terms
+                                    ON term_relationships.term_id = terms.id
+                                    INNER JOIN term_taxonomy
+                                    ON terms.id = term_taxonomy.term_id
+                                    WHERE
+                                        term_taxonomy.taxonomy = 'category'
+                                        AND terms.slug = '".$slug."'" );
+
+        return $posts_by_slug;
+    }
 
     public function get_page_ids( $term_id = '' )
     {

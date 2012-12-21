@@ -40,7 +40,7 @@ class category_controller {
             $post_list      = $category->get_page_ids( $category_id->id );
             $posts 		    = $post->get( $post_list );
 
-            //$posts 	= $category->get_by_slug( $category_name );
+            $posts_better 	= $category->get_by_slug( $category_name );
         }
 
         if($trigger->exists("preview"))
