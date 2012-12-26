@@ -12,27 +12,6 @@ class dev_controller {
 		var_dump(is::android());
 	}
 
-
-    public function category_test() {
-        $category_name = "default";
-
-
-        $post 		= load::model( 'post' );
-        $category 	= load::model( 'category' );
-        $tag 		= load::model( 'tags' );
-        $author 	= load::model('user');
-
-        define("IS_POST", FALSE);
-
-        $category_id 	= $category->get( $category_name );
-
-        $post_list = $category->get_page_ids( $category_id->id );
-
-        $get_posts 		= $post->get( $post_list );
-
-        var_dump($get_posts);
-    }
-
 	public function stats()
 	{
 		load::helper('serverstats');
@@ -111,45 +90,7 @@ Test two
 			endif;	
 	}
 
-	
-public function	yaml_test () {
-$yaml = '
-display: admin
-paged: paged
-posts_per_page: 2
-name:
-  name: Name
-  input: input
-  type: text
-  notes: This is a note
-password:
-  name: Password
-  input: input
-  type: password
-  notes: This is another
-country:
-  name: Country
-  input: option
-  notes: Option notes.
-  options:
-    - Canada
-    - USA
-    - UK
-message:
-  name: Message
-  input: multiline
-  type: text
-  notes: Yes, more notes.
-button:
-  button_name: Button Name
-  type: button
-  input: input';
-		
-		$info = YAML::load( $yaml );
-		
-		var_dump($info);
-	}
-	
+
 	public function demo_clean()
 	{
 		$config = config::get('db');
@@ -187,12 +128,6 @@ button:
 				(58, 112, 'scaffold_data', 'a:6:{s:9:\"post_type\";s:9:\"type-post\";s:13:\"post_category\";a:1:{i:0;s:1:\"1\";}s:11:\"bread_crumb\";s:0:\"\";s:13:\"meta_keywords\";s:0:\"\";s:16:\"meta_description\";s:27:\"Enter your comments here...\";s:4:\"tags\";s:0:\"\";}');" );
 	}
 
-
-    public function plugin_nav () {
-		$plugin = load::model('plugin');
-
-		clean_out($plugin->navigation());
-    }
 
 	public function email()
 	{
@@ -1026,8 +961,6 @@ button:
 	public function string ()
 	{
 		echo '<h2>String</h2>';
-		
-		load::helper ('string');
 
 		$long_string = 'In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci.';
 		$string = 'In pellentesque faucidsdsbus vestibulum@';';[;4]';
@@ -1161,7 +1094,7 @@ button:
 		load::helper('track');
 	}// END Function
 	
-	
+
 	/**
 	 * zip function
 	 *
@@ -1240,72 +1173,7 @@ button:
 		//nav_generate ( (array)$page_array, $args );
 
 	}
-	
-	
-	//http://stackoverflow.com/questions/4843945/php-tree-structure-for-categories-and-sub-categories-without-looping-a-query
-	public function tree()
-	{
-	
-		$items = array(
-		    (object) array('id' => 1,  'parent' => 0, 'alias' => 'alias', 'title' => 'Category A'),
-		    (object) array('id' => 2,  'parent' => 0, 'alias' => 'alias', 'title' => 'Category B'),
-		    (object) array('id' => 4,  'parent' => 0, 'alias' => 'alias', 'title' => 'Category C'),
-		    (object) array('id' => 6,  'parent' => 2, 'alias' => 'alias', 'title' => 'Subcategory D'),
-		    (object) array('id' => 7,  'parent' => 2, 'alias' => 'alias', 'title' => 'Subcategory E'),
-		    (object) array('id' => 9,  'parent' => 4, 'alias' => 'alias', 'title' => 'Subcategory F'),
-		    (object) array('id' => 10, 'parent' => 9, 'alias' => 'alias', 'title' => 'Subcategory G'),
-		);
-		
-		function build_tree_object ( $items ) {
-			$childs = array();
 
-			foreach($items as $item)
-			    $childs[$item->parent][] = $item;
-
-			foreach($items as $item) if (isset($childs[$item->id]))
-			    $item->childs = $childs[$item->id];
-
-			$tree = $childs[0];
-			
-			return $tree;
-		}
-		
-		$object_tree = build_tree_object( $items );
-
-		
-		// http://www.sitepoint.com/forums/showthread.php?448787-Creating-an-Unordered-List-from-The-Adjacency-List-Model
-		function build_menu($currentPageId, $menuItems, $output = '')
-		    {
-		        // Loop through menu items
-		        if(count($menuItems) > 0)
-		        {
-		            $output .= "\n<ul>\n";
-		            foreach($menuItems as $item)
-		            {
-		                $pageId = !empty($item->alias) ? $item->alias : 'page/view/' . $item->id;
-		                $current = ($item->id == $currentPageId) ? ' class="active"' : '';
-		                $output .= "  <!-- <li> --><a href=\"" . $pageId . "\" title=\"" . $item->title . "\" " . $current . ">" . $item->title . "</a>";
-		                // Child menu
-		                if(isset($item->childs))
-		                {
-		                    // Recursive function call
-		                    $thisFunction = __FUNCTION__;
-		                    $output = $thisFunction($currentPageId, $item->childs, $output);
-		                }
-		                $output .= "  </li>\n";
-		            }
-		            //$output .= "  <li><a href=\"#\" class=\"end\"></a></li>\n";
-		            $output .= "</ul>\n";
-		        } else {
-		            $output = "&nbsp;";
-		        }
-
-		        return $output;
-		    }
-
-		echo build_menu(1, $object_tree);
-		
-	}
 	
 	public function dbug_test()
 	{
@@ -1360,70 +1228,165 @@ button:
 	{	
 		load::library('import');
 	}
-	
-	public function wordpress_import()
-	{	
-		/*
-		Post this with JSON.
-		
-		$data = array("name" => "Hagrid", "age" => "36");                                                                    
-		$data_string = json_encode($data);                                                                                   
 
-		$ch = curl_init('http://api.local/rest/users');                                                                      
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);                                                                  
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
-		    'Content-Type: application/json',                                                                                
-		    'Content-Length: ' . strlen($data_string))                                                                       
-		);                                                                                                                   
 
-		$result = curl_exec($ch);
-		*/
-		
-		
-		//load::helper('import');
+    public function wordpress_import()
+    {
+        load::library('import', 'wordpress');
 
-		$wordpress_xml = file_get_contents(TEMP.'tentaclecms.wordpress.2012-11-26.xml');
-		
-		$xml = new SimpleXmlElement($wordpress_xml);
-		if (!$xml or !substr_count($xml->channel->generator, "wordpress.org"))
+        $wordpress_xml = TEMP.'tentaclecms.wordpress.2012-12-24.xml';
+
+        $parser = new WXR_Parser();
+        $import = $parser->parse( $wordpress_xml );
+
+        $post           = load::model('post');
+        $categories     = load::model('category');
+        $tags           = load::model('tags');
+
+        foreach ($import['categories'] as $import_category )
+        {
+            $categories->add($import_category);
+        }
+
+        foreach ($import['tags'] as $import_tag )
+        {
+            $tags->add($import_tag);
+        }
+
+
+        foreach ($import['posts'] as $import_post )
+        {
+            $post_id = $post->add_by_import($import_post);
+
+            if(array_key_exists("terms", $import_post))
+            {
+                foreach($import_post['terms'] as $term )
+                {
+                    if ( $term['domain'] == 'post_tag' )
+                    {
+                        $tag_id = $tags->lookup($term['slug']);
+
+                        $tag_relations = $tags->relations( $post_id, $tag_id );
+                    }
+                    elseif( $term['domain'] == 'category' )
+                    {
+                        $category_id = $categories->lookup($term['slug']);
+
+                        $category_relations = $categories->relations( $post_id, $category_id );
+                    }
+                }
+            }
+        }
+    }
+
+
+    public function wordpress_import_old()
+    {
+
+        function convert_ord($str)
+        {
+            $count    = 1;
+            $out    = '';
+            $temp    = array();
+
+            for ($i = 0, $s = strlen($str); $i < $s; $i++)
+            {
+                $ordinal = ord($str[$i]);
+
+                if ($ordinal < 128)
+                {
+                    if (count($temp) == 1)
+                    {
+                        $out  .= '&#'.array_shift($temp).';';
+                        $count = 1;
+                    }
+
+                    $out .= $str[$i];
+                }
+                else
+                {
+                    if (count($temp) == 0)
+                    {
+                        $count = ($ordinal < 224) ? 2 : 3;
+                    }
+
+                    $temp[] = $ordinal;
+
+                    if (count($temp) == $count)
+                    {
+                        $number = ($count == 3) ? (($temp['0'] % 16) * 4096) +
+                            (($temp['1'] % 64) * 64) +
+                            ($temp['2'] % 64) : (($temp['0'] % 32) * 64) +
+                            ($temp['1'] % 64);
+
+                        $out .= ' ';
+                        $count = 1;
+                        $temp = array();
+                    }
+                }
+            }
+
+            return $out;
+        }
+
+        $wordpress_xml = file_get_contents(TEMP.'tentaclecms.wordpress.2012-11-26.xml');
+
+        $sane_xml = str_replace("", "", $wordpress_xml);
+        $xml = simplexml_load_string($sane_xml, "SimpleXMLElement", LIBXML_NOCDATA);
+
+        if (!$xml or !substr_count($wordpress_xml, "wordpress.org")){
 		    echo 'Invalid Wordpress XML';
-		
-		foreach ($xml->channel->item as $entry){
+        } else {
 
-			echo $entry->title.'<br>'; 			// Posts title
-			echo $entry->link.'<br>';			// URI to post
-			echo $entry->pubDate.'<br>';		// Date
-			//echo $entry->description.'<br>';	// NA
-			
-			$namespaces = $entry->getNamespaces(true);
-			
-			$dc = $entry->children($namespaces['dc']); 
-			$content = $entry->children($namespaces['content']); 
-			$excerpt = $entry->children($namespaces['excerpt']); 
-			$wp = $entry->children($namespaces['wp']); 
-			
-			echo $dc->creator.'<br>';           // Authors name
-			echo $content->encoded.'<br>';      // the post or pages content
-			//echo $excerpt->encoded.'<br>';    // the post or pages excerpt
-			echo $wp->post_id.'<br>';           // The post ID, try to keep this if possible
-			echo $wp->post_date.'<br>';         // Date
-			//echo $wp->post_date_gmt.'<br>';   // NA
-			echo $wp->comment_status.'<br>';    // open or closed
-			echo $wp->ping_status.'<br>'; 		// open or closed
-			echo $wp->post_name.'<br>'; 		// the slug
-			echo $wp->status.'<br>'; 			// published, draft, trash
-			echo $wp->post_parent.'<br>'; 		// The ID that an attachment might belloing to or a post.
-			echo $wp->menu_order.'<br>';        // Apply to pages
-			echo $wp->post_type.'<br>';         // attachemnt, page, or post
-			//echo $wp->post_password.'<br>';   // NA
-			//echo $wp->is_sticky.'<br>';       // NA
-			echo $wp->attachment_url.'<br>';    // Path to the image ( download these and place them in the storage folder )
-			
-			echo '<hr />';
-		}
-		
+            $post = load::model('post');
+
+            foreach ($xml->channel->item as $entry){
+
+                $wordpress_content['title']         = (string)$entry->title; 		// Posts title
+                $wordpress_content['uri']           = (string)$entry->link;			// URI to post
+                $wordpress_content['date']          = (string)$entry->pubDate; 		// Date
+
+                $namespaces = $entry->getNamespaces(true);
+
+                $dc         = $entry->children($namespaces['dc']);
+                $content    = $entry->children($namespaces['content']);
+                $excerpt    = $entry->children($namespaces['excerpt']);
+                $wp         = $entry->children($namespaces['wp']);
+
+                $wordpress_content['author']        = (string)$dc->creator;         // Authors name
+
+                // Need to clean up any URLS as well as content encoding issues.
+                $import_content = convert_ord((string)$content->encoded);
+
+                $wordpress_content['content']      = $import_content;    // the post or pages content
+
+                //$wordpress_content['excerpt']     = $excerpt->encoded;    // the post or pages excerpt
+                $wordpress_content['id']            = (string)$wp->post_id;         // The post ID, try to keep this if possible
+                $wordpress_content['date']          = (string)$wp->post_date;        // Date
+                $wordpress_content['comment']       = (string)$wp->comment_status;  // open or closed
+                $wordpress_content['ping']          = (string)$wp->ping_status; 	// open or closed
+                $wordpress_content['slug']          = (string)$wp->post_name; 		// the slug
+                $wordpress_content['status']        = (string)$wp->status; 			// published, draft, trash
+                $wordpress_content['parent']        = (string)$wp->post_parent; 	// The ID that an attachment might belloing to or a post.
+                $wordpress_content['order']         = (string)$wp->menu_order;      // Apply to pages
+                $wordpress_content['type']          = (string)$wp->post_type;       // attachemnt, page, or post
+                //$wordpress_content['password']    = $wp->post_password;   // NA
+                //$wordpress_content['sticky']      = $wp->is_sticky;       // NA
+                $wordpress_content['attachment']    = (string)$wp->attachment_url;  // Path to the image ( download these and place them in the storage folder )
+
+                //$string = iconv('ASCII', 'UTF-8//IGNORE', $string);
+
+                $string = (string)$content->encoded;
+
+                var_dump(mb_detect_encoding($string));
+
+                echo '<hr>';
+
+                if($wp->post_type == 'post'){
+                    //$import = $post->add_by_import($wordpress_content);
+                }
+            }
+        }
 	}
 	
 	
@@ -1434,9 +1397,25 @@ button:
 	}
 
 
+    public function category(){
+        $category = load::model('category');
+
+		$get_by_slug = $category->get_by_slug('design');
+		var_dump($get_by_slug);
+		
+		$get_page_ids = $category->get_page_ids(1);
+		var_dump($get_page_ids);
+		
+		$get_relations = $category->get_relations(112);
+		var_dump($get_relations);
+		
+		$get_all_categories = $category->get_all_categories();
+		var_dump($get_all_categories);
+    }
+
+
     public function search($term = ''){
         echo "<h1>Fulltext search test</h1>";
-
 
         $posts = db::query("SELECT *, MATCH
             (title,content,excerpt) AGAINST('portfolio') AS
@@ -1444,5 +1423,31 @@ button:
             (title,content,excerpt) AGAINST('portfolio') > 0 ORDER BY relevance DESC");
 
         var_dump($posts);
+    }
+
+    public function routs($test = '') {
+
+        load::library('routs','new_rout');
+
+        $new_rout = new new_rout();
+
+        var_dump(class_exists('new_rout'));
+
+        $new_rout::add(array(
+            'dev/:any'=>'post.$1',
+
+            'int/:int'=>'main.bar',
+            'numeric/:numeric'=>'main.bar',
+            'alpha/:alpha'=>'main.bar',
+            'alpha-int/:alpha-int'=>'main.bar',
+            'alpha-numeric/:alpha-numeric'=>'main.bar',
+            'words/:words'=>'main.bar',
+            'any/:any'=>'main.bar',
+            'extension/:extension'=>'main.bar'));
+
+        $request_url = bootstrap::get_request_url();
+        $uri = $new_rout::get($request_url);
+
+        var_dump($uri);
     }
 }

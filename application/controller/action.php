@@ -366,17 +366,20 @@ class action_controller {
 		
 		$post_categories = input::post( 'post_category' );
 		$category = load::model( 'category' );
-		$category_relations = $category->relations( $post_single, $post_categories );
-		
+
+        foreach ( $post_categories as $post_category ) {
+            $category_relations = $category->relations( $post_single, $post_category );
+        }
+
 		$post_tags = input::post( 'tags' );
 		$post_tags = explode(',', $post_tags );
 		$tags = load::model( 'tags' );
-		
-		foreach ( $post_tags as $tag ) {
-			$tag_single = $tags->add( $tag );
-			
+
+		foreach ( $post_tags as $post_tag ) {
+			$tag_single = $tags->add( $post_tag );
+
 			$tag_relations = $tags->relations( $post_single, $tag_single );
-		}	
+		}
 		
 		url::redirect( 'admin/content_update_post/'.$post_single );
 	}	
@@ -391,22 +394,28 @@ class action_controller {
 
 		$post = load::model( 'post' );
 		$post_single = $post->update( $post_id );
-		
-		$post_categories = input::post( 'post_category' );
-		$category = load::model( 'category' );
-		$category_relations = $category->relations( $post_single, $post_categories, true );
-		
+
+        $post_categories = input::post( 'post_category' );
+        $category = load::model( 'category' );
+
+        # This clears all relations ( for tags as well )
+        $delete_relations = $category->delete_relations( $post_single );
+
+        foreach ( $post_categories as $post_category ) {
+            $category_relations = $category->relations( $post_single, $post_category );
+        }
+
 		$post_tags = input::post( 'tags' );
 		$post_tags = explode(',', $post_tags );
 		$tags = load::model( 'tags' );
-		
+
 		foreach ( $post_tags as $tag ) {
 
 			$tag_single = $tags->add( $tag );
-			
+
 			$tag_relations = $tags->relations( $post_single, $tag_single );
 		}
-		
+
 		url::redirect( input::post( 'history' ) );
 	}
 	
@@ -962,6 +971,8 @@ win.send_to_editor('<?=$html?>');
 		$first_name   = input::post( 'first_name' );
 		$last_name    = input::post( 'last_name' );
 		$display_name = input::post( 'display_name' );
+
+        set::option('admin_email', $email);
 
         $hash_password = new PasswordHash(8, FALSE);
         $encrypted_password = $hash_password->HashPassword($password );

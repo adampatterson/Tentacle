@@ -3,31 +3,39 @@ class category_model {
 
 	// Add Category
 	//----------------------------------------------------------------------------------------------
-	public function add() 
+	public function add( $import_category = '' )
 	{
-		$term_name = input::post( 'name' );         
-		$term_slug = input::post( 'slug' );
-		
-		$term_slug = string::camelize( $term_slug );
-		$term_slug = string::underscore( $term_slug );;
-		
-		$category  = db( 'terms' );
+		if(is_array($import_category)) {
+            $term_name = $import_category['category_name'];
+            $term_slug = $import_category['category_slug'];
+        } else {
+            $term_name = input::post( 'name' );
+            $term_slug = input::post( 'slug' );
+        }
 
-		$category_id = $category->insert(array(
-			'name'=>$term_name,
-			'slug'=>$term_slug
-		));
+        $term_slug = string::sanitize( $term_slug );
 
-		$term_taxonomy  = db( 'term_taxonomy' );
+        $category  = db( 'terms' );
+        $term_taxonomy  = db( 'term_taxonomy' );
 
-		$term_taxonomy->insert(array(
-			'taxonomy'=>'category',
-			'term_id'=>$category_id->id
-		),FALSE);
+        if ( !self::lookup( $term_slug ) )
+        {
+            $category_id = $category->insert(array(
+                    'name'=>$term_name,
+                    'slug'=>$term_slug
+                ));
 
-		note::set('success','category_add','Category Added!');
-		
-		return $category_id;		
+            $term_taxonomy->insert(array(
+                    'taxonomy'=>'category',
+                    'term_id'=>$category_id->id
+                ),FALSE);
+
+            note::set('success','category_add','Category Added!');
+
+            return $category_id->id;
+        } else {
+            return self::lookup( $term_slug );
+        }
 	}
 
 
@@ -51,7 +59,28 @@ class category_model {
 			->execute();
 			
 		note::set('success','category_update','Category Updated!');
-	} 
+	}
+
+
+    // Lookup Category
+    //----------------------------------------------------------------------------------------------
+    public function lookup ( $slug='' )
+    {
+        $tags = db ( 'terms' );
+
+        $get_category = $tags->select( '*' )
+            ->where ( 'slug', '=', $slug )
+            ->order_by ( 'id', 'DESC' )
+            ->execute();
+
+        if ($get_category)
+        {
+            return $get_category[0]->id;
+
+        } else {
+            return false;
+        }
+    }
 
 
 	// Get Category
@@ -72,7 +101,11 @@ class category_model {
                 ->order_by( 'id', 'DESC' )
                 ->execute();
 
-            return $get_categories[0];
+            if($get_categories == null ){
+                return false;
+            } else {
+                return $get_categories[0];
+            }
         else:
 			$get_category = $categories->select( '*' )
 				->where( 'id', '=', $id )
@@ -106,19 +139,14 @@ class category_model {
 	
 	// Set the Category relations for a blog post.
 	//----------------------------------------------------------------------------------------------	
-	public function relations( $post_id = '', $categories = '', $update = false ) 
+	public function relations( $post_id = '', $term_id = '' )
 	{	
 		$term         = db('term_relationships');
 
-		if ( $update == true)
-			$term_relations = $this->delete_relations( $post_id );
-
-		foreach ( $categories as $term_id ):
-			$term->insert( array(
-				'page_id'		=> $post_id,
-				'term_id'		=> $term_id,
-			), FALSE );
-		endforeach;
+        $term->insert( array(
+            'page_id'		=> $post_id,
+            'term_id'		=> $term_id,
+        ), FALSE );
 	}
 
 	
@@ -181,14 +209,27 @@ class category_model {
                                     term_taxonomy.taxonomy = 'category' AND
                                     term_relationships.page_id = ".$post_id );
 
+
 		return $term_relations;
 	}
 	
 	
 	public function get_all_categories( ) 
 	{	
-		$term_relations = db::query("SELECT t.*, tt.* FROM terms AS t INNER JOIN term_taxonomy AS tt ON t.id = tt.term_id WHERE tt.taxonomy IN ('category') ORDER BY t.name ASC" );
+		$all_categories = db::query("SELECT term_taxonomy.taxonomy
+                                         , term_taxonomy.description
+                                         , term_taxonomy.parent
+                                         , term_taxonomy.count
+                                         , terms.*
+                                         , terms.name
+                                         , terms.slug
+                                    FROM
+                                      terms
+                                    INNER JOIN term_taxonomy
+                                    ON terms.id = term_taxonomy.term_id
+                                    WHERE
+                                      term_taxonomy.taxonomy = 'category'" );
 			
-		return $term_relations;
+		return $all_categories;
 	}
 }

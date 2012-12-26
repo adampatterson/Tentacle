@@ -3,7 +3,7 @@ class post_model
 {
 	// Add Post
 	//----------------------------------------------------------------------------------------------
-	public function add ( $import = '' ) 
+	public function add ( )
 	{
 		$title         = input::post( 'title' );
 		$slug          = string::sanitize($title);
@@ -78,8 +78,43 @@ class post_model
 		note::set('success','post_add','Post Added!');
 		return $row->id;
 	}
-	
-	
+
+
+    // Add Post
+    //----------------------------------------------------------------------------------------------
+    public function add_by_import ( $import )
+    {
+        $title         = $import['post_title'];
+        $slug          = string::sanitize($title);
+        $uri 		   = slash_it( get::option('blog_uri') ).$slug.'/';
+        $content       = $import['post_content'];
+        $status        = $import['status'];
+
+        $post_template = 'type-post';
+
+        $date = new date();
+        $date = strtotime( $import['post_date'] );
+
+        $post_author   = user::id();
+
+        $page          = db('posts');
+
+        $row = $page->insert(array(
+            'title'		=>$title,
+            'slug'		=>$slug,
+            'uri'		=>$uri,
+            'content'	=>$content,
+            'status'	=>$status,
+            'author'	=>$post_author,
+            'type'		=>'post',
+            'template'	=>$post_template,
+            'date'		=>$date,
+            'modified'	=>time()
+        ));
+
+        return $row->id;
+    }
+
 	// Update Post
 	//----------------------------------------------------------------------------------------------
 	public function update ( $id ) 
@@ -180,7 +215,6 @@ class post_model
 				->clause ('AND')
 				->where ( 'date', '<=', time() )
 				->execute();
-
 			return $get_posts;
 		} elseif ( $id == '' ) {
 			$get_posts = $posts->select( '*' )
