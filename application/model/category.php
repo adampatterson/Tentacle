@@ -88,14 +88,14 @@ class category_model {
 	public function get( $id='' )
 	{
 		$categories = db( 'terms' );
-		
+
 		if ( $id == '' ):
             $get_categories = $categories->select( '*' )
                 ->order_by( 'id', 'DESC' )
                 ->execute();
 
             return $get_categories;
-		elseif( is_string( $id ) ):
+		elseif( is_string( $id ) && !is_numeric($id) ):
             $get_categories = $categories->select( '*' )
                 ->where( 'slug', '=', $id )
                 ->order_by( 'id', 'DESC' )
@@ -111,7 +111,7 @@ class category_model {
 				->where( 'id', '=', $id )
 				->order_by( 'id', 'DESC' )
 				->execute();	
-			
+
 			return $get_category[0];
 		endif;
 	}

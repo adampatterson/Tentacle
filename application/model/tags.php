@@ -90,7 +90,7 @@ class tags_model
 				->order_by ( 'id', 'DESC' )
 				->execute();
 			return $get_tags;
-        elseif( is_string( $id ) ):
+        elseif( is_string( $id ) && !is_numeric($id) ):
             $get_tags = $tags->select( '*' )
                 ->where( 'slug', '=', $id )
                 ->order_by( 'id', 'DESC' )
