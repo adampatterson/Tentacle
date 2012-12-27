@@ -134,8 +134,9 @@
                 ['embed', 'viewSource', 'clearFormatting', 'clean'],
                 ['tagMenu'],
                 ['undo', 'redo'],
-                ['tentacleMediaLibrary'],
+                ['tentacleMediaLibrary']
             ],
+            disabledPlugins: ['unsavedEditWarning'],
             plugins: {
                 dock: {
                     docked: true,
