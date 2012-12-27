@@ -304,7 +304,7 @@ class admin_controller {
 		tentacle::valid_user();
 
 		$category = load::model( 'category' );
-		$categories = $category->get();
+		$categories = $category->get_all_categories();
 
 		load::view ('admin/content/manage_categories', array( 'categories'=>$categories ) );
 	}
