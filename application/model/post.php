@@ -20,9 +20,9 @@ class post_model
 
 		//$visible       = input::post( 'visible' );
 		//$published     = input::post( 'published' );
-		
-		$post_author   = user::id();
-		
+
+        $post_author   = user::id();
+
 		$page          = db('posts');
 
 		if ( $publish == 'published-on') {
@@ -199,6 +199,12 @@ class post_model
 		return $id;	
 	}
 
+    public function update_image_url($from_url, $to_url)
+    {
+        $term_relations = db::query("UPDATE posts SET content = REPLACE(content, '".$from_url."', '".$to_url."')");
+
+        return null;
+    }
 
 	// Get Post
 	//----------------------------------------------------------------------------------------------
@@ -207,11 +213,11 @@ class post_model
         $posts = db ( 'posts' );
 
 		if( defined( 'FRONT' ) ) {
-			$get_posts = $posts->select( '*' )
+            $get_posts = $posts->select( '*' )
 				->where ( 'type', '=', 'post' )
 				->order_by ( 'date', 'DESC' )
 				->clause ('AND')
-				->where ( 'status', '=', 'published' )
+				->where ( 'status', '=', 'publish' )
 				->clause ('AND')
 				->where ( 'date', '<=', time() )
 				->execute();
