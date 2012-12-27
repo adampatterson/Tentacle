@@ -16,8 +16,6 @@
 */
 function nav_menu ( $args = array() )
 {
-	define ( 'FRONT'		,'true' );
-	
 	$page = load::model( 'page' );
 	$pages = $page->get( );
 	// Current URI to be used with .current page

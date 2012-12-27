@@ -2,7 +2,7 @@
 class page_controller {
 	
     public function index(  ){
-		
+
 		is::blog_installed();
 		
 		$uri 			= URI;
@@ -21,7 +21,7 @@ class page_controller {
         else:
 			$uri 		= slash_it( $uri );
 		endif;
-		
+
 		// load the functions.php file from the active theme.
 		if (file_exists(PATH_URI.'/functions.php')) {
 			require_once( PATH_URI.'/functions.php' );
@@ -29,7 +29,7 @@ class page_controller {
 	
 		// Todo: get option blog path.
 		if (URI == 'blog') {
-			
+            define ( 'FRONT'		,'true' );
 			define("IS_POST", FALSE);
 
 			$post 		= load::model( 'post' );
