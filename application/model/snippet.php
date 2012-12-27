@@ -88,7 +88,7 @@ class snippet_model
 				->where ( 'id', '=', $id )
 				->execute();	
 			
-			return $$get_snippets[0];
+			return $get_snippets[0];
 		}		
 	}
 	
