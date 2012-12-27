@@ -9,7 +9,7 @@
 			<div class="control-group">
 				<label class="control-label" for="name">name</label>
 				<div class="controls">
-					<input type="text" name="name" id="name" value="<?= escapeStr($category -> name);?>" />
+					<input type="text" name="name" id="name" value="<?= string::escape_string($category->name);?>" />
 				</div>
 			</div>
 			
