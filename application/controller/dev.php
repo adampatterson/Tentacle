@@ -975,7 +975,7 @@ Test two
 		echo '<h4>random()</h4> '.string::random(20, true).'<br />';
 		echo '<h4>normalize()</h4> '.string::normalize($string).'<br />';
 		echo '<h4>pluralize()</h4>'.string::pluralize(3, 'bean','beans');
-		echo '<h4>escapeStr()</h4> '.string::escape_string($slash_string).'<br />';
+		echo '<h4>string::escape_string()</h4> '.string::escape_string($slash_string).'<br />';
 		echo '<h4>widont()</h4> '.string::widont($long_string).'<br />';
 		echo '<h4>highlight()</h4>'.highlight($long_string, 'faucibus').'<br />';
 	

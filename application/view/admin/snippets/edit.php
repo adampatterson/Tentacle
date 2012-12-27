@@ -18,14 +18,14 @@
 						<div class="control-group">
 							<label class="control-label" for="name">Snippet Name</label>
 							<div class="controls">
-								<input type="text" value="<?= escapeStr($snippet->name); ?>" name="name" id='name' />
+								<input type="text" value="<?= string::escape_string($snippet->name); ?>" name="name" id='name' />
 							</div>
 						</div>
 						
 						<div class="control-group">
 							<label class="control-label" for="content">Code Block</label>
 							<div class="controls">
-								<textarea name="content" cols="40" rows="5" name="content"><?= escapeStr($snippet->content); ?></textarea>
+								<textarea name="content" cols="40" rows="5" name="content"><?= string::escape_string($snippet->content); ?></textarea>
 							</div>
 						</div>
 						
