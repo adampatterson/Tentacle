@@ -707,6 +707,8 @@ class admin_controller {
      * ----------------------------------------------------------------------------------------------*/
     public function import_wordpress()
     {
+        tentacle::valid_user();
+
         load::view ('admin/import/wordpress' );
     }
 
