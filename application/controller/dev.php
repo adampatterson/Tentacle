@@ -1318,10 +1318,6 @@ Test two
         $parser = new WXR_Parser();
         $import = $parser->parse( $wordpress_xml );
 
-        $post           = load::model('post');
-        $categories     = load::model('category');
-        $tags           = load::model('tags');
-
         foreach ($import['posts'] as $import_post )
         {
 
@@ -1334,9 +1330,6 @@ Test two
 
                 if (!file_exists(STORAGE_DIR.'/images/'.$url_parts['name'])) {
                     file_put_contents(STORAGE_DIR.'/images/'.$url_parts['name'], $attachment_image);
-
-                    $media = load::model( 'media' );
-                    $add_image = $media->add( $url_parts['name'] );
 
                     load::helper('image');
                     process_image( $url_parts['name'] );
