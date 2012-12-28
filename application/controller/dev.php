@@ -1225,7 +1225,7 @@ Test two
 	}
 	
 	public function movabletype_import()
-	{	
+	{
 		load::library('import');
 	}
 
@@ -1243,156 +1243,112 @@ Test two
         $categories     = load::model('category');
         $tags           = load::model('tags');
 
+        # import new categories
         foreach ($import['categories'] as $import_category )
         {
             $categories->add($import_category);
         }
 
+        # import new tags
         foreach ($import['tags'] as $import_tag )
         {
             $tags->add($import_tag);
         }
 
-
         foreach ($import['posts'] as $import_post )
         {
-            $post_id = $post->add_by_import($import_post);
-
-            if(array_key_exists("terms", $import_post))
+            # Only work with post cotnent, we don't want pages, file attachements, or empty posts.
+            if ($import_post['post_type'] == 'post' && $import_post['post_content'] != '')
             {
-                foreach($import_post['terms'] as $term )
+                # Import the post and return the new ID
+                $post_id = $post->add_by_import($import_post);
+
+                # assosiate tags, and categories with the new post.
+                if(array_key_exists("terms", $import_post))
                 {
-                    if ( $term['domain'] == 'post_tag' )
+                    foreach($import_post['terms'] as $term )
                     {
-                        $tag_id = $tags->lookup($term['slug']);
+                        if ( $term['domain'] == 'post_tag' )
+                        {
+                            $tag_id = $tags->lookup($term['slug']);
 
-                        $tag_relations = $tags->relations( $post_id, $tag_id );
-                    }
-                    elseif( $term['domain'] == 'category' )
-                    {
-                        $category_id = $categories->lookup($term['slug']);
+                            $tag_relations = $tags->relations( $post_id, $tag_id );
+                        }
+                        elseif( $term['domain'] == 'category' )
+                        {
+                            $category_id = $categories->lookup($term['slug']);
 
-                        $category_relations = $categories->relations( $post_id, $category_id );
+                            $category_relations = $categories->relations( $post_id, $category_id );
+                        }
                     }
+                }
+            }
+
+            # Bring over all images that are attachments
+            if ( $import_post['post_type'] == 'attachment' )
+            {
+                $url_parts = string_to_parts($import_post['attachment_url']);
+
+                $attachment_image = get::url_contents($import_post['attachment_url']);
+
+                if (!file_exists(STORAGE_DIR.'/images/'.$url_parts['name'])) {
+                    file_put_contents(STORAGE_DIR.'/images/'.$url_parts['name'], $attachment_image);
+
+                    $media = load::model( 'media' );
+                    $add_image = $media->add( $url_parts['name'] );
+
+                    load::helper('image');
+                    process_image( $url_parts['name'] );
+
+                    $from_url = $import_post['attachment_url'];
+                    $to_url = IMAGE_URL.$url_parts['name'];
+
+                    $post->update_image_url($from_url, $to_url);
                 }
             }
         }
     }
 
 
-    public function wordpress_import_old()
-    {
+    public function import_attachements(){
+        load::library('import', 'wordpress');
 
-        function convert_ord($str)
+        $wordpress_xml = TEMP.'tentaclecms.wordpress.2012-12-24.xml';
+
+        $parser = new WXR_Parser();
+        $import = $parser->parse( $wordpress_xml );
+
+        $post           = load::model('post');
+        $categories     = load::model('category');
+        $tags           = load::model('tags');
+
+        foreach ($import['posts'] as $import_post )
         {
-            $count    = 1;
-            $out    = '';
-            $temp    = array();
 
-            for ($i = 0, $s = strlen($str); $i < $s; $i++)
+            # Bring over all images that are attachments
+            if ( $import_post['post_type'] == 'attachment' )
             {
-                $ordinal = ord($str[$i]);
+                $url_parts = string_to_parts($import_post['attachment_url']);
 
-                if ($ordinal < 128)
-                {
-                    if (count($temp) == 1)
-                    {
-                        $out  .= '&#'.array_shift($temp).';';
-                        $count = 1;
-                    }
+                $attachment_image = get::url_contents($import_post['attachment_url']);
 
-                    $out .= $str[$i];
-                }
-                else
-                {
-                    if (count($temp) == 0)
-                    {
-                        $count = ($ordinal < 224) ? 2 : 3;
-                    }
+                if (!file_exists(STORAGE_DIR.'/images/'.$url_parts['name'])) {
+                    file_put_contents(STORAGE_DIR.'/images/'.$url_parts['name'], $attachment_image);
 
-                    $temp[] = $ordinal;
+                    $media = load::model( 'media' );
+                    $add_image = $media->add( $url_parts['name'] );
 
-                    if (count($temp) == $count)
-                    {
-                        $number = ($count == 3) ? (($temp['0'] % 16) * 4096) +
-                            (($temp['1'] % 64) * 64) +
-                            ($temp['2'] % 64) : (($temp['0'] % 32) * 64) +
-                            ($temp['1'] % 64);
-
-                        $out .= ' ';
-                        $count = 1;
-                        $temp = array();
-                    }
-                }
-            }
-
-            return $out;
-        }
-
-        $wordpress_xml = file_get_contents(TEMP.'tentaclecms.wordpress.2012-11-26.xml');
-
-        $sane_xml = str_replace("", "", $wordpress_xml);
-        $xml = simplexml_load_string($sane_xml, "SimpleXMLElement", LIBXML_NOCDATA);
-
-        if (!$xml or !substr_count($wordpress_xml, "wordpress.org")){
-		    echo 'Invalid Wordpress XML';
-        } else {
-
-            $post = load::model('post');
-
-            foreach ($xml->channel->item as $entry){
-
-                $wordpress_content['title']         = (string)$entry->title; 		// Posts title
-                $wordpress_content['uri']           = (string)$entry->link;			// URI to post
-                $wordpress_content['date']          = (string)$entry->pubDate; 		// Date
-
-                $namespaces = $entry->getNamespaces(true);
-
-                $dc         = $entry->children($namespaces['dc']);
-                $content    = $entry->children($namespaces['content']);
-                $excerpt    = $entry->children($namespaces['excerpt']);
-                $wp         = $entry->children($namespaces['wp']);
-
-                $wordpress_content['author']        = (string)$dc->creator;         // Authors name
-
-                // Need to clean up any URLS as well as content encoding issues.
-                $import_content = convert_ord((string)$content->encoded);
-
-                $wordpress_content['content']      = $import_content;    // the post or pages content
-
-                //$wordpress_content['excerpt']     = $excerpt->encoded;    // the post or pages excerpt
-                $wordpress_content['id']            = (string)$wp->post_id;         // The post ID, try to keep this if possible
-                $wordpress_content['date']          = (string)$wp->post_date;        // Date
-                $wordpress_content['comment']       = (string)$wp->comment_status;  // open or closed
-                $wordpress_content['ping']          = (string)$wp->ping_status; 	// open or closed
-                $wordpress_content['slug']          = (string)$wp->post_name; 		// the slug
-                $wordpress_content['status']        = (string)$wp->status; 			// published, draft, trash
-                $wordpress_content['parent']        = (string)$wp->post_parent; 	// The ID that an attachment might belloing to or a post.
-                $wordpress_content['order']         = (string)$wp->menu_order;      // Apply to pages
-                $wordpress_content['type']          = (string)$wp->post_type;       // attachemnt, page, or post
-                //$wordpress_content['password']    = $wp->post_password;   // NA
-                //$wordpress_content['sticky']      = $wp->is_sticky;       // NA
-                $wordpress_content['attachment']    = (string)$wp->attachment_url;  // Path to the image ( download these and place them in the storage folder )
-
-                //$string = iconv('ASCII', 'UTF-8//IGNORE', $string);
-
-                $string = (string)$content->encoded;
-
-                var_dump(mb_detect_encoding($string));
-
-                echo '<hr>';
-
-                if($wp->post_type == 'post'){
-                    //$import = $post->add_by_import($wordpress_content);
+                    load::helper('image');
+                    process_image( $url_parts['name'] );
                 }
             }
         }
-	}
-	
-	
+    }
+
+
 	public function serverstats()
 	{
-		load::helper('serverstats');
+        load::helper('serverstats');
 		build_server_stats(0, '', 'utf8');
 	}
 
