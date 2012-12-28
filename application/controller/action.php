@@ -860,6 +860,12 @@ win.send_to_editor('<?=$html?>');
 
     public function import_wordpress ()
     {
+        if (!is_dir(TEMP)) {
+            if (!mkdir(TEMP, 0755, true)) {
+                die('Failed to create folders...');
+            }
+        }
+
         if ($_FILES["xml_file"]["error"] > 0)
         {
             note::set("error","import",'You must choose a WordPress WXR file to upload.');
@@ -869,7 +875,7 @@ win.send_to_editor('<?=$html?>');
         elseif (!file_exists( TEMP. $_FILES["xml_file"]["name"] ))
         {
             note::set("success","import",'You have succsssfully uploaded '.$_FILES["xml_file"]["name"]);
-            move_uploaded_file($_FILES["xml_file"]["tmp_name"], TEMP. $_FILES["xml_file"]["name"]);
+            move_uploaded_file($_FILES["xml_file"]["tmp_name"], TEMP.$_FILES["xml_file"]["name"]);
         }
 
         load::library('import', 'wordpress');
