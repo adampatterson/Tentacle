@@ -950,7 +950,7 @@ win.send_to_editor('<?=$html?>');
 
         note::set("success","import",'Your content has been imported successfully.');
 
-        url::redirect( input::post( 'history' ) );
+        //url::redirect( input::post( 'history' ) );
     }
 
 
