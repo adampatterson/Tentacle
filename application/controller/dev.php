@@ -1229,16 +1229,9 @@ Test two
 		load::library('import');
 	}
 
-    public function initest(){
-        var_dump(ini_get('memory_limit'));
-        ini_set('memory_limit', '64M');
-        var_dump(ini_get('memory_limit'));
-        die;
-    }
-
     public function wordpress_import()
     {
-
+        var_dump(memory_usage());
         load::library('import', 'wordpress');
 
         $wordpress_xml = TEMP.'tentaclecms.wordpress.2012-12-24.xml';
@@ -1249,27 +1242,28 @@ Test two
         $post           = load::model('post');
         $categories     = load::model('category');
         $tags           = load::model('tags');
-
+        var_dump(memory_usage());
         # import new categories
         foreach ($import['categories'] as $import_category )
         {
             $categories->add($import_category);
         }
-
+        var_dump(memory_usage());
         # import new tags
         foreach ($import['tags'] as $import_tag )
         {
             $tags->add($import_tag);
         }
-
+        var_dump(memory_usage());
         foreach ($import['posts'] as $import_post )
         {
+            var_dump(memory_usage());
             # Only work with post cotnent, we don't want pages, file attachements, or empty posts.
             if ($import_post['post_type'] == 'post' && $import_post['post_content'] != '')
             {
                 # Import the post and return the new ID
                 $post_id = $post->add_by_import($import_post);
-
+                var_dump(memory_usage());
                 # assosiate tags, and categories with the new post.
                 if(array_key_exists("terms", $import_post))
                 {
@@ -1280,17 +1274,19 @@ Test two
                             $tag_id = $tags->lookup($term['slug']);
 
                             $tag_relations = $tags->relations( $post_id, $tag_id );
+                            var_dump(memory_usage());
                         }
                         elseif( $term['domain'] == 'category' )
                         {
                             $category_id = $categories->lookup($term['slug']);
 
                             $category_relations = $categories->relations( $post_id, $category_id );
+                            var_dump(memory_usage());
                         }
                     }
                 }
             }
-
+            var_dump(memory_usage());
             # Bring over all images that are attachments
             if ( $import_post['post_type'] == 'attachment' )
             {
@@ -1341,6 +1337,7 @@ Test two
 
                 if (file_exists(STORAGE_DIR.'/images/'.$url_parts['name'])) {
                     file_put_contents(STORAGE_DIR.'/images/'.$url_parts['name'], $attachment_image);
+                    var_dump(memory_usage());
                     process_image( $url_parts['name'] );
                 }
                 var_dump(memory_usage());
