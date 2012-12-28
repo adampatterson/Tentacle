@@ -1232,6 +1232,10 @@ Test two
 
     public function wordpress_import()
     {
+        var_dump(ini_get('memory_limit'));
+        var_dump(ini_set('memory_limit', '64M'));
+        var_dump(ini_get('memory_limit'));
+       die;
         load::library('import', 'wordpress');
 
         $wordpress_xml = TEMP.'tentaclecms.wordpress.2012-12-24.xml';
