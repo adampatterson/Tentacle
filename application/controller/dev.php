@@ -1324,6 +1324,9 @@ Test two
             # Bring over all images that are attachments
             if ( $import_post['post_type'] == 'attachment' )
             {
+                var_dump($import_post['attachment_url']);
+                echo "<hr />";
+
                 $url_parts = string_to_parts($import_post['attachment_url']);
 
                 $attachment_image = get::url_contents($import_post['attachment_url']);
