@@ -1231,7 +1231,7 @@ Test two
 
     public function initest(){
         var_dump(ini_get('memory_limit'));
-        var_dump(ini_set('memory_limit', '64M'));
+        ini_set('memory_limit', '64M');
         var_dump(ini_get('memory_limit'));
         die;
     }
