@@ -14,8 +14,12 @@
 * Returns:
 *	NULL
 */
-# @todo: 	for performance image resizing should probably work on a cascading principal where you take 
-#			the original resize for the larger, large for the medium, medium for ...
+/*
+$imageInfo = getimagesize( $sourceImagePath );
+
+// a check to make sure we have enough memory to hold this image
+$requiredMemoryMB = ( $imageInfo[0] * $imageInfo[1] * ($imageInfo['bits'] / 8) * $imageInfo['channels'] * 2.5 ) / 1024;
+ */
 function process_image( $orifinal_file = '', $insert = FALSE )
 {
 	$meta = explode('.', $orifinal_file );
@@ -35,6 +39,7 @@ function process_image( $orifinal_file = '', $insert = FALSE )
 			
 			$large_file = $meta[0].'_'.IMAGE_L.'.'.$meta[1];
 			$large->save( IMAGE_DIR.$large_file );
+            var_dump(memory_usage());
 			$large->close();
 
 
@@ -49,6 +54,7 @@ function process_image( $orifinal_file = '', $insert = FALSE )
 
 			$medium_file = $meta[0].'_'.IMAGE_M.'.'.$meta[1];
 			$medium->save( IMAGE_DIR.$medium_file );
+            var_dump(memory_usage());
 			$medium->close();
 
 
@@ -63,6 +69,7 @@ function process_image( $orifinal_file = '', $insert = FALSE )
 
 			$thumb_file = $meta[0].'_'.IMAGE_T.'.'.$meta[1];
 			$thumb->save( IMAGE_DIR.$thumb_file );
+            var_dump(memory_usage());
 			$thumb->close();
 
 
@@ -73,7 +80,10 @@ function process_image( $orifinal_file = '', $insert = FALSE )
 
 			$square_file = $meta[0].'_sq.'.$meta[1];
 			$square->save( IMAGE_DIR.$square_file );
+            var_dump(memory_usage());
 			$square->close();
+
+        echo "<hr />";
 	} else {
 		dingo_error(E_USER_ERROR, "Image file not found: The image file ($file_path) could not be found.");
 	}

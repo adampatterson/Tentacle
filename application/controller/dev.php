@@ -1296,14 +1296,15 @@ Test two
 
                     $media = load::model( 'media' );
                     $add_image = $media->add( $url_parts['name'] );
-
+                    var_dump(memory_usage());
                     load::helper('image');
                     process_image( $url_parts['name'] );
-
+                    var_dump(memory_usage());
                     $from_url = $import_post['attachment_url'];
                     $to_url = IMAGE_URL.$url_parts['name'];
-
+                    var_dump(memory_usage());
                     $post->update_image_url($from_url, $to_url);
+                    var_dump(memory_usage());
                 }
             }
         }
@@ -1317,28 +1318,28 @@ Test two
 
         $parser = new WXR_Parser();
         $import = $parser->parse( $wordpress_xml );
+        load::helper('image');
 
         foreach ($import['posts'] as $import_post )
         {
-
             # Bring over all images that are attachments
             if ( $import_post['post_type'] == 'attachment' )
             {
-                var_dump($import_post['attachment_url']);
-                echo "<hr />";
+                var_dump(memory_usage());
+                //var_dump($import_post['attachment_url']);
 
                 $url_parts = string_to_parts($import_post['attachment_url']);
 
                 $attachment_image = get::url_contents($import_post['attachment_url']);
 
-                if (!file_exists(STORAGE_DIR.'/images/'.$url_parts['name'])) {
+                if (file_exists(STORAGE_DIR.'/images/'.$url_parts['name'])) {
                     file_put_contents(STORAGE_DIR.'/images/'.$url_parts['name'], $attachment_image);
-
-                    load::helper('image');
                     process_image( $url_parts['name'] );
                 }
+                var_dump(memory_usage());
             }
         }
+
     }
 
 
