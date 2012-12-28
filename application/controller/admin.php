@@ -702,6 +702,13 @@ class admin_controller {
 		load::view ('admin/settings/writing', array( 'categories'=>$categories ) );
 	}
 
+    /**
+     * Import WordPress
+     * ----------------------------------------------------------------------------------------------*/
+    public function import_wordpress()
+    {
+        load::view ('admin/import/wordpress' );
+    }
 
 	/**
 	 * 
