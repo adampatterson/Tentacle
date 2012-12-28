@@ -879,6 +879,7 @@ win.send_to_editor('<?=$html?>');
         }
 
         load::library('import', 'wordpress');
+        load::helper('image');
 
         $wordpress_xml = TEMP.$_FILES["xml_file"]["name"];
 
@@ -888,6 +889,7 @@ win.send_to_editor('<?=$html?>');
         $post           = load::model('post');
         $categories     = load::model('category');
         $tags           = load::model('tags');
+        $media          = load::model( 'media' );
 
         # import new categories
         foreach ($import['categories'] as $import_category )
@@ -903,6 +905,7 @@ win.send_to_editor('<?=$html?>');
 
         foreach ($import['posts'] as $import_post )
         {
+
             # Only work with post cotnent, we don't want pages, file attachements, or empty posts.
             if ($import_post['post_type'] == 'post' && $import_post['post_content'] != '')
             {
@@ -940,11 +943,7 @@ win.send_to_editor('<?=$html?>');
                 if (!file_exists(STORAGE_DIR.'/images/'.$url_parts['name'])) {
                     file_put_contents(STORAGE_DIR.'/images/'.$url_parts['name'], $attachment_image);
 
-                    $media = load::model( 'media' );
                     $add_image = $media->add( $url_parts['name'] );
-
-                    load::helper('image');
-                    process_image( $url_parts['name'] );
 
                     $from_url = $import_post['attachment_url'];
                     $to_url = IMAGE_URL.$url_parts['name'];
@@ -952,11 +951,21 @@ win.send_to_editor('<?=$html?>');
                     $post->update_image_url($from_url, $to_url);
                 }
             }
+
+            # Process all of those images that were imported.
+            if ( $import_post['post_type'] == 'attachment' )
+            {
+                $url_parts = string_to_parts($import_post['attachment_url']);
+
+                if (file_exists(STORAGE_DIR.'/images/'.$url_parts['name'])) {
+                    process_image( $url_parts['name'] );
+                }
+            }
         }
 
         note::set("success","import",'Your content has been imported successfully.');
 
-        //url::redirect( input::post( 'history' ) );
+        url::redirect( input::post( 'history' ) );
     }
 
 
