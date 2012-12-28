@@ -1231,8 +1231,8 @@ Test two
 
     public function wordpress_import()
     {
-        var_dump(memory_usage());
         load::library('import', 'wordpress');
+        load::helper('image');
 
         $wordpress_xml = TEMP.'tentaclecms.wordpress.2012-12-24.xml';
 
@@ -1242,28 +1242,29 @@ Test two
         $post           = load::model('post');
         $categories     = load::model('category');
         $tags           = load::model('tags');
-        var_dump(memory_usage());
+        $media          = load::model( 'media' );
+
         # import new categories
         foreach ($import['categories'] as $import_category )
         {
             $categories->add($import_category);
         }
-        var_dump(memory_usage());
+
         # import new tags
         foreach ($import['tags'] as $import_tag )
         {
             $tags->add($import_tag);
         }
-        var_dump(memory_usage());
+
         foreach ($import['posts'] as $import_post )
         {
-            var_dump(memory_usage());
+
             # Only work with post cotnent, we don't want pages, file attachements, or empty posts.
             if ($import_post['post_type'] == 'post' && $import_post['post_content'] != '')
             {
                 # Import the post and return the new ID
                 $post_id = $post->add_by_import($import_post);
-                var_dump(memory_usage());
+
                 # assosiate tags, and categories with the new post.
                 if(array_key_exists("terms", $import_post))
                 {
@@ -1274,19 +1275,17 @@ Test two
                             $tag_id = $tags->lookup($term['slug']);
 
                             $tag_relations = $tags->relations( $post_id, $tag_id );
-                            var_dump(memory_usage());
                         }
                         elseif( $term['domain'] == 'category' )
                         {
                             $category_id = $categories->lookup($term['slug']);
 
                             $category_relations = $categories->relations( $post_id, $category_id );
-                            var_dump(memory_usage());
                         }
                     }
                 }
             }
-            var_dump(memory_usage());
+
             # Bring over all images that are attachments
             if ( $import_post['post_type'] == 'attachment' )
             {
@@ -1297,22 +1296,36 @@ Test two
                 if (!file_exists(STORAGE_DIR.'/images/'.$url_parts['name'])) {
                     file_put_contents(STORAGE_DIR.'/images/'.$url_parts['name'], $attachment_image);
 
-                    $media = load::model( 'media' );
                     $add_image = $media->add( $url_parts['name'] );
-                    var_dump(memory_usage());
-                    load::helper('image');
-                    process_image( $url_parts['name'] );
-                    var_dump(memory_usage());
+
                     $from_url = $import_post['attachment_url'];
                     $to_url = IMAGE_URL.$url_parts['name'];
-                    var_dump(memory_usage());
+
                     $post->update_image_url($from_url, $to_url);
-                    var_dump(memory_usage());
+                }
+            }
+
+            # Process all of those images that were imported.
+            if ( $import_post['post_type'] == 'attachment' )
+            {
+                $url_parts = string_to_parts($import_post['attachment_url']);
+
+                if (file_exists(STORAGE_DIR.'/images/'.$url_parts['name'])) {
+                    process_image( $url_parts['name'] );
                 }
             }
         }
     }
 
+
+    public function image_test(){
+        load::helper('image');
+
+        image_process('process.jpg', IMAGE_T);
+        image_process('process.jpg', IMAGE_M);
+        image_process('process.jpg', IMAGE_L);
+        image_process('process.jpg', IMAGE_T, TRUE);
+    }
 
     public function import_attachements(){
         load::library('import', 'wordpress');

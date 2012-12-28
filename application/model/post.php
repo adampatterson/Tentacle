@@ -201,9 +201,7 @@ class post_model
 
     public function update_image_url($from_url, $to_url)
     {
-        $term_relations = db::query("UPDATE posts SET content = REPLACE(content, '".$from_url."', '".$to_url."')");
-
-        return null;
+        $term_relations = db::query("UPDATE posts SET content = REPLACE(content, '".$from_url."', '".$to_url."');");
     }
 
 	// Get Post
