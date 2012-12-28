@@ -857,7 +857,103 @@ win.send_to_editor('<?=$html?>');
 		
 	}
 	
-	
+
+    public function import_wordpress ()
+    {
+        if ($_FILES["xml_file"]["error"] > 0)
+        {
+            note::set("error","import",'You must choose a WordPress WXR file to upload.');
+
+            url::redirect( input::post( 'history' ) );
+        }
+        elseif (!file_exists( TEMP. $_FILES["xml_file"]["name"] ))
+        {
+            note::set("success","import",'You have succsssfully uploaded '.$_FILES["xml_file"]["name"]);
+            move_uploaded_file($_FILES["xml_file"]["tmp_name"], TEMP. $_FILES["xml_file"]["name"]);
+        }
+
+        load::library('import', 'wordpress');
+
+        $wordpress_xml = TEMP.$_FILES["xml_file"]["name"];
+
+        $parser = new WXR_Parser();
+        $import = $parser->parse( $wordpress_xml );
+
+        $post           = load::model('post');
+        $categories     = load::model('category');
+        $tags           = load::model('tags');
+
+        # import new categories
+        foreach ($import['categories'] as $import_category )
+        {
+            $categories->add($import_category);
+        }
+
+        # import new tags
+        foreach ($import['tags'] as $import_tag )
+        {
+            $tags->add($import_tag);
+        }
+
+        foreach ($import['posts'] as $import_post )
+        {
+            # Only work with post cotnent, we don't want pages, file attachements, or empty posts.
+            if ($import_post['post_type'] == 'post' && $import_post['post_content'] != '')
+            {
+                # Import the post and return the new ID
+                $post_id = $post->add_by_import($import_post);
+
+                # assosiate tags, and categories with the new post.
+                if(array_key_exists("terms", $import_post))
+                {
+                    foreach($import_post['terms'] as $term )
+                    {
+                        if ( $term['domain'] == 'post_tag' )
+                        {
+                            $tag_id = $tags->lookup($term['slug']);
+
+                            $tag_relations = $tags->relations( $post_id, $tag_id );
+                        }
+                        elseif( $term['domain'] == 'category' )
+                        {
+                            $category_id = $categories->lookup($term['slug']);
+
+                            $category_relations = $categories->relations( $post_id, $category_id );
+                        }
+                    }
+                }
+            }
+
+            # Bring over all images that are attachments
+            if ( $import_post['post_type'] == 'attachment' )
+            {
+                $url_parts = string_to_parts($import_post['attachment_url']);
+
+                $attachment_image = get::url_contents($import_post['attachment_url']);
+
+                if (!file_exists(STORAGE_DIR.'/images/'.$url_parts['name'])) {
+                    file_put_contents(STORAGE_DIR.'/images/'.$url_parts['name'], $attachment_image);
+
+                    $media = load::model( 'media' );
+                    $add_image = $media->add( $url_parts['name'] );
+
+                    load::helper('image');
+                    process_image( $url_parts['name'] );
+
+                    $from_url = $import_post['attachment_url'];
+                    $to_url = IMAGE_URL.$url_parts['name'];
+
+                    $post->update_image_url($from_url, $to_url);
+                }
+            }
+        }
+
+        note::set("success","import",'Your content has been imported successfully.');
+
+        url::redirect( input::post( 'history' ) );
+    }
+
+
 	public function editor_file_upload()
 	{
 		copy($_FILES['file']['tmp_name'], STORAGE_DIR.'/files/'.$_FILES['file']['name']);
