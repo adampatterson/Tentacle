@@ -330,7 +330,7 @@ Test two
 	{
 		?>
 		<form name="oembed_form" action="http://localhost/tentacle/dev/oembed_two" method="post">
-		<input type="text" name="url" value="<?=$_POST['url']?>" size="50">
+		<input type="text" name="url" value="<?=input::post('url')?>" size="50">
 		<input type="submit" name="Show" value="Show Video">
 		</form>
 		<?
@@ -1293,8 +1293,8 @@ Test two
 
                 $attachment_image = get::url_contents($import_post['attachment_url']);
 
-                if (!file_exists(STORAGE_DIR.'/images/'.$url_parts['name'])) {
-                    file_put_contents(STORAGE_DIR.'/images/'.$url_parts['name'], $attachment_image);
+                if (!file_exists(IMAGE_URL.$url_parts['name'])) {
+                    file_put_contents(IMAGE_URL.$url_parts['name'], $attachment_image);
 
                     $add_image = $media->add( $url_parts['name'] );
 
@@ -1334,26 +1334,35 @@ Test two
 
         $parser = new WXR_Parser();
         $import = $parser->parse( $wordpress_xml );
+
         load::helper('image');
 
         foreach ($import['posts'] as $import_post )
         {
             # Bring over all images that are attachments
-            if ( $import_post['post_type'] == 'attachment' )
+            if ( $import_post['post_type'] == 'post' )
             {
-                var_dump(memory_usage());
-                //var_dump($import_post['attachment_url']);
+                # This is  the base media upload URL from the old WordPress site.
+                $regexp_url = preg_quote($import['base_url'].'/wp-content/uploads/', "/");
 
-                $url_parts = string_to_parts($import_post['attachment_url']);
+                # This will return all URL matches as $media
+                preg_match_all("/{$regexp_url}([^\.\!,\?;\"\'<>\(\)\[\]\{\}\s\t ]+)\.([a-zA-Z0-9]+)/",
+                    $import_post['post_content'],
+                    $media);
 
-                $attachment_image = get::url_contents($import_post['attachment_url']);
+                foreach ($media[0] as $matched_url) {
+                    $url_parts = string_to_parts($matched_url);
 
-                if (file_exists(STORAGE_DIR.'/images/'.$url_parts['name'])) {
-                    file_put_contents(STORAGE_DIR.'/images/'.$url_parts['name'], $attachment_image);
-                    var_dump(memory_usage());
-                    process_image( $url_parts['name'] );
+                    # download a copy of the old content ( because it might be sized differently than our newly processed images.
+                    # $content_image = get::url_contents($matched_url);
+                    # file_put_contents(IMAGE_URL.$url_parts['name'], $content_image);
+
+                    # Replace the old URL with our new URL
+
+                    $content_modified = str_replace($matched_url, IMAGE_URL.$url_parts['name'], $import_post['post_content']);
+
+                    var_dump(utf8_decode($content_modified));
                 }
-                var_dump(memory_usage());
             }
         }
 

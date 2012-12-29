@@ -16,12 +16,10 @@ class WXR_Parser {
 
         $internal_errors = libxml_use_internal_errors(true);
         $xml = simplexml_load_file( $file );
+
         // halt if loading produces an error
         if ( ! $xml )
             return dingo_error(E_WARNING,"There was an error when reading this WXR file");
-
-
-            //return dingo_error( 'SimpleXML_parse_error', 'There was an error when reading this WXR file', 'wordpress-importer', libxml_get_errors() );
 
         $wxr_version = $xml->xpath('/rss/channel/wp:wxr_version');
         if ( ! $wxr_version )
