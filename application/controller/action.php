@@ -903,12 +903,36 @@ win.send_to_editor('<?=$html?>');
             $tags->add($import_tag);
         }
 
+        # Only work with post content, we don't want pages, file attachments, or empty posts.
         foreach ($import['posts'] as $import_post )
         {
-
-            # Only work with post cotnent, we don't want pages, file attachements, or empty posts.
             if ($import_post['post_type'] == 'post' && $import_post['post_content'] != '')
             {
+                # This is  the base media upload URL from the old WordPress site.
+                $regexp_url = preg_quote($import['base_url'].'/wp-content/uploads/', "/");
+
+                # This will return all URL matches as $media
+                preg_match_all("/{$regexp_url}([^\.\!,\?;\"\'<>\(\)\[\]\{\}\s\t ]+)\.([a-zA-Z0-9]+)/",
+                    $import_post['post_content'],
+                    $remote_media);
+
+                $content_modified = null;
+
+                foreach ($remote_media[0] as $matched_url) {
+                    $url_parts = string_to_parts($matched_url);
+
+                    # download a copy of the old content ( because it might be sized differently than our newly processed images.
+                    $content_image = get::url_contents($matched_url);
+                    file_put_contents(STORAGE_DIR.'/images/'.$url_parts['name'], $content_image);
+
+                    # Replace the old URL with our new URL
+                    $content_modified = str_replace($matched_url, IMAGE_URL.$url_parts['name'], $import_post['post_content']);
+                }
+
+                if(!$content_modified == ''){
+                    $import_post['post_content'] = $content_modified;
+                }
+
                 # Import the post and return the new ID
                 $post_id = $post->add_by_import($import_post);
 
@@ -932,8 +956,11 @@ win.send_to_editor('<?=$html?>');
                     }
                 }
             }
+        }
 
-            # Bring over all images that are attachments
+        # Bring over all images that are attachments, This is independent of any content manipulation that takes place.
+        foreach ($import['posts'] as $import_post )
+        {
             if ( $import_post['post_type'] == 'attachment' )
             {
                 $url_parts = string_to_parts($import_post['attachment_url']);
@@ -945,19 +972,6 @@ win.send_to_editor('<?=$html?>');
 
                     $add_image = $media->add( $url_parts['name'] );
 
-                    $from_url = $import_post['attachment_url'];
-                    $to_url = IMAGE_URL.$url_parts['name'];
-
-                    $post->update_image_url($from_url, $to_url);
-                }
-            }
-
-            # Process all of those images that were imported.
-            if ( $import_post['post_type'] == 'attachment' )
-            {
-                $url_parts = string_to_parts($import_post['attachment_url']);
-
-                if (file_exists(STORAGE_DIR.'/images/'.$url_parts['name'])) {
                     process_image( $url_parts['name'] );
                 }
             }
