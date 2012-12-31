@@ -5,6 +5,48 @@
 class date
 {
     /**
+     * Determines the difference between two timestamps.
+     *
+     * The difference is returned in a human readable format such as "1 hour",
+     * "5 mins", "2 days".
+     *
+     * Parameters:
+     *  $from - int, Unix timestamp from which the difference begins.
+     *  $to - Int, Optional. Unix timestamp to end the time difference. Default becomes time() if not set.
+     *
+     * Returns:
+     *	String Human readable time difference.
+     */
+    public static function human_time_diff( $from, $to = '' ) {
+        if ( empty( $to ) )
+            $to = time();
+        $diff = (int) abs( $to - $from );
+        if ( $diff <= HOUR_IN_SECONDS ) {
+            $mins = round( $diff / MINUTE_IN_SECONDS );
+            if ( $mins <= 1 ) {
+                $mins = 1;
+            }
+            /* translators: min=minute */
+            $since = sprintf( string::plural( $mins, '%s min', '%s mins' ), $mins );
+        } elseif ( ( $diff <= DAY_IN_SECONDS ) && ( $diff > HOUR_IN_SECONDS ) ) {
+            $hours = round( $diff / HOUR_IN_SECONDS );
+            if ( $hours <= 1 ) {
+                $hours = 1;
+            }
+            $since = sprintf( string::plural( $hours, '%s hour', '%s hours' ), $hours );
+        } elseif ( $diff >= DAY_IN_SECONDS ) {
+            $days = round( $diff / DAY_IN_SECONDS );
+            if ( $days <= 1 ) {
+                $days = 1;
+            }
+            $since = sprintf( string::plural( $days, '%s day', '%s days' ), $days );
+        }
+
+        return $since;
+    }
+
+
+    /**
     * Function: distance_of_time_in_words
     *	Distance of time $fromTime $toTime in words.
     *
@@ -946,6 +988,28 @@ class string
 	        echo $n . ' ' . $plural;
 	    }
 	}
+
+
+    /**
+     * Function: pluralize
+     *	pluralize(3, 'bean','beans')
+     *
+     * Parameters:
+     *	$n - number
+     *  $singular
+     *	$plural
+     *
+     * Returns:
+     *	return - string
+     */
+    public static function plural($n, $singular, $plural)
+    {
+        if ($n == 1) {
+            return $singular;
+        } else {
+            return $plural;
+        }
+    }
 
 
 	/**

@@ -583,9 +583,21 @@ class tentacle
 	* Returns:
 	*     $content - Slashes removed.
 	*/
-	function render_content ( $content='' ) {
-		return stripslashes( $content );
-	}	
+	function render_content( $content='', $editor = false ) {
+        load::helper('format');
+        load::library('SmartyPants', 'smartypants');
+
+        $content = stripslashes( $content );
+
+        if (!$editor)
+        {
+            $content = autop( $content );
+            $content = SmartyPants( $content );
+            $content = make_clickable($content);
+        }
+
+        return $content;
+	}
 
 
 	/**

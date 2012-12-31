@@ -281,8 +281,15 @@ class post_model
 			->where ( 'posts_id', '=', $id )
 			->execute();	
 		
-		$clean_post_meta = unserialize( $dirty_post_meta[0]->meta_value );
+        if($dirty_post_meta == '')
+        {
+            $clean_post_meta = unserialize( $dirty_post_meta[0]->meta_value );
 
-		return (object)$clean_post_meta;
+            return (object)$clean_post_meta;
+        }
+        else
+        {
+            return null;
+        }
 	}
 }

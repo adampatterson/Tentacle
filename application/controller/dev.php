@@ -1024,7 +1024,10 @@ Test two
 		//2012-02-08 14:16:05
 		//$year.'-'.$month.'-'.$day.' '.$hour.':'.$min
 		
-		echo date('l dS \o\f F Y h:i:s A', strtotime( $year.'-'.$month.'-'.$day.' '.$hour.':'.$minute.':00' ));
+		//echo date('l dS \o\f F Y h:i:s A', strtotime( $year.'-'.$month.'-'.$day.' '.$hour.':'.$minute.':00' ));
+
+
+        echo date::human_time_diff(strtotime( $year.'-'.$month.'-'.$day.' '.$hour.':'.$minute.':00' ), time());
 		
 	}// END Function
 	
