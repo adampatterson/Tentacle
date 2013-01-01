@@ -588,10 +588,10 @@ class tentacle
         load::library('SmartyPants', 'smartypants');
 
         $content = stripslashes( $content );
+        $content = autop( $content );
 
         if (!$editor)
         {
-            $content = autop( $content );
             $content = SmartyPants( $content );
             $content = make_clickable($content);
         }

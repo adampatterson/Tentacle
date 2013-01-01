@@ -12,7 +12,7 @@
                                 <p>Content imported will be added under the current logged in user ( <?= user_name() ?> )</p>
                                 <p></p>
                                 <div class="control-group">
-                                    <label class="control-label" for="xml_file">Choose a WXR (.xml) file to upload, then click "Upload and Import".</label>
+                                    <label class="control-label" for="xml_file">Choose a WXR (.xml) file to upload, then click "Upload and Import". <br />It should be no larger than <?= ini_get('post_max_size') ?></label>
                                     <div class="controls">
                                         <input type="file" name="xml_file" value="" id="xml_file">
                                     </div>

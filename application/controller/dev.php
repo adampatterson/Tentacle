@@ -1335,17 +1335,10 @@ Test two
     }
 
 
-    public function image_test(){
-        load::helper('image');
-
-        image_process('process.jpg', IMAGE_T);
-        image_process('process.jpg', IMAGE_M);
-        image_process('process.jpg', IMAGE_L);
-        image_process('process.jpg', IMAGE_T, TRUE);
-    }
-
-    public function import_attachements(){
+    public function import_test(){
         load::library('import', 'wordpress');
+        load::library('SmartyPants', 'smartypants');
+        load::helper('format');
 
         $wordpress_xml = TEMP.'tentaclecms.wordpress.2012-12-24.xml';
 
@@ -1354,31 +1347,35 @@ Test two
 
         load::helper('image');
 
+        function convert_smart_quotes($string)
+        {
+            /**
+             *  â€˜  8216  curly left single quote
+             *  â€™  8217  apostrophe, curly right single quote
+             *  â€œ  8220  curly left double quote
+             *  â€  8221  curly right double quote
+             *
+             *  â€”  8212  em dash
+             *  â€“  8211  en dash
+             *  â€¦  8230  ellipsis  */
+            $search = array(
+                '&#8217;'
+            );
+
+            $replace = array(
+
+                'P'
+            );
+
+            return str_replace($search, $replace, $string);
+        }
+
         foreach ($import['posts'] as $import_post )
         {
             # Bring over all images that are attachments
             if ( $import_post['post_type'] == 'post' )
             {
-                # This is  the base media upload URL from the old WordPress site.
-                $regexp_url = preg_quote($import['base_url'].'/wp-content/uploads/', "/");
-
-                # This will return all URL matches as $media
-                preg_match_all("/{$regexp_url}([^\.\!,\?;\"\'<>\(\)\[\]\{\}\s\t ]+)\.([a-zA-Z0-9]+)/",
-                    $import_post['post_content'],
-                    $media);
-
-                foreach ($media[0] as $matched_url) {
-                    $url_parts = string_to_parts($matched_url);
-
-                    # download a copy of the old content ( because it might be sized differently than our newly processed images.
-                    $content_image = get::url_contents($matched_url);
-                    file_put_contents(IMAGE_URL.$url_parts['name'], $content_image);
-
-                    # Replace the old URL with our new URL
-                    $content_modified = str_replace($matched_url, IMAGE_URL.$url_parts['name'], $import_post['post_content']);
-
-                    var_dump($content_modified);
-                }
+                var_dump($import_post['post_content']);
             }
         }
 

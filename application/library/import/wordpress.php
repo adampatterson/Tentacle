@@ -99,7 +99,7 @@ class WXR_Parser {
 
             $content = $item->children( 'http://purl.org/rss/1.0/modules/content/' );
             $excerpt = $item->children( $namespaces['excerpt'] );
-            $post['post_content'] = (string) $content->encoded;
+            $post['post_content'] = (string) mb_convert_encoding($content->encoded, 'HTML-ENTITIES', 'UTF-8');
             $post['post_excerpt'] = (string) $excerpt->encoded;
 
             $wp = $item->children( $namespaces['wp'] );
@@ -109,7 +109,14 @@ class WXR_Parser {
             $post['comment_status'] = (string) $wp->comment_status;
             $post['ping_status'] = (string) $wp->ping_status;
             $post['post_name'] = (string) $wp->post_name;
-            $post['status'] = (string) $wp->status;
+
+
+            if ($wp->status == 'publish' ):
+                $post['status'] = (string) 'published';
+            else:
+                $post['status'] = (string) $wp->status;
+            endif;
+
             $post['post_parent'] = (int) $wp->post_parent;
             $post['menu_order'] = (int) $wp->menu_order;
             $post['post_type'] = (string) $wp->post_type;

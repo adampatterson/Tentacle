@@ -121,7 +121,7 @@
 								<p class="wysiwyg">
 									<textarea id="Content" name="content" rows="15" cols="80" class="editor"><?= render_content( $get_post->content, true ) ?></textarea>
 								</p>
-							
+
 							<? else: ?>
 								
 								<p>

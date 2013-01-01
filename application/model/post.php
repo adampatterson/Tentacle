@@ -121,6 +121,16 @@ class post_model
             'modified'	=>time()
         ));
 
+        $meta_value = serialize( '' );
+
+        $page_meta      = db('posts_meta');
+
+        $page_meta->insert(array(
+            'posts_id'=>$row->id,
+            'meta_key'=>'scaffold_data',
+            'meta_value'=>$meta_value
+        ));
+
         return $row->id;
     }
 
@@ -341,7 +351,7 @@ class post_model
         {
             $clean_post_meta = unserialize( $dirty_post_meta[0]->meta_value );
 
-            return (object)$clean_post_meta;
+            return (object) $clean_post_meta;
         }
         else
         {
