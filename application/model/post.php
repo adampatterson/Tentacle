@@ -158,7 +158,7 @@ class post_model
         $year	= input::post( 'year' );
 
         $composed_time = $year.'-'.$month.'-'.$day.' '.$hour.':'.$minute.':00';
-        //var_dump($composed_time);
+//      var_dump($composed_time);
         $date_published = strtotime( $composed_time );
 
 
@@ -171,7 +171,7 @@ class post_model
         $history_year	    = date('Y', $history_date);
 
         $history_composed_time = $history_year.'-'.$history_month.'-'.$history_day.' '.$history_hour.':'.$history_minute.':00';
-        //var_dump($history_composed_time);
+//      var_dump($history_composed_time);
         $date_history = strtotime( $history_composed_time );
 
 
@@ -182,38 +182,37 @@ class post_model
         $current_year           = date('Y', time());
 
         $current_composed_time = $current_year.'-'.$current_month.'-'.$current_day.' '.$current_hour.':'.$current_minute.':00';
-        //var_dump($current_composed_time);
+//      var_dump($current_composed_time);
         $date_current = strtotime( $current_composed_time );
 
-        _s('Published Date');
-        var_dump($date_published);
-        _s('Date from Histroy');
-        var_dump($date_history);
-        _s('The current Date');
-        var_dump($date_current);
+//        _s('Published Date');
+//        var_dump($date_published);
+//        _s('Date from Histroy');
+//        var_dump($date_history);
+//        _s('The current Date');
+//        var_dump($date_current);
 
         if ($date_history < $date_published){
-            _p("The date is in the future");
+//            _p("The date is in the future");
         }
 
         if ( $status == 'published' &&  $date_current < $date_published ):
-            _p("If the page is published, and the published date is greater than the current date use the current date.");
+ //           _p("If the page is published, and the published date is greater than the current date use the current date.");
             $date = $date_published;
 
         elseif ( $status == 'published' ):
-            _p("The date is not greater, but the page is published so we use the history date.");
+//            _p("The date is not greater, but the page is published so we use the history date.");
             $date = $date_history;
 
         elseif ( $status == 'draft' &&  $date_current < $date_published ):
-            _p("If the page is in draft but the published date is in the future then leave it alone.");
+//            _p("If the page is in draft but the published date is in the future then leave it alone.");
             $date = $date_published;
 
         elseif ( $status == 'draft' ):
-            _p("If the page is in draft, but the published date is not in the future then use the current date.");
+//            _p("If the page is in draft, but the published date is not in the future then use the current date.");
             $date = $date_current;
 
         endif;
-        var_dump($date);
 
 		$post_type     = $_POST['page-or-post'];
 		
