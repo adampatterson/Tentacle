@@ -16,10 +16,10 @@ class page_controller {
 		
 		if ( $uri == '' || $uri == 'home'):
 			$uri 		= 'home/';
-		elseif	( URI == '' || $uri == 'blog'):
-			$uri 		= 'blog/';
+		elseif	( URI == '' || $uri == get::option('blog_uri') ):
+			$uri 		= slash_it( get::option('blog_uri') );
         else:
-			$uri 		= slash_it( $uri );
+            $uri 		= slash_it( $uri );
 		endif;
 
 		// load the functions.php file from the active theme.
@@ -28,7 +28,7 @@ class page_controller {
 		}
 	
 		// Todo: get option blog path.
-		if (URI == 'blog') {
+		if (URI == get::option('blog_uri') ) {
             define ( 'FRONT'		,'true' );
 			define("IS_POST", FALSE);
 

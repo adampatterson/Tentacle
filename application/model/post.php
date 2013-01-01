@@ -27,7 +27,7 @@ class post_model
 
 		if ( $publish == 'published-on') {
 
-			$date = new date();
+			//$date = new date();
 
 			$minute	= input::post( 'minute' );
 			$hour	= input::post( 'hour' );
@@ -41,7 +41,16 @@ class post_model
 			
 			$date = strtotime( $composed_time );
 		} else {
-			$date = time();
+
+            $current_minute         = date('i', time());
+            $current_hour           = date('H', time());
+            $current_day            = date('d', time());
+            $current_month          = date('m', time());
+            $current_year           = date('Y', time());
+
+            $current_composed_time = $current_year.'-'.$current_month.'-'.$current_day.' '.$current_hour.':'.$current_minute.':00';
+
+            $date = strtotime( $current_composed_time );
 		}
 		
 		$row = $page->insert(array(
@@ -126,30 +135,75 @@ class post_model
 		$status        = input::post( 'status' );
 		$publish       = input::post( 'publish' );
 		
-		$post_template = $_POST['post_type'];
+		$post_template = input::post( 'post_type' );
 		
-		if ( $post_template == '' ):
+		if ( $post_template == '' )
 			$post_template = 'type-post';
-		endif;
 
-		if ( $publish == 'published-on') {
 
-			$date = new date();
+        $minute	= input::post( 'minute' );
+        $hour	= input::post( 'hour' );
+        $day 	= input::post( 'day' );
+        $month 	= input::post( 'month' );
+        $year	= input::post( 'year' );
 
-			$minute	= input::post( 'minute' );
-			$hour	= input::post( 'hour' );
-			$day 	= input::post( 'day' );	
-			$month 	= input::post( 'month' );
-			$year	= input::post( 'year' );
+        $composed_time = $year.'-'.$month.'-'.$day.' '.$hour.':'.$minute.':00';
+        //var_dump($composed_time);
+        $date_published = strtotime( $composed_time );
 
-			//2012-02-08 14:16:05
-			$composed_time = $year.'-'.$month.'-'.$day.' '.$hour.':'.$minute.':00';
-			//echo date('l dS \o\f F Y h:i:s A', strtotime( $composed_time ));
-			
-			$date = strtotime( $composed_time );
-		} else {
-			$date = time();
-		}
+
+        $history_date = input::post( 'date_history' );
+
+        $history_minute	    = date('i', $history_date);
+        $history_hour	    = date('H', $history_date);
+        $history_day 	    = date('d', $history_date);
+        $history_month 	    = date('m', $history_date);
+        $history_year	    = date('Y', $history_date);
+
+        $history_composed_time = $history_year.'-'.$history_month.'-'.$history_day.' '.$history_hour.':'.$history_minute.':00';
+        //var_dump($history_composed_time);
+        $date_history = strtotime( $history_composed_time );
+
+
+        $current_minute         = date('i', time());
+        $current_hour           = date('H', time());
+        $current_day            = date('d', time());
+        $current_month          = date('m', time());
+        $current_year           = date('Y', time());
+
+        $current_composed_time = $current_year.'-'.$current_month.'-'.$current_day.' '.$current_hour.':'.$current_minute.':00';
+        //var_dump($current_composed_time);
+        $date_current = strtotime( $current_composed_time );
+
+        _s('Published Date');
+        var_dump($date_published);
+        _s('Date from Histroy');
+        var_dump($date_history);
+        _s('The current Date');
+        var_dump($date_current);
+
+        if ($date_history < $date_published){
+            _p("The date is in the future");
+        }
+
+        if ( $status == 'published' &&  $date_current < $date_published ):
+            _p("If the page is published, and the published date is greater than the current date use the current date.");
+            $date = $date_published;
+
+        elseif ( $status == 'published' ):
+            _p("The date is not greater, but the page is published so we use the history date.");
+            $date = $date_history;
+
+        elseif ( $status == 'draft' &&  $date_current < $date_published ):
+            _p("If the page is in draft but the published date is in the future then leave it alone.");
+            $date = $date_published;
+
+        elseif ( $status == 'draft' ):
+            _p("If the page is in draft, but the published date is not in the future then use the current date.");
+            $date = $date_current;
+
+        endif;
+        var_dump($date);
 
 		$post_type     = $_POST['page-or-post'];
 		
@@ -159,7 +213,7 @@ class post_model
 		
 		// Run content through HTMLawd and Samrty Text
 		$page          = db('posts');
-		
+
 		$row = $page->update(array(
 			'title'		=>$title,
 			'slug'		=>$slug,
@@ -203,6 +257,7 @@ class post_model
 	//----------------------------------------------------------------------------------------------
 	public function get ( $id='' )
 	{
+
         $posts = db ( 'posts' );
 
 		if( defined( 'FRONT' ) ) {
@@ -210,10 +265,11 @@ class post_model
 				->where ( 'type', '=', 'post' )
 				->order_by ( 'date', 'DESC' )
 				->clause ('AND')
-				->where ( 'status', '=', 'publish' )
+				->where ( 'status', '=', 'published' )
 				->clause ('AND')
 				->where ( 'date', '<=', time() )
 				->execute();
+
 			return $get_posts;
 		} elseif ( $id == '' ) {
 			$get_posts = $posts->select( '*' )
@@ -281,7 +337,7 @@ class post_model
 			->where ( 'posts_id', '=', $id )
 			->execute();	
 		
-        if($dirty_post_meta == '')
+        if($dirty_post_meta != '')
         {
             $clean_post_meta = unserialize( $dirty_post_meta[0]->meta_value );
 

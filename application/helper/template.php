@@ -103,7 +103,7 @@
 			$class .= 'active ';
 		} elseif ( $args['uri'] == 'home/' && CURRENT_PAGE == '' ) {
 			$class .= 'active ';
-		} elseif ( $args['uri'] == 'blog/' && IS_POST == true ) {
+		} elseif ( $args['uri'] == slash_it( get::option('blog_uri') ) && IS_POST == true ) {
 			$class .= 'active ';
 		}
 

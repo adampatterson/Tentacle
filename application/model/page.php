@@ -229,8 +229,8 @@ class page_model
 		$dirty_page_meta = $page_meta->select( 'meta_value' )
 			->where ( 'posts_id', '=', $id )
 			->execute();	
-		
-        if($dirty_page_meta == '')
+
+        if($dirty_page_meta != '')
         {
             $clean_page_meta = unserialize( $dirty_page_meta[0]->meta_value );
             return (object)$clean_page_meta;

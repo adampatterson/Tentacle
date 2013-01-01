@@ -53,10 +53,9 @@
 			    <ul class="dropdown-menu">
                     <li class="<? current_page('admin/settings_general'); ?>"><a href="<?= ADMIN ?>settings_general/">General</a></li>
                     <li class="<? current_page('admin/updates'); ?>"><a href="<?= ADMIN ?>updates/">Updates</a></li>
-                    <? /*
                     <li class="divider"></li>
                     <li class="<? current_page('admin/import_wordpress'); ?>"><a href="<?= ADMIN ?>import_wordpress/">Import from WordPress</a></li>
-    */ ?>
+
  <?
 	/*
 				<li class="<? current_page('admin/settings_seo'); ?>"><a href="<?= ADMIN ?>settings_seo/">SEO</a></li>

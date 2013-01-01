@@ -35,9 +35,14 @@
 						</div>
 
 						<div class="control-group">
-							<label for="status" class="control-label">Publish</label>
+							<label for="status" class="control-label">Publish on</label>
+                            <div class="controls">
+
+                                <input type="hidden" value="<?= $get_post->date ?>" name="date_history">
+
+                            </div>
+
 							<div class="controls">
-									
 								<small><?= date('F dS\, Y \@ h:i:s A', $get_post->date ); ?></small> <a href="#" id="edit_publish" class="red button-secondary">edit</a>
 							</div>
 						</div>
@@ -55,6 +60,7 @@
 							
 						<div class="control-group">
 							<label class="control-label" >Post Type</label>
+
 							<div class="controls">
 								<ul class="unstyled">
 									<? $post_types = get_post_type ( get::option( 'appearance' ) );
@@ -113,7 +119,7 @@
 							<? if(user_editor() == 'wysiwyg'):?>
 								
 								<p class="wysiwyg">
-									<textarea id="Content" name="content" rows="15" cols="80" class="editor"><?= stripslashes( $get_post->content ) ?></textarea>
+									<textarea id="Content" name="content" rows="15" cols="80" class="editor"><?= render_content( $get_post->content, true ) ?></textarea>
 								</p>
 							
 							<? else: ?>

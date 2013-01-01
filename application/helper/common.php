@@ -184,7 +184,7 @@ class date
 				echo strftime("%H", $time_stamp );
 			break;
 			case 'minute':
-				echo strftime("%S", $time_stamp );
+				echo strftime("%M", $time_stamp );
 			break;
 			default:
 				return false;

@@ -614,8 +614,40 @@ class tentacle
 	{
 		echo $data;
 	}
-	
-	
+
+
+    /**
+     * Function: _p
+     * Short Echo, With a <p> tag wrapper.
+     *
+     * Parameters:
+     *	  $data - String
+     *
+     * Returns:
+     *     $data - String
+     */
+    function _p( $data )
+    {
+        echo '<p>'.$data.'</p>';
+    }
+
+
+    /**
+     * Function: _s
+     * Short Echo, With a <strong> tag wrapper.
+     *
+     * Parameters:
+     *	  $data - String
+     *
+     * Returns:
+     *     $data - String
+     */
+    function _s( $data )
+    {
+        echo '<strong>'.$data.'</strong>';
+    }
+
+
 	/**
 	* Function: uri_contains
 	*

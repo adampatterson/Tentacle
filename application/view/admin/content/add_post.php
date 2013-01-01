@@ -33,8 +33,8 @@
 						</div>
 				
 						<div class="control-group">
-								<label for="status" class="control-label">Publish</label>
-								<div class="controls">
+							<label for="status" class="control-label">Publish on</label>
+							<div class="controls">
 									
 								<select id="publish" name="publish">
 									<option value="immediately">Immediately</option>
