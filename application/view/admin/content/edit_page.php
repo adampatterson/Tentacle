@@ -79,7 +79,7 @@
 					</ul>
 					
 					<div class="tab-content tab-body">
-						
+
 						<div id="content" class="active tab-pane">
 							<? //clean_out($get_page_meta ) ?>
 							<input type="text" name="title" placeholder='Title' value='<?= $get_page->title ?>' class='xlarge' required='required' />
