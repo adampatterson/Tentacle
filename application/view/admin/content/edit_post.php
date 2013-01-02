@@ -48,12 +48,15 @@
 						</div>
 			
 						<div class="control-group published-on">
-							<? date::current('month', $get_post->date ); ?>
+							<? date::get('month', $get_post->date ); ?>
 						</div>
 						
 						<div class="control-group published-on">
 		 					<div class="inline-inputs">
-								<input type="text" id="day" name="day" value="<? date::current( 'day', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> - <input type="text" id="year" name="year" value="<? date::current( 'year', $get_post->date ) ?>" size="4" maxlength="4" tabindex="4" autocomplete="off" class="span1"> @ <input type="text" id="hour" name="hour" value="<? date::current( 'hour', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> : <input type="text" id="minute" name="minute" value="<? date::current( 'minute', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
+								<input type="text" id="day" name="day" value="<? date::get( 'day', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
+                                 - <input type="text" id="year" name="year" value="<? date::get( 'year', $get_post->date ) ?>" size="4" maxlength="4" tabindex="4" autocomplete="off" class="span1">
+                                 @ <input type="text" id="hour" name="hour" value="<? date::get( 'hour', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
+                                 : <input type="text" id="minute" name="minute" value="<? date::get( 'minute', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
 							</div>
 							<a href="#" id="edit_publish" class="red button-secondary">Cancel</a>
 						</div>

@@ -196,13 +196,21 @@ class post_model
 //            _p("The date is in the future");
         }
 
-        if ( $status == 'published' &&  $date_current < $date_published ):
- //           _p("If the page is published, and the published date is greater than the current date use the current date.");
+        if ( $status == 'published' &&  $date_published < $date_history ):
+//            _p("If the page is published, and the published date is less than the history date use date published.");
+            $date = $date_published;
+
+         elseif ( $status == 'published' &&  $date_current < $date_published ):
+//            _p("If the page is published, and the published date is greater than the current date then use the date published.");
             $date = $date_published;
 
         elseif ( $status == 'published' ):
 //            _p("The date is not greater, but the page is published so we use the history date.");
             $date = $date_history;
+
+        elseif ($date_history > $date_published ):
+//            _p("The published date is not greater than the history, the published date may have been changed earlier.");
+            $date = $date_published;
 
         elseif ( $status == 'draft' &&  $date_current < $date_published ):
 //            _p("If the page is in draft but the published date is in the future then leave it alone.");

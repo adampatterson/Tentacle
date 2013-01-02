@@ -152,7 +152,7 @@ class bootstrap
 
         // Load the plugins here so that we can set route's, and use the Hooks in all areas of the application.
         // Check to see if we are installed so we dont explode.
-        if (class_exists('get') && get::option('is_blog_installed')) {           			
+        if (class_exists('get') && get::option('is_blog_installed')) {
 
 			define('ACTIVE_PLUGINS', get::option('active_plugins'));
 

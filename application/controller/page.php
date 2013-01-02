@@ -9,9 +9,6 @@ class page_controller {
 
 		load::helper('template');
 	
-		# Prepare the trigger class
-		$trigger 		= Trigger::current();
-		
 		$scaffold 		= new scaffold ();
 		
 		if ( $uri == '' || $uri == 'home'):
@@ -27,23 +24,16 @@ class page_controller {
 			require_once( PATH_URI.'/functions.php' );
 		}
 	
-		// Todo: get option blog path.
 		if (URI == get::option('blog_uri') ) {
-            define ( 'FRONT'		,'true' );
-			define("IS_POST", FALSE);
+            define ( 'FRONT'		, TRUE );
+			define ( 'IS_POST'      , FALSE );
 
 			$post 		= load::model( 'post' );
 			$posts 		= $post->get( );
 
 			$category 	= load::model( 'category' );
 			$tag 		= load::model( 'tags' );
-			$author 	= load::model('user'); 
-
-			if($trigger->exists("preview"))
-				$post->content = $trigger->filter($post->content,"preview");
-			
-			if($trigger->exists("shortcode"))
-				$post->content = $trigger->filter($post->content,"shortcode");
+			$author 	= load::model('user');
 
 			tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
 			
@@ -65,13 +55,6 @@ class page_controller {
 
             // If URI lookup fails redirect to the themes 404 page
             if ( $post ) {
-
-                // at this tage we are simply allowing the contnet attribute to be modified by the plugins.
-                if($trigger->exists("preview"))
-                    $post->content = $trigger->filter($post->content,"preview");
-
-                if($trigger->exists("shortcode"))
-                    $post->content = $trigger->filter($post->content,"shortcode");
 
                 tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta, 'trigger', $trigger ) );
 

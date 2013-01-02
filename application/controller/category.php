@@ -39,12 +39,6 @@ class category_controller {
             $posts 	= $category->get_by_slug( $category_name );
         }
 
-        if($trigger->exists("preview"))
-            $post->content = $trigger->filter($post->content,"preview");
-
-        if($trigger->exists("shortcode"))
-            $post->content = $trigger->filter($post->content,"shortcode");
-
         tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
 
     }// END index

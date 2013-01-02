@@ -25,10 +25,8 @@ function init_extensions() {
 		Plugins::$instances[$plugin]->safename = $plugin;
 
 		foreach (Plugins::$instances as $plugin)
-		{
 			if (method_exists($plugin, "__init"))
 				$plugin->__init();
-		}
 	}
 }
 

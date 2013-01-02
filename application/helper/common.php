@@ -192,6 +192,57 @@ class date
 		}
 	}
 
+    /**
+     * Function: get
+     *
+     * Parameters:
+     *	$unit
+     *	$get_time
+     *
+     * Returns:
+     *	String
+     */
+    public static function get($unit, $time_stamp ){
+
+        switch ($unit) {
+            case 'year':
+                echo strftime("%Y", $time_stamp );
+                break;
+            case 'month':
+
+                $curr_month = strftime("%m", $time_stamp );
+
+                $month = array (1=>"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+                $select = "<select id=\"month\" name=\"month\" tabindex=\"4\">\n";
+                foreach ($month as $key => $val) {
+                    $select .= "\t<option value=\"".$key."\"";
+                    if ($key == $curr_month) {
+                        $select .= " selected=\"selected\">".$val."</option>\n";
+                    } else {
+                        $select .= ">".$val."</option>\n";
+                    }
+                }
+
+                $select .= "</select>";
+                echo $select;
+
+                break;
+            case 'day':
+                echo strftime("%d", $time_stamp );
+
+                break;
+            case 'hour':
+                echo strftime("%H", $time_stamp );
+                break;
+            case 'minute':
+                echo strftime("%M", $time_stamp );
+                break;
+            default:
+                return false;
+                break;
+        }
+    }
+
 
 	/**
 	* Function: time_in_timezone

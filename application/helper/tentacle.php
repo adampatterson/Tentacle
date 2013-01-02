@@ -575,7 +575,7 @@ class tentacle
 
 	/**
 	* Function: render_content
-	* Information about time and memory
+	*   Pre-Processing of content done by core formatting as well as filters from plugins.
 	*
 	* Parameters:
 	*	  $content - String
@@ -584,15 +584,29 @@ class tentacle
 	*     $content - Slashes removed.
 	*/
 	function render_content( $content='', $editor = false ) {
+        # Prepare the trigger class
+        $trigger 		= Trigger::current();
+
         load::helper('format');
         load::library('SmartyPants', 'smartypants');
 
         $content = stripslashes( $content );
+
+        if (!$editor)
+        {
+            # At this stage we are simply allowing the content attribute to be modified by the plugins.
+            if($trigger->exists("preview"))
+                $content = $trigger->filter($content,"preview");
+
+            if($trigger->exists("shortcode"))
+                $content = $trigger->filter($content,"shortcode");
+        }
+
         $content = autop( $content );
 
         if (!$editor)
         {
-            $content = SmartyPants( $content );
+            $content = texturize( $content );
             $content = make_clickable($content);
         }
 
