@@ -56,7 +56,7 @@ class page_controller {
             // If URI lookup fails redirect to the themes 404 page
             if ( $post ) {
 
-                tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta, 'trigger', $trigger ) );
+                tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
 
             } else {
                 // logging of 404's here.
