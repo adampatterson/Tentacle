@@ -240,6 +240,7 @@ class Plugins {
 /**
   * Class: Trigger
   * Controls and keeps track of all of the Triggers and events.
+  * http://p.tcms.me/t6yti
   */
  class Trigger {
      # Array: $priorities

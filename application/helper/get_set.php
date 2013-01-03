@@ -119,9 +119,7 @@ class get {
      */
     public static function gravatar( $email, $s = GRAVATAR_SIZE, $d = 'mm', $r = 'g', $img = true, $atts = array() )
     {
-        $url = 'http://www.gravatar.com/avatar/';
-        $url .= md5( strtolower( trim( $email ) ) );
-        $url .= "?s=$s&d=$d&r=$r";
+        $url = 'http://www.gravatar.com/avatar/'.md5( strtolower( trim( $email ) ) )."?s=$s&d=$d&r=$r";
         if ( $img ) {
             $url = '<img src="' . $url . '"';
             foreach ( $atts as $key => $val )
@@ -153,9 +151,9 @@ class get {
     }
 
 
-    public static function next_post () {}
-    public static function previous_post () {}
-    public static function post_status () {}
+//    public static function next_post () {}
+//    public static function previous_post () {}
+//    public static function post_status () {}
 
 
     /**
@@ -411,30 +409,30 @@ class is {
         return (!isset($_SERVER['HTTP_REFERER']) OR $_SERVER['HTTP_REFERER'] == '') ? false : true;
     }
 
-	public static function rtl () {}
-	public static function front_page () {}
-	public static function home () {}
+//	public static function rtl () {}
+//	public static function front_page () {}
+//	public static function home () {}
 	//public static function date () {}
-	public static function search () {}
-	public static function paged () {}
-	public static function page () {}
-	public static function preview () {}
-	public static function page_template () {}
+//	public static function search () {}
+//	public static function paged () {}
+//	public static function page () {}
+//	public static function preview () {}
+//	public static function page_template () {}
 	//public static function 404 () {}
-	public static function error () {}
-	public static function single () {}
-	public static function sticky () {}
-	public static function admin () {}
-	public static function archive () {}
-	public static function post_type_archive () {}
-	public static function author () {}
-	public static function user_logged_in () {}
-	public static function category () {}
-	public static function tag () {}
-	public static function tax () {}
-	public static function trackback () {}
-	public static function serialized () {}
-	public static function admin_bar_showing () {}
+//	public static function error () {}
+//	public static function single () {}
+//	public static function sticky () {}
+//	public static function admin () {}
+//	public static function archive () {}
+//	public static function post_type_archive () {}
+//	public static function author () {}
+//	public static function user_logged_in () {}
+//	public static function category () {}
+//	public static function tag () {}
+//	public static function tax () {}
+//	public static function trackback () {}
+//	public static function serialized () {}
+//	public static function admin_bar_showing () {}
 
     /**
      * Function: blog_installed
