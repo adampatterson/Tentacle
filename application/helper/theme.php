@@ -20,22 +20,22 @@ class theme {
 	{
 		return load::file(THEMES_DIR.ACTIVE_THEME.'/library/'.$folder,$library,'library');
 	}
-	
-	
-	/**
-	* Function: load_part
-	* Load theme parts for inclusion.
-	*
-	* Parameters:
-	*     $part - string
-	*     $data - object/array
-	*
-	* Returns:
-	*     $string
-	*
-	* See Also:
-	*     <render>
-	*/
+
+
+    /**
+     * Function: load_part
+     * Load theme parts for inclusion.
+     *
+     * Parameters:
+     *     $part - string
+     *     $data - object/array
+     *
+     * Returns:
+     *     $string
+     *
+     * See Also:
+     *     <render>
+     */
 	public static function part( $part, $data = '' )
 	{
 	    // If theme does not exist display error
