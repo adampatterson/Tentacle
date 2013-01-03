@@ -113,43 +113,7 @@ class tentacle
 	}
 } // END class
 
-	/**
-	* Function: load_part
-	* Load theme parts for inclusion.
-	*
-	* Parameters:
-	*     $part - string
-	*     $data - object/array
-	*
-	* Returns:
-	*     $string
-	*
-	* See Also:
-	*     <render>
-	*/
-	function load_part( $part, $data = '' )
-	{
-	    // If theme does not exist display error
-	    if(!file_exists(THEMES_DIR.ACTIVE_THEME."/$part.php"))
-	    {
-	        dingo_error(E_USER_WARNING,'The requested theme part ('.THEMES_DIR.ACTIVE_THEME."/part-$part.php) could not be found.");
-	        return FALSE;
-	    } // if
-	    else
-	    {
-	        // If data is array, convert keys to variables
 
-	        if(is_array($data))
-	        {
-	            extract($data, EXTR_OVERWRITE);
-	        }
-
-	        require(THEMES_DIR.ACTIVE_THEME."/$part.php");
-	        return FALSE;
-	    } // else
-	} // END render
-	
-	
 	/**
 	* Function: offset
 	* For use with hierarchal data, used to return a CSS class that can be used on generated tables and lists.
