@@ -9,9 +9,9 @@ License: GNU General Public License
 License URI: license.txt
 */
 
-if( !defined( 'SCAFFOLD' ) ):?>
-<? theme::part('partials/header',array('title'=>'Blog','assets'=>'marketing')); ?>
-<div class="container bump-top">
+theme::part('partials/header',array('title'=>'Blog','assets'=>'marketing')); ?>
+
+    <div class="container bump-top">
 		<?
 	// Loop all of the blog posts.
 	foreach ($posts as $post): $author_meta = $author->get_meta ( $post->author ); ?>
@@ -40,5 +40,4 @@ if( !defined( 'SCAFFOLD' ) ):?>
 	<? endforeach;?>
 
 </div><!-- /container -->
-<? theme::part( 'partials/footer' );
-endif; ?>
+<? theme::part( 'partials/footer' ); ?>

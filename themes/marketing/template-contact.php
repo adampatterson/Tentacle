@@ -8,43 +8,40 @@ Version: 1.0
 License: GNU General Public License
 License URI: license.txt
 */
-$scaffold_data = 'display: front';
 
-if( !defined( 'SCAFFOLD' ) ):
+// Send an email to the admin contact.
+if ( $_POST ) {
+    $messageBody 		= '';
+    $subject 			= $_POST['subject'];
 
-	// Send an email to the admin contact.
-	if ( $_POST ) {
-		$messageBody 		= ''; 
-		$subject 			= $_POST['subject'];
+    $name 				= $_POST['name'];
+    $email	 			= $_POST['email'];
+    $message		 	= $_POST['message'];
 
-		$name 				= $_POST['name'];
-		$email	 			= $_POST['email'];
-		$message		 	= $_POST['message'];
-	
-		$to 				= get::option('admin_email');
-	
-		$messageBody .= 	"<h4>From:</h4> ".$name ." @ <a href='$email'>$email</a>";
+    $to 				= get::option('admin_email');
 
-	    $messageBody .= 	"<br /><br />";
-	    $messageBody .= 	"<h3>Message:</h3>";
-	    $messageBody .= 	$message;
-	
-		// Release the hounds!
-		$mail = new email( );
-		$mail->to( $to );
-		$mail->from( $name .'<'.$email.'>' );
-		$mail->subject( $subject  );
-		$mail->content( $messageBody );
-		$mail->send( );
+    $messageBody .= 	"<h4>From:</h4> ".$name ." @ <a href='$email'>$email</a>";
 
-		note::set( 'success','sent_message','Thanks!' );
-		
-		url::redirect(URI);
-	}
+    $messageBody .= 	"<br /><br />";
+    $messageBody .= 	"<h3>Message:</h3>";
+    $messageBody .= 	$message;
 
-theme::part( 'partials/header',array( 'title'=>'Say Hello!', 'assets'=>'marketing' ) ); ?>
+    // Release the hounds!
+    $mail = new email( );
+    $mail->to( $to );
+    $mail->from( $name .'<'.$email.'>' );
+    $mail->subject( $subject  );
+    $mail->content( $messageBody );
+    $mail->send( );
 
-<?php if( $note = note::get('sent_message') ): ?>
+    note::set( 'success','sent_message','Thanks!' );
+
+    url::redirect(URI);
+}
+
+theme::part( 'partials/header',array( 'title'=>'Say Hello!', 'assets'=>'marketing' ) );
+
+if( $note = note::get('sent_message') ): ?>
 	<div class="alert alert-success">
 		<h3 class="<?= $note['type']; ?>"><?= $note['content'];?></h3>
 	</div>
@@ -100,6 +97,5 @@ theme::part( 'partials/header',array( 'title'=>'Say Hello!', 'assets'=>'marketin
 		</div>
 	</div>
 </div>
-<? theme::part('partials/footer'); ?> 
 
-<? endif; ?>
+<? theme::part('partials/footer'); ?>

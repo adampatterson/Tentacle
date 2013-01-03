@@ -9,13 +9,7 @@ License: GNU General Public License
 License URI: license.txt
 */
 
-$data = array(
-	'display' => 'admin'
-);
-
-if(!defined('SCAFFOLD')):
-?>
-<? theme::part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>'marketing' ) ); ?>
+theme::part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>'marketing' ) ); ?>
 	
 	<header class="jumbotron subhead" id="overview">
 		<div class="container">
@@ -180,6 +174,4 @@ if(!defined('SCAFFOLD')):
 */?>
 	</div>
 
-	<? theme::part( 'partials/footer', array('track' => 'Home') ); 
-	endif;
-	?>
+<? theme::part( 'partials/footer', array('track' => 'Home') ); ?>
