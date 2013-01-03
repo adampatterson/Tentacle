@@ -636,21 +636,20 @@ Test two
 	 * @author Adam Patterson
 	 **/
 	public function theme()
-	{ 
-		define( 'SCAFFOLD' , 'TRUE' );
+    {
+        var_dump(get_scaffold(THEMES_DIR.'tentacle/template-profile.php'));
+
+        define( 'SCAFFOLD' , 'TRUE' );
 		
 		echo '<h2>Detected Themes</h2>';
 			
-		clean_out(get_themes());
+		var_dump(get_themes());
 		
 		echo '<h2>Valid Template Files</h2>';
-			clean_out(get_templates('tentacle'));
+        var_dump(get_templates('tentacle'));
 		
 		echo '<h2>Themes Settings</h2>';
-			clean_out(get_settings('tentacle'));
-		
-		echo '<h2>Themes Resources</h2>';
-			clean_out(get::resources(THEMES_DIR.'tentacle'));
+        var_dump(get_settings('tentacle'));
 	}
 	
 	
@@ -1418,8 +1417,6 @@ Test two
     }
 
     public function routs($test = '') {
-
-        load::library('routs','new_rout');
 
         $new_rout = new new_rout();
 

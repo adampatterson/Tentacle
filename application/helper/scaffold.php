@@ -15,14 +15,13 @@
 
 class  scaffold
 {
-	
-    static public function constructForm() 
+    static public function construct_form()
     {
-        $start =  '<form>';
-        return $start;
-        }    
+        echo '<form>';
+    }
 
-    static public function processThis( $scaffold_data ) 
+
+    static public function process_this( $scaffold_data )
     {  
         $return_data = "";
 
@@ -68,7 +67,7 @@ class  scaffold
 					    case 'button':
 							
 							if ( $scaffold_data[ 'display' ] != 'admin' ):
-								$return_data .= self::createButton($input['button_name']);
+								$return_data .= self::create_button($input['button_name']);
 							endif;
 	                    break; 
 						default:
@@ -103,9 +102,10 @@ class  scaffold
         
         echo $return_data;
         
-    } // function process  
-  
-    static public function populateThis( $data, $get_page_meta )
+    }
+
+
+    static public function populate_this( $data, $get_page_meta )
     {
 	if ( $page_id = '' )
 		return false;
@@ -132,7 +132,7 @@ class  scaffold
 					    case 'button':
 							
 							if ( $data[ 'display' ] != 'admin' ):
-								$return_data .= self::createButton($input['button_name']);
+								$return_data .= self::create_button($input['button_name']);
 							endif;
 	                    break;               
 	                    }// switch 
@@ -158,9 +158,10 @@ class  scaffold
         
         echo $return_data;
         
-    } // function populate
+    }
 
-	static public function createButton( $name = '' ) 
+
+	static public function create_button( $name = '' )
 	{
 		if (isset($name)):
 			$button =  '<input type="submit" value="'.$name.'" class="btn"><br />';
@@ -172,8 +173,7 @@ class  scaffold
 	}
 
 
-	static public function destructForm() {
+	static public function destruct_form() {
         echo '</form>';
     }
-} // class scaffold
-?>
+}

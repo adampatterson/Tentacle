@@ -56,10 +56,10 @@ $data = array(
 <p>Admin View</p>
 <?
 // Load the scaffold, see addressbook page_contact and how the textile class was used
-echo $scaffold->constructForm();
-echo $scaffold->processThis($data);
-echo $scaffold->createButton('send');
-echo $scaffold->destructForm();
+echo $scaffold->construct_form();
+echo $scaffold->process_this($data);
+echo $scaffold->create_button('send');
+echo $scaffold->destruct_form();
 ?>	
 <hr />
 <a href="<?=url::page("front/index/"); ?>">Front</a>

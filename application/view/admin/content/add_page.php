@@ -93,27 +93,25 @@
 								<p><textarea id="code" name="content" cols="40" rows="5" placeholder='Content'></textarea></p>
 
 							<? endif; ?>
-							<div class="clear"></div>
-							<div id="scaffold">
-								<?
-								define( 'SCAFFOLD' , 'TRUE' );
-								
-								if ( session::get( 'template' ) != 'index' && session::get( 'template' ) != ''   ) {
-									
-									@include(THEMES_DIR.'/'.get::option('appearance').'/'.session::get('template').'.php');
-										
-									if ( isset( $scaffold_data ) ) {
-									
-										$data = YAML::load( $scaffold_data );
-										
-										$scaffold = new scaffold();
 
-										$scaffold->processThis( $data );
-									}
-								}
+							<div id="scaffold">
+								<? if ( session::get( 'template' ) != 'index' && session::get( 'template' ) != '' ):
+
+                                    $template = THEMES_DIR.'/'.get::option('appearance').'/'.session::get('template').'.php';
+
+                                    $data = get_scaffold( $template );
+
+                                    if ( isset( $data ) ):
+                                        $scaffold = new scaffold();
+
+                                        $scaffold->process_this( $data );
+                                    endif;
+
+                                endif;
 								?>
-								<div class="clear"></div>
+
 							</div>
+
 						</div>
 						
 						<div id="options" class="tab-pane">

@@ -80,7 +80,7 @@ $data = array(
 <p>Soon the data posted from the forums will show up on this page.</p>
 <?
 // Load the scaffold, see addressbook page_contact and how the textile class was used
-echo $scaffold->constructForm();
-echo $scaffold->processThis($data);
-echo $scaffold->destructForm();
+echo $scaffold->construct_form();
+echo $scaffold->process_this($data);
+echo $scaffold->destruct_form();
 ?>

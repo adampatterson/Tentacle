@@ -87,7 +87,7 @@
 							<? if(user_editor() == 'wysiwyg'):?>
 
 								<p class="wysiwyg">
-									<textarea id="Content" name="content" rows="15" cols="80" class="editor"><?= render_content( $get_post->content, true ) ?></textarea>
+									<textarea id="Content" name="content" rows="15" cols="80" class="editor"><?= render_content( $get_page->content, true ) ?></textarea>
 								</p>
 							
 							<? else: ?>
@@ -97,32 +97,23 @@
 								</p>
 
 							<? endif; ?>
-							<div class="clear"></div>
-							<div id="scaffold">
-								<?
-								define( 'SCAFFOLD' , 'TRUE' );
-								
 
-								if ( $get_page->template != '' && $get_page->template != 'default' ) {
+							<div id="scaffold">
+                                <? if ( $get_page->template != '' && $get_page->template != 'default' ):
 									
 									$template = THEMES_DIR.'/'.get::option('appearance').'/'.$get_page->template.'.php';
 
 									// Load the saved template, then if the user changes override the saved template.
-									if( file_exists( $template ))
-									{
-										
-										include($template);
-										
-										if ( isset( $scaffold_data ) ) {
+									if( file_exists( $template )):
+                                        $data = get_scaffold( $template );
 
-											$data = YAML::load( $scaffold_data );
-
+										if ( isset( $data ) ):
 											$scaffold = new scaffold();
 
-											$scaffold->populateThis( $data, $get_page_meta );
-										}
-										
-									} else { ?>
+											$scaffold->populate_this( $data, $get_page_meta );
+                                        endif;
+
+									else: ?>
 										
 										<br/><br/>
 										<div class="alert-message warning">
@@ -130,10 +121,9 @@
 											<?= '/tentacle/themes/'.get::option('appearance').'/'.$get_page->template.'.php'?></p>
 										</div>
 										
-									<? }
-								}
-								?>
-								<div class="clear"></div>
+									<? endif;
+                                endif; ?>
+
 							</div>
 						</div>
 						
@@ -143,8 +133,8 @@
 								<div class="control-group">
 									<label class="control-label" for='bread_crumb'>Breadcrumb title</label>
 									<div class="controls">
-											<input type="text" placeholder="Edit title" name='bread_crumb' value='<?= $get_page_meta->bread_crumb ?>' />
-											<span class="help-block">This title will appear in the breadcrumb trail.</span>
+                                        <input type="text" placeholder="Edit title" name='bread_crumb' value='<?= $get_page_meta->bread_crumb ?>' />
+                                        <span class="help-block">This title will appear in the breadcrumb trail.</span>
 									</div>
 								</div>
 

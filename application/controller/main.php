@@ -9,7 +9,7 @@ class main_controller {
         include(THEMES.'default/data.php');
             
         $scaffold = new scaffold();
-        $scaffold->processThis($data);
+        $scaffold->process_this($data);
         
         load::view('page_contact', array( 'contact'=>$contact[0], 'textile'=>$textile,'contacts_table'=>$contacts_table, 'profile_images'=>$profile_images, 'comments'=>$comments, 'group'=>$group[0] )); 
         

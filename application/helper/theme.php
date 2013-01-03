@@ -330,12 +330,13 @@ function get_templates ( $theme_folder )
 			$template[$php_file]['template_description'] = $file['Description'];
 			$template[$php_file]['template_author'] = $file['Author'];
 			$template[$php_file]['template_version'] = $file['Version'];
+            //$template[$php_file]['template_scaffolding'] = $file['Scaffolding'];
 		endif;
 	endforeach;
 
 	return( array_to_object( $template ) );
 	
-} // Get Templates
+}
 
 
 /**
@@ -368,7 +369,7 @@ function get_post_type ( $theme_folder )
 	endforeach;
 	
 	return( $template );
-} // Get Post Type
+}
 
 
 /*
@@ -418,7 +419,8 @@ function get_file_data( $file, $default_headers )
 
 	foreach ( $all_headers as $field => $regex ):
 		preg_match( '/^[ \t\/*#@]*' . preg_quote( $regex, '/' ) . ':(.*)$/mi', $file_data, ${$field});
-		if ( !empty( ${$field} ) )
+
+        if ( !empty( ${$field} ) )
 			${$field} = _cleanup_header_comment( ${$field}[1] );
 		else
 			${$field} = '';
@@ -427,7 +429,28 @@ function get_file_data( $file, $default_headers )
 	$file_data = compact( array_keys( $all_headers ) );
 
 	return $file_data;
-} // get_file_data
+}
+
+
+function get_scaffold( $file )
+{
+    $tokens = token_get_all(file_get_contents(THEMES_DIR.'tentacle/template-profile.php'));
+
+    foreach($tokens as $token) {
+        if($token[0] == T_DOC_COMMENT ) {
+            $scaffold = $token[1];
+            break;
+        }
+    }
+
+    $replace = array("/**", "*/");
+
+    $scaffold_data = str_replace($replace, "", $scaffold);
+
+    $data = YAML::load( $scaffold_data );
+
+    return $data;
+}
 
 
 /**
@@ -453,7 +476,7 @@ function get_data( $theme_file, $data_type )
 			'Version' => 'Version',
 			'Template' => 'Template',
 			'Status' => 'Status'
-			);
+        );
 			
 		$theme_data = get_file_data( $theme_file, $default_headers );
 
@@ -463,6 +486,7 @@ function get_data( $theme_file, $data_type )
 		$theme_data['AuthorURI'] = $theme_data['AuthorURI'];
 		$theme_data['Template'] = $theme_data['Template'];
 		$theme_data['Version'] = $theme_data['Version'];
+        //$theme_data['Scaffolding'] = get_scaffold($theme_file);
 
 		if ( $theme_data['Status'] == '' ):
 			$theme_data['Status'] = 'publish';
@@ -539,5 +563,4 @@ function get_data( $theme_file, $data_type )
 		// need to cean out invalid files.
 		return $theme_data;
 	}
-
-}// Get Theme Data
+}
