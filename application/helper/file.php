@@ -136,16 +136,20 @@ function array_clean($source)
 
 
 /**
- * Get the size of a directory.
+ * Function: get_dirsize
+ *  Get the size of a directory.
  *
- * A helper function that is used primarily to check whether
- * a blog has exceeded its allowed upload space.
+ *  A helper function that is used primarily to check whether
+ *  a blog has exceeded its allowed upload space.
  *
- * @since MU
- * @uses recurse_dirsize()
+ * Parameters:
+ *   $directory - string
  *
- * @param string $directory
- * @return int
+ * See Also:
+ *	<recurse_dirsize>
+ *
+ * Returns:
+ *   int
  */
 function get_dirsize( $directory ) {
 	$dirsize = get_transient( 'dirsize_cache' );
@@ -163,15 +167,20 @@ function get_dirsize( $directory ) {
 
 
 /**
- * Get the size of a directory recursively.
+ * Function: recurse_dirsize
+ *  Get the size of a directory recursively.
  *
- * Used by get_dirsize() to get a directory's size when it contains
- * other directories.
+ *  Used by get_dirsize() to get a directory's size when it contains
+ *  other directories.
  *
- * @since MU
+ * Parameters:
+ *   $directory - string
  *
- * @param string $directory
- * @return int
+ * See Also:
+ *	<recurse_dirsize>
+ *
+ * Returns:
+ *   int
  */
 function recurse_dirsize( $directory ) {
 	$size = 0;
@@ -198,5 +207,3 @@ function recurse_dirsize( $directory ) {
 	}
 	return $size;
 }
-
-

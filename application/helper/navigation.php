@@ -38,7 +38,6 @@ function nav_menu ( $args = array() )
 }
 
 
-
 /**
 * Function: nav_generate
 *	Generate HTML output for Naviogation

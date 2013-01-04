@@ -1,4 +1,8 @@
 <?
+/**
+ * File: Install
+ */
+
 
 function write_htaccess()
 {	

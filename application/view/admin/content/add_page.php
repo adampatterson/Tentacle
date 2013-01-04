@@ -99,14 +99,15 @@
 
                                     $template = THEMES_DIR.'/'.get::option('appearance').'/'.session::get('template').'.php';
 
-                                    $data = get_scaffold( $template );
+                                    if( file_exists( $template )):
+                                        $data = get_scaffold( $template );
 
-                                    if ( isset( $data ) ):
-                                        $scaffold = new scaffold();
+                                        if ( $data != null ):
+                                            $scaffold = new scaffold();
 
-                                        $scaffold->process_this( $data );
+                                            $scaffold->process_this( $data );
+                                        endif;
                                     endif;
-
                                 endif;
 								?>
 

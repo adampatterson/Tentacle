@@ -107,7 +107,7 @@
 									if( file_exists( $template )):
                                         $data = get_scaffold( $template );
 
-										if ( isset( $data ) ):
+										if ( $data != null ):
 											$scaffold = new scaffold();
 
 											$scaffold->populate_this( $data, $get_page_meta );

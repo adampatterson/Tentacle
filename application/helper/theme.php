@@ -434,7 +434,8 @@ function get_file_data( $file, $default_headers )
 
 function get_scaffold( $file )
 {
-    $tokens = token_get_all(file_get_contents(THEMES_DIR.'tentacle/template-profile.php'));
+    $tokens = token_get_all(file_get_contents($file));
+    $scaffold = '';
 
     foreach($tokens as $token) {
         if($token[0] == T_DOC_COMMENT ) {
@@ -443,13 +444,18 @@ function get_scaffold( $file )
         }
     }
 
-    $replace = array("/**", "*/");
+   if ($scaffold != null ){
+       $replace = array("/**", "*/");
 
-    $scaffold_data = str_replace($replace, "", $scaffold);
+       $scaffold_data = str_replace($replace, "", $scaffold);
 
-    $data = YAML::load( $scaffold_data );
+       $data = YAML::load( $scaffold_data );
 
-    return $data;
+       return $data;
+   } else {
+       return null;
+   }
+
 }
 
 

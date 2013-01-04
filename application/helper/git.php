@@ -6,7 +6,7 @@
 
 /**
 * Function: pull
-*	
+*   Executes a shell command 'git pull'
 *
 * Parameters:
 *	Executes a shell command 'git pull'
