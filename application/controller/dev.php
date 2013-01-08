@@ -1,16 +1,136 @@
 <?php
-class dev_controller {	
+
+class test_plugin{
+    static function call_me(){
+        echo 'maybe';
+    }
+}
+
+class dev_controller {
 	
 	public function index()
 	{
-		var_dump(is::mobile());
-		var_dump(is::blackberry());
-		var_dump(is::ipad());
-		var_dump(is::ipod());
-		var_dump(is::iphone());
-		var_dump(is::palmpre());
-		var_dump(is::android());
+
+//		load::library('plugin');
+//		_init_plugins();
+//
+//		var_dump(Plugin::$plugins);
+//		var_dump(Plugin::$actions);
+//		var_dump(Plugin::$cancelled);
+//		var_dump(Plugin::$priorities);
+//		var_dump(Plugin::$exists);
+//
+//		//var_dump(get_declared_classes());
+//
+//		Plugin::do_action('preview');
+//
+//		var_dump(function_exists('hello_world_show'));
+		
+//		var_dump(is::mobile());
+//		var_dump(is::blackberry());
+//		var_dump(is::ipad());
+//		var_dump(is::ipod());
+//		var_dump(is::iphone());
+//		var_dump(is::palmpre());
+//		var_dump(is::android());
 	}
+
+    public function plugin(){
+        load::library('plugin');
+
+        _p('<strong>Callback</strong>');
+        // Define two even calbacks
+        function callback_one($data = '')
+        {
+            echo 'callback one '.$data.'<br />';
+        }
+
+        function callback_two()
+        {
+            echo 'callback two <br />';
+        }
+
+        // Register the events to "my_event"
+        Event::register('event_one', 'callback_one');
+        Event::register('event_one', 'callback_two');
+
+        // Unregister callback one
+        Event::unregister('event_one', 'callback_one');
+
+        // Trigger the event
+        Event::trigger('event_one');
+        // This will only echo "callback two"
+
+        // Unregister all callbacks from "my_event";
+        Event::unregister('event_one');
+
+        Event::trigger('my_event');
+        // Will output nothing.
+
+
+        # Trigger with Data
+        _p('<strong>Trigger with Data</strong>');
+        $data = 'boom';
+
+        Event::register('event_two', 'callback_one');
+        // Trigger the event
+        Event::trigger('event_two', $data);
+        // callback_one + $data
+
+        _p('<strong>Has event</strong>');
+        var_dump(Event::has_events('event_two'));
+
+
+        # Forge test
+        _p('<strong>Forge</strong>');
+        // Create a new event object
+        $events = Event::forge();
+
+        // Create a new event object
+        // with events
+        $events = Event::forge(array(
+            'update' => function(){
+                echo ' updated';
+            },
+            'register' => function(){
+                echo ' registered';
+            },
+        ));
+
+        /**
+         * !! All other Event method apply to the instance
+         */
+        $events->register('update', function(){
+            echo 'this is awesome';
+        });
+
+        $events->trigger('update');
+        // will output "this is awesome"
+
+        # Trigger a method inside a class
+        _p('<strong>Trigger test_plugin::call_me</strong>');
+        Event::register('event_three', 'test_plugin::call_me');
+
+        Event::trigger('event_three');
+
+
+        # Trigger Priorities
+        _p('<strong>Trigger Priorities</strong>');
+        function call_one($data = '')
+        {
+            echo 'one ';
+        }
+
+        function call_two()
+        {
+            echo 'two ';
+        }
+
+        Event::register('event_four', 'call_one', 2);
+        Event::register('event_four', 'call_two', 1);
+
+        Event::trigger('event_four');
+    }
 
 	public function stats()
 	{
@@ -189,23 +309,6 @@ Test two
     public function rout_test() {
        var_dump(route::$route);
     }
-
-	public function extensions ()
-	{
-        $plugins = load::model('plugin');
-
-		//var_dump($plugins->get('active'));
-
-        var_dump($plugins->get('active'));
-
-		var_dump($plugins->get('inactive'));
-
-        //$activate = $plugins->activate('test');
-
-		//$deactivate = $plugins->deactivate('test');
-
-        //var_dump($deactivate);
-	}
 
 	/**
 	 * ========================= Google Analytics
