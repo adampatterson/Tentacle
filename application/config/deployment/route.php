@@ -16,7 +16,7 @@ route::set('(.*)',array(
     'function'=>'index'
 	));
 
-// attachmentr route
+// attachment route
 /* (jpg|png|gif|bmp)
 route::set('attachment/([0-9]+)x([0-9]+)/([^\s]+)\.',array(
     'controller'=>'attachment',

@@ -5,9 +5,11 @@ class post_model
 	//----------------------------------------------------------------------------------------------
 	public function add ( )
 	{
-		$title         = input::post( 'title' );
+        //$uri_date = date('m', time()).'/'.date('Y', time());
+
+        $title         = input::post( 'title' );
 		$slug          = string::sanitize($title);
-        $uri 		   = slash_it( get::option('blog_uri') ).$slug.'/';
+        $uri 		   = slash_it( get::option('blog_uri') ).'/'.$slug.'/';
         $content       = input::post( 'content' );
 		$status        = input::post( 'status' );
 		$publish       = input::post( 'publish' );
@@ -338,6 +340,19 @@ class post_model
 		}	
 	}
 
+    /**
+     * Get an object based on its date ( year/month )
+     *
+     * @param string $date
+     * @return void
+     * @author Adam Patterson
+     *
+     */
+    public function get_by_date( $date )
+    {
+        # Todo, wild card on URI with $date
+        return db::query("SELECT * FROM posts WHERE date LIKE '%".$date."%'");
+    }
 
 	// Get Page Meta
 	//----------------------------------------------------------------------------------------------

@@ -1,0 +1,4 @@
+<?
+    class error_controller {
+
+    }

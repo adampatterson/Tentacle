@@ -1,6 +1,7 @@
 <?
 
-function email_header( $subject='' ) {
+function email_header( $subject='' )
+{
 	$html = '	<html>
 				<head>
 				<title>';
@@ -78,7 +79,8 @@ function email_header( $subject='' ) {
 	return $html;
 }
 
-function email_footer( ) {
+function email_footer( )
+{
 	$html ='			</td>
 							</tr>
 							<tr>

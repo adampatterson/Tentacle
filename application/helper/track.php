@@ -103,7 +103,7 @@ function send_pingbacks($string, $post) {
  */
 function grab_urls($string) {
     $regexp = "/<a[^>]+href=[\"|']([^\"]+)[\"|']>[^<]+<\/a>/";
-    preg_match_all(Trigger::current()->filter($regexp, "link_regexp"), stripslashes($string), $matches);
+    preg_match_all(Plugins::current()->filter($regexp, "link_regexp"), stripslashes($string), $matches);
     $matches = $matches[1];
     return $matches;
 }

@@ -191,8 +191,8 @@
 			// The name of the $_FILES entry:
 			paramname:'pic',
 
-			maxfiles: cms_maxfiles,
-	    	maxfilesize: cms_maxfilesize,
+			maxfiles: 25,
+	    	maxfilesize: 2, // MBs
 			url: base_url+'action/upload_media/',
 
 			uploadFinished:function(i,file,response){	

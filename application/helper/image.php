@@ -65,7 +65,7 @@ function process_image( $orifinal_file = '', $insert = FALSE )
 
 
 		// Square
-			$square = new image( IMAGE_DIR.$thumb_file );
+			$square = new image( IMAGE_DIR.$medium_file );
 
 			$square->square( IMAGE_T );
 
