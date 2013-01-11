@@ -677,6 +677,125 @@ class route
 
 
 /**
+ * Class: url_map
+ */
+class url_map {
+
+    private static $route = array();
+    private static $current = array();
+    private static $pattern = array(
+        'int'=>'/^([0-9]+)$/',
+        'numeric'=>'/^([0-9\.]+)$/',
+        'alpha'=>'/^([a-zA-Z]+)$/',
+        'alpha-int'=>'/^([a-zA-Z0-9]+)$/',
+        'alpha-numeric'=>'/^([a-zA-Z0-9\.]+)$/',
+        'words'=>'/^([_a-zA-Z0-9\- ]+)$/',
+        'any'=>'/^(.*?)$/',
+        'extension'=>'/^([a-zA-Z]+)\.([a-zA-Z]+)$/'
+    );
+
+    // Add
+    // ---------------------------------------------------------------------------
+    public static function add($routes) {
+
+        foreach($routes as $key=>$val) {
+
+            self::$route[$key] = explode('.', $val);
+
+        }
+
+    }
+
+    // Get
+    // ---------------------------------------------------------------------------
+    public static function get($url) {
+
+        $controller = false;
+        $method = false;
+
+        $url = preg_replace('/^(\/)/','',$url); // Remove beginning slash
+        $segments = explode('/', $url);         // Split into segments
+
+
+        // 1) Default route
+        if(empty($segments[0])) {
+
+            // Get
+            if(isset(self::$route['/'])) {
+
+                return array('controller'=>self::$route['/'][0], 'method'=>self::$route['/'][1], 'args'=>array());
+
+            }
+
+            // No default route
+            else {
+
+                die('No default route set. WTF'); // TODO: remove this
+
+            }
+
+        }
+
+        // 2) Loops routes
+        foreach(self::$route as $pattern=>$location) {
+
+            // Skip default route
+            if($pattern != '/') {
+
+                $pattern_segments = explode('/', $pattern);
+
+                // Skip if segment count doesn't match
+                // TODO: Add checks for special segment types
+                if(count($pattern_segments) == count($segments)) {
+
+                    $args = array();
+
+                    // Loop pattern segments
+                    for($i = 0; $i < count($pattern_segments); $i++) {
+
+                        // Pattern segment
+                        if(preg_match('/^:/', $pattern_segments[$i])) {
+
+                            // Check to see if they don't match pattern
+                            if(!preg_match(self::$pattern[substr($pattern_segments[$i], 1)], $segments[$i])):
+
+                                // Skip to next route entry
+                                continue 2;
+
+                            else:
+
+                                // Add to arguments array
+                                $args[] = $segments[$i];
+
+                            endif;
+
+                            // Regular segment
+                        } else {
+
+                            // Check to see if they don't match
+                            if($segments[$i] != $pattern_segments[$i])
+                                // Skip to next route entry
+                                continue 2;
+
+                        }
+
+                    }
+
+                    // If it gets to here, then everything matches
+                    //return array('controller'=>$location[0], 'method'=>$location[1], 'args'=>$args);
+                    return $location[0].'_'.$location[1];
+                }
+
+            }
+
+        }
+
+        die;
+    }
+}
+
+
+/**
 * Class: load
 */
 class load
@@ -694,7 +813,7 @@ class load
 	*	Exception
 	*	require_once $folder/$file
 	*/
-    public static function file($folder,$file,$name)
+    public static function file($folder,$file,$name='')
     {
         try {
             // If file does not exist display error

@@ -7,7 +7,7 @@ class test_plugin{
 }
 
 class dev_controller {
-	
+
 	public function index()
 	{
 
@@ -34,6 +34,7 @@ class dev_controller {
 //		var_dump(is::palmpre());
 //		var_dump(is::android());
 	}
+
 
     public function plugin(){
         load::library('plugin');
@@ -132,10 +133,74 @@ class dev_controller {
         Event::trigger('event_four');
     }
 
-	public function stats()
-	{
-		load::helper('serverstats');
-	}
+
+    public function post_date ()
+    {
+        $test_uri = '2012/08/';
+
+        $uri = explode('/', $test_uri);
+
+        $uri = array_filter($uri);
+
+        var_dump($uri);
+
+        $time = mktime(0, 0, 0, 0, $uri[1], $uri[0]);
+
+        var_dump($time);
+        //1344123747
+        //1344123621
+        var_dump(date("m-d-Y", date($time)));
+
+        $range = load::model('post')->get_by_date('1353');
+
+        var_dump($range);
+    }
+
+    public function url_mapper()
+    {
+        $urls = array(
+           '/slug',
+           '/slug/page/2',
+           '/tag',
+           '/tag/slug',
+           '/tag/page/2',
+           '/category',
+           '/category/slug',
+           '/category/page/2',
+		   '/blog',
+           '/blog/slug',
+           '/blog/page/2',
+		   '/blog/2013/12',
+           '/blog/2013/12/page/2'
+        );
+
+		$routs = array(
+			'tag'							=> 'tag.index',
+			'tag/:alpha-numeric'			=> 'tag.slug',
+			'tag/page/:int'					=> 'tag.paged',
+			'category'						=> 'category.index',
+			'category/:alpha-numeric'		=> 'category.slug',
+			'category/page/:int'			=> 'category.paged',
+			'blog'							=> 'blog.index',
+			'blog/:alpha-numeric' 			=> 'blog.slug',
+			'blog/page/:int'				=> 'blog.paged',
+			'blog/:int/:int'				=> 'blog.date',
+			'blog/:int/:int/page/:int'		=> 'blog.date.paged',
+			':alpha-numeric' 			    => 'page.index',
+			':alpha-numeric/page/:int'		=> 'page.paged'
+		);
+
+        url_map::add($routs);
+
+        foreach($urls as $key => $url )
+        {
+            var_dump( $url );
+            // var_dump(preg_match('/^([a-zA-Z0-9\.]+)$/',$url));
+            var_dump( url_map::get( $url ) );
+			echo '<hr />';
+        }
+    }
+
 
 	public function speed($test='')
 	{
@@ -1517,29 +1582,5 @@ Test two
             (title,content,excerpt) AGAINST('portfolio') > 0 ORDER BY relevance DESC");
 
         var_dump($posts);
-    }
-
-    public function routs($test = '') {
-
-        $new_rout = new new_rout();
-
-        var_dump(class_exists('new_rout'));
-
-        $new_rout::add(array(
-            'dev/:any'=>'post.$1',
-
-            'int/:int'=>'main.bar',
-            'numeric/:numeric'=>'main.bar',
-            'alpha/:alpha'=>'main.bar',
-            'alpha-int/:alpha-int'=>'main.bar',
-            'alpha-numeric/:alpha-numeric'=>'main.bar',
-            'words/:words'=>'main.bar',
-            'any/:any'=>'main.bar',
-            'extension/:extension'=>'main.bar'));
-
-        $request_url = bootstrap::get_request_url();
-        $uri = $new_rout::get($request_url);
-
-        var_dump($uri);
     }
 }
