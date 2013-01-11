@@ -5,11 +5,11 @@ class post_model
 	//----------------------------------------------------------------------------------------------
 	public function add ( )
 	{
-        //$uri_date = date('m', time()).'/'.date('Y', time());
+        $uri_date = date('Y', time()).'/'.date('m', time());
 
         $title         = input::post( 'title' );
 		$slug          = string::sanitize($title);
-        $uri 		   = slash_it( get::option('blog_uri') ).'/'.$slug.'/';
+        $uri 		   = slash_it( get::option('blog_uri') ).$uri_date.'/'.$slug.'/';
         $content       = input::post( 'content' );
 		$status        = input::post( 'status' );
 		$publish       = input::post( 'publish' );
@@ -95,9 +95,13 @@ class post_model
     //----------------------------------------------------------------------------------------------
     public function add_by_import ( $import )
     {
+        $uri_date = new DateTime( $import['post_date'] );
+
+        $uri_date = $uri_date->format('Y').'/'.$uri_date->format('m');
+
         $title         = $import['post_title'];
         $slug          = string::sanitize($title);
-        $uri 		   = slash_it( get::option('blog_uri') ).$slug.'/';
+        $uri 		   = slash_it( get::option('blog_uri') ).$uri_date.'/'.$slug.'/';
         $content       = $import['post_content'];
         $status        = $import['status'];
 
@@ -350,8 +354,10 @@ class post_model
      */
     public function get_by_date( $date )
     {
-        # Todo, wild card on URI with $date
-        return db::query("SELECT * FROM posts WHERE date LIKE '%".$date."%'");
+        # @todo wild card on URI with
+        # @todo Import of content needs to be adjusted.
+        # @todo update of content needs to be udpated
+        return db::query("SELECT * FROM posts WHERE uri LIKE '%".$date."%'");
     }
 
 	// Get Page Meta

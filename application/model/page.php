@@ -279,7 +279,10 @@ class page_model
 	 */
 	public function get_by_uri( $uri )
 	{
-		$pages = db ( 'posts' );
+
+        $uri = slash_it($uri);
+
+        $pages = db ( 'posts' );
 	
 		$get_parent_uri = $pages->select( '*' )
 			->where ( 'uri', '=', $uri )
