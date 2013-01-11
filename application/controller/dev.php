@@ -136,22 +136,10 @@ class dev_controller {
 
     public function post_date ()
     {
-        $test_uri = '2012/08/';
 
-        $uri = explode('/', $test_uri);
+        $uri = explode('/', URI);
 
-        $uri = array_filter($uri);
-
-        var_dump($uri);
-
-        $time = mktime(0, 0, 0, 0, $uri[1], $uri[0]);
-
-        var_dump($time);
-        //1344123747
-        //1344123621
-        var_dump(date("m-d-Y", date($time)));
-
-        $range = load::model('post')->get_by_date('1353');
+        $range = load::model('post')->get_by_date('01/2013');
 
         var_dump($range);
     }
