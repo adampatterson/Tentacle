@@ -30,49 +30,9 @@ route::set('attachment',array(
     'function'=>'file'
 	));
 
-/*
-// blog route
-route::set('blog',array(
-    'controller'=>'blog',
-    'function'=>'index'
-	));
-
-route::set('blog/([-_a-zA-Z0-9]+)',array(
-    'controller'=>'blog',
-    'function'=>'index',
-    'arguments'=>array('$1')
-	));
-*/
-
-// category route
-route::set('category',array(
-    'controller'=>'category',
-    'function'=>'index'
-	));
-
-route::set('category/([-_a-zA-Z0-9]+)',array(
-    'controller'=>'category',
-    'function'=>'index',
-    'arguments'=>array('$1')
-	));
-
-
 // comment route
 route::set('comment/([-_a-zA-Z0-9]+)',array(
     'controller'=>'comment',
-    'function'=>'index',
-    'arguments'=>array('$1')
-	));
-
-
-// tag route
-route::set('tag',array(
-    'controller'=>'tag',
-    'function'=>'index'
-	));
-	
-route::set('tag/([-_a-zA-Z0-9]+)',array(
-    'controller'=>'tag',
     'function'=>'index',
     'arguments'=>array('$1')
 	));

@@ -111,7 +111,7 @@ class tentacle
 		
 		return $url;
 	}
-} // END class
+}
 
 
 	/**
@@ -534,8 +534,32 @@ class tentacle
 	
 
 
-// Theme Content Rendering ( Output )
-//----------------------------------------------------------------------------------------------
+    // Theme Content Rendering ( Output )
+    //----------------------------------------------------------------------------------------------
+
+    /**
+     * Function: the_posts
+     *   Pre-Processing of content done by core formatting as well as filters from plugins.
+     *
+     * Returns:
+     *     Object - Post related content
+     */
+    function the_posts() {
+        var_dump(URI);
+
+        $parts = explode('/', URI);
+        var_dump($parts);
+
+        # Get by date year/month
+        # return load::model( 'post' )->get_by_date('1353');
+
+        if (URI == 'category' || URI == get::option('blog_uri')) {
+            return  load::model( 'post' )->get( );
+        } else {
+            return  load::model( 'category' )->get_by_slug( CATEGORY_NAME );
+        }
+    }
+
 
 	/**
 	* Function: render_content
@@ -576,6 +600,48 @@ class tentacle
 
         return $content;
 	}
+
+
+    /**
+     * Function: render_header
+     *   Renders and plugins that would output HTML in the footer.
+     *
+     * Returns:
+     *     $content
+     */
+    function render_header( ) {
+
+        $trigger 		= Trigger::current();
+
+        if($trigger->exists("header"))
+            $content = $trigger->call("header");
+
+        if($trigger->exists("header_admin"))
+            $content = $trigger->call("header_admin");
+
+        return $content;
+    }
+
+
+    /**
+     * Function: render_footer
+     *   Renders and plugins that would output HTML in the footer.
+     *
+     * Returns:
+     *     $content
+     */
+    function render_footer( ) {
+
+        $trigger 		= Trigger::current();
+
+        if($trigger->exists("footer"))
+            $content = $trigger->call("footer");
+
+        if($trigger->exists("footer_admin"))
+            $content = $trigger->call("footer_admin");
+
+        return $content;
+    }
 
 
 	/**

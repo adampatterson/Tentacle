@@ -24,6 +24,7 @@ define('MOD_REWRITE',TRUE);
 
 # Turn Debugging On?
 define('DEBUG', TRUE);
+define('DEBUG_SQL', FALSE);
 
 # Turn Error Logging On?
 define('ERROR_LOGGING',TRUE);

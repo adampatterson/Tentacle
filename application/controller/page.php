@@ -1,74 +1,165 @@
 <?php
 class page_controller {
-	
+
     public function index(  ){
 
-		is::blog_installed();
-		
-		$uri 			= URI;
+        is::blog_installed();
 
-		load::helper('template');
-	
-		$scaffold 		= new scaffold ();
-		
-		if ( $uri == '' || $uri == 'home'):
-			$uri 		= 'home/';
-		elseif	( URI == '' || $uri == get::option('blog_uri') ):
-			$uri 		= slash_it( get::option('blog_uri') );
-        else:
-            $uri 		= slash_it( $uri );
-		endif;
+        # Lets the navigation functions know that we are on the front end and not to show admin ( draft ) content.
+        define ( 'FRONT'		, TRUE );
 
-		// load the functions.php file from the active theme.
-		if (file_exists(PATH_URI.'/functions.php')) {
-			require_once( PATH_URI.'/functions.php' );
-		}
-	
-		if (URI == get::option('blog_uri') ) {
-            define ( 'FRONT'		, TRUE );
-			define ( 'IS_POST'      , FALSE );
+        $uri 			= URI;
 
-			$post 		= load::model( 'post' );
-			$posts 		= $post->get( );
+        if ( $uri == '' || $uri == 'home'):
+            $uri 		= 'home';
+        elseif	( URI == '' || $uri == get::option('blog_uri') ):
+            $uri 		= un_slash( get::option('blog_uri') );
+        endif;
 
-			$category 	= load::model( 'category' );
-			$tag 		= load::model( 'tags' );
-			$author 	= load::model('user');
+        $blog_uri = un_slash(get::option('blog_uri'));
 
-			tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
-			
-		} elseif (URI == 'category') {
+        $routs = array(
+            'home'                              => 'home.index',
+            'tag'							    => 'tag.index',
+            'tag/:words'			            => 'tag.slug',
+            'tag/page/:int'					    => 'tag.paged',
+            'category'						    => 'category.index',
+            'category/:words'		            => 'category.slug',
+            'category/page/:int'			    => 'category.paged',
+            $blog_uri                           => 'blog.index',
+            $blog_uri.'/:words' 			    => 'blog.slug',
+            $blog_uri.'/page/:int'				=> 'blog.paged',
+            $blog_uri.'/:int/:int'				=> 'blog.date',
+            $blog_uri.'/:int/:int/:words'       => 'blog_date.slug',
+            $blog_uri.'/:int/:int/page/:int'	=> 'blog_date.paged',
+            ':words' 			                => 'page.index',
+            ':words/page/:int'		            => 'page.paged'
+        );
 
-            echo 'category';
+        url_map::add($routs);
 
-        } else {
-            $page 		= load::model( 'page' );
-            $post 		= $page->get_by_uri( $uri );
+        logger::set('URI', $uri );
+        logger::set('Model Index', url_map::get( $uri ) );
 
-            if ( !$post) {
+        load::library('pagination');
+
+        load::helper('template');
+
+        // load the functions.php file from the active theme.
+        if (file_exists(PATH_URI.'/functions.php')) {
+            require_once( PATH_URI.'/functions.php' );
+        }
+
+        $post 		= load::model( 'post' );
+        $page 		= load::model( 'page' );
+        $category 	= load::model( 'category' );
+        $tag 		= load::model( 'tags' );
+        $author 	= load::model('user');
+
+        switch (url_map::get( $uri )) {
+            case 'home_index':
+
+                define ( 'IS_POST'      , FALSE );
+
                 $post 		= $page->get_by_slug( $uri );
-            }
 
-            $post_meta 	= $page->get_page_meta( $post->id );
+                tentacle::render( $post->template, array ( 'post' => $post ) );
 
-            define("IS_POST", TRUE);
+                break;
+            case 'page_index':
 
-            // If URI lookup fails redirect to the themes 404 page
-            if ( $post ) {
+                 define ( 'IS_POST'      , FALSE );
+
+                 $post 		= $page->get_by_slug( $uri );
+
+                tentacle::render( $post->template, array ( 'post' => $post ) );
+
+                break;
+            case 'blog_index':
+
+                define ( 'IS_POST'      , FALSE );
+
+                $posts 		= $post->get( );
+                $post_total = count($posts);
+
+                //$page = new pagination($post_total, $current_page,25);
+
+                logger::set('Post total', $post_total);
+
+                tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
+
+                break;
+            case 'blog_date':
+
+                define ( 'IS_POST'      , FALSE );
+
+                $posts 		= $post->get_by_date( $uri );
+                $post_total = count($posts);
+
+                //$page = new pagination($post_total, $current_page,25);
+
+                logger::set('Post total', $post_total);
+
+                tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
+
+                break;
+            case 'blog_date_slug':
+
+                define ( 'IS_POST'      , TRUE );
+
+                $post 		= $page->get_by_uri( $uri );
+
+                $post_meta 	= $page->get_page_meta( $post->id );
+                $post_total = count($post);
+
+                logger::set('Post total', $post_total);
 
                 tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
 
-            } else {
-                // logging of 404's here.
+                break;
+            case 'category_slug':
+
+                $category_slug = explode('/', $uri)[1];
+
+                define ( 'IS_POST'      , FALSE );
+
+                if (URI == 'category')
+                    $posts 		= $post->get( );
+                else
+                    $posts 	= $category->get_by_slug( $category_slug );
+
+                $post_total = count($posts);
+                logger::set('Category total', $post_total);
+
+                tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
+
+                break;
+
+            case 'tag_slug':
+
+                $tag_slug = explode('/', $uri)[1];
+
+                define ( 'IS_POST'      , FALSE );
+
+                if (URI == 'category')
+                    $posts 		= $post->get( );
+                else
+                    $posts 	= $tag->get_by_slug( $tag_slug );
+
+                $post_total = count($posts);
+                logger::set('Category total', $post_total);
+
+                tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
+
+                break;
+            default:
                 tentacle::render ( '404' );
-            }
+                break;
         }
-		
-		//if(user::valid()) load::view( 'admin/partials/template-navigation' );
-		//if(user::valid()) render_debug();
 
-	}// END index
+        //if(user::valid()) load::view( 'admin/partials/template-navigation' );
+        //if(user::valid()) render_debug();
+
+    }
     
-} // END Class page
-
-?> 
+}

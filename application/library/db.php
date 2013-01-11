@@ -416,7 +416,8 @@ class DingoSQL
 			$sql .= " OFFSET {$query->_offset}";
 		}
 
-        tentacle_logger::log('SQL', $sql);
+        If (DEBUG_SQL)
+            logger::set('SQL', $sql);
 
 		return $sql;
 	}

@@ -159,7 +159,8 @@ class dev_controller {
            '/blog/slug',
            '/blog/page/2',
 		   '/blog/2013/12',
-           '/blog/2013/12/page/2'
+           '/blog/2013/12/page/2',
+           '/blog/2013/12/my-name'
         );
 
 		$routs = array(
@@ -173,7 +174,8 @@ class dev_controller {
 			'blog/:alpha-numeric' 			=> 'blog.slug',
 			'blog/page/:int'				=> 'blog.paged',
 			'blog/:int/:int'				=> 'blog.date',
-			'blog/:int/:int/page/:int'		=> 'blog.date.paged',
+			'blog/:int/:int/page/:int'		=> 'blog_date.paged',
+            'blog/:int/:int/:alpha-numeric'	=> 'blog_date.slug',
 			':alpha-numeric' 			    => 'page.index',
 			':alpha-numeric/page/:int'		=> 'page.paged'
 		);
@@ -358,10 +360,6 @@ Test two
 		clean_out( $categories->get_all_tags( ) );
 	}
 	
-
-    public function rout_test() {
-       var_dump(route::$route);
-    }
 
 	/**
 	 * ========================= Google Analytics
@@ -1332,60 +1330,6 @@ Test two
 
 	}
 
-	
-	public function dbug_test()
-	{
-        function test() {
-            throw new Exception;
-        }
-
-        try {
-            test();
-        } catch(Exception $e) {
-            echo 'getMessage</br><pre>';
-            echo $e->getMessage();
-
-            echo '</pre></br>getCode</br><pre>';
-            echo $e->getCode();
-
-            echo '</pre></br>getFile</br><pre>';
-            echo $e->getFile();
-
-            echo '</pre></br>getLine</br><pre>';
-            echo $e->getLine();
-
-            echo '</pre></br>getPrevious</br><pre>';
-            echo $e->getPrevious();
-
-            echo '</pre></br>getTraceAsString</br><pre>';
-            echo $e->getTraceAsString();
-
-            echo '</pre></br>getTrace</br><pre>';
-            print_r($e->getTrace() );
-
-            echo '</pre>';
-        }
-	}
-	
-	public function chyrp_import()
-	{	
-		load::library('import');
-	}
-
-	public function tumblr_import()
-	{	
-		load::library('import');
-	}
-	
-	public function textpattern_import()
-	{	
-		load::library('import');
-	}
-	
-	public function movabletype_import()
-	{
-		load::library('import');
-	}
 
     public function wordpress_import()
     {

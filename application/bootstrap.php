@@ -790,7 +790,7 @@ class url_map {
 
         }
 
-        die;
+        return null;
     }
 }
 

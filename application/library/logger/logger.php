@@ -2,7 +2,7 @@
 /**
  * File: logger
  */
-class tentacle_logger
+class logger
 {
     protected static $instances = array();
 
@@ -30,9 +30,9 @@ class tentacle_logger
 
 
     /**
-     * Debug Console Log
+     * Debug Console set
      */
-    static function log($name, $txt, $level=0 ) {
+    static function set($name, $txt, $level=0 ) {
 
         switch ($level) {
             case 0:
@@ -90,7 +90,7 @@ class tentacle_logger
               <th>'.$key.'</th>
               <td>'.$log['name'].'</td>
               <td>'.$log['message'].'</td>
-            </tr>';
+              </tr>';
         }
 
         $html .= '</tbody> </table>';
@@ -101,5 +101,5 @@ class tentacle_logger
 
 function is_debugable(){
     if ( DEBUG && user::valid())
-        tentacle_logger::render();
+        logger::render();
 }
