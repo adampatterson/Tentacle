@@ -134,14 +134,26 @@ class dev_controller {
     }
 
 
-    public function post_date ()
+
+
+    public function assets ()
     {
 
-        $uri = explode('/', URI);
+ 		load::library('assets');
 
-        $range = load::model('post')->get_by_date('01/2013');
+        assets::register_script('codemirror', BASE_URL.'admin/template/js/codemirror/lib/codemirror-compressed.js', '0.2.0', FALSE);
 
-        var_dump($range);
+        assets::register_style('codemirror-css', BASE_URL.'admin/template/js/codemirror/lib/codemirror.css','screen',FALSE);
+        assets::register_style('codemirror-theme', BASE_URL.'admin/template/js/codemirror/theme/default.css','screen',FALSE);
+
+        assets::queue_script('codemirror', BACK);
+
+        assets::queue_style('codemirror-css', BACK);
+        assets::queue_style('codemirror-theme', BACK);
+
+
+		assets::get_scripts_backend();
+
     }
 
     public function url_mapper()
