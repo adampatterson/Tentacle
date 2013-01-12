@@ -106,6 +106,10 @@ define( 'DAY_IN_SECONDS',    24 * HOUR_IN_SECONDS   );
 define( 'WEEK_IN_SECONDS',    7 * DAY_IN_SECONDS    );
 define( 'YEAR_IN_SECONDS',  365 * DAY_IN_SECONDS    );
 
+define( 'FRONT' ,1 );
+define( 'BACK'  ,2 );
+define( 'BOTH'  ,3 );
+
 /*
  *  Serpent Timeout
  */
@@ -124,7 +128,7 @@ define('TENTACLE_DB_VERSION', '115');
 /**
  * Holds the required PHP versionw
  */
-define('REQUIRED_PHP_VERSION', '5.2');
+define('REQUIRED_PHP_VERSION', '5.3');
 
 /**
  * Holds the required MySQL version
