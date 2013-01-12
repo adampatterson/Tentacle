@@ -12,22 +12,30 @@ function init_extensions() {
 	$plugins = new Plugins();
 
 	$enabled_plugins  = $plugins->get_plugins();
-	
-	foreach ($enabled_plugins['enabled_plugins'] as $plugin => $info ) {
-		
-		require TENTACLE_PLUGIN."/".$plugin."/".$plugin.".php";
 
-		$camelized = string::camelize($plugin);
+	foreach ($enabled_plugins['enabled_plugins'] as $plugin => $info ) {
+
+        if (!file_exists(TENTACLE_PLUGIN."/".$plugin."/".$plugin.".php")) {
+            unset($enabled_plugins[$plugin]);
+            continue;
+        }
+
+        require TENTACLE_PLUGIN."/".$plugin."/".$plugin.".php";
+
+        $camelized = string::camelize($plugin);
 		if (!class_exists($camelized))
 			continue;
 
 		Plugins::$instances[$plugin] = new $camelized;
 		Plugins::$instances[$plugin]->safename = $plugin;
 
-		foreach (Plugins::$instances as $plugin)
-			if (method_exists($plugin, "__init"))
-				$plugin->__init();
+        foreach (YAML::load(TENTACLE_PLUGIN."/".$plugin."/info.yaml") as $key => $val)
+            Plugins::$instances[$plugin]->$key = (is_string($val)) ? $val : $val ;
 	}
+
+    foreach (Plugins::$instances as $plugin)
+        if ( is_callable( array( $plugin, "__init") ) )
+            $plugin->__init();
 }
 
 
@@ -99,16 +107,12 @@ function enabled_plugin() {
  */
 class Plugins {
     # Array: $instances
-    # Holds all plugin instantiations.
+    # Holds all Module instantiations.
     static $instances = array();
 
     # Boolean: $cancelled
-    # Is the plugin's execution cancelled?
+    # Is the module's execution cancelled?
     public $cancelled = false;
-
-    # Array: $context
-    # Contains the context for various admin pages, to be passed to the Twig templates.
-    public $context = array();
 
 
     /**
@@ -240,7 +244,6 @@ class Plugins {
 /**
   * Class: Trigger
   * Controls and keeps track of all of the Triggers and events.
-  * http://p.tcms.me/t6yti
   */
  class Trigger {
      # Array: $priorities
@@ -263,6 +266,7 @@ class Plugins {
          if (empty($a) or empty($b)) return 0;
          return ($a["priority"] < $b["priority"]) ? -1 : 1 ;
      }
+
 
      /**
       * Function: call
@@ -309,6 +313,7 @@ class Plugins {
 
          return $return;
      }
+
 
      /**
       * Function: filter
@@ -362,6 +367,7 @@ class Plugins {
          return $target;
      }
 
+
      /**
       * Function: remove
       * Unregisters a given $action from a $trigger.
@@ -379,6 +385,7 @@ class Plugins {
          }
          $this->actions[$trigger]["disabled"][] = $action;
      }
+
 
      /**
       * Function: exists
@@ -403,6 +410,7 @@ class Plugins {
 
          return $this->exists[$name] = false;
      }
+
 
      /**
       * Function: current
