@@ -106,9 +106,9 @@ define( 'DAY_IN_SECONDS',    24 * HOUR_IN_SECONDS   );
 define( 'WEEK_IN_SECONDS',    7 * DAY_IN_SECONDS    );
 define( 'YEAR_IN_SECONDS',  365 * DAY_IN_SECONDS    );
 
-define( 'FRONT' ,1 );
-define( 'BACK'  ,2 );
-define( 'BOTH'  ,3 );
+define( 'ASSET_FRONT' ,1 );
+define( 'ASSET_BACK'  ,2 );
+define( 'ASSET_BOTH'  ,3 );
 
 /*
  *  Serpent Timeout

@@ -146,10 +146,10 @@ class dev_controller {
         assets::register_style('codemirror-css', BASE_URL.'admin/template/js/codemirror/lib/codemirror.css','screen',FALSE);
         assets::register_style('codemirror-theme', BASE_URL.'admin/template/js/codemirror/theme/default.css','screen',FALSE);
 
-        assets::queue_script('codemirror', BACK);
+        assets::queue_script('codemirror', ASSET_BACK);
 
-        assets::queue_style('codemirror-css', BACK);
-        assets::queue_style('codemirror-theme', BACK);
+        assets::queue_style('codemirror-css', ASSET_BACK);
+        assets::queue_style('codemirror-theme', ASSET_BACK);
 
 
 		assets::get_scripts_backend();

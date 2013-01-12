@@ -680,9 +680,9 @@ class route
  */
 class new_rout {
 
-    private static $route = array();
-    private static $current = array();
-    private static $pattern = array(
+    static $route = array();
+    static $current = array();
+    static $pattern = array(
         'int'=>'/^([0-9]+)$/',
         'numeric'=>'/^([0-9\.]+)$/',
         'alpha'=>'/^([a-zA-Z]+)$/',
@@ -855,32 +855,7 @@ class new_rout {
 /**
  * Class: url_map
  */
-class url_map {
-
-    private static $route = array();
-    private static $current = array();
-    private static $pattern = array(
-        'int'=>'/^([0-9]+)$/',
-        'numeric'=>'/^([0-9\.]+)$/',
-        'alpha'=>'/^([a-zA-Z]+)$/',
-        'alpha-int'=>'/^([a-zA-Z0-9]+)$/',
-        'alpha-numeric'=>'/^([a-zA-Z0-9\.]+)$/',
-        'words'=>'/^([_a-zA-Z0-9\- ]+)$/',
-        'any'=>'/^(.*?)$/',
-        'extension'=>'/^([a-zA-Z]+)\.([a-zA-Z]+)$/'
-    );
-
-    // Add
-    // ---------------------------------------------------------------------------
-    public static function add($routes) {
-
-        foreach($routes as $key=>$val) {
-
-            self::$route[$key] = explode('.', $val);
-
-        }
-
-    }
+class url_map extends new_rout {
 
     // Get
     // ---------------------------------------------------------------------------
@@ -897,9 +872,9 @@ class url_map {
         if(empty($segments[0])) {
 
             // Get
-            if(isset(self::$route['/'])) {
+            if(isset(parent::$route['/'])) {
 
-                return array('controller'=>self::$route['/'][0], 'method'=>self::$route['/'][1], 'args'=>array());
+                return array('controller'=>parent::$route['/'][0], 'method'=>parent::$route['/'][1], 'args'=>array());
 
             }
 
@@ -913,7 +888,7 @@ class url_map {
         }
 
         // 2) Loops routes
-        foreach(self::$route as $pattern=>$location) {
+        foreach(parent::$route as $pattern=>$location) {
 
             // Skip default route
             if($pattern != '/') {
@@ -933,7 +908,7 @@ class url_map {
                         if(preg_match('/^:/', $pattern_segments[$i])) {
 
                             // Check to see if they don't match pattern
-                            if(!preg_match(self::$pattern[substr($pattern_segments[$i], 1)], $segments[$i])):
+                            if(!preg_match(parent::$pattern[substr($pattern_segments[$i], 1)], $segments[$i])):
 
                                 // Skip to next route entry
                                 continue 2;
