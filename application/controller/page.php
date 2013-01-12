@@ -119,14 +119,14 @@ class page_controller {
                 break;
             case 'category_slug':
 
-                $category_slug = explode('/', $uri)[1];
+                $category_slug = explode('/', $uri);
 
                 define ( 'IS_POST'      , FALSE );
 
                 if (URI == 'category')
                     $posts 		= $post->get( );
                 else
-                    $posts 	= $category->get_by_slug( $category_slug );
+                    $posts 	= $category->get_by_slug( $category_slug[1] );
 
                 $post_total = count($posts);
                 logger::set('Category total', $post_total);
@@ -137,14 +137,14 @@ class page_controller {
 
             case 'tag_slug':
 
-                $tag_slug = explode('/', $uri)[1];
+                $tag_slug = explode('/', $uri);
 
                 define ( 'IS_POST'      , FALSE );
 
                 if (URI == 'category')
                     $posts 		= $post->get( );
                 else
-                    $posts 	= $tag->get_by_slug( $tag_slug );
+                    $posts 	= $tag->get_by_slug( $tag_slug[1] );
 
                 $post_total = count($posts);
                 logger::set('Category total', $post_total);
