@@ -19,7 +19,7 @@ class assets
      *   $ver - String, Style version
      *   $in_footer - String, load the Style in the footer if true
      */
-    static function register_script($handle, $src, $ver, $in_footer=FALSE)
+    static function register_script( $handle, $src, $ver, $in_footer=FALSE )
     {
         static::$scripts[$handle] = array(
             'name' => $handle,
@@ -38,7 +38,7 @@ class assets
      * Parameters:
      *   $handle - String, name for the script to remove
      */
-    static function deregister_script($handle)
+    static function deregister_script( $handle )
     {
         if ( array_key_exists( $handle, static::$scripts ) )
         {
@@ -73,7 +73,7 @@ class assets
      *   $handle - String, name for the Script
      *   $where - Init
      */
-    static function dequeue_script($handle, $where)
+    static function dequeue_script( $handle, $where )
     {
         if ( array_key_exists( $handle, static::$scripts ) )
         {
@@ -97,16 +97,16 @@ class assets
 
         foreach (static::$scripts as $script)
         {
-            if ($script['where'] & FRONT )
+            if ($script['where'] & ASSET_FRONT )
             {
                 if (!$footer){
-                    if ($script['load']==TRUE && $script['in_footer']==FALSE )
+                    if ($script['load'] == TRUE && $script['in_footer'] == FALSE )
                     {
                         echo '<script src="'.$script['src'].'?v='.$script['ver'].'"></script>';
                     }
                 } else
                 {
-                    if ($script['load']==TRUE && $script['in_footer']==TRUE )
+                    if ($script['load'] == TRUE && $script['in_footer'] == TRUE )
                     {
                         echo '<script src="'.$script['src'].'?v='.$script['ver'].'"></script>';
                     }
@@ -130,7 +130,7 @@ class assets
 
         foreach (static::$scripts as $script)
         {
-            if ($script['where'] & BACK ){
+            if ($script['where'] & ASSET_BACK ){
                 if (!$footer)
                 {
                     if ($script['load']==TRUE && $script['in_footer'] == FALSE )
@@ -155,7 +155,7 @@ class assets
      *   $handle - String, name for the Style
      *   $where - Init
      */
-    static function queue_style($handle,$where=1)
+    static function queue_style( $handle, $where=1 )
     {
         if ( array_key_exists( $handle, static::$styles ) )
         {
@@ -215,10 +215,10 @@ class assets
     static function get_styles_frontend(){
         foreach (static::$styles as $style)
         {
-            if ($style['where'] & FRONT )
+            if ($style['where'] & ASSET_FRONT )
             {
 
-                if ($style['load']==TRUE)
+                if ($style['load'] == TRUE)
                     echo '<link href="'.$style['src'].'?v='.$style['ver'].'" rel="stylesheet" media="'.$style['media'].'">';
 
             }
@@ -237,10 +237,10 @@ class assets
     {
         foreach (static::$styles as $style)
         {
-            if ($style['where'] & BACK )
+            if ($style['where'] & ASSET_BACK )
             {
 
-                if ($style['load']==TRUE)
+                if ($style['load'] == TRUE)
                     echo '<link href="'.$style['src'].'?v='.$style['ver'].'" rel="stylesheet" media="'.$style['media'].'">';
 
             }
