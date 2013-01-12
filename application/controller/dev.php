@@ -36,8 +36,27 @@ class dev_controller {
 	}
 
 
-    public function plugin(){
+    public function plugin()
+    {
         load::library('plugin');
+
+        # Trigger Priorities
+        _p('<strong>Trigger Priorities</strong>');
+
+        function call_one($data = '')
+        {
+            echo 'one ';
+        }
+
+        function call_two()
+        {
+            echo 'two ';
+        }
+
+        Event::register('event_four', 'call_one', 8);
+        Event::register('event_four', 'call_two', 9);
+
+        Event::trigger('event_four');
 
         _p('<strong>Callback</strong>');
         // Define two even calbacks
@@ -98,9 +117,7 @@ class dev_controller {
             },
         ));
 
-        /**
-         * !! All other Event method apply to the instance
-         */
+        # !! All other Event method apply to the instance
         $events->register('update', function(){
             echo 'this is awesome';
         });
@@ -113,24 +130,6 @@ class dev_controller {
         Event::register('event_three', 'test_plugin::call_me');
 
         Event::trigger('event_three');
-
-
-        # Trigger Priorities
-        _p('<strong>Trigger Priorities</strong>');
-        function call_one($data = '')
-        {
-            echo 'one ';
-        }
-
-        function call_two()
-        {
-            echo 'two ';
-        }
-
-        Event::register('event_four', 'call_one', 2);
-        Event::register('event_four', 'call_two', 1);
-
-        Event::trigger('event_four');
     }
 
 

@@ -221,7 +221,7 @@ class Event_Instance
 
             foreach ($this->_events[$event] as $i => $arguments)
             {
-                if($callback === $arguments[1])
+                if($callback === $arguments['callback'])
                 {
                     unset($this->_events[$event][$i]);
                     return true;
@@ -260,8 +260,6 @@ class Event_Instance
         if ($this->has_events($event))
         {
             //$events = $reversed ? array_reverse($this->_events[$event], true) : $this->_events[$event];
-
-            var_dump($this->_events[$event]);
 
             $events = self::aasort($this->_events[$event], "priority");
 
