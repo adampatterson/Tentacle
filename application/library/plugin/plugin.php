@@ -126,6 +126,21 @@ class Event_Instance
     }
 
 
+    static function aasort (&$array, $key) {
+        $sorter=array();
+        $ret=array();
+        reset($array);
+        foreach ($array as $ii => $va) {
+            $sorter[$ii]=$va[$key];
+        }
+        asort($sorter);
+        foreach ($sorter as $ii => $va) {
+            $ret[$ii]=$array[$ii];
+        }
+
+        return $ret;
+    }
+
     // --------------------------------------------------------------------
 
     /**
@@ -143,8 +158,8 @@ class Event_Instance
         // get any arguments passed
         $callback = func_get_args();
 
-        if(array_key_exists(2, $callback)) {
-            $callback[2] = 10;
+        if(!array_key_exists(2, $callback)) {
+            $callback[2] = 9;
         }
 
         $callback = array(
@@ -244,9 +259,11 @@ class Event_Instance
         // check if we have events registered
         if ($this->has_events($event))
         {
-            $events = $reversed ? array_reverse($this->_events[$event], true) : $this->_events[$event];
+            //$events = $reversed ? array_reverse($this->_events[$event], true) : $this->_events[$event];
 
             var_dump($this->_events[$event]);
+
+            $events = self::aasort($this->_events[$event], "priority");
 
             // process them
             foreach ($events as $arguments)
