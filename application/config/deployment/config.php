@@ -34,5 +34,3 @@ config::set('folder_helpers','helper');         // Helpers
 config::set('folder_languages','language');     // Languages
 config::set('folder_errors','error');           // Errors
 config::set('folder_orm','orm');                // ORM
-
-require_once(APPLICATION.'/library/chromephp/ChromePhp.php');
