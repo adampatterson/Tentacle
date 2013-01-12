@@ -35,7 +35,7 @@ class Event
      * @param   array   $events  events array
      * @return  object  Event_Instance object
      */
-    public static function instance($name = '', array $events = array())
+    public static function instance( $name = '', array $events = array() )
     {
         if ( ! array_key_exists($name, static::$instances))
         {
@@ -76,7 +76,6 @@ class Event
     public static function __callStatic($func, $args)
     {
         $instance = static::instance();
-
         if (method_exists($instance, $func))
         {
             return call_user_func_array(array($instance, $func), $args);
@@ -108,6 +107,8 @@ class Event_Instance
      * @var	array	An array of listeners
      */
     protected $_events = array();
+
+    protected $_priorities = array();
 
     // --------------------------------------------------------------------
 
@@ -142,20 +143,30 @@ class Event_Instance
         // get any arguments passed
         $callback = func_get_args();
 
+        if(array_key_exists(2, $callback)) {
+            $callback[2] = 10;
+        }
+
+        $callback = array(
+            'event'    => $callback[0],
+            'callback' => $callback[1],
+            'priority' => $callback[2]
+        );
+
         // if the arguments are valid, register the event
-        if (isset($callback[0]) and is_string($callback[0]) and isset($callback[1]) and is_callable($callback[1]))
+        if (isset($callback['event']) and is_string($callback['event']) and isset($callback['callback']) and is_callable($callback['callback']))
         {
             // make sure we have an array for this event
-            isset($this->_events[$callback[0]]) or $this->_events[$callback[0]] = array();
+            isset($this->_events[$callback['event']]) or $this->_events[$callback['event']] = array();
 
             // store the callback on the call stack
-            if (empty($callback[2]))
+            if (empty($callback[3]))
             {
-                array_unshift($this->_events[$callback[0]], $callback);
+                array_unshift($this->_events[$callback['event']], $callback);
             }
             else
             {
-                $this->_events[$callback[0]][] = $callback;
+                $this->_events[$callback['event']][] = $callback;
             }
 
             // and report success
@@ -166,6 +177,12 @@ class Event_Instance
             // can't register the event
             return false;
         }
+    }
+
+    public function multi_sort(&$array, $key, $asc=true)
+    {
+        $sorter = new array_sorter($array, $key, $asc);
+        return $sorter->sortit();
     }
 
     // --------------------------------------------------------------------
@@ -229,14 +246,13 @@ class Event_Instance
         {
             $events = $reversed ? array_reverse($this->_events[$event], true) : $this->_events[$event];
 
+            var_dump($this->_events[$event]);
+
             // process them
             foreach ($events as $arguments)
             {
-                // get rid of the event name
-                array_shift($arguments);
-
                 // get the callback method
-                $callback = array_shift($arguments);
+                $callback = $arguments['callback'];
 
                 // call the callback event
                 if (is_callable($callback))
@@ -248,6 +264,7 @@ class Event_Instance
 
         return $this->_format_return($calls, $return_type);
     }
+
 
     // --------------------------------------------------------------------
 
