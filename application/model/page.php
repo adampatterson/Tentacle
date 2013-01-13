@@ -315,7 +315,7 @@ class page_model
 		$pages = db ( 'posts' );
 	
 		$slug_parts = explode('/', $uri);
-	
+
 		foreach ($slug_parts as $part ) {
 			$get_slug = $pages->select( '*' )
 				->where ( 'slug', '=', $part )

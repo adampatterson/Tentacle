@@ -401,13 +401,11 @@ class date
      */
     static function show($time=null, $pattern = null)
     {
-        $trigger 		= Trigger::current();
-
         if ($time == null)
             $time = time();
 
-        if($trigger->exists("post_date"))
-            $date = $trigger->filter($time,"post_date");
+        if(event::has_events( "post_date" ) )
+            $date = event::trigger( "post_date",$time );
 
         # @togo, get::option('date_format')
         if ($pattern != null)

@@ -550,13 +550,13 @@ class admin_controller {
 	public function settings_plugins ( $plugin_view = false )
 	{
         tentacle::valid_user();
-	
+
 		$serpent = load::model( 'serpent' );
 		// These will come from the Serpent API
         $serpent_plugins = $serpent->get_plugin( );
 		
 		$plugins = load::model( 'plugin' );
-		$plugin_subnav = $plugins->navigation();
+		$plugin_subnav = $plugins->navigation('plugin_navigation');
 		$get_plugin = $plugins->get();
 		
         if ( $plugin_view == true ) {

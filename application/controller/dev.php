@@ -11,6 +11,8 @@ class dev_controller {
 	public function index()
 	{
 
+       echo serialize(array('barnacles'));
+
 //		load::library('plugin');
 //		_init_plugins();
 //
@@ -38,26 +40,19 @@ class dev_controller {
 
     public function plugin()
     {
-        load::library('plugin');
+        //load::library('plugin');
 
-        # Trigger Priorities
-        _p('<strong>Trigger Priorities</strong>');
+        //var_dump(get::option('_active_plugins'));
+        //var_dump(event::get_plugins());
 
-        function call_one($data = '')
-        {
-            echo 'one ';
-        }
+        event::trigger('event_four');
 
-        function call_two()
-        {
-            echo 'two ';
-        }
+		var_dump(event::trigger('plugin_navigation', null, 'array'));
 
-        Event::register('event_four', 'call_one', 8);
-        Event::register('event_four', 'call_two', 9);
+        $data = '[ipsum]';
+        echo event::trigger('preview', $data );
 
-        Event::trigger('event_four');
-
+        die;
         _p('<strong>Callback</strong>');
         // Define two even calbacks
         function callback_one($data = '')
@@ -71,20 +66,20 @@ class dev_controller {
         }
 
         // Register the events to "my_event"
-        Event::register('event_one', 'callback_one');
-        Event::register('event_one', 'callback_two');
+        event::register('event_one', 'callback_one');
+        event::register('event_one', 'callback_two');
 
         // Unregister callback one
-        Event::unregister('event_one', 'callback_one');
+        event::unregister('event_one', 'callback_one');
 
         // Trigger the event
-        Event::trigger('event_one');
+        event::trigger('event_one');
         // This will only echo "callback two"
 
         // Unregister all callbacks from "my_event";
-        Event::unregister('event_one');
+        event::unregister('event_one');
 
-        Event::trigger('my_event');
+        event::trigger('my_event');
         // Will output nothing.
 
 
@@ -92,23 +87,23 @@ class dev_controller {
         _p('<strong>Trigger with Data</strong>');
         $data = 'boom';
 
-        Event::register('event_two', 'callback_one');
+        event::register('event_two', 'callback_one');
         // Trigger the event
-        Event::trigger('event_two', $data);
+        event::trigger('event_two', $data);
         // callback_one + $data
 
         _p('<strong>Has event</strong>');
-        var_dump(Event::has_events('event_two'));
+        var_dump(event::has_events('event_two'));
 
 
         # Forge test
         _p('<strong>Forge</strong>');
         // Create a new event object
-        $events = Event::forge();
+        $events = event::forge();
 
         // Create a new event object
         // with events
-        $events = Event::forge(array(
+        $events = event::forge(array(
             'update' => function(){
                 echo ' updated';
             },
@@ -117,7 +112,7 @@ class dev_controller {
             },
         ));
 
-        # !! All other Event method apply to the instance
+        # !! All other event method apply to the instance
         $events->register('update', function(){
             echo 'this is awesome';
         });
@@ -127,9 +122,9 @@ class dev_controller {
 
         # Trigger a method inside a class
         _p('<strong>Trigger test_plugin::call_me</strong>');
-        Event::register('event_three', 'test_plugin::call_me');
+        event::register('event_three', 'test_plugin::call_me');
 
-        Event::trigger('event_three');
+        event::trigger('event_three');
     }
 
 
@@ -411,43 +406,7 @@ Test two
 
 		return $page_flat_hiarchy;
 	}
-	
-	
-	public function snippet (  )
-	{
-		echo '<h1>Snippet Test</h1>';
-		echo '<p>Page ID <strong>101</strong></p>';
-		echo '<p>Snippet slug anything from the site.</p>';
-		
-		$page = load::model( 'page' );
-		$page = $page->get( '101' );
-		
-		echo '<h2>Page Object</h2>';
-		clean_out($page->content);
-		
-		echo '<h2>Parsing</h2>';
 
-		// loaded from Snippet Helper
-		//add_shortcode( 'snippet', 'snippet' );
-		
-		//echo serialize(array('barnacles','ipsum'));
-		
-		# Initiate the extensions.
-	    init_extensions();
-	
-		# Prepare the trigger class
-		$trigger 		= Trigger::current();
-
-		if($trigger->exists("shortcode"))
-			$page->content = $trigger->filter($page->content,"shortcode");
-		
-		echo $page->content;
-		
-		echo '<hr />';
-		
-		//echo get::snippet('footer');
-	}
-	
 	
 	public function menu()
 	{

@@ -4,8 +4,7 @@ class plugin_model
 {
     // Get all and acive plugins
     public function get($active='') {
-        $pluginss = new Plugins();
-        $get_plugins = $pluginss->get_plugins();
+        $get_plugins = event::get_plugins();
 
         if ($active == 'active') {
             return $get_plugins['enabled_plugins'];
@@ -55,25 +54,21 @@ class plugin_model
     }
 
     // look up a URI from the rout.
-    public function navigation( $rout = '' ) {
-        $trigger 		= Trigger::current();
+    public function navigation( $event='' )
+    {
+        if ( event::has_events($event) != false):
 
-        $subnav["settings"] = $trigger->filter($subnav["settings"], "settings_nav");
-		
-		if ( $subnav["settings"] != null) {
-			
-			foreach ($subnav["settings"] as $key => $value) {
-	            $subnav["settings"][$key] = array(
-	                'title'     => $value['title'],
-	                'rout'      => $value['rout'],
-	                'uri'       => $value['uri']
-	            );
-	        }
-	        return $subnav["settings"];
-		} else {
-			return false;
-		}
+            $subnav_array = array();
 
-        
+            foreach ( event::trigger($event, null, 'array') as $sub_page ):
+                foreach ( $sub_page as $page ):
+                    $subnav_array[] = $page;
+                endforeach;
+            endforeach;
+
+            return $subnav_array;
+        else:
+            return false;
+        endif;
     }
 }

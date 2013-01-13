@@ -33,7 +33,9 @@ class page_controller {
             $blog_uri.'/:int/:int/:words'       => 'blog_date.slug',
             $blog_uri.'/:int/:int/page/:int'	=> 'blog_date.paged',
             ':words' 			                => 'page.index',
-            ':words/page/:int'		            => 'page.paged'
+            ':words/page/:int'		            => 'page.paged',
+            ':words/:words'                     => 'page.index',
+            ':words/:words/:words'              => 'page.index'
         );
 
         url_map::add($routs);
@@ -58,19 +60,11 @@ class page_controller {
 
         switch (url_map::get( $uri )) {
             case 'home_index':
+            case 'page_index':
 
                 define ( 'IS_POST'      , FALSE );
 
-                $post 		= $page->get_by_slug( $uri );
-
-                tentacle::render( $post->template, array ( 'post' => $post ) );
-
-                break;
-            case 'page_index':
-
-                 define ( 'IS_POST'      , FALSE );
-
-                 $post 		= $page->get_by_slug( $uri );
+                $post 		= $page->get_by_uri( $uri );
 
                 tentacle::render( $post->template, array ( 'post' => $post ) );
 

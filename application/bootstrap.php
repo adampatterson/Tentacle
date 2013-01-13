@@ -157,7 +157,7 @@ class bootstrap
 			define('ACTIVE_PLUGINS', get::option('active_plugins'));
 
 			load::library('YAML');
-            load::helper('plugin');
+            load::library('plugin');
             init_extensions();
         }
 

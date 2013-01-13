@@ -11,6 +11,96 @@
  * @link       http://fuelphp.com
  */
 
+
+
+
+/**
+ * Function: plugin_enabled
+ * Returns whether the given plugin is enabled or not.
+ *
+ * Parameters:
+ *     $name - The folder name of the plugin.
+ *
+ * Returns:
+ *     Whether or not the requested plugin is enabled.
+ */
+function plugin_enabled( $name ) {
+    return in_array( $name, enabled_plugin() );
+}
+
+
+/**
+ * Function: enabled_plugin
+ * Returns an array of enabled plugins.
+ *
+ */
+function enabled_plugin() {
+    return unserialize(ACTIVE_PLUGINS);
+}
+
+
+/**
+ * Function: fallback
+ * Sets a given variable if it is not set.
+ *
+ * The last of the arguments or the first non-empty value will be used.
+ *
+ * Parameters:
+ *     &$variable - The variable to return or set.
+ *
+ * Returns:
+ *     The value of whatever was chosen.
+ */
+function fallback(&$variable) {
+    if (is_bool($variable))
+        return $variable;
+
+    $set = (!isset($variable) or (is_string($variable) and trim($variable) === "") or $variable === array());
+
+    $args = func_get_args();
+    array_shift($args);
+    if (count($args) > 1) {
+        foreach ($args as $arg) {
+            $fallback = $arg;
+
+            if (isset($arg) and (!is_string($arg) or (is_string($arg) and trim($arg) !== "")) and $arg !== array())
+                break;
+        }
+    } else
+        $fallback = isset($args[0]) ? $args[0] : null ;
+
+    if ($set)
+        $variable = $fallback;
+
+    return $set ? $fallback : $variable ;
+}
+
+/**
+ * Function: init_extensions
+ * Initialize all Plugins
+ */
+function init_extensions() {
+
+    //$plugins = new Plugins();
+
+    $enabled_plugins  = event::get_plugins();
+
+    foreach ($enabled_plugins['enabled_plugins'] as $plugin => $info ) {
+
+        if (!file_exists(TENTACLE_PLUGIN."/".$plugin."/".$plugin.".php")) {
+            unset($enabled_plugins[$plugin]);
+            continue;
+        }
+
+        require TENTACLE_PLUGIN."/".$plugin."/".$plugin.".php";
+
+//        foreach (YAML::load(TENTACLE_PLUGIN."/".$plugin."/info.yaml") as $key => $val)
+//            event::$instances[$plugin]->$key = (is_string($val)) ? $val : $val ;
+    }
+
+
+}
+
 /**
  * Class: event
  */
@@ -98,56 +188,6 @@ class event
 
 
 /**
- * Function: plugin_enabled
- * Returns whether the given plugin is enabled or not.
- *
- * Parameters:
- *     $name - The folder name of the plugin.
- *
- * Returns:
- *     Whether or not the requested plugin is enabled.
- */
-function _plugin_enabled( $name ) {
-    return in_array( $name, _enabled_plugin() );
-}
-
-
-/**
- * Function: enabled_plugin
- * Returns an array of enabled plugins.
- *
- */
-function _enabled_plugin() {
-    return unserialize(_ACTIVE_PLUGINS);
-}
-
-
-/**
- * Function: init_extensions
- * Initialize all Plugins
- */
-function _init_extensions() {
-
-    //$plugins = new Plugins();
-
-    $enabled_plugins  = event::get_plugins();
-
-    foreach ($enabled_plugins['enabled_plugins'] as $plugin => $info ) {
-
-        if (!file_exists(TENTACLE_PLUGIN."/".$plugin."/".$plugin.".php")) {
-            unset($enabled_plugins[$plugin]);
-            continue;
-        }
-
-        require TENTACLE_PLUGIN."/".$plugin."/".$plugin.".php";
-
-//        foreach (YAML::load(TENTACLE_PLUGIN."/".$plugin."/info.yaml") as $key => $val)
-//            event::$instances[$plugin]->$key = (is_string($val)) ? $val : $val ;
-    }
-
-}
-
-/**
  * Class: Event_Instance
  */
 class Event_Instance
@@ -209,7 +249,7 @@ class Event_Instance
                 $classes[$folder][] = "depends";
 
                 foreach ((array) $info["depends"] as $dependency) {
-                    if (!_plugin_enabled($dependency)) {
+                    if (!plugin_enabled($dependency)) {
                         if (!in_array("missing_dependency", $classes[$folder]))
                             $classes[$folder][] = "missing_dependency";
 
@@ -241,7 +281,7 @@ class Event_Instance
                 '<a href="'.string::fix($info["author"]["url"]).'">'.string::fix($info["author"]["name"]).'</a>' :
                 $info["author"]["name"] ;
 
-            $category = (_plugin_enabled($folder)) ? "enabled_plugins" : "disabled_plugins" ;
+            $category = (plugin_enabled($folder)) ? "enabled_plugins" : "disabled_plugins" ;
             $context[$category][$folder] = array("name" => $info["name"],
                 "version" => $info["version"],
                 "url" => $info["url"],

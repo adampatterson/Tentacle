@@ -571,10 +571,8 @@ class tentacle
 	* Returns:
 	*     $content - Slashes removed.
 	*/
-	function render_content( $content='', $editor = false ) {
-        # Prepare the trigger class
-        $trigger 		= Trigger::current();
-
+	function render_content( $content='', $editor = false )
+    {
         load::helper('format');
         load::library('SmartyPants', 'smartypants');
 
@@ -583,11 +581,11 @@ class tentacle
         if (!$editor)
         {
             # At this stage we are simply allowing the content attribute to be modified by the plugins.
-            if($trigger->exists("preview"))
-                $content = $trigger->filter($content,"preview");
+            if( event::has_events( "preview" ) )
+                $content = event::trigger( "preview", $content );
 
-            if($trigger->exists("shortcode"))
-                $content = $trigger->filter($content,"shortcode");
+            if( event::has_events( "shortcode" ) )
+                $content = event::trigger( "shortcode", $content );
         }
 
         $content = autop( $content );
