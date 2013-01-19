@@ -1,19 +1,4 @@
 <?
-
-/**
- * Based off the Event class from Fuel php 1.0
- *
- * @package    Fuel
- * @version    1.0
- * @author     Fuel Development Team
- * @license    MIT License
- * @copyright  2010 - 2012 Fuel Development Team
- * @link       http://fuelphp.com
- */
-
-
-
-
 /**
  * Function: plugin_enabled
  * Returns whether the given plugin is enabled or not.
@@ -75,6 +60,7 @@ function fallback(&$variable) {
     return $set ? $fallback : $variable ;
 }
 
+
 /**
  * Function: init_extensions
  * Initialize all Plugins
@@ -101,116 +87,215 @@ function init_extensions() {
 
 }
 
+
 /**
  * Class: event
  */
-class event
-{
-    /**
-     * @var  array  $instances  Event_Instance container
-     */
-    static $instances = array();
+class event {
+
+    static $_instances = array();
+    static $_cancled = array();
+    static $_events = array();
+    static $priorities = array();
+
 
     /**
-     * Event instance forge.
+     * Function: on
+     * Allows a plugin to respond to a trigger with multiple functions and custom priorities.
      *
-     * @param   array   $events  events array
-     * @return  object  new Event_Instance instance
+     * Parameters:
+     *     $event - Name of the trigger to respond to.
+     *     $callback - Name of the class function to respond with.
+     *     $priority - Priority of the response.
      */
-    public static function forge(array $events = array())
-    {
-        return new Event_Instance($events);
-    }
+    static function on(){
 
-    /**
-     * Multiton Event instance.
-     *
-     * @param   string  $name    instance name
-     * @param   array   $events  events array
-     * @return  object  Event_Instance object
-     */
-    public static function instance( $name = '', array $events = array() )
-    {
-        if ( ! array_key_exists($name, static::$instances))
+        $args = func_get_args();
+
+        if (!array_key_exists(2, $args))
+            $args[2] = 9;
+
+        $callback = array(
+            'event'    => $args[0],
+            'callback' => $args[1],
+            'priority' => $args[2]
+        );
+
+        // if the arguments are valid, register the event
+        if (isset($callback['event']) and is_string($callback['event']) and isset($callback['callback']) and is_callable($callback['callback']))
         {
-            $events = array_merge(get::option('event.'.$name, array()), $events);
-            $instance = static::forge($events);
-            static::$instances[$name] = &$instance;
+            // make sure we have an array for this event
+            isset(self::$_events[$callback['event']]) or self::$_events[$callback['event']] = array();
+
+            // store the callback on the call stack
+            if (empty($callback[3]))
+            {
+                array_unshift(self::$_events[$callback['event']], $callback);
+            }
+            else
+            {
+                self::$_events[$callback['event']][] = $callback;
+            }
+
+            // and report success
+            return true;
         }
-
-        return static::$instances[$name];
-    }
-
-    // --------------------------------------------------------------------
-
-    /**
-     * method called by register_shutdown_event
-     *
-     * @access	public
-     * @param	void
-     * @return	void
-     */
-    public static function shutdown()
-    {
-        $instance = static::instance();
-        if ($instance->has_events('shutdown'))
+        else
         {
-            // trigger the shutdown events
-            $instance->trigger('shutdown', '', 'none', true);
-        }
-    }
-
-    /**
-     * Static call forwarder
-     *
-     * @param   string  $func  method name
-     * @param   array   $args  passed arguments
-     * @return
-     */
-    public static function __callStatic($func, $args)
-    {
-        $instance = static::instance();
-        if (method_exists($instance, $func))
-        {
-            return call_user_func_array(array($instance, $func), $args);
-        }
-        dingo_error(E_USER_ERROR, 'Call to undefined method: '.get_called_class().'::'.$func);
-    }
-
-    /**
-     * Load events config
-     */
-    public static function _init()
-    {
-        //
-    }
-}
-
-
-/**
- * Class: Event_Instance
- */
-class Event_Instance
-{
-    /**
-     * @var	array	An array of listeners
-     */
-    protected $_events = array();
-
-    protected $_priorities = array();
-
-    /**
-     * Constructor, sets all initial events.
-     *
-     * @param  array  $events  events array
-     */
-    public function __construct(array $events = array())
-    {
-        foreach($events as $event => $callback)
-        {
-            $this->register($event, $callback);
+            // can't register the event
+            return false;
         }
     }
+
+
+    /**
+     * Function: off
+     * Unregisters a given $event from a $callback.
+     *
+     * Parameters:
+     *     $event - The trigger to unregister from.
+     *     $callback - The action name.
+     */
+    static function off( $event = null, $callback = null )
+    {
+
+        // When an event name is given, only fetch that stack.
+        $events = $event ? self::$_events[$event] : self::$_events;
+
+        foreach ($events as $k => $e):
+
+            if ( $event != null and $callback != null )
+            {
+                # Removes a callback within an event
+                if ($event == $e['event'] and $callback == $e['callback'])
+                    unset(self::$_events[$event][$k]);
+
+            } elseif ( $event != null )
+            {
+                # Removes the whole event
+                if ($event == $e['event'])
+                    unset(self::$_events[$event]);
+
+            } elseif ( $callback != null )
+            {
+
+                foreach ($e as $kk => $ee)
+                    # Removes a callback within all events
+                    if ($callback == $ee['callback'])
+                        unset(self::$_events[$k][$kk]);
+
+            }
+
+        endforeach;
+
+    }
+
+
+    /**
+     * Function: exists
+     * Checks if there are any actions for a given $trigger.
+     *
+     * Parameters:
+     *     $event
+     *     $callback
+     *
+     * Returns:
+     *     @true@ or @false@
+     */
+    static function exists( $event = null, $callback = null )
+    {
+        if (isset(self::$_events[$event]) and count(self::$_events[$event]) > 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * Function: trigger
+     * Calls a trigger, passing any additional arguments to it.
+     *
+     * Parameters:
+     *     $trigger_event - The name of the trigger, or an array of triggers to call.
+     *     $data
+     */
+    static function trigger( $trigger_event, $data = null )
+    {
+        if (!event::exists($trigger_event))
+            return false;
+
+        $events = self::$_events[$trigger_event];
+
+        usort( $events, function( $a, $b )
+        {
+            if ( $a['priority'] >= $b['priority'] )
+            {
+                return 1;
+            }
+
+            return -1;
+        });
+
+        foreach ($events as $key => $event):
+
+            if ( is_callable( $event['callback'] ) )
+                call_user_func( $event['callback'], $data );
+
+        endforeach;
+
+    }
+
+
+    /**
+     * Function: filter
+     * Calls a trigger, and filters any additional arguments throught the callback methods.
+     *
+     * Parameters:
+     *     $trigger_event - The name of the trigger, or an array of triggers to call.
+     *     $data
+     */
+    static function filter ( $trigger_event, $data = null )
+    {
+        if (!self::exists($trigger_event))
+            return false;
+
+        $events = self::$_events[$trigger_event];
+
+        $arguments = func_get_args();
+        array_shift($arguments);
+        array_shift($arguments);
+
+        usort( $events, function( $a, $b )
+        {
+            if ( $a['priority'] >= $b['priority'] )
+            {
+                return 1;
+            }
+
+            return -1;
+        });
+
+        foreach ($events as $key => $event):
+
+            if ( is_callable( $event['callback'] ) )
+            {
+                $call = call_user_func( $event['callback'], $data );
+
+                $data = fallback($call, $data);
+            }
+
+        endforeach;
+
+        return $call;
+    }
+
+    # Was the event called?
+    static function called( )
+    {
+
+    }
+
 
     static function get_plugins(){
         $context["enabled_plugins"] = $context["disabled_plugins"] = array();
@@ -300,223 +385,5 @@ class Event_Instance
 
 
         return $context;
-    }
-
-    static function aasort (&$array, $key) {
-        $sorter=array();
-        $ret=array();
-        reset($array);
-        foreach ($array as $ii => $va) {
-            $sorter[$ii]=$va[$key];
-        }
-        asort($sorter);
-        foreach ($sorter as $ii => $va) {
-            $ret[$ii]=$array[$ii];
-        }
-
-        return $ret;
-    }
-
-    // --------------------------------------------------------------------
-
-    /**
-     * Register
-     *
-     * Registers a Callback for a given event
-     *
-     * @access	public
-     * @param	string	The name of the event
-     * @param	mixed	callback information
-     * @return	void
-     */
-    public function register()
-    {
-        // get any arguments passed
-        $callback = func_get_args();
-
-        if(!array_key_exists(2, $callback)) {
-            $callback[2] = 9;
-        }
-
-        $callback = array(
-            'event'    => $callback[0],
-            'callback' => $callback[1],
-            'priority' => $callback[2]
-        );
-
-        // if the arguments are valid, register the event
-        if (isset($callback['event']) and is_string($callback['event']) and isset($callback['callback']) and is_callable($callback['callback']))
-        {
-            // make sure we have an array for this event
-            isset($this->_events[$callback['event']]) or $this->_events[$callback['event']] = array();
-
-            // store the callback on the call stack
-            if (empty($callback[3]))
-            {
-                array_unshift($this->_events[$callback['event']], $callback);
-            }
-            else
-            {
-                $this->_events[$callback['event']][] = $callback;
-            }
-
-            // and report success
-            return true;
-        }
-        else
-        {
-            // can't register the event
-            return false;
-        }
-    }
-
-    public function multi_sort(&$array, $key, $asc=true)
-    {
-        $sorter = new array_sorter($array, $key, $asc);
-        return $sorter->sortit();
-    }
-
-    // --------------------------------------------------------------------
-
-    /**
-     * Unregister/remove one or all callbacks from event
-     *
-     * @param   string   $event     event to remove from
-     * @param   mixed    $callback  callback to remove [optional, null for all]
-     * @return  boolean  wether one or all callbacks have been removed
-     */
-    public function unregister($event, $callback = null)
-    {
-        if (isset($this->_events[$event]))
-        {
-            if ($callback === true)
-            {
-                $this->_events = array();
-                return true;
-            }
-
-            foreach ($this->_events[$event] as $i => $arguments)
-            {
-                if($callback === $arguments['callback'])
-                {
-                    unset($this->_events[$event][$i]);
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    // --------------------------------------------------------------------
-
-    /**
-     * Trigger
-     *
-     * Triggers an event and returns the results.  The results can be returned
-     * in the following formats:
-     *
-     * 'array'
-     * 'json'
-     * 'serialized'
-     * 'string'
-     *
-     * @access	public
-     * @param	string	 The name of the event
-     * @param	mixed	 Any data that is to be passed to the listener
-     * @param	string	 The return type
-     * @param   boolean  Wether to fire events ordered LIFO instead of FIFO
-     * @return	mixed	 The return of the listeners, in the return type
-     */
-    public function trigger($event, $data = '', $return_type = 'string', $reversed = false)
-    {
-        $calls = array();
-
-        // check if we have events registered
-        if ($this->has_events($event))
-        {
-            //$events = $reversed ? array_reverse($this->_events[$event], true) : $this->_events[$event];
-
-            $events = self::aasort($this->_events[$event], "priority");
-
-            // process them
-            foreach ($events as $arguments)
-            {
-                // get the callback method
-                $callback = $arguments['callback'];
-
-                // call the callback event
-                if (is_callable($callback))
-                {
-                    $calls[] = call_user_func($callback, $data, $arguments);
-                }
-            }
-        }
-
-        return $this->_format_return($calls, $return_type);
-    }
-
-
-    // --------------------------------------------------------------------
-
-    /**
-     * Has Listeners
-     *
-     * Checks if the event has listeners
-     *
-     * @access	public
-     * @param	string	The name of the event
-     * @return	bool	Whether the event has listeners
-     */
-    public function has_events($event)
-    {
-        if (isset($this->_events[$event]) and count($this->_events[$event]) > 0)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    // --------------------------------------------------------------------
-
-    /**
-     * Format Return
-     *
-     * Formats the return in the given type
-     *
-     * @access	protected
-     * @param	array	The array of returns
-     * @param	string	The return type
-     * @return	mixed	The formatted return
-     */
-    protected function _format_return(array $calls, $return_type)
-    {
-        switch ($return_type)
-        {
-            case 'array':
-                return $calls;
-                break;
-            case 'json':
-                return json_encode($calls);
-                break;
-            case 'none':
-                return;
-            case 'serialized':
-                return serialize($calls);
-                break;
-            case 'string':
-                $str = '';
-                foreach ($calls as $call)
-                {
-                    $str .= $call;
-                }
-                return $str;
-                break;
-            default:
-                return $calls;
-                break;
-        }
-
-        return false;
     }
 }

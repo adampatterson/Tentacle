@@ -404,7 +404,7 @@ class date
         if ($time == null)
             $time = time();
 
-        if(event::has_events( "post_date" ) )
+        if(event::exists( "post_date" ) )
             $date = event::trigger( "post_date",$time );
 
         # @togo, get::option('date_format')

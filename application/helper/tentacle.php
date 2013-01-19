@@ -580,12 +580,8 @@ class tentacle
 
         if (!$editor)
         {
-            # At this stage we are simply allowing the content attribute to be modified by the plugins.
-            if( event::has_events( "preview" ) )
-                $content = event::trigger( "preview", $content );
-
-            if( event::has_events( "shortcode" ) )
-                $content = event::trigger( "shortcode", $content );
+           $content = event::filter( "preview", $content );
+           $content = event::filter( "shortcode", $content );
         }
 
         $content = autop( $content );

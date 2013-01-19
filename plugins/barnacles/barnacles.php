@@ -1,12 +1,28 @@
 <?php
-event::register('shortcode', 'barnacles::shortcode', 1);
+event::on('shortcode', 'barnacles::shortcode', 1);
 add_shortcode( 'snippet', 'snippet' );
 
-event::register('plugin_navigation', 'example::settings_nav', 8);
+event::on('plugin_navigation', 'barnacles::settings_nav', 8);
 
+logger::set('Shortcode', 'Plugin');
 
 class barnacles
 {
+    static function settings_nav() {
+		$nav[] = array(
+            'title'     => 'Barnacles',
+            'rout'      => 'barnacle_settings',
+            'uri'       => 'barnacles/view'
+        );
+
+		$nav[] = array(
+            'title'     => 'Barnacles Two',
+            'rout'      => 'barnacle_settings_two',
+            'uri'       => 'barnacles/view'
+        );
+
+    	return $nav;
+    }
 
 	static function shortcode($text='')
     {

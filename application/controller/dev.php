@@ -1,8 +1,10 @@
 <?php
 
-class test_plugin{
-    static function call_me(){
-        echo 'maybe';
+class my
+{
+    static function method_name ( $text = '' )
+    {
+        echo 'my class method name is '.$text;
     }
 }
 
@@ -10,121 +12,107 @@ class dev_controller {
 
 	public function index()
 	{
-
-       echo serialize(array('barnacles'));
-
-//		load::library('plugin');
-//		_init_plugins();
-//
-//		var_dump(Plugin::$plugins);
-//		var_dump(Plugin::$actions);
-//		var_dump(Plugin::$cancelled);
-//		var_dump(Plugin::$priorities);
-//		var_dump(Plugin::$exists);
-//
-//		//var_dump(get_declared_classes());
-//
-//		Plugin::do_action('preview');
-//
-//		var_dump(function_exists('hello_world_show'));
-		
-//		var_dump(is::mobile());
-//		var_dump(is::blackberry());
-//		var_dump(is::ipad());
-//		var_dump(is::ipod());
-//		var_dump(is::iphone());
-//		var_dump(is::palmpre());
-//		var_dump(is::android());
+		var_dump(is::mobile());
+		var_dump(is::blackberry());
+		var_dump(is::ipad());
+		var_dump(is::ipod());
+		var_dump(is::iphone());
+		var_dump(is::palmpre());
+		var_dump(is::android());
 	}
 
 
     public function plugin()
     {
-        //load::library('plugin');
 
-        //var_dump(get::option('_active_plugins'));
-        //var_dump(event::get_plugins());
-
-        event::trigger('event_four');
-
-		var_dump(event::trigger('plugin_navigation', null, 'array'));
-
-        $data = '[ipsum]';
-        echo event::trigger('preview', $data );
-
-        die;
-        _p('<strong>Callback</strong>');
-        // Define two even calbacks
-        function callback_one($data = '')
-        {
-            echo 'callback one '.$data.'<br />';
+        function method_one (){
+            echo 'one ';
         }
 
-        function callback_two()
-        {
-            echo 'callback two <br />';
+        function method_two (){
+            echo 'two ';
         }
 
-        // Register the events to "my_event"
-        event::register('event_one', 'callback_one');
-        event::register('event_one', 'callback_two');
+        event::on('event_chain', 'method_one', 2);
+        event::on('event_chain', 'method_two', 1);
 
-        // Unregister callback one
-        event::unregister('event_one', 'callback_one');
-
-        // Trigger the event
-        event::trigger('event_one');
-        // This will only echo "callback two"
-
-        // Unregister all callbacks from "my_event";
-        event::unregister('event_one');
-
-        event::trigger('my_event');
-        // Will output nothing.
+        event::trigger('event_chain');
 
 
-        # Trigger with Data
-        _p('<strong>Trigger with Data</strong>');
-        $data = 'boom';
+        echo '<h3>event::$_events after off</h3>';
+        #event::off('event_chain');
 
-        event::register('event_two', 'callback_one');
-        // Trigger the event
-        event::trigger('event_two', $data);
-        // callback_one + $data
+        #event::off('event_chain', 'method_two');
 
-        _p('<strong>Has event</strong>');
-        var_dump(event::has_events('event_two'));
+        event::off(null, 'method_one');
+	
+        var_dump(event::$_events);
 
 
-        # Forge test
-        _p('<strong>Forge</strong>');
-        // Create a new event object
-        $events = event::forge();
+        echo '<h3>event::has()</h3>';
+        var_dump(event::exists('event_chain'));
 
-        // Create a new event object
-        // with events
-        $events = event::forge(array(
-            'update' => function(){
-                echo ' updated';
-            },
-            'register' => function(){
-                echo ' registered';
-            },
-        ));
 
-        # !! All other event method apply to the instance
-        $events->register('update', function(){
-            echo 'this is awesome';
-        });
+        echo "<h3>event::trigger('method_name')</h3>";
 
-        $events->trigger('update');
-        // will output "this is awesome"
+        function method_name ( )
+        {
+            echo 'my method name';
+        }
 
-        # Trigger a method inside a class
-        _p('<strong>Trigger test_plugin::call_me</strong>');
-        event::register('event_three', 'test_plugin::call_me');
+        event::on('event_name', 'method_name');
 
-        event::trigger('event_three');
+        event::trigger('event_name');
+
+
+        echo "<h3>event::trigger('event_data', 'this')</h3>";
+
+        function method_data ( $text = '' )
+        {
+            echo ' 1  my method data is '.$text;
+        }
+
+        function method_data_two ( $text = '' )
+        {
+            echo ' 2 my method data is '.$text;
+        }
+
+        event::on('event_data', 'method_data', 1);
+        event::on('event_data', 'method_data_two', 2);
+
+
+        event::trigger('event_data', 'this');
+
+
+        echo "<h3>event::trigger('event_class', 'that')</h3>";
+
+
+        event::on('event_class', 'my::method_name');
+
+        event::trigger('event_class', 'that');
+
+        echo "<h3>Event chaining</h3>";
+
+        function method_sad ( $text = '' )
+        {
+            return str_replace('blah', "sad", $text);
+        }
+
+        function method_happy ( $text = '' )
+        {
+            return str_replace('sad', "happy", $text);
+        }
+
+        function method_fine ( $text = '' )
+        {
+            return str_replace('happy', "fine", $text);
+        }
+
+        event::on('event_mood', 'method_sad', 1);
+        event::on('event_mood', 'method_happy', 2);
+        event::on('event_mood', 'method_fine', 3);
+
+        echo event::filter('event_mood', 'I am blah!');
     }
 
 

@@ -56,7 +56,7 @@ class plugin_model
     // look up a URI from the rout.
     public function navigation( $event='' )
     {
-        if ( event::has_events($event) != false):
+        if ( event::exists($event) != false):
 
             $subnav_array = array();
 
