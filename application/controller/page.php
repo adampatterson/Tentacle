@@ -35,6 +35,7 @@ class page_controller {
             ':words' 			                => 'page.index',
             ':words/page/:int'		            => 'page.paged',
             ':words/:words'                     => 'page.index',
+            ':words/:plugin'                    => 'page.plugin',
             ':words/:words/:words'              => 'page.index'
         );
 
@@ -61,8 +62,17 @@ class page_controller {
         switch (url_map::get( $uri )) {
             case 'home_index':
             case 'page_index':
+            case 'page_plugin':
 
                 define ( 'IS_POST'      , FALSE );
+
+                $uri_parts = explode( '/', $uri );
+
+                $uri_count = count( $uri_parts );
+
+                if ($uri_count == 2) {
+                    $uri = $uri_parts[0];
+                }
 
                 $post 		= $page->get_by_uri( $uri );
 

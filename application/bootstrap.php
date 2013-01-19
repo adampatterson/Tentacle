@@ -685,14 +685,15 @@ class new_rout {
     static $route = array();
     static $current = array();
     static $pattern = array(
-        'int'=>'/^([0-9]+)$/',
-        'numeric'=>'/^([0-9\.]+)$/',
-        'alpha'=>'/^([a-zA-Z]+)$/',
-        'alpha-int'=>'/^([a-zA-Z0-9]+)$/',
-        'alpha-numeric'=>'/^([a-zA-Z0-9\.]+)$/',
-        'words'=>'/^([_a-zA-Z0-9\- ]+)$/',
-        'any'=>'/^(.*?)$/',
-        'extension'=>'/^([a-zA-Z]+)\.([a-zA-Z]+)$/'
+        'int'           =>'/^([0-9]+)$/',
+        'numeric'       =>'/^([0-9\.]+)$/',
+        'alpha'         =>'/^([a-zA-Z]+)$/',
+        'alpha-int'     =>'/^([a-zA-Z0-9]+)$/',
+        'alpha-numeric' =>'/^([a-zA-Z0-9\.]+)$/',
+        'words'         =>'/^([_a-zA-Z0-9\- ]+)$/',
+        'any'           =>'/^(.*?)$/',
+        'extension'     =>'/^([a-zA-Z]+)\.([a-zA-Z]+)$/',
+        'plugin'        => '/^([_a-zA-Z0-9\- ]+)\.([a-zA-Z]+)$/',
     );
 
 
