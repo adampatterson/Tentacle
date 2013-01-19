@@ -12,7 +12,21 @@ class dev_controller {
 
 	public function index()
 	{
-		var_dump(is::mobile());
+        var_dump(event::filter('plugin_navigation'));
+
+
+        foreach ( event::on('plugin_navigation') as $sub_page ):
+            foreach ( $sub_page as $page ):
+                $subnav_array[] = $page;
+            endforeach;
+        endforeach;
+
+
+        var_dump($subnav_array);
+        die;
+
+
+        var_dump(is::mobile());
 		var_dump(is::blackberry());
 		var_dump(is::ipad());
 		var_dump(is::ipod());

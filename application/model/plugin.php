@@ -4,7 +4,7 @@ class plugin_model
 {
     // Get all and acive plugins
     public function get($active='') {
-        $get_plugins = event::get_plugins();
+        $get_plugins = plugin::get_plugins();
 
         if ($active == 'active') {
             return $get_plugins['enabled_plugins'];
@@ -57,16 +57,7 @@ class plugin_model
     public function navigation( $event='' )
     {
         if ( event::exists($event) != false):
-
-            $subnav_array = array();
-
-            foreach ( event::trigger($event, null, 'array') as $sub_page ):
-                foreach ( $sub_page as $page ):
-                    $subnav_array[] = $page;
-                endforeach;
-            endforeach;
-
-            return $subnav_array;
+            return event::filter($event);
         else:
             return false;
         endif;
