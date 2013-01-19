@@ -50,9 +50,9 @@
 					<li class="">
 						<a href="http://tentaclecms.com/blog/"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Blog']);  mixpanel.track('Header Navigation', { 'link': 'Blog' });">Blog</a>
 					</li>
-					<li class="">
+					<!--<li class="">
 						<a href="http://tentaclecms.com/docs/"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Documentation']);   mixpanel.track('Header Navigation', { 'link': 'Documentation' });">Documentation</a>
-					</li>
+					</li> -->
 					<li>
 						<a href="http://community.tentaclecms.com/"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Community']);   mixpanel.track('Header Navigation', { 'link': 'Community' });">Community</a>
 					</li>
