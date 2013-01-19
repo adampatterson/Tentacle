@@ -7,7 +7,6 @@ class event {
     static $_instances = array();
     static $_cancled = array();
     static $_events = array();
-    static $priorities = array();
 
 
     /**
