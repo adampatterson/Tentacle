@@ -580,8 +580,11 @@ class tentacle
 
         if (!$editor)
         {
-           $content = event::filter( "preview", $content );
-           $content = event::filter( "shortcode", $content );
+            if (event::exists('preview'))
+                $content = event::filter( "preview", $content );
+
+            if (event::exists('shortcode'))
+                $content = event::filter( "shortcode", $content );
         }
 
         $content = autop( $content );
