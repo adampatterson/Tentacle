@@ -93,6 +93,7 @@ function init_extensions() {
  */
 class plugin extends event {
 
+    # @todo Add the ability to load and parse README.md files as help docs with plugins.
     static function get_plugins(){
         $context["enabled_plugins"] = $context["disabled_plugins"] = array();
 
@@ -110,7 +111,6 @@ class plugin extends event {
             if (!file_exists(TENTACLE_PLUGIN."/".$folder."/".$folder.".php") ) continue;
 
             $info = get::yaml( TENTACLE_PLUGIN."/".$folder."/".$folder.".php" );
-
 
             if (!isset($classes[$folder]))
                 $classes[$folder] = array($folder);

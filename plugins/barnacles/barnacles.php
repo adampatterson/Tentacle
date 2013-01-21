@@ -1,4 +1,14 @@
 <?php
+/**
+name: Barnacles
+url: http://tentaclecms.com
+version: 1.0
+description: Tentacles core Plugin
+author:
+  name: Adam Patterson
+  url: http://adampatterson.ca
+*/
+
 event::on('shortcode', 'barnacles::shortcode', 1);
 add_shortcode( 'snippet', 'snippet' );
 
