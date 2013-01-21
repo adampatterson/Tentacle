@@ -12,17 +12,9 @@ class dev_controller {
 
 	public function index()
 	{
-        var_dump(event::filter('plugin_navigation'));
 
 
-        foreach ( event::on('plugin_navigation') as $sub_page ):
-            foreach ( $sub_page as $page ):
-                $subnav_array[] = $page;
-            endforeach;
-        endforeach;
 
-
-        var_dump($subnav_array);
         die;
 
 
@@ -38,7 +30,6 @@ class dev_controller {
 
     public function plugin()
     {
-
         function method_one (){
             echo 'one ';
         }

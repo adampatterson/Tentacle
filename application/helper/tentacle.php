@@ -606,15 +606,13 @@ class tentacle
      * Returns:
      *     $content
      */
-    function render_header( ) {
+    function render_header( )
+    {
+        if(event::exists("header"))
+            $content = event::filter("header");
 
-        $trigger 		= Trigger::current();
-
-        if($trigger->exists("header"))
-            $content = $trigger->call("header");
-
-        if($trigger->exists("header_admin"))
-            $content = $trigger->call("header_admin");
+        if(event::exists("header_admin"))
+            $content = event::filter("header_admin");
 
         return $content;
     }
@@ -627,15 +625,13 @@ class tentacle
      * Returns:
      *     $content
      */
-    function render_footer( ) {
+    function render_footer( )
+    {
+        if(event::exists("footer"))
+            $content = event::filter("footer");
 
-        $trigger 		= Trigger::current();
-
-        if($trigger->exists("footer"))
-            $content = $trigger->call("footer");
-
-        if($trigger->exists("footer_admin"))
-            $content = $trigger->call("footer_admin");
+        if(event::exists("footer_admin"))
+            $content = event::filter("footer_admin");
 
         return $content;
     }

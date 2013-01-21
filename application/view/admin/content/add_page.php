@@ -100,7 +100,7 @@
                                     $template = THEMES_DIR.'/'.get::option('appearance').'/'.session::get('template').'.php';
 
                                     if( file_exists( $template )):
-                                        $data = get_scaffold( $template );
+                                        $data = get::yaml( $template );
 
                                         if ( $data != null ):
                                             $scaffold = new scaffold();

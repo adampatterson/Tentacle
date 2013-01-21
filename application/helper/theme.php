@@ -99,9 +99,6 @@ class theme {
 	
 	// Assets
 	// ---------------------------------------------------------------------------
-	// {{ 'style.css' | asset_url | stylesheet_tag }}
-	// {{ 'style.js' | asset_url | script_tag }}
-	
 	/**
 	* Function: render
 	* 	assets() will accept an comma separated string of files that will relate to bundle files in the 
@@ -175,7 +172,8 @@ class theme {
 	{				
 		return PATH_URI.'/bundles/'.$load_file.'.php';
 	}
-} // END theme
+}
+
 
 /**
 * Function: _cleanup_header_comment
@@ -266,7 +264,7 @@ function get_themes()
 	asort($themes);
 	
 	return(array_to_object($themes));
-}// Get Themes
+}
 
 
 /**
@@ -429,33 +427,6 @@ function get_file_data( $file, $default_headers )
 	$file_data = compact( array_keys( $all_headers ) );
 
 	return $file_data;
-}
-
-
-function get_scaffold( $file )
-{
-    $tokens = token_get_all(file_get_contents($file));
-    $scaffold = '';
-
-    foreach($tokens as $token) {
-        if($token[0] == T_DOC_COMMENT ) {
-            $scaffold = $token[1];
-            break;
-        }
-    }
-
-   if ($scaffold != null ){
-       $replace = array("/**", "*/");
-
-       $scaffold_data = str_replace($replace, "", $scaffold);
-
-       $data = YAML::load( $scaffold_data );
-
-       return $data;
-   } else {
-       return null;
-   }
-
 }
 
 

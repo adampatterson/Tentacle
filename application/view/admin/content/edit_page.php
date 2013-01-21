@@ -105,7 +105,7 @@
 
 									// Load the saved template, then if the user changes override the saved template.
 									if( file_exists( $template )):
-                                        $data = get_scaffold( $template );
+                                        $data = get::yaml( $template );
 
 										if ( $data != null ):
 											$scaffold = new scaffold();

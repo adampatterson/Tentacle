@@ -105,14 +105,19 @@ class plugin extends event {
         chdir(APP_ROOT);
 
         foreach ($plugin_path as $folder) {
-            if (!file_exists(TENTACLE_PLUGIN."/".$folder."/".$folder.".php") or !file_exists(TENTACLE_PLUGIN."/".$folder."/info.yaml")) continue;
+
+
+            if (!file_exists(TENTACLE_PLUGIN."/".$folder."/".$folder.".php") ) continue;
+
+            $info = get::yaml( TENTACLE_PLUGIN."/".$folder."/".$folder.".php" );
+
 
             if (!isset($classes[$folder]))
                 $classes[$folder] = array($folder);
             else
                 array_unshift($classes[$folder], $folder);
 
-            $info = YAML::load(TENTACLE_PLUGIN."/".$folder."/info.yaml");
+            #$info = YAML::load(TENTACLE_PLUGIN."/".$folder."/info.yaml");
 
             $info["conflicts_true"] = array();
             $info["depends_true"] = array();

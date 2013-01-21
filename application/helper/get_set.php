@@ -151,6 +151,35 @@ class get {
     }
 
 
+
+    static function yaml( $file ){
+
+        $tokens = token_get_all(file_get_contents($file));
+        $scaffold = '';
+
+        foreach($tokens as $token) {
+            if($token[0] == T_DOC_COMMENT ) {
+                $scaffold = $token[1];
+                break;
+            }
+        }
+
+        if ($scaffold != null ){
+            $replace = array("/**", "*/");
+
+            $scaffold_data = str_replace($replace, "", $scaffold);
+
+            $data = YAML::load( $scaffold_data );
+
+            return $data;
+        } else {
+            return null;
+        }
+
+    }
+
+
+
 //    public static function next_post () {}
 //    public static function previous_post () {}
 //    public static function post_status () {}
