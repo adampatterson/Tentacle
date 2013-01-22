@@ -25,43 +25,6 @@ function enabled_plugin() {
 
 
 /**
- * Function: fallback
- * Sets a given variable if it is not set.
- *
- * The last of the arguments or the first non-empty value will be used.
- *
- * Parameters:
- *     &$variable - The variable to return or set.
- *
- * Returns:
- *     The value of whatever was chosen.
- */
-function fallback(&$variable) {
-    if (is_bool($variable))
-        return $variable;
-
-    $set = (!isset($variable) or (is_string($variable) and trim($variable) === "") or $variable === array());
-
-    $args = func_get_args();
-    array_shift($args);
-    if (count($args) > 1) {
-        foreach ($args as $arg) {
-            $fallback = $arg;
-
-            if (isset($arg) and (!is_string($arg) or (is_string($arg) and trim($arg) !== "")) and $arg !== array())
-                break;
-        }
-    } else
-        $fallback = isset($args[0]) ? $args[0] : null ;
-
-    if ($set)
-        $variable = $fallback;
-
-    return $set ? $fallback : $variable ;
-}
-
-
-/**
  * Function: init_extensions
  * Initialize all Plugins
  */
