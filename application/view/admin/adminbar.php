@@ -1,3 +1,5 @@
+<? is_debugable(); ?>
+
 <div class="navbar-fixed-bottom">
     <div class="navbar-inner">
         <div class="navbar navbar-fixed-bottom" style="position: absolute;">
