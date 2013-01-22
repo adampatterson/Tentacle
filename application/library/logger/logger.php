@@ -50,8 +50,8 @@ class logger
 
     static function render()
     {
-        $html = '<p><br /><br /></p><h2>Debug Log</h2>
-            <table class="table table-striped table-bordered table-hover">
+        $html = '<p><br /><br /></p><h2 style="margin: 0 20px 10px;">Debug Log</h2>
+            <table class="table table-striped table-bordered table-hover" style="margin: 0 20px 60px 20px;">
               <thead>
                 <tr>
                   <th width="30">&nbsp;</th>
