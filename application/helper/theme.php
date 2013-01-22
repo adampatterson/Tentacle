@@ -170,7 +170,7 @@ class theme {
 	*/
 	public static function load ( $load_file = NULL ) 
 	{				
-		return PATH_URI.'/bundles/'.$load_file.'.php';
+		return THEME_URI.'/bundles/'.$load_file.'.php';
 	}
 }
 

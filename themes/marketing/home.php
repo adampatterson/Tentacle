@@ -21,7 +21,7 @@ theme::part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>
 					<p class="lead"><a class="btn btn-large btn-success" href="http://tentaclecms.com/blog/downloads/tentacle-beta" onClick="javascript: _gaq.push(['_trackPageview', '/blog/downloads/tentacle-beta']); _gaq.push(['_trackEvent', 'Link', 'Download', 'v 0.5 Beta']);">&nbsp;&nbsp;&nbsp;Download&nbsp;&nbsp;&nbsp;</a></p>
 				</div>
 				<div class="span7">
-					<p class="lead"><img src="<?= PATH ?>/assets/img/tentacle-app.png" alt="Tentacle" class="full" /></p>
+					<p class="lead"><img src="<?= THEME ?>/assets/img/tentacle-app.png" alt="Tentacle" class="full" /></p>
 				</div>
 			</div>
 			
@@ -30,7 +30,7 @@ theme::part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>
 					<h1><small>Create &amp; Manage Content your way!</small></h1>
 				</div>
 				<div class="span7">
-					<p class="lead"><img src="<?= PATH ?>/assets/img/tentacle-app.png" alt="Tentacle" class="full" /></p>
+					<p class="lead"><img src="<?= THEME ?>/assets/img/tentacle-app.png" alt="Tentacle" class="full" /></p>
 				</div>
 			</div>
 			<div class="row visible-tablet">

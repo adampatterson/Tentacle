@@ -42,7 +42,7 @@
 	<script type="text/javascript" charset="utf-8">
 		var base_url = "<?= BASE_URL ?>";
 		var js_url = '<?= ADMIN_JS ?>';
-		var editor_path = '<?= PATH ?>/';
+		var editor_path = '<?= THEME ?>/';
 		var cms_maxfiles = 3;
 		var cms_maxfilesize = 5;
 	</script>

@@ -24,7 +24,7 @@ theme::part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>
 					</p>
 				</div>
 				<div class="app-image pull-right">
-					<img src="<?= PATH ?>/assets/img/tentacle-cms.png" alt="Tentacle" />
+					<img src="<?= THEME ?>/assets/img/tentacle-cms.png" alt="Tentacle" />
 				</div>
 			</div>
 	

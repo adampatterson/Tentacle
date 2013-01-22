@@ -37,7 +37,7 @@
 			<div class="container hidden-phone hidden-tablet">
 				<ul class="nav">
 					<li>
-						<a href="<?= BASE_URL ?>" class="brand" ><img src="<?= PATH ?>/assets/img/tentacle.png" alt=""/></a>
+						<a href="<?= BASE_URL ?>" class="brand" ><img src="<?= THEME ?>/assets/img/tentacle.png" alt=""/></a>
 					</li>
 				</ul>
 				<ul class="nav pull-right">

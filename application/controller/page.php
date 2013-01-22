@@ -2,6 +2,8 @@
 class page_controller {
 
     public function index(  ){
+        load::library('benchmark');
+        bench::mark('start');
 
         is::blog_installed();
 
@@ -49,9 +51,8 @@ class page_controller {
         load::helper('template');
 
         // load the functions.php file from the active theme.
-        if (file_exists(PATH_URI.'/functions.php')) {
-            require_once( PATH_URI.'/functions.php' );
-        }
+        if (file_exists(THEME_URI.'/functions.php'))
+            require_once( THEME_URI.'/functions.php' );
 
         $post 		= load::model( 'post' );
         $page 		= load::model( 'page' );
@@ -70,9 +71,8 @@ class page_controller {
 
                 $uri_count = count( $uri_parts );
 
-                if ($uri_count == 2) {
+                if ($uri_count == 2)
                     $uri = $uri_parts[0];
-                }
 
                 $post 		= $page->get_by_uri( $uri );
 
@@ -160,6 +160,12 @@ class page_controller {
                 tentacle::render ( '404' );
                 break;
         }
+
+        bench::mark('end');
+        $speed = bench::time('start','end');
+
+        logger::set('Memory', memory_usage());
+        logger::set('Execution Time', $speed);
 
         tentacle::admin_bar();
     }

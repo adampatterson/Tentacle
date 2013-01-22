@@ -11,8 +11,8 @@
  */
 define ( 'URI'			, tentacle::get_request_url() );
 define ( 'ACTIVE_THEME' , get::option( 'appearance' ) );
-define ( 'PATH'			, THEMES_URL.'/'.ACTIVE_THEME );
-define ( 'PATH_URI'  	, THEMES_DIR.ACTIVE_THEME );
+define ( 'THEME'	    , THEMES_URL.'/'.ACTIVE_THEME );
+define ( 'THEME_URI'  	, THEMES_DIR.ACTIVE_THEME );
 define ( 'HISTORY' 		, BASE_URL.URI.'/' );
 define ( 'IMAGE_T', get::option( 'image_thumb_size_w' ) );
 define ( 'IMAGE_M', get::option( 'image_medium_size_w' ) );
@@ -98,10 +98,10 @@ class tentacle
 		// Get the current script name (eg. /index.php)
 		$script_name = (isset($_SERVER['SCRIPT_NAME'])) ? $_SERVER['SCRIPT_NAME'] : $url;
 		
-		// Parse URL, check for PATH_INFO and ORIG_PATH_INFO server params respectively
+		// Parse URL, check for THEME_INFO and ORIG_THEME_INFO server params respectively
 		$url = (0 !== stripos($url, $script_name)) ? $url : substr($url, strlen($script_name));
-		$url = (empty($_SERVER['PATH_INFO'])) ? $url : $_SERVER['PATH_INFO'];
-		$url = (empty($_SERVER['ORIG_PATH_INFO'])) ? $url : $_SERVER['ORIG_PATH_INFO'];
+		$url = (empty($_SERVER['THEME_INFO'])) ? $url : $_SERVER['THEME_INFO'];
+		$url = (empty($_SERVER['ORIG_THEME_INFO'])) ? $url : $_SERVER['ORIG_THEME_INFO'];
 		
 		// Check for GET __dingo_page
 		$url = (input::get('__dingo_page')) ? input::get('__dingo_page') : $url;
@@ -611,13 +611,20 @@ class tentacle
      * Returns:
      *     $content
      */
-    function render_header( )
+    function render_header( $location = null )
     {
-        if(event::exists("header"))
-            $content = event::filter("header");
+        if ( $location != 'admin'){
 
-        if(event::exists("header_admin"))
-            $content = event::filter("header_admin");
+            if(event::exists("theme_header"))
+                $content = event::filter("theme_header");
+
+
+        } else {
+
+            if(event::exists("admin_header"))
+                $content = event::filter("admin_header");
+
+        }
 
         return $content;
     }
