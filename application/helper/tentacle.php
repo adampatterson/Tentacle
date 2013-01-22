@@ -111,6 +111,11 @@ class tentacle
 		
 		return $url;
 	}
+
+    static function admin_bar(){
+        if(user::valid())
+            load::view('admin/adminbar');
+    }
 }
 
 

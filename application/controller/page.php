@@ -161,9 +161,7 @@ class page_controller {
                 break;
         }
 
-        //if(user::valid()) load::view( 'admin/partials/template-navigation' );
-        //if(user::valid()) render_debug();
-
+        tentacle::admin_bar();
     }
     
 }
