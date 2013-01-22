@@ -1,50 +1,14 @@
 <?
 /**
- * class: assets
+ * class: script
  *  Based on code from Get Simple CMS
  */
 class script {
 
-    static function on()
-    {
-
-    }
-
-    static  function off()
-    {
-
-    }
-
-    static function get(){
-
-    }
-}
-
-class style {
-
-    static function on()
-    {
-
-    }
-
-    static  function off()
-    {
-
-    }
-
-    static function get(){
-
-    }
-}
-
-class assets
-{
-    protected static $scripts = array();
-    protected static $styles = array();
-
+    protected static $_scripts = array();
 
     /**
-     * Function: register_script
+     * Function: on
      *   Register a script to include in Themes
      *
      * Parameters:
@@ -53,9 +17,9 @@ class assets
      *   $ver - String, Style version
      *   $in_footer - String, load the Style in the footer if true
      */
-    static function register_script( $handle, $src, $ver, $in_footer=FALSE )
+    static function on( $handle, $src, $ver, $in_footer=FALSE )
     {
-        static::$scripts[$handle] = array(
+        static::$_scripts[$handle] = array(
             'name' => $handle,
             'src' => $src,
             'ver' => $ver,
@@ -66,70 +30,70 @@ class assets
 
 
     /**
-     * Function: deregister_script
-     *   Deregisters a script
+     * Function: off
+     *   Unregisters a script
      *
      * Parameters:
      *   $handle - String, name for the script to remove
      */
-    static function deregister_script( $handle )
+    static function off( $handle )
     {
-        if ( array_key_exists( $handle, static::$scripts ) )
+        if ( array_key_exists( $handle, static::$_scripts ) )
         {
-            unset(static::$scripts[$handle]);
+            unset(static::$_scripts[$handle]);
         }
     }
 
 
     /**
-     * Function: queue_script
+     * Function: queue
      *   Queue a script for loading
      *
      * Parameters:
      *   $handle - String, name for the script to load
      *   $where - Init
      */
-    static function queue_script( $handle, $where )
+    static function queue( $handle, $where )
     {
-        if ( array_key_exists( $handle, static::$scripts ) )
+        if ( array_key_exists( $handle, static::$_scripts ) )
         {
-            static::$scripts[$handle]['load'] = true;
-            static::$scripts[$handle]['where'] = static::$scripts[$handle]['where'] | $where;
+            static::$_scripts[$handle]['load'] = true;
+            static::$_scripts[$handle]['where'] = static::$_scripts[$handle]['where'] | $where;
         }
     }
 
 
     /**
-     * Function: dequeue_script
+     * Function: dequeue
      *   Remove a queued Style
      *
      * Parameters:
      *   $handle - String, name for the Script
      *   $where - Init
      */
-    static function dequeue_script( $handle, $where )
+    static function dequeue( $handle, $where )
     {
-        if ( array_key_exists( $handle, static::$scripts ) )
+        if ( array_key_exists( $handle, static::$_scripts ) )
         {
-            static::$scripts[$handle]['load'] = false;
-            static::$scripts[$handle]['where'] = static::$scripts[$handle]['where'] & ~ $where;
+            static::$_scripts[$handle]['load'] = false;
+            static::$_scripts[$handle]['where'] = static::$_scripts[$handle]['where'] & ~ $where;
         }
     }
 
 
     /**
-     * Function: get_scripts_frontend
+     * Function: get_frontend
      *   Echo and load scripts
      *
      * Parameters:
      *   $footer - Boolean, Load only script with footer flag set
      */
-    static function get_scripts_frontend($footer=FALSE)
+    static function get_frontend($footer=FALSE)
     {
         if (!$footer)
-            self::get_styles_frontend();
+            style::get_frontend();
 
-        foreach (static::$scripts as $script)
+        foreach (static::$_scripts as $script)
         {
             if ($script['where'] & ASSET_FRONT )
             {
@@ -151,18 +115,18 @@ class assets
 
 
     /**
-     * Function: get_scripts_backend
+     * Function: get_backend
      *   Echo and load scripts
      *
      * Parameters:
      *   $footer - Boolean, Load only script with footer flag set
      */
-    static function get_scripts_backend($footer=FALSE)
+    static function get_backend($footer=FALSE)
     {
         if (!$footer)
-            self::get_styles_backend();
+            style::get_backend();
 
-        foreach (static::$scripts as $script)
+        foreach (static::$_scripts as $script)
         {
             if ($script['where'] & ASSET_BACK ){
                 if (!$footer)
@@ -179,46 +143,19 @@ class assets
             }
         }
     }
+}
 
 
-    /**
-     * Function: queue_style
-     *   Queue a Style for loading
-     *
-     * Parameters:
-     *   $handle - String, name for the Style
-     *   $where - Init
-     */
-    static function queue_style( $handle, $where=1 )
-    {
-        if ( array_key_exists( $handle, static::$styles ) )
-        {
-            static::$styles[$handle]['load'] = true;
-            static::$styles[$handle]['where'] = static::$styles[$handle]['where'] | $where;
-        }
-    }
+/**
+ * class: style
+ *  Based on code from Get Simple CMS
+ */
+class style {
 
+    protected static $_styles = array();
 
     /**
-     * Function: dequeue_style
-     *   Remove a queued Style
-     *
-     * Parameters:
-     *   $handle - String, name for the Style
-     *   $where - Init
-     */
-    static function dequeue_style( $handle, $where )
-    {
-        if ( array_key_exists( $handle, static::$styles ) )
-        {
-            static::$styles[$handle]['load'] = false;
-            static::$styles[$handle]['where'] = static::$styles[$handle]['where'] & ~$where;
-        }
-    }
-
-
-    /**
-     * Function: register_style
+     * Function: on
      *   Echo and load Styles on Admin
      *
      * Parameters:
@@ -227,9 +164,9 @@ class assets
      *   $ver - String, Style version
      *   $media - String, load the Style in the footer if true
      */
-    static function register_style($handle, $src, $ver, $media)
+    static function on($handle, $src, $ver, $media)
     {
-        static::$styles[$handle] = array(
+        static::$_styles[$handle] = array(
             'name' => $handle,
             'src' => $src,
             'ver' => $ver,
@@ -240,14 +177,66 @@ class assets
 
 
     /**
-     * Function: get_styles_frontend
+     * Function: off
+     *   Unregisters a style
+     *
+     * Parameters:
+     *   $handle - String, name for the script to remove
+     */
+    static function off( $handle )
+    {
+        if ( array_key_exists( $handle, static::$_scripts ) )
+        {
+            unset(static::$_scripts[$handle]);
+        }
+    }
+
+
+    /**
+     * Function: queue
+     *   Queue a Style for loading
+     *
+     * Parameters:
+     *   $handle - String, name for the Style
+     *   $where - Init
+     */
+    static function queue( $handle, $where=1 )
+    {
+        if ( array_key_exists( $handle, static::$_styles ) )
+        {
+            static::$_styles[$handle]['load'] = true;
+            static::$_styles[$handle]['where'] = static::$_styles[$handle]['where'] | $where;
+        }
+    }
+
+
+    /**
+     * Function: dequeue
+     *   Remove a queued Style
+     *
+     * Parameters:
+     *   $handle - String, name for the Style
+     *   $where - Init
+     */
+    static function dequeue( $handle, $where )
+    {
+        if ( array_key_exists( $handle, static::$_styles ) )
+        {
+            static::$_styles[$handle]['load'] = false;
+            static::$_styles[$handle]['where'] = static::$_styles[$handle]['where'] & ~$where;
+        }
+    }
+
+
+    /**
+     * Function: get_frontend
      *   Echo and load Styles on Admin
      *
      * Returns:
      *   HTML
      */
-    static function get_styles_frontend(){
-        foreach (static::$styles as $style)
+    static function get_frontend(){
+        foreach (static::$_styles as $style)
         {
             if ($style['where'] & ASSET_FRONT )
             {
@@ -261,15 +250,15 @@ class assets
 
 
     /**
-     * Function: get_styles_backend
+     * Function: get_backend
      *   Echo and load Styles on Admin
      *
      * Returns:
      *    HTML
      */
-    static function get_styles_backend()
+    static function get_backend()
     {
-        foreach (static::$styles as $style)
+        foreach (static::$_styles as $style)
         {
             if ($style['where'] & ASSET_BACK )
             {
