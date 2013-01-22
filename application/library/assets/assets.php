@@ -4,7 +4,7 @@
  *  Based on code from Get Simple CMS
  */
 class script {
-
+# @todo: add minification
     protected static $_scripts = array();
 
     /**
@@ -151,7 +151,7 @@ class script {
  *  Based on code from Get Simple CMS
  */
 class style {
-
+# @todo: add minification
     protected static $_styles = array();
 
     /**

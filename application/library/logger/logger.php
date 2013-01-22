@@ -74,6 +74,58 @@ class logger
 
         echo $html;
     }
+
+    /**
+     * Function: file
+     *	Simply logs to a text file
+     *
+     * Parameters:
+     *	$message - String
+     *	$level - Int
+     */
+    static function file($message, $level = 0)
+    {
+        $date = date('g:i A M d Y');
+
+        switch ($level) {
+            case 0:
+                $level = 'General';
+                break;
+            case 1:
+                $level = 'Warning';
+                break;
+            case 2:
+                $level = 'Fatal';
+                break;
+            default:
+                $level = 'General';
+        }
+
+        $fh = fopen(DEV_LOG_FILE,'a');
+        flock($fh,LOCK_EX);
+
+        if (is_array($message))
+        {
+            fwrite($fh,"[$date] {$level}:\n");
+            fwrite($fh,"===================================\n");
+
+            foreach($message as $key => $value)
+            {
+                $message = $key.' ## '.$value;
+
+                fwrite($fh,"\t".$message."\n");
+            }
+
+            fwrite($fh,"===================================\n");
+
+        }
+        else
+        {
+            fwrite($fh,"[$date] {$level}: {$message}\n");
+        }
+        flock($fh,LOCK_UN);
+        fclose($fh);
+    }
 }
 
 function is_debugable(){
