@@ -3,6 +3,40 @@
  * class: assets
  *  Based on code from Get Simple CMS
  */
+class script {
+
+    static function on()
+    {
+
+    }
+
+    static  function off()
+    {
+
+    }
+
+    static function get(){
+
+    }
+}
+
+class style {
+
+    static function on()
+    {
+
+    }
+
+    static  function off()
+    {
+
+    }
+
+    static function get(){
+
+    }
+}
+
 class assets
 {
     protected static $scripts = array();
