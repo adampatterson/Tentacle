@@ -26,14 +26,8 @@ class bench
 	// ---------------------------------------------------------------------------
 	public static function time($mark1,$mark2)
 	{
-        if(self::$markers[$mark1] < self::$markers[$mark2]):
-            $res = ( ( self::$markers[$mark1] / self::$markers[$mark2] ) * 100 ) - 100;
-        elseif(self::$markers[$mark1] > self::$markers[$mark2]):
-            $res = ( (self::$markers[$mark2] / self::$markers[$mark1] ) * 100 ) - 100;
-        endif;
-
-        return abs($res);
-        //return abs(self::$markers[$mark2] - self::$markers[$mark1]);
+        //return $time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"];
+        return abs(self::$markers[$mark2] - self::$markers[$mark1]);
 	}
 	
 	
