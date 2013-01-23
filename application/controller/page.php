@@ -36,9 +36,9 @@ class page_controller {
             $blog_uri.'/:int/:int/page/:int'	=> 'blog_date.paged',
             ':words' 			                => 'page.index',
             ':words/page/:int'		            => 'page.paged',
-            ':words/:words'                     => 'page.index',
             ':words/:plugin'                    => 'page.plugin',
-            ':words/:words/:words'              => 'page.index'
+            ':words/:words'                     => 'page.subpage',
+            ':words/:words/:words'              => 'page.subpage'
         );
 
         url_map::add($routs);
@@ -64,7 +64,6 @@ class page_controller {
             case 'home_index':
             case 'page_index':
             case 'page_plugin':
-
                 define ( 'IS_POST'      , FALSE );
 
                 $uri_parts = explode( '/', $uri );
@@ -77,6 +76,16 @@ class page_controller {
                 $post 		= $page->get_by_uri( $uri );
 
                 tentacle::render( $post->template, array ( 'post' => $post ) );
+
+                break;
+            case 'page_subpage':
+
+                define ( 'IS_POST'      , FALSE );
+
+                $post 		= $page->get_by_uri( $uri );
+                $post_meta 	= $page->get_page_meta( $post->id );
+
+                tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
 
                 break;
             case 'blog_index':

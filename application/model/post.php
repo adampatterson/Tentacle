@@ -140,6 +140,7 @@ class post_model
         return $row->id;
     }
 
+    
 	// Update Post
 	//----------------------------------------------------------------------------------------------
 	public function update ( $id ) 
@@ -276,11 +277,11 @@ class post_model
 		return $id;	
 	}
 
+
 	// Get Post
 	//----------------------------------------------------------------------------------------------
 	public function get ( $id='' )
 	{
-
         $posts = db ( 'posts' );
 
 		if( defined( 'FRONT' ) ) {
@@ -318,7 +319,25 @@ class post_model
 
 		}
 	}
-	
+
+
+    // Get Page by Quantity
+    //----------------------------------------------------------------------------------------------
+    public function get_quantity( $quantity=10 ){
+        $posts = db ( 'posts' );
+
+        $get_posts = $posts->select( '*' )
+            ->limit( $quantity )
+            ->where ( 'type', '=', 'post' )
+            ->order_by ( 'date', 'DESC' )
+            ->clause ('AND')
+            ->where ( 'status', '=', 'published' )
+            ->clause ('AND')
+            ->where ( 'date', '<=', time() )
+            ->execute();
+
+        return $get_posts;
+    }
 
 
 	// Get Page by Status
@@ -359,6 +378,7 @@ class post_model
         # @todo update of content needs to be udpated
         return db::query("SELECT * FROM posts WHERE uri LIKE '%".$date."%'");
     }
+
 
 	// Get Page Meta
 	//----------------------------------------------------------------------------------------------
