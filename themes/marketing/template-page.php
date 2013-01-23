@@ -16,7 +16,7 @@ License URI: license.txt
 
 	<div class="row bump" id="why">
 	
-			<?= render_content( $post->content ); ?>
+			<?= the_content( $post->content ); ?>
 			
 	</div><!--/row-->
 

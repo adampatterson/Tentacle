@@ -567,7 +567,7 @@ class tentacle
 
 
 	/**
-	* Function: render_content
+	* Function: the_content
 	*   Pre-Processing of content done by core formatting as well as filters from plugins.
 	*
 	* Parameters:
@@ -576,7 +576,7 @@ class tentacle
 	* Returns:
 	*     $content - Slashes removed.
 	*/
-	function render_content( $content='', $editor = false )
+	function the_content( $content='', $editor = false )
     {
         load::helper('format');
         load::library('SmartyPants', 'smartypants');
@@ -618,13 +618,28 @@ class tentacle
             if(event::exists("theme_header"))
                 $content = event::filter("theme_header");
 
-
         } else {
 
             if(event::exists("admin_header"))
                 $content = event::filter("admin_header");
 
         }
+
+        return $content;
+    }
+
+
+    /**
+     * Function: render_content
+     *   Renders and plugins that would output HTML in the footer.
+     *
+     * Returns:
+     *     $content
+     */
+    function render_content( )
+    {
+        if(event::exists("theme_content"))
+            $content = event::filter("theme_content");
 
         return $content;
     }

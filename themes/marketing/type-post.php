@@ -15,7 +15,7 @@ theme::part('header',array('title'=>$post->title,'assets'=>'marketing')); ?>
 
 				<h1><?= $post->title; ?></h1>
 				<hr />
-				<?= render_content( $post->content ); ?>
+				<?= the_content( $post->content ); ?>
 
 			</div><!-- /hero-unit -->
 

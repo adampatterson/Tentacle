@@ -52,7 +52,7 @@ if( $note = note::get('sent_message') ): ?>
 	<div class="row bump">
 		
 		<h1><?= $post->title; ?></h1>
-		<?= render_content( $post->content ); ?>
+		<?= the_content( $post->content ); ?>
 		<div class="span8">
 			<form action="<?= HISTORY ?>" method="post" accept-charset="utf-8" class="form-horizontal" name="contact">
 				<input type="hidden" name="history" value="<?= HISTORY ?>"/>

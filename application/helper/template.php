@@ -286,7 +286,7 @@
     function sticky_class () {}
     function the_category () {}
     function the_category_rss () {}
-    function the_content () {}
+    //function the_content () {}
     function the_content_rss () {}
     function the_excerpt () {}
     function the_excerpt_rss () {}

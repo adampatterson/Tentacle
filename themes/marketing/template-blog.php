@@ -22,7 +22,7 @@ theme::part('partials/header',array('title'=>'Blog','assets'=>'marketing')); ?>
 			
 			<hr />
 			
-			<?= render_content( $post->content ); ?>
+			<?= the_content( $post->content ); ?>
 			<small>Created by: <? _e($author_meta->first_name.' '.$author_meta->last_name) ?></small>
 
 			<p><small>Posted in: 
