@@ -13,7 +13,7 @@ class dev_controller {
 	public function index()
 	{
 
-
+        echo render_content();
 
         die;
 
@@ -30,6 +30,42 @@ class dev_controller {
 
     public function plugin()
     {
+
+        function method_sad ( $text = '' )
+        {
+            $nav[] = array(
+                'title'     => 'One'
+            );
+
+            return $nav;
+        }
+
+        function method_happy ( $text = '' )
+        {
+            $nav[] = array(
+                'title'     => 'Two'
+            );
+
+            return $nav;
+        }
+
+        function method_fine ( $text = '' )
+        {
+            $nav[] = array(
+                'title'     => 'Three',
+            );
+
+            return $nav;
+        }
+
+        event::on('navigation', 'method_sad', 1);
+        event::on('navigation', 'method_happy', 2);
+        event::on('navigation', 'method_fine', 3);
+
+        var_dump( event::filter('navigation') );
+
+        die;
+
         function method_one (){
             echo 'one ';
         }

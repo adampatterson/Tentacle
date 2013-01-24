@@ -56,10 +56,9 @@ class plugin_model
     // look up a URI from the rout.
     public function navigation( $event='' )
     {
-        if ( event::exists($event) != false):
+        if ( event::exists($event) != false )
             return event::filter($event);
-        else:
+        else
             return false;
-        endif;
     }
 }

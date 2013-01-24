@@ -15,13 +15,16 @@
 	url = git@github.com:adampatterson/tentacle-default.git
 [submodule "plugins/ndoc"]
 	path = plugins/ndoc
-	url = git@github.com:tentaclecms/tentacle-ndoc.git
+	url = git@github.com:tentaclecms/ndoc.git
 [submodule "plugins/ipsum"]
 	path = plugins/ipsum
-	url = git@github.com:tentaclecms/tentacle-ipsum.git
+	url = git@github.com:tentaclecms/ipsum.git
 [submodule "themes/tentacle"]
 	path = themes/tentacle
-	url = git@github.com:tentaclecms/tentacle-default.git
+	url = git@github.com:tentaclecms/tentacle.git
 [submodule "plugins/analytics"]
 	path = plugins/analytics
-	url = git@github.com:tentaclecms/tentacle-analytics.git
+	url = git@github.com:tentaclecms/analytics.git
+[submodule "plugins/social"]
+	path = plugins/social
+	url = git@github.com:tentaclecms/social.git
