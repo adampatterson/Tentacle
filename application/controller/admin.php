@@ -556,20 +556,21 @@ class admin_controller {
         $serpent_plugins = $serpent->get_plugin( );
 		
 		$plugins = load::model( 'plugin' );
-		$plugin_subnav = $plugins->navigation('plugin_navigation');
+		$plugin_raw = $plugins->navigation('plugin_navigation');
 		$get_plugin = $plugins->get();
-		
+
         if ( $plugin_view == true ) {
             
 			load::view('admin/partials/template-header', array('title' => 'Dashboard', 'assets' => array('application')));
 
-			foreach ($plugin_subnav as $plugin) {
-					
-				if ($plugin['rout'] == $plugin_view) {
-					load::plugin_view($plugin['uri'].'/'.$plugin['rout'], array('data'=> 'test'));
-				}
-			}
-			
+            foreach ($plugin_raw as $plugin_subnav)
+                foreach ($plugin_subnav as $plugin) {
+
+                    if ($plugin['rout'] == $plugin_view) {
+                        load::plugin_view($plugin['uri'].'/'.$plugin['rout'], array('data'=> 'test'));
+                    }
+                }
+
             load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) );
         } else {
             load::view ('admin/settings/plugins', array( 'serpent_plugins'=>$serpent_plugins, 'plugins'=>$get_plugin ) );

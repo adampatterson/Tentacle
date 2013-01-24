@@ -165,6 +165,7 @@ class event {
      */
     static function filter ( $trigger_event, $data = null )
     {
+
         if (!self::exists($trigger_event))
             return false;
 
@@ -190,12 +191,19 @@ class event {
             {
                 $call = call_user_func( $event['callback'], $data );
 
-                $data = fallback($call, $data);
+                if ( is_array($call))
+                   $return[] = $call;
+
+                if ($data != '' )
+                    $data = fallback($call, $data);
             }
 
         endforeach;
 
-        return $call;
+            if ( isset($return) and is_array($return) )
+                return $return;
+            else
+                return $call;
     }
 
     # Was the event called?
@@ -222,6 +230,7 @@ function fallback(&$variable) {
     $set = (!isset($variable) or (is_string($variable) and trim($variable) === "") or $variable === array());
 
     $args = func_get_args();
+
     array_shift($args);
     if (count($args) > 1) {
         foreach ($args as $arg) {

@@ -76,16 +76,17 @@
 				<li><a class="<? current_page('admin/settings_plugins'); ?>" href="<?= ADMIN ?>settings_plugins/">Manage Plugins</a></li>
 				<li><a href="#">Add a new Plugin</a></li>
 				<?
-                    $subnav = load::model('plugin')->navigation('plugin_navigation');
+                    $subnav_raw = load::model('plugin')->navigation('plugin_navigation');
 
-					if ( $subnav != false):
+                    if ( $subnav_raw != false):
 
                         echo '<li class="divider"></li>';
 
-                        foreach ( $subnav as $sub_page )
-                            echo '<li><a href="'.ADMIN.'settings_plugins/'.$sub_page['rout'].'">'.$sub_page['title'].'</a></li>';
+                        foreach ( $subnav_raw as $subnav )
+                            foreach ( $subnav as $sub_page )
+                                echo '<li><a href="'.ADMIN.'settings_plugins/'.$sub_page['rout'].'">'.$sub_page['title'].'</a></li>';
 
-				    endif;
+                    endif;
 				?>
 				</ul>
 			</li>
