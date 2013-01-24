@@ -12,7 +12,7 @@ author:
 event::on('shortcode', 'barnacles::shortcode', 1);
 add_shortcode( 'snippet', 'snippet' );
 
-event::on('plugin_navigation', 'barnacles::settings_nav', 8);
+#event::on('plugin_navigation', 'barnacles::settings_nav', 7);
 
 logger::set('Shortcode', 'Plugin');
 

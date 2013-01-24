@@ -140,7 +140,7 @@ class post_model
         return $row->id;
     }
 
-    
+
 	// Update Post
 	//----------------------------------------------------------------------------------------------
 	public function update ( $id ) 
