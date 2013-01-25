@@ -28,3 +28,6 @@
 [submodule "plugins/social"]
 	path = plugins/social
 	url = git@github.com:tentaclecms/social.git
+[submodule "plugins/shorty"]
+	path = plugins/shorty
+	url = git@github.com:tentaclecms/shorty.git
