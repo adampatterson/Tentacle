@@ -77,7 +77,7 @@ class page_controller {
 
                 tentacle::render( $post->template, array ( 'post' => $post ) );
 
-                break;
+            break;
             case 'page_subpage':
 
                 define ( 'IS_POST'      , FALSE );
@@ -87,7 +87,7 @@ class page_controller {
 
                 tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
 
-                break;
+            break;
             case 'blog_index':
 
                 define ( 'IS_POST'      , FALSE );
@@ -101,7 +101,7 @@ class page_controller {
 
                 tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
 
-                break;
+            break;
             case 'blog_date':
 
                 define ( 'IS_POST'      , FALSE );
@@ -115,7 +115,7 @@ class page_controller {
 
                 tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
 
-                break;
+            break;
             case 'blog_date_slug':
 
                 define ( 'IS_POST'      , TRUE );
@@ -129,7 +129,7 @@ class page_controller {
 
                 tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
 
-                break;
+            break;
             case 'category_slug':
 
                 $category_slug = explode('/', $uri);
@@ -164,10 +164,10 @@ class page_controller {
 
                 tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
 
-                break;
+            break;
             default:
                 tentacle::render ( '404' );
-                break;
+            break;
         }
 
         bench::mark('end');
