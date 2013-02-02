@@ -613,19 +613,17 @@ class tentacle
      */
     function render_header( $location = null )
     {
-        if ( $location != 'admin'){
+       if ( $location != 'admin'){
 
             if(event::exists("theme_header"))
-                $content = event::filter("theme_header");
+                return event::filter("theme_header");
 
         } else {
 
             if(event::exists("admin_header"))
-                $content = event::filter("admin_header");
+                return event::filter("admin_header");
 
         }
-
-        return $content;
     }
 
 
@@ -639,9 +637,7 @@ class tentacle
     function render_content( )
     {
         if(event::exists("theme_content"))
-            $content = event::filter("theme_content");
-
-        return $content;
+            return event::filter("theme_content");
     }
 
 
@@ -655,12 +651,10 @@ class tentacle
     function render_footer( )
     {
         if(event::exists("footer"))
-            $content = event::filter("footer");
+            return event::filter("footer");
 
         if(event::exists("footer_admin"))
-            $content = event::filter("footer_admin");
-
-        return $content;
+            return event::filter("footer_admin");
     }
 
 
