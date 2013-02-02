@@ -506,7 +506,7 @@ class action_controller {
 		
 		$history = input::post( 'history' );
 		
-		url::redirect('admin/users_manage/');
+		#url::redirect('admin/users_manage/');
 	}
 
 
@@ -519,10 +519,10 @@ class action_controller {
 
 		$user 				= load::model( 'user' );
 		$user_single 		= $user->update();
-		
+
 		$history = input::post( 'history' );
 
-		url::redirect($history); 
+		url::redirect($history);
 	}
 	
 
@@ -1105,7 +1105,6 @@ win.send_to_editor('<?=$html?>');
 		$registered = time();
 		$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].$registered);
 		$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
-		
 
 		$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
 
