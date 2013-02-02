@@ -341,9 +341,9 @@ Test two
 
         $body = 'Content';
 
-        $mail->SetFrom('adamapatterson@gmail.com', 'Adam Patterson');
+        $mail->SetFrom('hello@adampatterson.ca', 'Adam Patterson');
 
-        $mail->AddReplyTo("adamapatterson@gmail.com","Adam Patterson");
+        $mail->AddReplyTo("hello@adampatterson.ca","Adam Patterson");
 
         $address = "hello@adampatterson.ca";
         $mail->AddAddress($address, "Adam Patterson");
