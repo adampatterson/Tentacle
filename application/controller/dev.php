@@ -12,12 +12,6 @@ class dev_controller {
 
 	public function index()
 	{
-
-        echo render_content();
-
-        die;
-
-
         var_dump(is::mobile());
 		var_dump(is::blackberry());
 		var_dump(is::ipad());
@@ -339,18 +333,49 @@ Test two
 
 	public function email()
 	{
-		
-		load::helper('email');
+        load::library('phpmailer', 'class.phpmailer' );
+
+        $mail             = new PHPMailer(); // defaults to using php "mail()"
+
+        $mail->IsSendmail(); // telling the class to use SendMail transport
+
+        $body = 'Content';
+
+        $mail->SetFrom('adamapatterson@gmail.com', 'Adam Patterson');
+
+        $mail->AddReplyTo("adamapatterson@gmail.com","Adam Patterson");
+
+        $address = "hello@adampatterson.ca";
+        $mail->AddAddress($address, "Adam Patterson");
+
+        $mail->Subject    = "PHPMailer Test Subject via Sendmail, basic";
+
+        $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+
+        $mail->MsgHTML($body);
+
+//        $mail->AddAttachment("images/phpmailer.gif");      // attachment
+//        $mail->AddAttachment("images/phpmailer_mini.gif"); // attachment
+
+        if(!$mail->Send()) {
+            echo "Mailer Error: " . $mail->ErrorInfo;
+        } else {
+            echo "Message sent!";
+        }
+
+
+        die;
+
+
+        load::helper('email');
 		$send_email = load::model( 'email' );
 
-		
-	
 		$user_name    = 'user_name';
 		$password     = 'password';
 		$email        = 'adamapatterson@gmail.com';
 	
-		$first_name   = 'adam';
-		$last_name    = 'patterson';
+		$first_name   = 'Adam';
+		$last_name    = 'Patterson';
 
 		$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
 		$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
@@ -359,11 +384,11 @@ Test two
 		$message = '<p>Hello '.$first_name.' '.$last_name.'<br /></p>
 					<p><strong>Username</strong>: '.$user_name.'<br />
 					<strong>Password</strong>: '.$password.'</p>
-					<p><strong>Click the link to activate your account.</strong><br />'.$hash_address.'</p>
+					<p><strong>Click the link to activate your account.</strong><br /><a href="'.$hash_address.'">'.$hash_address.'</a></p>
 					<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
-					
-		$message_two = 'simple message';
-		
+
+        echo $message;
+
 		$user_email = $send_email->send( 'Tentacle CMS', $message, $email, $email );
 	}
 

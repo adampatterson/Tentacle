@@ -1,5 +1,4 @@
-<? if(!defined('DINGO')){die('External Access to File Denied');}
-
+<?
 class email_model
 {
 

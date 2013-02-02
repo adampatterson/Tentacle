@@ -156,7 +156,11 @@ class email
 		
 		foreach($this->to as $to)
 		{
-			mail($to,$this->subject,$content,implode("\r\n",$headers));
+			if(mail($to,$this->subject,$content,implode("\r\n",$headers))){
+                return true;
+            } else {
+                return false;
+            }
 		}
 	}
 }
