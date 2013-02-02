@@ -333,11 +333,12 @@ Test two
 
 	public function email()
 	{
+
         load::library('phpmailer', 'class.phpmailer' );
 
         $mail             = new PHPMailer(); // defaults to using php "mail()"
 
-        $mail->IsSendmail(); // telling the class to use SendMail transport
+        #$mail->IsSendmail(); // telling the class to use SendMail transport
 
         $body = 'Content';
 
@@ -348,7 +349,7 @@ Test two
         $address = "hello@adampatterson.ca";
         $mail->AddAddress($address, "Adam Patterson");
 
-        $mail->Subject    = "PHPMailer Test Subject via Sendmail, basic";
+        $mail->Subject    = "PHPMailer Test Subject via mail(), basic";
 
         $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 
@@ -362,7 +363,6 @@ Test two
         } else {
             echo "Message sent!";
         }
-
 
         die;
 
