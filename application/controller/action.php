@@ -506,7 +506,7 @@ class action_controller {
 		
 		$history = input::post( 'history' );
 		
-		#url::redirect('admin/users_manage/');
+		url::redirect('admin/users_manage/');
 	}
 
 
