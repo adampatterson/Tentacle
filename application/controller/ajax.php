@@ -20,6 +20,15 @@ class ajax_controller {
 		return $unique;
 	}
 
+
+    public function sortable ()
+    {
+        if (!empty($_REQUEST["list"]) && !empty($_REQUEST["update_sql"]))
+            $page = load::model( 'page' )->update_page_order($_REQUEST["list"]);
+
+    }
+
+
 	/**
 	* Touch the DB and see if the credentials are correct.
 	* ----------------------------------------------------------------------------------------------*/

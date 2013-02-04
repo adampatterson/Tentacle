@@ -5,7 +5,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta content="width=device-width, initial-scale=1" name="viewport">
-<title>Tentacle Admin - <?= $title?></title>
+<title>Tentacle Admin</title>
 <!--
 
 	_/_/_/_/_/                      _/                          _/           
@@ -13,15 +13,24 @@
 	  _/    _/_/_/_/  _/    _/    _/      _/    _/  _/        _/  _/_/_/_/   
 	 _/    _/        _/    _/    _/      _/    _/  _/        _/  _/          
 	_/      _/_/_/  _/    _/      _/_/    _/_/_/    _/_/_/  _/    _/_/_/     
-	======================================================================-->                                                                 
+	======================================================================-->
 
-	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>bootstrap-1.4.0.min.css">
-	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>general.css">
-	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>admin.css">
-	
-	<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.min.js"></script>
-	<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery-ui-1.8.16.custom.min.js"></script>
-	<script type="text/javascript" src="<?=ADMIN_JS; ?>nestedSortable-1.3.4/jquery.ui.nestedSortable.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>application.css">
+    <link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>admin.css">
+
+    <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.min.js"></script>
+    <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery-ui.min.js"></script>
+    <script type="text/javascript" src="<?=ADMIN_JS; ?>modernizr.min.js"></script>
+    <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.reveal.js"></script>
+    <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.inputtags.js"></script>
+    <script type="text/javascript" src="<?=ADMIN_JS; ?>notifications.js"></script>
+    <script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-dropdown.js"></script>
+    <script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-transition.js"></script>
+    <script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-collapse.js"></script>
+    <script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-tab.js"></script>
+
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>nestedSortable/jquery.ui.nestedSortable.js"></script>
 	
 <meta name="viewport"/>
 </head>
@@ -86,7 +95,7 @@
 						        echo '</li><li id="list_'.$row['id'].'">';
 						        $flag = false;
 						    }
-						    echo '<div>'.$row['title'].'</div>';
+						    echo '<div>'.$row['title'].' <strong>'.$row['id'].'</strong></div>';
 						    $flag = true;
 						}
 						echo '</li></ol>';
@@ -115,36 +124,15 @@
 						nav_generate_sortable ( (array)$page_object );
 
 					}
-					
-						nav_menu_sortable ( );
-					?>
-<!--					<ol class="sortable">
-						<li id="list_1"><div>Item 1</div>
-						<li id="list_2"><div>Item 2</div>
-							<ol>
-								<li id="list_3"><div>Sub Item 2.1</div>
-								<li id="list_4"><div>Sub Item 2.2</div>
-								<li id="list_5"><div>Sub Item 2.3</div>
-								<li id="list_6"><div>Sub Item 2.4</div>
-							</ol>
-						<li id="list_7" class="no-nest"><div>Item 3 (no-nesting)</div>
-						<li id="list_8" class="no-nest"><div>Item 4 (no-nesting)</div>
-						<li id="list_9"><div>Item 5</div>
-						<li id="list_10"><div>Item 6</div>
-							<ol>
-								<li id="list_11"><div>Sub Item 6.1</div>
-								<li id="list_12" class="no-nest"><div>Sub Item 6.2 (no-nesting)</div>
-								<li id="list_13"><div>Sub Item 6.3</div>
-								<li id="list_14"><div>Sub Item 6.4</div>
-							</ol>
-						<li id="list_15"><div>Item 7</div>
-						<li id="list_16"><div>Item 8</div>
-					</ol> -->
-					<p>
-						</br></br>
-						<input type="submit" name="toHierarchy" id="toHierarchy" value="To hierarchy" />
-					<pre id="toHierarchyOutput"></pre>
-					</p>
+						nav_menu_sortable ( ); ?>
+                    <p>
+                        <input type="submit" name="toArray" id="toArray" value="To array" />
+                    <pre id="toArrayOutput"></pre>
+
+                    <p>
+                        <input type="submit" name="toHierarchy" id="toHierarchy" value="To hierarchy" />
+                    <pre id="toHierarchyOutput"></pre>
+
 					<script type="text/javascript">
 						$(document).ready(function(){
 
@@ -160,16 +148,36 @@
 									revert: 250,
 									tabSize: 25,
 									tolerance: 'pointer',
-									toleranceElement: '> div'
-								});								
+									toleranceElement: '> div',
+                                    update: function () {
+                                        //list = $(this).nestedSortable('toHierarchy', {startDepthCount: 0});
+                                        list = $(this).nestedSortable('toArray', {startDepthCount: 0});
+                                        $.post(
+                                            '<?= BASE_URL ?>/ajax/sortable',
+                                            { update_sql: 'ok', list: list },
+                                            function(data){
+                                                $("#result").hide().html(data).fadeIn('slow')
+                                            },
+                                            "html"
+                                        );
+                                    }
+								});
 							});
-							
-							$('#toHierarchy').click(function(e){
-								hiered = $('ol.sortable').nestedSortable('toHierarchy');
-								hiered = dump(hiered);
-								(typeof($('#toHierarchyOutput')[0].textContent) != 'undefined') ?
-								$('#toHierarchyOutput')[0].textContent = hiered : $('#toHierarchyOutput')[0].innerText = hiered;
-							})
+
+                            $('#toArray').click(function(e){
+                                arraied = $('ol.sortable').nestedSortable('toArray', {startDepthCount: 0});
+                                arraied = dump(arraied);
+                                (typeof($('#toArrayOutput')[0].textContent) != 'undefined') ?
+                                    $('#toArrayOutput')[0].textContent = arraied : $('#toArrayOutput')[0].innerText = arraied;
+                            })
+
+
+                            $('#toHierarchy').click(function(e){
+                                hiered = $('ol.sortable').nestedSortable('toHierarchy');
+                                hiered = dump(hiered);
+                                (typeof($('#toHierarchyOutput')[0].textContent) != 'undefined') ?
+                                    $('#toHierarchyOutput')[0].textContent = hiered : $('#toHierarchyOutput')[0].innerText = hiered;
+                            })
 
 							function dump(arr,level) {
 								var dumped_text = "";
@@ -196,5 +204,10 @@
 								return dumped_text;
 							}
 					</script>
-				</body>
-				</html>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

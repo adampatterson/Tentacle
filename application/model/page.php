@@ -150,7 +150,30 @@ class page_model
 		note::set('success','page_update','Page Updated!');		
 	}
 
-	
+
+    public function update_page_order( $new_order ){
+
+        $page = db('posts');
+
+        foreach( $new_order as $order )
+        {
+            if($order['item_id'] != '') {
+
+                $order['parent_id'];
+
+                if ($order['parent_id'] == '' )
+                    $order['parent_id'] = 0;
+
+                $page->update(array(
+                    'parent'=>$order['parent_id'],
+                ))
+                    ->where( 'id', '=', $order['item_id'] )
+                    ->execute();
+            }
+        }
+    }
+
+
 	// Get Page
 	//----------------------------------------------------------------------------------------------
 	/**
