@@ -17,7 +17,7 @@
 			<div class="contet-sidebar has-tabs">
 				<div class="table-heading">
 					<h3 class="regular">Post Settings</h3>
-					<input type="button" value="Preview" class="btn btn-small btn-primary pull-right" />
+<!--					<input type="button" value="Preview" class="btn btn-small btn-primary pull-right" />-->
 				</div>
 				<div class="table-content">
 					<fieldset>
@@ -108,7 +108,7 @@
 					<div class="tab-content tab-body">
 						
 						<div id="content" class="active tab-pane">
-							<input type="text" name="title" placeholder='Title' class='xlarge' />
+							<input type="text" name="title" placeholder='Title' class='xlarge content_title' />
 							<!--<p>
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>
 							</p>-->

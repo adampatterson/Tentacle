@@ -18,7 +18,7 @@
 			<div class="contet-sidebar has-tabs">
 				<div class="table-heading">
 					<h3 class="regular">Page Settings</h3>
-					<input type="button" value="Preview" class="btn btn-small btn-primary pull-right" />
+					<!--<input type="button" value="Preview" class="btn btn-small btn-primary pull-right" />-->
 				</div>
 				<div class="table-content">
 					<fieldset>
@@ -116,7 +116,7 @@
 						
 						<div id="content" class="active tab-pane">
 							<? //clean_out($get_post_meta ) ?>
-							<input type="text" name="title" placeholder='Title' value='<?= $get_post->title ?>' class='xlarge' required='required' />
+							<input type="text" name="title" placeholder='Title' value='<?= $get_post->title ?>' class='xlarge content_title' required='required' />
 							<!--<p>Permalink: http://www.sitename/com/path/ <a href="#">Edit</a></p>-->
 							
 							<? if(user_editor() == 'wysiwyg'):?>

@@ -18,7 +18,7 @@
 			<div class="contet-sidebar has-tabs">
 				<div class="table-heading">
 					<h3 class="regular">Page Settings</h3>
-					<input type="button" value="Preview" class="btn btn-small btn-primary pull-right" name='preview' />
+<!--					<input type="button" value="Preview" class="btn btn-small btn-primary pull-right" name='preview' />-->
 				</div>
 				<div class="table-content">
 					<fieldset>
@@ -81,7 +81,7 @@
 					<div class="tab-content tab-body">
 						
 						<div id="content" class="active tab-pane">
-							<input type="text" name="title" placeholder='Title' class='xlarge' required='required' />
+							<input type="text" name="title" placeholder='Title' class='xlarge content_title' required='required' />
 							<? if (user_editor() == 'wysiwyg'): ?>
 
 								<p class="wysiwyg">
