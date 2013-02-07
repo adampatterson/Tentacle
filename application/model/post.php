@@ -232,9 +232,15 @@ class post_model
 		$post_type     = $_POST['page-or-post'];
 		
 		$post_author   = user::id();
-		
-		$uri 			= 'blog/'.$slug.'/';
-		
+
+
+        $uri_date_raw	    = date('Y', $history_date).'-'.date('m', $history_date);
+
+        $uri_date = new DateTime( $uri_date_raw );
+
+        $uri_date = $uri_date->format('Y').'/'.$uri_date->format('m');
+        $uri = slash_it( get::option('blog_uri') ).$uri_date.'/'.$slug.'/';
+
 		// Run content through HTMLawd and Samrty Text
 		$page          = db('posts');
 
