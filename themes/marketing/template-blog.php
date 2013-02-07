@@ -19,18 +19,18 @@ theme::part('partials/header',array('title'=>'Blog','assets'=>'marketing')); ?>
 			<div class="span12">
 
 			<h2 class="title"><a href="<? _e(BASE_URL.$post->uri) ?>"><? _e($post->title) ?></a></h2>
-			
+
 			<hr />
-			
+
 			<?= the_content( $post->content ); ?>
 			<small>Created by: <? _e($author_meta->first_name.' '.$author_meta->last_name) ?></small>
 
-			<p><small>Posted in: 
+			<p><small>Posted in:
 				<? foreach( $category->get_relations( $post->id ) as $relation ): ?>
 					 <a href="#<?=$relation->slug ?>"><?_e($relation->name) ?></a>
 				<? endforeach; ?>
 			</small></p>
-			<p><small>Tags: 
+			<p><small>Tags:
 				<? foreach( $relations = $tag->get_relations( $post->id ) as $relation ): ?>
 					 <a href="#<?=$relation->slug ?>"><?_e($relation->name) ?></a>
 				<? endforeach; ?>

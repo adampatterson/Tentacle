@@ -3,7 +3,7 @@
 Type: Post
 */
 
-theme::part('header',array('title'=>$post->title,'assets'=>'marketing')); ?>
+theme::part('partials/header',array('title'=>$post->title,'assets'=>'marketing')); ?>
 
 <div class="container">
 
