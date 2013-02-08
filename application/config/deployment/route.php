@@ -30,7 +30,7 @@ route::set('attachment',array(
     'function'=>'file'
 	));
 
-// comment route
+// comment
 route::set('comment/([-_a-zA-Z0-9]+)',array(
     'controller'=>'comment',
     'function'=>'index',
@@ -38,7 +38,7 @@ route::set('comment/([-_a-zA-Z0-9]+)',array(
 	));
 
 
-// file route
+// file
 route::set('attachment',array(
     'controller'=>'attachment',
     'function'=>'index'
@@ -84,14 +84,38 @@ route::set('action/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
     'function'=>'$1',
 	'arguments'=>array('$2','$3')
 	));
-	
+
+
+// API
+route::set('api',array(
+    'controller'=>'api',
+    'function'=>'index'
+));
+
+route::set('api/([-_a-zA-Z0-9]+)',array(
+    'controller'=>'api',
+    'function'=>'$1'
+));
+
+route::set('api/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
+    'controller'=>'api',
+    'function'=>'$1',
+    'arguments'=>array('$2')
+));
+
+route::set('api/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
+    'controller'=>'api',
+    'function'=>'$1',
+    'arguments'=>array('$2','$3')
+));
+
+
 // dev route
 route::set('dev/([-_a-zA-Z0-9]+)',array(
     'controller'=>'dev',
     'function'=>'$1'
 	));
-	
-// dev route
+
 route::set('dev/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
     'controller'=>'dev',
     'function'=>'$1',
@@ -104,12 +128,12 @@ route::set('dev/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
     'arguments'=>array('$2','$3')
 ));
 
-// dev index
 route::set('dev',array(
     'controller'=>'dev',
     'function'=>'index'
 	));
-	
+
+
 // install rout
 route::set('install',array(
     'controller'=>'install',
@@ -121,7 +145,8 @@ route::set('install/([-_a-zA-Z0-9]+)',array(
     'function'=>'$1',
     'arguments'=>array('$1')
 	));
-	
+
+// Install
 route::set('ajax/([-_a-zA-Z0-9]+)',array(
     'controller'=>'ajax',
     'function'=>'$1'
