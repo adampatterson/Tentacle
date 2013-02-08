@@ -23,9 +23,8 @@ class ajax_controller {
 
     public function sortable ()
     {
-        if (!empty($_REQUEST["list"]) && !empty($_REQUEST["update_sql"]))
-            $page = load::model( 'page' )->update_page_order($_REQUEST["list"]);
-
+        if (!empty($_REQUEST["data"]))
+            $page = load::model( 'page' )->update_page_order($_POST['data']);
     }
 
 

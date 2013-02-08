@@ -1148,6 +1148,22 @@ class string
 } // string
 
 
+function parse_multidimensional_array($array, $parentID = 0)
+{
+    $return = array();
+    foreach ($array as $subArray) {
+        $returnSubSubArray = array();
+        if (isset($subArray['children'])) {
+            $returnSubSubArray = parse_multidimensional_array($subArray['children'], $subArray['id']);
+        }
+        $return[] = array('id' => $subArray['id'], 'parentID' => $parentID);
+        $return = array_merge($return, $returnSubSubArray);
+    }
+
+    return $return;
+}
+
+
 /**
  * Function: highlight
  *   Highlights the phrase where it is found in the text by surrounding it like

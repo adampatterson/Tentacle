@@ -151,23 +151,24 @@ class page_model
 	}
 
 
-    public function update_page_order( $new_order ){
-
+    public function update_page_order( $new_order )
+    {
         $page = db('posts');
 
-        foreach( $new_order as $order )
-        {
-            if($order['item_id'] != '') {
+        // Run the function above
+        $clean_order = parse_multidimensional_array( $new_order );
 
-                $order['parent_id'];
+        // Loop through the "readable" array and save changes to DB
+        foreach ($clean_order as $key => $value) {
 
-                if ($order['parent_id'] == '' )
-                    $order['parent_id'] = 0;
+            // $value should always be an array, but we do a check
+            if (is_array($value)) {
 
                 $page->update(array(
-                    'parent'=>$order['parent_id'],
+                    'parent'=>$value['parentID'],
+                    'menu_order'=>$key
                 ))
-                    ->where( 'id', '=', $order['item_id'] )
+                    ->where( 'id', '=', $value['id'] )
                     ->execute();
             }
         }
@@ -212,9 +213,33 @@ class page_model
 			return $get_pages[0];
 		}	
 	}
-	
-	
-	// Get Page by Status
+
+
+    /**
+     * Return all pages or one page by ID
+     *
+     * @author Adam Patterson
+     */
+    public function get_by_parent_id ( $id='' )
+    {
+        $pages = db ( 'posts' );
+
+        $get_pages = $pages->select( '*' )
+            ->where ( 'type', '=', 'page' )
+            ->order_by ( 'menu_order', 'ASC' )
+            ->clause ('AND')
+            ->where ( 'status', '!=', 'trash' )
+            ->clause ('AND')
+            ->where ( 'parent', '=', $id )
+            ->order_by ( 'id', 'DESC' )
+            ->execute();
+
+        return $get_pages;
+
+    }
+
+
+    // Get Page by Status
 	//----------------------------------------------------------------------------------------------
 	/**
 	 * @todo Test outcomes of this
