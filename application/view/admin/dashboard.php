@@ -42,26 +42,6 @@
 
                         </script>
 
-                         <? /*<script type="text/javascript">
-
-                            var url = 'http://tentacle.dev/api/feed/json/?callback=?';
-
-                           $.ajax({
-                               type: 'GET',
-                               url: url,
-                               async: false,
-                               contentType: "application/json",
-                               dataType: 'jsonp',
-                               success: function jsoncallback(json) {
-                                   console.log(json);
-                               },
-                               error: function(e) {
-                                   console.log(e.message);
-                               }
-                           });
-
-                       </script>*/ ?>
-
 					</div>
 					<? /*<div class="span4 well">
 							<h2>Content</h2>
