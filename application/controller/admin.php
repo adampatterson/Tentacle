@@ -181,6 +181,19 @@ class admin_controller {
 		load::view ('admin/content/edit_page', array(  'get_page'=>$get_page, 'get_page_meta'=>$get_page_meta, 'pages'=>$page_hiarchy, 'page_id'=>$page_id, 'tags'=>$tags, 'tag_relations'=>$tag_relations) );
 	}
 
+    /**
+     * Update Page
+     * ----------------------------------------------------------------------------------------------*/
+    public function content_order_page (  )
+    {
+        define ( 'FRONT'		,'true' );
+
+        $page = load::model( 'page' );
+        $pages = $page->get_by_parent_id( 0 );
+
+        load::view ('admin/content/order_page', array(  'pages'=>$pages ) );
+    }
+
 	/**
 	* Manage Page
 	* ----------------------------------------------------------------------------------------------*/

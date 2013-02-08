@@ -147,6 +147,39 @@
         }
         .dd3-handle:before { content: '≡'; display: block; position: absolute; left: 0; top: 3px; width: 100%; text-align: center; text-indent: 0; color: #fff; font-size: 20px; font-weight: normal; }
         .dd3-handle:hover { background: #ddd; }
+
+        .ui-nestedSortable-error {
+            background:#fbe3e4;
+            color:#8a1f11;
+        }
+
+        ol {
+            margin: 0;
+            padding: 0;
+            padding-left: 30px;
+        }
+
+        ol.sortable, ol.sortable ol {
+            margin: 0 0 0 25px;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        ol.sortable {
+            margin: 4em 0;
+        }
+
+        .sortable li {
+            margin: 7px 0 0 0;
+            padding: 0;
+        }
+
+        .sortable li div  {
+            border: 1px solid black;
+            padding: 3px;
+            margin: 0;
+            cursor: move;
+        }
     </style>
 
     <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.min.js"></script>
@@ -198,84 +231,8 @@
                     <h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Threaded</h1>
                     <hr />
                     <?
-                    function nav_generate_sortable ( $tree )
-                    {
-                        $depth = -1;
-                        $flag = false;
-                        foreach ($tree as $row) {
-                            while ($row['level'] > $depth) {
-                                echo '<ol class="sortable"><li id="list_'.$row['id'].'">';
-                                $flag = false;
-                                $depth++;
-                            }
-                            while ($row['level'] < $depth) {
-                                echo "</li></ol>";
-                                $depth--;
-                            }
-                            if ($flag) {
-                                echo '</li><li id="list_'.$row['id'].'">';
-                                $flag = false;
-                            }
-                            echo '<div>'.$row['title'].' <strong>'.$row['id'].'</strong></div>';
-                            $flag = true;
-                        }
-                        echo '</li></ol>';
-                    }
-
-                    /**
-                     * Process the page object.
-                     *
-                     * @author Adam Patterson
-                     */
-
-                    function nav_menu_sortable ( )
-                    {
-                        define ( 'FRONT'		,'true' );
-
-                        $page = load::model( 'page' );
-                        $pages = $page->get( );
-                        // Current URI to be used with .current page
-                        $uri = URI;
-
-
-                        $page_tree = $page->get_page_tree( $pages );
-
-                        $page_object = $page->get_page_children( 0, $pages );
-
-                        nav_generate_sortable ( (array)$page_object );
-
-                    }
-
-                    #nav_menu_sortable ( );
 
                     define ( 'FRONT'		,'true' );
-                    /* Function menu_showNested
-                    * @desc Create inifinity loop for nested list from database
-                    * @return echo string
-                    */
-                    function menu_showNested( $parentID ) {
-
-                        $page = load::model( 'page' );
-                        $pages = $page->get_by_parent_id( $parentID );
-
-                        if ($pages > 0) {
-                            echo "\n";
-                            echo "<ol class='dd-list'>\n";
-                            foreach($pages as $page ) {
-                                echo "\n";
-
-                                echo "<li class='dd-item' data-id='{$page->id}'>\n";
-                                echo "<div class='dd-handle'>{$page->id}: {$page->title}</div>";
-
-                                // Run this function again (it would stop running when the mysql_num_result is 0
-                                menu_showNested($page->id);
-
-                                echo "</li>\n";
-                            }
-                            echo "</ol>\n";
-                        }
-                    }
-
 
                     ## Show the top parent elements from DB
                     ######################################
@@ -294,7 +251,7 @@
                         echo "<div class='dd-handle'>{$page->id}: {$page->title}</div>";
 
 
-                        menu_showNested($page->id);
+                        menu_show_nested($page->id);
 
                         echo "</li>\n";
                     }

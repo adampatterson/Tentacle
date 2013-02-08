@@ -123,3 +123,75 @@ function nav_generate ( $tree, $args = array() )
 	
 	echo $output;
 }
+
+
+/* Function menu_showNested
+* @desc Create inifinity loop for nested list from database
+* @return echo string
+*/
+function menu_show_nested( $parentID ) {
+
+    $page = load::model( 'page' );
+    $pages = $page->get_by_parent_id( $parentID );
+
+    if ($pages > 0) {
+        echo "\n";
+        echo "<ol class='dd-list'>\n";
+        foreach($pages as $page ) {
+            echo "\n";
+
+            echo "<li class='dd-item' data-id='{$page->id}'>\n";
+            echo "<div class='dd-handle'>{$page->id}: {$page->title}</div>";
+
+            // Run this function again (it would stop running when the mysql_num_result is 0
+            menu_show_nested($page->id);
+
+            echo "</li>\n";
+        }
+        echo "</ol>\n";
+    }
+}
+
+
+/**
+ * PyroCMS Tree Helpers
+ *
+ * @author 	PyroCMS Dev Team
+ * @package PyroCMS\Core\Helpers
+ */
+if (!function_exists('tree_builder'))
+{
+    /**
+     * Build the html for a tree view
+     *
+     * @param array $items 	An array of items that may or may not have children (under a key named `children` for each appropriate array entry).
+     * @param array $html 	The html string to parse. Example: <li id="{{ id }}"><a href="#">{{ title }}</a>{{ children }}</li>
+     *
+     */
+    # echo tree_builder($folder_tree, '<li class="folder" data-id="{{ id }}" data-name="{{ name }}"><div></div><a href="#">{{ name }}</a>{{ children }}</li>');
+    function tree_builder($items, $html)
+    {
+        $output = '';
+
+        if( is_array($items) )
+        {
+            foreach ($items as $item)
+            {
+                if (isset($item['children']) and ! empty($item['children']))
+                {
+                    // if there are children we build their html and set it up to be parsed as {{ children }}
+                    $item['children'] = '<ul>'.tree_builder($item['children'], $html).'</ul>';
+                }
+                else
+                {
+                    $item['children'] = null;
+                }
+
+                // now that the children html is sorted we parse the html that they passed
+                $output .= ci()->parser->parse_string($html, $item, true);
+            }
+
+            return $output;
+        }
+    }
+}

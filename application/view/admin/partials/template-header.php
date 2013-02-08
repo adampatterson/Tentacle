@@ -28,7 +28,10 @@
     <script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-transition.js"></script>
     <script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-collapse.js"></script>
 	<script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-tab.js"></script>
-
+<? if ( in_array('sortable', $assets ) ): ?>
+    <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.nestable.js"></script>
+    <link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>sortable.css">
+<? endif; ?>
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->

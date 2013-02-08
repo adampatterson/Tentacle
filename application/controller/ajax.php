@@ -21,6 +21,9 @@ class ajax_controller {
 	}
 
 
+    /**
+     * Reorder page structure
+     * ----------------------------------------------------------------------------------------------*/
     public function sortable ()
     {
         if (!empty($_REQUEST["data"]))

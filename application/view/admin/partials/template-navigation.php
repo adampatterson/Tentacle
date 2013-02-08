@@ -16,6 +16,7 @@
                     <ul class="dropdown-menu">
                         <li class="<? current_page('admin/content_manage_pages'); ?>"><a href="<?= ADMIN ?>content_manage_pages/">Manage pages</a></li>
                         <li class="<? current_page('admin/content_add_page'); ?>"><a href="<?= ADMIN ?>content_add_page/">Write a new page</a></li>
+                        <li class="<? current_page('admin/content_order_page'); ?>"><a href="<?= ADMIN ?>content_order_page/">Manage page order</a></li>
                     <li class="divider"></li>
                         <li class="<? current_page('admin/content_manage_posts'); ?>"><a href="<?= ADMIN ?>content_manage_posts/">Manage posts</a></li>
                         <li class="<? current_page('admin/content_add_post'); ?>"><a href="<?= ADMIN ?>content_add_post/">Write a new post</a></li>
