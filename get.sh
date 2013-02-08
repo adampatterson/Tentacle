@@ -2,7 +2,7 @@
 # curl get.tcms.me | sh
 	echo "*** Installing Tentacle CMS..."
 
-	curl -sL https://github.com/adampatterson/Tentacle/tarball/master | tar -xz --strip-components 1
+	curl -sL https://github.com/adampatterson/Tentacle/tarball/beta-wip | tar -xz --strip-components 1
 	
 #	<?php
 #	echo shell_exec( 'curl get.tcms.me | sh' );
