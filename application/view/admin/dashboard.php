@@ -15,18 +15,52 @@
 
                         <script type="text/javascript">
 
-                            $.getJSON("http://tentaclecms.com/api/feed/json/",
-                                function(data){
-                                    // console.log('tentacle')
-                                    $.each(data, function(i, item){
-                                        $(".feed").append('<li><h3><a href="' + item.url + '">' + item.title + '</a></h3><p>' + item.content +' <a href="' + item.url + '"> Read more  »</a></p></li>');
+                            $(document).ready(function() {
+
+                                    var surl =  "http://tentacle.dev/api/feed/json/";
+
+                                    $.ajax({
+                                        url: surl,
+
+                                        dataType: "jsonp",
+                                        jsonp : "callback",
+                                        jsonpCallback: "jsonpcallback",
+                                        success: function jsoncallback(json) {
+
+                                            $.each(json, function(i, item){
+                                                $(".feed").append('<li><h3><a href="' + item.url + '">' + item.title + '</a></h3><p>' + item.content +' <a href="' + item.url + '"> Read more  »</a></p></li>');
+                                            });
+
+                                        },
+                                        error: function(e) {
+
+                                            $(".feed").append('<li><h3>' + e.message + '</h3></li>');
+
+                                        }
                                     });
-                                })
-                            .error(function() {
-                                $(".feed").append('<li><p>error</p></li>');
                             });
 
                         </script>
+
+                         <? /*<script type="text/javascript">
+
+                            var url = 'http://tentacle.dev/api/feed/json/?callback=?';
+
+                           $.ajax({
+                               type: 'GET',
+                               url: url,
+                               async: false,
+                               contentType: "application/json",
+                               dataType: 'jsonp',
+                               success: function jsoncallback(json) {
+                                   console.log(json);
+                               },
+                               error: function(e) {
+                                   console.log(e.message);
+                               }
+                           });
+
+                       </script>*/ ?>
 
 					</div>
 					<? /*<div class="span4 well">

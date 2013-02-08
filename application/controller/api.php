@@ -12,8 +12,8 @@ class api_controller {
 
     public function feed($format = 'json')
     {
-        header('Content-type: text/json');
-        header('Content-type: application/json');
+        #header('Content-type: text/json');
+        header("content-type: application/json");
 
         define ( 'FRONT'		,'true' );
 
@@ -28,6 +28,6 @@ class api_controller {
             }
         }
 
-        echo json_encode( $json_feed );
+        echo 'jsonpcallback('. json_encode($json_feed) . ')';
     }
 }
