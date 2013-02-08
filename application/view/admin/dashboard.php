@@ -17,7 +17,7 @@
 
                             $(document).ready(function() {
 
-                                    var surl =  "http://tentacle.dev/api/feed/json/";
+                                    var surl =  "http://tentaclecms.com/api/feed/json/";
 
                                     $.ajax({
                                         url: surl,
