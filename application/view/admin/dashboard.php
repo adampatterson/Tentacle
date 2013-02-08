@@ -12,19 +12,31 @@
 						<? //dashboard_feed(array( 'feed' => 'http://tentaclecms.com/blog/feed/' ) ); ?>
 			
 						<ul class="feed"></ul>
-												
-						<script type="text/javascript">
-								$.getJSON("http://tentaclecms.com/blog/feed/?feed=json&jsonp=?",
-						       function(data){
 
-									$.each(data.slice(0,4), function(i, item){
-										$(".feed").append('<li><h3><a href="' + item.permalink + '">' + item.title + '</a></h3><p>' + item.excerpt +'</p></li>');
-									});
-						       });
-						</script>
-				
+                        <script type="text/javascript">
+
+                            $.getJSON("http://tentaclecms.com/api/feed/json/",
+                                function(data){
+                                    // console.log('tentacle')
+                                    $.each(data, function(i, item){
+                                        $(".feed").append('<li><h3><a href="' + item.url + '">' + item.title + '</a></h3><p>' + item.content +' <a href="' + item.url + '"> Read more  »</a></p></li>');
+                                    });
+                                })
+
+                            .error(function() {
+                                $.getJSON("http://tentaclecms.com/blog/feed/?feed=json&jsonp=?",
+                                    function( data ) {
+                                        //console.log('wordpress');
+                                        $.each(data.slice(0,4), function(i, item){
+                                            $(".feed").append('<li><h3><a href="' + item.permalink + '">' + item.title + '</a></h3><p>' + item.excerpt +'</p></li>');
+                                        });
+                                    });
+                            });
+
+                        </script>
+
 					</div>
-					<!-- <div class="span4 well">
+					<? /*<div class="span4 well">
 							<h2>Content</h2>
 							<ul>
 								<li><strong>#</strong> Posts</li>
@@ -32,7 +44,7 @@
 								<li><strong>#</strong> Categories</li>
 								<li><strong>#</strong> Tags</li>
 							</ul>
-						</div> -->
+						</div>*/ ?>
 					<div class="span4 well">
 						<h2>Quick Links</h2>
 						<ul>

@@ -17,6 +17,17 @@ class api_controller {
 
         define ( 'FRONT'		,'true' );
 
-        echo json_encode( load::model('post')->get_quantity( 5 ) );
+        $feed = load::model('post')->get_quantity( 6 );
+
+        foreach ( $feed as $key => $post )
+        {
+             if(strlen($post->content) > 50 ) {
+                $json_feed[$key]['title'] = $post->title;
+                $json_feed[$key]['content'] = string::truncate(strip_tags($post->content), 300);
+                $json_feed[$key]['url'] = BASE_URL.$post->uri;
+            }
+        }
+
+        echo json_encode( $json_feed );
     }
 }

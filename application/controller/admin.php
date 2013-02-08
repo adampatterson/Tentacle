@@ -186,6 +186,8 @@ class admin_controller {
      * ----------------------------------------------------------------------------------------------*/
     public function content_order_page (  )
     {
+        tentacle::valid_user();
+
         define ( 'FRONT'		,'true' );
 
         $page = load::model( 'page' );
