@@ -1,4 +1,4 @@
-<? load::view('admin/partials/template-header',array('title'=>'Edit snippet','assets'=>'application')); ?>
+<? load::view('admin/partials/template-header', array('title' => 'Edit snippet', 'assets' => array('application')));?>
 <div id="wrap">
   <div class="has-right-sidebar">
     <div class="contet-sidebar">
@@ -6,7 +6,7 @@
       <p>Snippets are generally small pieces of content which are included in other pages or layouts.</p>
       <h3>Tag to use this snippet</h3>
       <p>Just replace <strong>snippet</strong> by the snippet name you want to include.</p>
-      <p>[snippet slug=<strong>slug_name</strong>]</p>
+      <p>[snippet <strong>slug_name</strong>]</p>
     </div>
 		<div id="post-body">
 			<div id="post-body-content">
@@ -54,4 +54,4 @@
 	</div><!-- .full-content -->
 </div>
 <!-- #wrap -->
-<? load::view('admin/partials/template-footer'); ?>
+<? load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) ); ?>

@@ -37,4 +37,4 @@
 		</div><!-- #post-body -->
 </div>
 <!-- #wrap -->
-<?load::view('admin/partials/template-footer');?>
+<?load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) ); ?>

@@ -15,8 +15,6 @@
 
 class snippet_model  
 {
-	
-	
 	// Add Snippet
 	//----------------------------------------------------------------------------------------------
 	public function add () 
@@ -102,7 +100,7 @@ class snippet_model
 		$get_snippet = $snippets->select( '*' )
 			->where ( 'slug', '=', $slug )
 			->execute();
-				
+
 		return $get_snippet[0];
 	}
 
