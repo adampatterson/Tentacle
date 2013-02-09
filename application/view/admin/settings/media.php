@@ -57,6 +57,24 @@
 				</fieldset>
 			</div>
 			<div class="one-half">
+
+                <h2>Embeded media sizes</h2>
+                <hr />
+                <p>
+                    Choose a size for embeded rich media.
+                </p>
+                <fieldset>
+                    <div class="clearfix">
+                        <label>&nbsp;</label>
+                        <div class="input">
+                            <div class="inline-inputs">
+                                <input type="text" value="<?= get::option('embed_size_w'); ?>" name="embed_size_w" id="embed_size_w" class='span2' />
+                                x
+                                <input type="text" value="<?= get::option('embed_size_h'); ?>" name="embed_size_h" id="embed_size_h" class='span2' />
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
 <? /*
 				<h2>Uploading Files</h2>
 				<hr />
@@ -94,7 +112,9 @@
 		</div>
 		<div class="one-full">
 			<div class="actions">
-				<input type="submit" value="Save Changes" class="btn primary medium" id="submit" name="submit">
+                <button class="btn btn-primary" type="submit">
+                    Save Changes
+                </button>
 			</div>
 		</div>
 	</form>

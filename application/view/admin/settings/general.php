@@ -193,58 +193,7 @@
 			</div>
 		</div>
 		<div class="one-full">
-			<br />
-			<h2>Image sizes</h2>
-			<hr />
-			<p>
-				The sizes listed below determine the maximum dimensions in pixels to use when inserting an image into the body of a post.
-			</p>
-			<fieldset>
-				<div class="control-group">
-					<label>Thumbnail size</label>
-					<div class="controls">
-						<div class="inline-inputs">
-							<input type="text" value="<?= get::option('image_thumb_size_w','150'); ?>" name="image_thumb_size_w" id="thumbnail_size_w" class='span2' />
-							x
-							<input type="text" value="<?= get::option('image_thumb_size_h','150'); ?>" name="image_thumb_size_h" id="thumbnail_size_h" class='span2' />
-						</div>
-					</div>
-				</div>
-<? /*
-					<div class="input">
-						<ul class="inputs-list">
-							<li>
-								<label>
-									<input type="hidden" value="0" name="thumbnail_crop">
-									<input type="checkbox" value="1" name="thumbnail_crop">
-									<span>Crop thumbnail to exact dimensions (normally thumbnails are proportional)</span> </label>
-							</li>
-						</ul>
-					</div>
-*/ ?>
-				
-				<div class="control-group">
-					<label>Medium size</label>
-					<div class="controls">
-						<div class="inline-inputs">
-							<input type="text" value="<?= get::option('image_medium_size_w','300'); ?>" name="image_medium_size_w" id="medium_size_w" class='span2' />
-							x
-							<input type="text" value="<?= get::option('image_medium_size_h','300'); ?>" name="image_medium_size_h" id="medium_size_h" class='span2' />
-						</div>
-					</div>
-				</div>
-				
-				<div class="control-group">
-					<label>Large size</label>
-					<div class="controls">
-						<div class="inline-inputs">
-							<input type="text" value="<?= get::option('image_large_size_w','600'); ?>" name="image_large_size_w" class='span2' />
-							x
-							<input type="text" value="<?= get::option('image_large_size_h','600'); ?>" name="image_large_size_h" class='span2' />
-						</div>
-					</div>
-				</div>
-			</fieldset>
+
 		</div>
 		<div class="one-full">
 			<div class="form-actions">

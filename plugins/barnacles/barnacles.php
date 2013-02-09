@@ -9,12 +9,7 @@ author:
   url: http://adampatterson.ca
 */
 
-event::on('shortcode', 'barnacles::shortcode', 1);
-add_shortcode( 'snippet', 'snippet' );
-
 #event::on('plugin_navigation', 'barnacles::settings_nav', 7);
-
-logger::set('Shortcode', 'Plugin');
 
 class barnacles
 {
@@ -34,12 +29,6 @@ class barnacles
     	return $nav;
     }
 
-	static function shortcode($text='')
-    {
-		if (function_exists('do_shortcode'))
-		    return do_shortcode( $text );
-	}
-
     static function barnacle()
     {
         return 'Incy Wincy spider climbed up the water spout.';
@@ -47,10 +36,44 @@ class barnacles
 }
 
 
+event::on('shortcode', 'shortcode', 1);
+logger::set('Shortcode', 'oEmbed');
+
+
+function shortcode( $content )
+{
+    add_shortcode( 'embed', 'oembed_content' );
+    add_shortcode( 'snippet', 'snippet' );
+
+    if (function_exists('do_shortcode'))
+        return do_shortcode( $content );
+}
+
+
 function snippet( $slug )
 {
-	$snippet = load::model( 'snippet' );
-	$snippet_single = $snippet->get_slug( $slug['slug'] );
+    $snippet = load::model( 'snippet' );
+    $snippet_single = $snippet->get_slug( $slug[0] );
 
-	return $snippet_single->content;
+    return $snippet_single->content;
+}
+
+
+function oembed_content( $url )
+{
+    $url = $url[0];
+
+    load::library('oembed','AutoEmbed.class');
+
+    $AE = new AutoEmbed();
+
+    // load the embed source from a remote url
+    if ($AE->parseUrl($url)) {
+        //$imageURL = $AE->getImageURL();
+
+        $AE->setWidth( get::option( 'embed_size_w' ) );
+        $AE->setHeight( get::option( 'embed_size_h' ) );
+
+        return $AE->getEmbedCode();
+    }
 }

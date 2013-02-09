@@ -99,10 +99,9 @@ $AutoEmbed_stubs = array(
     'website' => 'http://www.vimeo.com',
     'url-match' => 'http://(?:www\.)?vimeo\.com/([0-9]{1,12})',
     'embed-src' => 'http://vimeo.com/moogaloop.swf?clip_id=$2&server=vimeo.com&fullscreen=1&show_title=1&show_byline=1&show_portrait=0&color=01AAEA',
-	'embed-width' => '400',
+    'embed-width' => '400',
     'embed-height' => '302',
-    'image-src' => '',
-	'iframe-player' => 'http://player.vimeo.com/video/$2',
+    'iframe-player' => 'http://player.vimeo.com/video/$2',
   ),
   array(
     'title' => '123video',
