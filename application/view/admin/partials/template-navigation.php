@@ -53,6 +53,7 @@
 			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
 			    <ul class="dropdown-menu">
                     <li class="<? current_page('admin/settings_general'); ?>"><a href="<?= ADMIN ?>settings_general/">General</a></li>
+                    <li class="<? current_page('admin/settings_media'); ?>"><a href="<?= ADMIN ?>settings_media/">Media</a></li>
                     <li class="<? current_page('admin/updates'); ?>"><a href="<?= ADMIN ?>updates/">Updates</a></li>
                     <li class="divider"></li>
                     <li class="<? current_page('admin/import_wordpress'); ?>"><a href="<?= ADMIN ?>import_wordpress/">Import from WordPress</a></li>
@@ -63,13 +64,11 @@
 				<li class="<? current_page('admin/settings_writing'); ?>"><a href="<?= ADMIN ?>settings_writing/">Writing</a></li>
 				<li class="<? current_page('admin/settings_reading'); ?>"><a href="<?= ADMIN ?>settings_reading/">Reading</a></li>
 				<li class="<? current_page('admin/settings_comments'); ?>"><a href="<?= ADMIN ?>settings_comments/">Comments</a></li>
-				<li class="<? current_page('admin/settings_media'); ?>"><a href="<?= ADMIN ?>settings_media/">Media</a></li>
-				<li class="<? current_page('admin/settings_privacy'); ?>"><a href="<?= ADMIN ?>settings_privacy/">Privacy</a></li>
-				<li class="<? current_page('admin/settings_export'); ?>"><a href="<?= ADMIN ?>settings_templates/">Notification Templates</a></li>
-				<li class="<? current_page('admin/settings_import'); ?>"><a href="<?= ADMIN ?>settings_import/">Import</a></li>
-				<li class="<? current_page('admin/settings_export'); ?>"><a href="<?= ADMIN ?>settings_export/">Export</a></li>
-	*/
-				?>
+                <li class="<? current_page('admin/settings_privacy'); ?>"><a href="<?= ADMIN ?>settings_privacy/">Privacy</a></li>
+                <li class="<? current_page('admin/settings_export'); ?>"><a href="<?= ADMIN ?>settings_templates/">Notification Templates</a></li>
+                <li class="<? current_page('admin/settings_import'); ?>"><a href="<?= ADMIN ?>settings_import/">Import</a></li>
+                <li class="<? current_page('admin/settings_export'); ?>"><a href="<?= ADMIN ?>settings_export/">Export</a></li>
+*/ ?>
 			  </ul>
 			</li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Plugins <b class="caret"></b></a>

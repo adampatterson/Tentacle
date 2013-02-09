@@ -17,27 +17,27 @@
 
                             $(document).ready(function() {
 
-                                    var surl =  "http://tentaclecms.com/api/feed/json/";
+                                var surl =  "http://tentaclecms.com/api/feed/json/";
 
-                                    $.ajax({
-                                        url: surl,
+                                $.ajax({
+                                    url: surl,
 
-                                        dataType: "jsonp",
-                                        jsonp : "callback",
-                                        jsonpCallback: "jsonpcallback",
-                                        success: function jsoncallback(json) {
+                                    dataType: "jsonp",
+                                    jsonp : "callback",
+                                    jsonpCallback: "jsonpcallback",
+                                    success: function jsoncallback(json) {
 
-                                            $.each(json, function(i, item){
-                                                $(".feed").append('<li><h3><a href="' + item.url + '">' + item.title + '</a></h3><p>' + item.content +' <a href="' + item.url + '"> Read more  »</a></p></li>');
-                                            });
+                                        $.each(json, function(i, item){
+                                            $(".feed").append('<li><h3><a href="' + item.url + '">' + item.title + '</a></h3><p>' + item.content +' <a href="' + item.url + '"> Read more  »</a></p></li>');
+                                        });
 
-                                        },
-                                        error: function(e) {
+                                    },
+                                    error: function(e) {
 
-                                            $(".feed").append('<li><h3>' + e.message + '</h3></li>');
+                                        $(".feed").append('<li><h3>' + e.message + '</h3></li>');
 
-                                        }
-                                    });
+                                    }
+                                });
                             });
 
                         </script>
