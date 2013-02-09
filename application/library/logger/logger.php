@@ -7,9 +7,16 @@ class logger
     protected static $instances = array();
 
     /**
-     * Debug Console set
+     * Function: set
+     *	Sets a log event
+     *
+     * Parameters:
+     *	$name - string
+     *  $text - string
+     *  $level - int
      */
-    static function set($name, $txt, $level=0 ) {
+    static function set( $name, $txt, $level=0 )
+    {
 
         switch ($level) {
             case 0:
@@ -43,11 +50,21 @@ class logger
         return static::$instances;
     }
 
+
+    /**
+     * Function: environment
+     *	Returns memory usage
+     */
     static function environment()
     {
         return memory_usage();
     }
 
+
+    /**
+     * Function: render
+     *	Outputs the logger content in an html table
+     */
     static function render()
     {
         $html = '<p><br /><br /></p><h2 style="margin: 0 20px 10px;">Debug Log</h2>
