@@ -63,17 +63,47 @@ function oembed_content( $url )
 {
     $url = $url[0];
 
-    load::library('oembed','AutoEmbed.class');
+    $oembedUrls = array (
+        'www.youtube.com' => 'http://www.youtube.com/oembed?url=$1&format=json',
+        'www.dailymotion.com' => 'http://www.dailymotion.com/api/oembed?url=$1&format=json',
+        'www.vimeo.com' => 'http://vimeo.com/api/oembed.xml?url=$1&format=json',
+        'vimeo.com' => 'http://vimeo.com/api/oembed.xml?url=$1&format=json',
+        'www.blip.tv' => 'http://blip.tv/oembed/?url=$1&format=json',
+        'www.hulu.com' => 'http://www.hulu.com/api/oembed?url=$1&format=json',
+        'www.viddler.com' => 'http://lab.viddler.com/services/oembed/?url=$1&format=json',
+        'www.qik.com' => 'http://qik.com/api/oembed?url=$1&format=json',
+        'www.revision3.com' => 'http://revision3.com/api/oembed/?url=$1&format=json',
+        'www.scribd.com' => 'http://www.scribd.com/services/oembed?url=$1&format=json',
+        'www.wordpress.tv' => 'http://wordpress.tv/oembed/?url=$1&format=json',
+        'www.5min.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'www.collegehumor.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'www.thedailyshow.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'www.funnyordie.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'www.livejournal.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'www.metacafe.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'www.xkcd.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'www.yfrog.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'yfrog.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'www.flickr.com' => 'http://www.flickr.com/services/oembed?url=$1&format=json'
+    );
 
-    $AE = new AutoEmbed();
+    if (!empty($url)){
+        $parts = parse_url($url);
 
-    // load the embed source from a remote url
-    if ($AE->parseUrl($url)) {
-        //$imageURL = $AE->getImageURL();
+        $host = $parts['host'];
+        if (empty($host) || !array_key_exists($host,$oembedUrls)){
+            echo 'Unrecognized host';
+        } else {
+            $oembedContents = @file_get_contents(str_replace('$1',$url,$oembedUrls[$host]));
 
-        $AE->setWidth( get::option( 'embed_size_w' ) );
-        $AE->setHeight( get::option( 'embed_size_h' ) );
+            $oembedData = @json_decode( $oembedContents );
 
-        return $AE->getEmbedCode();
+            if ( $host == 'www.flickr.com' || $host == 'flickr.com' || $host == 'yfrog.com' ) {
+                return '<img src="'. $oembedData->url .'" width="'.get::option( 'embed_size_w' ).'" />';
+            } else {
+                $embedCode =  $oembedData->html;
+            }
+            return $embedCode;
+        }
     }
 }
