@@ -1,100 +1,60 @@
 <?php
-    require_once "AutoEmbed.class.php";
+/**
+ * File: oEmbed
+ */
 
-    class Video {
-        public function __init() {
-            $this->setField(array("attr" => "video",
-                                  "type" => "text_block",
-                                  "rows" => 4,
-                                  "label" => __("Video", "video"),
-                                  "preview" => true,
-                                  "bookmarklet" => $this->isVideo() ? "url" : "")) ;
-            $this->setField(array("attr" => "caption",
-                                  "type" => "text_block",
-                                  "rows" => 4,
-                                  "label" => __("Caption", "video"),
-                                  "optional" => true,
-                                  "preview" => true,
-                                  "bookmarklet" => "selection"));
 
-            if ($this->isVideo())
-                $this->bookmarkletSelected();
+function oembed_cotnent( $url )
+{
+    $oembed_urls = array (
+        'www.youtube.com' => 'http://www.youtube.com/oembed?url=$1&format=json',
+        'www.dailymotion.com' => 'http://www.dailymotion.com/api/oembed?url=$1&format=json',
+        'www.vimeo.com' => 'http://vimeo.com/api/oembed.xml?url=$1&format=json',
+        'vimeo.com' => 'http://vimeo.com/api/oembed.xml?url=$1&format=json',
+        'www.blip.tv' => 'http://blip.tv/oembed/?url=$1&format=json',
+        'www.hulu.com' => 'http://www.hulu.com/api/oembed?url=$1&format=json',
+        'www.viddler.com' => 'http://lab.viddler.com/services/oembed/?url=$1&format=json',
+        'www.qik.com' => 'http://qik.com/api/oembed?url=$1&format=json',
+        'www.revision3.com' => 'http://revision3.com/api/oembed/?url=$1&format=json',
+        'www.scribd.com' => 'http://www.scribd.com/services/oembed?url=$1&format=json',
+        'www.wordpress.tv' => 'http://wordpress.tv/oembed/?url=$1&format=json',
+        'www.5min.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'www.collegehumor.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'www.thedailyshow.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'www.funnyordie.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'www.livejournal.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'www.metacafe.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'www.xkcd.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'www.yfrog.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'yfrog.com' => 'http://www.oohembed.com/oohembed/?url=$1',
+        'www.flickr.com' => 'http://www.flickr.com/services/oembed?url=$1&format=json'
+    );
 
-            $this->setFilter("caption", array("markup_text", "markup_post_text"));
+    if (!empty($url)){
+        $parts = parse_url($url);
 
-            $this->respondTo("preview_video", "embed_tag");
-        }
+        $host = $parts['host'];
+        if ( empty( $host ) || !array_key_exists( $host, $oembed_urls ) )
+        {
+            echo 'Unrecognized host';
+        } else
+        {
+            $oembed_contents = @file_get_contents( str_replace( '$1', $url, $oembed_urls[$host] ) );
 
-        public function submit() {
-            if (empty($_POST['video']))
-                error(__("Error"), __("Video can't be blank."));
+            $oembed_data = @json_decode( $oembed_contents );
 
-            return Post::add(array("embed" => $this->embed_tag($_POST['video']),
-                                   "video" => $_POST['video'],
-                                   "caption" => $_POST['caption']),
-                             $_POST['slug'],
-                             Post::check_url($_POST['slug']));
-        }
+            if ( $host == 'www.flickr.com' || $host == 'flickr.com' || $host == 'yfrog.com' )
+                return '<img src="'. $oembed_data->url .'" width="'.get::option( 'embed_size_w' ).'" />';
+            else
+                $embed_code =  $oembed_data->html;
 
-        public function update($post) {
-            if (empty($_POST['video']))
-                error(__("Error"), __("Video can't be blank."));
+            $pattern = "/height=\"[0-9]*\"/";
+            $content = preg_replace($pattern, 'height="'.get::option( 'embed_size_h' ).'"', $embed_code);
 
-            $post->update(array("embed" => $this->embed_tag($_POST['video']),
-                                "video" => $_POST['video'],
-                                "caption" => $_POST['caption']));
-        }
+            $pattern = "/width=\"[0-9]*\"/";
+            $embed_code = preg_replace($pattern, 'width="'.get::option( 'embed_size_w' ).'"', $content);
 
-        public function title($post) {
-            return $post->title_from_excerpt();
-        }
-
-        public function excerpt($post) {
-            return $post->caption;
-        }
-
-        public function feed_content($post) {
-            return $post->embed."<br /><br />".$post->caption;
-        }
-
-        public function embed_tag($video, $field = null) { # We use this for previewing too
-            if (isset($field) and $field != "embed")
-                return $video; # If they're previewing and the field argument isn't the embed, return the original.
-
-            $AE = new AutoEmbed();
-            if ($AE->parseUrl($video)) {
-                $AE->setParam("wmode", "transparent");
-                return $AE->getEmbedCode();
-            } else
-                return $video;
-        }
-
-        public function embed_tag_for($post, $max_width = 500) {
-            $post->embed = preg_replace("/&([[:alnum:]_]+)=/", "&amp;\\1=", $post->embed);
-
-            if (preg_match("/width(=\"|='|:\s*)([0-9]+)/", $post->embed, $width)) {
-                $sep_w = $width[1];
-                $original_width = $width[2];
-            } else
-                return $post->embed;
-
-            if (preg_match("/height(=\"|='|:\s*)([0-9]+)/", $post->embed, $height)) {
-                $sep_h  = $height[1];
-                $original_height = $height[2];
-
-                $new_height = (int) (($max_width / $original_width) * $original_height);
-            }
-
-            $post->embed = str_replace(array($width[0], $height[0]), array("width".$sep_w.$max_width, "height".$sep_h.$new_height), $post->embed);
-
-            return $post->embed;
-        }
-
-        public function isVideo() {
-            if (!isset($_GET['url']))
-                return false;
-
-            $AE = new AutoEmbed();
-            return $result = $AE->parseUrl($_GET['url']) ? true : false ;
+            return $embed_code;
         }
     }
+}
