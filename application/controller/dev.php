@@ -80,7 +80,7 @@ class dev_controller {
         #event::off('event_chain', 'method_two');
 
         event::off(null, 'method_one');
-	
+
         var_dump(event::$_events);
 
 
@@ -225,13 +225,13 @@ class dev_controller {
 		# Stop output from code to be tested
 			function output_buffer() { return NULL; }
 			ob_start('output_buffer');
-			
+
 			$loops = 100;
 			$exact_timer = true;
-			
+
 			ob_flush();
 			flush();
-			
+
 /*
 Test one
 */
@@ -260,12 +260,12 @@ Test two
 /* ========================== */
 
 
-				
+
 /* ========================== */	
-	
+
 				endfor;
 				$total_time2 = microtime($exact_timer) - $start_time2; # Stop the second timer, and figure out the total
-				$total_memory2 = memory_usage();	
+				$total_memory2 = memory_usage();
 
 			ob_end_flush(); # Enable output again
 
@@ -280,23 +280,23 @@ Test two
 
 				echo '<p>your first test was faster by <strong>'.abs(round($res)).'%</strong>, it took <strong>'.$total_time.'</strong> seconds to execute vs <strong>'.$total_time2.'</strong>.</p>';
 				echo '<p>Your first test used <strong>'.$total_memory.'</strong> vs <strong>'.$total_memory2.'</strong></p>';
-				
+
 			elseif($total_time > $total_time2):
 				$res = ( ( $total_time2 / $total_time ) * 100 ) - 100;
 
 				echo '<p>Your second test was faster by <strong>'.abs(round($res)).'%</strong>, it took <strong>'.$total_time2.'</strong> seconds to execute vs <strong>'.$total_time.'</strong>.</p>';
 				echo '<p>Your second test used <strong>'.$total_memory2.'</strong> vs <strong>'.$total_memory.'</strong></p>';
-				
+
 			elseif($total_time === $total_time2):
 				echo '<p>The code samples scored equal times. Use either.</p>';
-			endif;	
+			endif;
 	}
 
 
 	public function demo_clean()
 	{
 		$config = config::get('db');
-		
+
 		try {
 			$pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
 		} catch(PDOException $e) {
@@ -304,9 +304,9 @@ Test two
 		}
 
 		$build = $pdo->exec( "TRUNCATE TABLE  `posts`" );
-		
+
 		$build = $pdo->exec( "TRUNCATE TABLE `post_meta`" );
-		
+
 		$build = $pdo->exec( "TRUNCATE TABLE `users`" );
 
         user::create(array(
@@ -317,13 +317,13 @@ Test two
         ));
 
 		$build = $pdo->exec( "UPDATE  `users` SET `data` = '{\"first_name\":\"Demo\",\"last_name\":\"User\",\"activity_key\":\"\",\"url\":\"\",\"display_name\":\"Demo User\",\"editor\":\"wysiwyg\"}', `registered` = 1340063724, `status` = 1 WHERE  `users`.`username` = 'demo';" );
-			
+
 		$build = $pdo->exec( "INSERT INTO `posts` (`id`, `parent`, `author`, `date`, `modified`, `title`, `content`, `excerpt`, `comment_status`, `ping_status`, `password`, `slug`, `type`, `menu_order`, `uri`, `visible`, `status`, `template`)
 			VALUES
 				(6, 0, 1, 1322853969, 1328247576, 'Home', '<p><strong>Tentacle is an OpenSource Content Management System, it is free to use.</strong></p>\r\n<p>The goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p><p><strong>Username:</strong> demo<br /><strong>Password:</strong> demo<br /><a href=\'http://demo.tentaclecms.com/admin/\'>Admin</a></p>\r\n', '', 'open', 'open', '', 'home', 'page', 1, 'home/', 'public', 'published', 'default'),
 				(112, 0, 1, 1328502285, 1328560008, 'Welcome to Tentacle CMS', '<p>This is your first post!</p>\r\n', '', 'open', 'open', '', 'welcome-to-tentacle-cms', 'post', 0, 'welcome-to-tentacle-cms/', 'public', 'published', 'default'),
 				(113, 0, 1, 1340070422, 1340070422, 'Blog', '', '', 'open', 'open', '', 'blog', 'page', 2, 'blog/', 'public', 'published', 'template-blog');" );
-		
+
 		$build = $pdo->exec( "INSERT INTO `posts_meta` (`id`, `posts_id`, `meta_key`, `meta_value`)
 			VALUES
 				(7, 6, 'scaffold_data', 'a:5:{s:4:\"save\";s:0:\"\";s:11:\"bread_crumb\";s:0:\"\";s:13:\"meta_keywords\";s:0:\"\";s:16:\"meta_description\";s:0:\"\";s:4:\"tags\";s:0:\"\";}'),
@@ -341,7 +341,7 @@ Test two
 		$user_name    = 'user_name';
 		$password     = 'password';
 		$email        = 'hello@adampatterson.ca';
-	
+
 		$first_name   = 'Adam';
 		$last_name    = 'Patterson';
 
@@ -362,8 +362,8 @@ Test two
 
 	/**
 	* pull function
-	* 
-	* The pull function is triggered by GitHub's Post-Receive URL. 
+	*
+	* The pull function is triggered by GitHub's Post-Receive URL.
 	* Every time a push to GitHub is done staging.tcms.me will be updated.
 	*
 	* @return string
@@ -372,7 +372,7 @@ Test two
 	public function pull()
 	{
 		load::helper ('git');
-		
+
 		echo '<pre>';
 		echo pull();
 		echo '</pre>';
@@ -385,7 +385,7 @@ Test two
 
 		clean_out( $categories->get_all_tags( ) );
 	}
-	
+
 
 	/**
 	 * ========================= Google Analytics
@@ -393,176 +393,17 @@ Test two
 	 * http://richardneililagan.com/2010/06/accessing-google-analytics-using-php-via-gapi/
 	 */
 
-	
+
 	public function script_cache()
 	{
 		load::helper('cache');
 
 		cache::css();
 		//cache::script();
-		
-	}
-
-	public function sortable ()
-	{			
-		load::view ( 'admin/sortable' );
-	}
-	
-	
-	public function RecursiveWrite( $pages, $level = 0 ) 
-	{
-		$page_flat_hiarchy = array();
-
-		// build a multidimensional array of parent > children
-		foreach ($pages as $key => $value ):
-			$type = is_array($key);
-
-			$page_flat_hiarchy[$key] = /*$level*/$value;
-			//$page_flat_hiarchy[$key] = $level;
-
-			if ( array_key_exists( 'children', $value ) )
-				RecursiveWrite($value['children'], $level+1);
-		endforeach;
-
-		return $page_flat_hiarchy;
-	}
-
-	
-	public function menu()
-	{
-		 //example data
-		 $items = array(
-		    array('id'=>1, 'title'=>'Home', 'parent_id'=>0),
-		    array('id'=>2, 'title'=>'News', 'parent_id'=>1),
-		    array('id'=>3, 'title'=>'Sub News', 'parent_id'=>2),
-		    array('id'=>4, 'title'=>'Articles', 'parent_id'=>0),
-		    array('id'=>5, 'title'=>'Article', 'parent_id'=>4),
-		    array('id'=>6, 'title'=>'Article2', 'parent_id'=>4)
-		 );
-
-		 //create new list grouped by parent id
-		 $itemsByParent = array();
-		 foreach ($items as $item) {
-		    if (!isset($itemsByParent[$item['parent_id']])) {
-		        $itemsByParent[$item['parent_id']] = array();
-		    }
-
-		    $itemsByParent[$item['parent_id']][] = $item;
-		 }
-
-		 //print list recursively 
-		 function printList($items, $parentId = 0) {
-		    echo '<ul>';
-		    foreach ($items[$parentId] as $item) {
-		        echo '<li>';
-		        echo $item['title'];
-		        $curId = $item['id'];
-		        //if there are children
-		        if (!empty($items[$curId])) {
-		            printList($items, $curId);
-		        }           
-		        echo '</li>';
-		    }
-		    echo '</ul>';
-		 }
-
-		printList($itemsByParent);
-	}
-	
-	
-	public function oembed_two()
-	{
-		?>
-		<form name="oembed_form" action="http://localhost/tentacle/dev/oembed_two" method="post">
-		<input type="text" name="url" value="<?=input::post('url')?>" size="50">
-		<input type="submit" name="Show" value="Show Video">
-		</form>
-		<?
-		$oembedUrls = array (
-		  'www.youtube.com' => 'http://www.youtube.com/oembed?url=$1&format=json',
-		  'www.dailymotion.com' => 'http://www.dailymotion.com/api/oembed?url=$1&format=json',
-		  'www.vimeo.com' => 'http://vimeo.com/api/oembed.xml?url=$1&format=json',
-		  'vimeo.com' => 'http://vimeo.com/api/oembed.xml?url=$1&format=json',
-		  'www.blip.tv' => 'http://blip.tv/oembed/?url=$1&format=json',
-		  'www.hulu.com' => 'http://www.hulu.com/api/oembed?url=$1&format=json',
-		  'www.viddler.com' => 'http://lab.viddler.com/services/oembed/?url=$1&format=json',
-		  'www.qik.com' => 'http://qik.com/api/oembed?url=$1&format=json',
-		  'www.revision3.com' => 'http://revision3.com/api/oembed/?url=$1&format=json',
-		  'www.scribd.com' => 'http://www.scribd.com/services/oembed?url=$1&format=json',
-		  'www.wordpress.tv' => 'http://wordpress.tv/oembed/?url=$1&format=json',
-		  'www.5min.com' => 'http://www.oohembed.com/oohembed/?url=$1',
-		  'www.collegehumor.com' => 'http://www.oohembed.com/oohembed/?url=$1',
-		  'www.thedailyshow.com' => 'http://www.oohembed.com/oohembed/?url=$1',
-		  'www.funnyordie.com' => 'http://www.oohembed.com/oohembed/?url=$1',
-		  'www.livejournal.com' => 'http://www.oohembed.com/oohembed/?url=$1',
-		  'www.metacafe.com' => 'http://www.oohembed.com/oohembed/?url=$1',
-		  'www.xkcd.com' => 'http://www.oohembed.com/oohembed/?url=$1',
-		  'www.yfrog.com' => 'http://www.oohembed.com/oohembed/?url=$1',
-		  'yfrog.com' => 'http://www.oohembed.com/oohembed/?url=$1',
-		  'www.flickr.com' => 'http://www.flickr.com/services/oembed?url=$1&format=json'
-		);
-
-		if (!empty($_POST['url'])){
-			$parts = parse_url($_POST['url']);
-			
-			$host = $parts['host'];
-			if (empty($host) || !array_key_exists($host,$oembedUrls)){
-				echo 'Unrecognized host';
-			} else {
-				$oembedContents = @file_get_contents(str_replace('$1',$_POST['url'],$oembedUrls[$host]));
-				
-				$oembedData = @json_decode( $oembedContents );
-				
-				  if ( $host == 'www.flickr.com' || $host == 'flickr.com' || $host == 'yfrog.com' ) {
-						$embedCode = '<img src="'. $oembedData->url .'" />';
-		 			} else {
-				 		$embedCode =  $oembedData->html;
-					}
-				echo "Embed code for <a href='".$_POST['url']."' target='_blank'>".$_POST['url']."</a> :<br>".$embedCode;
-			}
-		}
 
 	}
-	
-	public function oembed (  )
-	{
-		
-		echo '<h1>oEmbed</h1>';
-		echo '<p>Page ID <strong>117</strong></p>';
-		
-		$page = load::model( 'page' );
-		$page = $page->get( '117' );
-		
-		//$url = 'http://www.youtube.com/watch?v=TWRzm2c-v4Q';
-		$url = 'http://vimeo.com/44185686';
-		//$url = 'http://www.flickr.com/photos/brianrbielawa/5534988483/';
-		
-		echo $url;
-		
-		load::library('oembed','AutoEmbed.class');
 
-		clean_out( $page->content );
-		
-		$AE = new AutoEmbed();
-		
-		//embed_tag_for($page->content);
 
-		
-		// load the embed source from a remote url
-		if (!$AE->parseUrl($url)) {
-		    echo 'it did not work';
-		} else {
-			echo 'it works <br />';
-			//$imageURL = $AE->getImageURL();
-			
-			$AE->setWidth('1280');
-			$AE->setHeight('720');
-			
-			echo $AE->getEmbedCode();
-			echo '<img src="'.$imageURL.'" />';
-		}		
-	}
-	
 	public function system ()
 	{
 		echo '<h3>$_SERVER</h3><hr />';
@@ -582,9 +423,9 @@ Test two
 		echo '<h3>$HTTP_RAW_POST_DATA</h3><hr />';
 			var_dump($HTTP_RAW_POST_DATA);
 		echo '<h3>$argv</h3><hr />';
-			var_dump($argv);	
+			var_dump($argv);
 	}
-	
+
 
 	/**
 	* ajax function
@@ -603,37 +444,37 @@ Test two
 	*
 	* @return html
 	* @author Adam Patterson
-	* 
+	*
 	* The purpose of this function is the provide simple HTML for jQuery to load and append to an element.
-	* 
+	*
 	**/
 	public function jq_load ()
 	{ ?>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		<script type="text/javascript">	
-		
+		<script type="text/javascript">
+
 			$(document).ready(function(){
 
-			
+
 			    function loadVals() {
 			      var singleValues = $("#select").val();
 					return singleValues;
 			    }
 
 			    $("select").change(load_content);
-			    
+
 				function load_content() {
 				    $.get(loadVals(), function(data) {
 				        $('#content').html(data);
 				    });
 				}
-			
+
 				load_content();
 			});
 		</script>
-		
+
 		  <p></p>
-		
+
 		<h1>Content</h1>
 		<select name="select" id="select" size="1" <!--onchange="location = this.options[this.selectedIndex].value;"-->>
 			<option value="<?= BASE_URL ?>dev/jq_html">Page One</option>
@@ -641,22 +482,22 @@ Test two
 		</select>
 		<div id="content"></div>
 <?	}
-  
+
 
 	/**
 	* jq_html function
 	*
 	* @return html
 	* @author Adam Patterson
-	* 
+	*
 	* The purpose of this function is the provide simple HTML for jQuery to load and append to an element.
-	* 
+	*
 	**/
 	public function jq_html ()
 	{
 		echo '<h3>This content was loaded with jQuery and appended to #content</h3>';
 	}
-	
+
 	public function jq_html_two ()
 	{
 		echo '<h3>This is some new content that has been appended to #content</h3>';
@@ -664,115 +505,25 @@ Test two
 
 
 	/**
-	 * mobile function
-	 *
-	 * @return void
-	 * @author Adam Patterson
-	 **/
-	public function mobile ()
-	{
-		echo '<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css" />
-		<script src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
-		<script src="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.js"></script>';
-	}
-	
-	
-	/**
-	 * suggest function
-	 *
-	 * @return void
-	 * @author Adam Patterson
-	 **/
-	public function suggest ()
-	{
-		/* Mod for Database use
-		if(isset($_POST['queryString'])) {
-			$queryString = $db->real_escape_string($_POST['queryString']);
-
-			if(strlen($queryString) >0) {
-
-				$query = $db->query("SELECT country FROM countries WHERE country LIKE '$queryString%' LIMIT 10");
-				if($query) {
-				echo '<ul>';
-					while ($result = $query ->fetch_object()) {
-	         			echo '<li onClick="fill(\''.addslashes($result->country).'\');">'.$result->country.'</li>';
-	         		}
-				echo '</ul>';
-
-				} else {
-					echo 'OOPS we had a problem :(';
-				}
-			} else {
-				// do nothing
-			}
-		} else {
-			echo 'There should be no direct access to this script!';
-		}*/
-		
-		# Temp non dynamic Data
-		echo '<ul>';
-   			echo '<li onClick="fill(\'One\');">One</li>';
-			echo '<li onClick="fill(\'Two\');">Two</li>';
-			echo '<li onClick="fill(\'Three\');">Three</li>';
-			echo '<li onClick="fill(\'Four\');">Four</li>';
-			echo '<li onClick="fill(\'Five\');">Five</li>';
-			echo '<li onClick="fill(\'Six\');">Six</li>';
-			echo '<li onClick="fill(\'Seven\');">Seven</li>';
-			echo '<li onClick="fill(\'Eight\');">Eight</li>';
-			echo '<li onClick="fill(\'Nine\');">Nine</li>';
-			echo '<li onClick="fill(\'Ten\');">Ten</li>';
-		echo '</ul>';
-	}
-	
-	
-	/**
 	 * ajax_check functiuon
 	 *
 	 * @return void
 	 * @author Adam Patterson
 	 **/
 	public function ajax_check ()
-	{	
+	{
 		if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
 		{
-			// If its an ajax request execute the code below	
-			echo '1';	
+			// If its an ajax request execute the code below
+			echo '1';
 			exit;
 		}
 
 		//if it's not an ajax request echo the below.
 		echo 'This is clearly not an ajax request!';
 	}
-	
-	
-	/**
-	 * username_check function
-	 *
-	 * @return void
-	 * @author Adam Patterson
-	 **/
-	public function username_check($username = '')
-	{		
-		$username = trim( strtolower( input::post( 'username') ) );
-		
-		# Query the database and then return the number of rows (1 == taken, 0 = availible. )
-		
-		# Static demo
-		switch ($username) {
-			case 'ashley':
-		    case 'adam':
-			case 'john':
-			case 'mark':
-			case 'paul':
-			case 'rick':
-			case 'luke':
-			case 'simon':
-		        echo '1';
-		        break;
-		}
-	}
 
-	
+
     /**
 	 * theme functions
 	 *
@@ -784,19 +535,19 @@ Test two
         var_dump(get_scaffold(THEMES_DIR.'tentacle/template-profile.php'));
 
         define( 'SCAFFOLD' , 'TRUE' );
-		
+
 		echo '<h2>Detected Themes</h2>';
-			
+
 		var_dump(get_themes());
-		
+
 		echo '<h2>Valid Template Files</h2>';
         var_dump(get_templates('tentacle'));
-		
+
 		echo '<h2>Themes Settings</h2>';
         var_dump(get_settings('tentacle'));
 	}
-	
-	
+
+
 	/**
 	* define_test function
 	*
@@ -806,9 +557,9 @@ Test two
 	public function define_test ($admin_var ="")
 	{
 		//echo dirname($_SERVER['PHP_SELF']). '<br />';
-	
+
 		echo '<strong>DS:</strong> ' .DS . '<br />';
-		
+
 		echo "<strong>realpath(''):</strong>" .realpath('') . '<br />';
 
 		echo '<strong>APP_ROOT:</strong> ' . APP_ROOT . '<br />';
@@ -827,13 +578,13 @@ Test two
 		echo '<strong>URI:</strong> ' . URI . '<br />';
 
 		echo '<br /><strong>Admin variable:</strong> ' . $admin_var . '<br />';
-		
+
 		echo "<strong>CMS Details:</strong><br />";
 		echo "SERVER_NAME: ". $_SERVER['SERVER_NAME'] ."<br />";
 		echo "SERVER_ADDR: ". $_SERVER['SERVER_ADDR'] ."<br />";
-		echo "SERVER_PORT: ". $_SERVER['SERVER_PORT'] ."<br />";	
-		
-		
+		echo "SERVER_PORT: ". $_SERVER['SERVER_PORT'] ."<br />";
+
+
 		echo "<strong>Server details:</strong><br />";
 		echo "TENTACLE_URL: ". TENTACLE_URL ."<br />";
 		echo "TENTACLE_URI: ". TENTACLE_URI ."<br />";
@@ -845,12 +596,12 @@ Test two
 		echo "ADMIN_CSS: ". ADMIN_CSS ."<br />";
 		echo "MINIFY: ". MINIFY ."<br />";
 		echo "<br />";
-		
+
 		echo "<strong>Page details:</strong><br />";
 		echo "PHP_SELF: ". $_SERVER['PHP_SELF'] ."<br />";
 		echo "SCRIPT_FILENAME: ". $_SERVER['SCRIPT_FILENAME'] ."<br />";
 		echo "<br />";
-		
+
 		echo "<strong>Request details:</strong><br />";
 		echo "REMOTE_ADDR: ". $_SERVER['REMOTE_ADDR'] ."<br />";
 		echo "REMOTE_PORT: ". $_SERVER['REMOTE_PORT'] ."<br />";
@@ -860,18 +611,18 @@ Test two
 		echo "REQUEST_TIME: ". $_SERVER['REQUEST_TIME'] ."<br />";
 		echo "HTTP_REFERER: ". $_SERVER['HTTP_REFERER'] ."<br />";
 		echo "HTTP_USER_AGENT: ". $_SERVER['HTTP_USER_AGENT'] ."<br />";
-		
+
 	}
 
-	
+
 	/**
 	* diff function
 	*
 	* @return void
 	* @author Adam Patterson
 	**/
-		
-	public function diff () 
+
+	public function diff ()
 	{
 		//http://svn.kd2.org/svn/misc/libs/diff/example.php
 		?>
@@ -892,13 +643,13 @@ Test two
 				</head>
 				<body>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			
+
 					<h2>A heading well be removing</h2>
-			
+
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 				</body>
 			</html>';
-			
+
 			$b_raw = '<html>
 			<head>
 					<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
@@ -906,10 +657,10 @@ Test two
 				</head>
 				<body>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			
-			
+
+
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			
+
 					<p>Just a small amount of new text...</p>
 				</body>
 			</html>';
@@ -924,27 +675,27 @@ Test two
 
 		// Initialize the diff class
 		$diff = new Diff($a, $b, $options);
-		
+
 		?><h2>Side By Side</h2> <?
-		
+
 		// Generate a side by side diff
 		load::file(APPLICATION.'/library/diff/Renderer/Html','SideBySide');
 		$renderer = new Diff_Renderer_Html_SideBySide;
 		echo $diff->Render($renderer);
-		
+
 		?><h2>Inline</h2> <?
 
 		// Generate an inline diff
 		load::file(APPLICATION.'/library/diff/Renderer/Html','Inline');
 		$renderer = new Diff_Renderer_Html_Inline;
 		echo $diff->render($renderer);
-		
+
 	} // END DIFF
 
 
-	public function hash () 
+	public function hash ()
 	{
-		
+
 		/*
 		* create a hash from a users domain name an email address
 		* send hash to remote servier for verification.
@@ -956,18 +707,18 @@ Test two
 		$email 		= 'adamapatterson@gmail.com';
 		$domain 	= 'tentaclecms.com';
 		$token 		= '&@?(l?95jl!rxxknfzc!';
-		
+
 		$hash_string = '7oHB0wNEzMsXmeQStp3wHgFOutaT0in3FvVnZbXJ0NjV7rEJHfYBbfrsfPpnADPPQs0xka9tTJ+eZaTBbGN/ow==';
-		
-		$hash->setKey($email.$token);	
-		
+
+		$hash->setKey($email.$token);
+
 		if (base64_encode($hash->hash($domain)) == $hash_string )
 		{
 			echo 'We have a match!<br>';
 		}
 
 	} // END Hash
- 
+
 
 	public function smushit ()
 	{
@@ -978,28 +729,28 @@ Test two
 		$sample = 'http://a0.twimg.com/profile_images/1079746338/profile-adam-large.jpg';
 
 		$smushed = new smushit();
-		
+
 		$raw = $smushed->compress($sample);
-		
+
 		echo '<pre>';
 		print_r($raw);
 		echo '</pre>';
-		
+
 		echo '<img src="'.$sample.'" alt="Raw" title="Raw"/>';
-		
+
 		echo '<img src="'.$raw->dest.'" alt="Smushed" title="Smushed" />';
-		
+
 	}// END SmushIt
-	
+
 
 	public function gravatar ()
 	{
 		load::helper ('gravatar');
-		
+
 		echo '<h2>get::gravatar()</h2>';
-		
+
 		echo get::gravatar('adamapatterson@gmail.com');
-		
+
 		?>
 			<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.min.js"></script>
 			<script type="text/javascript" src="<?=ADMIN_JS; ?>md5.js"></script>
@@ -1015,53 +766,53 @@ Test two
 			});
 
 			});
-			
+
 		</script>
 		<div id="avatar"><img src="http://papermashup.com/demos/gravatar-image/thumb.png" width="80" height="80"/></div>
 
 		<form class="gravatar">
 		<input type="text" onFocus="if(this.value=='Email Address') this.value='';" onBlur="if(this.value=='') this.value='Email Address';" value="Email Address" name="s" id="email" />
 		</form>
-		
+
 	<?
 	}
-	
-	
+
+
 	public function request()
 	{
 		if (function_exists('fopen')) {
 			echo 'fopen exists<br>';
 		}
-		
+
 		if (function_exists( 'fsockopen' )) {
 			echo 'fsockopen exists<br>';
 		}
-		
+
 		if (function_exists('fopen') || (function_exists('ini_get') && ini_get('allow_url_fopen') != true) ) {
 			echo 'fopen ini_get allow_url_fopen<br>';
 		}
-		
+
 		if ( function_exists('curl_init') && function_exists('curl_exec') ){
 			echo 'curl_init curl_exec exists<br>';
 		}
 	}
-	
+
 	# counting logic, used to increment update totals in the site.
 	public function counting()
 	{
         echo increment('themes')."<br />";
 
         deincrement('template');
-	
+
 		echo increment('plugins')."<br />";
 
         deincrement('test');
-	
+
 		echo 'themes '.total_update('themes')."<br />";
 		echo 'plugins '.total_update('plugins')."<br />";
 		echo total_update();
 	}
-	
+
 
 	/**
 	 * inflector function
@@ -1072,29 +823,29 @@ Test two
 	public function inflector ()
 	{
 		echo '<h2>Inflector</h2>';
-	
+
 		$string = 'In pellentesque faucibus vestibulum';
 		$camel = 'inPellentesqueFaucibusVestibulum';
 		$upper = 'UPPER';
 		$lower = 'lower';
-	
+
 		echo '<strong>Camelize Turned</strong> '. $string .' <strong>to</strong> '. camelize($string).'<br />';
-	
+
 		echo '<strong>Underscore Turned</strong> '. $camel .' <strong>to</strong> '. underscore($camel).'<br />';
 
 		echo '<strong>Dash Turned</strong> '. $camel .' <strong>to</strong> '. dash($camel).'<br />';
-	
+
 		echo '<strong>Humanize Turned</strong> '. $string .' <strong>to</strong> '. humanize($string).'<br />';
-	
+
 		if (is_upper($upper)) {
 			echo '<strong>is_upper</strong> says '. $upper .' is all upper case.<br />';
 		}
-	
+
 		if (is_lower($lower)) {
 			echo '<strong>is_upper</strong> says '. $lower.' is all lower case.<br />';
 		}
 	}// END inflector
-	
+
 	/**
 	 * string function
 	 *
@@ -1121,7 +872,7 @@ Test two
 		echo '<h4>string::escape_string()</h4> '.string::escape_string($slash_string).'<br />';
 		echo '<h4>widont()</h4> '.string::widont($long_string).'<br />';
 		echo '<h4>highlight()</h4>'.highlight($long_string, 'faucibus').'<br />';
-	
+
 	}// END Function
 
 	/**
@@ -1133,7 +884,7 @@ Test two
 	public function numbers()
 	{
 		echo '<h2>Numbers</h2>';
-		
+
 		load::helper ('numbers');
 
 		echo '<h4>number_to_phone()</h4>'. number_to_phone(1235551234, array('areaCode' => true,'extension' => 555,'countryCode' => 1)).'<br />';
@@ -1142,9 +893,9 @@ Test two
 		echo '<h4>number_with_delimiter()</h4>'. number_with_delimiter(12345678.05, ".").'<br />';
 		echo '<h4>number_with_precision()</h4>'. number_with_precision(111.2345, 2). '<br />';
 		echo '<h4>number_to_human_size()</h4>'. number_to_human_size(1234567890123). '<br />';
-		
+
 	}// END Function
-	
+
 
 	/**
 	 * date functiuon
@@ -1152,28 +903,28 @@ Test two
 	 * @return void
 	 * @author Adam Patterson
 	 **/
-	public function date( $date='' ) 
+	public function date( $date='' )
 	{
 		echo '<h2>Date</h2>';
 
 		$date = new date();
-	
+
 		$minute	= 30;
 		$hour	= 11;
-		$day 	= 18;	
+		$day 	= 18;
 		$month 	= 'DEC';
 		$year	= 1982;
-		
+
 		//2012-02-08 14:16:05
 		//$year.'-'.$month.'-'.$day.' '.$hour.':'.$min
-		
+
 		//echo date('l dS \o\f F Y h:i:s A', strtotime( $year.'-'.$month.'-'.$day.' '.$hour.':'.$minute.':00' ));
 
 
         echo date::human_time_diff(strtotime( $year.'-'.$month.'-'.$day.' '.$hour.':'.$minute.':00' ), time());
-		
+
 	}// END Function
-	
+
 	/**
 	 * time functiuon
 	 *
@@ -1185,28 +936,28 @@ Test two
 		echo '<h2>Time</h2>';
 
 		echo '<h4>time_in_timezone()</h4>'.date::time_in_timezone('Pacific/Chatham');
-		
+
 		echo '<h4>date::timezones()</h4>';
 		//print_r(timezones());
-		
+
 		echo '<h4>date::set_timezone()</h4><p>Used in date::time_in_timezone()</p>';
-		
+
 		echo '<h4>date::get_timezone()</h4>'.date::get_timezone();
-		
+
 		echo '<h4>date::relative_time()</h4><p>Does not work.</p>';
-		
+
 		echo '<h4>now()</h4><p>'.date::now().'</p>';
 
         echo '<h4>now(\'+1 day\')</h4><p>'.date::now('+1 day').'</p>';
-		
+
 		echo date::current('year');
         echo date::current('month');
         echo date::current('day');
         echo date::current('hour');
-		
+
 	}// END Function
-	
-	
+
+
 	/**
 	 * state function
 	 *
@@ -1214,20 +965,20 @@ Test two
 	 * @author Adam Patterson
 	 **/
 	public function state()
-	{	
+	{
 		echo '<h2>State</h2><p>Auto Loaded</p>';
-		
+
 		echo 'CURRENT_PAGE'.CURRENT_PAGE;
-		
+
 		echo '<h4>odd_even()</h4>';
 		echo odd_even();
-		
+
 		echo '<h4>even_odd()</h4>';
 		echo even_odd();
-		
+
 	}// END Function
-	
-	
+
+
 	/**
 	 * track function
 	 *
@@ -1235,11 +986,11 @@ Test two
 	 * @author Adam Patterson
 	 **/
 	public function track()
-	{	
+	{
 		echo '<h2>Track</h2>';
 		load::helper('track');
 	}// END Function
-	
+
 
 	/**
 	 * zip function
@@ -1248,17 +999,17 @@ Test two
 	 * @author Adam Patterson
 	 **/
 	public function zip()
-	{	
+	{
 		echo '<h2>Zip</h2>';
 		load::helper ('zip');
-		
+
 		echo '<a href="?app=file" class="button">Unzip File!</a>';
-		
+
 		$app = input::request ( 'app' );
-		
+
 		$appdata = STORAGE_DIR.'/file.zip';
 		$appname = '$app.zip';
-		
+
 		if (file_exists($appdata)) {
 			if (isset($app)) {
 			    $result = download_and_extract_zip($appname,$appdata);
@@ -1269,55 +1020,62 @@ Test two
 			 }
 		}
 		else {
-			echo 'Can not load the file.';			
+			echo 'Can not load the file.';
 		}
 	}// END Function
-	
+
 	public function navigation ()
 	{
 		load::helper('navigation');
-		
+
 		$args = array();
-		
+
 		define ( 'FRONT'		,'true' );
+        define ( 'IS_POST'      , FALSE );
 
 		$page = load::model( 'page' );
 		$pages = $page->get( );
 		// Current URI to be used with .current page
 		$uri = URI;
-		
+
 		$get_page_level = 0;
 
 		$page_tree = $page->get_page_tree( $pages );
-		_e('<h3>Page Tree - $page->get_page_tree( $pages )</h3>');
-		//clean_out( $page_tree );
-		
+		#_e('<h3>Page Tree - $page->get_page_tree( $pages )</h3>');
+		#var_dump( $page_tree );
+
 		$page_array = $page->get_page_children( 0, $pages, 0 );
-		_e('<h3>Page Array - $page->get_page_children( 0, $pages, 0 )</h3>');
-		//clean_out( $page_array );
-		
+		#_e('<h3>Page Array - $page->get_page_children( 0, $pages, 0 )</h3>');
+		#var_dump( $page_array );
+
 		$page_object = (object)$page_array;
-		
+
 		$get_page_level = $page->get_page_level( $page_object, 'portfolio/design/' );
 		//_e('<h3>Page Array - $page->get_page_level( $page_object, \'portfolio/design/print/\' )</h3>');
-		//clean_out( $get_page_level );
-		
-		$get_page_by_level = $page->get_page_by_level( $page_object, $get_page_level );
-		_e('<h3>Page Array - $page->get_page_by_level( $page_object, $get_page_level )</h3>');
-		clean_out( $get_page_by_level );
-		
-		
-		$get_home = $page->get_home( );
-		
-		$get_flat_page_hierarchy = $page->get_flat_page_hierarchy( $pages );
-		
-		$get_descendant_ids = $page->get_descendant_ids( 3 );
-		
-		$page_children = $page->get_page_children( 0, $pages );
-	
-		// Generate the HTML output.
-		//nav_generate ( (array)$page_array, $args );
+		//var_dump( $get_page_level );
 
+		$get_page_by_level = $page->get_page_by_level( $page_object, $get_page_level );
+		#_e('<h3>Page Array - $page->get_page_by_level( $page_object, $get_page_level )</h3>');
+		#var_dump( $get_page_by_level );
+
+
+		$get_home = $page->get_home( );
+
+		$get_flat_page_hierarchy = $page->get_flat_page_hierarchy( $pages );
+
+		$get_descendant_ids = $page->get_descendant_ids( 3 );
+
+		$page_children = $page->get_page_children( 0, $pages );
+
+        load::helper('template');
+
+		// Generate the HTML output.
+		#echo nav_generate_new( $page_tree );
+
+        #var_dump($page_tree);
+        menu( $page_tree );
+
+        #var_dump((array)$page_array);
 	}
 
 
@@ -1483,13 +1241,13 @@ Test two
 
 		$get_by_slug = $category->get_by_slug('design');
 		var_dump($get_by_slug);
-		
+
 		$get_page_ids = $category->get_page_ids(1);
 		var_dump($get_page_ids);
-		
+
 		$get_relations = $category->get_relations(112);
 		var_dump($get_relations);
-		
+
 		$get_all_categories = $category->get_all_categories();
 		var_dump($get_all_categories);
     }

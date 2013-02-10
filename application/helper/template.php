@@ -93,19 +93,28 @@
 	}
 	
 	
-	function nav_class($args = array (), $type='' ) {
+	function nav_class($args = array (), $type='' )
+    {
 
 		$open = "class='";
 
-		$class = 'page-item ';
+		$class = '';
 
-		if ( $args['uri'] == 	slash_it( CURRENT_PAGE )) {
-			$class .= 'active ';
-		} elseif ( $args['uri'] == 'home/' && CURRENT_PAGE == '' ) {
-			$class .= 'active ';
-		} elseif ( $args['uri'] == slash_it( get::option('blog_uri') ) && IS_POST == true ) {
-			$class .= 'active ';
-		}
+        if (isset($args['level']) and $args['level'] != '')
+            $class .= 'level_'.$args['level'];
+
+        if (isset($args['uri']))
+        {
+            $class .= 'page-item ';
+
+            if ( $args['uri'] == 	slash_it( CURRENT_PAGE )) {
+                $class .= 'active ';
+            } elseif ( $args['uri'] == 'home/' && CURRENT_PAGE == '' ) {
+                $class .= 'active ';
+            } elseif ( $args['uri'] == slash_it( get::option('blog_uri') ) && IS_POST == true ) {
+                $class .= 'active ';
+            }
+        }
 
 		$cleaned_class = trim($class); 
 
