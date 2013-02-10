@@ -1024,6 +1024,7 @@ Test two
 		}
 	}// END Function
 
+
 	public function navigation ()
 	{
 		load::helper('navigation');

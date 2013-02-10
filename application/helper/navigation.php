@@ -37,65 +37,48 @@ function nav_menu ( $args = array() )
 }
 
 
-
-/* Function menu_showNested
-* @desc Create inifinity loop for nested list from database
-* @return echo string
-*/
-function _menu( $parent_id = '', $level='' ) {
-
-    $page = load::model( 'page' );
-    $pages = $page->get_by_parent_id( $parent_id );
-
-    if ($pages > 0) {
-
-        echo "<ul ".nav_class( array( 'level'=> (isset($level) ? $level : 0 ) ) ).'>';
-
-        foreach($pages as $page ) {
-
-            echo '<li '.nav_class( array('uri'=> $page->uri ), $page->type ).'>';
-            echo "<a href='".BASE_URL.$page->uri."'>{$page->title}</a>";
-
-            // Run this function again (it would stop running when the mysql_num_result is 0
-            menu($page->id, $level+1);
-
-            echo "</li>";
-        }
-        echo "</ul>";
-    }
-}
-
-
-
-function tree_builder($items, $html)
+/**
+ * Function: nav_generate
+ *	Generate HTML output for Navigation
+ *
+ * Parameters:
+ *	$tree - Tree data array
+ *	$args - Array
+ *
+ * Returns:
+ *	HTML - Formatted HTML tree.
+ */
+function menu( $items, $args = array() )
 {
-    $output = '';
+    $default_args = array(
+        'menu' => '',
+        #'container' => 'div',
+        #'container_class' => '',
+        #'container_id' => '',
+        'menu_class' => 'menu',
+        'menu_id' => '',
+        'menu_item' => '',
+        #'echo' => true,
+        #'before' => '',
+        #'after' => '',
+        #'link_before' => '',
+        #'link_after' => '',
+        #'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+        'depth' => 0,
+        #'theme_location' => '',
+        'child_of' => 0,
+        'exclude' => '',
+        'include' => '',
+        #'number' => 'per_page',
+        #'offset' => 'offset',
+        #'order' => 'ASC',
+        #'orderby' => 'name'
+    );
 
-    if( is_array($items) )
-    {
-        foreach ($items as $item)
-        {
-            if (isset($item['children']) and ! empty($item['children']))
-            {
-                // if there are children we build their html and set it up to be parsed as {{ children }}
-                $item['children'] = '<ul>'.tree_builder($item['children'], $html).'</ul>';
-            }
-            else
-            {
-                $item['children'] = null;
-            }
+    $args = parse_args( $args, $default_args );
+    $args = (object) $args;
 
-            // now that the children html is sorted we parse the html that they passed
-            $output .= ci()->parser->parse_string($html, $item, true);
-        }
-
-        return $output;
-    }
-}
-
-function menu( $items )
-{	 
-	if( isset($items['children']))
+    if( isset($items['children']))
 	{
         menu($items['children']);
     } else {
@@ -111,75 +94,6 @@ function menu( $items )
         }
 		echo "</ul>\n";
     }
-}
-
-/**
-* Function: nav_generate
-*	Generate HTML output for Navigation
-*
-* Parameters:
-*	$tree - Tree data array
-*	$args - Array
-*
-* Returns:
-*	HTML - Formatted HTML tree.
-*/
-function nav_generate ( $tree, $args = array() )
-{
-	$default_args = array( 
-		'menu' => '', 
-		#'container' => 'div', 
-		#'container_class' => '', 
-		#'container_id' => '', 
-		'menu_class' => 'menu', 
-		'menu_id' => '',
-		'menu_item' => '',
-		#'echo' => true, 
-		#'before' => '', 
-		#'after' => '', 
-		#'link_before' => '', 
-		#'link_after' => '', 
-		#'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-		'depth' => 0, 
-		#'theme_location' => '',
-		'child_of' => 0,
-		'exclude' => '',
-		'include' => '',
-		#'number' => 'per_page',
-		#'offset' => 'offset',
-		#'order' => 'ASC',
-		#'orderby' => 'name'
-	);
-
-	$args = parse_args( $args, $default_args );
-	$args = (object) $args;
-	
-	$output = '';
-	$depth = -1;
-	$flag = false;
-		
-	foreach ($tree as $row) {
-
-	    while ($row['level'] > $depth) {
-	        $output .= '<ul><li '.nav_class( array('uri'=> $row['uri'] ), $row['type'] ).'>';
-	        $flag = false;
-	        $depth++;
-	    }
-	    while ($row['level'] < $depth) {
-	        $output .= '</li></ul>';
-	        $depth--;
-	    }
-	    if ($flag) {
-	        $output .= '</li><li '.nav_class( array('uri'=> $row['uri'] ), $row['type'] ).'>';
-	        $flag = false;
-	    }
-	    $output .= '<a href="'.BASE_URL.$row['uri'].'">'.$row['title'].'</a>';
-	    $flag = true;
-	}
-
-	$output .= '</ul>';
-	
-	echo $output;
 }
 
 
