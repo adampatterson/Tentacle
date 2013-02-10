@@ -33,14 +33,89 @@ function nav_menu ( $args = array() )
 	$page_children = $page->get_page_children( 0, $pages );
 	*/
 	// Generate the HTML output.
-	nav_generate ( (array)$page_array, $args );
-
+	menu( $page_tree, $args );
 }
 
 
+
+/* Function menu_showNested
+* @desc Create inifinity loop for nested list from database
+* @return echo string
+*/
+function _menu( $parent_id = '', $level='' ) {
+
+    $page = load::model( 'page' );
+    $pages = $page->get_by_parent_id( $parent_id );
+
+    if ($pages > 0) {
+
+        echo "<ul ".nav_class( array( 'level'=> (isset($level) ? $level : 0 ) ) ).'>';
+
+        foreach($pages as $page ) {
+
+            echo '<li '.nav_class( array('uri'=> $page->uri ), $page->type ).'>';
+            echo "<a href='".BASE_URL.$page->uri."'>{$page->title}</a>";
+
+            // Run this function again (it would stop running when the mysql_num_result is 0
+            menu($page->id, $level+1);
+
+            echo "</li>";
+        }
+        echo "</ul>";
+    }
+}
+
+
+
+function tree_builder($items, $html)
+{
+    $output = '';
+
+    if( is_array($items) )
+    {
+        foreach ($items as $item)
+        {
+            if (isset($item['children']) and ! empty($item['children']))
+            {
+                // if there are children we build their html and set it up to be parsed as {{ children }}
+                $item['children'] = '<ul>'.tree_builder($item['children'], $html).'</ul>';
+            }
+            else
+            {
+                $item['children'] = null;
+            }
+
+            // now that the children html is sorted we parse the html that they passed
+            $output .= ci()->parser->parse_string($html, $item, true);
+        }
+
+        return $output;
+    }
+}
+
+function menu( $items )
+{	 
+	if( isset($items['children']))
+	{
+        menu($items['children']);
+    } else {
+		echo "\n<ul>\n";
+        foreach($items as $item)
+        {
+            echo "<li ".nav_class( array('uri'=> $item['uri'] ), $item['type'] ).">".$item['title'];
+
+			 if( isset($item['children']))
+                 menu($item['children']);
+				
+			echo "</li>\n";
+        }
+		echo "</ul>\n";
+    }
+}
+
 /**
 * Function: nav_generate
-*	Generate HTML output for Naviogation
+*	Generate HTML output for Navigation
 *
 * Parameters:
 *	$tree - Tree data array
@@ -75,23 +150,6 @@ function nav_generate ( $tree, $args = array() )
 		#'order' => 'ASC',
 		#'orderby' => 'name'
 	);
-
-/*
-<ul>
-	<li class="page-item"><a href="http://localhost/tentacle/docs/">Docs</a></li>
-	<li class="page-item"><a href="http://localhost/tentacle/home/">Home</a></li>
-	<li class="page-item"><a href="http://localhost/tentacle/portfolio/">Portfolio</a>
-		<ul>
-			<li class="page-item"><a href="http://localhost/tentacle/portfolio/design/">Design</a>
-				<ul>
-					<li class="page-item"><a href="http://localhost/tentacle/portfolio/design/print/">Print</a></li>
-				</ul>
-			</li>
-		</ul>
-	</li>
-	<li class="page-item active"><a href="http://localhost/tentacle/blog/">Blog</a></li>
-</ul>
-*/
 
 	$args = parse_args( $args, $default_args );
 	$args = (object) $args;
@@ -129,7 +187,7 @@ function nav_generate ( $tree, $args = array() )
 * @desc Create inifinity loop for nested list from database
 * @return echo string
 */
-function menu_show_nested( $parentID ) {
+function menu_show_nested( $parentID = '' ) {
 
     $page = load::model( 'page' );
     $pages = $page->get_by_parent_id( $parentID );
@@ -149,49 +207,5 @@ function menu_show_nested( $parentID ) {
             echo "</li>\n";
         }
         echo "</ol>\n";
-    }
-}
-
-
-/**
- * PyroCMS Tree Helpers
- *
- * @author 	PyroCMS Dev Team
- * @package PyroCMS\Core\Helpers
- */
-if (!function_exists('tree_builder'))
-{
-    /**
-     * Build the html for a tree view
-     *
-     * @param array $items 	An array of items that may or may not have children (under a key named `children` for each appropriate array entry).
-     * @param array $html 	The html string to parse. Example: <li id="{{ id }}"><a href="#">{{ title }}</a>{{ children }}</li>
-     *
-     */
-    # echo tree_builder($folder_tree, '<li class="folder" data-id="{{ id }}" data-name="{{ name }}"><div></div><a href="#">{{ name }}</a>{{ children }}</li>');
-    function tree_builder($items, $html)
-    {
-        $output = '';
-
-        if( is_array($items) )
-        {
-            foreach ($items as $item)
-            {
-                if (isset($item['children']) and ! empty($item['children']))
-                {
-                    // if there are children we build their html and set it up to be parsed as {{ children }}
-                    $item['children'] = '<ul>'.tree_builder($item['children'], $html).'</ul>';
-                }
-                else
-                {
-                    $item['children'] = null;
-                }
-
-                // now that the children html is sorted we parse the html that they passed
-                $output .= ci()->parser->parse_string($html, $item, true);
-            }
-
-            return $output;
-        }
     }
 }
