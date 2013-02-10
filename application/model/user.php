@@ -191,10 +191,14 @@ class user_model
 		$user_meta = $user_meta->select( 'data' )
 			->where ( 'id', '=', $id )
 			->execute();
-			
-		$user_meta = json_decode($user_meta[0]->data);
-			
-		return $user_meta;
+
+        if(isset($user_meta[0])){
+            return json_decode($user_meta[0]->data);
+        } else {
+            $user_meta = array('first_name'=> '<strong>N/A</strong>', 'last_name' => '');
+
+            return (object)$user_meta;
+        }
 	}
 	
 	
