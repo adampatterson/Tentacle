@@ -27,12 +27,12 @@ theme::part('partials/header',array('title'=>'Blog','assets'=>'marketing')); ?>
 
 			<p><small>Posted in:
 				<? foreach( $category->get_relations( $post->id ) as $relation ): ?>
-					 <a href="#<?=$relation->slug ?>"><?_e($relation->name) ?></a>
+                    <a href="<?=BASE_URL?>category/<?=$relation->slug ?>"><?_e($relation->name) ?></a>
 				<? endforeach; ?>
 			</small></p>
 			<p><small>Tags:
 				<? foreach( $relations = $tag->get_relations( $post->id ) as $relation ): ?>
-					 <a href="#<?=$relation->slug ?>"><?_e($relation->name) ?></a>
+					 <a href="<?=BASE_URL?>tag/<?=$relation->slug ?>"><?_e($relation->name) ?></a>
 				<? endforeach; ?>
 			</small></p>
 			</div><!--/span9-->
