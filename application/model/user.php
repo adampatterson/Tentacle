@@ -42,21 +42,22 @@ class user_model
 			->where( 'email', '=', $email )
 			->execute();
 
-        if (input::post( 'send_password' ) == 'yes') {
-            $send_email = load::model( 'email' );
-
-            load::helper('email');
-
-            $hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
-            $hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
-
-            $message = '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
-						<p><strong>Username</strong>: '.$user_name.'<br />
-						<strong>Password</strong>: '.$password.'</p>
-						<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
-
-            $user_email = $send_email->send( 'Welcome to Tentacle CMS', $message, $email );
-        }
+# @todo: send email is done on the action controller
+//        if (input::post( 'send_password' ) == 'yes') {
+//            $send_email = load::model( 'email' );
+//
+//            load::helper('email');
+//
+//            $hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
+//            $hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
+//
+//            $message = '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
+//						<p><strong>Username</strong>: '.$user_name.'<br />
+//						<strong>Password</strong>: '.$password.'</p>
+//						<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
+//
+//            $user_email = $send_email->send( 'Welcome to Tentacle CMS', $message, $email );
+//        }
 
 		note::set('success','user_add','User Added!');
 	}
