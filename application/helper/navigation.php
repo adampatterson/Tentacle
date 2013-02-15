@@ -85,7 +85,7 @@ function menu( $items, $args = array() )
 		echo "\n<ul>\n";
         foreach($items as $item)
         {
-            echo "<li ".nav_class( array('uri'=> $item['uri'] ), $item['type'] ).">".$item['title'];
+            echo "<li ".nav_class( array('uri'=> $item['uri'] ), $item['type'] )."><a href=".BASE_URL.$item['uri'].">".$item['title']."</a>";
 
 			 if( isset($item['children']))
                  menu($item['children']);

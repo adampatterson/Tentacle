@@ -11,13 +11,9 @@ theme::part('partials/header',array('title'=>$post->title,'assets'=>'marketing')
 
 		<div class="span12">
 
-			<div class="hero-unit">
-
-				<h1><?= $post->title; ?></h1>
-				<hr />
-				<?= the_content( $post->content ); ?>
-
-			</div><!-- /hero-unit -->
+            <h1><?= $post->title; ?></h1>
+            <hr />
+            <?= the_content( $post->content ); ?>
 
 		</div><!--/span9-->
 

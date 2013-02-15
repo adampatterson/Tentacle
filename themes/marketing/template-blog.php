@@ -18,7 +18,7 @@ theme::part('partials/header',array('title'=>'Blog','assets'=>'marketing')); ?>
 		<div class="row bump">
 			<div class="span12">
 
-			<h2 class="title"><a href="<? _e(BASE_URL.$post->uri) ?>"><? _e($post->title) ?></a></h2>
+			<h1 class="title"><a href="<? _e(BASE_URL.$post->uri) ?>"><? _e($post->title) ?></a></h1>
 
 			<hr />
 
