@@ -44,7 +44,7 @@
 /* Codemirror overrides */
 .CodeMirror pre {
   line-height: inherit;
-  padding: 0 1.2em;
+  padding: 0.16em 0.5em;
 }
 .CodeMirror-scroll {
   background-color: #f8f8f8;
@@ -158,7 +158,7 @@
   z-index: 3;
 }
 .cm-s-default .CodeMirror-lines {
-  padding: 1.2em 0;
+  padding: 0.5em 0;
   /* This is necessary for issue #2780. The logic for closing dropdowns depends on "click" events. Now
    * that each line has a separate div element, there is a good chance that mouseDown and mouseUp events
    * occur on different elements, which means a click event will not be sent. By disabling pointer events here,
@@ -177,8 +177,8 @@
 .cm-s-default .CodeMirror-gutters {
   background-color: #f8f8f8;
   border-right: none;
-  padding-top: 1.2em;
-  padding-bottom: 1.2em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
   min-width: 2.5em;
 }
 .cm-s-default .CodeMirror-linenumber {
@@ -187,23 +187,12 @@
   /*font-size: 0.9em;*/
   /* restore after SourceCodePro font fix? */
 
-  padding-top: 0px;
+  padding-top: 0.16em;
   padding-bottom: 0px;
 }
 .cm-s-default.CodeMirror-focused .CodeMirror-selected {
   background: #d2dcf8;
 }
-/*
-    CodeMirror's use of descendant selectors for certain styling causes problems when editors are
-    nested because, for items in the inner editor, the left-hand clause in the selector will now
-    match either the actual containing CodeMirror instance *OR* the outer "host" CodeMirror instance.
-
-    TODO (issue #324): We'll still have problems if editors can be nested more than one level deep,
-    or if any other descendant-selector-driven CM styles can differ between inner & outer editors
-    (potential problem areas include line wrap and coloring theme: basically, anything in codemirror.css
-    that uses a descandant selector where the CSS class name to the left of the space is something
-    other than a vanilla .CodeMirror)
- */
 .CodeMirror .CodeMirror span.CodeMirror-matchingbracket {
   /* Ensure visibility against gray inline editor background */
 
@@ -234,6 +223,28 @@
 .CodeMirror .CodeMirror .CodeMirror-vscrollbar,
 .CodeMirror .CodeMirror .CodeMirror-hscrollbar {
   cursor: default;
+}
+.CodeMirror-scroll {
+  height: auto;
+  min-height: 450px;
+  max-height: 900px;
+  overflow-y: hidden;
+  overflow-x: auto;
+  width: 100%;
+}
+.activeline {
+  background: #f0fcff !important;
+}
+.cm-tab:after {
+  content: "\21e5";
+  display: -moz-inline-block;
+  display: -webkit-inline-block;
+  display: inline-block;
+  width: 0px;
+  position: relative;
+  overflow: visible;
+  left: -1.4em;
+  color: #dddddd;
 }
 /*
  * Temporarily override bold and italic syntax highlighting until

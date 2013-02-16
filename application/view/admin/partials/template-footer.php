@@ -22,10 +22,11 @@
 	</div>
 </div>
 </footer>
+
 <? if(user_editor() == 'wysiwyg'): ?>
 
     <script type="text/javascript" src="<?= ADMIN_JS; ?>raptor.min.js"></script>
-	
+
     <link type="text/css" rel="stylesheet" href="<?= ADMIN_CSS; ?>jquery-ui.css">
     <link type="text/css" rel="stylesheet" href="<?= ADMIN_CSS; ?>raptor-theme.css">
 	
@@ -42,115 +43,12 @@
             });
         });
     </script>
-    <script type="text/javascript">
-        $.ui.editor.registerUi({
+    <script type="text/javascript" src="<?= ADMIN_JS; ?>raptor.config.js"></script>
+<? endif; ?>
 
-            /**
-             * @name $.editor.ui.tentacleMediaLibrary
-             * @augments $.ui.editor.defaultUi
-             * @class Invokes wordpress media library
-             */
-            tentacleMediaLibrary: /** @lends $.editor.ui.tentacleMediaLibrary.prototype */ {
-
-                dialog: null,
-
-                /**
-                 * @see $.ui.editor.defaultUi#init
-                 */
-                init: function(editor) {
-
-                    this.bindSendToEditor();
-
-                    return editor.uiButton({
-                        title: 'Media Library',
-                        icon: 'ui-icon-media-modal',
-                        click: function() {
-                            this.show();
-							//$('#myModal').reveal();
-                        }
-                    });
-                },
-
-                bindSendToEditor: function() {
-                    var ui = this;
-                    window.send_to_editor = function(html) {
-
-                        $.ui.editor.selectionRestore();
-                        $.ui.editor.selectionReplace(html);
-
-                        ui.dialog.dialog('destroy');
-                        ui.dialog = null;
-                    };
-                },
-
-                show: function() {
-                    var ui = this;
-
-                    $.ui.editor.selectionSave();
-                    this.dialog = $('<div style="display:none"><iframe src="<?= ADMIN ?>/media_insert" /></div>').appendTo('body');
-                    this.dialog.dialog({
-                        title: 'Media Library',
-                        position: 'center center',
-                        resizable: true,
-                        modal: true,
-                        closeOnEscape: true,
-                        minWidth: 780,
-                        minHeight: 575,
-                        dialogClass: ui.options.baseClass + '-dialog',
-                        resize: function() {
-                            ui.resizeIframe();
-                        },
-                        open: function() {
-                            ui.resizeIframe();
-                        },
-                        close: function() {
-                            $.ui.editor.selectionRestore();
-                            if (ui.dialog) {
-                                ui.dialog.dialog('destroy');
-                                ui.dialog = null;
-                            }
-                        }
-                    });
-                },
-                resizeIframe: function() {
-                    $(this.dialog).find('iframe').height($(this.dialog).height() - 30);
-                    $(this.dialog).find('iframe').width($(this.dialog).width());
-                }
-            }
-        });
-
-
-        $('.wysiwyg textarea').editor({
-            autoEnable: true,
-            replace: true,
-            //enableUi: false,
-            draggable: false,
-            uiOrder: [
-                ['textBold', 'textItalic', 'textUnderline', 'textStrike','quoteBlock','hr'],
-                ['floatLeft', 'floatNone', 'floatRight'],
-                ['alignLeft', 'alignCenter', 'alignRight'],
-                ['listUnordered', 'listOrdered'],
-                ['link', 'unlink'],
-                ['embed', 'viewSource', 'clearFormatting', 'clean'],
-                ['tagMenu'],
-                ['undo', 'redo'],
-                ['tentacleMediaLibrary']
-            ],
-            disabledPlugins: ['unsavedEditWarning'],
-            plugins: {
-                dock: {
-                    docked: true,
-                    dockToElement: true,
-                    persist: false
-                },
-		        placeholder: {
-		            content: ''
-		        }
-            }
-        });
-    </script>
-<? else: ?>
+<? if(user_editor() == 'html'): ?>
 	<link rel="stylesheet" href="<?=ADMIN_JS; ?>CodeMirror/lib/codemirror.css">
+    <link rel="stylesheet" href="<?=ADMIN_CSS; ?>codemirror.css">
 	<script src="<?=ADMIN_JS; ?>CodeMirror/lib/codemirror.js"></script>
 	<script src="<?=ADMIN_JS; ?>CodeMirror/mode/xml/xml.js"></script>
 	<script src="<?=ADMIN_JS; ?>CodeMirror/mode/css/css.js"></script>
@@ -158,137 +56,13 @@
 	<script src="<?=ADMIN_JS; ?>CodeMirror/mode/clike/clike.js"></script>
 	<script src="<?=ADMIN_JS; ?>CodeMirror/mode/php/php.js"></script>
 	<script src="<?=ADMIN_JS; ?>CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
-	
-	<script>
-		var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-			lineNumbers: true,
-			theme: "default",
-			mode: "text/html",
-			onCursorActivity: function() {
-				editor.setLineClass(hlLine, null);
-				hlLine = editor.setLineClass(editor.getCursor().line, "activeline");
-			},
-			onKeyEvent: function(cm, e) {
-				// Hook into ctrl-space
-			if (e.keyCode == 32 && (e.ctrlKey || e.metaKey) && !e.altKey) {
-				e.stop();
-				return CodeMirror.simpleHint(cm, CodeMirror.javascriptHint);
-				}
-			}
-		});
-		var hlLine = editor.setLineClass(0, "activeline");
-	</script>
+
+    <script src="<?=ADMIN_JS; ?>codemirror.config.js"></script>
+
 <? endif; ?>
 
 <? if( in_array('filedrop', $assets ) ): ?>
-<script type="text/javascript" charset="utf-8">
-	$(document).ready(function(){
-	
-		var dropbox = $('#dropbox'),
-			message = $('.message', dropbox);
-
-		dropbox.filedrop({
-			// The name of the $_FILES entry:
-			paramname:'pic',
-
-			maxfiles: 25,
-	    	maxfilesize: 2, // MBs
-			url: base_url+'action/upload_media/',
-
-			uploadFinished:function(i,file,response){	
-				$.data(file).addClass('done');
-
-				//console.log(response);
-
-				//window.location = base_url+response;
-				// response is the JSON object that post_file.php returns
-			},
-
-	    	error: function(err, file) {
-				switch(err) {
-					case 'BrowserNotSupported':
-						showMessage('Your browser does not support HTML5 file uploads!');
-						break;
-					case 'TooManyFiles':
-						alert('Too many files! Please select 5 at most!');
-						break;
-					case 'FileTooLarge':
-						alert(file.name+' is too large! Please upload files up to 2mb (configurable).');
-						break;
-					default:
-						break;
-				}
-			},
-
-			// Called before each upload is started
-			beforeEach: function(file){
-				if(!file.type.match(/^image\//)){
-					alert('Only images are allowed!');
-
-					// Returning false will cause the
-					// file to be rejected
-					return false;
-				}
-			},
-
-			uploadStarted:function(i, file, len){
-				createImage(file);
-			},
-
-			progressUpdated: function(i, file, progress) {
-				var new_progress = progress+'%';
-				$.data(file).find('.progress_bar').width(new_progress);
-			}
-
-		});
-
-		var template = '<div class="preview">'+
-							'<span class="imageHolder">'+
-								'<img />'+
-								'<span class="uploaded"></span>'+
-							'</span>'+
-							'<div class="progressHolder">'+
-								'<div class="progress_bar"></div>'+
-							'</div>'+
-						'</div>'; 
-
-
-		function createImage(file){
-
-			var preview = $(template), 
-				image = $('img', preview);
-
-			var reader = new FileReader();
-
-			image.width = 100;
-			image.height = 100;
-
-			reader.onload = function(e){
-
-				// e.target.result holds the DataURL which
-				// can be used as a source of the image:
-
-				image.attr('src',e.target.result);
-			};
-
-			// Reading the file as a DataURL. When finished,
-			// this will trigger the onload function above:
-			reader.readAsDataURL(file);
-
-			message.hide();
-			preview.appendTo(dropbox);
-
-			// Associating a preview container
-			// with the file, using jQuery's $.data():
-
-			$.data(file,preview);
-		}
-
-		function showMessage(msg){
-			message.html(msg);
-		}
-	});
-</script>
+    <script src="<?=ADMIN_JS; ?>filedrop.config.js"></script>
 <? endif; ?>
 
 	<script type="text/javascript" src="<?=ADMIN_JS; ?>application.js"></script>
