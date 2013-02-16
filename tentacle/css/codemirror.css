@@ -193,6 +193,9 @@
 .cm-s-default.CodeMirror-focused .CodeMirror-selected {
   background: #d2dcf8;
 }
+.CodeMirror {
+  height: auto;
+}
 .CodeMirror .CodeMirror span.CodeMirror-matchingbracket {
   /* Ensure visibility against gray inline editor background */
 
