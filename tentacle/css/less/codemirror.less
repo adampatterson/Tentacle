@@ -1,0 +1,318 @@
+// Copyright (c) 2012 Adobe Systems Incorporated. All rights reserved.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the "Software"),
+// to deal in the Software without restriction, including without limitation
+// the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// and/or sell copies of the Software, and to permit persons to whom the
+// Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+// DEALINGS IN THE SOFTWARE.
+
+/* Brackets / CodeMirror Code Formatting */
+
+/* Brackets colours */
+@bc-color-step-size: 10%;
+
+@bc-black:       #000000;
+@bc-grey:        #808080;
+@bc-gray:        @bc-grey; // because people spell it both ways
+@bc-white:       #ffffff;
+
+@bc-yellow:      #b58900;
+@bc-orange:      #cb4b16;
+@bc-red:         #dc322f;
+@bc-magenta:     #d33682;
+@bc-violet:      #6c71c4;
+@bc-blue:        #268bd2;
+@bc-light-blue:  #d8e0e8;
+@bc-cyan:        #2aa198;
+@bc-green:       #859900;
+
+/* Brackets default theme */
+/*
+ * Brackets Default Theme
+ *
+ * Defines all the variables that one can configure in a theme. This should
+ * contain all variables / mixins for UI styling that we want to be able to
+ * change in a theme.
+ *
+ * Throughout the rest of the LESS files we should _only_ use color
+ * variable names that are on the LHS of the list below. So, if we
+ * need a new color for some UI element, we should add a variable
+ * in this file.
+ */
+
+/* Overall Colors */
+
+/*
+ * Background colors are ordered from least "intense" to most "intense"
+ * So, if the background is light, then @background-color-3 should be
+ * lightest, -2 should be darker, and -1 should be darker still.
+ *
+ * The opposite is true for a dark background -- background-color-3 should be
+ * the darkest, -2 should be lighter, and -1 should be lighter still.
+ */
+@background-color-1: darken(@bc-white, @bc-color-step-size*2);
+@background-color-2: darken(@bc-white, @bc-color-step-size);
+@background-color-3: #f8f8f8;
+
+/*
+ * @content-color-stronger should be should be further away from the
+ * background color than @content-color (i.e. more contrasty).
+ *
+ * @content-color-weaker should be closer to the background color
+ * than @content-color (i.e. less contrasty).
+ */
+@content-color: #535353;
+@content-color-stronger: @bc-black;
+@content-color-weaker: lighten(@bc-black, @bc-color-step-size*6);
+
+/* Code Styling */
+
+/* code accent colors */
+@accent-keyword: #446fbd;
+@accent-atom: #f18900;
+@accent-number: #738d00;
+@accent-def: #8757ad;
+@accent-variable: #535353;
+@accent-variable-2: #535353;
+@accent-variable-3: #535353;
+@accent-property: #8757ad;
+@accent-operator: #535353;
+@accent-comment: #a2a2a2;
+@accent-string: #f18900;
+@accent-string-2: #f18900;
+@accent-meta: #535353;
+@accent-error: #dc322f;
+@accent-qualifier: #446fbd;
+@accent-builtin: #446fbd;
+@accent-bracket: #535353;
+@accent-tag: #446fbd;
+@accent-attribute: #738d00;
+@accent-header: #d33682;
+@accent-quote: #446fbd;
+@accent-hr: #f18900;
+@accent-link: #8757ad;
+@accent-rangeinfo: #6c71c4;
+@accent-minus: #dc322f;
+@accent-plus: #859900;
+
+/* inline editor colors */
+@inline-background-color-1: #eaeaea;
+@inline-background-color-2: #dfe2e2;
+@inline-background-color-3: #d0d5d5;
+
+@inline-color-1: #a1a3a4;
+@inline-color-2: #8a8a8a;
+@inline-color-3: @bc-black;
+
+/* Selection colors */
+@selection-color-focused: #d2dcf8;
+@selection-color-unfocused: #d9d9d9;
+
+/* Code font formatting
+ *
+ * NOTE (JRB): In order to get the web font to load early enough, we have a div called "dummy-text" that
+ * is styled with .code-font().
+ *
+ * The platform-specific selector gets added to the body tag *before* document ready time.
+ * We rely on this behavior to load platform-specific web fonts early.
+ */
+.code-font() {
+  color: @content-color;
+// line-height must be specified in px not em because the code font and line number font sizes are different.
+// Sizing via em will cause the code and line numbers to misalign
+  line-height: 15px;
+  font-size: 12px;
+  font-family: 'SourceCodePro', "ＭＳ ゴシック", "MS Gothic", monospace;
+}
+
+.code-font-win() {
+  .code-font();
+}
+
+.code-font-mac() {
+  .code-font();
+/* Use the Medium weight on the Mac to counterbalance the grayscale antialiasing. */
+  font-family: 'SourceCodePro-Medium', "ＭＳ ゴシック", "MS Gothic", monospace;
+}
+
+.code-cursor() {
+// to make a block cursor, use something like this:
+// background-color: fadeout(@blue, 50%);
+// border: none !important;
+
+// to make an I-cursor, use something like this:
+  border-left: 1px solid black !important;
+
+}
+
+/* Codemirror overrides */
+.CodeMirror pre {
+  line-height: inherit;
+  padding: 0 @code-padding;
+}
+
+.CodeMirror-scroll {
+  background-color: @background-color-3;
+}
+
+.platform-mac .CodeMirror {
+  .code-font-mac();
+}
+
+.platform-win .CodeMirror {
+  .code-font-win();
+}
+
+@code-padding: 1.2em;
+
+.cm-s-default {
+  span.cm-keyword {color: @accent-keyword;}
+  span.cm-atom {color: @accent-atom;}
+  span.cm-number {color: @accent-number;}
+  span.cm-def {color: @accent-def;}
+  span.cm-variable {color: @accent-variable;}
+  span.cm-variable-2 {color: @accent-variable-2;}
+  span.cm-variable-3 {color: @accent-variable-3;}
+  span.cm-property {color: @accent-property;}
+  span.cm-operator {color: @accent-operator;}
+  span.cm-comment {color: @accent-comment;}
+  span.cm-string {color: @accent-string;}
+  span.cm-string-2 {color: @accent-string-2;}
+  span.cm-meta {color: @accent-meta;}
+  span.cm-error {color: @accent-error;}
+  span.cm-qualifier {color: @accent-qualifier;}
+  span.cm-builtin {color: @accent-builtin;}
+  span.cm-bracket {color: @accent-bracket;}
+  span.cm-tag {color: @accent-tag;}
+  span.cm-attribute {color: @accent-attribute;}
+  span.cm-header {color: @accent-header;}
+  span.cm-quote {color: @accent-quote;}
+  span.cm-hr {color: @accent-hr;}
+  span.cm-link {color: @accent-link;}
+  span.cm-rangeinfo {color: @accent-rangeinfo;}
+  span.cm-minus {color: @accent-minus;}
+  span.cm-plus {color: @accent-plus;}
+
+  span.CodeMirror-matchingbracket {color: @accent-bracket !important; background-color: @background-color-2;}
+  span.CodeMirror-nonmatchingbracket {color: @accent-bracket !important;}
+
+  .CodeMirror-cursor {
+    .code-cursor();
+
+  /* Ensure the cursor shows up in front of code spans with a background color
+   * (e.g. matchingbracket).
+   */
+    z-index: 3;
+  }
+
+  .CodeMirror-lines {
+    padding: @code-padding 0;
+
+  /* This is necessary for issue #2780. The logic for closing dropdowns depends on "click" events. Now
+   * that each line has a separate div element, there is a good chance that mouseDown and mouseUp events
+   * occur on different elements, which means a click event will not be sent. By disabling pointer events here,
+   * we are guaranteed that the mouse event will be captured by our parent div, and click events will
+   * be dispatched.
+   */
+    pointer-events: none;
+  }
+
+  .CodeMirror-linewidget {
+  /* Re-enable pointer events for line widget. Pointer events are disabled for "CodeMirror-lines", which is the
+   * parent of line widgets, so they need to be explicitly re-enabled here in order for selection to work. */
+    pointer-events: auto;
+  }
+
+  .CodeMirror-gutters {
+    background-color: @background-color-3;
+    border-right: none;
+    padding-top: @code-padding;
+    padding-bottom: @code-padding;
+    min-width: 2.5em;
+  }
+  .CodeMirror-linenumber {
+    color: @accent-comment;
+    min-width: 2.5em;
+  /*font-size: 0.9em;*/  /* restore after SourceCodePro font fix? */
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  &.CodeMirror-focused .CodeMirror-selected {
+    background: @selection-color-focused;
+  }
+}
+
+/*
+    CodeMirror's use of descendant selectors for certain styling causes problems when editors are
+    nested because, for items in the inner editor, the left-hand clause in the selector will now
+    match either the actual containing CodeMirror instance *OR* the outer "host" CodeMirror instance.
+
+    TODO (issue #324): We'll still have problems if editors can be nested more than one level deep,
+    or if any other descendant-selector-driven CM styles can differ between inner & outer editors
+    (potential problem areas include line wrap and coloring theme: basically, anything in codemirror.css
+    that uses a descandant selector where the CSS class name to the left of the space is something
+    other than a vanilla .CodeMirror)
+ */
+.CodeMirror {
+  .CodeMirror span.CodeMirror-matchingbracket {
+  /* Ensure visibility against gray inline editor background */
+    background-color: @background-color-1;
+  }
+
+  .CodeMirror .CodeMirror-cursor {
+    visibility: hidden;
+  }
+  .CodeMirror.CodeMirror-focused .CodeMirror-cursor {
+    visibility: visible;
+  }
+
+  .CodeMirror.cm-s-default .CodeMirror-selected {
+    background: @selection-color-unfocused;
+  }
+  .CodeMirror.cm-s-default.CodeMirror-focused .CodeMirror-selected {
+    background: @selection-color-focused;
+  }
+  .CodeMirror .CodeMirror-gutters {
+    background: transparent;
+    border-right: none;
+  }
+
+  .CodeMirror-scroll {
+    outline: none;
+  }
+
+  .CodeMirror-sizer {
+    cursor: text;
+  }
+
+  .CodeMirror .CodeMirror-vscrollbar, .CodeMirror .CodeMirror-hscrollbar {
+    cursor: default;
+  }
+}
+
+/*
+ * Temporarily override bold and italic syntax highlighting until
+ * SourceCodePro supports them in a fixed pitch
+ */
+span.cm-em {
+  font-style: normal;
+}
+span.cm-header, span.cm-strong {
+  font-weight: normal;
+}
+span.cm-emstrong {
+  font-style: normal;
+  font-weight: normal;
+}

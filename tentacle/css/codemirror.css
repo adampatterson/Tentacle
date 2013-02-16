@@ -1,0 +1,252 @@
+/* Brackets / CodeMirror Code Formatting */
+/* Brackets colours */
+/* Brackets default theme */
+/*
+ * Brackets Default Theme
+ *
+ * Defines all the variables that one can configure in a theme. This should
+ * contain all variables / mixins for UI styling that we want to be able to
+ * change in a theme.
+ *
+ * Throughout the rest of the LESS files we should _only_ use color
+ * variable names that are on the LHS of the list below. So, if we
+ * need a new color for some UI element, we should add a variable
+ * in this file.
+ */
+/* Overall Colors */
+/*
+ * Background colors are ordered from least "intense" to most "intense"
+ * So, if the background is light, then @background-color-3 should be
+ * lightest, -2 should be darker, and -1 should be darker still.
+ *
+ * The opposite is true for a dark background -- background-color-3 should be
+ * the darkest, -2 should be lighter, and -1 should be lighter still.
+ */
+/*
+ * @content-color-stronger should be should be further away from the
+ * background color than @content-color (i.e. more contrasty).
+ *
+ * @content-color-weaker should be closer to the background color
+ * than @content-color (i.e. less contrasty).
+ */
+/* Code Styling */
+/* code accent colors */
+/* inline editor colors */
+/* Selection colors */
+/* Code font formatting
+ *
+ * NOTE (JRB): In order to get the web font to load early enough, we have a div called "dummy-text" that
+ * is styled with .code-font().
+ *
+ * The platform-specific selector gets added to the body tag *before* document ready time.
+ * We rely on this behavior to load platform-specific web fonts early.
+ */
+/* Codemirror overrides */
+.CodeMirror pre {
+  line-height: inherit;
+  padding: 0 1.2em;
+}
+.CodeMirror-scroll {
+  background-color: #f8f8f8;
+}
+.platform-mac .CodeMirror {
+  color: #535353;
+  line-height: 15px;
+  font-size: 12px;
+  font-family: 'SourceCodePro', "ＭＳ ゴシック", "MS Gothic", monospace;
+  /* Use the Medium weight on the Mac to counterbalance the grayscale antialiasing. */
+
+  font-family: 'SourceCodePro-Medium', "ＭＳ ゴシック", "MS Gothic", monospace;
+}
+.platform-win .CodeMirror {
+  color: #535353;
+  line-height: 15px;
+  font-size: 12px;
+  font-family: 'SourceCodePro', "ＭＳ ゴシック", "MS Gothic", monospace;
+}
+.cm-s-default span.cm-keyword {
+  color: #446fbd;
+}
+.cm-s-default span.cm-atom {
+  color: #f18900;
+}
+.cm-s-default span.cm-number {
+  color: #738d00;
+}
+.cm-s-default span.cm-def {
+  color: #8757ad;
+}
+.cm-s-default span.cm-variable {
+  color: #535353;
+}
+.cm-s-default span.cm-variable-2 {
+  color: #535353;
+}
+.cm-s-default span.cm-variable-3 {
+  color: #535353;
+}
+.cm-s-default span.cm-property {
+  color: #8757ad;
+}
+.cm-s-default span.cm-operator {
+  color: #535353;
+}
+.cm-s-default span.cm-comment {
+  color: #a2a2a2;
+}
+.cm-s-default span.cm-string {
+  color: #f18900;
+}
+.cm-s-default span.cm-string-2 {
+  color: #f18900;
+}
+.cm-s-default span.cm-meta {
+  color: #535353;
+}
+.cm-s-default span.cm-error {
+  color: #dc322f;
+}
+.cm-s-default span.cm-qualifier {
+  color: #446fbd;
+}
+.cm-s-default span.cm-builtin {
+  color: #446fbd;
+}
+.cm-s-default span.cm-bracket {
+  color: #535353;
+}
+.cm-s-default span.cm-tag {
+  color: #446fbd;
+}
+.cm-s-default span.cm-attribute {
+  color: #738d00;
+}
+.cm-s-default span.cm-header {
+  color: #d33682;
+}
+.cm-s-default span.cm-quote {
+  color: #446fbd;
+}
+.cm-s-default span.cm-hr {
+  color: #f18900;
+}
+.cm-s-default span.cm-link {
+  color: #8757ad;
+}
+.cm-s-default span.cm-rangeinfo {
+  color: #6c71c4;
+}
+.cm-s-default span.cm-minus {
+  color: #dc322f;
+}
+.cm-s-default span.cm-plus {
+  color: #859900;
+}
+.cm-s-default span.CodeMirror-matchingbracket {
+  color: #535353 !important;
+  background-color: #e6e6e6;
+}
+.cm-s-default span.CodeMirror-nonmatchingbracket {
+  color: #535353 !important;
+}
+.cm-s-default .CodeMirror-cursor {
+  border-left: 1px solid black !important;
+  /* Ensure the cursor shows up in front of code spans with a background color
+   * (e.g. matchingbracket).
+   */
+
+  z-index: 3;
+}
+.cm-s-default .CodeMirror-lines {
+  padding: 1.2em 0;
+  /* This is necessary for issue #2780. The logic for closing dropdowns depends on "click" events. Now
+   * that each line has a separate div element, there is a good chance that mouseDown and mouseUp events
+   * occur on different elements, which means a click event will not be sent. By disabling pointer events here,
+   * we are guaranteed that the mouse event will be captured by our parent div, and click events will
+   * be dispatched.
+   */
+
+  pointer-events: none;
+}
+.cm-s-default .CodeMirror-linewidget {
+  /* Re-enable pointer events for line widget. Pointer events are disabled for "CodeMirror-lines", which is the
+   * parent of line widgets, so they need to be explicitly re-enabled here in order for selection to work. */
+
+  pointer-events: auto;
+}
+.cm-s-default .CodeMirror-gutters {
+  background-color: #f8f8f8;
+  border-right: none;
+  padding-top: 1.2em;
+  padding-bottom: 1.2em;
+  min-width: 2.5em;
+}
+.cm-s-default .CodeMirror-linenumber {
+  color: #a2a2a2;
+  min-width: 2.5em;
+  /*font-size: 0.9em;*/
+  /* restore after SourceCodePro font fix? */
+
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.cm-s-default.CodeMirror-focused .CodeMirror-selected {
+  background: #d2dcf8;
+}
+/*
+    CodeMirror's use of descendant selectors for certain styling causes problems when editors are
+    nested because, for items in the inner editor, the left-hand clause in the selector will now
+    match either the actual containing CodeMirror instance *OR* the outer "host" CodeMirror instance.
+
+    TODO (issue #324): We'll still have problems if editors can be nested more than one level deep,
+    or if any other descendant-selector-driven CM styles can differ between inner & outer editors
+    (potential problem areas include line wrap and coloring theme: basically, anything in codemirror.css
+    that uses a descandant selector where the CSS class name to the left of the space is something
+    other than a vanilla .CodeMirror)
+ */
+.CodeMirror .CodeMirror span.CodeMirror-matchingbracket {
+  /* Ensure visibility against gray inline editor background */
+
+  background-color: #cccccc;
+}
+.CodeMirror .CodeMirror .CodeMirror-cursor {
+  visibility: hidden;
+}
+.CodeMirror .CodeMirror.CodeMirror-focused .CodeMirror-cursor {
+  visibility: visible;
+}
+.CodeMirror .CodeMirror.cm-s-default .CodeMirror-selected {
+  background: #d9d9d9;
+}
+.CodeMirror .CodeMirror.cm-s-default.CodeMirror-focused .CodeMirror-selected {
+  background: #d2dcf8;
+}
+.CodeMirror .CodeMirror .CodeMirror-gutters {
+  background: transparent;
+  border-right: none;
+}
+.CodeMirror .CodeMirror-scroll {
+  outline: none;
+}
+.CodeMirror .CodeMirror-sizer {
+  cursor: text;
+}
+.CodeMirror .CodeMirror .CodeMirror-vscrollbar,
+.CodeMirror .CodeMirror .CodeMirror-hscrollbar {
+  cursor: default;
+}
+/*
+ * Temporarily override bold and italic syntax highlighting until
+ * SourceCodePro supports them in a fixed pitch
+ */
+span.cm-em {
+  font-style: normal;
+}
+span.cm-header,
+span.cm-strong {
+  font-weight: normal;
+}
+span.cm-emstrong {
+  font-style: normal;
+  font-weight: normal;
+}
