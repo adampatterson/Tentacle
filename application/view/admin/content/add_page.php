@@ -82,18 +82,53 @@
 						
 						<div id="content" class="active tab-pane">
 							<input type="text" name="title" placeholder='Title' class='xlarge content_title' required='required' />
-							<? if (user_editor() == 'wysiwyg'): ?>
 
-								<p class="wysiwyg">
-									<textarea id="Content" name="content" rows="15" cols="80" class="editor"></textarea>
-								</p>
-							
-							<? else: ?>
+                            <? if(user_editor() == 'wysihtml5'): ?>
 
-								<p><textarea id="code" name="content" cols="40" rows="5" placeholder='Content'></textarea></p>
+                                <p class="wysihtml5">
+                                    <textarea id="Content" name="content" rows="15" cols="80" class="editor"></textarea>
+                                </p>
 
-							<? endif; ?>
+                                <script type="text/javascript">
 
+                                    $(window).on('load', function load(){
+
+                                        var media = {
+                                            html : function(locale) {
+                                                return "<li>" +
+                                                    "<div class='btn-group'>" +
+                                                    "<a class='btn' data-wysihtml5-action='change_view' title='" + locale.html.edit + "'>HTML</a>" +
+                                                    "</div>" +
+                                                    "</li>";
+                                            }
+                                        }
+
+                                        $('#Content').wysihtml5('deepExtend', {
+                                            "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+                                            "emphasis": true, //Italics, bold, etc. Default true
+                                            "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+                                            "html": true, //Button which allows you to edit the generated HTML. Default false
+                                            "link": true, //Button to insert a link. Default true
+                                            "image": false, //Button to insert an image. Default true,
+                                            "color": false, //Button to change color of font
+                                            customTemplates: media
+                                        });
+                                    })
+                                </script>
+                            <? endif; ?>
+
+                            <? if(user_editor() == 'wysiwyg'): ?>
+                                <p class="wysiwyg">
+                                    <textarea id="Content" name="content" rows="15" cols="80" class="editor"></textarea>
+                                </p>
+                            <? endif; ?>
+
+                            <? if(user_editor() == 'html'): ?>
+                                <p>
+                                    <textarea id="code" name="content" cols="40" rows="5" placeholder='Content'></textarea>
+                                </p>
+
+                            <? endif; ?>
 							<div id="scaffold">
 								<? if ( session::get( 'template' ) != 'index' && session::get( 'template' ) != '' ):
 

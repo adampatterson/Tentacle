@@ -22,7 +22,9 @@
 	</div>
 </div>
 </footer>
+<? if(user_editor() == 'wysihtml5'): ?>
 
+<? endif; ?>
 <? if(user_editor() == 'wysiwyg'): ?>
 
     <script type="text/javascript" src="<?= ADMIN_JS; ?>raptor.min.js"></script>

@@ -118,14 +118,26 @@
 							<? //clean_out($get_post_meta ) ?>
 							<input type="text" name="title" placeholder='Title' value='<?= $get_post->title ?>' class='xlarge content_title' required='required' />
 							<!--<p>Permalink: http://www.sitename/com/path/ <a href="#">Edit</a></p>-->
-							
+
+                            <? if(user_editor() == 'wysihtml5'): ?>
+
+                                <p class="wysihtml5">
+                                    <textarea id="Content" name="content" rows="15" cols="80" class="editor"><?= the_content( $get_post->content, true ) ?></textarea>
+                                </p>
+
+                                <script type="text/javascript">
+                                    $('#Content').wysihtml5();
+                                </script>
+                            <? endif; ?>
+
 							<? if(user_editor() == 'wysiwyg'):?>
 								
 								<p class="wysiwyg">
 									<textarea id="Content" name="content" rows="15" cols="80" class="editor"><?= the_content( $get_post->content, true ) ?></textarea>
 								</p>
 
-							<? else: ?>
+                            <? endif; ?>
+                            <? if(user_editor() == 'html'):?>
 								
 								<p>
 									<textarea id="code" name="content" cols="40" rows="5" placeholder='Content' class='CodeMirror-scroll'><?= stripslashes($get_post->content) ?></textarea>

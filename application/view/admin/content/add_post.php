@@ -112,18 +112,24 @@
 							<!--<p>
 								Permalink: http://www.sitename/com/path/ <a href="#">Edit</a>
 							</p>-->
+
+                            <? if(user_editor() == 'wysihtml5'): ?>
+                                <p class="wysihtml5">
+                                    <textarea id="Content" name="content" rows="15" cols="80" class="editor"></textarea>
+                                </p>
+
+                                <script type="text/javascript">
+                                    $('#Content').wysihtml5();
+                                </script>
+                            <? endif; ?>
+
 							<? if(user_editor() == 'wysiwyg'): ?>
 								<p class="wysiwyg">
 									<textarea id="Content" name="content" rows="15" cols="80" class="editor"></textarea>
 								</p>
-								<? /*
-   	                         	<a href="#" id="myButton" >Click Me For A Modal</a>
-								<div id="myModal" class="reveal-modal">
-									<a class="close-reveal-modal">&#215;</a>
-									<iframe width="720" height="550" src="<?= ADMIN ?>/media_insert"></iframe>
-								</div>
-								 */ ?>
-							<? else: ?>
+                            <? endif; ?>
+
+                            <? if(user_editor() == 'html'): ?>
 								<p>
 									<textarea id="code" name="content" cols="40" rows="5" placeholder='Content'></textarea>
 								</p>
