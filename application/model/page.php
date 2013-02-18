@@ -153,7 +153,7 @@ class page_model
 
     public function update_page_order( $new_order )
     {
-        $page = db('posts');
+        $page = load::model('page');
 
         // Run the function above
         $clean_order = parse_multidimensional_array( $new_order );
@@ -164,15 +164,61 @@ class page_model
             // $value should always be an array, but we do a check
             if (is_array($value)) {
 
-                $page->update(array(
+                $new_uri = $page->update_uri( $value['id'] );
+
+                db('posts')->update(array(
                     'parent'=>$value['parentID'],
-                    'menu_order'=>$key
+                    'menu_order'=>$key,
+                    'uri'=>$new_uri
                 ))
                     ->where( 'id', '=', $value['id'] )
                     ->execute();
             }
         }
     }
+
+
+    public function update_uri( $id )
+    {
+        $page = load::model( 'page' );
+
+        $parent_uri = $page->get_parent_ids( $id );
+
+        $uri = '';
+        foreach( array_reverse($parent_uri) as $id ){
+            $uri .= $page->get_parent_slug( $id ).'/';
+        }
+
+        return substr($uri, 1);
+    }
+
+
+    public function _update_uri( $id, $id_array = array() )
+    {
+        $id_array[] = $id;
+
+        $pages = db ( 'posts' );
+
+        $parents = $pages->select( 'parent', 'uri' )
+            ->where ( 'id', '=', $id )
+            ->clause ( 'AND' )
+            ->where ( 'type', '=', 'page' )
+            ->execute();
+
+        $has_parent = !empty($parents);
+
+        if ($has_parent)
+        {
+            // Loop through all of the children and run this function again
+            foreach ($parents as $parent)
+            {
+                $id_array = $this->get_parent_ids($parent->parent, $id_array);
+            }
+        }
+
+        return $id_array;
+    }
+
 
 
 	// Get Page
@@ -313,8 +359,53 @@ class page_model
 			return false;
 		endif;
 	}
-	
-	
+
+
+    /**
+     * Get the SLUG of a parent page
+     */
+    public function get_parent_slug( $parent_id )
+    {
+        $pages = db ( 'posts' );
+
+        $get_parent_uri = $pages->select( 'slug' )
+            ->where ( 'id', '=', $parent_id )
+            ->clause ( 'AND' )
+            ->where ( 'type', '=', 'page' )
+            ->execute();
+
+        if ( $parent_id ):
+            return $get_parent_uri[0]->slug;
+        else:
+            return false;
+        endif;
+    }
+
+
+    /**
+     * Get a parent page
+     *
+     * @param string $parent_id
+     * @return void
+     * @author Adam Patterson
+     */
+    public function get_parent( $parent_id )
+    {
+        $pages = db ( 'posts' );
+
+        $get_parent_uri = $pages->select( '*' )
+            ->where ( 'id', '=', $parent_id )
+            ->clause ( 'AND' )
+            ->where ( 'type', '=', 'page' )
+            ->execute();
+
+        if ( $parent_id ):
+            return $get_parent_uri[0];
+        else:
+            return false;
+        endif;
+    }
+
 	/**
 	 * Get an object based on its URI
 	 *
@@ -376,8 +467,6 @@ class page_model
 	}
 
 	
-	
-	
 	/**
 	 * Return the home Hobject
 	 *
@@ -431,6 +520,33 @@ class page_model
 
 		return $id_array;
 	}
+
+
+    public function get_parent_ids( $id, $id_array = array() )
+    {
+        $id_array[] = $id;
+
+        $pages = db ( 'posts' );
+
+        $parents = $pages->select( 'parent', 'uri' )
+            ->where ( 'id', '=', $id )
+            ->clause ( 'AND' )
+            ->where ( 'type', '=', 'page' )
+            ->execute();
+
+        $has_parent = !empty($parents);
+
+        if ($has_parent)
+        {
+            // Loop through all of the children and run this function again
+            foreach ($parents as $parent)
+            {
+                $id_array = $this->get_parent_ids($parent->parent, $id_array);
+            }
+        }
+
+        return $id_array;
+    }
 	
 	
 	/**
