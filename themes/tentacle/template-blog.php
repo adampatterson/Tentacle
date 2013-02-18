@@ -11,7 +11,7 @@ License URI: license.txt
 
 theme::part('partials/header',array('title'=>'Blog','assets'=>'default')); ?>
 
-<div class="row-fluid">
+<div class="row" xmlns="http://www.w3.org/1999/html">
 
     <div class="span3">
 
@@ -25,35 +25,32 @@ theme::part('partials/header',array('title'=>'Blog','assets'=>'default')); ?>
 
     <? foreach ($posts as $post):
         $author_meta = $author->get_meta( $post->author ); ?>
+        <div class="post <?= $post->template; ?>">
 
-        <div class="hero-unit">
-            <h1 class="title"><a href="<?= BASE_URL.$post->uri ?>"><?= $post->title?></a></h1>
+            <div class="page-header">
+                <h2 class=""><a href="<?= BASE_URL.$post->uri ?>"><?= $post->title?></a></h2>
+            </div>
+
+            <p class="meta"><em>
+                Posted <time datetime="<? date::show($post->date) ?>" pubdate=""><? date::show($post->date) ?></time>
+                by <?= $author_meta->first_name;?> <?= $author_meta ->last_name;?> <span class="amp"></span>
+                in <? foreach( $category->get_relations( $post->id ) as $relation ): ?>
+                    <a href="<?=BASE_URL?>category/<?=$relation->slug ?>"><?= $relation->name ?></a>
+                <? endforeach; ?>.</em></p>
+
             <?= the_content( $post->content ); ?>
 
+
             <p>
-                <small>Created by: <?= $author_meta->first_name;?> <?= $author_meta ->last_name;?></small>
-            <br />
-                <small>Posted in:
-                <? foreach( $category->get_relations( $post->id ) as $relation ): ?>
-                     <a href="<?=BASE_URL?>category/<?=$relation->slug ?>"><?= $relation->name ?></a>
-                <? endforeach; ?>
-                </small>
-            <br />
-                <small>Posted on: <? date::show($post->date) ?></small>
-            <br />
                 <small>Tags:
                 <? foreach( $relations = $tag->get_relations( $post->id ) as $relation ): ?>
-                     <a href="<?=BASE_URL?>tag/<?=$relation->slug ?>"><?= $relation->name ?></a>
+                     <a href="<?=BASE_URL?>tag/<?=$relation->slug ?>" class="label"><?= $relation->name ?></a>
                 <? endforeach; ?>
                 </small>
-            <br />
-                <small>Post template: <?= $post->template; ?></small>
             </p>
 
             <?= render_content(); ?>
-
-        </div><!-- /hero-unit -->
-
+        </div>
     <? endforeach; ?>
 
     <? paginate::pages(true); ?>

@@ -5,7 +5,7 @@ Type: Guide
 
 theme::part('partials/header',array('title'=>$post->title,'assets'=>'default')); ?>
 
-<div class="row-fluid">
+<div class="row">
 
     <div class="span3">
 
@@ -17,16 +17,13 @@ theme::part('partials/header',array('title'=>$post->title,'assets'=>'default'));
 
     <div class="span9">
 
-        <div class="hero-unit">
+        <h1><?= $post->title; ?></h1>
 
-            <h1><?= $post->title; ?></h1>
+        <?= the_content( $post->content ); ?>
 
-            <?= the_content( $post->content ); ?>
-
-        </div><!-- /hero-unit -->
+        <?= render_content(); ?>
 
     </div><!-- /span9-->
-
 </div><!-- /row-->
 
 <? theme::part('partials/footer'); ?>

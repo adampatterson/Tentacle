@@ -33,7 +33,7 @@ twitter:
 
 theme::part('partials/header',array('title'=>$post->title, 'assets'=>'default'));?>
 
-<div class="row-fluid">
+<div class="row">
 
     <div class="span3">
         <div class="well sidebar-nav">

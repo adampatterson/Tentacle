@@ -1,6 +1,6 @@
 <? theme::part('partials/header',array('title'=>'404', 'assets'=>'default')); ?>
 
-<div class="row-fluid">
+<div class="row">
 
   <div class="span12">
 

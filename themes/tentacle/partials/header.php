@@ -21,4 +21,4 @@ render_header( );
 </head>
 
 <body <?= body_class(); ?>>
-	<div class="container-fluid">
+	<div class="container">
