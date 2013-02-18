@@ -128,7 +128,19 @@ class page_controller {
                 logger::set('Post total', $post_total);
 
                 tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
+            break;
+            case 'blog_paged':
 
+                define ( 'IS_POST'      , FALSE );
+
+                $posts 		= $post->get( );
+                $post_total = count($posts);
+
+                //$page = new pagination($post_total, $current_page,25);
+
+                logger::set('Post total', $post_total);
+
+                tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
             break;
             case 'category_slug':
 
