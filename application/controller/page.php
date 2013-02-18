@@ -12,13 +12,15 @@ class page_controller {
 
         $uri 			= URI;
 
+        $blog_uri       = get::option('blog_uri');
+
         if ( $uri == '' || $uri == 'home'):
             $uri 		= 'home';
-        elseif	( URI == '' || $uri == get::option('blog_uri') ):
-            $uri 		= un_slash( get::option('blog_uri') );
+        elseif	( URI == '' || $uri == $blog_uri ):
+            $uri 		= un_slash( $blog_uri );
         endif;
 
-        $blog_uri = un_slash(get::option('blog_uri'));
+        $blog_uri = un_slash( $blog_uri );
 
         $routs = array(
             'home'                              => 'home.index',
@@ -60,6 +62,16 @@ class page_controller {
         $tag 		= load::model( 'tags' );
         $author 	= load::model('user');
 
+
+    $uri_parts = explode('/', URI);
+
+    $current_page = end($uri_parts);
+
+    if(!is_numeric($current_page))
+        $current_page = 1;
+
+    $post_limit = get::option('page_limit', 5);
+
         switch (url_map::get( $uri )) {
             case 'home_index':
             case 'page_index':
@@ -77,7 +89,7 @@ class page_controller {
 
                 tentacle::render( $post->template, array ( 'post' => $post ) );
 
-            break;
+                break;
             case 'page_subpage':
 
                 define ( 'IS_POST'      , FALSE );
@@ -87,35 +99,31 @@ class page_controller {
 
                 tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
 
-            break;
+                break;
             case 'blog_index':
 
                 define ( 'IS_POST'      , FALSE );
 
-                $posts 		= $post->get( );
-                $post_total = count($posts);
+                $post_total 		= $post->get( );
 
-                //$page = new pagination($post_total, $current_page,25);
+                $posts = new pagination($post_total, $current_page, $post_limit);
 
-                logger::set('Post total', $post_total);
+                logger::set('Post total', count($posts));
 
-                tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
+                tentacle::render( 'template-blog', array ( 'posts' => $posts->results(), 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
 
-            break;
+                break;
             case 'blog_date':
 
                 define ( 'IS_POST'      , FALSE );
 
                 $posts 		= $post->get_by_date( $uri );
-                $post_total = count($posts);
 
-                //$page = new pagination($post_total, $current_page,25);
-
-                logger::set('Post total', $post_total);
+                logger::set('Post total', count($posts));
 
                 tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
 
-            break;
+                break;
             case 'blog_date_slug':
 
                 define ( 'IS_POST'      , TRUE );
@@ -123,25 +131,23 @@ class page_controller {
                 $post 		= $page->get_by_uri( $uri );
 
                 $post_meta 	= $page->get_page_meta( $post->id );
-                $post_total = count($post);
 
-                logger::set('Post total', $post_total);
+                logger::set('Post total', count($post));
 
                 tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
-            break;
+                break;
             case 'blog_paged':
 
                 define ( 'IS_POST'      , FALSE );
 
-                $posts 		= $post->get( );
-                $post_total = count($posts);
+                $post_total = $post->get( );
 
-                //$page = new pagination($post_total, $current_page,25);
+                $posts = new pagination($post_total, $current_page, $post_limit);
 
-                logger::set('Post total', $post_total);
+                logger::set('Post total', count($post_total));
 
-                tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
-            break;
+                tentacle::render( 'template-blog', array ( 'posts' => $posts->results(), 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
+                break;
             case 'category_slug':
 
                 $category_slug = explode('/', $uri);
