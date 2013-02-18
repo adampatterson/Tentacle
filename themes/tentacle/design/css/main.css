@@ -5214,6 +5214,10 @@ a.badge:hover {
 .hero-unit h1 {
   line-height: 1.6em;
 }
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
 .meta {
   color: #999999;
 }
