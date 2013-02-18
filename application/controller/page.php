@@ -2,6 +2,7 @@
 class page_controller {
 
     public function index(  ){
+
         load::library('benchmark');
         bench::mark('start');
 
@@ -135,7 +136,7 @@ class page_controller {
 
                 logger::set('Post total', count($post));
 
-                tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
+                tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta, 'author'=>$author, 'category'=>$category, 'tag'=>$tag  ) );
                 break;
             case 'blog_paged':
 
