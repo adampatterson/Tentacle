@@ -63,13 +63,13 @@ class page_controller {
         $author 	= load::model('user');
 
 
-    $uri_parts = explode('/', URI);
-    $current_page = end( $uri_parts );
+        $uri_parts = explode('/', URI);
+        $current_page = end( $uri_parts );
 
-    if( !is_numeric( $current_page ) )
-        $current_page = 1;
+        if( !is_numeric( $current_page ) )
+            $current_page = 1;
 
-    $post_limit = get::option( 'page_limit', 5 );
+        $post_limit = get::option( 'page_limit', 5 );
 
         switch (url_map::get( $uri )) {
             case 'home_index':

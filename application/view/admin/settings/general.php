@@ -57,6 +57,14 @@
                     </div>
 
                     <div class="control-group">
+                        <label class="control-label" for="page_limit">Posts per page</label>
+                        <div class="controls">
+                            <input type="text" value="<?= get::option('page_limit', 5); ?>" name="page_limit">
+                            <p class="help-block">How many blog posts would you like to see on a page?</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
 						<label class="control-label" for="admin_email">E-mail address</label>
 						<div class="controls">
 							<input type="text" value="<?= get::option('admin_email'); ?>" name="admin_email">

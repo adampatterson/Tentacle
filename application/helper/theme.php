@@ -190,7 +190,7 @@ class paginate {
 		$clean_uri = preg_replace('/\/(\w+)\/(\w+)\/(\d+)/i', '${1}/', BASE_URI);
 
         static::$current_page = $current_page;
-        static::$settings = $this->calculate_pages(count($total), 5, 1);
+        static::$settings = $this->calculate_pages(count($total), get::option('page_limit'), 1);
 		static::$url = BASE_URL.$clean_uri.'page';
     }
 
@@ -235,7 +235,7 @@ class paginate {
         echo '</ul></div>';
     }
 
-    
+
     static function next()
     {
         echo '<a href="'.static::$url.'/'.static::$settings['next'].'" class="next">Next</a>';
@@ -297,7 +297,8 @@ class paginate {
     function get_surrounding_pages($page_num, $last_page, $next)
     {
         $arr = array();
-        $show = 5; // how many boxes
+        // @todo: this needs a control
+        $show = 100; // how many boxes
         // at first
         if ($page_num == 1)
         {
