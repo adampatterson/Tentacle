@@ -174,6 +174,168 @@ class theme {
 	}
 }
 
+/**
+ * Class: paginate
+ */
+class paginate {
+
+    static $settings;
+
+    static $current_page;
+
+	static $url;
+
+    public function __construct( $total, $current_page )
+    {
+		$clean_uri = preg_replace('/\/(\w+)\/(\w+)\/(\d+)/i', '${1}/', BASE_URI);
+
+        static::$current_page = $current_page;
+        static::$settings = $this->calculate_pages(count($total), 5, 1);
+		static::$url = BASE_URL.$clean_uri.'page';
+    }
+
+    static function pages( $numbers_only = false )
+    {
+
+        echo '<div class="pagination"><ul>';
+
+            $first_class = '';
+
+            if ( 1 == static::$current_page )
+                $first_class .= 'class="active"';
+
+            $first_class .= '"';
+
+			if ($numbers_only)
+            	echo '<li '.$first_class.'><a href="'.static::$url.'/1" class="first">First</a></li>';
+
+            foreach( static::$settings['pages'] as $page )
+            {
+
+               $class = '';
+
+               if ($page == static::$current_page)
+                   $class .= 'class="active"';
+
+                echo '<li '.$class.'><a href="'.static::$url.'/'.$page.'">'.$page.'</a></li>';
+
+            }
+
+            $last_class = 'class="';
+
+            if (static::$settings['last'] == static::$current_page)
+                $last_class .= 'active';
+
+            $last_class .= '"';
+
+
+        if ($numbers_only)
+            	echo '<li '.$last_class.'><a href="'.static::$url.'/'.static::$settings['last'].'" class=""last>Last</a></li>';
+
+        echo '</ul></div>';
+    }
+
+    
+    static function next()
+    {
+        echo '<a href="'.static::$url.'/'.static::$settings['next'].'" class="next">Next</a>';
+    }
+
+
+    static function previous()
+    {
+        echo '<a href="'.static::$url.'/'.static::$settings['previous'].'" class="previous">Previous</a>';
+    }
+
+
+    static function last()
+    {
+        echo '<a href="'.static::$url.'/'.static::$settings['last'].'" class="last">Last</a>';
+    }
+
+
+    static function first()
+    {
+        echo '<a href="'.static::$url.'/1" class="first">First</a>';
+    }
+
+
+    public function calculate_pages($total_rows, $rows_per_page, $page_num)
+    {
+        $arr = array();
+        // calculate last page
+
+        $last_page = ceil($total_rows / $rows_per_page);
+        // make sure we are within limits
+        $page_num = (int) $page_num;
+        if ($page_num < 1)
+        {
+            $page_num = 1;
+        }
+        elseif ($page_num > $last_page)
+        {
+            $page_num = $last_page;
+        }
+        $upto = ($page_num - 1) * $rows_per_page;
+        $arr['limit'] = 'LIMIT '.$upto.',' .$rows_per_page;
+        $arr['current'] = $page_num;
+        if ($page_num == 1)
+            $arr['previous'] = $page_num;
+        else
+            $arr['previous'] = $page_num - 1;
+        if ($page_num == $last_page)
+            $arr['next'] = $last_page;
+        else
+            $arr['next'] = $page_num + 1;
+        $arr['last'] = $last_page;
+        $arr['info'] = 'Page ('.$page_num.' of '.$last_page.')';
+        $arr['pages'] = $this->get_surrounding_pages($page_num, $last_page, $arr['next']);
+        return $arr;
+    }
+
+
+    function get_surrounding_pages($page_num, $last_page, $next)
+    {
+        $arr = array();
+        $show = 5; // how many boxes
+        // at first
+        if ($page_num == 1)
+        {
+            // case of 1 page only
+            if ($next == $page_num) return array(1);
+            for ($i = 0; $i < $show; $i++)
+            {
+                if ($i == $last_page) break;
+                array_push($arr, $i + 1);
+            }
+            return $arr;
+        }
+        // at last
+        if ($page_num == $last_page)
+        {
+            $start = $last_page - $show;
+            if ($start < 1) $start = 0;
+            for ($i = $start; $i < $last_page; $i++)
+            {
+                array_push($arr, $i + 1);
+            }
+            return $arr;
+        }
+        // at middle
+        $start = $page_num - $show;
+        if ($start < 1) $start = 0;
+        for ($i = $start; $i < $page_num; $i++)
+        {
+            array_push($arr, $i + 1);
+        }
+        for ($i = ($page_num + 1); $i < ($page_num + $show); $i++)
+        {
+            if ($i == ($last_page + 1)) break;
+            array_push($arr, $i);
+        }
+        return $arr;
+    }
+}
 
 /**
 * Function: _cleanup_header_comment

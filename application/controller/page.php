@@ -64,13 +64,12 @@ class page_controller {
 
 
     $uri_parts = explode('/', URI);
+    $current_page = end( $uri_parts );
 
-    $current_page = end($uri_parts);
-
-    if(!is_numeric($current_page))
+    if( !is_numeric( $current_page ) )
         $current_page = 1;
 
-    $post_limit = get::option('page_limit', 5);
+    $post_limit = get::option( 'page_limit', 5 );
 
         switch (url_map::get( $uri )) {
             case 'home_index':
@@ -110,6 +109,8 @@ class page_controller {
 
                 logger::set('Post total', count($posts));
 
+                $paginate = new paginate($post_total, $current_page);
+
                 tentacle::render( 'template-blog', array ( 'posts' => $posts->results(), 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
 
                 break;
@@ -145,6 +146,8 @@ class page_controller {
                 $posts = new pagination($post_total, $current_page, $post_limit);
 
                 logger::set('Post total', count($post_total));
+
+                $paginate = new paginate($post_total, $current_page);
 
                 tentacle::render( 'template-blog', array ( 'posts' => $posts->results(), 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
                 break;

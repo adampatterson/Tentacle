@@ -56,6 +56,8 @@ theme::part('partials/header',array('title'=>'Blog','assets'=>'default')); ?>
 
     <? endforeach; ?>
 
+    <? paginate::pages(true); ?>
+
     </div><!--/span9-->
 
 </div><!--/row-->

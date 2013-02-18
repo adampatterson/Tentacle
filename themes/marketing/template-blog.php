@@ -39,5 +39,7 @@ theme::part('partials/header',array('title'=>'Blog','assets'=>'marketing')); ?>
 		</div><!--/row-->
 	<? endforeach;?>
 
+    <? paginate::pages(true); ?>
+
 </div><!-- /container -->
 <? theme::part( 'partials/footer' ); ?>
