@@ -13,19 +13,15 @@ theme::part('partials/header', array('title'=>$post->title, 'assets'=>'default')
 
 <div class="row">
 
-    <div class="span3">
-
-        <div class="well sidebar-nav">
-            <? theme::part( 'partials/sidebar' ); ?>
-        </div><!--/.well -->
-
-    </div><!--/span3-->
+    <? theme::part( 'partials/sidebar' ); ?>
 
     <div class="span9">
 
-        <div class="hero-unit">
+        <div class="page index">
 
-            <h1><?= $post->title; ?></h1>
+            <div class="page-header">
+                <h1><?= $post->title; ?></h1>
+            </div>
 
             <?= the_content( $post->content ); ?>
 

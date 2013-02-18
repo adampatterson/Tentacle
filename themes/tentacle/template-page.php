@@ -14,25 +14,16 @@ theme::part('partials/header',array('title'=>$post->title, 'assets'=>'default'))
 
 <div class="row">
 
-	<div class="span3">
-
-        <div class="well sidebar-nav">
-			<? theme::part( 'partials/sidebar' ); ?>
-		</div><!--/.well -->
-
-	</div><!--/span3-->
+    <? theme::part( 'partials/sidebar' ); ?>
 
 	<div class="span9">
 
-		<div class="hero-unit">
-			
-			<h1><?= $post->title; ?></h1>
-			<?  // Strip slashses will remove any special 
-				// encoding used by the data base.
-				//
-			 	// This will be replaced by a cuntion that
-			 	// will process any Shortcodes and OEMBED data.
-			?>
+		<div class="page">
+
+            <div class="page-header">
+                <h1><?= $post->title; ?></h1>
+            </div>
+
 			<?= the_content( $post->content ); ?>
 			
 		</div><!-- /hero-unit -->

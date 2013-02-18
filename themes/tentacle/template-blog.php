@@ -13,13 +13,7 @@ theme::part('partials/header',array('title'=>'Blog','assets'=>'default')); ?>
 
 <div class="row" xmlns="http://www.w3.org/1999/html">
 
-    <div class="span3">
-
-        <div class="well sidebar-nav">
-            <? theme::part( 'partials/sidebar' ); ?>
-        </div><!--/.well -->
-
-    </div><!--/span3-->
+    <? theme::part( 'partials/sidebar' ); ?>
 
     <div class="span9">
 

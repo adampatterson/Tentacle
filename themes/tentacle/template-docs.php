@@ -15,7 +15,7 @@ theme::part('partials/header',array('title'=>$post->title, 'assets'=>'docs', 'pr
 
     <div class="span12">
 
-            <?= the_content( $post->content ); ?>
+        <?= the_content( $post->content ); ?>
 
     </div><!-- /span12-->
 

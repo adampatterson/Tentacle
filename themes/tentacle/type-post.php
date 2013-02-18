@@ -7,19 +7,14 @@ theme::part('partials/header',array('title'=>$post->title,'assets'=>'default'));
 
 <div class="row">
 
-    <div class="span3">
-
-        <div class="well sidebar-nav">
-            <? theme::part( 'partials/sidebar' ); ?>
-        </div><!-- /well -->
-
-    </div><!-- /span3-->
+    <? theme::part( 'partials/sidebar' ); ?>
 
     <div class="span9">
+
         <div class="post <?= $post->template; ?>">
             <? $author_meta = $author->get_meta( $post->author ); ?>
             <div class="page-header">
-                <h2><?= $post->title; ?></h2>
+                <h1><?= $post->title; ?></h1>
             </div>
 
                 <p class="meta"><em>

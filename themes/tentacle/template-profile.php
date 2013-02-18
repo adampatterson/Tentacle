@@ -35,15 +35,11 @@ theme::part('partials/header',array('title'=>$post->title, 'assets'=>'default'))
 
 <div class="row">
 
-    <div class="span3">
-        <div class="well sidebar-nav">
-            <? theme::part( 'partials/sidebar' ); ?>
-        </div><!--/.well -->
-    </div><!--/span3-->
+    <? theme::part( 'partials/sidebar' ); ?>
 
     <div class="span9">
 
-        <div class="hero-unit">
+        <div class="page profile">
             <h1><?= $post->title; ?></h1>
 
             <h2><?= $post_meta->name ?></h2>
