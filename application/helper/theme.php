@@ -206,7 +206,7 @@ class paginate {
 
             $first_class .= '"';
 
-			if ($numbers_only)
+			if (!$numbers_only)
             	echo '<li '.$first_class.'><a href="'.static::$url.'/1" class="first">First</a></li>';
 
             foreach( static::$settings['pages'] as $page )
@@ -229,7 +229,7 @@ class paginate {
             $last_class .= '"';
 
 
-        if ($numbers_only)
+        if (!$numbers_only)
             	echo '<li '.$last_class.'><a href="'.static::$url.'/'.static::$settings['last'].'" class=""last>Last</a></li>';
 
         echo '</ul></div>';
