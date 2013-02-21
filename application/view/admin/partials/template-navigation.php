@@ -42,18 +42,12 @@
         ?>
                     </ul>
 			    </li>
-			    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li class="<? current_page('admin/users_manage'); ?>"><a href="<?= ADMIN ?>users_manage/">Manage users</a></li>
-                    <li class="<? current_page('admin/users_add'); ?>"><a href="<?= ADMIN ?>users_add/">Add a new user</a></li>
-                    <li class="<? current_page('admin/users_profile'); ?>"><a href="<?= ADMIN ?>users_profile/">Your profile</a></li>
-                </ul>
-			</li>
+
 			<!--<li class="<? if ( CURRENT_PAGE == 'admin/addons_install' ) echo 'active'; ?> menu"><a href="<?= ADMIN ?>addons_install/" class="">Addon's</a></li>-->
 			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
 			    <ul class="dropdown-menu">
                     <li class="<? current_page('admin/settings_general'); ?>"><a href="<?= ADMIN ?>settings_general/">General</a></li>
-                    <li class="<? current_page('admin/settings_general'); ?>"><a href="<?= ADMIN ?>settings_seo/">SEO</a></li>
+                    <li class="<? current_page('admin/settings_seo'); ?>"><a href="<?= ADMIN ?>settings_seo/">SEO</a></li>
                     <li class="<? current_page('admin/settings_media'); ?>"><a href="<?= ADMIN ?>settings_media/">Media</a></li>
 <!--                    <li class="--><?// current_page('admin/updates'); ?><!--"><a href="--><?//= ADMIN ?><!--updates/">Updates</a></li>-->
                     <li class="divider"></li>
@@ -99,6 +93,13 @@
 				<li><a href="#">Theme Settings</a></li>
 				</ul>
 			</li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="<? current_page('admin/users_manage'); ?>"><a href="<?= ADMIN ?>users_manage/">Manage users</a></li>
+                        <li class="<? current_page('admin/users_add'); ?>"><a href="<?= ADMIN ?>users_add/">Add a new user</a></li>
+                        <li class="<? current_page('admin/users_profile'); ?>"><a href="<?= ADMIN ?>users_profile/">Your profile</a></li>
+                    </ul>
+                </li>
 			<li class="<? if (
 		    CURRENT_PAGE == 'admin/about_system_details') echo 'active'; ?>"><a href="<?= ADMIN ?>about_system_details/">About</a> </li>
 		  </ul>
