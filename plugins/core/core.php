@@ -22,22 +22,23 @@ class: analytics
 class analytics{
 
     static function author(){
-        echo '
-<link rel="author" href="'.get::option('seo_author_profile', '').'" />';
+        if (get::option('seo_author_profile') != '' )
+            echo '<link rel="author" href="'.get::option('seo_author_profile', '').'" />';
     }
 
     static function webmaster(){
-        echo "
-<meta name='google-site-verification' content='".get::option('seo_google_webmaster', '')."'>";
+        if (get::option('seo_google_webmaster') != '' )
+            echo " <meta name='google-site-verification' content='".get::option('seo_google_webmaster', '')."'>";
     }
 
 
     static function tracking(){
+        if (get::option('seo_google_analytics') != '' ) {
         echo "
 <script type='text/javascript'>
 
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', '".get::option('tracking_code', '')."']);
+  _gaq.push(['_setAccount', '".get::option('seo_google_analytics', '')."']);
   _gaq.push(['_setDomainName', '".$_SERVER['SERVER_NAME'] ."']);
   _gaq.push(['_trackPageview']);
 
@@ -48,6 +49,7 @@ class analytics{
   })();
 
 </script>";
+        }
     }
 
 }
