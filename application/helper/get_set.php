@@ -15,15 +15,15 @@ class get {
 	* Returns:
 	*	String
 	*/
-	public static function option( $key, $default = false )
+	public static function option( $key, $default = '' )
 	{
         $settings = load::model( 'settings' );
         $get = $settings->get( $key );
 
-		if ( $get != false ) {
-			return $get;
+		if ( $get == false ) {
+            return $default;
 		} else {
-			return $default;
+            return $get;
 		}
 	}
 

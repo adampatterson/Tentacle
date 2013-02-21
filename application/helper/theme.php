@@ -190,7 +190,7 @@ class paginate {
 		$clean_uri = preg_replace('/\/(\w+)\/(\w+)\/(\d+)/i', '${1}/', BASE_URI);
 
         static::$current_page = $current_page;
-        static::$settings = $this->calculate_pages(count($total), get::option('page_limit'), 1);
+        static::$settings = $this->calculate_pages(count($total), get::option('page_limit', 5), 1);
 		static::$url = BASE_URL.$clean_uri.'page';
     }
 

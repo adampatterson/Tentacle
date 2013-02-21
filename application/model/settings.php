@@ -58,11 +58,10 @@ class settings_model
 			->where( 'key', '=', $key )
 			->execute();
 
-		if ( $count == 0 ):
-			return false;
-		else:
-			return $get_settings[0]->value;		
-		endif;			
+		if ( $count == 0 )
+            return false;
+		else
+			return $get_settings[0]->value;
 	}
 
 
@@ -75,17 +74,17 @@ class settings_model
 		$get_settings = $setting->select( '*' )
 			->where( 'key', '=', $key )
 			->order_by ( 'id', 'DESC' )
+
 			->execute();
 
 		$count = $setting->count()
 			->where( 'key', '=', $key )
 			->execute();
 
-		if ( $count == 0 ):
+		if ( $count == 0 )
 			return false;
-		else:
-			return true;	
-		endif;
+		else
+			return true;
 	}
 	
 	
