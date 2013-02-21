@@ -9,10 +9,25 @@ author:
   url: http://adampatterson.ca
 */
 
-#event::on('plugin_navigation', 'barnacles::settings_nav', 7);
+#event::on('plugin_navigation', 'bones::settings_nav', 7);
+#event::on('content', 'bones::barnacle', 7);
 
-//class barnacles
+#event::on('activate', 'bones::__install', 7);
+#event::on('deactivate', 'bones::__uninstall', 7);
+
+//class bones
 //{
+//
+//    static function __install()
+//    {
+//
+//    }
+//
+//    static function __uninstall()
+//    {
+//
+//    }
+
 //    static function settings_nav() {
 //		$nav[] = array(
 //            'title'     => 'Barnacles',
