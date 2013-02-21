@@ -7,8 +7,11 @@
                 <div class="container" style="width: auto; padding: 0 20px;">
                     <ul class="nav pull-left">
                         <li><a href="<?= ADMIN ?>/">Dashboard</a></li>
+                        <? /*
+                          * @todo: edit by URI not post ID
                         <li><a href="<?= ADMIN ?>content_update_post/<?= $post->id;?>">Edit</a></li>
                         <li><a href="<?= BASE_URL ?>action/trash_post/<?= $post -> id;?>">Trash</a></li>
+                        */ ?>
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Content <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="<?= ADMIN ?>content_add_page/">Write a new page</a></li>
