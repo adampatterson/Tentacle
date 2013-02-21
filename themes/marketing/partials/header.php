@@ -30,7 +30,7 @@
 	typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.increment".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
 	mixpanel.init("d66186500a988124d53252864e395e67");
 
-          mixpanel.track('page viewed', {'page name' : document.title, 'url' : window.location.pathname});
+          mixpanel.track('Page Viewed', {'page name' : document.title, 'url' : window.location.pathname});
       </script><!-- end Mixpanel -->
 </head>
 <? $prettify = false ;?>

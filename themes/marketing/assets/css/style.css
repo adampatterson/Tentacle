@@ -4,11 +4,11 @@ body {
   position: relative;
   padding-top: 67px;
   background-color: #FCFCFC;
-  background: url('http://subtlepatterns.com/wp-content/themes/tweaker6/images/bgnoise.gif');
+  background: url('../img/bgnoise.gif');
 }
 header {
   background-color: #F9F9F9;
-  background: url('http://subtlepatterns.com/patterns/white_plaster.png');
+  background: url('../img/white_plaster.png');
   margin-bottom: 50px;
 }
 footer {
@@ -184,7 +184,7 @@ img.full {
   background-image: -o-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
   /* Opera 11.10+ */
 
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#eeeeee', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#eeeeee', GradientType=0);
   /* IE6-9 */
 
   background-image: linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
