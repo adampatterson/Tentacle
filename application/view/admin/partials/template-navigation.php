@@ -53,8 +53,9 @@
 			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
 			    <ul class="dropdown-menu">
                     <li class="<? current_page('admin/settings_general'); ?>"><a href="<?= ADMIN ?>settings_general/">General</a></li>
+                    <li class="<? current_page('admin/settings_general'); ?>"><a href="<?= ADMIN ?>settings_seo/">SEO</a></li>
                     <li class="<? current_page('admin/settings_media'); ?>"><a href="<?= ADMIN ?>settings_media/">Media</a></li>
-                    <li class="<? current_page('admin/updates'); ?>"><a href="<?= ADMIN ?>updates/">Updates</a></li>
+<!--                    <li class="--><?// current_page('admin/updates'); ?><!--"><a href="--><?//= ADMIN ?><!--updates/">Updates</a></li>-->
                     <li class="divider"></li>
                     <li class="<? current_page('admin/import_wordpress'); ?>"><a href="<?= ADMIN ?>import_wordpress/">Import from WordPress</a></li>
 

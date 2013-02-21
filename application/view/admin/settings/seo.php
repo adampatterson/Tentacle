@@ -5,192 +5,52 @@
 	<form action="<?= BASE_URL ?>action/udpate_settings_post/"  class="form-stacked" method="post">
 		<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
 		<div class="one-full">
-			<div class="one-half">
-					<h2>Google Analytics UID</h2>
-				<div class="clearfix">
-					<div class="input">
-						<input type="text" value="<?= get::option('ga_uiddBw5CvburAxi537Rp9qi5uG2174Vb6JwHwIRwPSLIK8'); ?>" id="ga_uid" name="ga_uid" size="50">
-						<span class="help-block">The UID is needed for Google Analytics to log your website stats. If you are having trouble finding your UID {click here}.</span>
-					</div>
-				</div>
-				<h2>Webmaster tools</h2>
-				<p>
-					Enter your meta key "content" value to verify your blog with <a href="https://www.google.com/webmasters/tools/">Google Webmaster Tools</a>, <a href="https://siteexplorer.search.yahoo.com/">Yahoo Site Explorer</a>, and <a href="http://www.bing.com/webmaster">Bing Webmaster Center</a>
-				</p>
-				<div class="clearfix">
-					<label for="verification_services_google">Google Webmaster Tools</label>
-					<div class="input">
-						<input size="50" name="verification_services_google" value="<?= get::option('verification_services_google'); ?>" type="text">
-						<span class="help-block">Example:
-							<code>
-								&lt;meta name='google-site-verification' content='<strong><span class="red">dBw5CvburAxi537Rp9qi5uG2174Vb6JwHwIRwPSLIK8</span></strong>'&gt;
-							</code></span>
-					</div>
-				</div>
-				<!--<div class="clearfix">
-					<label for="verification_services_yahoo">Yahoo Site Explorer</label>
-					<div class="input">
-						<input size="50" name="verification_services_yahoo" value="3236dee82aabe064" type="text">
-						<span class="help-block"> Example:
-							<code>
-								&lt;meta name='y_key' content='<strong><span class="red">3236dee82aabe064</span></strong>'&gt;
-							</code> </span>
-					</div>
-				</div>
-				<div class="clearfix">
-					<label for="verification_services_bing">Bing Webmaster Center</label>
-					<div class="input">
-						<input size="50" name="verification_services_bing" value="12C1203B5086AECE94EB3A3D9830B2E" type="text">
-						<span class="help-block"> Example:
-							<code>
-								&lt;meta name='msvalidate.01' content='<strong><span class="red">12C1203B5086AECE94EB3A3D9830B2E</span></strong>'&gt;
-							</code> </span>
-					</div>
-				</div>-->
-				<h2>Meta Description</h2>
-				<div class="clearfix">
-					<div class="input">
-						<textarea rows="5" cols="40" name="meta_description" placeholder='Enter your meta description'><?= get::option('meta_description'); ?></textarea>
-					</div>
-				</div>
-			</div>
-			<div class="one-half">
-				<h2>Robots</h2>
-				<div class="clearfix">
-					<label>Spider</label>
-					<div class="input">
-						<ul class="inputs-list">
-							<li>
-								<label for="noodp">
-									<input type="hidden" value="0" id="noodp" name="noodp">
-									<input type="checkbox" value="1" id="noodp" name="noodp">
-									Don’t use this site’s Open Directory description in search results. </label>
-							</li>
-							<li>
-								<label for="noydir">
-									<input type="hidden" value="0" id="noydir" name="noydir">
-									<input type="checkbox" value="1" id="noydir" name="noydir">
-									Don’t use this site’s Yahoo! Directory description in search results. </label>
-							</li>
-							<li>
-								<label for="noarchive">
-									<input type="hidden" value="0" id="noarchive" name="noarchive">
-									<input type="checkbox" value="1" id="noarchive" name="noarchive">
-									Don’t cache or archive this site. </label>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="clearfix">
-					<label>Noindex</label>
-					<div class="input">
-						<ul class="inputs-list">
-							<li>
-								<label for="noindex_admin">
-									<input type="hidden" value="0" name="noindex_admin">
-									<input type="checkbox" value="1" name="noindex_admin">
-									Administration back-end pages </label>
-							</li>
-							<li>
-								<label for="noindex_author">
-									<input type="hidden" value="0" name="noindex_author">
-									<input type="checkbox" value="1" name="noindex_author">
-									Author archives </label>
-							</li>
-							<li>
-								<label for="noindex_search">
-									<input type="hidden" value="0" name="noindex_search">
-									<input type="checkbox" value="1" name="noindex_search">
-									Blog search pages </label>
-							</li>
-							<li>
-								<label for="noindex_category">
-									<input type="hidden" value="0" name="noindex_category">
-									<input type="checkbox" value="1" name="noindex_category">
-									Category archives </label>
-							</li>
-							<li>
-								<label for="noindex_comments_feed">
-									<input type="hidden" value="0" name="noindex_comments_feed">
-									<input type="checkbox" value="1" name="noindex_comments_feed">
-									Comment feeds </label>
-							</li>
-							<li>
-								<label for="noindex_cpage">
-									<input type="hidden" value="0" name="noindex_cpage">
-									<input type="checkbox" value="1" name="noindex_cpage">
-									Comment subpages </label>
-							</li>
-							<li>
-								<label for="noindex_date">
-									<input type="hidden" value="0" name="noindex_date">
-									<input type="checkbox" value="1" name="noindex_date">
-									Date-based archives </label>
-							</li>
-							<li>
-								<label for="noindex_home_paged">
-									<input type="hidden" value="0" name="noindex_home_paged">
-									<input type="checkbox" value="1" name="noindex_home_paged">
-									Subpages of the homepage </label>
-							</li>
-							<li>
-								<label for="noindex_tag">
-									<input type="hidden" value="0" name="noindex_tag">
-									<input type="checkbox" value="1" name="noindex_tag">
-									Tag archives </label>
-							</li>
-							<li>
-								<label for="noindex_login">
-									<input type="hidden" value="0" name="noindex_login">
-									<input type="checkbox" value="1" name="noindex_login">
-									User login/registration pages </label>
-							</li>
-						</ul>
-					</div>
-				</div>
-			<!--	<h2>404 Monitor</h2>
-				<hr />
-				<table width="100%" border="0" cellspacing="0" cellpadding="0">
-					<thead class="table-heading">
-						<tr>
-							<th>URL</th>
-							<th>Referers</th>
-							<th>Hits</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>http://www.adampatterson.ca/2009/01/print/print-03/</td>
-							<td ><img src="<?=ADMIN_URL;?>images/icons/16_cursor.png" width="16" height="16" alt="Referers" /></td>
-							<td>12</td>
-						</tr>
-						<tr>
-							<td>http://www.adampatterson.ca/2009/01/print/print-04/</td>
-							<td ><img src="<?=ADMIN_URL;?>images/icons/16_cursor.png" width="16" height="16" alt="Referers" /></td>
-							<td>12</td>
-						</tr>
-						<tr>
-							<td>http://www.adampatterson.ca/2009/01/print/print-01/</td>
-							<td ><img src="<?=ADMIN_URL;?>images/icons/16_cursor.png" width="16" height="16" alt="Referers" /></td>
-							<td>12</td>
-						</tr>
-						<tr>
-							<td>http://www.adampatterson.ca/2009/01/black-and-white/2009040121050817_img_7488/</td>
-							<td ><img src="<?=ADMIN_URL;?>images/icons/16_cursor.png" width="16" height="16" alt="Referers" /></td>
-							<td>12</td>
-						</tr>
-						<tr>
-							<td>http://www.adampatterson.ca/2009/01/black-and-white/2009040121045505_img_0441/</td>
-							<td ><img src="<?=ADMIN_URL;?>images/icons/16_cursor.png" width="16" height="16" alt="Referers" /></td>
-							<td>12</td>
-						</tr>
-					</tbody>
-				</table>-->
-			</div>
-		</div>
+
+                <h2>Analytic Settings</h2>
+                <div class="span8 well">
+                    <p>Please enter your Google Analytics tracking code, If you do not have an account or tracking code for this site. Go to and <a href="http://www.google.com/analytics/">register</a></p>
+
+                        <fieldset>
+
+                            <div class="control-group">
+                                <label class="control-label" for="blogname">Tracking Code</label>
+                                <div class="controls">
+                                    <input type="text" value="<?= get::option('seo_google_analytics', '') ?>" placeholder="UA-XXXXXX-XX" name="seo_google_analytics">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="blogname">Author Profile</label>
+                                <div class="controls">
+                                    <input type="text" value="<?= get::option('seo_author_profile', '') ?>" name="seo_author_profile">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="blogname">Google Webmaster Tools</label>
+                                <div class="controls">
+                                            <input type="text" value="<?= get::option('seo_google_webmaster', '') ?>" name="seo_google_webmaster">
+                                    <span class="help-block">
+                                        Enter your meta key "content" value to verify your blog with <a href="https://www.google.com/webmasters/tools/">Google Webmaster Tools</a>
+                                    </span>
+                                </div>
+                            </div>
+
+
+                        </fieldset>
+
+
+
+                </div>
+                <div class="span8 well">
+                    <h2>Meta description</h2>
+                    <textarea rows="5" cols="40" name="seo_meta_description" placeholder='Enter your meta description'><?= get::option('seo_meta_description'); ?></textarea>
+
+		    </div>
+
 		<div class="one-full">
 			<div class="actions">
-				<button class="btn medium primary" type="submit">
+				<button class="btn btn-primary" type="submit">
 					Save changes
 				</button>
 			</div>
