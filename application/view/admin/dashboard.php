@@ -7,6 +7,9 @@
 				<div class="title pad-right">
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Welcome <strong><?= user_name();?></strong></h1>
 						<? upgrade::check_core_version(); ?>
+
+                    <? /* Stats like http://wbpreview.com/previews/WB0JLR295/ */ ?>
+
 					<div class="span8 well">
 						<h2>Tentacle News</h2>
 						<? //dashboard_feed(array( 'feed' => 'http://tentaclecms.com/blog/feed/' ) ); ?>

@@ -152,6 +152,7 @@ class script {
  */
 class style {
 # @todo: add minification
+# @todo: array merge variables See menu();
     protected static $_styles = array();
 
     /**
@@ -164,6 +165,7 @@ class style {
      *   $ver - String, Style version
      *   $media - String, load the Style in the footer if true
      */
+
     static function on($handle, $src, $ver, $media)
     {
         static::$_styles[$handle] = array(

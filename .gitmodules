@@ -19,9 +19,6 @@
 [submodule "plugins/ipsum"]
 	path = plugins/ipsum
 	url = git@github.com:tentaclecms/ipsum.git
-[submodule "plugins/analytics"]
-	path = plugins/analytics
-	url = git@github.com:tentaclecms/analytics.git
 [submodule "plugins/social"]
 	path = plugins/social
 	url = git@github.com:tentaclecms/social.git

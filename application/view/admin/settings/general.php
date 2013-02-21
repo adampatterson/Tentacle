@@ -52,7 +52,6 @@
                                     <option id="page-<?= $page['id']  ?>" value="<?= $page['slug'] ?>" <? selected( get::option('blog_uri'), $page['slug']  ); ?>> <?= $page['title'] ?></option>
                                 <? endforeach;?>
                             </select>
-                            <span class="help-block">Set the path for your blog.</span>
                         </div>
                     </div>
 
@@ -65,12 +64,20 @@
                     </div>
 
                     <div class="control-group">
-						<label class="control-label" for="admin_email">E-mail address</label>
+						<label class="control-label" for="admin_email">Site E-mail address</label>
 						<div class="controls">
 							<input type="text" value="<?= get::option('admin_email'); ?>" name="admin_email">
 							<span class="help-block">This address is used for admin purposes, like new user notification.</span>
 						</div>
 					</div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="admin_email">Site author name</label>
+                        <div class="controls">
+                            <input type="text" value="<?= get::option('admin_author'); ?>" name="admin_author">
+                            <span class="help-block">This should be the site owners name, It will also show up in user emails.</span>
+                        </div>
+                    </div>
 				</fieldset>
 			</div>
 			<div class="one-half">

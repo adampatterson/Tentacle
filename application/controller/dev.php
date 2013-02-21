@@ -22,6 +22,11 @@ class dev_controller {
 	}
 
 
+    public function cke(){
+        load::view('admin/sortable');
+    }
+
+
     public function plugin()
     {
 
@@ -151,8 +156,6 @@ class dev_controller {
     }
 
 
-
-
     public function assets ()
     {
  		load::library('assets');
@@ -170,6 +173,7 @@ class dev_controller {
         script::get_backend();
         style::get_backend();
     }
+
 
     public function url_mapper()
     {
@@ -333,8 +337,6 @@ Test two
 
 	public function email()
 	{
-
-
         load::helper('email');
 		$send_email = load::model( 'email' );
 
@@ -406,7 +408,23 @@ Test two
 
 	public function system ()
 	{
-		echo '<h3>$_SERVER</h3><hr />';
+        if (function_exists('fopen')) {
+            echo 'fopen exists<br>';
+        }
+
+        if (function_exists( 'fsockopen' )) {
+            echo 'fsockopen exists<br>';
+        }
+
+        if (function_exists('fopen') || (function_exists('ini_get') && ini_get('allow_url_fopen') != true) ) {
+            echo 'fopen ini_get allow_url_fopen<br>';
+        }
+
+        if ( function_exists('curl_init') && function_exists('curl_exec') ){
+            echo 'curl_init curl_exec exists<br>';
+        }
+
+        echo '<h3>$_SERVER</h3><hr />';
 			var_dump($_SERVER);
 		echo '<h3>$GLOBALS</h3><hr />';
 			var_dump($GLOBALS);
@@ -424,103 +442,6 @@ Test two
 			var_dump($HTTP_RAW_POST_DATA);
 		echo '<h3>$argv</h3><hr />';
 			var_dump($argv);
-	}
-
-
-	/**
-	* ajax function
-	*
-	* @return void
-	* @author Adam Patterson
-	**/
-	public function ajax()
-	{
-		echo "This content is in the Dev controller under Ajax function.";
-	}
-
-
-	/**
-	* jq_load function
-	*
-	* @return html
-	* @author Adam Patterson
-	*
-	* The purpose of this function is the provide simple HTML for jQuery to load and append to an element.
-	*
-	**/
-	public function jq_load ()
-	{ ?>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		<script type="text/javascript">
-
-			$(document).ready(function(){
-
-
-			    function loadVals() {
-			      var singleValues = $("#select").val();
-					return singleValues;
-			    }
-
-			    $("select").change(load_content);
-
-				function load_content() {
-				    $.get(loadVals(), function(data) {
-				        $('#content').html(data);
-				    });
-				}
-
-				load_content();
-			});
-		</script>
-
-		  <p></p>
-
-		<h1>Content</h1>
-		<select name="select" id="select" size="1" <!--onchange="location = this.options[this.selectedIndex].value;"-->>
-			<option value="<?= BASE_URL ?>dev/jq_html">Page One</option>
-			<option value="<?= BASE_URL ?>dev/jq_html_two">Page Two</option>
-		</select>
-		<div id="content"></div>
-<?	}
-
-
-	/**
-	* jq_html function
-	*
-	* @return html
-	* @author Adam Patterson
-	*
-	* The purpose of this function is the provide simple HTML for jQuery to load and append to an element.
-	*
-	**/
-	public function jq_html ()
-	{
-		echo '<h3>This content was loaded with jQuery and appended to #content</h3>';
-	}
-
-	public function jq_html_two ()
-	{
-		echo '<h3>This is some new content that has been appended to #content</h3>';
-	}
-
-
-	/**
-	 * ajax_check functiuon
-	 *
-	 * @return void
-	 * @author Adam Patterson
-	 **/
-	public function ajax_check ()
-	{
-		if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-		{
-			// If its an ajax request execute the code below
-			echo '1';
-			exit;
-		}
-
-		//if it's not an ajax request echo the below.
-		echo 'This is clearly not an ajax request!';
 	}
 
 
@@ -742,60 +663,6 @@ Test two
 
 	}// END SmushIt
 
-
-	public function gravatar ()
-	{
-		load::helper ('gravatar');
-
-		echo '<h2>get::gravatar()</h2>';
-
-		echo get::gravatar('adamapatterson@gmail.com');
-
-		?>
-			<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.min.js"></script>
-			<script type="text/javascript" src="<?=ADMIN_JS; ?>md5.js"></script>
-		<script type="text/javascript" charset="utf-8">
-			$(document).ready(function(){
-
-			var email = $("#email"),
-			avatar = $("#avatar");
-
-			email.blur(function() {
-			avatar.css("background-image","url(http://www.gravatar.com/avatar/" + MD5(email.val()) + ")");
-
-			});
-
-			});
-
-		</script>
-		<div id="avatar"><img src="http://papermashup.com/demos/gravatar-image/thumb.png" width="80" height="80"/></div>
-
-		<form class="gravatar">
-		<input type="text" onFocus="if(this.value=='Email Address') this.value='';" onBlur="if(this.value=='') this.value='Email Address';" value="Email Address" name="s" id="email" />
-		</form>
-
-	<?
-	}
-
-
-	public function request()
-	{
-		if (function_exists('fopen')) {
-			echo 'fopen exists<br>';
-		}
-
-		if (function_exists( 'fsockopen' )) {
-			echo 'fsockopen exists<br>';
-		}
-
-		if (function_exists('fopen') || (function_exists('ini_get') && ini_get('allow_url_fopen') != true) ) {
-			echo 'fopen ini_get allow_url_fopen<br>';
-		}
-
-		if ( function_exists('curl_init') && function_exists('curl_exec') ){
-			echo 'curl_init curl_exec exists<br>';
-		}
-	}
 
 	# counting logic, used to increment update totals in the site.
 	public function counting()
@@ -1230,7 +1097,12 @@ Test two
     }
 
 
-	public function serverstats()
+    public function user_stats(){
+
+    }
+
+
+    public function serverstats()
 	{
         load::helper('serverstats');
 		build_server_stats(0, '', 'utf8');
