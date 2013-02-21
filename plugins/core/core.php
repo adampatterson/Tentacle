@@ -11,9 +11,10 @@ author:
 
 
 event::on('theme_header', 'analytics::tracking');
-event::on('theme_header', 'analytics::author');
-event::on('theme_header', 'analytics::webmaster');
-event::on('plugin_navigation', 'analytics::settings_nav', 6);
+event::on('theme_meta', 'analytics::author');
+event::on('theme_header', 'analytics::author_url');
+event::on('theme_meta', 'analytics::webmaster');
+event::on('theme_meta', 'analytics::meta_description');
 
 
 /*
@@ -21,20 +22,11 @@ class: analytics
 */
 class analytics{
 
-    static function author(){
-        if (get::option('seo_author_profile') != '' )
-            echo '<link rel="author" href="'.get::option('seo_author_profile', '').'" />';
-    }
 
-    static function webmaster(){
-        if (get::option('seo_google_webmaster') != '' )
-            echo " <meta name='google-site-verification' content='".get::option('seo_google_webmaster', '')."'>";
-    }
-
-
-    static function tracking(){
+    static function tracking()
+    {
         if (get::option('seo_google_analytics') != '' ) {
-        echo "
+            echo "
 <script type='text/javascript'>
 
   var _gaq = _gaq || [];
@@ -50,6 +42,33 @@ class analytics{
 
 </script>";
         }
+    }
+
+
+    static function author ()
+    {
+        if (get::option('admin_author') != '' )
+            echo "<meta name='author' content='".get::option('admin_author') ."' />\n";
+    }
+
+
+    static function author_url()
+    {
+        if (get::option('seo_author_profile') != '' )
+            echo "<link rel='author' href='".get::option('seo_author_profile', '')."' />\n";
+    }
+
+
+    static function webmaster()
+    {
+        if (get::option('seo_google_webmaster') != '' )
+            echo "<meta name='google-site-verification' content='".get::option('seo_google_webmaster', '')."' />\n";
+    }
+
+
+    static function meta_description(){
+        if (get::option('seo_meta_description') != '' )
+            echo "<meta name='description' content='".get::option('seo_meta_description', '')."' />\n";
     }
 
 }

@@ -5217,6 +5217,7 @@ a.badge:hover {
 body {
   padding-top: 60px;
   padding-bottom: 40px;
+  line-height: 26px;
 }
 .meta {
   color: #999999;

@@ -165,7 +165,7 @@ class tentacle
 		}
 	}
 
-
+#class update{
     /**
      * Function: increment
      * Used for counting things like updates or notifications.
@@ -210,7 +210,7 @@ class tentacle
 
         return $incremented;
     }
-
+#}
 
     /**
      * Function: total_update
@@ -588,6 +588,9 @@ class tentacle
             if (event::exists('preview'))
                 $content = event::filter( "preview", $content );
 
+            if (event::exists('content'))
+                $content = event::filter( "content", $content );
+
             if (event::exists('shortcode'))
                 $content = event::filter( "shortcode", $content );
         }
@@ -624,6 +627,21 @@ class tentacle
                 return event::filter("admin_header");
 
         }
+    }
+
+
+    /**
+     * Function: render_meta
+     *   Renders and plugins that would output HTML in the footer.
+     *
+     * Returns:
+     *     $content
+     */
+    function render_meta( $location = null )
+    {
+        if ( $location != 'admin' and event::exists("theme_meta"))
+                return event::filter("theme_meta");
+
     }
 
 
