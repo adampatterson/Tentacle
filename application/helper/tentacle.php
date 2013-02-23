@@ -115,6 +115,8 @@ class tentacle
     static function admin_bar(){
         if(user::valid())
             load::view('admin/adminbar');
+        else
+            event::trigger('page_view');
     }
 }
 

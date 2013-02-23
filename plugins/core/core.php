@@ -16,6 +16,8 @@ event::on('theme_header', 'analytics::author_url');
 event::on('theme_meta', 'analytics::webmaster');
 event::on('theme_meta', 'analytics::meta_description');
 
+event::on('page_view', 'analytics::page_view');
+
 
 /*
 class: analytics
@@ -69,6 +71,11 @@ class analytics{
     static function meta_description(){
         if (get::option('seo_meta_description') != '' )
             echo "<meta name='description' content='".get::option('seo_meta_description', '')."' />\n";
+    }
+
+    static function page_view()
+    {
+        logger::set('View', 'Viewed this page');
     }
 
 }

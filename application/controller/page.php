@@ -198,6 +198,7 @@ class page_controller {
         logger::set('Memory', memory_usage());
         logger::set('Execution Time', $speed);
 
+        // Site stats are triggered in the admin bar if you are not logged in.
         tentacle::admin_bar();
     }
     
