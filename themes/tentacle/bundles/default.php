@@ -12,7 +12,7 @@ _/      _/_/_/  _/    _/      _/_/    _/_/_/    _/_/_/  _/    _/_/_/
 
 
 <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.min.js"></script>
-<link rel="stylesheet/less" type="text/css" href="<?= THEME ?>/design/css/main.css">
+<link rel="stylesheet" type="text/css" href="<?= THEME ?>/design/css/main.css">
 <link rel="stylesheet" type="text/css" href="<?= THEME ?>/design/css/docs.css">
 <script type="text/javascript" src="<?= THEME ?>/js/less.js"></script>
 <script type="text/javascript" src="<?= THEME ?>/js/bootstrap.min.js"></script>
