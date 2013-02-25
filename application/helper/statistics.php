@@ -9,7 +9,7 @@ function build_stats( )
 
     $statistics                     = load::model('statistics');
     $page                           = load::model('page');
-    $post_id 		                = $page->get_by_uri( URI );
+    #$post_id 		                = $page->get_by_uri( URI );
 
     $meta                           = array();
     $page_view                      = array();
@@ -43,11 +43,7 @@ function build_stats( )
     }
 
     // statistics
-    // Create row, return ID
-    if ( isset($post_id->if) )
-        $page_view['uri_id']             = $post_id->id;
-    else
-        $page_view['uri_id']             = 0;
+    $page_view['uri_id']             = URI;
 
     $page_view['referer']            = (isset ($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
     $page_view['ip']                 = $_SERVER['REMOTE_ADDR'];
