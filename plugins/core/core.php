@@ -75,7 +75,9 @@ class analytics{
 
     static function page_view()
     {
-        logger::set('View', 'Viewed this page');
+        load::helper('statistics');
+
+        build_stats();
     }
 
 }
