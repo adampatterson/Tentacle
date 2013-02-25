@@ -37,6 +37,19 @@ function build_stats( )
     $meta['os']                     = $ua->os;
     $meta['os_version']             = $ua->osVersion;
 
+    logger::set('Stats - browser'       , $ua->browser );
+    logger::set('Stats - browser_full'  , $ua->browserFull );
+    logger::set('Stats - version'       , $ua->version );
+    logger::set('Stats - user_agent'    , $ua->uaOriginal );
+    logger::set('Stats - os'            , $ua->os );
+    logger::set('Stats - os_version'    , $ua->osVersion );
+    logger::set('Stats - country'       , $geo_meta->countryName );
+    logger::set('Stats - region'        , $geo_meta->regionName );
+    logger::set('Stats - city'          , $geo_meta->cityName );
+    logger::set('Stats - latitude'      , $geo_meta->latitude );
+    logger::set('Stats - longitude'     , $geo_meta->longitude );
+
+
     # loop the meta and rebuild an array with Key Value, where Value is the ID returned
     foreach ( $meta as $key => $value ){
         $page_view[$key] = $statistics->add_meta( $key, $value);
