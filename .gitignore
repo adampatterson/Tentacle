@@ -17,3 +17,8 @@ storage/images/*
 storage/temp/*
 storage/upgrade/*
 /manifest.yml
+/tentacle/js/flot/examples/
+/tentacle/js/flot/PLUGINS.txt
+/tentacle/js/flot/Makefile
+/tentacle/js/flot/FAQ.txt
+/tentacle/js/flot/API.txt
