@@ -75,7 +75,7 @@ class analytics{
 
     static function page_view()
     {
-        load::helper('statistics');
+        load::library('statistics');
 
         build_stats();
     }

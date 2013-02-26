@@ -57,10 +57,15 @@ class admin_controller {
 		$id = user::id( );
 
 		$user = load::model( 'user' );
+
+        $statistics = load::model('statistics');
+        $get_stats = $statistics->get();
+
+
 		$user_single = $user->get( $id );
 		$user_meta = $user->get_meta( $id );		
 		
-		load::view ( 'admin/dashboard', array( 'user'=>$user_single, 'user_meta'=>$user_meta ) );
+		load::view ( 'admin/dashboard', array( 'user' => $user_single, 'user_meta' => $user_meta, 'statistics' => $get_stats ) );
 	}
 
 
