@@ -22,3 +22,5 @@ storage/upgrade/*
 /tentacle/js/flot/Makefile
 /tentacle/js/flot/FAQ.txt
 /tentacle/js/flot/API.txt
+/tentacle/js/flot/jquery.js
+/tentacle/js/flot/README.txt
