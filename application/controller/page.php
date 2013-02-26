@@ -63,14 +63,6 @@ class page_controller {
         $tag 		= load::model( 'tags' );
         $author 	= load::model( 'user' );
 
-        $page_exist = $page->get_by_uri( $uri );
-
-        if ( $page_exist ){
-            define('ERROR_404', TRUE);
-        } else {
-            define('ERROR_404', FALSE);
-        }
-
         $uri_parts = explode('/', URI);
         $current_page = end( $uri_parts );
 
@@ -79,129 +71,137 @@ class page_controller {
 
         $post_limit = get::option( 'page_limit', 5 );
 
-        if ( $page_exist ):
-            switch (url_map::get( $uri )) {
-                case 'home_index':
-                case 'page_index':
-                case 'page_plugin':
-                    define ( 'IS_POST'      , FALSE );
+        switch (url_map::get( $uri )) {
+            case 'home_index':
+            case 'page_index':
+            case 'page_plugin':
+                define ( 'IS_POST'      , FALSE );
 
-                    $uri_parts = explode( '/', $uri );
+                $uri_parts = explode( '/', $uri );
 
-                    $uri_count = count( $uri_parts );
+                $uri_count = count( $uri_parts );
 
-                    if ($uri_count == 2)
-                        $uri = $uri_parts[0];
+                if ($uri_count == 2)
+                    $uri = $uri_parts[0];
 
-                    $post 		= $page->get_by_uri( $uri );
+                $post 		= $page->get_by_uri( $uri );
 
+                if ( !$post )
+                    tentacle::render ( '404' );
+                else
                     tentacle::render( $post->template, array ( 'post' => $post ) );
 
-                    break;
-                case 'page_subpage':
+                break;
+            case 'page_subpage':
 
-                    define ( 'IS_POST'      , FALSE );
+                define ( 'IS_POST'      , FALSE );
 
-                    $post 		= $page->get_by_uri( $uri );
-                    $post_meta 	= $page->get_page_meta( $post->id );
+                $post 		= $page->get_by_uri( $uri );
+                $post_meta 	= $page->get_page_meta( $post->id );
 
+                if ( !$post )
+                    tentacle::render ( '404' );
+                else
                     tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
 
-                    break;
-                case 'blog_index':
+                break;
+            case 'blog_index':
 
-                    define ( 'IS_POST'      , FALSE );
+                define ( 'IS_POST'      , FALSE );
 
-                    $post_total 		= $post->get( );
+                $post_total 		= $post->get( );
 
-                    $posts = new pagination($post_total, $current_page, $post_limit);
+                $posts = new pagination($post_total, $current_page, $post_limit);
 
-                    logger::set('Post total', count($posts));
+                logger::set('Post total', count($posts));
 
-                    $paginate = new paginate($post_total, $current_page);
+                $paginate = new paginate($post_total, $current_page);
 
-                    tentacle::render( 'template-blog', array ( 'posts' => $posts->results(), 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
+                tentacle::render( 'template-blog', array ( 'posts' => $posts->results(), 'author' => $author, 'category' => $category, 'tag' => $tag ) );
 
-                    break;
-                case 'blog_date':
+                break;
+            case 'blog_date':
 
-                    define ( 'IS_POST'      , FALSE );
+                define ( 'IS_POST'      , FALSE );
 
-                    $posts 		= $post->get_by_date( $uri );
+                $posts 		= $post->get_by_date( $uri );
 
-                    logger::set('Post total', count($posts));
+                logger::set('Post total', count($posts));
 
+                if ( !$posts )
+                    tentacle::render ( '404' );
+                else
                     tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
 
-                    break;
-                case 'blog_date_slug':
+                break;
+            case 'blog_date_slug':
 
-                    define ( 'IS_POST'      , TRUE );
+                define ( 'IS_POST'      , TRUE );
 
-                    $post 		= $page->get_by_uri( $uri );
+                $post 		= $page->get_by_uri( $uri );
 
+                if ( !$post ):
+                    tentacle::render ( '404' );
+                else:
                     $post_meta 	= $page->get_page_meta( $post->id );
 
                     logger::set('Post total', count($post));
 
                     tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta, 'author'=>$author, 'category'=>$category, 'tag'=>$tag  ) );
-                    break;
-                case 'blog_paged':
-
-                    define ( 'IS_POST'      , FALSE );
-
-                    $post_total = $post->get( );
-
-                    $posts = new pagination($post_total, $current_page, $post_limit);
-
-                    logger::set('Post total', count($post_total));
-
-                    $paginate = new paginate($post_total, $current_page);
-
-                    tentacle::render( 'template-blog', array ( 'posts' => $posts->results(), 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
-                    break;
-                case 'category_slug':
-
-                    $category_slug = explode('/', $uri);
-
-                    define ( 'IS_POST'      , FALSE );
-
-                    if (URI == 'category')
-                        $posts 		= $post->get( );
-                    else
-                        $posts 	= $category->get_by_slug( $category_slug[1] );
-
-                    $post_total = count($posts);
-                    logger::set('Category total', $post_total);
-
-                    tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
-
-                    break;
-
-                case 'tag_slug':
-
-                    $tag_slug = explode('/', $uri);
-
-                    define ( 'IS_POST'      , FALSE );
-
-                    if (URI == 'category')
-                        $posts 		= $post->get( );
-                    else
-                        $posts 	= $tag->get_by_slug( $tag_slug[1] );
-
-                    $post_total = count($posts);
-                    logger::set('Category total', $post_total);
-
-                    tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
+                endif;
 
                 break;
-                default:
-                    tentacle::render ( '404' );
+            case 'blog_paged':
+
+                define ( 'IS_POST'      , FALSE );
+
+                $post_total = $post->get( );
+
+                $posts = new pagination($post_total, $current_page, $post_limit);
+
+                logger::set('Post total', count($post_total));
+
+                $paginate = new paginate($post_total, $current_page);
+
+                tentacle::render( 'template-blog', array ( 'posts' => $posts->results(), 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
                 break;
-            }
-        else:
-            tentacle::render( '404' );
-        endif;
+            case 'category_slug':
+
+                $category_slug = explode('/', $uri);
+
+                define ( 'IS_POST'      , FALSE );
+
+                if (URI == 'category')
+                    $posts 		= $post->get( );
+                else
+                    $posts 	= $category->get_by_slug( $category_slug[1] );
+
+                $post_total = count($posts);
+                logger::set('Category total', $post_total);
+
+                tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
+
+                break;
+            case 'tag_slug':
+
+                $tag_slug = explode('/', $uri);
+
+                define ( 'IS_POST'      , FALSE );
+
+                if (URI == 'category')
+                    $posts 		= $post->get( );
+                else
+                    $posts 	= $tag->get_by_slug( $tag_slug[1] );
+
+                $post_total = count($posts);
+                logger::set('Category total', $post_total);
+
+                tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
+            break;
+            default:
+                tentacle::render ( '404' );
+            break;
+        }
 
         bench::mark('end');
         $speed = bench::time('start','end');

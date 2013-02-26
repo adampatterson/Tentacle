@@ -70,7 +70,9 @@ class tentacle
         }
          elseif ( $theme == '404' ){
 
-             require(THEMES_DIR.ACTIVE_THEME."/$theme.php");
+            define('ERROR_404', TRUE);
+
+            require(THEMES_DIR.ACTIVE_THEME."/$theme.php");
          }
         else
         {
@@ -79,6 +81,8 @@ class tentacle
             {
                 extract($data, EXTR_OVERWRITE);
             }
+
+            define('ERROR_404', FALSE);
 
             require(THEMES_DIR.ACTIVE_THEME."/$theme.php");
             return FALSE;

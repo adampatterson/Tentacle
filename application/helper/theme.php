@@ -187,16 +187,18 @@ class paginate {
 
     public function __construct( $total, $current_page )
     {
-		$clean_uri = preg_replace('/\/(\w+)\/(\w+)\/(\d+)/i', '${1}/', BASE_URI);
+		if ( '/'.get::option('blog_uri').'/' == BASE_URI or '/'.get::option('blog_uri') == BASE_URI  )
+            $clean_uri = get::option('blog_uri').'/';
+        else
+            $clean_uri = preg_replace('/\/(\w+)\/(\w+)\/(\d+)/i', '${1}/', BASE_URI);
 
         static::$current_page = $current_page;
         static::$settings = $this->calculate_pages(count($total), get::option('page_limit', 5), 1);
-		static::$url = BASE_URL.$clean_uri.'page';
+        static::$url = BASE_URL.$clean_uri.'page';
     }
 
     static function pages( $numbers_only = false )
     {
-
         echo '<div class="pagination"><ul>';
 
             $first_class = '';
