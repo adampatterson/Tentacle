@@ -60,15 +60,18 @@ class tentacle
         // If theme does not exist display error
         if(!file_exists(THEMES_DIR.ACTIVE_THEME."/$theme.php"))
         {
-            
-			require(THEMES_DIR.ACTIVE_THEME."/404.php"); 
+			require(THEMES_DIR.ACTIVE_THEME."/404.php");
 			           
 			echo '<!--';
 			dingo_error(E_USER_WARNING,'The requested theme ('.THEMES_DIR.ACTIVE_THEME."/$theme.php) could not be found.");
 			echo '-->';
-					
+
 			return FALSE;
-        } // if
+        }
+         elseif ( $theme == '404' ){
+
+             require(THEMES_DIR.ACTIVE_THEME."/$theme.php");
+         }
         else
         {
             // If data is array, convert keys to variables

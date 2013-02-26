@@ -37,18 +37,17 @@ function build_stats( )
     $meta['os']                     = $ua->os;
     $meta['os_version']             = $ua->osVersion;
 
-    logger::set('Stats - browser'       , $ua->browser );
-    logger::set('Stats - browser_full'  , $ua->browserFull );
-    logger::set('Stats - version'       , $ua->version );
-    logger::set('Stats - user_agent'    , $ua->uaOriginal );
-    logger::set('Stats - os'            , $ua->os );
-    logger::set('Stats - os_version'    , $ua->osVersion );
-    logger::set('Stats - country'       , $geo_meta->countryName );
-    logger::set('Stats - region'        , $geo_meta->regionName );
-    logger::set('Stats - city'          , $geo_meta->cityName );
-    logger::set('Stats - latitude'      , $geo_meta->latitude );
-    logger::set('Stats - longitude'     , $geo_meta->longitude );
-
+//    logger::set('Stats - browser'       , $ua->browser );
+//    logger::set('Stats - browser_full'  , $ua->browserFull );
+//    logger::set('Stats - version'       , $ua->version );
+//    logger::set('Stats - user_agent'    , $ua->uaOriginal );
+//    logger::set('Stats - os'            , $ua->os );
+//    logger::set('Stats - os_version'    , $ua->osVersion );
+//    logger::set('Stats - country'       , $geo_meta->countryName );
+//    logger::set('Stats - region'        , $geo_meta->regionName );
+//    logger::set('Stats - city'          , $geo_meta->cityName );
+//    logger::set('Stats - latitude'      , $geo_meta->latitude );
+//    logger::set('Stats - longitude'     , $geo_meta->longitude );
 
     # loop the meta and rebuild an array with Key Value, where Value is the ID returned
     foreach ( $meta as $key => $value ){
@@ -56,10 +55,13 @@ function build_stats( )
     }
 
     // statistics
-    $page_view['uri_id']             = URI;
+    if ( ERROR_404 )
+        $page_view['referer']            = 404;
+    else
+        $page_view['referer']            = (isset ($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
 
-    $page_view['referer']            = (isset ($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
-    $page_view['ip']                 = $_SERVER['REMOTE_ADDR'];
+        $page_view['uri_id']             = URI;
+        $page_view['ip']                 = $_SERVER['REMOTE_ADDR'];
 
     $statistics->add($page_view);
 }
