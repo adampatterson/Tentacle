@@ -61,7 +61,7 @@ class page_controller {
         $page 		= load::model( 'page' );
         $category 	= load::model( 'category' );
         $tag 		= load::model( 'tags' );
-        $author 	= load::model('user');
+        $author 	= load::model( 'user' );
 
         $page_exist = $page->get_by_uri( $uri );
 

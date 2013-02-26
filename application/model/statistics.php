@@ -3,6 +3,11 @@
 class statistics_model
 {
 
+    public function get()
+    {
+
+    }
+
     public  function add( $page_view ){
         $setting = db('statistics');
 

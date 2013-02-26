@@ -15,11 +15,6 @@ function build_stats( )
     $page_view                      = array();
     $meta_id                        = array();
 
-//    stats_user_agent
-//    stats_operating_system
-//    stats_browser
-//    statas_country
-
     // statistics_meta
     // Loop $meta and add the page_view ID
     if (isset($geo_meta)) {
