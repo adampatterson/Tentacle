@@ -3,6 +3,7 @@
 function build_stats( )
 {
     load::library('uaparser');
+
     $ua                             = UA::parse();
 
     $geo_meta                       = maybe_encoded(get::url_contents('http://geo.tentaclecms.com/'.$_SERVER['REMOTE_ADDR']));
@@ -17,7 +18,7 @@ function build_stats( )
 
     // statistics_meta
     // Loop $meta and add the page_view ID
-    if (isset($geo_meta)) {
+    if (isset($geo_meta->countryName)) {
         $meta['country'] 	        = $geo_meta->countryName;
         $meta['region'] 	        = $geo_meta->regionName;
         $meta['city'] 		        = $geo_meta->cityName;
