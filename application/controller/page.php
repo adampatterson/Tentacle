@@ -87,7 +87,11 @@ class page_controller {
 
                 $post 		= $page->get_by_uri( $uri );
 
-                tentacle::render( $post->template, array ( 'post' => $post ) );
+                if ( $post ) {
+                    tentacle::render( $post->template, array ( 'post' => $post ) );
+                } else {
+                    tentacle::render( '404' );
+                }
 
                 break;
             case 'page_subpage':
