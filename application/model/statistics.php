@@ -11,22 +11,14 @@ class statistics_model
     public function get_by_date( $from = '', $to = '' )
     {
         $now            = time();
-        $one_hour     = strtotime( '-1 hour', $now );
-        $six_hours     = strtotime( '-6 hour', $now );
-        $yesterday     = strtotime( '-1 day', $now );
+        $one_hour       = strtotime( '-1 hour', $now );
+        $six_hours      = strtotime( '-6 hour', $now );
+        $yesterday      = strtotime( '-1 day', $now );
         $last_week      = strtotime( '-1 week', $now );
         $last_month     = strtotime( '-1 month', $now );
         $last_year      = strtotime( '-1 year', $now );
 
-        echo $now.'<br>';
-        echo $one_hour.'<br>';
-        echo $six_hours.'<br>';
-        echo $yesterday.'<br>';
-        echo $last_week.'<br>';
-        echo $last_month.'<br>';
-        echo $last_year.'<br>';
-
-        return db::query("SELECT * FROM `statistics` WHERE `date` BETWEEN '".$last_week."' AND '".$now);
+        return db::query("SELECT * FROM `statistics` WHERE `date` BETWEEN ".$one_hour." AND ".$now);
     }
 
     public  function add( $page_view ){
