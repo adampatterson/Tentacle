@@ -1098,21 +1098,12 @@ Test two
 
 
     public function user_stats(){
-        load::helper('statistics');
 
-        /*
-        Total number of posts
-        Total number of pages
-        Total number of drafts
-        Total number of comments
-        Number of comments in moderation
-        Number of approved comments
-        Number of registered users
-        Number of categories
-        Number of tags
-        */
+        $stats = load::model('statistics');
 
-        build_stats();
+        var_dump($stats->get_by_date());
+
+
     }
 
 

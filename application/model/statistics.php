@@ -18,7 +18,6 @@ class statistics_model
         $last_month     = strtotime( '-1 month', $now );
         $last_year      = strtotime( '-1 year', $now );
 
-        // 7 days; 24 hours; 60 mins; 60secs
         echo $now.'<br>';
         echo $one_hour.'<br>';
         echo $six_hours.'<br>';
@@ -27,7 +26,7 @@ class statistics_model
         echo $last_month.'<br>';
         echo $last_year.'<br>';
 
-        return db::query("SELECT * FROM `statistics` WHERE `date` BETWEEN '".$one_hour."' AND '".$now);
+        return db::query("SELECT * FROM `statistics` WHERE `date` BETWEEN '".$last_week."' AND '".$now);
     }
 
     public  function add( $page_view ){
