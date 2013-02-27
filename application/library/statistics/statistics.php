@@ -52,9 +52,10 @@ function build_stats( )
 
     // statistics
     if ( ERROR_404 )
-        $page_view['referer']            = (isset ($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
-    else
         $page_view['referer']            = 404;
+    else
+        $page_view['referer']            = (isset ($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
+
 
         $page_view['uri_id']             = URI;
         $page_view['ip']                 = $_SERVER['REMOTE_ADDR'];

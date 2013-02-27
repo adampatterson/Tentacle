@@ -8,10 +8,32 @@ class statistics_model
 
     }
 
-    public  function add( $page_view ){
-        $setting = db('statistics');
+    public function get_by_date( $from = '', $to = '' )
+    {
+        $now            = time();
+        $one_hour     = strtotime( '-1 hour', $now );
+        $six_hours     = strtotime( '-6 hour', $now );
+        $yesterday     = strtotime( '-1 day', $now );
+        $last_week      = strtotime( '-1 week', $now );
+        $last_month     = strtotime( '-1 month', $now );
+        $last_year      = strtotime( '-1 year', $now );
 
-        $setting->insert( array(
+        // 7 days; 24 hours; 60 mins; 60secs
+        echo $now.'<br>';
+        echo $one_hour.'<br>';
+        echo $six_hours.'<br>';
+        echo $yesterday.'<br>';
+        echo $last_week.'<br>';
+        echo $last_month.'<br>';
+        echo $last_year.'<br>';
+
+        return db::query("SELECT * FROM `statistics` WHERE `date` BETWEEN '".$one_hour."' AND '".$now);
+    }
+
+    public  function add( $page_view ){
+        $statisitics = db('statistics');
+
+        $statisitics->insert( array(
             'ip'            => $page_view['ip'],
             'date'          => time(),
             'uri_id'        => $page_view['uri_id'],
@@ -71,19 +93,19 @@ class statistics_model
 
     public function look_up( $value )
     {
-        $setting = db ( 'statistics_meta' );
+        $statisitics = db ( 'statistics_meta' );
 
-        $get_settings = $setting->select( '*' )
+        $get_statisitics = $statisitics->select( '*' )
             ->where( 'value', '=', $value )
             ->execute();
 
-        $count = $setting->count()
+        $count = $statisitics->count()
             ->where( 'value', '=', $value )
             ->execute();
 
         if ( $count == 0 )
             return false;
         else
-            return $get_settings[0]->id;
+            return $get_statisitics[0]->id;
     }
 }
