@@ -49,7 +49,7 @@ class admin_controller {
 		tentacle::valid_user();
 
 //		if ( is::agree() == false )
-//		 			url::redirect('admin/agree');
+//		    url::redirect('admin/agree');
 		
 		if ( get::db_version() != get::current_db_version() )
 			url::redirect('admin/updates');
@@ -58,14 +58,10 @@ class admin_controller {
 
 		$user = load::model( 'user' );
 
-        $statistics = load::model('statistics');
-        $get_stats = $statistics->get();
-
-
 		$user_single = $user->get( $id );
 		$user_meta = $user->get_meta( $id );		
 		
-		load::view ( 'admin/dashboard', array( 'user' => $user_single, 'user_meta' => $user_meta, 'statistics' => $get_stats ) );
+		load::view ( 'admin/dashboard', array( 'user' => $user_single, 'user_meta' => $user_meta ) );
 	}
 
 
