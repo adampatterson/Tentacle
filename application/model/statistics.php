@@ -3,20 +3,42 @@
 class statistics_model
 {
 
-    public function get()
+    public function count_by_chunks( $count = '5' )
     {
 
+        $number_array   = array();
+        $return         = array();
+
+        $number_array = array();
+
+        $i = 0;
+        while ( $count > $i ){
+
+            if ( $i == 0 )
+                $time = time();
+
+            #echo 'between '. date('g:i', strtotime( '-10 minute',  $time )) .' and '. date('g:i', $time ).' <br>';
+
+            $results = db::query("SELECT * FROM `statistics` WHERE `date` BETWEEN ".strtotime( '-10 minute',  $time )." AND ".$time);
+
+            $return[] = count($results);
+
+            $time = strtotime( '-10 minute',  $time );
+            $i++;
+        }
+
+        return $return;
     }
 
-    public function get_by_date( $from = '', $to = '' )
+    public function get_by_range( $from = '', $to = '' )
     {
         $now            = time();
-        $one_hour       = strtotime( '-1 hour', $now );
-        $six_hours      = strtotime( '-6 hour', $now );
-        $yesterday      = strtotime( '-1 day', $now );
-        $last_week      = strtotime( '-1 week', $now );
+        $one_hour       = strtotime( '-1 hour',  $now );
+        $six_hours      = strtotime( '-6 hour',  $now );
+        $yesterday      = strtotime( '-1 day',   $now );
+        $last_week      = strtotime( '-1 week',  $now );
         $last_month     = strtotime( '-1 month', $now );
-        $last_year      = strtotime( '-1 year', $now );
+        $last_year      = strtotime( '-1 year',  $now );
 
         return db::query("SELECT * FROM `statistics` WHERE `date` BETWEEN ".$one_hour." AND ".$now);
     }

@@ -63,13 +63,7 @@ function build_stats( )
     $statistics->add($page_view);
 }
 
-function check ( $key, $array )
-{
-    if ( is_serialized( $array ) )
-        $array = unserialize( $array );
 
-    if ( in_array( $key, $array ) )
-        return true;
-    else
-        return false;
+function make_flot(){
+    # convert data to Flor friendly JSON;
 }
