@@ -3,11 +3,17 @@
 class statistics_model
 {
 
-    public function count_by_chunks( $count = '5' )
+/*
+ * Top Content:
+ * SELECT `uri_id`, COUNT(*) AS num FROM `statistics` WHERE `date` BETWEEN '1361920693' AND '1361924147' GROUP BY `uri_id` ORDER BY num DESC
+ */
+
+
+    public function count_by_chunks( $count = '6' )
     {
 
         $number_array   = array();
-        $return         = array();
+        $return         = array('total' => 0);
 
         $number_array = array();
 
@@ -17,18 +23,48 @@ class statistics_model
             if ( $i == 0 )
                 $time = time();
 
-            #echo 'between '. date('g:i', strtotime( '-10 minute',  $time )) .' and '. date('g:i', $time ).' <br>';
+            $results = db::query("SELECT COUNT(*) AS total FROM `statistics` WHERE `date`  BETWEEN ".strtotime( '-12 hours',  $time )." AND ".$time);
 
-            $results = db::query("SELECT * FROM `statistics` WHERE `date` BETWEEN ".strtotime( '-10 minute',  $time )." AND ".$time);
+            $return['chunks'][] = $results[0]->total;
 
-            $return[] = count($results);
+            $time = strtotime( '-12 hours',  $time );
 
-            $time = strtotime( '-10 minute',  $time );
+            $return['total'] = $return['total'] + $results[0]->total;
+
             $i++;
         }
 
         return $return;
     }
+
+
+    public function count_by_unique_chunks( $count = '6' )
+    {
+        $number_array   = array();
+        $return         = array('total' => 0);
+
+        $number_array = array();
+
+        $i = 0;
+        while ( $count > $i ){
+
+            if ( $i == 0 )
+                $time = time();
+
+            $results = db::query("SELECT COUNT(*) AS total FROM `statistics` WHERE `date` BETWEEN '".strtotime( '-12 hours',  $time )."' AND '".$time."' GROUP BY `ip` ORDER BY total DESC");
+
+            $return['chunks'][] = $results[0]->total;
+
+            $time = strtotime( '-12 hours',  $time );
+
+            $return['total'] = $return['total'] + $results[0]->total;
+
+            $i++;
+        }
+
+        return $return;
+    }
+
 
     public function get_by_range( $from = '', $to = '' )
     {
