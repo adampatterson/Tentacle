@@ -5,7 +5,7 @@ class statistics_model
 
 /*
  * Top Content:
- * SELECT `uri_id`, COUNT(*) AS num FROM `statistics` WHERE `date` BETWEEN '1361920693' AND '1361924147' GROUP BY `uri_id` ORDER BY num DESC
+ * SELECT `uri_id`, COUNT(*) AS total FROM `statistics` WHERE `date` BETWEEN '1361920693' AND '1361924147' GROUP BY `uri_id` ORDER BY total DESC
  */
 
 
@@ -18,6 +18,7 @@ class statistics_model
         $number_array = array();
 
         $i = 0;
+
         while ( $count > $i ){
 
             if ( $i == 0 )
@@ -25,11 +26,14 @@ class statistics_model
 
             $results = db::query("SELECT COUNT(*) AS total FROM `statistics` WHERE `date`  BETWEEN ".strtotime( '-12 hours',  $time )." AND ".$time);
 
-            $return['chunks'][] = $results[0]->total;
+            if ( !empty($results[0])  ):
+                $return['chunks'][] = $results[0]->total;
+                $return['total'] = $return['total'] + $results[0]->total;
+            else:
+                $return['chunks'][] = 0;
+            endif;
 
             $time = strtotime( '-12 hours',  $time );
-
-            $return['total'] = $return['total'] + $results[0]->total;
 
             $i++;
         }
@@ -46,6 +50,7 @@ class statistics_model
         $number_array = array();
 
         $i = 0;
+
         while ( $count > $i ){
 
             if ( $i == 0 )
@@ -53,11 +58,14 @@ class statistics_model
 
             $results = db::query("SELECT COUNT(*) AS total FROM `statistics` WHERE `date` BETWEEN '".strtotime( '-12 hours',  $time )."' AND '".$time."' GROUP BY `ip` ORDER BY total DESC");
 
-            $return['chunks'][] = $results[0]->total;
+            if ( !empty($results[0])  ):
+                $return['chunks'][] = $results[0]->total;
+                $return['total'] = $return['total'] + $results[0]->total;
+            else:
+                $return['chunks'][] = 0;
+            endif;
 
             $time = strtotime( '-12 hours',  $time );
-
-            $return['total'] = $return['total'] + $results[0]->total;
 
             $i++;
         }
