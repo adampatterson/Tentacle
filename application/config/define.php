@@ -70,7 +70,7 @@ define( 'CHECK_TIMEOUT', 5 );
 define('TENTACLE_VERSION', 'v0.9.5');
 
 # Holds the Tentacle DB revision, increments when changes are made to the Tentacle sql model.
-define('TENTACLE_DB_VERSION', '115');
+define('TENTACLE_DB_VERSION', '116');
 
 # Holds the required PHP versionw
 define('REQUIRED_PHP_VERSION', '5.3.3');

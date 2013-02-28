@@ -451,6 +451,45 @@ class sql_model
         $build = $pdo->exec( "INSERT INTO `options` (`key`, `value`, `autoload`) VALUES('blog_uri', 'blog', 'yes');" );
     }
 
+    public function get_116 ()
+    {
+        $config = config::get('db');
+
+        try {
+            $pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
+        } catch(PDOException $e) {
+            dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
+        }
+
+        $build = $pdo->exec( "
+            CREATE TABLE `statistics` (
+                `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT,
+                `ip` varchar(20) DEFAULT NULL,
+                `date` int(11) DEFAULT NULL,
+                `uri_id` varchar(250) DEFAULT NULL,
+                `referer` varchar(500) DEFAULT NULL,
+                `country` int(11) DEFAULT NULL,
+                `region` int(11) DEFAULT NULL,
+                `city` int(11) DEFAULT NULL,
+                `latitude` int(11) DEFAULT NULL,
+                `longitude` int(11) DEFAULT NULL,
+                `browser` int(11) DEFAULT NULL,
+                `browser_full` int(11) DEFAULT NULL,
+                `version` int(11) DEFAULT NULL,
+                `user_agent` int(11) DEFAULT NULL,
+                `os` int(11) DEFAULT NULL,
+                `os_version` int(11) DEFAULT NULL,
+                PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+            CREATE TABLE `statistics_meta` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `key` varchar(255) DEFAULT NULL,
+            `value` varchar(255) DEFAULT NULL,
+            PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;" );
+    }
+
     public function touch_db()
     {
         $config = config::get('db');
