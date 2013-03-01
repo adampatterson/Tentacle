@@ -59,9 +59,6 @@
 
             $count = $statistics->count_by_chunks(42);
             $unique = $statistics->count_by_unique_chunks(42);
-
-            print_r($unique);
-
             ?>
 
 
