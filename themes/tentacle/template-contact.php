@@ -49,8 +49,6 @@ theme::part('partials/header',array('title'=>$post->title, 'assets'=>'default'))
 
 <div class="row">
 
-    <? theme::part( 'partials/sidebar' ); ?>
-
     <div class="span9">
         <div class="hero-unit">
 
@@ -103,6 +101,8 @@ theme::part('partials/header',array('title'=>$post->title, 'assets'=>'default'))
         </div><!-- /hero-unit -->
 
     </div><!-- /span9-->
+
+    <? theme::part( 'partials/sidebar' ); ?>
 
 </div><!-- /row-->
 

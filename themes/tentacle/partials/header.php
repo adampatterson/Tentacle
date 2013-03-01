@@ -20,7 +20,7 @@ render_header( );
 </head>
 
 <body <?= body_class(); ?>>
-
+<? /*
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container hidden-phone hidden-tablet">
@@ -37,5 +37,13 @@ render_header( );
         </div>
     </div>
 </div>
-
+*/ ?>
 	<div class="container">
+
+        <div class="hero-unit">
+
+            <h1><?= get::option('blogname') ?></h1>
+
+            <p><?= get::option('blogdescription') ?></p>
+
+        </div>

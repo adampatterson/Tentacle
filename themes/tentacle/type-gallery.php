@@ -7,8 +7,6 @@ theme::part('partials/header',array('title'=>$post->title,'assets'=>'default'));
 
 <div class="row">
 
-    <? theme::part( 'partials/sidebar' ); ?>
-
     <div class="span9">
 
         <h1><?= $post->title; ?></h1>
@@ -18,6 +16,8 @@ theme::part('partials/header',array('title'=>$post->title,'assets'=>'default'));
         <?= render_content(); ?>
 
     </div><!-- /span9-->
+
+    <? theme::part( 'partials/sidebar' ); ?>
 
 </div><!-- /row-->
 

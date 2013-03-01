@@ -11,9 +11,7 @@ License URI: license.txt
 
 theme::part('partials/header',array('title'=>'Blog','assets'=>'default')); ?>
 
-<div class="row" xmlns="http://www.w3.org/1999/html">
-
-    <? theme::part( 'partials/sidebar' ); ?>
+<div class="row">
 
     <div class="span9">
 
@@ -50,6 +48,8 @@ theme::part('partials/header',array('title'=>'Blog','assets'=>'default')); ?>
     <? paginate::pages(true); ?>
 
     </div><!--/span9-->
+
+    <? theme::part( 'partials/sidebar' ); ?>
 
 </div><!--/row-->
 
