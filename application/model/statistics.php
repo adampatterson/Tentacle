@@ -24,7 +24,7 @@ class statistics_model
             if ( $i == 0 )
                 $time = time();
 
-            $results = db::query("SELECT COUNT(*) AS total FROM `statistics` WHERE `date`  BETWEEN ".strtotime( '-12 hours',  $time )." AND ".$time);
+            $results = db::query("SELECT COUNT(*) AS total FROM `statistics` WHERE `date`  BETWEEN ".strtotime( '-4 hours',  $time )." AND ".$time);
 
             if ( !empty($results[0])  ):
                 $return['chunks'][] = $results[0]->total;
@@ -33,7 +33,7 @@ class statistics_model
                 $return['chunks'][] = 0;
             endif;
 
-            $time = strtotime( '-12 hours',  $time );
+            $time = strtotime( '-4 hours',  $time );
 
             $i++;
         }
@@ -56,7 +56,7 @@ class statistics_model
             if ( $i == 0 )
                 $time = time();
 
-            $results = db::query("SELECT COUNT(*) AS total FROM `statistics` WHERE `date` BETWEEN '".strtotime( '-12 hours',  $time )."' AND '".$time."' GROUP BY `ip` ORDER BY total DESC");
+            $results = db::query("SELECT COUNT(*) AS total FROM `statistics` WHERE `date` BETWEEN '".strtotime( '-4 hours',  $time )."' AND '".$time."' GROUP BY `ip` ORDER BY total DESC");
 
             if ( !empty($results[0])  ):
                 $return['chunks'][] = $results[0]->total;
@@ -65,7 +65,7 @@ class statistics_model
                 $return['chunks'][] = 0;
             endif;
 
-            $time = strtotime( '-12 hours',  $time );
+            $time = strtotime( '-4 hours',  $time );
 
             $i++;
         }
