@@ -1,1 +1,28 @@
-﻿(function(){CodeMirror.commands.newlineAndIndentContinueMarkdownList=function(c){var a=c.getCursor(),d=c.getTokenAt(a),b;if("string"==d.className){var a=c.getRange({line:a.line,ch:0},{line:a.line,ch:d.end}),e;if(0==d.string.search(/\*|\d+\./)&&(e=(b=/^[\W]*(\d+)\./g.exec(a))?parseInt(b[1])+1+".  ":"*   ",b=a.slice(0,d.start),!/^\s*$/.test(b))){b="";for(a=0;a<d.start;++a)b+=" "}}null!=b?c.replaceSelection("\n"+b+e,"end"):c.execCommand("newlineAndIndent")}})();
+(function() {
+  CodeMirror.commands.newlineAndIndentContinueMarkdownList = function(cm) {
+    var pos = cm.getCursor(), token = cm.getTokenAt(pos);
+    var space;
+    if (token.className == "string") {
+      var full = cm.getRange({line: pos.line, ch: 0}, {line: pos.line, ch: token.end});
+      var listStart = /\*|\d+\./, listContinue;
+      if (token.string.search(listStart) == 0) {
+        var reg = /^[\W]*(\d+)\./g;
+        var matches = reg.exec(full);
+        if(matches)
+          listContinue = (parseInt(matches[1]) + 1) + ".  ";
+        else
+          listContinue = "*   ";
+        space = full.slice(0, token.start);
+        if (!/^\s*$/.test(space)) {
+          space = "";
+          for (var i = 0; i < token.start; ++i) space += " ";
+        }
+      }
+    }
+
+    if (space != null)
+      cm.replaceSelection("\n" + space + listContinue, "end");
+    else
+      cm.execCommand("newlineAndIndent");
+  };
+})();

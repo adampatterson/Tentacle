@@ -1,3 +1,86 @@
-﻿(function(){function g(b,d){var a=b.getCursor(),c=b.getTokenAt(a),f=CodeMirror.innerMode(b.getMode(),c.state),h=f.state;if("xml"!=f.mode.name)throw CodeMirror.Pass;var e=b.getOption("autoCloseTags"),i="html"==f.mode.configuration,f="object"==typeof e&&e.dontCloseTags||i&&k,i="object"==typeof e&&e.indentTags||i&&l;if(">"==d&&h.tagName){e=h.tagName;c.end>a.ch&&(e=e.slice(0,e.length-c.end+a.ch));var g=e.toLowerCase();if("tag"==c.type&&"closeTag"==h.type||/\/\s*$/.test(c.string)||f&&-1<j(f,g))throw CodeMirror.Pass;
-c=i&&-1<j(i,g);b.replaceSelection(">"+(c?"\n\n":"")+"</"+e+">",c?{line:a.line+1,ch:0}:{line:a.line,ch:a.ch+1});c&&(b.indentLine(a.line+1),b.indentLine(a.line+2))}else if("/"==d&&"tag"==c.type&&"<"==c.string)(e=h.context&&h.context.tagName)&&b.replaceSelection("/"+e+">","end");else throw CodeMirror.Pass;}function j(b,d){if(b.indexOf)return b.indexOf(d);for(var a=0,c=b.length;a<c;++a)if(b[a]==d)return a;return-1}CodeMirror.defineOption("autoCloseTags",!1,function(b,d,a){if(d&&(a==CodeMirror.Init||!a)){a=
-{name:"autoCloseTags"};if(typeof d!="object"||d.whenClosing)a["'/'"]=function(a){g(a,"/")};if(typeof d!="object"||d.whenOpening)a["'>'"]=function(a){g(a,">")};b.addKeyMap(a)}else!d&&(a!=CodeMirror.Init&&a)&&b.removeKeyMap("autoCloseTags")});var k="area base br col command embed hr img input keygen link meta param source track wbr".split(" "),l="applet blockquote body button div dl fieldset form frameset h1 h2 h3 h4 h5 h6 head html iframe layer legend object ol p select table ul".split(" ")})();
+/**
+ * Tag-closer extension for CodeMirror.
+ *
+ * This extension adds an "autoCloseTags" option that can be set to
+ * either true to get the default behavior, or an object to further
+ * configure its behavior.
+ *
+ * These are supported options:
+ *
+ * `whenClosing` (default true)
+ *   Whether to autoclose when the '/' of a closing tag is typed.
+ * `whenOpening` (default true)
+ *   Whether to autoclose the tag when the final '>' of an opening
+ *   tag is typed.
+ * `dontCloseTags` (default is empty tags for HTML, none for XML)
+ *   An array of tag names that should not be autoclosed.
+ * `indentTags` (default is block tags for HTML, none for XML)
+ *   An array of tag names that should, when opened, cause a
+ *   blank line to be added inside the tag, and the blank line and
+ *   closing line to be indented.
+ *
+ * See demos/closetag.html for a usage example.
+ */
+
+(function() {
+  CodeMirror.defineOption("autoCloseTags", false, function(cm, val, old) {
+    if (val && (old == CodeMirror.Init || !old)) {
+      var map = {name: "autoCloseTags"};
+      if (typeof val != "object" || val.whenClosing)
+        map["'/'"] = function(cm) { return autoCloseTag(cm, '/'); };
+      if (typeof val != "object" || val.whenOpening)
+        map["'>'"] = function(cm) { return autoCloseTag(cm, '>'); };
+      cm.addKeyMap(map);
+    } else if (!val && (old != CodeMirror.Init && old)) {
+      cm.removeKeyMap("autoCloseTags");
+    }
+  });
+
+  var htmlDontClose = ["area", "base", "br", "col", "command", "embed", "hr", "img", "input", "keygen", "link", "meta", "param",
+                       "source", "track", "wbr"];
+  var htmlIndent = ["applet", "blockquote", "body", "button", "div", "dl", "fieldset", "form", "frameset", "h1", "h2", "h3", "h4",
+                    "h5", "h6", "head", "html", "iframe", "layer", "legend", "object", "ol", "p", "select", "table", "ul"];
+
+  function autoCloseTag(cm, ch) {
+    var pos = cm.getCursor(), tok = cm.getTokenAt(pos);
+    var inner = CodeMirror.innerMode(cm.getMode(), tok.state), state = inner.state;
+    if (inner.mode.name != "xml") return CodeMirror.Pass;
+
+    var opt = cm.getOption("autoCloseTags"), html = inner.mode.configuration == "html";
+    var dontCloseTags = (typeof opt == "object" && opt.dontCloseTags) || (html && htmlDontClose);
+    var indentTags = (typeof opt == "object" && opt.indentTags) || (html && htmlIndent);
+
+    if (ch == ">" && state.tagName) {
+      var tagName = state.tagName;
+      if (tok.end > pos.ch) tagName = tagName.slice(0, tagName.length - tok.end + pos.ch);
+      var lowerTagName = tagName.toLowerCase();
+      // Don't process the '>' at the end of an end-tag or self-closing tag
+      if (tok.type == "tag" && state.type == "closeTag" ||
+          /\/\s*$/.test(tok.string) ||
+          dontCloseTags && indexOf(dontCloseTags, lowerTagName) > -1)
+        return CodeMirror.Pass;
+
+      var doIndent = indentTags && indexOf(indentTags, lowerTagName) > -1;
+      var curPos = doIndent ? CodeMirror.Pos(pos.line + 1, 0) : CodeMirror.Pos(pos.line, pos.ch + 1);
+      cm.replaceSelection(">" + (doIndent ? "\n\n" : "") + "</" + tagName + ">",
+                          {head: curPos, anchor: curPos});
+      if (doIndent) {
+        cm.indentLine(pos.line + 1);
+        cm.indentLine(pos.line + 2);
+      }
+      return;
+    } else if (ch == "/" && tok.string == "<") {
+      var tagName = state.context && state.context.tagName;
+      if (tagName) cm.replaceSelection("/" + tagName + ">", "end");
+      return;
+    }
+    return CodeMirror.Pass;
+  }
+
+  function indexOf(collection, elt) {
+    if (collection.indexOf) return collection.indexOf(elt);
+    for (var i = 0, e = collection.length; i < e; ++i)
+      if (collection[i] == elt) return i;
+    return -1;
+  }
+})();

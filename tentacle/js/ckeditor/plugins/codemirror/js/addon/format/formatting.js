@@ -1,5 +1,114 @@
-﻿(function(){CodeMirror.extendMode("css",{commentStart:"/*",commentEnd:"*/",newlineAfterToken:function(d,b){return/^[;{}]$/.test(b)}});CodeMirror.extendMode("javascript",{commentStart:"/*",commentEnd:"*/",newlineAfterToken:function(d,b,e,a){return this.jsonMode?/^[\[,{]$/.test(b)||/^}/.test(e):";"==b&&a.lexical&&")"==a.lexical.type?!1:/^[;{}]$/.test(b)&&!/^;/.test(e)}});var m=/^(a|abbr|acronym|area|base|bdo|big|br|button|caption|cite|code|col|colgroup|dd|del|dfn|em|frame|hr|iframe|img|input|ins|kbd|label|legend|link|map|object|optgroup|option|param|q|samp|script|select|small|span|strong|sub|sup|textarea|tt|var)$/;
-CodeMirror.extendMode("xml",{commentStart:"<\!--",commentEnd:"--\>",newlineAfterToken:function(d,b,e,a){var c=!1;"html"==this.configuration&&(c=a.context?m.test(a.context.tagName):!1);return!c&&("tag"==d&&/>$/.test(b)&&a.context||/^</.test(e))}});CodeMirror.defineExtension("commentRange",function(d,b,e){var a=this,c=CodeMirror.innerMode(a.getMode(),a.getTokenAt(b).state).mode;a.operation(function(){if(d)a.replaceRange(c.commentEnd,e),a.replaceRange(c.commentStart,b),b.line==e.line&&b.ch==e.ch&&a.setCursor(b.line,
-b.ch+c.commentStart.length);else{var f=a.getRange(b,e),g=f.indexOf(c.commentStart),j=f.lastIndexOf(c.commentEnd);-1<g&&(-1<j&&j>g)&&(f=f.substr(0,g)+f.substring(g+c.commentStart.length,j)+f.substr(j+c.commentEnd.length));a.replaceRange(f,b,e)}})});CodeMirror.defineExtension("autoIndentRange",function(d,b){var e=this;this.operation(function(){for(var a=d.line;a<=b.line;a++)e.indentLine(a,"smart")})});CodeMirror.defineExtension("autoFormatRange",function(d,b,e){for(var a=this,c=a.getMode(),f=a.getRange(d,
-b).split("\n"),g=CodeMirror.copyState(c,a.getTokenAt(d).state),j=a.getOption("tabSize"),i="",n=0,k=0==d.ch,l=0;l<f.length;++l){for(var h=new CodeMirror.StringStream(f[l],j);!h.eol();){var o=CodeMirror.innerMode(c,g),m=c.token(h,g),p=h.current();h.start=h.pos;if(!k||/\S/.test(p))i+=p,k=!1;if(!k&&o.mode.newlineAfterToken&&o.mode.newlineAfterToken(m,p,h.string.slice(h.pos)||f[l+1]||"",o.state))i+="\n",k=!0,++n}!h.pos&&c.blankLine&&c.blankLine(g);!k&&l<f.length-1&&(i+="\n",k=!0,++n)}a.operation(function(){a.replaceRange(i,
-d,b);for(var c=d.line+1,f=d.line+n;c<=f;++c)a.indentLine(c,"smart");e?a.setCursor({line:0,ch:0}):a.setSelection(d,a.getCursor(!1))})})})();
+(function() {
+
+  CodeMirror.extendMode("css", {
+    commentStart: "/*",
+    commentEnd: "*/",
+    newlineAfterToken: function(_type, content) {
+      return /^[;{}]$/.test(content);
+    }
+  });
+
+  CodeMirror.extendMode("javascript", {
+    commentStart: "/*",
+    commentEnd: "*/",
+    // FIXME semicolons inside of for
+    newlineAfterToken: function(_type, content, textAfter, state) {
+      if (this.jsonMode) {
+        return /^[\[,{]$/.test(content) || /^}/.test(textAfter);
+      } else {
+        if (content == ";" && state.lexical && state.lexical.type == ")") return false;
+        return /^[;{}]$/.test(content) && !/^;/.test(textAfter);
+      }
+    }
+  });
+
+  var inlineElements = /^(a|abbr|acronym|area|base|bdo|big|br|button|caption|cite|code|col|colgroup|dd|del|dfn|em|frame|hr|iframe|img|input|ins|kbd|label|legend|link|map|object|optgroup|option|param|q|samp|script|select|small|span|strong|sub|sup|textarea|tt|var)$/;
+
+  CodeMirror.extendMode("xml", {
+    commentStart: "<!--",
+    commentEnd: "-->",
+    newlineAfterToken: function(type, content, textAfter, state) {
+      var inline = false;
+      if (this.configuration == "html")
+        inline = state.context ? inlineElements.test(state.context.tagName) : false;
+      return !inline && ((type == "tag" && />$/.test(content) && state.context) ||
+                         /^</.test(textAfter));
+    }
+  });
+
+  // Comment/uncomment the specified range
+  CodeMirror.defineExtension("commentRange", function (isComment, from, to) {
+    var cm = this, curMode = CodeMirror.innerMode(cm.getMode(), cm.getTokenAt(from).state).mode;
+    cm.operation(function() {
+      if (isComment) { // Comment range
+        cm.replaceRange(curMode.commentEnd, to);
+        cm.replaceRange(curMode.commentStart, from);
+        if (from.line == to.line && from.ch == to.ch) // An empty comment inserted - put cursor inside
+          cm.setCursor(from.line, from.ch + curMode.commentStart.length);
+      } else { // Uncomment range
+        var selText = cm.getRange(from, to);
+        var startIndex = selText.indexOf(curMode.commentStart);
+        var endIndex = selText.lastIndexOf(curMode.commentEnd);
+        if (startIndex > -1 && endIndex > -1 && endIndex > startIndex) {
+          // Take string till comment start
+          selText = selText.substr(0, startIndex)
+          // From comment start till comment end
+            + selText.substring(startIndex + curMode.commentStart.length, endIndex)
+          // From comment end till string end
+            + selText.substr(endIndex + curMode.commentEnd.length);
+        }
+        cm.replaceRange(selText, from, to);
+      }
+    });
+  });
+
+  // Applies automatic mode-aware indentation to the specified range
+  CodeMirror.defineExtension("autoIndentRange", function (from, to) {
+    var cmInstance = this;
+    this.operation(function () {
+      for (var i = from.line; i <= to.line; i++) {
+        cmInstance.indentLine(i, "smart");
+      }
+    });
+  });
+
+  // Applies automatic formatting to the specified range
+  CodeMirror.defineExtension("autoFormatRange", function (from, to) {
+    var cm = this;
+    var outer = cm.getMode(), text = cm.getRange(from, to).split("\n");
+    var state = CodeMirror.copyState(outer, cm.getTokenAt(from).state);
+    var tabSize = cm.getOption("tabSize");
+
+    var out = "", lines = 0, atSol = from.ch == 0;
+    function newline() {
+      out += "\n";
+      atSol = true;
+      ++lines;
+    }
+
+    for (var i = 0; i < text.length; ++i) {
+      var stream = new CodeMirror.StringStream(text[i], tabSize);
+      while (!stream.eol()) {
+        var inner = CodeMirror.innerMode(outer, state);
+        var style = outer.token(stream, state), cur = stream.current();
+        stream.start = stream.pos;
+        if (!atSol || /\S/.test(cur)) {
+          out += cur;
+          atSol = false;
+        }
+        if (!atSol && inner.mode.newlineAfterToken &&
+            inner.mode.newlineAfterToken(style, cur, stream.string.slice(stream.pos) || text[i+1] || "", inner.state))
+          newline();
+      }
+      if (!stream.pos && outer.blankLine) outer.blankLine(state);
+      if (!atSol && i < text.length - 1) newline();
+    }
+
+    cm.operation(function () {
+      cm.replaceRange(out, from, to);
+      for (var cur = from.line + 1, end = from.line + lines; cur <= end; ++cur)
+        cm.indentLine(cur, "smart");
+      cm.setSelection(from, cm.getCursor(false));
+    });
+  });
+})();
