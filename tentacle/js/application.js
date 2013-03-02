@@ -1,11 +1,7 @@
 $(document).ready(function(){
-	
     template();
 
-    sparkline();
-
     dashboard_feed();
-
 });
 
 
@@ -125,7 +121,6 @@ function sparkline() {
         spotRadius: 2,              // Radius of all spot markers, In pixels (default: 1.5) - Integer
         lineWidth: 1                // In pixels (default: 1) - Integer
     };
-
 
     $('.page_view').sparkline(page_views, settings);
     $('.page_view').next('.number').text(page_view_total);
