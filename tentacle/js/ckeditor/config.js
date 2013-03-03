@@ -4,6 +4,7 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
+
     // Define changes to default configuration here.
     // For the complete reference:
     // http://docs.ckeditor.com/#!/api/CKEDITOR.config
@@ -23,6 +24,7 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'colors' },
         { name: 'tools' }
     ];
+
 
     // The default plugins included in the basic setup define some buttons that
     // we don't want too have in a basic editor. We remove them here.
