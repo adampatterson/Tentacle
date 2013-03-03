@@ -5,6 +5,12 @@
 
 CKEDITOR.editorConfig = function( config ) {
 
+    config.autogrow_maxHeight = 1000;
+    config.autoGrow_minHeight = 550;
+    config.autoGrow_onStartup = true;
+    config.enterMode = CKEDITOR.ENTER_BR;
+    config.fullPage = true;
+
     // Define changes to default configuration here.
     // For the complete reference:
     // http://docs.ckeditor.com/#!/api/CKEDITOR.config
