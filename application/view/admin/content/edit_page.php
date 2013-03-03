@@ -84,21 +84,14 @@
 							<? //clean_out($get_page_meta ) ?>
 							<input type="text" name="title" placeholder='Title' value='<?= $get_page->title ?>' class='xlarge content_title' required='required' />
 							<!--<p>Permalink: http://www.sitename/com/path/ <a href="#">Edit</a></p>-->
-                            <? if(user_editor() == 'wysihtml5'): ?>
-
-                                <p class="wysihtml5">
-                                    <textarea id="Content" name="content" rows="15" cols="80" class="editor"><?= the_content( $get_post->content, true ) ?></textarea>
-                                </p>
-
-                                <script type="text/javascript">
-                                    $('#Content').wysihtml5();
-                                </script>
-                            <? endif; ?>
-
+                            
                             <? if(user_editor() == 'wysiwyg'):?>
-								<p class="wysiwyg">
-									<textarea id="Content" name="content" rows="15" cols="80" class="editor"><?= the_content( $get_page->content, true ) ?></textarea>
-								</p>
+								<p><a href="#" id="myButton" >Insert Media</a></p>
+
+					            <p class="wysiwyg">
+					                <textarea cols="100" id="editor" name="content" rows="10" class="editor"><?= the_content( $get_page->content, true ) ?></textarea>
+					            </p>
+					
                             <? endif; ?>
 
                             <? if(user_editor() == 'html'):?>
@@ -217,4 +210,5 @@
 	</form>
 </div>
 <!-- #wrap -->
+<? load::view('admin/partials/media-modal'); ?>
 <? load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) ); ?>

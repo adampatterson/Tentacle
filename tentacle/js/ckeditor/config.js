@@ -19,7 +19,6 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
         { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align' ] },
         { name: 'links' },
-        { name: 'insert' },
         { name: 'styles' },
         { name: 'colors' },
         { name: 'tools' }
@@ -27,7 +26,7 @@ CKEDITOR.editorConfig = function( config ) {
 
     // The default plugins included in the basic setup define some buttons that
     // we don't want too have in a basic editor. We remove them here.
-    config.removeButtons = 'Anchor,Underline,Strike,Subscript,Superscript, Format Selection, Comment Selection, Uncomment Selection';
+    config.removeButtons = 'Anchor,Underline,Strike,Subscript,Superscript';
 
     // Considering that the basic setup doesn't provide pasting cleanup features,
     // it's recommended to force everything to be plain text.
@@ -35,6 +34,7 @@ CKEDITOR.editorConfig = function( config ) {
 
     // Let's have it basic on dialogs as well.
     config.removeDialogTabs = 'link:advanced';
+
 
     config.codemirror = {
 

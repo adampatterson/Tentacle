@@ -14,37 +14,24 @@
 	 _/    _/        _/    _/    _/      _/    _/  _/        _/  _/          
 	_/      _/_/_/  _/    _/      _/_/    _/_/_/    _/_/_/  _/    _/_/_/     
 	======================================================================-->
-    <? if(user_editor() == 'wysihtml5'): ?>
-        <script src="<?=ADMIN_JS; ?>wysihtml5.js"></script>
-        <link rel="stylesheet" type="text/css" href="<?=ADMIN_JS; ?>/bootstrap-wysihtml5/dist/bootstrap-wysihtml5.css"></link>
-    <? endif; ?>
-
 	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>application.css">
 	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>admin.css">
-	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>reveal.css">
 
     <script type="text/javascript" src="<?=ADMIN_JS; ?>modernizr.min.js"></script>
 	<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.min.js"></script>
-	<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery-ui.min.js"></script>
-
-    <? if(user_editor() == 'wysiwyg'): ?>
-        <script type="text/javascript" src="<?= ADMIN_JS; ?>raptor.min.js"></script>
-    <? endif; ?>
+	<script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap.min.js"></script>
 
     <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.reveal.js"></script>
 	<script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.inputtags.js"></script>
 	<script type="text/javascript" src="<?=ADMIN_JS; ?>notifications.js"></script>
 
     <? if(user_editor() == 'wysiwyg'): ?>
-        <script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-dropdown.js"></script>
-        <script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-transition.js"></script>
-        <script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-collapse.js"></script>
-        <script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-tab.js"></script>
-    <? endif; ?>
+        <script type="text/javascript" src="<?=ADMIN_JS; ?>ckeditor/ckeditor.js"></script>
 
-    <? if(user_editor() == 'wysihtml5'): ?>
-        <script src="<?=ADMIN_JS; ?>bootstrap.min.js"></script>
-        <script src="<?=ADMIN_JS; ?>/bootstrap-wysihtml5/dist/bootstrap-wysihtml5.js"></script>
+	    <script type="text/javascript" src="<?=ADMIN_JS; ?>ckeditor/config.js"></script>
+	    <link rel="stylesheet" href="<?=ADMIN_JS ?>ckeditor/contents.css"/>
+	    <script type="text/javascript" src="<?=ADMIN_JS; ?>ckeditor/styles.js"></script>
+	    <link rel="stylesheet" href="<?=ADMIN_CSS; ?>codemirror.css">
     <? endif; ?>
 
     <? if ( in_array('flot', $assets)): ?>
@@ -81,13 +68,16 @@
              ?> ];
 
             var unique_view_total = <?= $unique['total'] ?>;
+
+            $(document).ready(function(){
+                sparkline();
+            });
          </script>
 
      <? endif; ?>
 
     <? if ( in_array('sortable', $assets ) ): ?>
         <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.nestable.js"></script>
-        <link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>sortable.css">
     <? endif; ?>
 
 	<!--[if lt IE 9]>
@@ -102,6 +92,7 @@
 
 	<script type="text/javascript" charset="utf-8">
 		var base_url = "<?= BASE_URL ?>";
+		var image_url = "<?= IMAGE_URL ?>";
 		var js_url = '<?= ADMIN_JS ?>';
 		var editor_path = '<?= THEME ?>/';
 		var cms_maxfiles = 3;

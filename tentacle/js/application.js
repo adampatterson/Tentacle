@@ -1,6 +1,5 @@
 $(document).ready(function(){
     template();
-
     dashboard_feed();
 });
 

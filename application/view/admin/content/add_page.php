@@ -1,186 +1,157 @@
 <? load::view('admin/partials/template-header', array('title' => 'Write a new page', 'assets' => array('application') ) );?>
 
-<div id="wrap">
-	<!--
-	<script type="text/javascript">
-		$(function(){
-			$('form#add_page').sisyphus({
-				//onSaveCallback: function() {},
-				//onRestoreCallback: function() {},
-				//onReleaseDataCallback: function() {}
-			});
-		}); 
-	</script>
-	-->
-	<form action="<?= BASE_URL ?>action/add_page/" method="post" class="form-stacked" id='add_page'>
-		<input type="hidden" name="page-or-post" value='page' />
-		<div class="has-right-sidebar">
-			<div class="contet-sidebar has-tabs">
-				<div class="table-heading">
-					<h3 class="regular">Page Settings</h3>
-<!--					<input type="button" value="Preview" class="btn btn-small btn-primary pull-right" name='preview' />-->
-				</div>
-				<div class="table-content">
-					<fieldset>
-						
-						<div class="control-group">
-							<label for="status" class="control-label">Status</label>
-							<div class="controls">
-								<select name="status" id="status">
-									<option value="draft">Draft</option>
-									<option value="published">Published</option>
-								</select>
-							</div>
-						</div>
-				
-				
-						<div class="control-group">
-							<label for="parent_page" class="control-label">Parent page</label>
-							<div class="controls">
-								<select id="parent_page" name="parent_page">
-									<option value="0">None</option>
-									<? foreach ($pages as $page_array): 
-										$page = (object)$page_array; ?>
-										<option value="<?= $page->id?>" <? selected( $page->id, $parent_page_id ); ?>><?= offset($page->level, 'list').$page->title;?></option>
-									<? endforeach;?>
-								</select>
-							</div>
-						</div>
-							
-						<div class="control-group">
-							<label for="page_template" class="control-label">Page template</label>
-							<div class="controls">
-								<select id="page_template" name="page_template" onchange="window.location = this.options[this.selectedIndex].value;">
-									<!--<option value="<?= BASE_URL ?>action/render_admin/add_page/default" selected='selected'>Default</option>-->
-									<? $templates = get_templates( get::option( 'appearance' ) );
-									foreach ( $templates as $template ): ?>
-										<option value="<?= BASE_URL ?>action/render_admin/add_page/<?= $template->template_id ?>" <? selected( session::get( 'template' ), $template->template_id ); ?>><?= $template->template_name ?></option>
-									<? endforeach; ?>
-								</select>
-							</div>
-						</div>
-							<!--<dt>
-								<a href="#">Select a featured image.</a>
-							-->
-					</fieldset>
-					<input type="hidden" value="admin/content_add_page" name="history">
-					<div class="form-actions">
-						<button type="submit" class="btn btn-large btn-primary pull-right" name='save'>Save</button><!--<a href="#review">Save for Review</a>-->
-					</div>
-				</div>
-			</div>
-			<div id="post-body">
-				<div id="post-body-content">
-					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Write a new page</h1>
-					
-					<ul class="nav nav-tabs" id="content-tabs">
-						<li class="active"><a href="#content">Content</a></li>
-						<li class=""><a href="#options">Options</a></li>
-					</ul>
-					
-					<div class="tab-content tab-body">
-						
-						<div id="content" class="active tab-pane">
-							<input type="text" name="title" placeholder='Title' class='xlarge content_title' required='required' />
+    <div id="wrap">
+    <!--
+    <script type="text/javascript">
+        $(function(){
+            $('form#add_page').sisyphus({
+                //onSaveCallback: function() {},
+                //onRestoreCallback: function() {},
+                //onReleaseDataCallback: function() {}
+            });
+        });
+    </script>
+    -->
+    <form action="<?= BASE_URL ?>action/add_page/" method="post" class="form-stacked" id='add_page'>
+    <input type="hidden" name="page-or-post" value='page' />
+    <div class="has-right-sidebar">
+    <div class="contet-sidebar has-tabs">
+        <div class="table-heading">
+            <h3 class="regular">Page Settings</h3>
+            <!--					<input type="button" value="Preview" class="btn btn-small btn-primary pull-right" name='preview' />-->
+        </div>
+        <div class="table-content">
+            <fieldset>
 
-                            <? if(user_editor() == 'wysihtml5'): ?>
+                <div class="control-group">
+                    <label for="status" class="control-label">Status</label>
+                    <div class="controls">
+                        <select name="status" id="status">
+                            <option value="draft">Draft</option>
+                            <option value="published">Published</option>
+                        </select>
+                    </div>
+                </div>
 
-                                <p class="wysihtml5">
-                                    <textarea id="Content" name="content" rows="15" cols="80" class="editor"></textarea>
-                                </p>
 
-                                <script type="text/javascript">
+                <div class="control-group">
+                    <label for="parent_page" class="control-label">Parent page</label>
+                    <div class="controls">
+                        <select id="parent_page" name="parent_page">
+                            <option value="0">None</option>
+                            <? foreach ($pages as $page_array):
+                                $page = (object)$page_array; ?>
+                                <option value="<?= $page->id?>" <? selected( $page->id, $parent_page_id ); ?>><?= offset($page->level, 'list').$page->title;?></option>
+                            <? endforeach;?>
+                        </select>
+                    </div>
+                </div>
 
-                                    $(window).on('load', function load(){
+                <div class="control-group">
+                    <label for="page_template" class="control-label">Page template</label>
+                    <div class="controls">
+                        <select id="page_template" name="page_template" onchange="window.location = this.options[this.selectedIndex].value;">
+                            <!--<option value="<?= BASE_URL ?>action/render_admin/add_page/default" selected='selected'>Default</option>-->
+                            <? $templates = get_templates( get::option( 'appearance' ) );
+                            foreach ( $templates as $template ): ?>
+                                <option value="<?= BASE_URL ?>action/render_admin/add_page/<?= $template->template_id ?>" <? selected( session::get( 'template' ), $template->template_id ); ?>><?= $template->template_name ?></option>
+                            <? endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <!--<dt>
+                    <a href="#">Select a featured image.</a>
+                -->
+            </fieldset>
+            <input type="hidden" value="admin/content_add_page" name="history">
+            <div class="form-actions">
+                <button type="submit" class="btn btn-large btn-primary pull-right" name='save'>Save</button><!--<a href="#review">Save for Review</a>-->
+            </div>
+        </div>
+    </div>
+    <div id="post-body">
+    <div id="post-body-content">
+    <h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Write a new page</h1>
 
-                                        var media = {
-                                            html : function(locale) {
-                                                return "<li>" +
-                                                    "<div class='btn-group'>" +
-                                                    "<a class='btn' data-wysihtml5-action='change_view' title='" + locale.html.edit + "'>HTML</a>" +
-                                                    "</div>" +
-                                                    "</li>";
-                                            }
-                                        }
+    <ul class="nav nav-tabs" id="content-tabs">
+        <li class="active"><a href="#content">Content</a></li>
+        <li class=""><a href="#options">Options</a></li>
+    </ul>
 
-                                        $('#Content').wysihtml5('deepExtend', {
-                                            "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
-                                            "emphasis": true, //Italics, bold, etc. Default true
-                                            "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
-                                            "html": true, //Button which allows you to edit the generated HTML. Default false
-                                            "link": true, //Button to insert a link. Default true
-                                            "image": false, //Button to insert an image. Default true,
-                                            "color": false, //Button to change color of font
-                                            customTemplates: media
-                                        });
-                                    })
-                                </script>
-                            <? endif; ?>
+    <div class="tab-content tab-body">
 
-                            <? if(user_editor() == 'wysiwyg'): ?>
-                                <p class="wysiwyg">
-                                    <textarea id="Content" name="content" rows="15" cols="80" class="editor"></textarea>
-                                </p>
-                            <? endif; ?>
+    <div id="content" class="active tab-pane">
+        <input type="text" name="title" placeholder='Title' class='xlarge content_title' required='required' />
 
-                            <? if(user_editor() == 'html'): ?>
-                                <p>
-                                    <textarea id="code" name="content" cols="40" rows="5" placeholder='Content'></textarea>
-                                </p>
+        <? if(user_editor() == 'wysiwyg'): ?>
+			
+			<p><a href="#" id="myButton" >Insert Media</a></p>
 
-                            <? endif; ?>
-							<div id="scaffold">
-								<? if ( session::get( 'template' ) != 'index' && session::get( 'template' ) != '' ):
+            <p class="wysiwyg">
+                <textarea cols="100" id="editor" name="content" rows="10" class="editor"></textarea>
+            </p>
+		
+        <? endif; ?>
 
-                                    $template = THEMES_DIR.'/'.get::option('appearance').'/'.session::get('template').'.php';
+        <? if(user_editor() == 'html'): ?>
+            <p>
+                <textarea id="code" name="content" cols="40" rows="5" placeholder='Content'></textarea>
+            </p>
 
-                                    if( file_exists( $template )):
-                                        $data = get::yaml( $template );
+        <? endif; ?>
 
-                                        if ( $data != null ):
-                                            $scaffold = new scaffold();
+        <div id="scaffold">
+            <? if ( session::get( 'template' ) != 'index' && session::get( 'template' ) != '' ):
 
-                                            $scaffold->process_this( $data );
-                                        endif;
-                                    endif;
-                                endif;
-								?>
+                $template = THEMES_DIR.'/'.get::option('appearance').'/'.session::get('template').'.php';
 
-							</div>
+                if( file_exists( $template )):
+                    $data = get::yaml( $template );
 
-						</div>
-						
-						<div id="options" class="tab-pane">
-							<fieldset>
-								<div class="clearfix">
-									<label>Breadcrumb title</label>
-									<div class="input">
-										<input type="text" placeholder="Edit title" name='bread_crumb' />
-										<span class="help-block">This title will appear in the breadcrumb trail.</span>
-									</div>
-								</div>
-								<div class="clearfix">
-									<label>Meta Keywords</label>
-									<div class="input">
-										<input type="text" placeholder="Keywords" name='meta_keywords' />
-										<span class="help-block">Separate each keyword with a comma ( , )</span>
-									</div>
-								</div>
-								<div class="clearfix">
-									<label>Meta Description</label>
-									<div class="input">
-										<textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'></textarea>
-										<span class="help-block">A short summary of the page's content</span>
-									</div>
-								</div>
-								<div class="clearfix">
-									<label>Tags</label>
-									<div class="input">
-										<input type="text" class="tags" name="tags" id="tags" />
-										<span class="help-block">Separate each keyword with a comma ( , )</span>
-									</div>
-								</div>
-<? /*
+                    if ( $data != null ):
+                        $scaffold = new scaffold();
+
+                        $scaffold->process_this( $data );
+                    endif;
+                endif;
+            endif;
+            ?>
+
+        </div>
+
+    </div>
+
+    <div id="options" class="tab-pane">
+        <fieldset>
+            <div class="clearfix">
+                <label>Breadcrumb title</label>
+                <div class="input">
+                    <input type="text" placeholder="Edit title" name='bread_crumb' />
+                    <span class="help-block">This title will appear in the breadcrumb trail.</span>
+                </div>
+            </div>
+            <div class="clearfix">
+                <label>Meta Keywords</label>
+                <div class="input">
+                    <input type="text" placeholder="Keywords" name='meta_keywords' />
+                    <span class="help-block">Separate each keyword with a comma ( , )</span>
+                </div>
+            </div>
+            <div class="clearfix">
+                <label>Meta Description</label>
+                <div class="input">
+                    <textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'></textarea>
+                    <span class="help-block">A short summary of the page's content</span>
+                </div>
+            </div>
+            <div class="clearfix">
+                <label>Tags</label>
+                <div class="input">
+                    <input type="text" class="tags" name="tags" id="tags" />
+                    <span class="help-block">Separate each keyword with a comma ( , )</span>
+                </div>
+            </div>
+            <? /*
 								<div class="clearfix">
 									<label>Meta Robot Tags</label>
 									<div class="input">
@@ -216,9 +187,9 @@
 									</div>
 								</div>
 */ ?>
-							</fieldset>
-						</div>
-<? /* 					<div id="revisions" class="">
+        </fieldset>
+    </div>
+    <? /* 					<div id="revisions" class="">
 							<h4>Feb 7, 2011</h4>
 							<div class="small-row">
 								<input type="radio" checked="checked" />
@@ -349,11 +320,12 @@
 							<div class="clear"></div>
 						</div>
 */ ?>
-					</div>
-				</div>
-			</div>
-		</div>
-	</form>
-</div>
-<!-- #wrap -->
+		    			</div>
+		    		</div>
+		    	</div>
+		    </div>
+	    </form>
+    </div>
+    <!-- #wrap -->
+<? load::view('admin/partials/media-modal'); ?>
 <? load::view( 'admin/partials/template-footer', array('assets' => array('') ) );?>
