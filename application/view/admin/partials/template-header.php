@@ -69,8 +69,8 @@
 
                 $cache_page_views_total         = $cache->set( 'page_views_totals', $page_views_total, '+2 hours' );
                 $cache_page_views               = $cache->set( 'page_views', $page_views, '+2 hours' );
-                $cache_unique_views_total       = $cache->set( 'unique_views_total', $page_views_total, '+2 hours' );
-                $cache_unique_views             = $cache->set( 'unique_views', $page_views, '+2 hours' );
+                $cache_unique_views_total       = $cache->set( 'unique_views_total', $unique_views_total, '+2 hours' );
+                $cache_unique_views             = $cache->set( 'unique_views', $unique_views, '+2 hours' );
             else:
                 $cache_page_views_total         = $cache->get( 'page_views_totals' );
                 $cache_page_views               = $cache->get( 'page_views' );
