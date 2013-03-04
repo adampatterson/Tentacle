@@ -5,12 +5,18 @@
 
 CKEDITOR.editorConfig = function( config ) {
 
+    // Protect PHP code tags (<?...?>) so CKEditor will not break them when
+    // switching from Source to WYSIWYG.
+    config.protectedSource.push(/<\?[\s\S]*?\?>/g);
+
+    //IE: remove border of image when is as a link
+    config.extraCss = "a img { border: 0px\\9; }";
+
     config.disableNativeSpellChecker = false
     config.autogrow_maxHeight = 1000;
     config.autoGrow_minHeight = 550;
     config.autoGrow_onStartup = true;
     config.enterMode = CKEDITOR.ENTER_BR;
-    config.fullPage = true;
 
     // Define changes to default configuration here.
     // For the complete reference:
