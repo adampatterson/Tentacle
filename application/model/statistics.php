@@ -87,6 +87,7 @@ class statistics_model
         return db::query("SELECT * FROM `statistics` WHERE `date` BETWEEN ".$one_hour." AND ".$now);
     }
 
+
     public  function add( $page_view ){
         $statisitics = db('statistics');
 

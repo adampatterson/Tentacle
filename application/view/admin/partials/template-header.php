@@ -45,30 +45,47 @@
             <?
             $statistics = load::model('statistics');
 
-            $count = $statistics->count_by_chunks(42);
-            $unique = $statistics->count_by_unique_chunks(42);
+            $cache = new cache();
+
+            if ( $cache->look_up('page_views') == false):
+
+                $count = $statistics->count_by_chunks(42);
+                $unique = $statistics->count_by_unique_chunks(42);
+
+                $page_views_total = $count['total'];
+                $page_views = '';
+                foreach ( $count['chunks'] as $key => $value )
+                 {
+                    $page_views .= '['. $key .', '. $value .'],';
+                 }
+
+
+                $unique_views_total = $unique['total'];
+                $unique_views = '';
+                foreach ( $unique['chunks'] as $key => $value )
+                {
+                    $unique_views .= '['. $key .', '. $value .'],';
+                }
+
+                $cache_page_views_total         = $cache->set( 'page_views_totals', $page_views_total, '+2 hours' );
+                $cache_page_views               = $cache->set( 'page_views', $page_views, '+2 hours' );
+                $cache_unique_views_total       = $cache->set( 'unique_views_total', $page_views_total, '+2 hours' );
+                $cache_unique_views             = $cache->set( 'unique_views', $page_views, '+2 hours' );
+            else:
+                $cache_page_views_total         = $cache->get( 'page_views_totals' );
+                $cache_page_views               = $cache->get( 'page_views' );
+                $cache_unique_views_total       = $cache->get( 'unique_views_total' );
+                $cache_unique_views             = $cache->get( 'unique_views' );
+            endif;
             ?>
 
+            var page_views = [ <?= $cache_page_views ?> ];
 
-            var page_views = [ <?
-             foreach ( $count['chunks'] as $key => $value )
-             {
-                echo '['. $key .', '. $value .'],';
-             }
+            var page_view_total = <?= $cache_page_views_total ?>;
 
-             ?> ];
+            var unique_views = [ <?= $cache_unique_views ?> ];
 
-            var page_view_total = <?= $count['total'] ?>;
-
-            var unique_views = [ <?
-             foreach ( $unique['chunks'] as $key => $value )
-             {
-                echo '['. $key .', '. $value .'],';
-             }
-
-             ?> ];
-
-            var unique_view_total = <?= $unique['total'] ?>;
+            var unique_view_total = <?= $cache_unique_views_total ?>;
 
             $(document).ready(function(){
                 sparkline();
