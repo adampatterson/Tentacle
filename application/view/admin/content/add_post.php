@@ -56,7 +56,7 @@
 						<div class="control-group">
 							<label class="control-label">Post type</label>
 							<div class="controls">
-								<div class="clearfix">
+								<div class="post-type-list">
 									<div class="input">
 										<ul class="unstyled">
 											<?  $post_types = get_post_type ( get::option( 'appearance' ) );
@@ -117,7 +117,7 @@
 								<p><a href="#" id="myButton" >Insert Media</a></p>
 
 					            <p class="wysiwyg">
-					                <textarea cols="100" id="editor" name="content" rows="10" class="editor"></textarea>
+					                <textarea cols="100" id="editor" name="content" rows="30" class="editor"></textarea>
 					            </p>
                             <? endif; ?>
 

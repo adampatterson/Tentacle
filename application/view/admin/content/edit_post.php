@@ -64,7 +64,7 @@
 						<div class="control-group">
 							<label class="control-label" >Post Type</label>
 
-							<div class="controls">
+							<div class="controls post-type-list">
 								<ul class="unstyled">
 									<? $post_types = get_post_type ( get::option( 'appearance' ) );
 										foreach ($post_types as $post_type ): ?>
