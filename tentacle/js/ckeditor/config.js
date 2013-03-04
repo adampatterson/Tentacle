@@ -5,6 +5,7 @@
 
 CKEDITOR.editorConfig = function( config ) {
 
+    config.disableNativeSpellChecker = false
     config.autogrow_maxHeight = 1000;
     config.autoGrow_minHeight = 550;
     config.autoGrow_onStartup = true;
