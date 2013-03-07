@@ -31,6 +31,19 @@ class ajax_controller {
     }
 
 
+    /**
+     * Reorder page structure
+     * ----------------------------------------------------------------------------------------------*/
+    public function update_media ()
+    {
+        if (!empty($_POST))
+        {
+            $media = load::model( 'media' );
+            $update = $media->update( $_POST['file_id'] );
+        }
+    }
+
+
 	/**
 	* Touch the DB and see if the credentials are correct.
 	* ----------------------------------------------------------------------------------------------*/

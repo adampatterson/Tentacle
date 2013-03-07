@@ -29,17 +29,20 @@ $(document).ready(function(){
 	      });
 	  });
 
-	$('.insert_media').click(function() {
+	$('.insert_media').on('click', function() {
 
-		var title				    = $('.title').val();
-		var alt_text				= $('.alt_text').val();
-		var caption				    = $('.caption').val();
-		var link_url				= $('.link_url').val();
+        var file_id				    = $(this).parent().parent().find('.file_id').val();
 
-		var filename				= $('.filename').val();
-		var filenextension			= $('.extension').val();
+		var title				    = $(this).parent().parent().find('.title').val();
 
-        var size		          	= $('.image_size:checked').val();
+		var alt_text				= $(this).parent().parent().find('.alt_text').val();
+		var caption				    = $(this).parent().parent().find('.caption').val();
+		var link_url				= $(this).parent().parent().find('.link_url').val();
+$
+		var filename				= $(this).parent().parent().find('.filename').val();
+		var filenextension			= $(this).parent().parent().find('.extension').val();
+$
+        var size		          	= $(this).parent().parent().find('.image_size:checked').val();
 
 		if ( size != '' ) {
 			var image_size			= '_'+size;
@@ -55,7 +58,23 @@ $(document).ready(function(){
             var HtmlLink = '<a href="' + link_url + '"><img src="'+ url +'" alt="' + alt_text + '" title="' + title + '" /></a>';
         }
 
-		console.log( HtmlLink );
+        jQuery.ajax({
+            type: "POST",
+            url: base_url + "ajax/update_media",
+            data: {
+                file_id: file_id,
+                title: title,
+                alt_text: alt_text,
+                caption: caption
+            },
+            cache: false,
+            success: function(response){
+                //console.log(response);
+            }
+        });
+
+
+		//console.log( HtmlLink );
 		insert_media( HtmlLink );
 		
 		$('.insert_media').trigger('reveal:close');

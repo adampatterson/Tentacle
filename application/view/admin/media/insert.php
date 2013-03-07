@@ -48,12 +48,14 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div data-image-id="<?= $image->id ?>" class="form-horizontal">
-                                            <input type="hidden" name="history"  value="<?= CURRENT_PAGE ?>"/>
-                                            <input type="hidden" name="filename" class="filename" value="<?=$file_meta['file_name'] ?>" />
-                                            <input type="hidden" name="extension" class="extension" value="<?=$file_meta['extension'] ?>" />
 
-                                            <fieldset>
+                                        <form>
+                                            <div data-image-id="<?= $image->id ?>" class="form-horizontal">
+                                                <input type="hidden" name="history"  value="<?= CURRENT_PAGE ?>"/>
+                                                <input type="hidden" name="file_id" class="file_id" value="<?= $image->id ?>" />
+                                                <input type="hidden" name="filename" class="filename" value="<?=$file_meta['file_name'] ?>" />
+                                                <input type="hidden" name="extension" class="extension" value="<?=$file_meta['extension'] ?>" />
+
                                                 <h3>&nbsp;</h3>
 
                                                 <div class="control-group">
@@ -90,7 +92,7 @@
                                                     <label class="control-label">Size</label>
                                                     <div class="controls">
                                                         <label class="radio">
-                                                            <input type="radio" name="image_size" class="image_size" value="<?= get::option('image_thumb_size_w'); ?>" checked="" />
+                                                            <input type="radio" name="image_size" class="image_size" value="<?= get::option('image_thumb_size_w'); ?>" checked />
                                                             Thumbnail ( <?= get::option('image_thumb_size_w').' x '.get::option('image_thumb_size_h'); ?> )
                                                         </label>
                                                         <label class="radio">
@@ -107,16 +109,16 @@
                                                         </label>
                                                     </div>
                                                 </div>
-                                   	 		</div>
-	                                        <div class="row">
-	                                            <div class="actions">
-	                                                <button class="insert_media btn btn-primary">Insert Image</button>
-	                                                <!--<a class="btn primary" id="insert">Insert Image</a>-->
-	                                                <button class="btn btn-danger">Delete</button>
-	                                                <a class="btn" href="javascript:parent.jQuery.fancybox.close();">Cancel</a>
-	                                            </div>
-                                            </fieldset>
-                                        </div><!-- /form -->
+
+                                                <div class="actions">
+                                                    <button class="insert_media btn btn-primary">Insert Image</button>
+                                                    <!--<a class="btn primary" id="insert">Insert Image</a>-->
+                                                    <button class="btn btn-danger">Delete</button>
+                                                    <a class="btn" href="javascript:parent.jQuery.fancybox.close();">Cancel</a>
+                                                </div>
+
+                                            </div>
+                                           </form>
                                     </div>
 
                                 </div>

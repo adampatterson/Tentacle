@@ -43,6 +43,7 @@ class media_model
 		));
     }
 
+
 	public function update( $id )
 	{
 		// Run content through HTMLawd and Samrty Text
@@ -59,11 +60,12 @@ class media_model
 			'caption'		=> $caption,
 			//'description'	=> $description,
 			'alt'			=> $alt
-			))		
+			))
 			->where( 'id', '=', $id )
 			->execute();
 	}
-	
+
+
 	public function get( $id = '' )
 	{
 		$media = db ( 'media' );
