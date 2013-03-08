@@ -1101,8 +1101,14 @@ Test two
 
         $stats = load::model('statistics');
 
-        var_dump($stats->get_by_date());
+        $number_array = array();
+        foreach ( $stats->get_by_date() as $stats )
+        {
+            $number_array[] = (string) round(date("g.i" ,$stats->date), 1, PHP_ROUND_HALF_DOWN);
+        }
 
+//        var_dump($number_array);
+      var_dump(array_count_values($number_array));
 
     }
 

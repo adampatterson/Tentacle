@@ -10,8 +10,7 @@
 		</div>
 		<div class="one-full">
 
-			<div id="dropbox" class="well" style="height: 200px;">&nbsp;</div>
-			
+
         </div>
 	</div><!-- .full-content -->
 </div><!-- #wrap -->

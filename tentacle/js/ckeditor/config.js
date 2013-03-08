@@ -78,7 +78,7 @@ CKEDITOR.editorConfig = function( config ) {
         enableCodeFolding: true,
 
         // Whether or not to enable code formatting
-        enableCodeFormatting: true,
+        enableCodeFormatting: false,
 
         // Whether or not to automatically format code should be done every time the source view is opened
         autoFormatOnStart: true,

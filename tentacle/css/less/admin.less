@@ -721,99 +721,34 @@ Webtreats
 	margin: 0;
 }
 
+
 /*
 * Alert
 * ------------------------------------------------------------------------------------------- */
-#wrap .alert-message {
-	&.error, &.success, &.info {
-		p {
-			color: white;
-		}
-	}
-}
-#wrap .block-message {
-	&.error, &.success, &.info {
-		p {
-			color: black;
-		}
-	}	
+#wrap {
+  .alert-message {
+    &.error, &.success, &.info {
+      p {
+        color: white;
+      }
+    }
+  }
+
+  .block-message {
+      &.error, &.success, &.info {
+          p {
+              color: black;
+          }
+      }
+  }
 }
 
+
 /*
-* Flash
+* Notifications
 * ------------------------------------------------------------------------------------------- */
-.flash {
-    .close {
-        color: #990000;
-        font-size: 9px;
-        position: absolute;
-        right: 5px;
-        top: 5px;
-    }
- 
-    &.error, &.alert, &.notice, &.success, &.info, &.todo {
-        letter-spacing: normal;
-        word-spacing: normal;
-        margin-top: 10px;
-        padding: 0.83em 0.83em 0.83em 45px;
-        margin-bottom:1em;
-        border:2px solid #ddd;
-        position: relative;
-    }
- 
-    &.todo {
-        background:#e6efc2 url(../images/icons/32_check.png) no-repeat 3px 3px;
-        color:#264409;
-        border-color:#68b500
-    }
- 
-    &.error, &.alert {
-        color:#8a1f11;
-        border-color:#fbc2c4;
-    }
- 
-    &.error {
-        background:#fbe3e4 url(../images/icons/32_stop.png) no-repeat 3px 3px;
-    }
- 
-    &.alert {
-        background:#fbe3e4 url(../images/icons/32_warning.png) no-repeat 3px 3px;
-    }
- 
-    &.notice {
-        background:#fff6bf url(../images/icons/32_help.png) no-repeat 3px 3px;
-        color:#514721;
-        border-color:#ffd324;
-    }
- 
-    &.success {
-        background:#e6efc2 url(../images/icons/32_check.png) no-repeat 3px 3px;
-        color:#264409;
-        border-color:#c6d880;
-    }
- 
-    &.info {
-        background:#d5edf8 url(../images/icons/32_info.png) no-repeat 3px 3px;
-        color:#205791;
-        border-color:#92cae4;
-    }
- 
-    &.error a, .alert a {
-        color:#8a1f11;
-    }
- 
-    .notice a {
-        color:#514721;
-    }
- 
-    .success a {
-        color:#264409;
-    }
- 
-    .info a {
-        color:#205791;
-    }
-}
+@import 'notifications.less';
+
 
 /*
 * Settings - Appearance

@@ -1060,28 +1060,6 @@ class string
 	}
 
 
-	/**
-	* Function: pluralize
-	*	pluralize(3, 'bean','beans')
-	*
-	* Parameters:
-	*	$n - number
-	*   $singular
-	*	$plural
-	*
-	* Returns:
-	*	echo - string
-	*/
-	public static function pluralize($n, $singular, $plural)
-	{
-	    if ($n == 1) {
-	        echo $n . ' ' . $singular;
-	    } else {
-	        echo $n . ' ' . $plural;
-	    }
-	}
-
-
     /**
      * Function: pluralize
      *	pluralize(3, 'bean','beans')
@@ -1090,16 +1068,25 @@ class string
      *	$n - number
      *  $singular
      *	$plural
+     *  $plural
      *
      * Returns:
-     *	return - string
+     *	echo/return - string
      */
-    public static function plural($n, $singular, $plural)
+    public static function plural($n, $singular, $plural, $output = falsel)
     {
-        if ($n == 1) {
-            return $singular;
+        if ( $output ){
+            if ($n == 1) {
+                echo $n . ' ' . $singular;
+            } else {
+                echo $n . ' ' . $plural;
+            }
         } else {
-            return $plural;
+            if ($n == 1) {
+                return $n . ' ' . $singular;
+            } else {
+                return $n . ' ' . $plural;
+            }
         }
     }
 
@@ -1473,12 +1460,12 @@ function notification( )
 {
 	if ($notes = note::all()):
 		foreach ($notes as $note): ?>
-		
-			<script>$(function(){
-					$.sticky(
-						'<p><?= $note['content'];?></p>','icon <?= $note['type']; ?>',{p:'ptr'}
-					)})
-			</script>
+            <script type="text/javascript" charset="utf-8">
+                $('.top-right').notify({
+                    message: { text: '<?= $note['content'];?>', type: '<?= $note['type']; ?>' },
+                    closable: true
+                }).show();
+            </script>
 		<?
 		endforeach;
 	endif;

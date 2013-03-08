@@ -1,0 +1,55 @@
+/**
+ * Bootstrap-notify.less
+ *
+ * @author Vitaly @Laboratory
+ * @author Nijiko Yonskai
+ * @copyright 2012 Vitaly
+ * @copyright 2013 Nijiko Yonskai
+ */
+
+@right: 10px;
+@left: @right;
+@top: 50px;
+@bottom: @top;
+
+.notifications {
+  position: fixed;
+
+  &.top-right {
+    right: @right;
+    top: @top;
+  }
+
+  &.top-left {
+    left: @left;
+    top: @top;
+  }
+
+  &.bottom-left {
+    left: @left;
+    bottom: @bottom;
+  }
+
+  &.bottom-right {
+    right: @right;
+    bottom: @bottom;
+  }
+
+  > div {
+    position: relative;
+    z-index: 9999;
+    margin: 5px 0px;
+  }
+
+  &.center {
+    top: 48%;
+    left: 0;
+    width: 100%;
+
+    > div {
+      margin: 5px auto;
+      width: 20%;
+      text-align: center;
+    }
+  }
+}
