@@ -248,7 +248,7 @@ class page_model
 				->clause ('AND')
 				->where ( 'status', '!=', 'trash' )
 				->execute();
-				
+
 			return $get_pages;
 		} else {	
 			$get_pages = $pages->select( '*' )

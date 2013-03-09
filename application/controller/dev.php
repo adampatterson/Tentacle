@@ -22,8 +22,15 @@ class dev_controller {
 	}
 
 
-    public function cke(){
-        load::view('admin/sortable');
+    public function dispatcher(){
+        load::model('page')->get();
+
+        function test_function()
+        {
+            return dispatcher::get('get_pages', 'content');
+        }
+
+        var_dump(test_function());
     }
 
 
