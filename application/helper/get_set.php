@@ -471,7 +471,7 @@ class is {
      *	Bool
      */
     public static function blog_installed() {
-        $touch = load::model( 'sql' );
+        $touch = load::model( 'migration' );
 
         $touch_db = $touch->touch_db();
 
