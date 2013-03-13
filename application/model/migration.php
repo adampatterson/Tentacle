@@ -1,5 +1,5 @@
 <?
-class sql_model
+class migration_model
 {
 
     public function get_100 ()

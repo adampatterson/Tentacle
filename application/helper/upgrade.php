@@ -162,7 +162,7 @@ function upgrade_all() {
 	if ( get::db_version() == get::current_db_version() )
 		return false;
 
-	$sql = load::model( 'sql' );
+	$sql = load::model( 'migration' );
 		
 	$i = get::current_db_version()+1;
 	while ($i <= get::db_version()):

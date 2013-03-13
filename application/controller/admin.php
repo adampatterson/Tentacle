@@ -123,6 +123,7 @@ class admin_controller {
 		load::view ( 'admin/resource' );
 	}
 
+
 	/**
 	 * 
 	 * 

@@ -14,7 +14,7 @@ class install_controller
 		
 		if ( !file_exists( 'application/config/deployment/db.php' ) ):
 			load::view ('install/step1');
-		elseif(file_exists( 'application/config/deployment/db.php' ) && load::model( 'sql' )->touch_db() == false ):
+		elseif(file_exists( 'application/config/deployment/db.php' ) && load::model( 'migration' )->touch_db() == false ):
 			url::redirect('install/step5');
 		else:
 			load::view ('install/nothing');
@@ -41,7 +41,7 @@ class install_controller
 		// CREATE DATABASE database_name
 		load::library('db');
 		
-		$sql = load::model( 'sql' );
+		$sql = load::model( 'migration' );
 		
 		$sql->get_100();
 		
