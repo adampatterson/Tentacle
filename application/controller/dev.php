@@ -866,39 +866,6 @@ Test two
 	}// END Function
 
 
-	/**
-	 * zip function
-	 *
-	 * @return void
-	 * @author Adam Patterson
-	 **/
-	public function zip()
-	{
-		echo '<h2>Zip</h2>';
-		load::helper ('zip');
-
-		echo '<a href="?app=file" class="button">Unzip File!</a>';
-
-		$app = input::request ( 'app' );
-
-		$appdata = STORAGE_DIR.'/file.zip';
-		$appname = '$app.zip';
-
-		if (file_exists($appdata)) {
-			if (isset($app)) {
-			    $result = download_and_extract_zip($appname,$appdata);
-			}
-			else {
-			   // ob_end_clean();
-			 echo '<a href="?app=file" class="button">Unzip File!</a>';
-			 }
-		}
-		else {
-			echo 'Can not load the file.';
-		}
-	}// END Function
-
-
 	public function navigation ()
 	{
 		load::helper('navigation');
