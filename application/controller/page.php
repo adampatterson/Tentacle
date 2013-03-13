@@ -86,10 +86,12 @@ class page_controller {
 
                 $post 		= $page->get_by_uri( $uri );
 
-                if ( !$post )
+                if ( !$post ):
                     tentacle::render ( '404' );
-                else
+                else:
+                    logger::set('Page Template', $post->template);
                     tentacle::render( $post->template, array ( 'post' => $post ) );
+                endif;
 
                 break;
             case 'page_subpage':
@@ -99,11 +101,12 @@ class page_controller {
                 $post 		= $page->get_by_uri( $uri );
                 $post_meta 	= $page->get_page_meta( $post->id );
 
-                if ( !$post )
+                if ( !$post ):
                     tentacle::render ( '404' );
-                else
+                else:
+                    logger::set('Page Template', $post->template);
                     tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
-
+                endif;
                 break;
             case 'blog_index':
 
@@ -117,6 +120,7 @@ class page_controller {
 
                 $paginate = new paginate($post_total, $current_page);
 
+                logger::set('Page Template', 'template-blog');
                 tentacle::render( 'template-blog', array ( 'posts' => $posts->results(), 'author' => $author, 'category' => $category, 'tag' => $tag ) );
 
                 break;
@@ -146,6 +150,7 @@ class page_controller {
                     $post_meta 	= $page->get_page_meta( $post->id );
 
                     logger::set('Post total', count($post));
+                    logger::set('Post Template', $post->template);
 
                     tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta, 'author'=>$author, 'category'=>$category, 'tag'=>$tag  ) );
                 endif;
