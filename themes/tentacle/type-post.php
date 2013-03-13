@@ -34,7 +34,6 @@ theme::part('partials/header',array('title'=>$post->title,'assets'=>'default'));
                 </p>
 
                 <?= render_content(); ?>
-            </div>
 
         </div><!-- /post -->
     </div><!-- /span9-->
