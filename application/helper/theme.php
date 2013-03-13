@@ -354,6 +354,140 @@ function _cleanup_header_comment($str)
 
 
 /**
+ * Function: the_posts
+ *   Pre-Processing of content done by core formatting as well as filters from plugins.
+ *
+ * Returns:
+ *     Object - Post related content
+ */
+function the_posts() {
+    var_dump(URI);
+
+    $parts = explode('/', URI);
+    var_dump($parts);
+
+    # Get by date year/month
+    # return load::model( 'post' )->get_by_date('1353');
+
+    if (URI == 'category' || URI == get::option('blog_uri')) {
+        return  load::model( 'post' )->get( );
+    } else {
+        return  load::model( 'category' )->get_by_slug( CATEGORY_NAME );
+    }
+}
+
+
+/**
+ * Function: the_content
+ *   Pre-Processing of content done by core formatting as well as filters from plugins.
+ *
+ * Parameters:
+ *	  $content - String
+ *
+ * Returns:
+ *     $content - Slashes removed.
+ */
+function the_content( $content='', $editor = false )
+{
+    load::helper('format');
+    load::library('SmartyPants', 'smartypants');
+
+    $content = stripslashes( $content );
+
+    if (!$editor)
+    {
+        if (event::exists('preview'))
+            $content = event::filter( "preview", $content );
+
+        if (event::exists('content'))
+            $content = event::filter( "content", $content );
+
+        if (event::exists('shortcode'))
+            $content = event::filter( "shortcode", $content );
+    }
+
+    $content = autop( $content );
+
+    if (!$editor)
+    {
+        $content = texturize( $content );
+        $content = make_clickable($content);
+    }
+
+    return $content;
+}
+
+
+/**
+ * Function: render_header
+ *   Renders and plugins that would output HTML in the footer.
+ *
+ * Returns:
+ *     $content
+ */
+function render_header( $location = null )
+{
+    if ( $location != 'admin'){
+
+        if(event::exists("theme_header"))
+            return event::filter("theme_header");
+
+    } else {
+
+        if(event::exists("admin_header"))
+            return event::filter("admin_header");
+
+    }
+}
+
+
+/**
+ * Function: render_meta
+ *   Renders and plugins that would output HTML in the footer.
+ *
+ * Returns:
+ *     $content
+ */
+function render_meta( $location = null )
+{
+    if ( $location != 'admin' and event::exists("theme_meta"))
+        return event::filter("theme_meta");
+
+}
+
+
+/**
+ * Function: render_content
+ *   Renders and plugins that would output HTML in the footer.
+ *
+ * Returns:
+ *     $content
+ */
+function render_content( )
+{
+    if(event::exists("theme_content"))
+        return event::filter("theme_content");
+}
+
+
+/**
+ * Function: render_footer
+ *   Renders and plugins that would output HTML in the footer.
+ *
+ * Returns:
+ *     $content
+ */
+function render_footer( )
+{
+    if(event::exists("footer"))
+        return event::filter("footer");
+
+    if(event::exists("footer_admin"))
+        return event::filter("footer_admin");
+}
+
+
+/**
 * Function: current_theme
 * 	Returns HTML for the current active theme ( sets Bootstrap Label )
 *
