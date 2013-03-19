@@ -44,10 +44,10 @@
     }
 
     // fix sub nav on scroll
-    var $win = $(window)
-      , $nav = $('.subnav')
-      , navTop = $('.subnav').length && $('.subnav').offset().top - 40
-      , isFixed = 0
+    var $win = $(window),
+        $nav = $('.subnav'),
+        navTop = $('.subnav').length && $('.subnav').offset().top - 40,
+        isFixed = 0
 
     processScroll()
 
