@@ -211,18 +211,20 @@ class paginate {
 			if (!$numbers_only)
             	echo '<li '.$first_class.'><a href="'.static::$url.'/1" class="first">First</a></li>';
 
-            foreach( static::$settings['pages'] as $page )
-            {
+            if ( static::$settings['pages'] != null ):
+                foreach( static::$settings['pages'] as $page )
+                {
 
-               $class = '';
+                   $class = '';
 
-               if ($page == static::$current_page)
-                   $class .= 'class="active"';
+                   if ($page == static::$current_page)
+                       $class .= 'class="active"';
 
-                echo '<li '.$class.'><a href="'.static::$url.'/'.$page.'">'.$page.'</a></li>';
+                    echo '<li '.$class.'><a href="'.static::$url.'/'.$page.'">'.$page.'</a></li>';
 
-            }
-
+                }
+            endif;
+        
             $last_class = 'class="';
 
             if (static::$settings['last'] == static::$current_page)
