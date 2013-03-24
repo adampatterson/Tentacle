@@ -175,7 +175,8 @@ class tags_model
                                     ON terms.id = term_taxonomy.term_id
                                     WHERE
                                         term_taxonomy.taxonomy = 'tag'
-                                        AND terms.slug = '".$slug."'" );
+                                        AND terms.slug = '".$slug."'
+                                        AND posts.status = 'published'");
 
         return $posts_by_slug;
     }
