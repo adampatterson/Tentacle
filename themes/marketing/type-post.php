@@ -5,13 +5,13 @@ Type: Post
 
 theme::part('partials/header',array('title'=>$post->title,'assets'=>'marketing')); ?>
 
-<div class="container">
+<div class="container bump-top">
 
 	<div class="row">
 
 		<div class="span12">
 
-            <h1><?= $post->title; ?></h1>
+            <h1 class="title"><?= $post->title; ?></h1>
             <hr />
             <?= the_content( $post->content ); ?>
             <?= render_content(); ?>
