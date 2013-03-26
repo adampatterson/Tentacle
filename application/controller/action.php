@@ -784,7 +784,7 @@ class action_controller {
 				$add_image = $media->add( $file_meta['name'] );
 				
 				load::helper('image');
-                chmod(IMAGE_DIR.$file_meta['name'], 0755);
+                chmod(IMAGE_DIR.$file_meta['name'], 0775);
 				process_image($file_meta['name'], TRUE);
 
 				echo json_encode('true');
