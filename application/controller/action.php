@@ -775,7 +775,7 @@ class action_controller {
 			// directory to the uploads folder:
 
 			$image = $pic['name'];
-			
+
 			$file_meta = string_to_parts($image);
 
 			if(move_uploaded_file($pic['tmp_name'], $upload_dir.$file_meta['name']))
@@ -784,6 +784,7 @@ class action_controller {
 				$add_image = $media->add( $file_meta['name'] );
 				
 				load::helper('image');
+                chmod(IMAGE_DIR.$file_meta['name'], 755);
 				process_image($file_meta['name'], TRUE);
 
 				echo json_encode('true');
