@@ -49,7 +49,7 @@
 
         $cache = new cache();
 
-        if ( $cache->look_up('page_views') == false):
+        if ( $cache->look_up('page_views_totals') == false && $cache->look_up('page_views') == false && $cache->look_up('unique_views_total') == false  && $cache->look_up('unique_views') == false ):
 
             $count = $statistics->count_by_chunks(42);
             $unique = $statistics->count_by_unique_chunks(42);
@@ -57,10 +57,9 @@
             $page_views_total = $count['total'];
             $page_views = '';
             foreach ( $count['chunks'] as $key => $value )
-             {
+            {
                 $page_views .= '['. $key .', '. $value .'],';
-             }
-
+            }
 
             $unique_views_total = $unique['total'];
             $unique_views = '';
