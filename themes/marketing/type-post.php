@@ -14,7 +14,7 @@ theme::part('partials/header',array('title'=>$post->title,'assets'=>'marketing')
             <h1><?= $post->title; ?></h1>
             <hr />
             <?= the_content( $post->content ); ?>
-
+            <?= render_content(); ?>
 		</div><!--/span9-->
 
 	</div><!--/row-->
