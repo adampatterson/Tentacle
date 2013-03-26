@@ -27,7 +27,7 @@ class dev_controller {
         $file_meta = string_to_parts('6173971608_80a56b6eb3_o.jpg');
 
         load::helper('image');
-        chmod(IMAGE_DIR.$file_meta['name'], 0664);
+#        chmod(IMAGE_DIR.$file_meta['name'], 0664);
         process_image($file_meta['name'], TRUE);
 
         echo json_encode('true');
