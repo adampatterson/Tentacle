@@ -107,7 +107,10 @@
 
 									// Load the saved template, then if the user changes override the saved template.
 									if( file_exists( $template )):
+
                                         $data = get::yaml( $template );
+
+                                        #var_dump($data);
 
 										if ( $data != null ):
 											$scaffold = new scaffold();
@@ -120,7 +123,7 @@
 										<br/><br/>
 										<div class="alert-message warning">
 											<p><strong>A template file appears to be a missing from your theme:</strong> <br />
-											<?= '/tentacle/themes/'.get::option('appearance').'/'.$get_page->template.'.php'?></p>
+											<?= '/themes/'.get::option('appearance').'/'.$get_page->template.'.php'?></p>
 										</div>
 										
 									<? endif;
