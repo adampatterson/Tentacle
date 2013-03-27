@@ -11,9 +11,9 @@
 	 _/    _/        _/    _/    _/      _/    _/  _/        _/  _/          
 	_/      _/_/_/  _/    _/      _/_/    _/_/_/    _/_/_/  _/    _/_/_/     
 	======================================================================-->
-	<link href="<?=ADMIN_CSS; ?>bootstrap.css" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>application.css">
 	<link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>login.css">
+    <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.min.js"></script>
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->

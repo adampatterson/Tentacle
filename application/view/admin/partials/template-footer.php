@@ -47,7 +47,6 @@
 
 	<script type="text/javascript" src="<?=ADMIN_JS; ?>application.js"></script>
 
-
     <?= notification() ?>
 
 	<!-- begin olark code --><script data-cfasync="false" type='text/javascript'>/*{literal}<![CDATA[*/
