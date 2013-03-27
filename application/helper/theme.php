@@ -224,7 +224,7 @@ class paginate {
 
                 }
             endif;
-        
+
             $last_class = 'class="';
 
             if (static::$settings['last'] == static::$current_page)
@@ -481,8 +481,8 @@ function render_content( )
  */
 function render_footer( )
 {
-    if(event::exists("footer"))
-        return event::filter("footer");
+    if(event::exists("theme_footer"))
+        return event::filter("theme_footer");
 
     if(event::exists("footer_admin"))
         return event::filter("footer_admin");

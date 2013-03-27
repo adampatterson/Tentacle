@@ -18,6 +18,7 @@
 	</div> <!-- /container -->
 	<? 
 	// Load assets in the footer.
-	theme::assets( $assets='' ); ?>
+	theme::assets( $assets='' );
+    render_footer( ); ?>
 	</body>
 </html>

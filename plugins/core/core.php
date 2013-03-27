@@ -15,6 +15,8 @@ event::on('theme_meta', 'analytics::author');
 event::on('theme_header', 'analytics::author_url');
 event::on('theme_meta', 'analytics::webmaster');
 event::on('theme_meta', 'analytics::meta_description');
+event::on('theme_header', 'analytics::seo_tracking_header');
+event::on('theme_footer', 'analytics::seo_tracking_footer');
 
 event::on('page_view', 'analytics::page_view');
 
@@ -71,6 +73,18 @@ class analytics{
     static function meta_description(){
         if (get::option('seo_meta_description') != '' )
             echo "<meta name='description' content='".get::option('seo_meta_description', '')."' />\n";
+    }
+
+
+    static function seo_tracking_header(){
+        if (get::option('seo_tracking_header') != '' )
+            echo get::option('seo_tracking_header', '')."\n";
+    }
+
+
+    static function seo_tracking_footer(){
+        if (get::option('seo_tracking_footer') != '' )
+            echo get::option('seo_tracking_footer', '')."\n";
     }
 
     static function page_view()
