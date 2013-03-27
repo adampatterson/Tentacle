@@ -47,13 +47,13 @@
             <div class="span8 well">
 
                 <h2>Meta description</h2>
-                <textarea rows="5" cols="40" name="seo_meta_description" placeholder='Enter your meta description'><?= get::option('seo_meta_description'); ?></textarea>
+                <textarea rows="10" class="span8" name="seo_meta_description" placeholder='Enter your meta description'><?= get::option('seo_meta_description'); ?></textarea>
 
                 <h2>Custom tracking code ( header )</h2>
-                <textarea rows="5" cols="40" name="seo_tracking_header" placeholder=''><?= get::option('seo_tracking_header'); ?></textarea>
+                <textarea rows="10" class="span8" name="seo_tracking_header" placeholder=''><?= get::option('seo_tracking_header'); ?></textarea>
 
                 <h2>Custom tracking code ( footer )</h2>
-                <textarea rows="5" cols="40" name="seo_tracking_footer" placeholder=''><?= get::option('seo_tracking_footer'); ?></textarea>
+                <textarea rows="10" class="span8" name="seo_tracking_footer" placeholder=''><?= get::option('seo_tracking_footer'); ?></textarea>
 
             </div>
 
