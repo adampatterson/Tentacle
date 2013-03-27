@@ -2,6 +2,12 @@
 # curl get.tcms.me | sh
 	echo "*** Installing Tentacle CMS..."
 
+echo "	   _/_/_/_/_/                      _/                          _/
+       _/      _/_/    _/_/_/    _/_/_/_/    _/_/_/    _/_/_/  _/    _/_/
+      _/    _/_/_/_/  _/    _/    _/      _/    _/  _/        _/  _/_/_/_/
+     _/    _/        _/    _/    _/      _/    _/  _/        _/  _/
+    _/      _/_/_/  _/    _/      _/_/    _/_/_/    _/_/_/  _/    _/_/_/"
+
 	curl -sL https://github.com/adampatterson/Tentacle/tarball/beta-wip | tar -xz --strip-components 1
 	
 #	<?php
