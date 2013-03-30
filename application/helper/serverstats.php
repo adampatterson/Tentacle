@@ -241,7 +241,7 @@ function build_server_stats($is_install=1, $prev_version='', $charset='')
         }
 	}
 	
-	if (isset($geo_meta)) {
+	if ( $info['country'] != '' ){
 		$info['country'] 	= $geo_meta->countryName;
 		$info['region'] 	= $geo_meta->regionName;
 		$info['city'] 		= $geo_meta->cityName;
