@@ -178,8 +178,6 @@ class get {
 
     }
 
-
-
 //    public static function next_post () {}
 //    public static function previous_post () {}
 //    public static function post_status () {}
@@ -196,24 +194,51 @@ class get {
      *	$output - curl contents
      */
     public static function url_contents ( $url ) {
-        load::library('Snoopy','Snoopy.class');
+        if ( function_exists( 'curl_init' ) ) {
+            $ch = curl_init();
+            curl_setopt( $ch, CURLOPT_URL, $url );
+            curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+            curl_setopt( $ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)" );
+            curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
+            $output = curl_exec( $ch );
+            curl_close( $ch );
 
-        $snoopy = new Snoopy;
+            return $output;
+        } elseif ( file_get_contents( __FILE__ ) ){
 
-        $snoopy->agent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)";
-        $snoopy->referer = BASE_URL;
+            $opts = array(
+                'http'=>array(
+                    'method'=>"GET"
+                )
+            );
 
-        $snoopy->rawheaders["Pragma"] = "no-cache";
+            $context = stream_context_create( $opts );
 
-        $snoopy->maxredirs = 2;
-        $snoopy->offsiteok = false;
-        $snoopy->expandlinks = false;
+            return file_get_contents( $url, false, $context );
 
-        if($snoopy->fetch($url)){
-            return $snoopy->results;
         } else {
-            return $snoopy->error;
+            return false;
         }
+//        else {
+//            load::library('Snoopy','Snoopy.class');
+//
+//            $snoopy = new Snoopy;
+//
+//            $snoopy->agent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)";
+//            $snoopy->referer = BASE_URL;
+//
+//            $snoopy->rawheaders["Pragma"] = "no-cache";
+//
+//            $snoopy->maxredirs = 2;
+//            $snoopy->offsiteok = false;
+//            $snoopy->expandlinks = false;
+//
+//            if($snoopy->fetch($url)){
+//                return $snoopy->results;
+//            } else {
+//                return $snoopy->error;
+//            }
+//        }
     }
 
     /**

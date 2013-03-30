@@ -2,15 +2,15 @@
 
 # Application's Base URL
 if ($_SERVER["SERVER_PORT"] != '80' ):
-$port = ':'.$_SERVER["SERVER_PORT"];
+    $port = ':'.$_SERVER["SERVER_PORT"];
 else:
-$port = '';
+    $port = '';
 endif;
 
 if ( dirname($_SERVER['PHP_SELF'])  == '/' ):
-$directory = '';
+    $directory = '';
 else:
-$directory = dirname($_SERVER['PHP_SELF']);
+    $directory = dirname($_SERVER['PHP_SELF']);
 endif;
 
 define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port );
@@ -67,7 +67,7 @@ define( 'ASSET_BOTH'  ,3 );
 # Serpent Timeout
 define( 'CHECK_TIMEOUT', 5 );
 
-define('TENTACLE_VERSION', 'v0.9.5');
+define('TENTACLE_VERSION', 'v0.9.5.2');
 
 # Holds the Tentacle DB revision, increments when changes are made to the Tentacle sql model.
 define('TENTACLE_DB_VERSION', '116');

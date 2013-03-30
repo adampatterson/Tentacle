@@ -22,7 +22,7 @@ theme::part( 'partials/header',array( 'title'=>'Thanks for downloading Tentacle 
                   <strong>Notice!</strong> We are in early beta, because of this updates are constant and errors might be a common occurrence.
                 </div>
 
-                <p class="lead">Click <a href="http://api.tentaclecms.com/get/download"  onClick="mixpanel.track('Content', { 'link': 'Download', 'version': 'v 0.9 Beta' });">here</a> if your download does not automatically start.</p>
+                <p class="lead">Click <a href="http://api.tentaclecms.com/get/download"  onClick="mixpanel.track('Content', { 'link': 'Download', 'version': 'v 0.9.5.2 Beta' });">here</a> if your download does not automatically start.</p>
                 <p class="lead">Tentacle CMS is a new, and with that we rely of your feedback. If you have any issues at all please contact ups, or Submit an issue buy following <a href="https://github.com/adampatterson/Tentacle/wiki/Reporting-a-bug">these steps</a>.</p>
 
                 <div class="row">

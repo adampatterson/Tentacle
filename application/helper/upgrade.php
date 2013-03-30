@@ -111,7 +111,7 @@ class upgrade {
 				# Clean up!
 				delete_dir($update_path);
 				unlink(STORAGE_DIR.'/upgrade/update.zip');
-				
+
 				load::helper('serverstats');
 				build_server_stats(0, '', 'utf8');
 

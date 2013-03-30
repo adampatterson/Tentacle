@@ -171,8 +171,9 @@ class action_controller {
 			// Migrate forward on the Database.
 			upgrade_db();
 
-			load::helper('serverstats');
-			build_server_stats(0);
+# @todo https://github.com/adampatterson/Tentacle/issues/147
+//			load::helper('serverstats');
+//			build_server_stats(0);
 
 		} else {
 			note::set('success','upgrade_message','There was nothing to upgrade.');
