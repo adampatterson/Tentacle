@@ -20,7 +20,7 @@ theme::part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>
 					<p class="lead">Tentacle makes it easy to Design, Develop, and Write content for the web.</p>
 					<p class="lead">Its goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
 					<p class="lead">
-						<br /><a href="<?= BASE_URL ?>download/" onClick="_gaq.push(['_trackEvent', 'Header Link', 'Download', 'v 0.9.5 Beta']); mixpanel.track('Content', { 'link': 'Download', 'version': 'v 0.9.5 Beta' });" class="btn btn-primary btn-large btn-block">&nbsp;&nbsp;&nbsp;Download v0.9.5 Beta&nbsp;&nbsp;&nbsp;</a>
+						<br /><a href="<?= BASE_URL ?>download/" onClick="_gaq.push(['_trackEvent', 'Header Link', 'Download', 'v 0.9.5.1 Beta']); mixpanel.track('Content', { 'Button': 'Download', 'version': 'v 0.9.5.1 Beta' });" class="btn btn-primary btn-large btn-block">&nbsp;&nbsp;&nbsp;Download v0.9.5.1 Beta&nbsp;&nbsp;&nbsp;</a>
 					</p>
 				</div>
 				<div class="app-image pull-right">
@@ -36,7 +36,7 @@ theme::part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>
 				<h1>Why Tentacle?</h1>
 				
 				<hr />
-				
+
 				<p class="lead">By focusing on the user we are able to refine the processes for every one.  By building Tentacle on a light weight flexible framework we are not imposing strict rules on you.	By working with and providing the tools you need we hope you can accomplish more in less time.</p>
 
 				<p class="lead">Writers will be able to add custom data just as easily as filling out a web form with contextual titles, a full WYSIWYG editor, with Validation.</p>
@@ -45,7 +45,7 @@ theme::part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>
 
 				<!--<p class="lead">With an approval process in place content can be added as a draft, approved and versioned. We went another step in that you can modify approved content without publishing immediately publishing the changes to the live site.</p>-->
 				
-				<p><a class="btn btn-primary btn-large" href="https://github.com/adampatterson/Tentacle/wiki/Philosophy" onClick="_gaq.push(['_trackEvent', 'Content', 'Button', 'WIki']); mixpanel.track('Content', { 'button': 'Wiki'});">Read more about our Philosophy</a></p>
+				<p><a class="btn btn-primary btn-large" href="https://github.com/adampatterson/Tentacle/wiki/Philosophy" onClick="_gaq.push(['_trackEvent', 'Content', 'Button', 'WIki']); mixpanel.track('Content', { 'Button': 'Wiki'});">Read more about our Philosophy</a></p>
 			</div>
 			
 			<div class="span4 offset1" id='get-it'>
