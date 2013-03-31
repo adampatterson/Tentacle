@@ -207,3 +207,25 @@ function recurse_dirsize( $directory ) {
 	}
 	return $size;
 }
+
+
+/**
+ * Function: compare_file
+ *  Compares an original file with a new file.
+ *
+ * Parameters:
+ *   $original - string
+ *   $new - string
+ *
+ * Returns:
+ *   boolean
+ */
+function compare_file( $original, $new = null ) {
+    $original_file  = md5_file( $original );
+    $new_file       = md5_file( $new );
+
+    if ( $original_file == $new_file )
+        return true;
+    else
+        return false;
+}

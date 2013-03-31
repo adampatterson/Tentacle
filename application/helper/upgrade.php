@@ -84,26 +84,30 @@ class upgrade {
 					$site_folder_path = APP_ROOT.'/'.$parts['path'];
 					$site_file_path = APP_ROOT.'/'.$parts['full'];
 
-					if (!is_dir($site_folder_path)) {
-						echo "<li><strong>Creating folder:</strong> ".$parts['path'].'</li>';
+                    if (file_exists($site_file_path)) {
 
-						if (!mkdir($site_folder_path, 0755, true)) {
-						    die('Failed to create folders...');
-						}
-					}
+                        if (compare_file( $site_file_path, $update_file_path.$parts['full']) ){
+                            echo "<li><strong>No Change:</strong> ".$parts['full']."</li>";
+                        } else {
+                            echo "<li><strong>Updated:</strong> ".$parts['full']."</li>";
 
-					if (file_exists($site_file_path)) {
-						echo "<li><strong>Updated:</strong> ".$parts['full']."</li>";
-					} else {
-						echo "<li><strong>Added:</strong> ".$parts['full']."</li>";
-					}
+                            $file = file_get_contents( $update_file_path.$parts['full'] );
 
-					$file = file_get_contents( $update_file_path.$parts['full'] );
+                            $fp = fopen( $site_file_path, 'w' );
 
-					$fp = fopen( $site_file_path, 'w' );
+                            fwrite($fp, $file);
+                            fclose($fp);
+                        }
+                    } else {
+                        echo "<li><strong>Added:</strong> ".$parts['full']."</li>";
 
-					fwrite($fp, $file);
-					fclose($fp);
+                        $file = file_get_contents( $update_file_path.$parts['full'] );
+
+                        $fp = fopen( $site_file_path, 'w' );
+
+                        fwrite($fp, $file);
+                        fclose($fp);
+                    }
 				}
 
 				echo '</ul>';

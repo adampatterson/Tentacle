@@ -541,6 +541,7 @@ class is {
         }
     }
 
+
     /**
      * Function: update
      *	Is the new version newer than the current version.
