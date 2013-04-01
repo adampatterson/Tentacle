@@ -86,7 +86,7 @@ class upgrade {
 
                     if (file_exists($site_file_path)) {
 
-                        if (compare_file( $site_file_path, $update_file_path.$parts['full']) ){
+                        if (compare_file( $site_file_path, $update_file_path.$parts['full'] ) ){
                             echo "<li><strong>No Change:</strong> ".$parts['full']."</li>";
                         } else {
                             echo "<li><strong>Updated:</strong> ".$parts['full']."</li>";
