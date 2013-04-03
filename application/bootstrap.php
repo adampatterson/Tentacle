@@ -1404,6 +1404,9 @@ function dingo_error($level,$message,$file='current file',$line='(unknown)',$bac
     $fatal = false;
     $exception = false;
 
+    require_once(APP_ROOT.'/application/helper/get_set.php');
+    require_once(APP_ROOT.'/application/helper/tentacle.php');
+
     switch($level)
     {
         case('exception'):

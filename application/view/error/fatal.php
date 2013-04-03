@@ -2,104 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-ca">
 <head>
    <title><?php echo $error['prefix']; ?> Error</title>
-   <style type="text/css" media="screen">
-		body {
-		   background: #e7e7de;
-		   font-family: arial, tahoma, trebuchet ms, sans-serif;
-		   margin: 0px;
-		   padding: 0px;
-		   text-align: center;
-		   font-size: small;
-		   }
-		#Frame {
-		   width: 980px;
-		   text-align: left;
-		   margin-left: auto;
-		   margin-right: auto;
-		   }
-		#Content {
-		   background: #fff;
-		   padding: 0px 20px 20px 20px;
-		   border-top-left-radius: 10px;
-		   border-top-right-radius: 10px;
-		   -moz-border-radius-topleft: 10px;
-		   -moz-border-radius-topright: 10px;
-		   -webkit-border-top-left-radius: 10px;
-		   -webkit-border-top-right-radius: 10px;
-		   }
-		code {
-		   display: block;
-		   padding: 4px 0px 0px 4px;
-		   color: #ff0084;
-		   overflow: auto;
-		   white-space: pre;
-		   }
-		.PreContainer {
-		   overflow: auto;
-		   }
-		pre {
-		   margin: 0px;
-		   padding: 2px;
-		   background: #ffffd3;
-		   }
-		pre.Odd {
-		   background: #ffffb9;
-		   }
-		pre.Highlight {
-		   color: #ff0000;
-		   background: #ffff7f;
-		   }
-		a,
-		a:link,
-		a:active {
-		   color: #0063dc;
-		   text-decoration: none;
-		   }
-		a:visited {
-		   color: #ff0084;
-		   }
-		a:hover {
-		   color: #ffffff !important;
-		   background: #0063dc !important;
-		   }
-		p {
-		   padding: 4px 0px;
-		   margin: 0px;
-		   }
-		h2 {
-		   margin: 0px;
-		   padding: 20px 0px 0px 0px;
-		   }
-		#MoreInformation {
-		   background: #f3f3f3;
-		   padding: 0px 20px 20px 20px;
-		   border-bottom-left-radius: 10px;
-		   border-bottom-right-radius: 10px;
-		   -moz-border-radius-bottomleft: 10px;
-		   -moz-border-radius-bottomright: 10px;
-		   -webkit-border-bottom-left-radius: 10px;
-		   -webkit-border-bottom-right-radius: 10px;
-		   margin-bottom: 20px;
-		   }
-		h3 {
-		   margin: 0px;
-		   padding: 20px 0px 8px 0px;
-		   font-weight: normal;
-		   font-size: small;
-		   }
-		h4 {
-		   margin: 0px;
-		   padding: 0px;
-		   font-weight: normal;
-		   }
-		ul {
-		   margin: 0px;
-		   padding: 10px 20px 0px 20px;
-		   }
-		ul li {
-		   line-height: 160%;
-		   }
-</style>
+   <link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>error.css"/>
 </head>
 <body>
    <div id="Frame">
@@ -134,7 +37,6 @@
 			   echo "</div>\n";
 			}
 
-
 			if (is_array($error['backtrace'])) {
 
 				$backtrace = $error['backtrace'];
@@ -158,11 +60,39 @@
 			       $odd = $odd == TRUE ? FALSE : TRUE;
 			    }
 
-			    echo "</div>\n";
-			 }
+			    echo "</div>\n"; ?>
+                <br />
+                <form id="paste" method="POST" action="http://p.tcms.me/action/add_text" accept-charset="UTF-8" target="_blank">
+                    <textarea name="paste" rows="10" cols="100" id="paste"><?
+                        for ($i = 0; $i < $back_trace_count; ++$i) {
+                            if (array_key_exists('file', $backtrace[$i])) {
+                                $file = '['.$backtrace[$i]['file'].':'
+                                    .$backtrace[$i]['line'].'] ';
+                            }
+                            echo $file , ''
+                            ,array_key_exists('class', $backtrace[$i]) ? $backtrace[$i]['class'] : 'PHP'
+                            ,array_key_exists('type', $backtrace[$i]) ? $backtrace[$i]['type'] : '::'
+                            ,$backtrace[$i]['function'],'();'
+                            ,"\n";
+                        }
+                        echo "\n";
+                        echo "\n";
+                        if (array_key_exists('SERVER_SOFTWARE', $_SERVER))
+                            echo 'Server Software: '.$_SERVER['SERVER_SOFTWARE'] ."\n";
 
-		require_once( APPLICATION.'/'.config::get('folder_helpers').'/exception.php' );
-	?>
-</div>
+                        if (array_key_exists('HTTP_REFERER', $_SERVER))
+                            echo 'Referer:'.$_SERVER['HTTP_REFERER']."\n";
+
+                        if (array_key_exists('HTTP_USER_AGENT', $_SERVER))
+                            echo 'User Agent:'.$_SERVER['HTTP_USER_AGENT']."\n";
+                        ?></textarea>
+                    <p><input type="submit" name="Submit"/></p>
+                </form>
+            <?
+            }
+
+            require_once( APP_ROOT.'/application/helper/exception.php' );
+            ?>
+      </div>
 </body>
 </html>
