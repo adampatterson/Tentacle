@@ -18,7 +18,7 @@ theme::part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>
 				<div class="span5">
 					<h1>Create &amp; Manage Content your way!</h1>
 					<p class="lead">Tentacle makes it easy to Design, Develop, and Write content for the web.</p>
-					<p class="lead">Its goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
+					<p class="lead">It's goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
 					<p class="lead">
 						<br /><a href="<?= BASE_URL ?>download/" onClick="_gaq.push(['_trackEvent', 'Header Link', 'Download', 'v 0.9.5.1 Beta']); mixpanel.track('Content', { 'Button': 'Download', 'version': 'v 0.9.5.1 Beta' });" class="btn btn-primary btn-large btn-block">&nbsp;&nbsp;&nbsp;Download v0.9.5.1 Beta&nbsp;&nbsp;&nbsp;</a>
 					</p>
