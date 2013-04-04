@@ -3,6 +3,9 @@
  * File: Get / Set / Is / The
  */
 class get {
+
+    private static $options = array();
+
 	/**
 	* Function: get::option
 	*	Takes the $option key and queries the DB Option table for a result.
@@ -17,14 +20,20 @@ class get {
 	*/
 	public static function option( $key, $default = '' )
 	{
-        $settings = load::model( 'settings' );
-        $get = $settings->get( $key );
+        if( isset( static::$options[ $key ] ) ):
+            logger::set( 'Option from Object', $key );
+            return static::$options[ $key ];
+        else:
+            logger::set( 'Option from DB', $key );
+            $settings = load::model( 'settings' );
+            $get = $settings->get( $key );
 
-		if ( $get == false ) {
-            return $default;
-		} else {
-            return $get;
-		}
+            if ( $get == false ) {
+                return $default;
+            } else {
+                return static::$options[ $key ] = $get;
+            }
+        endif;
 	}
 
 

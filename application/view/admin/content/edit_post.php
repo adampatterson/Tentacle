@@ -66,7 +66,7 @@
 
 							<div class="controls post-type-list">
 								<ul class="unstyled">
-									<? $post_types = get_post_type ( get::option( 'appearance' ) );
+									<? $post_types = get_post_type ( ACTIVE_THEME );
 										foreach ($post_types as $post_type ): ?>
 											<li><label><input type="radio" name="post_type" class="post-format" value="<?= $post_type['part_id']; ?>" <? checked( $get_post->template, $post_type['part_id'] ); ?>> <span><?= $post_type['part_name']; ?></span></label></li>
 									<? endforeach; ?>

@@ -8,7 +8,7 @@ function build_stats( )
     $parser = new UAParser;
     $result = $parser->parse($ua);
 
-    $geo_meta                       = maybe_encoded(get::url_contents('http://geo.tentaclecms.com/'.$_SERVER['REMOTE_ADDR']));
+    $geo_meta                       = maybe_encoded( get::url_contents('http://geo.tentaclecms.com/'.$_SERVER['REMOTE_ADDR']) );
 
     $statistics                     = load::model('statistics');
     $page                           = load::model('page');
@@ -35,18 +35,6 @@ function build_stats( )
     $meta['os']                     = $result->os->family;
     $meta['os_version']             = $result->os->toVersionString;
 
-//    logger::set('Stats - browser'       , $ua->browser );
-//    logger::set('Stats - browser_full'  , $ua->browserFull );
-//    logger::set('Stats - version'       , $ua->version );
-//    logger::set('Stats - user_agent'    , $ua->uaOriginal );
-//    logger::set('Stats - os'            , $ua->os );
-//    logger::set('Stats - os_version'    , $ua->osVersion );
-//    logger::set('Stats - country'       , $geo_meta->countryName );
-//    logger::set('Stats - region'        , $geo_meta->regionName );
-//    logger::set('Stats - city'          , $geo_meta->cityName );
-//    logger::set('Stats - latitude'      , $geo_meta->latitude );
-//    logger::set('Stats - longitude'     , $geo_meta->longitude );
-
     # loop the meta and rebuild an array with Key Value, where Value is the ID returned
     foreach ( $meta as $key => $value ){
         $page_view[$key] = $statistics->add_meta( $key, $value);
@@ -63,9 +51,4 @@ function build_stats( )
         $page_view['ip']                 = $_SERVER['REMOTE_ADDR'];
 
     $statistics->add($page_view);
-}
-
-
-function make_flot(){
-    # convert data to Flor friendly JSON;
 }

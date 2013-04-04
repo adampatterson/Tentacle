@@ -2,9 +2,10 @@
 class page_controller {
 
     public function index(  ){
-
-        load::library('benchmark');
-        bench::mark('start');
+        if( DEBUG ):
+            load::library('benchmark');
+            bench::mark('start');
+        endif;
 
         is::blog_installed();
 
@@ -208,11 +209,13 @@ class page_controller {
             break;
         }
 
-        bench::mark('end');
-        $speed = bench::time('start','end');
+        if( DEBUG ):
+            bench::mark('end');
+            $speed = bench::time('start','end');
 
-        logger::set('Memory', memory_usage());
-        logger::set('Execution Time', $speed);
+            logger::set('Memory', memory_usage());
+            logger::set('Execution Time', $speed);
+        endif;
 
         // Site stats are triggered in the admin bar if you are not logged in.
         tentacle::admin_bar();

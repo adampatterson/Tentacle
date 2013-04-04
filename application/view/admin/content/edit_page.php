@@ -103,7 +103,7 @@
 							<div id="scaffold">
                                 <? if ( $get_page->template != '' && $get_page->template != 'default' ):
 									
-									$template = THEMES_DIR.'/'.get::option('appearance').'/'.$get_page->template.'.php';
+									$template = THEMES_DIR.'/'.ACTIVE_THEME.'/'.$get_page->template.'.php';
 
 									// Load the saved template, then if the user changes override the saved template.
 									if( file_exists( $template )):
@@ -123,7 +123,7 @@
 										<br/><br/>
 										<div class="alert-message warning">
 											<p><strong>A template file appears to be a missing from your theme:</strong> <br />
-											<?= '/themes/'.get::option('appearance').'/'.$get_page->template.'.php'?></p>
+											<?= '/themes/'.ACTIVE_THEME.'/'.$get_page->template.'.php'?></p>
 										</div>
 										
 									<? endif;

@@ -416,9 +416,9 @@ class DingoSQL
 			$sql .= " OFFSET {$query->_offset}";
 		}
 
-        If (DEBUG_SQL)
+        If (DEBUG_SQL){
             logger::set('SQL', $sql);
-
+        }
 		return $sql;
 	}
 	
@@ -680,7 +680,12 @@ class DingoQuery
 	// ---------------------------------------------------------------------------
 	public function execute()
 	{
-		return $this->table->execute($this);
+        If (DEBUG_SQL){
+            $backtrace = debug_backtrace();
+            logger::set('SQL Executed from', $backtrace[0]['file'].' <strong>'.$backtrace[0]['line'].'</strong>' );
+        }
+
+        return $this->table->execute($this);
 	}
 }
 
