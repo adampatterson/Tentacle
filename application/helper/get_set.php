@@ -21,17 +21,20 @@ class get {
 	public static function option( $key, $default = '' )
 	{
         if( isset( static::$options[ $key ] ) ):
-            logger::set( 'Option from Object', $key );
+            #logger::set( 'Option from Object', $key );
             return static::$options[ $key ];
         else:
-            logger::set( 'Option from DB', $key );
+            #logger::set( 'Option from DB', $key );
+
             $settings = load::model( 'settings' );
             $get = $settings->get( $key );
+
+            static::$options[ $key ] = $get;
 
             if ( $get == false ) {
                 return $default;
             } else {
-                return static::$options[ $key ] = $get;
+                return $get;
             }
         endif;
 	}

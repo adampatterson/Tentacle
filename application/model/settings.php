@@ -54,11 +54,7 @@ class settings_model
 			->where( 'key', '=', $key )
 			->execute();
 
-		$count = $setting->count()
-			->where( 'key', '=', $key )
-			->execute();
-
-		if ( $count == 0 )
+        if( empty( $get_settings)  )
             return false;
 		else
 			return $get_settings[0]->value;
@@ -77,11 +73,7 @@ class settings_model
 
 			->execute();
 
-		$count = $setting->count()
-			->where( 'key', '=', $key )
-			->execute();
-
-		if ( $count == 0 )
+        if( empty( $get_settings)  )
 			return false;
 		else
 			return true;
