@@ -4,7 +4,9 @@ function build_stats( )
 {
     load::library('uaparser');
 
-    $ua                             = UA::parse();
+    $ua = $_SERVER['HTTP_USER_AGENT'];
+    $parser = new UAParser;
+    $result = $parser->parse($ua);
 
     $geo_meta                       = maybe_encoded(get::url_contents('http://geo.tentaclecms.com/'.$_SERVER['REMOTE_ADDR']));
 
@@ -26,12 +28,12 @@ function build_stats( )
         $meta['longitude'] 		    = $geo_meta->longitude;
     }
 
-    $meta['browser']                = $ua->browser;
-    $meta['browser_full']           = $ua->browserFull;
-    $meta['version']                = $ua->version;
-    $meta['user_agent']             = $ua->uaOriginal;
-    $meta['os']                     = $ua->os;
-    $meta['os_version']             = $ua->osVersion;
+    $meta['browser']                = $result->ua->family;
+    $meta['browser_full']           = $result->ua->toString;
+    $meta['version']                = $result->ua->toVersionString;
+    $meta['user_agent']             = $result->uaOriginal;
+    $meta['os']                     = $result->os->family;
+    $meta['os_version']             = $result->os->toVersionString;
 
 //    logger::set('Stats - browser'       , $ua->browser );
 //    logger::set('Stats - browser_full'  , $ua->browserFull );

@@ -14,15 +14,10 @@
 function build_server_stats($is_install=1, $prev_version='', $charset='')
 {
     if ( $is_install == 1 ){
-        load::library('YAML');
         load::helper('get_set');
         load::helper('tentacle');
     }
 
-    load::library('uaparser');
-
-	$ua = UA::parse();
-	
 	$geo_meta = maybe_encoded(get::url_contents('http://geo.tentaclecms.com/'));
 	
 	$info = array();
@@ -249,7 +244,7 @@ function build_server_stats($is_install=1, $prev_version='', $charset='')
 
 	if(isset($_SERVER['HTTP_USER_AGENT']))
 	{
-		$info['useragent'] = $ua->full;
+		$info['useragent'] = $_SERVER['HTTP_USER_AGENT'];
 	}
 	
 	// We need a unique ID for the host so hash it to keep it private and send it over
