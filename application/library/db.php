@@ -274,7 +274,7 @@ class DingoSQL
 		}
 		
 		$sql .= "\n)";
-		
+
 		return $sql;
 	}
 	
@@ -306,7 +306,7 @@ class DingoSQL
 		
 		$cols .= ')';
 		$vals .= ')';
-		
+
 		return "INSERT INTO $tick$table$tick $cols VALUES $vals";
 	}
 	
@@ -339,7 +339,7 @@ class DingoSQL
 		{
 			$sql .= " LIMIT {$query->_limit}";
 		}
-		
+
 		return $sql;
 	}
 	
@@ -358,7 +358,7 @@ class DingoSQL
 		{
 			$sql .= " LIMIT {$query->_limit}";
 		}
-		
+
 		return $sql;
 	}
 	
@@ -417,8 +417,9 @@ class DingoSQL
 		}
 
         If (DEBUG_SQL){
-            logger::set('SQL', $sql);
+            logger::set('SQL - Select', $sql);
         }
+
 		return $sql;
 	}
 	
@@ -464,9 +465,7 @@ class DingoSQL
 		{
 			$sql .= " OFFSET {$query->_offset}";
 		}
-		
-		//echo "<hr/>\n$sql<hr/>\n";
-		//return $this->db->query($sql);
+
 		return $sql;
 	}
 	
@@ -682,7 +681,7 @@ class DingoQuery
 	{
         If (DEBUG_SQL){
             $backtrace = debug_backtrace();
-            logger::set('SQL Executed from', $backtrace[0]['file'].' <strong>'.$backtrace[0]['line'].'</strong>' );
+            logger::set('SQL - Executed from', $backtrace[0]['file'].' <strong>'.$backtrace[0]['line'].'</strong>' );
         }
 
         return $this->table->execute($this);
@@ -1037,7 +1036,6 @@ class pdo_db_table
 
             $this->query_run = DingoSQL::build_delete($query,$this->db->driver);
         }
-
 
         return $data;
     }
