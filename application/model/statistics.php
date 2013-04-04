@@ -132,20 +132,16 @@ class statistics_model
 
     public function get_meta( $key )
     {
-        $setting = db ( 'statistics_meta' );
+        $statisitics = db ( 'statistics_meta' );
 
-        $get_settings = $setting->select( '*' )
+        $get_statisitics = $statisitics->select( '*' )
             ->where( 'key', '=', $key )
             ->execute();
 
-        $count = $setting->count()
-            ->where( 'key', '=', $key )
-            ->execute();
-
-        if ( $count == 0 )
+        if ( empty( $get_statisitics ) )
             return false;
         else
-            return $get_settings[0]->value;
+            return $get_statisitics[0]->value;
     }
 
 
@@ -157,11 +153,7 @@ class statistics_model
             ->where( 'value', '=', $value )
             ->execute();
 
-        $count = $statisitics->count()
-            ->where( 'value', '=', $value )
-            ->execute();
-
-        if ( $count == 0 )
+        if ( empty( $get_statisitics ) )
             return false;
         else
             return $get_statisitics[0]->id;
