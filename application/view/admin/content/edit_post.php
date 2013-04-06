@@ -127,13 +127,6 @@
 					            </p>
                             <? endif; ?>
 
-                            <? if(user_editor() == 'html'):?>
-								
-								<p>
-									<textarea id="code" name="content" cols="40" rows="5" placeholder='Content' class='CodeMirror-scroll'><?= stripslashes($get_post->content) ?></textarea>
-								</p>
-
-							<? endif; ?>
 							<div class="clear"></div>
 						</div>
 						

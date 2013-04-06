@@ -94,12 +94,6 @@
 					
                             <? endif; ?>
 
-                            <? if(user_editor() == 'html'):?>
-								<p>
-									<textarea id="code" name="content" cols="40" rows="5" placeholder='Content' class='CodeMirror-scroll'><?= stripslashes($get_page->content) ?></textarea>
-								</p>
-							<? endif; ?>
-
 							<div id="scaffold">
                                 <? if ( $get_page->template != '' && $get_page->template != 'default' ):
 									

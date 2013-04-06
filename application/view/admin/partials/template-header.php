@@ -24,8 +24,8 @@
 
     <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.reveal.js"></script>
     <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.inputtags.js"></script>
-    <? if ( in_array('wysiwyg', $assets)): ?>
 
+    <? if ( in_array('wysiwyg', $assets)): ?>
     <script type="text/javascript" src="<?=ADMIN_JS; ?>ckeditor/ckeditor.js"></script>
     <script type="text/javascript" src="<?=ADMIN_JS; ?>ckeditor/config.js"></script>
     <link rel="stylesheet" href="<?=ADMIN_JS ?>ckeditor/contents.css"/>

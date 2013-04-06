@@ -27,20 +27,6 @@
 	<script type="text/javascript" src="<?=ADMIN_JS; ?>ckeditor.config.js"></script>
 <? endif;?>
 
-<? if ( in_array('html', $assets)): ?>
-	<link rel="stylesheet" href="<?=ADMIN_JS; ?>CodeMirror/lib/codemirror.css">
-    <link rel="stylesheet" href="<?=ADMIN_CSS; ?>codemirror.css">
-	<script src="<?=ADMIN_JS; ?>CodeMirror/lib/codemirror.js"></script>
-	<script src="<?=ADMIN_JS; ?>CodeMirror/mode/xml/xml.js"></script>
-	<script src="<?=ADMIN_JS; ?>CodeMirror/mode/css/css.js"></script>
-	<script src="<?=ADMIN_JS; ?>CodeMirror/mode/javascript/javascript.js"></script>
-	<script src="<?=ADMIN_JS; ?>CodeMirror/mode/clike/clike.js"></script>
-	<script src="<?=ADMIN_JS; ?>CodeMirror/mode/php/php.js"></script>
-	<script src="<?=ADMIN_JS; ?>CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
-
-    <script src="<?=ADMIN_JS; ?>codemirror.config.js"></script>
-<? endif; ?>
-
 <? if( in_array('filedrop', $assets ) ): ?>
     <script src="<?=ADMIN_JS; ?>filedrop.config.js"></script>
 <? endif; ?>

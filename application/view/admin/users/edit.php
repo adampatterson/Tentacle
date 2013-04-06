@@ -69,7 +69,7 @@
 						<label for="send_password" class="checkbox"><input type="checkbox" id="send_password" name="send_password" class="checkbox" value="yes">Send this password to the new user by email.</label>
 					</div>
 				</div>
-
+<? /*
 				<div class="control-group">
 					<label for="editor" class="control-label">Editor</label>
 					<div class="controls">	
@@ -77,7 +77,7 @@
 						<label title="html" class="radio"><input type="radio" <? checked( $user_meta->editor, 'html' ); ?>value="html" name="editor" class="radio">HTML</label>
 					</div>
 				</div>
-
+*/ ?>
 				<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
 				<input type="hidden" name='profile' value='true' />
 
