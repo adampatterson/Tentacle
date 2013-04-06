@@ -80,7 +80,10 @@ class db
 	// ---------------------------------------------------------------------------
 	public static function query($sql)
 	{
-		return self::$connections['default']->query($sql);
+        If (DEBUG_SQL)
+            logger::set('SQL - Query', $sql);
+
+        return self::$connections['default']->query($sql);
 	}
 	
 	
@@ -416,9 +419,8 @@ class DingoSQL
 			$sql .= " OFFSET {$query->_offset}";
 		}
 
-        If (DEBUG_SQL){
+        If (DEBUG_SQL)
             logger::set('SQL - Select', $sql);
-        }
 
 		return $sql;
 	}
