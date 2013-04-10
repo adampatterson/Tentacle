@@ -119,6 +119,7 @@ class page_controller {
 
                 logger::set('Post total', count($posts));
 
+
                 $paginate = new paginate($post_total, $current_page);
 
                 logger::set('Page Template', 'template-blog');
@@ -203,10 +204,10 @@ class page_controller {
                 logger::set('Category total', $post_total);
 
                 tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
-            break;
+                break;
             default:
                 tentacle::render ( '404' );
-            break;
+                break;
         }
 
         if( DEBUG ):
@@ -220,5 +221,5 @@ class page_controller {
         // Site stats are triggered in the admin bar if you are not logged in.
         tentacle::admin_bar();
     }
-    
+
 }

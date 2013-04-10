@@ -102,8 +102,7 @@
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
     <? if ( in_array('filedrop', $assets ) ): ?>
-
-        <script type="text/javascript" src="<?=ADMIN_JS; ?>filedrop.js"></script>
+    <script type="text/javascript" src="<?=ADMIN_JS; ?>filedrop.js"></script>
     <? endif; ?>
 
 	<script type="text/javascript" charset="utf-8">

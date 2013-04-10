@@ -18,7 +18,7 @@ class get {
 	* Returns:
 	*	String
 	*/
-	public static function option( $key, $default = '' )
+	public static function option( $key, $default = null )
 	{
         if( isset( static::$options[ $key ] ) ):
             #logger::set( 'Option from Object', $key );
