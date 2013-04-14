@@ -12,13 +12,12 @@ License URI: license.txt
 display: admin
 name:
   name: Name
-  input: input
   type: text
   notes: Full Name
 country:
   name: Country
-  input: option
   notes: Option notes.
+  type: option
   options:
     - Canada
     - USA
@@ -26,7 +25,6 @@ country:
     - Japan
 twitter:
   name: Twitter
-  input: input
   type: text
   notes: Twitter username, without the @ symbol.
 */
