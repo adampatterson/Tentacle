@@ -38,16 +38,7 @@ class  scaffold
                 else
                     $input_notes = '';
 
-
-	            // var_dump($input);
-	            /*  
-	            echo $input['name'];
-	            echo $input['label_name'];
-	            echo $input['input'];
-	            echo $input['type'];
-	            echo $input['notes'];
-	            echo $input['options'];
-	            */
+	            var_dump($input);
 
                 switch($input['type']) {
                     case 'text':
@@ -124,24 +115,26 @@ class  scaffold
 			foreach ($data as $key => $input):
 
                 $input_name = string::underscore( string::camelize( $input['name']) );
-				
-	            if ($input['input'] == 'input'):
-	                switch($input['type']) {
-	                    case 'text':
-	                        $return_data .= '<div class="clearfix"><label for="'.$input_name.'">'.$input['name'].'</label><div class="input"><input type="text" class="xlarge" name="'.$input_name.'" value="'.$get_page_meta->$input_name.'"/></div></div>';
-						break;
-						case 'password':
-	 						$return_data .= '<div class="clearfix"><label for="'.$input['name'].'">'.$input['name'].'</label><div class="input"><input type="password" class="xlarge" name="'.$input['name'].'" value="'.$get_page_meta->$input_name.'"/></div></div>';
-						break;    
-					    case 'button':
-							
-							if ( $data[ 'display' ] != 'admin' ):
-								$return_data .= self::create_button($input['button_name']);
-							endif;
-	                    break;               
-	                    }// switch 
-	                elseif($input['input'] == 'option'):
-		
+
+                if ( in_array( 'notes', $input ) )
+                    $input_notes = $input['notes'];
+                else
+                    $input_notes = '';
+
+                switch($input['type']) {
+                    case 'text':
+                        $return_data .= '<div class="clearfix"><label for="'.$input_name.'">'.$input['name'].'</label><div class="input"><input type="text" class="xlarge" name="'.$input_name.'" value="'.$get_page_meta->$input_name.'"/></div></div>';
+                    break;
+                    case 'password':
+                        $return_data .= '<div class="clearfix"><label for="'.$input['name'].'">'.$input['name'].'</label><div class="input"><input type="password" class="xlarge" name="'.$input['name'].'" value="'.$get_page_meta->$input_name.'"/></div></div>';
+                    break;
+                    case 'button':
+
+                        if ( $data[ 'display' ] != 'admin' ):
+                            $return_data .= self::create_button($input['button_name']);
+                        endif;
+                    break;
+                    case 'option':
 						$return_data .= '<div class="clearfix">
 											<label for="'.$input_name.'">'.$input['name'].'</label>
 											<div class="input">
@@ -152,16 +145,20 @@ class  scaffold
 						$return_data .= '		</select>
 											</div>
 										</div>';
-						
-	                elseif ($input['input'] == 'multiline'):
-	                    $return_data .= '<div class="clearfix"><label for="'.$input_name.'">'.$input['name'].'</label><div class="input"><textarea cols="40" rows="5" name="'.$input_name.'">'.$get_page_meta->$input_name.'</textarea></div></div>';
-	                endif;
-	            endforeach;
-	
-			endif;
-        
+                        break;
+                        case 'multiline':
+                            $return_data .= '<div class="clearfix"><label for="'.$input_name.'">'.$input['name'].'</label><div class="input"><textarea cols="40" rows="5" name="'.$input_name.'">'.$get_page_meta->$input_name.'</textarea></div></div>';
+                            break;
+                        default:
+
+                        break;
+                }// switch
+
+            endforeach;
+
+        endif;
+
         echo $return_data;
-        
     }
 
 
