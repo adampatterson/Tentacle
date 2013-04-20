@@ -94,8 +94,7 @@ class page_model
 		
 		//$dirty_template = session::get( 'template' );
 		$dirty_template = $_POST['page_template'];
-		
-		
+
 		if ( $dirty_template == '' ):
 			$post_template = 'default';
 		else:
@@ -127,27 +126,25 @@ class page_model
 			->where( 'id', '=', $id )
 			->execute();
 
-	
 		$scaffold_data = $_POST;
 
-		$remove_keys = array( 'title', 'content', 'status', 'parent_page', 'page_template', 'page-or-post', 'history', 'tags', 'publish', 'year', 'month', 'day', 'hour', 'minute' );
+		$remove_keys = array( 'title', 'content', 'status', 'parent_page', 'page_template', 'page-or-post', 'history', 'tags', 'publish', 'year', 'month', 'day', 'hour', 'minute', 'save' );
 		
 		foreach ( $remove_keys as $remove_key ):
 			unset( $scaffold_data[ $remove_key ] );
 		endforeach;
-	
+
 		$meta_value = serialize( $scaffold_data );
 
 		$page_meta      = db('posts_meta');
 
-		$page->update(array(
-			'meta_key'=>'scaffold_data',
+        $meta = $page_meta->update(array(
 			'meta_value'=>$meta_value
 		))
 			->where( 'posts_id', '=', $id )
 			->execute();
-			
-		note::set('success','page_update','Page Updated!');		
+
+		note::set('success','page_update','Page Updated!');
 	}
 
 
