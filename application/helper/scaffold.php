@@ -38,7 +38,7 @@ class  scaffold
                 else
                     $input_notes = '';
 
-	            var_dump($input);
+	            //var_dump($input);
 
                 switch($input['type']) {
                     case 'text':
