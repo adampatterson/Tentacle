@@ -147,7 +147,7 @@ class  scaffold
 										</div>';
                         break;
                         case 'multiline':
-                            $return_data .= '<div class="clearfix"><label for="'.$input_name.'">'.$input['name'].'</label><div class="input"><textarea cols="120" rows="15" name="'.$input_name.'">'.$get_page_meta->$input_name.'</textarea></div></div>';
+                            $return_data .= '<div class="clearfix"><label for="'.$input_name.'">'.$input['name'].'</label><div class="input"><textarea cols="120" rows="15" name="'.$input_name.'" class="xlarge">'.$get_page_meta->$input_name.'</textarea></div></div>';
                             break;
                         default:
 
