@@ -2,11 +2,7 @@
 <div id="login-header">
 	<a href="<?=BASE_URL;?>">← Back to site name</a>
 </div>
-<?php if( $note = note::get('sent_message') ): ?>
-	<div class="alert alert-success">
-		<h3 class="<?= $note['type']; ?>"><?= $note['content'];?></h3>
-	</div>
-<?php endif; ?>
+
 <div id="login-content">
 	<div id="login-logo">
 		<a href="<?=BASE_URL;?>"><img src="<?=ADMIN_URL;?>images/tentacle_logo_large.png" width="258" height="63" alt="Tentacle" /></a>

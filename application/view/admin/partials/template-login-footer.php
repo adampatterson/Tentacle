@@ -15,6 +15,10 @@
       })();
 
     </script>
+
     <script type="text/javascript" src="<?=ADMIN_JS; ?>application.login.js"></script>
+
+    <?= notification() ?>
+
 </body>
 </html>

@@ -50,7 +50,11 @@ class action_controller {
 	    if(user::valid()) 
 		{
 
-			if ($history != '') 
+            user::update($username)
+                ->data('login_attempt', 0 )
+                ->save();
+
+            if ($history != '')
 			{
 				url::redirect($history);
 			} 
@@ -62,8 +66,31 @@ class action_controller {
 	    } 
 		else 
 		{
-	       note::set("error","login",'Password Error');
-	       url::redirect('admin/index'); 
+            $user_data = user::get($username);
+
+            if( array_key_exists( 'login_attempt', $user_data->data ) )
+            {
+                $attempt = $user_data->data['login_attempt'];
+
+                $attempt = $attempt + 1;
+            }
+            else
+            {
+                $attempt = '1';
+            }
+
+            user::update($username)
+                ->data('login_attempt', $attempt )
+                ->save();
+
+            if ( $attempt >= 3)
+            {
+                note::set("error","login",'Your account has been disabled for security reasons.');
+                url::redirect('admin/index');
+            } else {
+                note::set("error","login",'Password Error');
+                url::redirect('admin/index');
+            }
 	    }
 	}
 	
