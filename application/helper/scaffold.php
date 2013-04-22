@@ -81,7 +81,7 @@ class  scaffold
                         $return_data .= '<div class="clearfix">
                                 <label for="'.$input_name.'">'.$input['name'].'</label>
                                 <div class="input">
-                                    <textarea cols="120" rows="15" name="'.$input_name.'" class="xxlarge"></textarea>
+                                    <textarea cols="120" rows="15" name="'.$input_name.'" class="xlarge"></textarea>
                                     <span class="help-block">'.$input_notes.'</span>
                                 </div>
                             </div>';

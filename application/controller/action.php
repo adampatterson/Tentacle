@@ -117,7 +117,6 @@ class action_controller {
 	    if ( isset($user[0]->email)) 
 		{
 	        // Generate a Hash from the users IP
-       
 
 			$user_name    = $user[0]->username;
 			$email        = $user[0]->email;
