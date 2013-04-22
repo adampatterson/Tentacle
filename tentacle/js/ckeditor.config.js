@@ -44,7 +44,7 @@ $
 $
         var size		          	= $(this).parent().parent().find('.image_size:checked').val();
 
-		if ( size != '' ) {
+		if ( size != 'full' ) {
 			var image_size			= '_'+size;
 		} else {
 			var image_size			= '';
