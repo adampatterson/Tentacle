@@ -26,7 +26,6 @@ class: analytics
 */
 class analytics{
 
-
     static function tracking()
     {
         if (get::option('seo_google_analytics') != '' ) {

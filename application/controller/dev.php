@@ -12,6 +12,8 @@ class dev_controller {
 
 	public function index()
 	{
+        var_dump(get::option('missing_key', 'default') );
+
         var_dump(is::mobile());
 		var_dump(is::blackberry());
 		var_dump(is::ipad());
@@ -20,6 +22,48 @@ class dev_controller {
 		var_dump(is::palmpre());
 		var_dump(is::android());
 	}
+
+
+    public function error(){
+
+        function inverse($x) {
+            if (!$x) {
+                throw new Exception('Division by zero.');
+            }
+            else return 1/$x;
+        }
+
+        try {
+            echo inverse(5) . "\n";
+            echo inverse(0) . "\n";
+        } catch (Exception $e) {
+            dingo_exception($e);
+        }
+    }
+
+    public function scaffolding () {
+        echo '<h2>Scaffolding Test</h2>';
+
+        $data = get::yaml( THEMES_DIR.'/'.ACTIVE_THEME.'/template-job-application.php' );
+
+        var_dump( $data );
+    }
+
+    public function url(){
+        load::library('uaparser');
+        $ua = $_SERVER['HTTP_USER_AGENT'];
+        $parser = new UAParser;
+        $result = $parser->parse($ua);
+
+        $meta['browser']                = $result->ua->family;
+        $meta['browser_full']           = $result->ua->toString;
+        $meta['version']                = $result->ua->toVersionString;
+        $meta['user_agent']             = $result->uaOriginal;
+        $meta['os']                     = $result->os->family;
+        $meta['os_version']             = $result->os->toVersionString;
+
+        var_dump($meta);
+    }
 
 
     public function image() {
