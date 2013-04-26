@@ -1,8 +1,7 @@
 <?
 class email_model
 {
-
-	public function send ( $subject, $message, $to, $from='' ) 
+	public function send ( $subject, $message, $to, $from='' )
 	{
 		
 		if ($from == '') {

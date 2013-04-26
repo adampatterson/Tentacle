@@ -64,7 +64,7 @@ class action_controller {
 			}
 			
 	    } 
-		else 
+		else
 		{
             $user_data = user::get($username);
 
@@ -85,8 +85,38 @@ class action_controller {
 
             if ( $attempt >= 3)
             {
+                $user_name    = $user_data->username;
+                $email        = $user_data->email;
+
+                $first_name   = $user_data->data['first_name'];
+                $last_name    = $user_data->data['last_name'];
+
+                $encrypted_password = sha1( $password );
+
+                $registered = time();
+                $hashed_ip = sha1($_SERVER['REMOTE_ADDR'].$registered);
+
+                user::update($username)
+                    ->data('activation_key',$hashed_ip)
+                    ->save();
+
+                $send_email = load::model( 'email' );
+
+                $hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
+                $hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
+
+                $message = '<p>Hello '.$first_name.',</p>
+                            <p>Recently multiple failed attempts were made while access your account at '.BASE_URL.'.</p>
+                            <p>As a precotion your account has been disabled and a password reset has been issued for <strong>Username</strong>: '.$user_name.' </p>
+						    <p><strong>Click the link to create a new password.</strong><br />'.BASE_URL.'admin/set_password/'.$hashed_ip.'</p>';
+
+                $user_email = $send_email->send( 'Your account has been disabled for security reasons.', $message, $email );
+
                 note::set("error","login",'Your account has been disabled for security reasons.');
-                url::redirect('admin/index');
+
+                echo $message;
+
+                #url::redirect('admin/index');
             } else {
                 note::set("error","login",'Password Error');
                 url::redirect('admin/index');
@@ -146,6 +176,7 @@ class action_controller {
 			$user_email = $send_email->send( 'Recover your password', $message, $email );
 
 			note::set("success","sent_message",'An email has been sent with instructions.');
+
 			url::redirect('admin');
 			
 	    } else {
@@ -225,10 +256,19 @@ class action_controller {
 		$user = load::model( 'user' );
 		$user_details = $user->set_password( );
 
-		user::update($user_details->email)
+		user::update( $user_details->email )
 		           ->data('activation_key','')
 				   ->data('status','')
 		           ->save();
+
+        $user_data = user::get( $user_details->email );
+
+       if( array_key_exists( 'login_attempt', $user_data->data ) )
+       {
+           user::update( $user_details->email )
+               ->data('login_attempt', 0 )
+               ->save();
+       }
 
 		note::set('success','sent_message','Your password has been reset.');
 		
