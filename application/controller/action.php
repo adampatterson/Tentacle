@@ -114,9 +114,7 @@ class action_controller {
 
                 note::set("error","login",'Your account has been disabled for security reasons.');
 
-                echo $message;
-
-                #url::redirect('admin/index');
+                url::redirect('admin/index');
             } else {
                 note::set("error","login",'Password Error');
                 url::redirect('admin/index');
