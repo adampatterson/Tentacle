@@ -399,29 +399,9 @@ Test two
 
 	public function email()
 	{
-        load::helper('email');
 		$send_email = load::model( 'email' );
 
-		$user_name    = 'user_name';
-		$password     = 'password';
-		$email        = 'hello@adampatterson.ca';
-
-		$first_name   = 'Adam';
-		$last_name    = 'Patterson';
-
-		$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
-		$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
-
-
-		$message = '<p>Hello '.$first_name.' '.$last_name.'<br /></p>
-					<p><strong>Username</strong>: '.$user_name.'<br />
-					<strong>Password</strong>: '.$password.'</p>
-					<p><strong>Click the link to activate your account.</strong><br /><a href="'.$hash_address.'">'.$hash_address.'</a></p>
-					<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
-
-        echo $message;
-
-		$user_email = $send_email->send( 'Tentacle CMS', $message, $email, $email );
+		$user_email = $send_email->general( 'hello@adampatterson.ca' );
 	}
 
 	/**
