@@ -85,32 +85,9 @@ class action_controller {
 
             if ( $attempt >= 3)
             {
-                $user_name    = $user_data->username;
-                $email        = $user_data->email;
+                $email = load::model( 'email' );
 
-                $first_name   = $user_data->data['first_name'];
-                $last_name    = $user_data->data['last_name'];
-
-                $encrypted_password = sha1( $password );
-
-                $registered = time();
-                $hashed_ip = sha1($_SERVER['REMOTE_ADDR'].$registered);
-
-                user::update($username)
-                    ->data('activation_key',$hashed_ip)
-                    ->save();
-
-                $send_email = load::model( 'email' );
-
-                $hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
-                $hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
-
-                $message = '<p>Hello '.$first_name.',</p>
-                            <p>Recently multiple failed attempts were made while access your account at '.BASE_URL.'.</p>
-                            <p>As a precotion your account has been disabled and a password reset has been issued for <strong>Username</strong>: '.$user_name.' </p>
-						    <p><strong>Click the link to create a new password.</strong><br />'.BASE_URL.'admin/set_password/'.$hashed_ip.'</p>';
-
-                $user_email = $send_email->send( 'Your account has been disabled for security reasons.', $message, $email );
+                $locked = $email->locked_account( $user_data, 'Your account has been disabled for security reasons.' );
 
                 note::set("error","login",'Your account has been disabled for security reasons.');
 
