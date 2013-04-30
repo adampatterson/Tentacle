@@ -22,6 +22,7 @@ class email_model
 		$mail->send();
 	}
 
+
     public function welcome ( $user = '', $subject = '' )
     {
         load::helper('email');
@@ -42,6 +43,7 @@ class email_model
 
         $user_email = $this->send( $subject, $message, $email, $email );
     }
+
 
     public function lost_password ( $user = '', $subject = '' )
     {
@@ -73,6 +75,7 @@ class email_model
     {
 
     }
+
 
     public function locked_account ( $user_data = '', $subject = '' )
     {

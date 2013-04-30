@@ -85,7 +85,6 @@ class user_model
 		
 		// need to set the users old email address before you update it.
 
-		
 		user::update($old_email)
 			->email($new_email)
 			->username($user_name)
@@ -105,11 +104,11 @@ class user_model
 		}
 
         if (input::post( 'send_password' ) == 'yes') {
-            $send_email = load::model( 'email' );
+            $email = load::model( 'email' );
 
             $user_data = user::get($new_email);
 
-            $send = $send_email->welcome($user_data, 'Welcome to Tentacle CMS' );
+            $welcome = $email->welcome($user_data, 'Welcome to Tentacle CMS' );
         }
 
 		note::set('success','user_updated','User Updated!');
