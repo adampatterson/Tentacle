@@ -121,32 +121,9 @@ class action_controller {
 		{
 	        // Generate a Hash from the users IP
 
-			$user_name    = $user[0]->username;
-			$email        = $user[0]->email;
+            $email = load::model( 'email' );
 
-			$first_name   = $user[0]->first_name;
-			$last_name    = $user[0]->last_name;
-
-			$encrypted_password = sha1( $password );
-
-			$registered = time();
-			$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].$registered);
-			
-			user::update($username)
-			           ->data('activation_key',$hashed_ip)
-			           ->save();
-
-			$send_email = load::model( 'email' );
-
-			load::helper('email');
-
-			$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
-			$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
-
-			$message = '<p>A password reset has been issued for <strong>Username</strong>: '.$user_name.' </p>
-						<p><strong>Click the link to create a new password.</strong><br />'.BASE_URL.'admin/set_password/'.$hashed_ip.'</p>';
-
-			$user_email = $send_email->send( 'Recover your password', $message, $email );
+            $locked = $email->lost( $user, 'Recover your password.' );
 
 			note::set("success","sent_message",'An email has been sent with instructions.');
 

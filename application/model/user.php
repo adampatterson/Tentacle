@@ -107,17 +107,9 @@ class user_model
         if (input::post( 'send_password' ) == 'yes') {
             $send_email = load::model( 'email' );
 
-            load::helper('email');
+            $user_data = user::get($new_email);
 
-            $hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
-            $hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
-
-            $message = '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
-						<p><strong>Username</strong>: '.$user_name.'<br />
-						<strong>Password</strong>: '.$password.'</p>
-						<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
-
-            $user_email = $send_email->send( 'Welcome to Tentacle CMS', $message, $email );
+            $send = $send_email->welcome($user_data, 'Welcome to Tentacle CMS' );
         }
 
 		note::set('success','user_updated','User Updated!');
