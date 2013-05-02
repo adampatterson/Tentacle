@@ -33,7 +33,6 @@
     <link rel="stylesheet" href="<?=ADMIN_CSS; ?>codemirror.css">
     <? endif; ?>
 
-    <link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>application.css">
     <link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>admin.css">
 
     <? if ( in_array('flot', $assets)): ?>

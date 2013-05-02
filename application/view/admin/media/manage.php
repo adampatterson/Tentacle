@@ -7,7 +7,7 @@
 			</div>
 
 		    <div class="one-full">
-	    		<div id="dropbox" class="well" style="height: 200px;">&nbsp;</div>
+	    		<div id="dropbox" class="well"><i class="icon-picture"></i></div>
 		    </div>
 
 			<div class="accordion" id="accordion">

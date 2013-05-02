@@ -17,8 +17,7 @@
 		<script type="text/javascript" charset="utf-8">
 			var base_url = "<?= BASE_URL ?>";
 		</script>
-		
-		<link type="text/css" rel="stylesheet" href="<?= ADMIN_CSS ?>application.css">
+
 		<link type="text/css" rel="stylesheet" href="<?= ADMIN_CSS ?>setup.css">
 		
 	  </head>

@@ -22,10 +22,10 @@ $(document).ready(function(){
 	$('#myButton').click(function(e) {
 	      e.preventDefault();
 	      $('#myModal').reveal({
-	          animation: 'fade',                   //fade, fadeAndPop, none
+	          animation: 'fade',                         //fade, fadeAndPop, none
 	          animationspeed: 150,                       //how fast animtions are
 	          closeonbackgroundclick: true,              //if you click background will modal close?
-	          dismissmodalclass: 'close-reveal-modal'    //the class of a button or element that will close an open modal
+	          dismissmodalclass: 'close-reveal-modal',    //the class of a button or element that will close an open modal
 	      });
 	  });
 

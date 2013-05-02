@@ -39,10 +39,10 @@
                                                 <dd><?=$image->name ?></dd>
                                                 <dt>File type:</dt>
                                                 <dd><?=$image->type ?></dd>
-                                                <dt>Uploaded on:</dt>
-                                                <dd>April 11, 2012</dd>
-                                                <dt>Dimensions</dt>
-                                                <dd>200 x 200</dd>
+<!--                                                <dt>Uploaded on:</dt>-->
+<!--                                                <dd>April 11, 2012</dd>-->
+<!--                                                <dt>Dimensions</dt>-->
+<!--                                                <dd>200 x 200</dd>-->
                                             </dl>
                                             <input type="hidden" name="file_name" value="<?=$image->name ?>" >
                                         </div>
@@ -114,7 +114,7 @@
                                                     <button class="insert_media btn btn-primary">Insert Image</button>
                                                     <!--<a class="btn primary" id="insert">Insert Image</a>-->
                                                     <button class="btn btn-danger">Delete</button>
-                                                    <a class="btn" href="javascript:parent.jQuery.fancybox.close();">Cancel</a>
+                                                    <a class="btn close-reveal-modal">Cancel</a>
                                                 </div>
 
                                             </div>
@@ -128,9 +128,10 @@
                 </div>
 
             </div><!-- /#insert -->
+
             <div class="tab-pane" id="upload">
 
-                <div id="dropbox" class="well" style="height: 200px;">&nbsp;</div>
+                <div id="dropbox" class="well"><i class="icon-picture"></i></div>
 
             </div><!-- /#upload -->
         </div>
