@@ -7,16 +7,25 @@ CKEDITOR.editorConfig = function( config ) {
 
     // Protect PHP code tags (<?...?>) so CKEditor will not break them when
     // switching from Source to WYSIWYG.
-    config.protectedSource.push(/<\?[\s\S]*?\?>/g);
+
+    config.protectedSource.push(/<\?[\s\S]*?\?>/g); // PHP Code
+//    config.protectedSource.push(/<code>[\s\S]*?<\/code>/gi); // Code tags
+//    config.protectedSource.push(/<pre>[\s\S]*?<\/pre>/gi); // Pre tags
 
     //IE: remove border of image when is as a link
     config.extraCss = "a img { border: 0px\\9; }";
 
-    config.disableNativeSpellChecker = false
+    config.disableNativeSpellChecker = false;
     config.autogrow_maxHeight = 1000;
     config.autoGrow_minHeight = 550;
     config.autoGrow_onStartup = true;
-    config.enterMode = CKEDITOR.ENTER_BR;
+    config.enterMode = CKEDITOR.ENTER_P;
+
+    config.entities = false;
+    config.entities_latin = false;
+    config.fillEmptyBlocks = true;
+    config.tabSpaces = 4;
+
 
     // Define changes to default configuration here.
     // For the complete reference:
@@ -37,6 +46,23 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'colors' },
         { name: 'tools' }
     ];
+
+	// The toolbar groups arrangement, optimized for a single toolbar row.
+	// config.toolbarGroups = [
+	// 	{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+	// 	{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+	// 	{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+	// 	{ name: 'forms' },
+	// 	{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+	// 	{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+	// 	{ name: 'links' },
+	// 	{ name: 'insert' },
+	// 	{ name: 'styles' },
+	// 	{ name: 'colors' },
+	// 	{ name: 'tools' },
+	// 	{ name: 'others' },
+	// 	{ name: 'about' }
+	// ];
 
 
     // The default plugins included in the basic setup define some buttons that

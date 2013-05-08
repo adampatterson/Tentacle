@@ -1,29 +1,3 @@
-(function() {
-  var DEFAULT_BRACKETS = "()[]{}''\"\"";
-
-  CodeMirror.defineOption("autoCloseBrackets", false, function(cm, val, old) {
-    var wasOn = old && old != CodeMirror.Init;
-    if (val && !wasOn)
-      cm.addKeyMap(buildKeymap(typeof val == "string" ? val : DEFAULT_BRACKETS));
-    else if (!val && wasOn)
-      cm.removeKeyMap("autoCloseBrackets");
-  });
-
-  function buildKeymap(pairs) {
-    var map = {name : "autoCloseBrackets"};
-    for (var i = 0; i < pairs.length; i += 2) (function(left, right) {
-      function maybeOverwrite(cm) {
-        var cur = cm.getCursor(), ahead = cm.getRange(cur, CodeMirror.Pos(cur.line, cur.ch + 1));
-        if (ahead != right) return CodeMirror.Pass;
-        else cm.execCommand("goCharRight");
-      }
-      map["'" + left + "'"] = function(cm) {
-        if (left == right && maybeOverwrite(cm) != CodeMirror.Pass) return;
-        var cur = cm.getCursor("start"), ahead = CodeMirror.Pos(cur.line, cur.ch + 1);
-        cm.replaceSelection(left + right, {head: ahead, anchor: ahead});
-      };
-      if (left != right) map["'" + right + "'"] = maybeOverwrite;
-    })(pairs.charAt(i), pairs.charAt(i + 1));
-    return map;
-  }
-})();
+﻿(function(){function j(e){for(var a={name:"autoCloseBrackets",Backspace:function(c){if(c.somethingSelected())return CodeMirror.Pass;var b=c.getCursor(),a=c.getLine(b.line);if(b.ch&&b.ch<a.length&&0==e.indexOf(a.slice(b.ch-1,b.ch+1))%2)c.replaceRange("",CodeMirror.Pos(b.line,b.ch-1),CodeMirror.Pos(b.line,b.ch+1));else return CodeMirror.Pass}},f=[],g=0;g<e.length;g+=2)(function(c,b){function e(d){var c=d.getCursor();if(d.getRange(c,CodeMirror.Pos(c.line,c.ch+1))!=b||d.somethingSelected())return CodeMirror.Pass;
+d.execCommand("goCharRight")}c!=b&&f.push(b);a["'"+c+"'"]=function(d){if(d.somethingSelected()){var a=d.getSelection();d.replaceSelection(c+a+b)}else if(!(c==b&&e(d)!=CodeMirror.Pass)){var a=d.getCursor(),g=CodeMirror.Pos(a.line,a.ch+1),h=d.getLine(a.line),i=h.charAt(a.ch);if(h.length==a.ch||f.indexOf(i)>=0||k.test(i))d.replaceSelection(c+b,{head:g,anchor:g});else return CodeMirror.Pass}};c!=b&&(a["'"+b+"'"]=e)})(e.charAt(g),e.charAt(g+1));return a}var k=/\s/;CodeMirror.defineOption("autoCloseBrackets",
+!1,function(e,a,f){f=f&&f!=CodeMirror.Init;a&&!f?e.addKeyMap(j(typeof a=="string"?a:"()[]{}''\"\"")):!a&&f&&e.removeKeyMap("autoCloseBrackets")})})();
