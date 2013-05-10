@@ -107,10 +107,12 @@ CKEDITOR.editorConfig = function( config ) {
         enableCodeFormatting: false,
 
         // Whether or not to automatically format code should be done every time the source view is opened
-        autoFormatOnStart: true,
+        autoFormatOnStart: false,
+
+        autoFormatOnModeChange: false,
 
         // Whether or not to automatically format code which has just been uncommented
-        autoFormatOnUncomment: true,
+        autoFormatOnUncomment: false,
 
         // Whether or not to highlight the currently active line
         highlightActiveLine: true,
