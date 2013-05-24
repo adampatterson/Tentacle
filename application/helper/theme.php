@@ -184,73 +184,74 @@ class paginate {
 
     static $settings;
 
-    static $current_page;
-
-    static $url;
-
-    static $selectable_pages;
-
-    static $padding;
-
-    static $total_pages;
-
     public function __construct( $total, $current_page )
     {
         if ( '/'.get::option('blog_uri').'/' == BASE_URI or '/'.get::option('blog_uri') == BASE_URI  )
             $clean_uri = get::option('blog_uri').'/';
         else
             $clean_uri = preg_replace('/\/(\w+)\/(\w+)\/(\d+)/i', '${1}/', BASE_URI);
-
-        static::$current_page = $current_page;
         static::$settings = $this->calculate_pages(count($total), get::option('page_limit', 5), $current_page);
-        static::$url = BASE_URL.$clean_uri.'page';
-        static::$selectable_pages = '11';
-        static::$padding = true;
-        static::$total_pages = count(static::$settings['pages']);
+
+        static::$settings['url'] = BASE_URL.$clean_uri.'page';
+        static::$settings['current_page'] = $current_page;
+        static::$settings['selectable_pages'] = '11';
+        static::$settings['padding'] = true;
+        static::$settings['total_pages'] = count(static::$settings['pages']);
     }
+
+    static function padding ( $padding = true )
+    {
+        static::$settings['padding'] = $padding;
+    }
+
+    static function selectable_pages ( $selectable_pages = '11' )
+    {
+        static::$settings['selectable_pages'] = $selectable_pages;
+    }
+
 
     static function pages( $numbers_only = false )
     {
 
-        if (static::$total_pages <= 1) return '';
+        if (static::$settings['total_pages'] <= 1) return '';
 
         $output = '';
 
         if (!$numbers_only)
-            $output .= '<li '.( static::$current_page == 1 ? 'class="active"' : '').'><a href="'.static::$url.'/1" class="first">First</a></li>';
+            $output .= '<li '.( static::$settings['current_page'] == 1 ? 'class="active"' : '').'><a href="'.static::$settings['url'].'/1" class="first">First</a></li>';
 
         // if the total number of pages is lesser than the number of selectable pages
-        if (static::$total_pages <= self::$selectable_pages) {
+        if (static::$settings['total_pages'] <= static::$settings['selectable_pages']) {
 
             // iterate ascendingly or descendingly depending on whether we're showing links in reverse order or not)
-            for ( $i = 1; $i <= static::$total_pages; $i++ )
+            for ( $i = 1; $i <= static::$settings['total_pages']; $i++ )
 
                 // render the link for each page
-            $output .= '<li '.(static::$current_page == $i ? 'class="active"' : '') . '><a href="'.static::$url.'/'.$i.'">'.
+            $output .= '<li '.(static::$settings['current_page'] == $i ? 'class="active"' : '') . '><a href="'.static::$settings['url'].'/'.$i.'">'.
 
                 // apply padding if required
-                (static::$padding ? str_pad($i, strlen( static::$total_pages ), '0', STR_PAD_LEFT) : $i) .
+                (static::$settings['padding'] ? str_pad($i, strlen( static::$settings['total_pages'] ), '0', STR_PAD_LEFT) : $i) .
 
                 '</a></li>';
 
             // if the total number of pages is greater than the number of selectable pages
         } else {
 
-            $output .= '<li '.(static::$current_page == 1 ? 'class="active"' : '') . '><a href="' . static::$url.'/1" >' .
+            $output .= '<li '.(static::$settings['current_page'] == 1 ? 'class="active"' : '') . '><a href="' . static::$settings['url'].'/1" >' .
 
                 // if padding is required
-                (static::$padding ? str_pad(1, strlen(static::$total_pages), '0', STR_PAD_LEFT) : 1 ) .
+                (static::$settings['padding'] ? str_pad(1, strlen(static::$settings['total_pages']), '0', STR_PAD_LEFT) : 1 ) .
 
                 '</a></li>';
 
             // compute the number of adjacent pages to display to the left and right of the currently selected page so
             // that the currently selected page is always centered
-            $adjacent = floor( ( self::$selectable_pages - 3 ) / 2 );
+            $adjacent = floor( ( static::$settings['selectable_pages'] - 3 ) / 2 );
 
             // this number must be at least 1
             if ($adjacent == 0) $adjacent = 1;
 
-            $scroll_from = self::$selectable_pages - $adjacent;
+            $scroll_from = static::$settings['selectable_pages'] - $adjacent;
 
             // get the page number from where we should start rendering
             // if displaying links in natural order, then it's "2" because we have already rendered the first page
@@ -258,14 +259,14 @@ class paginate {
 
             // if the currently selected page is past the point from where we need to scroll,
             // we need to adjust the value of $starting_page
-            if ( static::$current_page >= $scroll_from ) {
+            if ( static::$settings['current_page'] >= $scroll_from ) {
 
                 // by default, the starting_page should be whatever the current page plus/minus $adjacent
-                $starting_page = static::$current_page + -$adjacent;
+                $starting_page = static::$settings['current_page'] + -$adjacent;
 
                 // but if that would mean displaying less navigation links than specified in $this->_properties['selectable_pages']
-                if ( static::$total_pages - $starting_page < (self::$selectable_pages - 2) )
-                    $starting_page -= (self::$selectable_pages - 2) - (static::$total_pages - $starting_page);
+                if ( static::$settings['total_pages'] - $starting_page < (static::$settings['selectable_pages'] - 2) )
+                    $starting_page -= (static::$settings['selectable_pages'] - 2) - (static::$settings['total_pages'] - $starting_page);
 
                 // put the "..." after the link to the first/last page
                 $output .= '<li><span>&hellip;</span></li>';
@@ -274,13 +275,13 @@ class paginate {
 
 
             // get the page number where we should stop rendering
-            $ending_page = $starting_page + (1 * (self::$selectable_pages - 3));
+            $ending_page = $starting_page + (1 * (static::$settings['selectable_pages'] - 3));
 
             // if we're showing links in natural order and ending page would be greater than the total number of pages minus 1
             // (minus one because we don't take into account the very last page which we output automatically)
             // adjust the ending page
-            if ( $ending_page > static::$total_pages - 1)
-                $ending_page = static::$total_pages - 1;
+            if ( $ending_page > static::$settings['total_pages'] - 1)
+                $ending_page = static::$settings['total_pages'] - 1;
 
 
             // render pagination links
@@ -289,27 +290,27 @@ class paginate {
                 $output .= '<li '.
 
                     // highlight the currently selected page
-                    ( static::$current_page == $i ? 'class="active"' : '' ) .'><a href="'. static::$url.'/'. $i . '">' .
+                    ( static::$settings['current_page'] == $i ? 'class="active"' : '' ) .'><a href="'. static::$settings['url'].'/'. $i . '">' .
 
                     // apply padding if required
-                    ( static::$padding ? str_pad($i, strlen( static::$total_pages ), '0', STR_PAD_LEFT) : $i) .'</a></li>';
+                    ( static::$settings['padding'] ? str_pad($i, strlen( static::$settings['total_pages'] ), '0', STR_PAD_LEFT) : $i) .'</a></li>';
             }
 
 
-            if ( static::$total_pages - $ending_page > 1)
+            if ( static::$settings['total_pages'] - $ending_page > 1)
                 $output .= '<li><span>&hellip;</span></li>';
 
-            $output .= '<li '.( static::$current_page == $i ? 'class="active"' : '').'><a href="' .static::$total_pages. '">' .
+            $output .= '<li '.( static::$settings['current_page'] == $i ? 'class="active"' : '').'><a href="' .static::$settings['total_pages']. '">' .
 
                 // also, apply padding if necessary
-                (static::$padding ? str_pad((static::$total_pages), strlen( static::$total_pages ), '0', STR_PAD_LEFT) : static::$total_pages ) .
+                (static::$settings['padding'] ? str_pad((static::$settings['total_pages']), strlen( static::$settings['total_pages'] ), '0', STR_PAD_LEFT) : static::$settings['total_pages'] ) .
 
                 '</a></li>';
 
         }
 
         if (!$numbers_only)
-            $output .= '<li '.( static::$settings['last'] == static::$current_page ? 'class="active"' : '').'><a href="'.static::$url.'/'.static::$settings['last'].'" class=""last>Last</a></li>';
+            $output .= '<li '.( static::$settings['last'] == static::$settings['current_page'] ? 'class="active"' : '').'><a href="'.static::$settings['url'].'/'.static::$settings['last'].'" class=""last>Last</a></li>';
 
         echo $output;
     }
@@ -317,25 +318,25 @@ class paginate {
 
     static function next()
     {
-        echo '<li><a href="'.static::$url.'/'.static::$settings['next'].'" class="next">Next</a></li>';
+        echo '<li><a href="'.static::$settings['url'].'/'.static::$settings['next'].'" class="next">Next</a></li>';
     }
 
 
     static function previous()
     {
-        echo '<li><a href="'.static::$url.'/'.static::$settings['previous'].'" class="previous">Previous</a></li>';
+        echo '<li><a href="'.static::$settings['url'].'/'.static::$settings['previous'].'" class="previous">Previous</a></li>';
     }
 
 
     static function last()
     {
-        echo '<a href="'.static::$url.'/'.static::$settings['last'].'" class="last">Last</a>';
+        echo '<a href="'.static::$settings['url'].'/'.static::$settings['last'].'" class="last">Last</a>';
     }
 
 
     static function first()
     {
-        echo '<a href="'.static::$url.'/1" class="first">First</a>';
+        echo '<a href="'.static::$settings['url'].'/1" class="first">First</a>';
     }
 
 

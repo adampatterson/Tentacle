@@ -24,7 +24,7 @@ class pagination
 	
 	// Construct
 	// ---------------------------------------------------------------------------
-	public function __construct($resource,$page=1,$limit=10)
+	public function __construct($resource, $page=1, $limit=10)
 	{
 		$this->page = $page;
 		$this->limit = $limit;

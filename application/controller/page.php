@@ -119,8 +119,12 @@ class page_controller {
 
                 logger::set('Post total', count($posts));
 
-                if ( count($post_total) > $post_limit )
+                if ( count($post_total) > $post_limit ) {
                     $paginate = new paginate($post_total, $current_page);
+
+                    paginate::padding(false);
+                    paginate::selectable_pages('7');
+                }
 
                 logger::set('Page Template', 'template-blog');
                 tentacle::render( 'template-blog', array ( 'posts' => $posts->results(), 'author' => $author, 'category' => $category, 'tag' => $tag ) );
@@ -168,8 +172,12 @@ class page_controller {
 
                 logger::set('Post total', count($post_total));
 
-                if ( count($post_total) > $post_limit )
+                if ( count($post_total) > $post_limit ) {
                     $paginate = new paginate($post_total, $current_page);
+
+                    paginate::padding(false);
+                    paginate::selectable_pages('7');
+                }
 
                 tentacle::render( 'template-blog', array ( 'posts' => $posts->results(), 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
                 break;
