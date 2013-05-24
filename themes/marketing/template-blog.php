@@ -39,7 +39,11 @@ theme::part('partials/header',array('title'=>'Blog','assets'=>'marketing')); ?>
 		</div><!--/row-->
 	<? endforeach;?>
 
-    <? paginate::pages(true); ?>
+    <div class="pagination">
+        <ul>
+            <? paginate::pages(); ?>
+        </ul>
+    </div>
 
 </div><!-- /container -->
 <? theme::part( 'partials/footer' ); ?>
