@@ -46,7 +46,15 @@ theme::part('partials/header',array('title'=>'Blog','assets'=>'default')); ?>
 
         <div class="pagination span9">
             <ul>
-                <? paginate::pages(); ?>
+                <?
+
+                paginate::first();
+                paginate::previous();
+                paginate::pages();
+                paginate::next();
+                paginate::last();
+
+                ?>
             </ul>
         </div>
 

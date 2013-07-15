@@ -20,6 +20,7 @@ render_header( );
 </head>
 
 <body <?= body_class(); ?>>
+
 <? /*
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">

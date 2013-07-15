@@ -331,6 +331,55 @@ class set {
     }
 }
 
+function is ( $look ) {
+
+    switch ( $look ) {
+        case 'home':
+            if ( defined('IS_HOME') && IS_HOME )
+                return true;
+            else
+                return false;
+
+            break;
+        case 'blog':
+            if ( defined('IS_BLOG') && IS_BLOG )
+                return true;
+            else
+                return false;
+            break;
+        case 'post':
+            if ( defined('IS_POST') && IS_POST )
+                return true;
+            else
+                return false;
+            break;
+        case 'page':
+            if ( defined('IS_PAGE') && IS_PAGE )
+                return true;
+            else
+                return false;
+            break;
+        case 'sub_page':
+            if ( defined('IS_SUB_PAGE') && IS_SUB_PAGE )
+                return true;
+            else
+                return false;
+            break;
+        case 'error':
+            if ( defined('IS_ERROR') && IS_ERROR )
+                return true;
+            else
+                return false;
+            break;
+        default:
+            return false;
+            break;
+    }
+
+
+}
+
+
 class is {
     /**
      * PUF

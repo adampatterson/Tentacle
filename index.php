@@ -47,7 +47,7 @@ define( 'APP_ROOT'      , __DIR__ );
 define( 'DS'			, DIRECTORY_SEPARATOR );
 
 # Tentacle
-require_once('application/config/define.php');
+require_once(APPLICATION.'/'.CONFIG.'/define.php');
 
 // @todo If the DB file exists but there are no tables, redirect as well.
 if ( !file_exists( 'application/config/deployment/db.php' ) ):

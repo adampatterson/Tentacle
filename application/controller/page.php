@@ -18,6 +18,7 @@ class page_controller {
 
         if ( $uri == '' || $uri == 'home'):
             $uri 		= 'home';
+            define( 'IS_HOME'    , TRUE );
         elseif	( URI == '' || $uri == $blog_uri ):
             $uri 		= un_slash( $blog_uri );
         endif;
@@ -77,6 +78,7 @@ class page_controller {
             case 'page_index':
             case 'page_plugin':
                 define ( 'IS_POST'      , FALSE );
+                define ( 'IS_PAGE'      , TRUE );
 
                 $uri_parts = explode( '/', $uri );
 
@@ -89,6 +91,7 @@ class page_controller {
 
                 if ( !$post ):
                     tentacle::render ( '404' );
+                    define ( 'IS_404'      , TRUE );
                 else:
                     logger::set('Page Template', $post->template);
                     tentacle::render( $post->template, array ( 'post' => $post ) );
@@ -97,6 +100,8 @@ class page_controller {
                 break;
             case 'page_subpage':
 
+                define ( 'IS_PAGE'      , TRUE );
+                define ( 'IS_SUB_PAGE'  , TRUE );
                 define ( 'IS_POST'      , FALSE );
 
                 $post 		= $page->get_by_uri( $uri );
@@ -112,6 +117,7 @@ class page_controller {
             case 'blog_index':
 
                 define ( 'IS_POST'      , FALSE );
+                define ( 'IS_BLOG'      , TRUE );
 
                 $post_total 		= $post->get( );
 
@@ -133,6 +139,7 @@ class page_controller {
             case 'blog_date':
 
                 define ( 'IS_POST'      , FALSE );
+                define ( 'IS_BLOG'      , TRUE );
 
                 $posts 		= $post->get_by_date( $uri );
 
@@ -147,6 +154,7 @@ class page_controller {
             case 'blog_date_slug':
 
                 define ( 'IS_POST'      , TRUE );
+                define ( 'IS_BLOG'      , TRUE );
 
                 $post 		= $page->get_by_uri( $uri );
 
@@ -165,6 +173,7 @@ class page_controller {
             case 'blog_paged':
 
                 define ( 'IS_POST'      , FALSE );
+                define ( 'IS_BLOG'      , TRUE );
 
                 $post_total = $post->get( );
 
