@@ -31,7 +31,6 @@ define('ERROR_LOGGING',TRUE);
 
 # Log File Location
 define('ERROR_LOG_FILE','log.txt');
-define('DEV_LOG_FILE','log-dev.txt');
 
 # Application Location
 define( 'APPLICATION'   ,'application' );
@@ -48,6 +47,8 @@ define( 'DS'			, DIRECTORY_SEPARATOR );
 
 # Tentacle
 require_once(APPLICATION.'/'.CONFIG.'/define.php');
+
+define('DEV_LOG',APPLICATION.'/logs/');
 
 // @todo If the DB file exists but there are no tables, redirect as well.
 if ( !file_exists( 'application/config/deployment/db.php' ) ):
