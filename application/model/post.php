@@ -369,6 +369,30 @@ class post_model
 		}	
 	}
 
+
+    // Get Posts by post-type
+    //----------------------------------------------------------------------------------------------
+    public function get_by_type ( $type='' )
+    {
+        $pages = db ( 'posts' );
+
+        if ( $type != '' ) {
+            $get_pages = $pages->select( '*' )
+                ->where ( 'type', '=', 'post' )
+                ->clause('AND')
+                ->where ( 'template', '=', 'type-'.$type )
+                ->clause('AND')
+                ->where ( 'status', '=', 'published' )
+                ->order_by ( 'id', 'DESC' )
+                ->execute();
+
+            return $get_pages;
+        } else {
+            return false;
+        }
+    }
+
+
     /**
      * Get an object based on its date ( year/month )
      *
