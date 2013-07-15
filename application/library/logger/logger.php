@@ -37,7 +37,7 @@ class logger
         }
 
         $value = array(
-            'level' => $level,
+            'level'     => $level,
             'name'      => $name,
             'message'   => $txt
         );
@@ -100,7 +100,7 @@ class logger
      *	$message - String
      *	$level - Int
      */
-    static function file($message, $level = 0)
+    static function file($label, $message, $level = 0)
     {
         $date = date('g:i A M d Y');
 
@@ -121,25 +121,8 @@ class logger
         $fh = fopen(DEV_LOG_FILE,'a');
         flock($fh,LOCK_EX);
 
-        if (is_array($message))
-        {
-            fwrite($fh,"[$date] {$level}:\n");
-            fwrite($fh,"===================================\n");
+        fwrite($fh,"$date: {$level}: {$label}: {$message}\n");
 
-            foreach($message as $key => $value)
-            {
-                $message = $key.' ## '.$value;
-
-                fwrite($fh,"\t".$message."\n");
-            }
-
-            fwrite($fh,"===================================\n");
-
-        }
-        else
-        {
-            fwrite($fh,"[$date] {$level}: {$message}\n");
-        }
         flock($fh,LOCK_UN);
         fclose($fh);
     }
