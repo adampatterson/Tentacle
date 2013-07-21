@@ -23,6 +23,24 @@ class dev_controller {
 		var_dump(is::android());
 	}
 
+    public function logger(){
+        $array = array( 'one'=>'test', 'two'=>'value' );
+
+        logger::file('Array', $array, 2);
+        logger::file('Memory', '5 mb');
+        logger::file('Execution Time', 'extra speedy');
+
+        echo 'logged stuff';
+    }
+
+    public function post_type () {
+        $post = load::model('post');
+
+        $posts = $post->get_by_type('video');
+
+        var_dump($posts);
+    }
+
 
     public function error(){
 

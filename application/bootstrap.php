@@ -1464,49 +1464,62 @@ function dingo_error($level,$message,$file='current file',$line='(unknown)',$bac
     {
         ob_clean();
 
-        if(file_exists(APP_ROOT.'/application/view/error/fatal.php'))
+        if(file_exists(ERROR_VIEW.'fatal.php'))
         {
-            require(APP_ROOT.'/application/view/error/fatal.php');
+            require(ERROR_VIEW.'fatal.php');
         }
         else
         {
-            echo 'Dingo could not locate error file at '.APPLICATION.'/application/view/error/fatal.php';
+            echo 'Dingo could not locate error file at '.ERROR_VIEW.'fatal.php';
+        }
+        ob_end_flush();
+
+        if(ERROR_LOGGING)
+        {
+            dingo_error_log($error, 3);
         }
 
-        ob_end_flush();
         exit;
     }
     elseif($exception)
     {
         ob_clean();
 
-        if(file_exists(APP_ROOT.'/application/view/error/exception.php'))
+        if(file_exists(ERROR_VIEW.'exception.php'))
         {
-            require(APP_ROOT.'/application/view/error/exception.php');
+            require(ERROR_VIEW.'exception.php');
         }
         else
         {
-			echo 'Dingo could not locate exception file at '.APPLICATION.'/view/error/exception.php';
+			echo 'Dingo could not locate exception file at '.ERROR_VIEW.'exception.php';
         }
 
         ob_end_flush();
+
+        if(ERROR_LOGGING)
+        {
+            dingo_error_log($error, 2);
+        }
+
+
         exit;
     }
     elseif(DEBUG)
     {
-        if(file_exists(APP_ROOT.'/application/view/error/nonfatal.php'))
+        if(file_exists(ERROR_VIEW.'nonfatal.php'))
         {
-            require(APP_ROOT.'/application/view/error/nonfatal.php');
+            require(ERROR_VIEW.'nonfatal.php');
         }
         else
         {
-            echo 'Dingo could not locate error file at '.APPLICATION.'/view/error/nonfatal.php';
+            echo 'Dingo could not locate error file at '.ERROR_VIEW.'nonfatal.php';
         }
-    }
 
-    if(ERROR_LOGGING)
-    {
-        dingo_error_log($error);
+        if(ERROR_LOGGING)
+        {
+            dingo_error_log($error, 1);
+        }
+
     }
 }
 
@@ -1533,17 +1546,14 @@ function dingo_exception($ex)
 *
 * Parameters:
 *	$error - Array
+*   $level - Int
 *
 * See Also:
 *	<dingo_error>
 */
-function dingo_error_log($error)
+function dingo_error_log( $error, $level = null )
 {
-    $date = date('g:i A M d Y');
+    $error_message = "{$error['message']} IN {$error['file']} ON LINE {$error['line']}";
 
-    $fh = fopen(ERROR_LOG_FILE,'a');
-    flock($fh,LOCK_EX);
-    fwrite($fh,"[$date] {$error['prefix']}: {$error['message']} IN {$error['file']} ON LINE {$error['line']}\n");
-    flock($fh,LOCK_UN);
-    fclose($fh);
+    logger::file($error['prefix'], $error_message, $level);
 }

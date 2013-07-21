@@ -37,7 +37,7 @@ class logger
         }
 
         $value = array(
-            'level'     => $level,
+            'level' => $level,
             'name'      => $name,
             'message'   => $txt
         );
@@ -102,7 +102,9 @@ class logger
      */
     static function file($label, $message, $level = 0)
     {
-        $date = date('g:i A M d Y');
+        $date = date('Ym');
+
+        $log_file = 'log-'.$date.'.php';
 
         switch ($level) {
             case 0:
@@ -112,17 +114,37 @@ class logger
                 $level = 'Warning';
                 break;
             case 2:
+                $level = 'Exception';
+                break;
+            case 3:
                 $level = 'Fatal';
                 break;
             default:
                 $level = 'General';
         }
 
-        $fh = fopen(DEV_LOG_FILE,'a');
+        $fh = fopen(DEV_LOG.'/'.$log_file,'a');
         flock($fh,LOCK_EX);
 
-        fwrite($fh,"$date: {$level}: {$label}: {$message}\n");
+        if (is_array($message))
+        {
+            fwrite($fh,"$date: {$level}: {$label}:\n");
+            fwrite($fh,"===================================\n");
 
+            foreach($message as $key => $value)
+            {
+                $message = $key.' => '.$value;
+
+                fwrite($fh,"\t".$message."\n");
+            }
+
+            fwrite($fh,"===================================\n");
+
+        }
+        else
+        {
+            fwrite($fh,"$date: {$level}: {$label}: {$message}\n");
+        }
         flock($fh,LOCK_UN);
         fclose($fh);
     }
