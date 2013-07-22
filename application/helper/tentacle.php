@@ -52,7 +52,7 @@ class tentacle
 	*/ 
 	public static function render( $theme, $data = NULL )
     {
-		
+
 		if ( $theme == 'default' ):
 			$theme = 'index';
 		endif;

@@ -26,6 +26,7 @@ class page_controller {
         $blog_uri = un_slash( $blog_uri );
 
         $routs = array(
+            'p/:int'					        => 'short.url',
             'home'                              => 'home.index',
             'tag'							    => 'tag.index',
             'tag/:words'			            => 'tag.slug',
@@ -96,6 +97,12 @@ class page_controller {
                     logger::set('Page Template', $post->template);
                     tentacle::render( $post->template, array ( 'post' => $post ) );
                 endif;
+
+                break;
+            case 'short_url':
+
+                $post 		= $page->get_short( $uri_parts[1] );
+                url::redirect($post);
 
                 break;
             case 'page_subpage':
