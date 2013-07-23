@@ -16,26 +16,29 @@ theme::part('partials/header',array('title'=>'Blog','assets'=>'marketing')); ?>
 	// Loop all of the blog posts.
 	foreach ($posts as $post): $author_meta = $author->get_meta ( $post->author ); ?>
 		<div class="row bump">
-			<div class="span12">
+            <h1 class="title"><a href="<? _e(BASE_URL.$post->uri) ?>"><? _e($post->title) ?></a></h1>
+            <hr />
 
-			<h1 class="title"><a href="<? _e(BASE_URL.$post->uri) ?>"><? _e($post->title) ?></a></h1>
+			<div class="span8">
 
-			<hr />
+    			<?= the_content( $post->content ); ?>
 
-			<?= the_content( $post->content ); ?>
-			<small>Created by: <? _e($author_meta->first_name.' '.$author_meta->last_name) ?></small>
-
-			<p><small>Posted in:
-				<? foreach( $category->get_relations( $post->id ) as $relation ): ?>
-                    <a href="<?=BASE_URL?>category/<?=$relation->slug ?>"><?_e($relation->name) ?></a>
-				<? endforeach; ?>
-			</small></p>
-			<p><small>Tags:
-				<? foreach( $relations = $tag->get_relations( $post->id ) as $relation ): ?>
-					 <a href="<?=BASE_URL?>tag/<?=$relation->slug ?>"><?_e($relation->name) ?></a>
-				<? endforeach; ?>
-			</small></p>
 			</div><!--/span9-->
+
+            <div class="span3 offset1">
+                <small>Created by: <? _e($author_meta->first_name.' '.$author_meta->last_name) ?></small>
+
+                <p><small>Posted in:
+                        <? foreach( $category->get_relations( $post->id ) as $relation ): ?>
+                            <a href="<?=BASE_URL?>category/<?=$relation->slug ?>"><?_e($relation->name) ?></a>
+                        <? endforeach; ?>
+                    </small></p>
+                <? /*<p><small>Tags:
+                        <? foreach( $relations = $tag->get_relations( $post->id ) as $relation ): ?>
+                            <a href="<?=BASE_URL?>tag/<?=$relation->slug ?>"><?_e($relation->name) ?></a>
+                        <? endforeach; ?>
+                    </small></p> */ ?>
+            </div>
 		</div><!--/row-->
 	<? endforeach;?>
 
