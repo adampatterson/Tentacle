@@ -5,8 +5,9 @@
 <title><?= get::option('blogname').' - '.$title ?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <? render_meta( ); ?>
-
-<? 
+<? render_canonical( ); ?>
+<? render_shortlink( ); ?>
+<?
 /**
  * undocumented 
  *

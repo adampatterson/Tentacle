@@ -15,9 +15,9 @@ description:
   type: text
 blocks:
  title:
-  name: Details
+  name: block title
   type: text
  details:
-   name: Details
+   name: block details
    type: text
 */

@@ -1,5 +1,5 @@
 	<footer>
-	    <p class="pull-left"><a href="http://tentaclecms.com"><img src="<?= THEME ?>/design/images/tentacle_logo_footer.png" alt="Tentacle" /></a></p>
+	    <p class="pull-left"><a href="http://tentaclecms.com"><img src="<?= THEME ?>/assets/img/tentacle_logo_footer.png" alt="Tentacle" /></a></p>
 
         <p class="pull-right">
             <ul class="unstyled pull-right">
