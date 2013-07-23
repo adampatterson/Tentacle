@@ -8,7 +8,6 @@ _/      _/_/_/  _/    _/      _/_/    _/_/_/    _/_/_/  _/    _/_/_/
 
   ======================================================================-->
 
-<link href="<?= THEME ?>/assets/css/bootstrap.css" rel="stylesheet">
 <link href="<?= THEME ?>/assets/css/style.css" rel="stylesheet">
 
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
