@@ -448,8 +448,6 @@ die;
 		
 
 		if ( $uri ):
-			if ( isset($get_parent_uri[0]) ):
-				return $get_parent_uri[0];
 			if ( isset($get_parent_uri[0] ) and !empty($get_parent_uri) ):
                 return $get_parent_uri[0];
 			else:
