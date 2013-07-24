@@ -9,8 +9,16 @@
 	<? endif;?>
 
 	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-	<meta name="description" content="">
-	<meta name="author" content="">
+	<meta name="description" content="<?= get::option('blogdescription'); ?>">
+    <meta name="author" content="Adam Patterson">
+
+    <meta property="og:title" content="<?= get::option('blogname'); ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<?= BASE_URL.URI ?>">
+    <meta property="og:image" content="<?= THEME ?>/assets/img/tentacle.png">
+    <meta property="og:site_name" content="<?= get::option('blogname'); ?>">
+    <meta property="og:description" content="<?= get::option('blogdescription'); ?>">
+
 	<? theme::assets($assets);
       render_header( ); ?>
 </head>
