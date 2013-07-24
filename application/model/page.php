@@ -68,7 +68,7 @@ class page_model
 			'meta_key'=>'scaffold_data',
 			'meta_value'=>$meta_value
 		));
-
+die;
 		note::set('success','page_add','Page Added!');
 		return $row->id;
 	}
@@ -258,6 +258,28 @@ class page_model
 	}
 
 
+    // Get URI
+    //----------------------------------------------------------------------------------------------
+    /**
+     * Return a page by ID
+     *
+     * @author Adam Patterson
+     */
+    public function get_uri( $id='' )
+    {
+        $pages = db ( 'posts' );
+
+        if ( $id != '' ) {
+            $get_pages = $pages->select( 'uri' )
+                ->where ( 'id', '=', $id )
+                ->order_by ( 'id', 'DESC' )
+                ->execute();
+
+            return $get_pages[0]->uri;
+        }
+    }
+
+
     /**
      * Return all pages or one page by ID
      *
@@ -424,9 +446,12 @@ class page_model
 			->where ( 'uri', '=', $uri )
 			->execute();
 		
+
 		if ( $uri ):
 			if ( isset($get_parent_uri[0]) ):
 				return $get_parent_uri[0];
+			if ( isset($get_parent_uri[0] ) and !empty($get_parent_uri) ):
+                return $get_parent_uri[0];
 			else:
 				return false;
 			endif;

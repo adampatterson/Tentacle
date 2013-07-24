@@ -513,7 +513,7 @@ function render_header( $location = null )
 
 /**
  * Function: render_meta
- *   Renders and plugins that would output HTML in the footer.
+ *   Renders a plugins meta HTML in the header.
  *
  * Returns:
  *     $content
@@ -523,6 +523,32 @@ function render_meta( $location = null )
     if ( $location != 'admin' and event::exists("theme_meta"))
         return event::filter("theme_meta");
 
+}
+
+
+/**
+ * Function: render_canonical
+ *   Renders the pages canonical URL
+ *
+ * Returns:
+ *     $content
+ */
+function render_canonical( $location = null )
+{
+    echo "<link rel='canonical' href='".BASE_URL.URI."' />\n";
+}
+
+
+/**
+ * Function: render_shortlink
+ *   Renders the pages short URL from page /p/#ID
+ *
+ * Returns:
+ *     $content
+ */
+function render_shortlink( $location = null )
+{
+    echo "<link rel='shortlink' href='".BASE_URL.'p/'.ID."' />\n";
 }
 
 

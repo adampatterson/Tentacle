@@ -23,6 +23,11 @@ class page_controller {
             $uri 		= un_slash( $blog_uri );
         endif;
 
+        $id = load::model('page')->get_by_uri(URI);
+
+        if ( $id )
+            define( 'ID'            , $id->id);
+
         $blog_uri = un_slash( $blog_uri );
 
         $routs = array(
@@ -101,7 +106,8 @@ class page_controller {
                 break;
             case 'short_url':
 
-                $post 		= $page->get_short( $uri_parts[1] );
+                $post 		= $page->get_uri( $uri_parts[1] );
+
                 url::redirect($post);
 
                 break;
