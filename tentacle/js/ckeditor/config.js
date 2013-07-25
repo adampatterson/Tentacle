@@ -9,6 +9,7 @@ CKEDITOR.editorConfig = function( config ) {
     // switching from Source to WYSIWYG.
 
     config.protectedSource.push(/<\?[\s\S]*?\?>/g); // PHP Code
+    config.protectedSource.push(/<script [\s\S]*?>[\s\S]*?<\/script>/gi); // Code tags
 //    config.protectedSource.push(/<code>[\s\S]*?<\/code>/gi); // Code tags
 //    config.protectedSource.push(/<pre>[\s\S]*?<\/pre>/gi); // Pre tags
 
@@ -25,7 +26,6 @@ CKEDITOR.editorConfig = function( config ) {
     config.entities_latin = false;
     config.fillEmptyBlocks = true;
     config.tabSpaces = 4;
-
 
     // Define changes to default configuration here.
     // For the complete reference:

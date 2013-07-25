@@ -57,6 +57,6 @@ var CKBUILDER_CONFIG = {
 		'justify' : 1
 	},
 	languages : {
-		'en' : 1,
+		'en' : 1
 	}
 };
