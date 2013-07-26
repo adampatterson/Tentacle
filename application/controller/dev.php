@@ -96,11 +96,13 @@ class dev_controller {
 
 
     public function dispatcher(){
-        load::model('page')->get();
+        $pages = load::model('page')->get();
+
+        dispatcher::set('pages', $pages);
 
         function test_function()
         {
-            return dispatcher::get('get_pages', 'content');
+            return dispatcher::get('pages');
         }
 
         var_dump(test_function());
