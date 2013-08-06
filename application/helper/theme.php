@@ -548,7 +548,7 @@ function render_canonical( $location = null )
  */
 function render_shortlink( $location = null )
 {
-    echo "<link rel='shortlink' href='".BASE_URL.'p/'.ID."' />\n";
+    echo "<link rel='shortlink' href='".BASE_URL."p/' />\n";
 }
 
 
