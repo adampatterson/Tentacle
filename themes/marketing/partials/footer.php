@@ -20,18 +20,18 @@
 				<div class="span3">
 					<h4>Subscribe to our newsletter</h4>
 					<p>Get the lowdown on announcements and cool new features.</p>
-					<p class="lead"><a href="http://www.industrymailout.com/Industry/Subscribe.aspx?m=27205" target="_blank" onClick="ga('send', 'event', 'Footer', 'Button', 'Mailing List', 1) mixpanel.track('Content', { 'link': 'Mailing List' });" >Click here to subscribe</a></p>
+					<p class="lead"><a href="http://www.industrymailout.com/Industry/Subscribe.aspx?m=27205" target="_blank" onClick="ga('send', 'event', 'Footer', 'Link', 'Mailing List', 1) mixpanel.track('Content', { 'link': 'Mailing List' });" >Click here to subscribe</a></p>
 				</div>
 				
 				<div class="span3">
 					<h4>Report a Bug</h4>
 					<p class="lead">If you found a bug in the CMS use the on GitHub to report it.</p>
-					<p class="lead"><a href="https://github.com/adampatterson/Tentacle/issues" class="track" data-track="bar this" onClick="ga('send', 'event', 'Footer', 'Button', 'Git Issues', 1) mixpanel.track('Content', { 'link': 'Git Issue' });">Submit an Issue</a></p>
+					<p class="lead"><a href="https://github.com/adampatterson/Tentacle/issues" class="track" data-track="bar this" onClick="ga('send', 'event', 'Footer', 'Link', 'Git Issues', 1) mixpanel.track('Content', { 'link': 'Git Issue' });">Submit an Issue</a></p>
 				</div>
 				<div class="span3">
 					<h4>Contribute</h4>
 					<p class="lead">Tentacle CMS is hosted on Github, Contributing is easy!</p>
-					<p class="lead"><a href="https://github.com/adampatterson/Tentacle/issues" onClick="ga('send', 'event', 'Footer', 'Button', 'Git Source', 1); mixpanel.track('Content', { 'link': 'Git Source' });">Contribute today!</a></p>
+					<p class="lead"><a href="https://github.com/adampatterson/Tentacle/issues" onClick="ga('send', 'event', 'Footer', 'Link', 'Git Source', 1); mixpanel.track('Content', { 'link': 'Git Source' });">Contribute today!</a></p>
 				</div>
 
 			</div>
