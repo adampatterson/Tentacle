@@ -47,7 +47,7 @@
 				</ul>
 				<ul class="nav pull-right">
 					<li>
-						<a href="https://twitter.com/#!/TentacleCMS" target="_blank"  onClick="ga('send', 'event', 'Navigation Link', 'Twitter', 1);  mixpanel.track('Header Navigation', { 'link': 'Twitter' });">@TentacleCMS</a>
+						<a href="https://twitter.com/#!/TentacleCMS" target="_blank"  onClick="ga('send', 'event', 'Navigation', 'Link', 'Twitter', 1);  mixpanel.track('Header Navigation', { 'link': 'Twitter' });">@TentacleCMS</a>
 					</li>
 					<li class="">
 						<a href="http://try.tentaclecms.com" target="_blank" onClick="ga('send', 'event', 'Navigation', 'Link', 'Demo', 1);   mixpanel.track('Header Navigation', { 'link': 'Demo' });">Try it!</a>
