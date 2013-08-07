@@ -45,7 +45,7 @@
 						<a href="<?= BASE_URL ?>" class="brand" ><img src="<?= THEME ?>/assets/img/tentacle.png" alt=""/></a>
 					</li>
 				</ul>
-				<ul class="nav pull-right">ga('send', 'event', 'category', 'action', 'lavel', #value);
+				<ul class="nav pull-right">
 					<li>
 						<a href="https://twitter.com/#!/TentacleCMS" target="_blank"  onClick="ga('send', 'event', 'Navigation Link', 'Twitter', 1);  mixpanel.track('Header Navigation', { 'link': 'Twitter' });">@TentacleCMS</a>
 					</li>
