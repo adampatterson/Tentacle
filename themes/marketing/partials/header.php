@@ -19,6 +19,19 @@
     <meta property="og:site_name" content="<?= get::option('blogname'); ?>">
     <meta property="og:description" content="<?= get::option('blogdescription'); ?>">
 
+      <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-403336-32', 'tentaclecms.com');
+          ga('send', 'pageview', {
+              'anonymizeIp': true
+          });
+
+      </script>
+
 	<? theme::assets($assets);
       render_header( ); ?>
 </head>
@@ -32,24 +45,24 @@
 						<a href="<?= BASE_URL ?>" class="brand" ><img src="<?= THEME ?>/assets/img/tentacle.png" alt=""/></a>
 					</li>
 				</ul>
-				<ul class="nav pull-right">
+				<ul class="nav pull-right">ga('send', 'event', 'category', 'action', 'lavel', #value);
 					<li>
-						<a href="https://twitter.com/#!/TentacleCMS" target="_blank"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Twitter']);  mixpanel.track('Header Navigation', { 'link': 'Twitter' });">@TentacleCMS</a>
+						<a href="https://twitter.com/#!/TentacleCMS" target="_blank"  onClick="ga('send', 'event', 'Navigation Link', 'Twitter', 1);  mixpanel.track('Header Navigation', { 'link': 'Twitter' });">@TentacleCMS</a>
 					</li>
 					<li class="">
-						<a href="http://try.tentaclecms.com" target="_blank" onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Demo']);   mixpanel.track('Header Navigation', { 'link': 'Demo' });">Try it!</a>
+						<a href="http://try.tentaclecms.com" target="_blank" onClick="ga('send', 'event', 'Navigation', 'Link', 'Demo', 1);   mixpanel.track('Header Navigation', { 'link': 'Demo' });">Try it!</a>
 					</li>
 					<li class="">
-						<a href="http://tentaclecms.com/blog/"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Blog']);  mixpanel.track('Header Navigation', { 'link': 'Blog' });">Blog</a>
+						<a href="http://tentaclecms.com/blog/"  onClick="ga('send', 'event', 'Navigation', 'Link', 'Blog', 1);  mixpanel.track('Header Navigation', { 'link': 'Blog' });">Blog</a>
 					</li>
 					<li class="">
-						<a href="http://tentaclecms.com/docs/"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Documentation']);   mixpanel.track('Header Navigation', { 'link': 'Documentation' });">Documentation</a>
+						<a href="http://tentaclecms.com/docs/"  onClick="ga('send', 'event', 'Navigation', 'Link', 'Documentation', 1);  mixpanel.track('Header Navigation', { 'link': 'Documentation' });">Documentation</a>
 					</li>
 					<li>
-						<a href="http://community.tentaclecms.com/"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Community']);   mixpanel.track('Header Navigation', { 'link': 'Community' });">Community</a>
+						<a href="http://community.tentaclecms.com/"  onClick="ga('send', 'event', 'Navigation', 'Link', 'Community', 1);   mixpanel.track('Header Navigation', { 'link': 'Community' });">Community</a>
 					</li>
 					<li class="">
-						<a href="mailto:hello@tentaclecms.com" onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Contact']);   mixpanel.track('Header Navigation', { 'link': 'Contact' });">Contact Us</a>
+						<a href="mailto:hello@tentaclecms.com" onClick="ga('send', 'event', 'Navigation', 'Link', 'Contact', 1);   mixpanel.track('Header Navigation', { 'link': 'Contact' });">Contact Us</a>
 					</li>
 				</ul>
 			</div>

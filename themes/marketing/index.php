@@ -20,7 +20,7 @@ theme::part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>
 					<p class="lead">Tentacle makes it easy to Design, Develop, and Write content for the web.</p>
 					<p class="lead">It's goal is to help web professionals and small businesses create fast and flexible websites with the user in mind.</p>
 					<p class="lead">
-						<br /><a href="<?= BASE_URL ?>download/" onClick="_gaq.push(['_trackEvent', 'Header Link', 'Download', 'v 0.9.5.1 Beta']); mixpanel.track('Content', { 'Button': 'Download', 'version': 'v 0.9.5.1 Beta' });" class="btn btn-primary btn-large btn-block">&nbsp;&nbsp;&nbsp;Download v0.9.5.1 Beta&nbsp;&nbsp;&nbsp;</a>
+						<br /><a href="<?= BASE_URL ?>download/" onClick="ga('send', 'event', 'Button', 'Download v 0.9.5.1 Beta', 1); mixpanel.track('Content', { 'Button': 'Download', 'version': 'v 0.9.5.1 Beta' });" class="btn btn-primary btn-large btn-block">&nbsp;&nbsp;&nbsp;Download v0.9.5.1 Beta&nbsp;&nbsp;&nbsp;</a>
 					</p>
 				</div>
 				<div class="app-image pull-right">
@@ -45,7 +45,7 @@ theme::part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>
 
 				<!--<p class="lead">With an approval process in place content can be added as a draft, approved and versioned. We went another step in that you can modify approved content without publishing immediately publishing the changes to the live site.</p>-->
 				
-				<p><a class="btn btn-primary btn-large" href="https://github.com/adampatterson/Tentacle/wiki/Philosophy" onClick="_gaq.push(['_trackEvent', 'Content', 'Button', 'WIki']); mixpanel.track('Content', { 'Button': 'Wiki'});">Read more about our Philosophy</a></p>
+				<p><a class="btn btn-primary btn-large" href="https://github.com/adampatterson/Tentacle/wiki/Philosophy" onClick="ga('send', 'event', 'Content', 'Button', 'Wiki', 1);  mixpanel.track('Content', { 'Button': 'Wiki'});">Read more about our Philosophy</a></p>
 			</div>
 			
 			<div class="span4 offset1" id='get-it'>
@@ -54,16 +54,16 @@ theme::part( 'partials/header',array( 'title'=>'Welcome to Tentacle', 'assets'=>
 				
 					<hr />
 
-					<p class="lead"><a href="http://try.tentaclecms.com/" onClick="_gaq.push(['_trackEvent', 'Content', 'Link', 'Demo']); mixpanel.track('Content', { 'link': 'Demo' });">http://try.tentaclecms.com/</a><br />
+					<p class="lead"><a href="http://try.tentaclecms.com/" onClick="ga('send', 'event', 'Content', 'Link', 'Demo', 1); mixpanel.track('Content', { 'link': 'Demo' });">http://try.tentaclecms.com/</a><br />
 					<strong>username:</strong> demo<br />
 					<strong>password:</strong> demo</p>
-					<p><a class="btn btn-medium" href="http://try.tentaclecms.com/admin/" onClick="_gaq.push(['_trackEvent', 'Content', 'Button', 'Demo']);  mixpanel.track('Content', { 'Button': 'Demo' });">&nbsp;&nbsp;&nbsp;View the demo&nbsp;&nbsp;&nbsp;</a></p>
+					<p><a class="btn btn-medium" href="http://try.tentaclecms.com/admin/" onClick="ga('send', 'event', 'Content', 'Button', 'Demo', 1);  mixpanel.track('Content', { 'Button': 'Demo' });">&nbsp;&nbsp;&nbsp;View the demo&nbsp;&nbsp;&nbsp;</a></p>
 				</div>
 				
 				<div class="row">
 					<h2>IRC</h2>
 					<p class="lead">Join us in the IRC channel from <a href="http://freenode.net/">Freenode.net</a>, A great resource for Designers and Developers.</p>
-					<p><a href="http://webchat.freenode.net/?channel=tentacle" class="btn btn-medium " onClick="_gaq.push(['_trackEvent', 'Content', 'Link', 'IRC']); mixpanel.track('Content', { 'link': 'IRC' });">#tentacle</a></p>
+					<p><a href="http://webchat.freenode.net/?channel=tentacle" class="btn btn-medium " onClick="ga('send', 'event', 'Content', 'Link', 'IRC', 1); mixpanel.track('Content', { 'link': 'IRC' });">#tentacle</a></p>
 				</div>
 			</div>
 		</div>

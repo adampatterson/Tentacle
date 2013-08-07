@@ -39,22 +39,22 @@
 				<ul class="nav nav-pills span8">
 					<?/* https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fwww.tentaclecms.com&text=I%20just%20downloaded%20Tentacle%20CMS,%20you%20should%20try%20it%20as%20well!%20Get%20it%20here:%20&tw_p=tweetbutton&url=http%3A%2F%2Fwww.tentaclecms.com */?>
 					<li>
-						<a href="https://twitter.com/#!/TentacleCMS" target="_blank"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Twitter']); mixpanel.track('Footer Navigation', { 'link': 'Twitter' });">@TentacleCMS</a>
+						<a href="https://twitter.com/#!/TentacleCMS" target="_blank"  onClick="ga('send', 'event', 'Footer', 'Link', 'Twitter', 1); mixpanel.track('Footer Navigation', { 'link': 'Twitter' });">@TentacleCMS</a>
 					</li>
 					<li class="">
-						<a href="http://try.tentaclecms.com" target="_blank" onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Demo']); mixpanel.track('Footer Navigation', { 'link': 'Demo' });">Try it!</a>
+						<a href="http://try.tentaclecms.com" target="_blank" onClick="ga('send', 'event', 'Footer', 'Link', 'Demo', 1); mixpanel.track('Footer Navigation', { 'link': 'Demo' });">Try it!</a>
 					</li>
 					<li class="">
-						<a href="http://tentaclecms.com/blog/"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Blog']); mixpanel.track('Footer Navigation', { 'link': 'Blog' });">Blog</a>
+						<a href="http://tentaclecms.com/blog/"  onClick="ga('send', 'event', 'Footer', 'Link', 'Blog', 1); mixpanel.track('Footer Navigation', { 'link': 'Blog' });">Blog</a>
 					</li>
 					<li class="">
-						<a href="http://tentaclecms.com/docs/"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Documentation']); mixpanel.track('Footer Navigation', { 'link': 'Documentation' });">Documentation</a>
+						<a href="http://tentaclecms.com/docs/"  onClick="ga('send', 'event', 'Footer', 'Link', 'Documentation', 1); mixpanel.track('Footer Navigation', { 'link': 'Documentation' });">Documentation</a>
 					</li>
 					<li>
-						<a href="http://community.tentaclecms.com/"  onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Community']); mixpanel.track('Footer Navigation', { 'link': 'Community' });">Community</a>
+						<a href="http://community.tentaclecms.com/"  onClick="ga('send', 'event', 'Footer', 'Link', 'Community', 1); mixpanel.track('Footer Navigation', { 'link': 'Community' });">Community</a>
 					</li>
 					<li class="">
-						<a href="mailto:hello@tentaclecms.com" onClick="_gaq.push(['_trackEvent', 'Navigation Link', 'Link', 'Contact']); mixpanel.track('Footer Navigation', { 'link': 'Contact Us' });">Contact Us</a>
+						<a href="mailto:hello@tentaclecms.com" onClick="ga('send', 'event', 'Footer', 'Link', 'Contact', 1); mixpanel.track('Footer Navigation', { 'link': 'Contact Us' });">Contact Us</a>
 					</li>
 				</ul>
 				<ul class="nav nav-pills pull-right">
