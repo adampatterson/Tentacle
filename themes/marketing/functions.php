@@ -1,7 +1,7 @@
 <?
 // We need a unique ID for the host so hash it to keep it private and send it over
 
-function unversal_ui( $id = null ){
+function universal_ui( $id = null ){
 
     if($_SERVER['HTTP_HOST'] == "localhost")
     {

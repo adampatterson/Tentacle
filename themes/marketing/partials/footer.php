@@ -77,7 +77,7 @@
 	<script type="text/javascript" charset="utf-8">	
 	
 		//mixpanel.track_pageview("<?//= $track ?>");
-		//mixpanel.identify('90876ughbjknl097896t86fvbjlkj');
+		mixpanel.identify('<? universal_ui(); ?>');
 		mixpanel.track_forms("#newsletter", "Newsletter submission");
 		
 		$(".track").click(function() {
