@@ -343,7 +343,7 @@ die;
 			->where ( 'posts_id', '=', $id )
 			->execute();	
 
-        if($dirty_page_meta != '' )
+        if( ! empty($dirty_page_meta))
         {
             $clean_page_meta = unserialize( $dirty_page_meta[0]->meta_value );
             return (object)$clean_page_meta;
@@ -445,7 +445,7 @@ die;
 		$get_parent_uri = $pages->select( '*' )
 			->where ( 'uri', '=', $uri )
 			->execute();
-		
+
 
 		if ( $uri ):
 			if ( isset($get_parent_uri[0] ) and !empty($get_parent_uri) ):
