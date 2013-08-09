@@ -548,7 +548,7 @@ function render_canonical( $location = null )
  */
 function render_shortlink( $location = null )
 {
-    if (defined(IS_HOME))
+    if (defined('IS_HOME'))
         echo "<link rel='shortlink' href='".BASE_URL."' />\n";
     else
         echo "<link rel='shortlink' href='".BASE_URL.'p/'.ID."' />\n";
