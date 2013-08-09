@@ -19,23 +19,27 @@
     <meta property="og:site_name" content="<?= get::option('blogname'); ?>">
     <meta property="og:description" content="<?= get::option('blogdescription'); ?>">
 
-      <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <? render_meta( ); ?>
+    <? render_canonical( ); ?>
+    <? render_shortlink( ); ?>
 
-          ga('create', 'UA-403336-32', 'tentaclecms.com');
-          ga('send', 'pageview', {
-              'anonymizeIp': true
-          });
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      </script>
+      ga('create', 'UA-403336-32', 'tentaclecms.com');
+      ga('send', 'pageview', {
+          'anonymizeIp': true
+      });
 
-      <script type="text/javascript">
-          var base_theme      = '<?= THEME ?>';
-          var base_url        = '<?= BASE_URL ?>';
-      </script>
+    </script>
+
+    <script type="text/javascript">
+      var base_theme      = '<?= THEME ?>';
+      var base_url        = '<?= BASE_URL ?>';
+    </script>
 
 	<? theme::assets($assets);
       render_header( ); ?>
