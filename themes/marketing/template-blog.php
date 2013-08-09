@@ -18,7 +18,7 @@ theme::part('partials/header',array('title'=>'Blog','assets'=>'marketing')); ?>
 		<div class="row bump">
 
             <div class="span12">
-                <h1 class="title"><a href="<? _e(BASE_URL.$post->uri) ?>"><? _e($post->title) ?></a></h1>
+                <h1 class="title" onClick="ga('send', 'event', 'Post', 'Link', 'Twitter<? _e($post->title) ?>', 1); mixpanel.track('Content', { 'Link': 'Post', 'version': '<? _e($post->title) ?>' });"><a href="<? _e(BASE_URL.$post->uri) ?>"><? _e($post->title) ?></a></h1>
                 <hr />
             </div>
 
