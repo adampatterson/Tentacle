@@ -21,7 +21,9 @@ class page_controller {
             define( 'IS_HOME'    , TRUE );
         elseif	( URI == '' || $uri == $blog_uri ):
             $uri 		= un_slash( $blog_uri );
+            define( 'IS_HOME'    , FALSE );
         endif;
+
 
         $id = load::model('page')->get_by_uri(URI);
 

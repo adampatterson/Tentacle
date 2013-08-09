@@ -535,7 +535,7 @@ function render_meta( $location = null )
  */
 function render_canonical( $location = null )
 {
-    echo "<link rel='canonical' href='".BASE_URL.URI."' />\n";
+        echo "<link rel='canonical' href='".BASE_URL.URI."' />\n";
 }
 
 
@@ -548,7 +548,11 @@ function render_canonical( $location = null )
  */
 function render_shortlink( $location = null )
 {
-    echo "<link rel='shortlink' href='".BASE_URL.'p/'.ID."' />\n";
+    if (IS_HOME)
+        echo "<link rel='shortlink' href='".BASE_URL."' />\n";
+    else
+        echo "<link rel='shortlink' href='".BASE_URL.'p/'.ID."' />\n";
+
 }
 
 
