@@ -11,7 +11,7 @@ License URI: license.txt
 
 theme::part('partials/header',array('title'=>'Blog','assets'=>'marketing')); ?>
 
-    <div class="container bump-top">
+    <div class="container bump-top posts">
 		<?
 	// Loop all of the blog posts.
 	foreach ($posts as $post): $author_meta = $author->get_meta ( $post->author ); ?>
@@ -22,7 +22,7 @@ theme::part('partials/header',array('title'=>'Blog','assets'=>'marketing')); ?>
                 <hr />
             </div>
 
-			<div class="span8">
+			<div class="span8 post">
     			<?= the_content( $post->content ); ?>
 			</div><!--/span8-->
 

@@ -9,7 +9,7 @@ $author_meta = $author->get_meta ( $post->author );
 
 ?>
 
-<div class="container bump-top">
+<div class="container single-post bump-top">
 
 	<div class="row">
 
@@ -18,7 +18,7 @@ $author_meta = $author->get_meta ( $post->author );
             <hr/>
         </div>
 
-		<div class="span8">
+		<div class="span8 post">
             <?= the_content( $post->content ); ?>
             <?= render_content(); ?>
 		</div><!--/span8-->

@@ -32,6 +32,11 @@
 
       </script>
 
+      <script type="text/javascript">
+          var base_theme      = '<?= THEME ?>';
+          var base_url        = '<?= BASE_URL ?>';
+      </script>
+
 	<? theme::assets($assets);
       render_header( ); ?>
 </head>

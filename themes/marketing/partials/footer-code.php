@@ -3,3 +3,9 @@
 
 	<script language=JavaScript><!--
 	if (browserType) {if (browserVer) {document.write("</div>"); }document.write("</div>");}// --></script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        App.init();
+    });
+</script>

@@ -90,6 +90,12 @@
 		});
 	</script>
 
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            App.init();
+        });
+    </script>
+
     <? render_footer( ); ?>
     </body>
 </html>

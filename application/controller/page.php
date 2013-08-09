@@ -27,6 +27,8 @@ class page_controller {
 
         if ( $id )
             define( 'ID'            , $id->id);
+        else
+            define( 'ID'            , '' );
 
         $blog_uri = un_slash( $blog_uri );
 
