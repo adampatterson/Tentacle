@@ -25,7 +25,7 @@ tentacle/js/flot/API.txt
 tentacle/js/flot/jquery.js
 tentacle/js/flot/README.txt
 /get.sh
-/themes/custom-theme
+/themes/*
 /application/logs/*.php
 /application/library/Requests/
 /application/library/shadow/
