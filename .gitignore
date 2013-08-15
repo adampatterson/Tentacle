@@ -1,12 +1,7 @@
 /_reference
 /application/config/development
-/log.txt
-/log-dev.txt
-/.project
 /tentacle/admin/.sass-cache/
 /application/config/deployment/db.php
-.idea/
-.settings/
 application/config/setup/db.php
 tentacle/themes/default/template-rfp.php
 blog/
@@ -29,5 +24,10 @@ tentacle/js/flot/README.txt
 /application/logs/*.php
 /application/library/Requests/
 /application/library/shadow/
-loaderio-89a0001b803294f96648ff842f5feb43.txt
+/*.pdf
+/*.html
+/*.txt
+.idea/
+.settings/
+/*.tmproj
 /.DS_Store
