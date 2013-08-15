@@ -68,7 +68,7 @@ class page_model
 			'meta_key'=>'scaffold_data',
 			'meta_value'=>$meta_value
 		));
-die;
+#die;
 		note::set('success','page_add','Page Added!');
 		return $row->id;
 	}
