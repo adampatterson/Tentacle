@@ -405,7 +405,7 @@ class date
             $time = time();
 
         if(event::exists( "post_date" ) )
-            $date = event::trigger( "post_date",$time );
+            $date = event::trigger( "post_date", $time );
 
         # @togo, get::option('date_format')
         if ($pattern != null)

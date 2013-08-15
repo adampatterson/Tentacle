@@ -143,7 +143,7 @@
 								<div class="clearfix">
 									<label>Meta Description</label>
 									<div class="input">
-										<textarea name="meta_description" cols="40" rows="5">Enter your comments here...</textarea>
+										<textarea name="meta_description" cols="40" rows="5" placeholder="Enter your excerpt here..."></textarea>
 										<span class="help-block">A short summary of the page's content</span>
 									</div>
 								</div>

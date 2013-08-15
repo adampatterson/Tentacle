@@ -270,17 +270,18 @@ class post_model
 	
 		$meta_value = serialize( $scaffold_data );
 
+
 		$page_meta      = db('posts_meta');
 
-		$page->update(array(
-			'meta_key'=>'scaffold_data',
+		$meta = $page_meta->update(array(
 			'meta_value'=>$meta_value
 		))
 			->where( 'posts_id', '=', $id )
 			->execute();
 			
 		note::set('success','page_update','Page Updated!');
-		return $id;	
+
+        return $id;
 	}
 
 
@@ -418,18 +419,17 @@ class post_model
 	 * @author Adam Patterson
 	 */
 	public function get_post_meta ( $id='' )
-	{		
-		$post_meta = db ( 'posts_meta' );
-	
-		$dirty_post_meta = $post_meta->select( 'meta_value' )
-			->where ( 'posts_id', '=', $id )
-			->execute();	
-		
-        if($dirty_post_meta != '')
+	{
+        $post_meta = db ( 'posts_meta' );
+
+        $dirty_post_meta = $post_meta->select( 'meta_value' )
+            ->where ( 'posts_id', '=', $id )
+            ->execute();
+
+        if( ! empty($dirty_post_meta))
         {
             $clean_post_meta = unserialize( $dirty_post_meta[0]->meta_value );
-
-            return (object) $clean_post_meta;
+            return (object)$clean_post_meta;
         }
         else
         {

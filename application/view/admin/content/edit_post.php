@@ -152,7 +152,7 @@
 								<div class="control-group">
 									<label class="control-label" for="meta_description">Meta Description</label>
 									<div class="controls">
-										<textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'><?= $get_post_meta->meta_description ?></textarea>
+         								<textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'><?= $get_post_meta->meta_description ?></textarea>
 										<span class="help-block">A short summary of the page's content</span>
 									</div>
 								</div>
