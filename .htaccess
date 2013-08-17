@@ -69,16 +69,11 @@ ErrorDocument 500 default
 
 <IfModule mod_rewrite.c>
     RewriteEngine on
-
+    RewriteCond %{REQUEST_FILENAME} \.(gif|jpe?g|png|js|css|swf|ico|txt|pdf|xml)$ [OR]
+    RewriteCond %{REQUEST_FILENAME} -s [OR]
+    RewriteCond %{REQUEST_FILENAME} -l
+    RewriteRule ^.*$ - [L]
     RewriteCond $1 !^(index\.php|tentacle|favicon\.ico|storage|themes)
-
-	# Do not enable path rewriting for files that exist
-#	RewriteCond %{REQUEST_FILENAME} !-f
-#	RewriteCond %{REQUEST_FILENAME} !-d
-#	RewriteCond	%{REQUEST_FILENAME} !favicon.ico
-
-	# For requests that are not actual files
-	# rewrite to index.php?/PATH
     RewriteRule ^(.*)$ index.php?__dingo_page=$1 [L]
 </IfModule>
 
