@@ -1,0 +1,25 @@
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresDefault A0
+
+	<FilesMatch "/tentacle/(css|fonts|images|js)/\.(js|css|otf|eot|svg|woff|gif|png|jpg?g)$">
+		ExpiresByType application/javascript                "access plus 1 month"
+		ExpiresByType application/x-javascript              "access plus 1 month"
+		ExpiresByType text/css                              "access plus 1 month"
+
+        ExpiresByType image/jpg                             "access plus 1 month"
+        ExpiresByType image/png                             "access plus 1 month"
+        ExpiresByType image/gif                             "access plus 1 month"
+        ExpiresByType image/jpeg                            "access plus 1 month"
+
+    # Web fonts
+        ExpiresByType application/font-woff                 "access plus 1 month"
+        ExpiresByType application/vnd.ms-fontobject         "access plus 1 month"
+        ExpiresByType application/x-font-ttf                "access plus 1 month"
+        ExpiresByType font/opentype                         "access plus 1 month"
+        ExpiresByType image/svg+xml                         "access plus 1 month"
+
+       ExpiresByType application/json                      "access plus 0 seconds"
+
+	</FilesMatch>
+</IfModule>
