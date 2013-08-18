@@ -1,4 +1,4 @@
-<? load::view('admin/partials/template-header', array('title' => 'Edit '.$get_page->title, 'assets' => array('application', user_editor()) ) );?>
+<? load::view('admin/partials/template-header', array('title' => 'Edit '.$get_page->title, 'assets' => array('application', 'filedrop', user_editor()) ) );?>
 
 <div id="wrap">
 	<!--
@@ -208,4 +208,4 @@
 </div>
 <!-- #wrap -->
 <? load::view('admin/partials/media-modal'); ?>
-<? load::view('admin/partials/template-footer', array( 'assets' => array( user_editor() ) ) ); ?>
+<? load::view('admin/partials/template-footer', array( 'assets' => array( 'filedrop', user_editor() ) ) ); ?>
