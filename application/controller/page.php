@@ -178,7 +178,7 @@ class page_controller {
                 if ( !$post ):
                     tentacle::render ( '404' );
                 else:
-                    $post_meta 	= $post->get_post_meta( $post->id );
+                    $post_meta 	= $page->get_page_meta( $post->id );
 
                     logger::set('Post total', count($post));
                     logger::set('Post Template', $post->template);
