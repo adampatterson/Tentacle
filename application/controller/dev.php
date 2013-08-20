@@ -1180,4 +1180,9 @@ Test two
 
         var_dump($posts);
     }
+
+    public function content_model () {
+        $content = load::model( 'content' );
+
+    }
 }
