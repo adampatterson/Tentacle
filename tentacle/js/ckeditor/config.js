@@ -34,6 +34,7 @@ CKEDITOR.editorConfig = function( config ) {
     // The toolbar groups arrangement, optimized for a single toolbar row.
     config.toolbarGroups = [
         { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+        { name: 'pbckcode' },
         // On the basic preset, clipboard and undo is handled by keyboard.
         // Uncomment the following line to enable them on the toolbar as well.
         // { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
@@ -45,7 +46,10 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'styles' },
         { name: 'colors' },
         { name: 'tools' }
+
     ];
+
+    config.extraPlugins = 'pbckcode';
 
 	// The toolbar groups arrangement, optimized for a single toolbar row.
 	// config.toolbarGroups = [
