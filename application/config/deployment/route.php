@@ -37,14 +37,12 @@ route::set('comment/([-_a-zA-Z0-9]+)',array(
     'arguments'=>array('$1')
 	));
 
-
 // file
 route::set('attachment',array(
     'controller'=>'attachment',
     'function'=>'index'
 	));
 	
-
 // admin route
 route::set('admin/([-_a-zA-Z0-9]+)',array(
     'controller'=>'admin',

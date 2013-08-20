@@ -23,6 +23,10 @@ class dev_controller {
 		var_dump(is::android());
 	}
 
+    public function routs () {
+        //route::dump_routs();
+    }
+
     public function logger(){
         $array = array( 'one'=>'test', 'two'=>'value' );
 

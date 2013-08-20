@@ -86,10 +86,10 @@ class bootstrap
         // Load route configuration
         require_once(APPLICATION.'/'.CONFIG.'/'.CONFIGURATION.'/route.php');
 
+        // @todo get routs set in any plugins
 
         // Get route
         $uri = route::get(bootstrap::get_request_url());
-
 
         // Set current page
         define('CURRENT_PAGE',$uri['string']);
