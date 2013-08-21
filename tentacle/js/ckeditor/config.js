@@ -51,6 +51,10 @@ CKEDITOR.editorConfig = function( config ) {
 
     config.extraPlugins = 'pbckcode';
 
+    config.pbckcode = {
+        highlighter : "PRETTIFY"
+    };
+
 	// The toolbar groups arrangement, optimized for a single toolbar row.
 	// config.toolbarGroups = [
 	// 	{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
