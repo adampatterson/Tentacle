@@ -62,8 +62,8 @@ class user_model extends properties
 
 		note::set('success','user_add','User Added!');
 	}
-	
-	
+
+
 	/**
 	* Update User
 	* ----------------------------------------------------------------------------------------------*/
@@ -74,16 +74,16 @@ class user_model extends properties
 		$old_email    = input::post( 'old_email' );
 		$new_email    = input::post( 'email' );
 		$type         = input::post( 'type' );
-		
+
 		$first_name   = input::post( 'first_name' );
 		$last_name    = input::post( 'last_name' );
 		$display_name = input::post( 'display_name' );
 		$url          = input::post( 'url' );
-		
+
 		$editor       = input::post( 'editor' );
-		
+
 		$profile      = input::post( 'profile' );
-		
+
 		// need to set the users old email address before you update it.
 
 		user::update($old_email)
@@ -96,8 +96,8 @@ class user_model extends properties
 			->data('editor',$editor)
 			->data('display_name',$display_name)
 			->save();
-		
-		if ($password != '') 
+
+		if ($password != '')
 		{
 			user::update($new_email)
 				->password($password)
@@ -113,11 +113,11 @@ class user_model extends properties
         }
 
 		note::set('success','user_updated','User Updated!');
-	
+
 		return TRUE;
 	}
-	
-	
+
+
 	/**
 	* Get User
 	* ----------------------------------------------------------------------------------------------*/
@@ -129,32 +129,32 @@ class user_model extends properties
                 ->select( '*' )
 				->order_by ( 'username', 'DESC' )
 				->execute ();
-				
+
 			return $users;
-				
+
 		} else {
 			// Get Comments Database
 			$users = $this->user_table()
                 ->select( '*' )
 				->where ( 'id', '=', $id)
-				->execute();				
-				
-			return $users[0];	
+				->execute();
+
+			return $users[0];
 		}
 	}
-	
+
 	public function set_password(  )
 	{
 		$user = self::get_hash( input::post('hash') );
-		
+
 		user::update($user->email)
 			->password( input::post('password') )
 			->data( 'activation_key', '' )
 			->save();
-			
+
 		return $user;
 	}
-	
+
 	/**
 	* Get from Hash
 	* ----------------------------------------------------------------------------------------------*/
@@ -163,17 +163,17 @@ class user_model extends properties
 		$user_hash = db::query("SELECT * FROM users WHERE
 			data LIKE '%".$hash."%'
 			ORDER BY id ASC");
-			
+
 		$total = count($user_hash);
-		
+
 		if ($total != 1) {
 			return false;
 		} else {
 			return $user_hash[0];
 		}
 	}
-	
-	
+
+
 	/**
 	* Get user Meta
 	* ----------------------------------------------------------------------------------------------*/

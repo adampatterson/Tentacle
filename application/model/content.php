@@ -140,9 +140,7 @@ class content_model extends properties {
 
         $meta_value = serialize( $scaffold_data );
 
-        $posts_meta      = db('posts_meta');
-
-        $posts_meta->insert(array(
+        $this->post_meta_table()->insert(array(
             'posts_id'=>$id,
             'meta_key'=>'scaffold_data',
             'meta_value'=>$meta_value
@@ -174,9 +172,7 @@ class content_model extends properties {
 
         $post_author   = user::id();
 
-        $posts          = db('posts');
-
-        $row = $posts->insert(array(
+        $row = $this->post_table()->insert(array(
             'title'		=>$title,
             'slug'		=>$slug,
             'uri'		=>$uri,
@@ -320,10 +316,7 @@ class content_model extends properties {
 
         endif;
 
-
-        $page          = db('posts');
-
-        $row = $page->update(array(
+        $row = $this->post_table()->update(array(
             'title'		=>$title,
             'slug'		=>$slug,
             'content'	=>$content,

@@ -140,7 +140,7 @@ class statistics_model extends properties
 
     public function look_up( $value )
     {
-        $get_statisitics = $this->statistics_table_meta()
+        $get_statisitics = $this->statistics_meta_table()
             ->select( '*' )
             ->where( 'value', '=', $value )
             ->execute();
