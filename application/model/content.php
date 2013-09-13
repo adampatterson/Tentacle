@@ -1,10 +1,9 @@
 <?
-class content_model {
+load::helper( 'properties' );
+
+class content_model extends properties {
 
     public $type = 'post';
-    public $post_table;
-    public $post_meta_table;
-
 
     /**
      * Function: type
@@ -21,16 +20,6 @@ class content_model {
         $this->type = $t;
 
         return $this;
-    }
-
-    public function post_table ( )
-    {
-        return $this->post_table = db ( 'posts' );
-    }
-
-    public function post_meta_table ( )
-    {
-        return $this->post_meta_table = db ( 'posts_meta' );
     }
 
 

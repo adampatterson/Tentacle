@@ -1,19 +1,8 @@
 <?
-class delete_model {
+load::helper( 'properties' );
 
-    public $post_table;
-    public $post_meta_table;
-
-    public function post_table ( )
-    {
-        return $this->post_table = db ( 'posts' );
-    }
-
-    public function post_meta_table ( )
-    {
-        return $this->post_meta_table = db ( 'posts_meta' );
-    }
-
+class delete_model extends properties
+{
 
     /**
 	 * Mark a record as deleted

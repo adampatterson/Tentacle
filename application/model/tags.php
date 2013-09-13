@@ -1,26 +1,6 @@
 <?
-class tags_model
+class tags_model extends properties
 {
-    public $term_table;
-    public $term_taxonomy_table;
-    public $term_relationship_table;
-
-    public function term_table ( )
-    {
-        return $this->term_table = db ( 'terms' );
-    }
-
-    public function term_taxonomy_table ( )
-    {
-        return $this->term_taxonomy_table = db ( 'term_taxonomy' );
-    }
-
-    public function term_relationship_table ( )
-    {
-        return $this->term_relationship_table = db ( 'term_relationships' );
-    }
-
-
     // Add tag
 	//----------------------------------------------------------------------------------------------
 	public function add ( $post_tags )

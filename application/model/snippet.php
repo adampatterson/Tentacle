@@ -1,4 +1,6 @@
 <?
+load::helper( 'properties' );
+
 /*
     const TABLE_NAME = 'snippet';
     
@@ -13,17 +15,9 @@
     public $updated_by_id;
  */
 
-class snippet_model  
+class snippet_model extends properties
 {
-    public $snippet_table;
-
-    public function snippet_table( )
-    {
-        return $this->snippet_table = db ( 'snippet' );
-    }
-
-
-	// Add Snippet
+    // Add Snippet
 	//----------------------------------------------------------------------------------------------
 	public function add () 
 	{

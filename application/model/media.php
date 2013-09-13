@@ -1,12 +1,6 @@
 <?
 class media_model
 {
-    public $media_table;
-
-    public function media_table ( )
-    {
-        return $this->media_table = db ( 'media' );
-    }
 
 
     # @todo: if the file name is the same do not add it to the databsdse.

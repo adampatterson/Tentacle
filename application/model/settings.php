@@ -1,14 +1,9 @@
 <?
-class settings_model  
+load::helper( 'properties' );
+
+class settings_model extends properties
+
 {
-    public $options_table;
-
-    public function options_table( )
-    {
-        return $this->options_table = db ( 'options' );
-    }
-
-
 	// Add Setting
 	//----------------------------------------------------------------------------------------------
 	public function add ( $key, $value, $autoload )	

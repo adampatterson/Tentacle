@@ -1,15 +1,7 @@
 <?
 class user_model
 {
-    public $user_table;
-
-    public function user_table ( )
-    {
-        return $this->user_table = db ( 'users' );
-    }
-
-
-	/**
+    /**
 	* Add User
 	* ----------------------------------------------------------------------------------------------*/
 	public function add () 

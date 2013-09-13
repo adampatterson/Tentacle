@@ -1,26 +1,7 @@
 <?
-class category_model {
+load::helper( 'properties' );
 
-    public $terms_table;
-    public $term_taxonomy_table;
-    public $term_relationships;
-
-
-    public function terms_table ( )
-    {
-        return $this->terms_table = db ( 'terms' );
-    }
-
-    public function term_taxonomy_table ( )
-    {
-        return $this->term_taxonomy_table = db ( 'term_taxonomy' );
-    }
-
-    public function term_relationships_table ( )
-    {
-        return $this->term_relationships_table = db ( 'term_relationships_table' );
-    }
-
+class category_model extends properties {
 
 	// Add Category
 	//----------------------------------------------------------------------------------------------
@@ -38,7 +19,7 @@ class category_model {
 
         if ( !self::lookup( $term_slug ) )
         {
-            $category_id = $this->terms_table()
+            $category_id = $this->term_table()
                     ->insert(array(
                     'name'=>$term_name,
                     'slug'=>$term_slug
@@ -69,7 +50,7 @@ class category_model {
 		$term_slug = string::camelize( $term_slug );
 		$term_slug = string::underscore( $term_slug );
 
-        $this->terms_table()
+        $this->term_table()
                 ->update( array(
 				'name'=>$term_name,
 				'slug'=>$term_slug,
@@ -85,7 +66,7 @@ class category_model {
     //----------------------------------------------------------------------------------------------
     public function lookup ( $slug='' )
     {
-        $get_category = $this->terms_table()
+        $get_category = $this->term_table()
             ->select( '*' )
             ->where ( 'slug', '=', $slug )
             ->order_by ( 'id', 'DESC' )
@@ -103,13 +84,13 @@ class category_model {
 	public function get( $id='' )
 	{
 		if ( $id == '' ):
-            return $this->terms_table()
+            return $this->term_table()
                 ->select( '*' )
                 ->order_by( 'id', 'DESC' )
                 ->execute();
 
 		elseif( is_string( $id ) && !is_numeric($id) ):
-            $get_categories = $this->terms_table()
+            $get_categories = $this->term_table()
                 ->select( '*' )
                 ->where( 'slug', '=', $id )
                 ->order_by( 'id', 'DESC' )
@@ -121,7 +102,7 @@ class category_model {
                 return $get_categories[0];
             }
         else:
-			$get_category = $this->terms_table()
+			$get_category = $this->term_table()
                 ->select( '*' )
 				->where( 'id', '=', $id )
 				->order_by( 'id', 'DESC' )
@@ -146,7 +127,7 @@ class category_model {
 	//----------------------------------------------------------------------------------------------
 	public function delete( $id ) 
 	{
-        $this->terms_table()->delete( 'id','=',$id );
+        $this->term_table()->delete( 'id','=',$id );
 	}
 	
 	
@@ -154,7 +135,7 @@ class category_model {
 	//----------------------------------------------------------------------------------------------	
 	public function relations( $post_id = '', $term_id = '' )
 	{	
-        $this->term_relationships_table()->insert( array(
+        $this->term_relationship_table()->insert( array(
             'page_id'		=> $post_id,
             'term_id'		=> $term_id,
         ), FALSE );

@@ -1,26 +1,10 @@
 <?
-class statistics_model
+class statistics_model extends properties
 {
-    public $statistics_table;
-    public $statistics_meta_table;
-
-    public function statistics_table ( )
-    {
-        return $this->statistics_table = db ( 'statistics' );
-    }
-
-    public function statistics_meta_table ( )
-    {
-        return $this->statistics_meta_table = db ( 'statistics_meta' );
-    }
-
-
     /*
      * Top Content:
      * SELECT `uri_id`, COUNT(*) AS total FROM `statistics` WHERE `date` BETWEEN '1361920693' AND '1361924147' GROUP BY `uri_id` ORDER BY total DESC
      */
-
-
     public function count_by_chunks( $count = '6' )
     {
         $number_array   = array();
