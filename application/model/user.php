@@ -1,5 +1,7 @@
 <?
-class user_model
+load::helper( 'properties' );
+
+class user_model extends properties
 {
     /**
 	* Add User
