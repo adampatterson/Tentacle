@@ -294,8 +294,8 @@ class action_controller {
  	{
 		tentacle::valid_user();
 
-		$page = load::model( 'page' );
-		$page_single = $page->add( );
+		$page = load::model( 'content' );
+		$page_single = $page->type('page')->add( );
 			
 		// Delete the selected tempalte from the session once the Page has been posted.
 		session::delete ( 'template' );
@@ -317,8 +317,8 @@ class action_controller {
  	{
 		tentacle::valid_user();
 
-		$page = load::model( 'page' );
-		$page_single = $page->update( $page_id );
+		$page = load::model( 'content' );
+		$page_single = $page->type('page')->update( $page_id );
 		
 		/*
 		$post_tags = input::post( 'tags' );
@@ -377,8 +377,8 @@ class action_controller {
  	{
 		tentacle::valid_user();
 			
-		$post = load::model( 'post' );
-		$post_single = $post->add( );
+		$post = load::model( 'content' );
+		$post_single = $post->type( 'post' )->add( );
 		
 		$post_categories = input::post( 'post_category' );
 		$category = load::model( 'category' );
@@ -408,8 +408,8 @@ class action_controller {
  	{
 		tentacle::valid_user();
 
-		$post = load::model( 'post' );
-		$post_single = $post->update( $post_id );
+		$post = load::model( 'content' );
+		$post_single = $post->type( 'post' )->update( $post_id );
 
         $post_categories = input::post( 'post_category' );
         $category = load::model( 'category' );
@@ -903,7 +903,7 @@ win.send_to_editor('<?=$html?>');
         $parser = new WXR_Parser();
         $import = $parser->parse( $wordpress_xml );
 
-        $post           = load::model('post');
+        $post           = load::model('content');
         $categories     = load::model('category');
         $tags           = load::model('tags');
         $media          = load::model( 'media' );

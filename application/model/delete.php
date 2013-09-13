@@ -1,16 +1,29 @@
 <?
 class delete_model {
-	
-	/**
+
+    public $post_table;
+    public $post_meta_table;
+
+    public function post_table ( )
+    {
+        return $this->post_table = db ( 'posts' );
+    }
+
+    public function post_meta_table ( )
+    {
+        return $this->post_meta_table = db ( 'posts_meta' );
+    }
+
+
+    /**
 	 * Mark a record as deleted
 	 *
 	 * @author Adam Patterson
 	 */
 	public function soft_delete ( $id='' ) 
 	{
-		$page_meta      = db('posts_meta');
-
-		$page->update(array(
+        $this->post_table()
+            ->update(array(
 			'status'=>'trash'
 		))
 			->where( 'id', '=', $id )
@@ -27,18 +40,16 @@ class delete_model {
 	 */
 	public function is_delete ( $id='' ) 
 	{
-		$page	      = db('posts_meta');
-
-		$deleted_page = $page->count( )
+		$deleted_page = $this->post_table()
+            ->count( )
 			->where ( 'id', '=', $id )
 			->clause('AND')
 			->where ( 'status', '=', 'trash' )
 			->execute();
 		
-		$deleted_page = $page->total( );
+		$deleted_page = $this->post_table()->total( );
 		
 		if ( $deleted_page >= 1 )
 			return true;
 	}
-	
 }

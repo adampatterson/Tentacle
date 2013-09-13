@@ -1,17 +1,44 @@
 <?
 class content_model {
 
+    public $type = 'post';
+    public $post_table;
+    public $post_meta_table;
+
+
+    /**
+     * Function: type
+     *	sets the content context, defaulting to post
+     *
+     * Parameters:
+     *	$t - String/Bool - True for post
+     *
+     * Returns:
+     *	string
+     */
+    public function type ( $t = 'post' )
+    {
+        $this->type = $t;
+
+        return $this;
+    }
+
+    public function post_table ( )
+    {
+        return $this->post_table = db ( 'posts' );
+    }
+
+    public function post_meta_table ( )
+    {
+        return $this->post_meta_table = db ( 'posts_meta' );
+    }
+
+
     /**
      * Function: add
      *	Adds content to the 'posts' table
-     *
-     * Parameters:
-     *	$type - String/Bool - True for post
-     *
-     * Returns:
-     *	INT
      */
-    public function add ( $type = 'post' )
+    public function add ( )
     {
         $uri_date = date('Y', time()).'/'.date('m', time());
 
@@ -23,7 +50,7 @@ class content_model {
 
         $post_author   = user::id();
 
-        if ( $type == 'post' ): # Post
+        if ( $this->type == 'post' ): # Post
             $uri 		   = slash_it( get::option('blog_uri') ).$uri_date.'/'.$slug.'/';
 
             $post_template = input::post( 'post_type' );
@@ -34,7 +61,6 @@ class content_model {
 
         else: # Page
             $parent_page   = input::post( 'parent_page' );
-            //$post_template = input::post( 'page_template' );
 
             $dirty_template = session::get( 'template' );
 
@@ -49,7 +75,7 @@ class content_model {
         endif;
 
 
-        if ( $type == 'page' ):
+        if ( $this->type == 'page' ):
             $date = time();
         elseif ( $publish == 'published-on'):
 
@@ -79,23 +105,23 @@ class content_model {
             $date = strtotime( $current_composed_time );
         endif;
 
-        $page          = db('posts');
+        $posts          = db('posts');
 
-        $row = $page->insert(array(
+        $row = $posts->insert(array(
             'title'		=> $title,
             'slug'		=> $slug,
             'uri'		=> $uri,
             'content'	=> $content,
             'status'	=> $status,
             'author'	=> $post_author,
-            'type'		=> $type,
+            'type'		=> $this->type,
             'template'	=> $post_template,
             'date'		=> $date,
             'modified'	=> time()
         ));
 
         if ( $this->add_scaffold( $row->id ) ):
-            note::set('success','post_add','Post Added!');
+            note::set('success','post_add', $this->type.' added!');
 
             return $row->id;
         else:
@@ -125,9 +151,9 @@ class content_model {
 
         $meta_value = serialize( $scaffold_data );
 
-        $page_meta      = db('posts_meta');
+        $posts_meta      = db('posts_meta');
 
-        $page_meta->insert(array(
+        $posts_meta->insert(array(
             'posts_id'=>$id,
             'meta_key'=>'scaffold_data',
             'meta_value'=>$meta_value
@@ -136,9 +162,11 @@ class content_model {
         return true;
     }
 
+
     // Add Post's by import
     //----------------------------------------------------------------------------------------------
-    public function add_by_import ( $import, $type = 'post' )
+    // @todo update impoirt process to use $this->type
+    public function add_by_import ( $import )
     {
         $uri_date = new DateTime( $import['post_date'] );
 
@@ -157,16 +185,16 @@ class content_model {
 
         $post_author   = user::id();
 
-        $page          = db('posts');
+        $posts          = db('posts');
 
-        $row = $page->insert(array(
+        $row = $posts->insert(array(
             'title'		=>$title,
             'slug'		=>$slug,
             'uri'		=>$uri,
             'content'	=>$content,
             'status'	=>$status,
             'author'	=>$post_author,
-            'type'		=>$type,
+            'type'		=> $this->type,
             'template'	=>$post_template,
             'date'		=>$date,
             'modified'	=>time()
@@ -174,9 +202,9 @@ class content_model {
 
         $meta_value = serialize( '' );
 
-        $page_meta      = db('posts_meta');
+        $posts_meta      = db('posts_meta');
 
-        $page_meta->insert(array(
+        $posts_meta->insert(array(
             'posts_id'=>$row->id,
             'meta_key'=>'scaffold_data',
             'meta_value'=>$meta_value
@@ -196,12 +224,6 @@ class content_model {
         $content       = input::post( 'content' );
         $status        = input::post( 'status' );
         $publish       = input::post( 'publish' );
-
-        $post_template = input::post( 'post_type' );
-
-        if ( $post_template == '' )
-            $post_template = 'type-post';
-
 
         $minute	= input::post( 'minute' );
         $hour	= input::post( 'hour' );
@@ -274,8 +296,6 @@ class content_model {
 
         endif;
 
-        $post_type     = $_POST['page-or-post'];
-
         $post_author   = user::id();
 
 
@@ -286,7 +306,32 @@ class content_model {
         $uri_date = $uri_date->format('Y').'/'.$uri_date->format('m');
         $uri = slash_it( get::option('blog_uri') ).$uri_date.'/'.$slug.'/';
 
-        // Run content through HTMLawd and Samrty Text
+
+        if ( $this->type == 'post' ): # Post
+            $uri 		   = slash_it( get::option('blog_uri') ).$uri_date.'/'.$slug.'/';
+
+            $post_template = input::post( 'post_type' );
+
+            if ( $post_template == '' ):
+                $post_template = 'type-post';
+            endif;
+
+        else: # Page
+            $parent_page   = input::post( 'parent_page' );
+
+            $dirty_template = session::get( 'template' );
+
+            if ( $dirty_template == '' ):
+                $post_template = 'default';
+            else:
+                $post_template = $dirty_template;
+            endif;
+
+            $uri 			= $this->get_parent_uri( $parent_page ).$slug.'/';
+
+        endif;
+
+
         $page          = db('posts');
 
         $row = $page->update(array(
@@ -295,7 +340,6 @@ class content_model {
             'content'	=>$content,
             'status'	=>$status,
             'author'	=>$post_author,
-            'type'		=>$post_type,
             'template'	=>$post_template,
             'uri'		=>$uri,
             'date'		=>$date,
@@ -304,29 +348,51 @@ class content_model {
             ->where( 'id', '=', $id )
             ->execute();
 
+        if ( $this->add_scaffold( $row->id ) ):
+            note::set('success','post_add', $this->type.' Added!');
 
-        $scaffold_data = $_POST;
+            return $row->id;
+        else:
+            return false;
+        endif;
+    }
 
-        $remove_keys = array( 'title', 'content', 'status', 'parent_page', 'page_template', 'page-or-post', 'history', 'publish', 'minute', 'hour', 'day', 'month', 'year', 'save', 'tags'  );
 
-        foreach ( $remove_keys as $remove_key ):
-            unset( $scaffold_data[ $remove_key ] );
+    public function update_uri( $id )
+    {
+        $parent_uri = $this->get_parent_ids( $id );
+
+        $uri = '';
+        foreach( array_reverse($parent_uri) as $id ){
+            $uri .= $this->get_parent_slug( $id ).'/';
+        }
+
+        return substr($uri, 1);
+    }
+
+
+    public function update_page_order( $new_order )
+    {
+        // Run the function above
+        $clean_order = parse_multidimensional_array( $new_order );
+
+        // Loop through the "readable" array and save changes to DB
+        foreach ($clean_order as $key => $value):
+
+            // $value should always be an array, but we do a check
+            if (is_array($value)):
+
+                $new_uri = $this->update_uri( $value['id'] );
+
+                $this->post_table()->update(array(
+                    'parent'=>$value['parentID'],
+                    'menu_order'=>$key,
+                    'uri'=>$new_uri
+                ))
+                    ->where( 'id', '=', $value['id'] )
+                    ->execute();
+            endif;
         endforeach;
-
-        $meta_value = serialize( $scaffold_data );
-
-
-        $page_meta      = db('posts_meta');
-
-        $meta = $page_meta->update(array(
-            'meta_value'=>$meta_value
-        ))
-            ->where( 'posts_id', '=', $id )
-            ->execute();
-
-        note::set('success','page_update','Page Updated!');
-
-        return $id;
     }
 
 
@@ -334,11 +400,10 @@ class content_model {
     //----------------------------------------------------------------------------------------------
     public function get ( $id='' )
     {
-        $posts = db ( 'posts' );
-
         if( defined( 'FRONT' ) ) {
-            $get_posts = $posts->select( '*' )
-                ->where ( 'type', '=', 'post' )
+            $get_posts = $this->post_table()
+                ->select( '*' )
+                ->where ( 'type', '=', $this->type )
                 ->order_by ( 'date', 'DESC' )
                 ->clause ('AND')
                 ->where ( 'status', '=', 'published' )
@@ -348,8 +413,9 @@ class content_model {
 
             return $get_posts;
         } elseif ( $id == '' ) {
-            $get_posts = $posts->select( '*' )
-                ->where ( 'type', '=', 'post' )
+            $get_posts = $this->post_table()
+                ->select( '*' )
+                ->where ( 'type', '=', $this->type )
                 ->order_by ( 'id', 'DESC' )
                 ->clause ('AND')
                 ->where ( 'status', '!=', 'trash' )
@@ -357,99 +423,159 @@ class content_model {
 
             return $get_posts;
         } else {
-            $get_posts = $posts->select( '*' )
+            $get_posts = $this->post_table()
+                ->select( '*' )
                 ->where ( 'id', '=', $id )
-                ->clause ('AND')
-                ->where ( 'type', '=', 'post' )
                 ->execute();
 
-            if( isset($get_posts[0])){
+            if( isset($get_posts[0]))
                 return $get_posts[0];
-            } else {
+            else
                 return false;
-            }
-
         }
     }
 
 
-    // Get posts by quantity
+    // Get URI
     //----------------------------------------------------------------------------------------------
-    public function get_quantity( $quantity=10 ){
-        $posts = db ( 'posts' );
-
-        $get_posts = $posts->select( '*' )
-            ->limit( $quantity )
-            ->where ( 'type', '=', 'post' )
-            ->order_by ( 'date', 'DESC' )
-            ->clause ('AND')
-            ->where ( 'status', '=', 'published' )
-            ->clause ('AND')
-            ->where ( 'date', '<=', time() )
-            ->execute();
-
-        return $get_posts;
-    }
-
-
-    // Get Page by Status
-    //----------------------------------------------------------------------------------------------
-    public function get_by_status ( $status = '', $type = null )
+    /**
+     * Return a page by ID
+     *
+     * @author Adam Patterson
+     */
+    public function get_uri( $id='' )
     {
-        $pages = db ( 'posts' );
-
-        if ( $status != '' ) {
-            $get_pages = $pages->select( '*' )
-                ->where ( 'type', '=', 'post' )
-                ->clause('AND')
-                ->where ( 'status', '=', $status )
+        if ( $id != '' ) {
+            $get_posts = $this->post_table()
+                ->select( 'uri' )
+                ->where ( 'id', '=', $id )
                 ->order_by ( 'id', 'DESC' )
                 ->execute();
 
-            return $get_pages;
-        } else {
-            return false;
-        }
-    }
-
-
-    // Get Posts by post-type
-    //----------------------------------------------------------------------------------------------
-    public function get_by_type ( $type = false )
-    {
-        $pages = db ( 'posts' );
-
-        if ( $type ) {
-            $get_pages = $pages->select( '*' )
-                ->where ( 'type', '=', 'post' )
-                ->clause('AND')
-                ->where ( 'template', '=', 'type-'.$type )
-                ->clause('AND')
-                ->where ( 'status', '=', 'published' )
-                ->order_by ( 'id', 'DESC' )
-                ->execute();
-
-            return $get_pages;
-        } else {
-            return false;
+            return $get_posts[0]->uri;
         }
     }
 
 
     /**
-     * Get an object based on its date ( year/month )
+     * Get an object based on its URI
      *
-     * @param string $date
+     * @param string $uri
      * @return void
      * @author Adam Patterson
      *
+     * @todo If the URI query returns nothing we should post a 404
+     *
      */
-    public function get_by_date( $date )
+    public function get_by_uri( $uri )
     {
-        # @todo wild card on URI with
-        # @todo Import of content needs to be adjusted.
-        # @todo update of content needs to be udpated
-        return db::query("SELECT * FROM posts WHERE uri LIKE '%".$date."%'");
+        $uri = slash_it($uri);
+
+        $get_parent_uri = $this->post_table()
+            ->select( '*' )
+            ->where ( 'uri', '=', $uri )
+            ->execute();
+
+        if ( $uri ):
+            if ( isset($get_parent_uri[0] ) and !empty($get_parent_uri) ):
+                return $get_parent_uri[0];
+            else:
+                return false;
+            endif;
+        else:
+            return false;
+        endif;
+    }
+
+
+    public function get_breadcrumbs( )
+    {
+
+    }
+
+
+    /**
+     * Return the home Hobject
+     *
+     * @author Adam Patterson
+     */
+    public function get_home( )
+    {
+        $home = $this->post_table()
+            ->select( '*' )
+            ->where ( 'menu_order', '=', '1' )
+            ->execute();
+
+        return $home;
+    }
+
+
+    /**
+     * Return all pages or one page by ID
+     *
+     * @author Adam Patterson
+     */
+    public function get_by_parent_id ( $id='' )
+    {
+        $get_posts = $this->post_table()
+            ->select( '*' )
+            ->where ( 'type', '=', $this->type )
+            ->order_by ( 'menu_order', 'ASC' )
+            ->clause ('AND')
+            ->where ( 'status', '!=', 'trash' )
+            ->clause ('AND')
+            ->where ( 'parent', '=', $id )
+            ->order_by ( 'id', 'DESC' )
+            ->execute();
+
+        return $get_posts;
+    }
+
+    // Get Page by Status
+    //----------------------------------------------------------------------------------------------
+    public function get_by_status ( $status = '' )
+    {
+        if ( $status != '' ) {
+            $get_posts = $this->post_table()
+                ->select( '*' )
+                ->where ( 'type', '=', $this->type )
+                ->clause('AND')
+                ->where ( 'status', '=', $status )
+                ->order_by ( 'id', 'DESC' )
+                ->execute();
+
+            return $get_posts;
+        } else {
+            return false;
+        }
+    }
+
+
+
+    /**
+     * Get an object based on its SLUG
+     *
+     * @param string $uri
+     * @return void
+     * @author Adam Patterson
+     *
+     * @todo Finds the last page available in a URI
+     *
+     */
+    public function get_by_slug( $uri )
+    {
+        $slug_parts = explode('/', $uri);
+
+        foreach ($slug_parts as $part ) {
+            $get_slug = $this->post_table()
+                ->select( '*' )
+                ->where ( 'slug', '=', $part )
+                ->execute();
+
+            if ($get_slug) {
+                return $get_slug[0];
+            }
+        }
     }
 
 
@@ -460,12 +586,10 @@ class content_model {
      *
      * @author Adam Patterson
      */
-    # change to get_meta
-    public function get_post_meta ( $id='' )
+    public function get_meta ( $id='' )
     {
-        $post_meta = db ( 'posts_meta' );
-
-        $dirty_post_meta = $post_meta->select( 'meta_value' )
+        $dirty_post_meta = $this->post_meta_table()
+            ->select( 'meta_value' )
             ->where ( 'posts_id', '=', $id )
             ->execute();
 
@@ -477,6 +601,277 @@ class content_model {
         else
         {
             return null;
+        }
+    }
+
+
+    /**
+     * Get the URI of a parent page
+     *
+     * @param string $parent_id
+     * @return void
+     * @author Adam Patterson
+     */
+    public function get_parent_uri( $parent_id )
+    {
+        $get_parent_uri = $this->post_table()
+            ->select( 'uri' )
+            ->where ( 'id', '=', $parent_id )
+            ->clause ( 'AND' )
+            ->where ( 'type', '=', 'page' )
+            ->execute();
+
+        if ( $parent_id ):
+            return $get_parent_uri[0]->uri;
+        else:
+            return false;
+        endif;
+    }
+
+
+    /**
+     * Get the SLUG of a parent page
+     */
+    public function get_parent_slug( $parent_id )
+    {
+        $get_parent_uri = $this->post_table()
+            ->select( 'slug' )
+            ->where ( 'id', '=', $parent_id )
+            ->clause ( 'AND' )
+            ->where ( 'type', '=', 'page' )
+            ->execute();
+
+        if ( $parent_id ):
+            return $get_parent_uri[0]->slug;
+        else:
+            return false;
+        endif;
+    }
+
+
+    /**
+     * Get a parent page
+     *
+     * @param string $parent_id
+     * @return void
+     * @author Adam Patterson
+     */
+    public function get_parent( $parent_id )
+    {
+        $get_parent_uri = $this->post_table()
+            ->select( '*' )
+            ->where ( 'id', '=', $parent_id )
+            ->clause ( 'AND' )
+            ->where ( 'type', '=', 'page' )
+            ->execute();
+
+        if ( $parent_id ):
+            return $get_parent_uri[0];
+        else:
+            return false;
+        endif;
+    }
+
+
+    public function get_parent_ids( $id, $id_array = array() )
+    {
+        $id_array[] = $id;
+
+        $parents = $this->post_table()
+            ->select( 'parent', 'uri' )
+            ->where ( 'id', '=', $id )
+            ->clause ( 'AND' )
+            ->where ( 'type', '=', 'page' )
+            ->execute();
+
+        $has_parent = !empty($parents);
+
+        if ($has_parent)
+            // Loop through all of the children and run this function again
+            foreach ($parents as $parent)
+                $id_array = $this->get_parent_ids($parent->parent, $id_array);
+
+        return $id_array;
+    }
+
+
+    /**
+     * Return the children under a parent ID
+     *
+     * @author Adam Patterson
+     *
+     * @param int $page_id
+     *
+     * @return Object
+     */
+    public function &get_page_children( $page_id, $pages, $level = 0 )
+    {
+        $page_list = array();
+        foreach ( (array) $pages as $key => $page ):
+            if ( $page->parent == $page_id ):
+                $page_list[$key] = (array)$page;
+                $page_list[$key]['level'] = $level;
+
+                //	$page_list = array_merge($page_list, $page_list_two);
+
+                if ( $children = $this->get_page_children($page->id, $pages, $level+1 ) )
+                    $page_list = array_merge( $page_list, $children );
+            endif;
+        endforeach;
+
+        return $page_list;
+    }
+
+
+    /**
+     * Return all ID's under a parent id.
+     *
+     * @author Adam Patterson
+     */
+    public function get_page_descendant_ids( $id, $id_array = array() )
+    {
+        $id_array[] = $id;
+
+        $children = $this->post_table()
+            ->select( 'id', 'title' )
+            ->where ( 'parent', '=', $id )
+            ->clause ( 'AND' )
+            ->where ( 'type', '=', 'page' )
+            ->execute();
+
+        $has_children = !empty($children);
+
+        if ($has_children)
+
+            // Loop through all of the children and run this function again
+            foreach ($children as $child)
+                $id_array = $this->get_page_descendant_ids($child->id, $id_array);
+
+        return $id_array;
+    }
+
+
+    public function get_page_parent_ids( $id, $id_array = array() )
+    {
+        $id_array[] = $id;
+
+        $parents = $this->post_table()
+            ->select( 'parent', 'uri' )
+            ->where ( 'id', '=', $id )
+            ->clause ( 'AND' )
+            ->where ( 'type', '=', 'page' )
+            ->execute();
+
+        $has_parent = !empty($parents);
+
+        if ($has_parent)
+            // Loop through all of the children and run this function again
+            foreach ($parents as $parent)
+                $id_array = $this->get_page_parent_ids($parent->parent, $id_array);
+
+        return $id_array;
+    }
+
+
+    /**
+     * Return a hierarchical page tree
+     *
+     * @author Adam Patterson
+     */
+    public function get_page_tree ( $page_dirty )
+    {
+        $pages = array();
+
+        foreach ($page_dirty as $page)
+            $pages[$page->id] = (array) $page;
+
+        // build a multidimensional array of parent > children
+        foreach ($pages as $row):
+            if (array_key_exists($row['parent'], $pages))
+                // add this page to the children array of the parent page
+                $pages[$row['parent']]['children'][] =& $pages[$row['id']];
+
+            // this is a root page
+            if ($row['parent'] == 0)
+                $page_array['children'][] =& $pages[$row['id']];
+
+        endforeach;
+
+        return $page_array;
+    }
+
+
+    // Children
+    //----------------------------------------------------------------------------------------------
+    /**
+     * Does the page have children?
+     *
+     * @access public
+     * @param int $parent_id The ID of the parent page
+     * @return mixed
+     */
+    public function page_has_children( $parent_id )
+    {
+        // Query the DB looking for parent_id
+    }
+
+
+    public function get_page_by_level ( $pages, $depth = 0 )
+    {
+        $page_list = array();
+
+        foreach ( (array) $pages as $page ):
+            if ( $page['level'] == $depth ):
+                $page_list[] = (array)$page;
+            endif;
+        endforeach;
+
+        return $page_list;
+    }
+
+
+    public function get_page_level ( $pages, $uri )
+    {
+        $page_list = array();
+
+        foreach ( (array) $pages as $page ):
+            if ( $page['uri'] == $uri ):
+                $page_level[] = (array)$page['level'];
+            endif;
+        endforeach;
+
+        return $page_level[0][0];
+    }
+
+
+    public function &get_flat_page_hierarchy( &$pages, $page_id = 0 )
+    {
+        if ( empty( $pages ) ) {
+            $result = array();
+            return $result;
+        }
+
+        $children = array();
+
+        foreach ( (array) $pages as $p ) {
+            $parent_id = intval( $p->parent );
+            $children[ $parent_id ][] = $p;
+        }
+
+        $result = array();
+        $this->_page_traverse_name( $page_id, $children, $result );
+
+        return $result;
+    }
+
+
+    public function _page_traverse_name( $page_id, &$children, &$result )
+    {
+        if ( isset( $children[ $page_id ] ) ){
+            foreach( (array)$children[ $page_id ] as $child ) {
+                $result[ $child->id ] = $child->slug;
+                $this->_page_traverse_name( $child->id, $children, $result );
+            }
         }
     }
 }

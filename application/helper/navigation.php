@@ -16,13 +16,13 @@
 */
 function nav_menu ( $args = array() )
 {
-	$page = load::model( 'page' );
-	$pages = $page->get( );
+	$page = load::model( 'content' );
+	$pages = $page->type( 'page' )->get( );
 	// Current URI to be used with .current page
 	$uri = URI;
 
-	$page_tree = $page->get_page_tree( $pages );
-	$page_array = $page->get_page_children( 0, $pages, 0 );
+	$page_tree = $page->type( 'page' )->get_page_tree( $pages );
+	$page_array = $page->type( 'page' )->get_page_children( 0, $pages, 0 );
 	
 	/*
 	$get_page_level = $page->get_page_level( $page_object, 'portfolio/design/print' );
@@ -101,12 +101,12 @@ function menu( $items, $args = array() )
 * @desc Create inifinity loop for nested list from database
 * @return echo string
 */
-function menu_show_nested( $parentID = '' ) {
+function menu_show_nested( $parent_id = '' )
+{
+    $page = load::model( 'content' );
+    $pages = $page->type( 'page' )->get_by_parent_id( $parent_id );
 
-    $page = load::model( 'page' );
-    $pages = $page->get_by_parent_id( $parentID );
-
-    if ($pages > 0) {
+    if ($pages > 0):
         echo "\n";
         echo "<ol class='dd-list'>\n";
         foreach($pages as $page ) {
@@ -121,5 +121,5 @@ function menu_show_nested( $parentID = '' ) {
             echo "</li>\n";
         }
         echo "</ol>\n";
-    }
+    endif;
 }

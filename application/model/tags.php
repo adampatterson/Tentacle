@@ -1,8 +1,27 @@
 <?
 class tags_model
 {
-	
-	// Add tag
+    public $term_table;
+    public $term_taxonomy_table;
+    public $term_relationship_table;
+
+    public function term_table ( )
+    {
+        return $this->term_table = db ( 'terms' );
+    }
+
+    public function term_taxonomy_table ( )
+    {
+        return $this->term_taxonomy_table = db ( 'term_taxonomy' );
+    }
+
+    public function term_relationship_table ( )
+    {
+        return $this->term_relationship_table = db ( 'term_relationships' );
+    }
+
+
+    // Add tag
 	//----------------------------------------------------------------------------------------------
 	public function add ( $post_tags )
 	{
@@ -14,17 +33,15 @@ class tags_model
 
         $term_slug = string::sanitize( $term_name );
 
-        $tag  = db( 'terms' );
-		$term_taxonomy = db( 'term_taxonomy' );
-
 		if ( !self::lookup( $term_slug ) ) 
 		{
-			$tag_id = $tag->insert(array(
+			$tag_id = $this->term_table()
+                    ->insert(array(
 						'name'=>$term_name,
 						'slug'=>$term_slug
 					));
-			
-            $term_taxonomy->insert(array(
+
+            $this->term_taxonomy_table()->insert(array(
                     'taxonomy'=>'tag',
                     'term_id'=>$tag_id->id
                 ),FALSE);
@@ -45,10 +62,9 @@ class tags_model
 		
 		$term_slug = string::camelize( $term_slug );
 		$term_slug = string::underscore( $term_slug );
-		
-		$tag  = db( 'terms' );
-		
-		$tag->update(array(
+
+        $this->term_table()
+            ->update(array(
 				'name'=>$term_name,
 				'slug'=>$term_slug,
 			))
@@ -63,9 +79,8 @@ class tags_model
 	//----------------------------------------------------------------------------------------------
 	public function lookup ( $slug='' )
 	{
-		$tags = db ( 'terms' );
-		
-		$get_tag = $tags->select( '*' )
+		$get_tag = $this->term_table()
+            ->select( '*' )
 			->where ( 'slug', '=', $slug )
 			->order_by ( 'id', 'DESC' )
 			->execute();	
@@ -83,15 +98,15 @@ class tags_model
 	//----------------------------------------------------------------------------------------------
 	public function get ( $id='' )
 	{
-		$tags = db ( 'terms' );
-		
 		if ( $id == '' ):
-			$get_tags = $tags->select( '*' )
+			$get_tags = $this->term_table()
+                ->select( '*' )
 				->order_by ( 'id', 'DESC' )
 				->execute();
 			return $get_tags;
         elseif( is_string( $id ) && !is_numeric($id) ):
-            $get_tags = $tags->select( '*' )
+            $get_tags = $this->term_table()
+                ->select( '*' )
                 ->where( 'slug', '=', $id )
                 ->order_by( 'id', 'DESC' )
                 ->execute();
@@ -102,7 +117,8 @@ class tags_model
                 return $get_tags[0];
             }
         else:
-			$get_tag = $tags->select( '*' )
+			$get_tag = $this->term_table()
+                ->select( '*' )
 				->where ( 'id', '=', $id )
 				->order_by ( 'id', 'DESC' )
 				->execute();	
@@ -117,14 +133,9 @@ class tags_model
     //----------------------------------------------------------------------------------------------
     public function get_list ( $list = array() )
     {
-        $tags = db ( 'terms' );
+        foreach( $list as $item )
+				$get_tag[] = $this->term_table()->get( $item )->name;
 
-        foreach( $list as $item ){
-            
-				$this->get( $item )->name; 
-				
-        }
-		  
 		  return $get_tag[0];
     }
 
@@ -143,9 +154,7 @@ class tags_model
 	//----------------------------------------------------------------------------------------------
 	public function delete ( $id ) 
 	{
-		$tag = db( 'terms' );
-
-		$tag->delete( 'id','=',$id );
+		$this->term_table()->delete( 'id','=',$id );
 	}
 	
 	
@@ -153,18 +162,17 @@ class tags_model
 	//----------------------------------------------------------------------------------------------	
 	public function relations ( $post_id = '', $term_id = '')
 	{	
-		$term         = db('term_relationships');
-
-		$term->insert(array(
-			'page_id'		=> $post_id,
-			'term_id'		=> $term_id,
-		),FALSE);
+		$this->term_relationship_table()
+            ->insert(array(
+                'page_id'		=> $post_id,
+                'term_id'		=> $term_id,
+            ),FALSE);
 	}
 
 
     public function get_by_slug( $slug = '' ) {
 
-        $posts_by_slug = db::query("SELECT posts.*
+        return db::query("SELECT posts.*
                                     FROM
                                         term_relationships
                                     INNER JOIN posts
@@ -177,30 +185,25 @@ class tags_model
                                         term_taxonomy.taxonomy = 'tag'
                                         AND terms.slug = '".$slug."'
                                         AND posts.status = 'published'");
-
-        return $posts_by_slug;
     }
 
 
     public function get_page_ids( $term_id = '' )
     {
-        $post_id = db::query("SELECT
+        return db::query("SELECT
                 page_id
             FROM
                 term_relationships
             WHERE
                 term_id = ".$term_id );
-
-        return $post_id;
     }
 
 
 	// Get the tag relations of a blog post.
 	//----------------------------------------------------------------------------------------------	
 	public function get_relations ( $post_id = '' ) 
-	{	
-		
-		$term_relations = db::query("SELECT
+	{
+        return db::query("SELECT
 										terms.id,
 										terms.name,
 										terms.slug,
@@ -219,14 +222,12 @@ class tags_model
 										terms.id = term_relationships.term_id AND
 										term_taxonomy.taxonomy = 'tag' AND
 										term_relationships.page_id = ".$post_id );
-			
-		return $term_relations;
 	}
 	
 	
 	public function get_all_tags ( ) 
 	{
-        $all_tags = db::query("SELECT term_taxonomy.taxonomy
+        return db::query("SELECT term_taxonomy.taxonomy
                                          , term_taxonomy.description
                                          , term_taxonomy.parent
                                          , term_taxonomy.count
@@ -239,7 +240,5 @@ class tags_model
                                     ON terms.id = term_taxonomy.term_id
                                     WHERE
                                       term_taxonomy.taxonomy = 'tag'" );
-			
-		return $all_tags;
 	}
 }

@@ -17,7 +17,7 @@ class api_controller {
 
         define ( 'FRONT'		,'true' );
 
-        $feed = load::model('post')->get_quantity( 6 );
+        $feed = load::model('content')->type( 'post' )->get_quantity( 6 );
 
         foreach ( $feed as $key => $post )
         {

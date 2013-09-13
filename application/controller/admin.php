@@ -142,8 +142,8 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		$page = load::model( 'page' );
-		$pages = $page->get( );
+		$page = load::model( 'content' );
+		$pages = $page->type( 'page' )->get( );
 		
 		$page_hiarchy = $page->get_page_children( 0, $pages );
 
@@ -157,11 +157,11 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 	
-		$page = load::model( 'page' );
-		$get_page = $page->get( $page_id );
-		
-		$pages = $page->get( );
-		
+		$page = load::model( 'content' );
+		$get_page = $page->type( 'page' )->get( $page_id );
+
+		$pages = $page->type( 'page' )->get( );
+
 		$page_hiarchy = $page->get_page_children( 0, $pages );
 		
 		$tag = load::model( 'tags' );
@@ -178,7 +178,7 @@ class admin_controller {
 			$tag_relations = null;
 		}
 
-		$get_page_meta = $page->get_page_meta( $page_id );
+		$get_page_meta = $page->get_meta( $page_id );
 
 		load::view ('admin/content/edit_page', array(  'get_page'=>$get_page, 'get_page_meta'=>$get_page_meta, 'pages'=>$page_hiarchy, 'page_id'=>$page_id, 'tags'=>$tags, 'tag_relations'=>$tag_relations) );
 	}
@@ -192,8 +192,8 @@ class admin_controller {
 
         define ( 'FRONT'		,'true' );
 
-        $page = load::model( 'page' );
-        $pages = $page->get_by_parent_id( 0 );
+        $page = load::model( 'content' );
+        $pages = $page->type('page')->get_by_parent_id( 0 );
 
         load::view ('admin/content/order_page', array(  'pages'=>$pages ) );
     }
@@ -205,14 +205,14 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		$page = load::model( 'page' );
+		$page = load::model( 'content' );
 
 		if ( $status ):
-			$page_hiarchy = $page->get_by_status( $status );
+			$page_hiarchy = $page->type('page')->get_by_status( $status );
 		else:
-			$pages = $page->get( );
+			$pages = $page->type('page')->get( );
 
-			$page_hiarchy = $page->get_page_children( 0, $pages );
+			$page_hiarchy = $page->type('page')->get_page_children( 0, $pages );
 		endif;
 
 		$user = load::model('user');
@@ -244,8 +244,8 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		$post = load::model( 'post' );
-		$get_post = $post->get( $post_id );
+		$post = load::model( 'content' );
+		$get_post = $post->type( 'post' )->get( $post_id );
 
 		$category = load::model( 'category' );
 		$categories = $category->get_all_categories( );
@@ -265,7 +265,7 @@ class admin_controller {
 			$tag_relations = null;
 		}
 
-		$get_post_meta = $post->get_post_meta( $post_id );
+		$get_post_meta = $post->get_meta( $post_id );
 
 		load::view ('admin/content/edit_post', array(  'get_post'=>$get_post, 'get_post_meta'=>$get_post_meta, 'post_id' => $post_id, 'categories'=>$categories, 'category_relations'=>$category_relations, 'tags'=>$tags, 'tag_relations'=>$tag_relations) );
 	}
@@ -277,12 +277,12 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		$post = load::model( 'post' );
+		$post = load::model( 'content' );
 
 		if ( $status ):
-			$posts = $post->get_by_status( $status );
+			$posts = $post->type( 'post' )->get_by_status( $status );
 		else:
-			$posts = $post->get( );
+			$posts = $post->type( 'post' )->get( );
 		endif;
 
 		$category = load::model( 'category' );
@@ -635,14 +635,14 @@ class admin_controller {
 		$category = load::model( 'category' );
 		$categories = $category->get( );
 
-        $page = load::model( 'page' );
-        $pages = $page->get();
+        $page = load::model( 'content' );
+        $pages = $page->type( 'page' )->get();
 
-        $page_array = $page->get_page_children( 0, $pages, 0 );
+        $page_array = $page->type( 'page' )->get_page_children( 0, $pages, 0 );
 
         $page_object = (object)$page_array;
 
-        $get_page_by_level = $page->get_page_by_level( $page_object, 0 );
+        $get_page_by_level = $page->type( 'page' )->get_page_by_level( $page_object, 0 );
 
 		load::view ('admin/settings/general', array( 'categories'=>$categories, 'pages'=>$get_page_by_level ) );
 	}

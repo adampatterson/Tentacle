@@ -27,7 +27,7 @@ class ajax_controller {
     public function sortable ()
     {
         if (!empty($_REQUEST["data"]))
-            $page = load::model( 'page' )->update_page_order($_POST['data']);
+            $page = load::model( 'content' )->update_page_order( $_POST['data'] );
     }
 
 

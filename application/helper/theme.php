@@ -440,7 +440,7 @@ function the_posts() {
     # return load::model( 'post' )->get_by_date('1353');
 
     if (URI == 'category' || URI == get::option('blog_uri')) {
-        return  load::model( 'post' )->get( );
+        return  load::model( 'content' )->type( 'post' )->get( );
     } else {
         return  load::model( 'category' )->get_by_slug( CATEGORY_NAME );
     }

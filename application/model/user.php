@@ -1,6 +1,14 @@
 <?
 class user_model
 {
+    public $user_table;
+
+    public function user_table ( )
+    {
+        return $this->user_table = db ( 'users' );
+    }
+
+
 	/**
 	* Add User
 	* ----------------------------------------------------------------------------------------------*/
@@ -34,9 +42,8 @@ class user_model
 			->data('display_name',$display_name)
 			->save();
 
-		$users  = db( 'users' );
-		
-		$users->update(array(
+		$this->user_table()
+            ->update(array(
 				'registered'=> time()
 			))
 			->where( 'email', '=', $email )
@@ -122,11 +129,10 @@ class user_model
 	* ----------------------------------------------------------------------------------------------*/
 	public function get ( $id='' )
 	{
-		$users_table = db ( 'users' );
-					
 		if ($id=='') {
 			// Get Comments Database
-			$users = $users_table->select( '*' )
+			$users = $this->user_table()
+                ->select( '*' )
 				->order_by ( 'username', 'DESC' )
 				->execute ();
 				
@@ -134,7 +140,8 @@ class user_model
 				
 		} else {
 			// Get Comments Database
-			$users = $users_table->select( '*' )
+			$users = $this->user_table()
+                ->select( '*' )
 				->where ( 'id', '=', $id)
 				->execute();				
 				
@@ -178,9 +185,8 @@ class user_model
 	* ----------------------------------------------------------------------------------------------*/
 	public function get_meta ( $id )
 	{
-		$user_meta = db ( 'users' );
-				
-		$user_meta = $user_meta->select( 'data' )
+	    $user_meta = $this->user_table()
+            ->select( 'data' )
 			->where ( 'id', '=', $id )
 			->execute();
 
@@ -199,7 +205,7 @@ class user_model
 	* ----------------------------------------------------------------------------------------------*/
 	public function delete ( $id  ) 
 	{
-		#@todo dont allow the user to delete all accounts! One must be left.
+		#@todo don't allow the user to delete all accounts! One must be left.
 		
 		user::delete( $id );
 		note::set('success','user_delete','User Deleted!');
@@ -213,10 +219,9 @@ class user_model
 	* ----------------------------------------------------------------------------------------------*/
 	public function unique ( $username )
 	{
-		if( user::unique( $username ) ):
+		if( user::unique( $username ) )
 			echo '0';
-		else:
+		else
 			echo '1';
-		endif;
 	}
 }

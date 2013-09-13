@@ -15,14 +15,14 @@
                         <div class='dd' id='nestableMenu'>
                             <ol class='dd-list'>";
 
-                                foreach($pages as $page ){
+                                foreach($pages as $page ):
                                     echo "<li class='dd-item' data-id='{$page->id}'>";
                                     echo "<div class='dd-handle'>{$page->id}: {$page->title}</div>";
 
                                     menu_show_nested($page->id);
 
                                     echo "</li>";
-                                }
+                                endforeach;
 
                       echo "</ol>
                         </div>
