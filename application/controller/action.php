@@ -1106,9 +1106,7 @@ win.send_to_editor('<?=$html?>');
 									('$email', '$user_name', '$encrypted_password', 'administrator', '{\"first_name\":\"$first_name\",\"last_name\":\"$last_name\",\"activity_key\":\"$hashed_ip\",\"url\":\"\",\"display_name\":\"$display_name\",\"editor\":\"wysiwyg\"}', '$registered', 1)" );
 		
 		
-		if (input::post( 'send_password' ) == 'yes') {
-			$send_email = load::model( 'email' );
-
+		if (input::post( 'send_password' ) == 'yes'):
 			load::helper('email');
 
 			$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
@@ -1119,10 +1117,10 @@ win.send_to_editor('<?=$html?>');
 						<strong>Password</strong>: '.$password.'</p>
 						<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
 
-			$user_email = $send_email->send( 'Welcome to Tentacle CMS', $message, $email );
-		}
-		
-		
+			$user_email = $this->email_model()
+                ->send( 'Welcome to Tentacle CMS', $message, $email );
+		endif;
+
 		url::redirect('install/done');
 	}
 }
