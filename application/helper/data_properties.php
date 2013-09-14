@@ -88,6 +88,7 @@ class properties
     public $serpent_model;
     public $plugin_model;
     public $media_model;
+    public $migration_model;
 
     public function content_model ( )
     {
@@ -137,5 +138,10 @@ class properties
     public function media_model ( )
     {
         return $this->media_model = load::model( 'media' );
+    }
+
+    public function migration_model ( )
+    {
+        return $this->migration_model = load::model( 'migration' );
     }
 }
