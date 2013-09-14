@@ -1,15 +1,9 @@
 <?php
-load::helper( 'properties' );
+load::helper( 'data_properties' );
 
 class page_controller extends properties {
 
     public function index(  ){
-
-        $post 		= load::model( 'content' );
-        $page 		= load::model( 'content' );
-        $category 	= load::model( 'category' );
-        $tag 		= load::model( 'tags' );
-        $author 	= load::model( 'user' );
 
         if( DEBUG ):
             load::library('benchmark');
@@ -99,7 +93,7 @@ class page_controller extends properties {
                 if ($uri_count == 2)
                     $uri = $uri_parts[0];
 
-                $post 		= $this->content_model()->get_by_uri( $uri );
+                $post = $this->content_model()->get_by_uri( $uri );
 
                 if ( !$post ):
                     tentacle::render ( '404' );
@@ -112,7 +106,7 @@ class page_controller extends properties {
                 break;
             case 'short_url':
 
-                $post 		= $this->content_model()->get_uri( $uri_parts[1] );
+                $post = $this->content_model()->get_uri( $uri_parts[1] );
 
                 url::redirect($post);
 
@@ -123,8 +117,8 @@ class page_controller extends properties {
                 define ( 'IS_SUB_PAGE'  , TRUE );
                 define ( 'IS_POST'      , FALSE );
 
-                $post 		= $this->content_model()->get_by_uri( $uri );
-                $post_meta 	= $this->content_model()->get_meta( $post->id );
+                $post       = $this->content_model()->get_by_uri( $uri );
+                $post_meta  = $this->content_model()->get_meta( $post->id );
 
                 if ( !$post ):
                     tentacle::render ( '404' );
@@ -232,7 +226,9 @@ class page_controller extends properties {
                 define ( 'IS_POST'      , FALSE );
 
                 if (URI == 'category')
-                    $posts 		= $this->content_model()->type( 'post' )->get( );
+                    $posts = $this->content_model()
+                        ->type( 'post' )
+                        ->get( );
                 else
                     $posts 	    = $this->tag_model()->get_by_slug( $tag_slug[1] );
 

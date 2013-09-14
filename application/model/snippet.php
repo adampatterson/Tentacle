@@ -1,5 +1,5 @@
 <?
-load::helper( 'properties' );
+load::helper( 'data_properties' );
 
 /*
     const TABLE_NAME = 'snippet';

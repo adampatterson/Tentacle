@@ -1,5 +1,5 @@
 <?
-load::helper( 'properties' );
+load::helper( 'data_properties' );
 
 class settings_model extends properties
 

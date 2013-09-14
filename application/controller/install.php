@@ -1,10 +1,10 @@
 <?php
-
+load::helper( 'data_properties' );
 /*
  * @todo Check if the app is installed ( select the DV version )
  */
 
-class install_controller
+class install_controller extends properties
 {
 	public function step1 ( )
 	{	
@@ -14,7 +14,7 @@ class install_controller
 		
 		if ( !file_exists( 'application/config/deployment/db.php' ) ):
 			load::view ('install/step1');
-		elseif(file_exists( 'application/config/deployment/db.php' ) && load::model( 'migration' )->touch_db() == false ):
+		elseif(file_exists( 'application/config/deployment/db.php' ) && $this->migration_model()->touch_db() == false ):
 			url::redirect('install/step5');
 		else:
 			load::view ('install/nothing');
@@ -41,7 +41,7 @@ class install_controller
 		// CREATE DATABASE database_name
 		load::library('db');
 		
-		$sql = load::model( 'migration' );
+		$sql = $this->migration_model();
 		
 		$sql->get_100();
 		

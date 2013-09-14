@@ -1,13 +1,13 @@
 <?php
-class api_controller {
+load::helper( 'data_properties' );
+
+class api_controller extends properties
+{
 
     # All ajax calls should pass throught this controller.
-
     public function index ()
     {
-
         echo json_encode(array('status'=>503));
-
     }
 
     public function feed($format = 'json')
@@ -17,7 +17,9 @@ class api_controller {
 
         define ( 'FRONT'		,'true' );
 
-        $feed = load::model('content')->type( 'post' )->get_quantity( 6 );
+        $feed = $this->content_model()
+            ->type( 'post' )
+            ->get_quantity( 6 );
 
         foreach ( $feed as $key => $post )
         {

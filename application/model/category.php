@@ -1,5 +1,5 @@
 <?
-load::helper( 'properties' );
+load::helper( 'data_properties' );
 
 class category_model extends properties {
 

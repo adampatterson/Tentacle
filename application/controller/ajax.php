@@ -1,8 +1,9 @@
 <?php
-class ajax_controller {
+load::helper( 'data_properties' );
+
+class ajax_controller extends properties {
 	
 	# All ajax calls should pass throught this controller.
-	
 	public function index ()
 	{	
 		echo 'No direct access';
@@ -14,10 +15,7 @@ class ajax_controller {
 	* ----------------------------------------------------------------------------------------------*/
 	public function unique_user ()
 	{
-		$user = load::model( 'user' );
-		$unique = $user->unique( $_POST['username'] );
-	
-		return $unique;
+		return $this->user_model()->unique( $_POST['username'] );
 	}
 
 
@@ -27,7 +25,7 @@ class ajax_controller {
     public function sortable ()
     {
         if (!empty($_REQUEST["data"]))
-            $page = load::model( 'content' )->update_page_order( $_POST['data'] );
+            $page = $this->content_model()->update_page_order( $_POST['data'] );
     }
 
 
@@ -37,10 +35,7 @@ class ajax_controller {
     public function update_media ()
     {
         if (!empty($_POST))
-        {
-            $media = load::model( 'media' );
-            $update = $media->update( $_POST['file_id'] );
-        }
+            $update = $this->media_model()->update( $_POST['file_id'] );
     }
 
 
