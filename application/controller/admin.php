@@ -1,5 +1,7 @@
 <?php
-class admin_controller {
+load::helper( 'properties' );
+
+class admin_controller extends properties {
 
 	/**
 	* Manage Updates
@@ -56,10 +58,10 @@ class admin_controller {
 		
 		$id = user::id( );
 
-		$user = load::model( 'user' );
-
-		$user_single = $user->get( $id );
-		$user_meta = $user->get_meta( $id );		
+		$user_single    = $this->user_model()
+            ->get( $id );
+		$user_meta      = $this->user_model()
+            ->get_meta( $id );
 		
 		load::view ( 'admin/dashboard', array( 'user' => $user_single, 'user_meta' => $user_meta ) );
 	}
@@ -78,10 +80,10 @@ class admin_controller {
 	/**
 	* Activate account
 	* ----------------------------------------------------------------------------------------------*/
-	public function activate( $hash='' ){
-		
-		$user = load::model( 'user' );
-		$hash_user = $user->get_hash( $hash );
+	public function activate( $hash='' )
+    {
+		$hash_user = $this->user_model()
+            ->get_hash( $hash );
 		
 		die;
 		
@@ -142,12 +144,13 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		$page = load::model( 'content' );
-		$pages = $page->type( 'page' )->get( );
+		$pages = $this->content_model()
+            ->type( 'page' )->get( );
 		
-		$page_hiarchy = $page->get_page_children( 0, $pages );
+		$page_hierarchy = $this->content_model()
+            ->get_page_children( 0, $pages );
 
-		load::view ( 'admin/content/add_page', array( 'pages' => $page_hiarchy, 'parent_page_id'=>$parent_page_id ) );		
+		load::view ( 'admin/content/add_page', array( 'pages' => $page_hierarchy, 'parent_page_id'=>$parent_page_id ) );
 	}
 	
 	/**
@@ -156,17 +159,22 @@ class admin_controller {
 	public function content_update_page ( $page_id )
 	{
 		tentacle::valid_user();
-	
-		$page = load::model( 'content' );
-		$get_page = $page->type( 'page' )->get( $page_id );
 
-		$pages = $page->type( 'page' )->get( );
+		$get_page = $this->content_model()
+            ->type( 'page' )
+            ->get( $page_id );
 
-		$page_hiarchy = $page->get_page_children( 0, $pages );
+		$pages = $this->content_model()
+            ->type( 'page' )
+            ->get( );
+
+		$page_hierarchy = $this->content_model()
+            ->get_page_children( 0, $pages );
 		
-		$tag = load::model( 'tags' );
-		$tags = $tag->get_all_tags();
-		$tag_dirty_relations = $tag->get_relations( $page_id);
+		$tags = $this->tag_model()
+            ->get_all_tags();
+		$tag_dirty_relations = $this->tag_model()
+            ->get_relations( $page_id);
 				
 		foreach ( $tag_dirty_relations as $tag_single ) {
 			$tag_relations[] = $tag_single->name;
@@ -178,9 +186,10 @@ class admin_controller {
 			$tag_relations = null;
 		}
 
-		$get_page_meta = $page->get_meta( $page_id );
+		$get_page_meta = $this->content_model()
+            ->get_meta( $page_id );
 
-		load::view ('admin/content/edit_page', array(  'get_page'=>$get_page, 'get_page_meta'=>$get_page_meta, 'pages'=>$page_hiarchy, 'page_id'=>$page_id, 'tags'=>$tags, 'tag_relations'=>$tag_relations) );
+		load::view ('admin/content/edit_page', array(  'get_page'=>$get_page, 'get_page_meta'=>$get_page_meta, 'pages'=>$page_hierarchy, 'page_id'=>$page_id, 'tags'=>$tags, 'tag_relations'=>$tag_relations) );
 	}
 
     /**
@@ -192,8 +201,9 @@ class admin_controller {
 
         define ( 'FRONT'		,'true' );
 
-        $page = load::model( 'content' );
-        $pages = $page->type('page')->get_by_parent_id( 0 );
+        $pages = $this->content_model()
+            ->type('page')->
+            get_by_parent_id( 0 );
 
         load::view ('admin/content/order_page', array(  'pages'=>$pages ) );
     }
@@ -205,20 +215,21 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		$page = load::model( 'content' );
-
 		if ( $status ):
-			$page_hiarchy = $page->type('page')->get_by_status( $status );
+			$page_hierarchy = $this->content_model()
+                ->type('page')
+                ->get_by_status( $status );
 		else:
-			$pages = $page->type('page')->get( );
+			$pages = $this->content_model()
+                ->type('page')
+                ->get( );
 
-			$page_hiarchy = $page->type('page')->get_page_children( 0, $pages );
+			$page_hierarchy = $this->content_model()
+                ->type('page')
+                ->get_page_children( 0, $pages );
 		endif;
 
-		$user = load::model('user');
-		$options = load::model( 'settings' );
-
-		load::view ('admin/content/manage_pages', array( 'pages'=>$page_hiarchy, 'user'=>$user ) );
+		load::view ('admin/content/manage_pages', array( 'pages'=>$page_hierarchy, 'user'=>$this->user_model() ) );
 	}
 
 	/**
@@ -228,11 +239,11 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		$category = load::model( 'category' );
-		$categories = $category->get_all_categories( );
-		$tag = load::model( 'tags' );
+		$categories = $this->content_model()
+            ->get_all_categories( );
 
-		$tags = $tag->get_all_tags();
+		$tags = $this->tag_model()
+            ->get_all_tags();
 
 		load::view ('admin/content/add_post', array( 'categories'=>$categories, 'tags'=>$tags ) );
 	}
@@ -244,28 +255,30 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		$post = load::model( 'content' );
-		$get_post = $post->type( 'post' )->get( $post_id );
+		$get_post = $this->content_model()
+            ->type( 'post' )
+            ->get( $post_id );
 
-		$category = load::model( 'category' );
-		$categories = $category->get_all_categories( );
-		$category_relations = $category->get_relations( $post_id );
+		$categories = $this->category_model()
+            ->get_all_categories( );
+		$category_relations = $this->category_model()
+            ->get_relations( $post_id );
 
-		$tag = load::model( 'tags' );
-		$tags = $tag->get_all_tags();
-		$tag_dirty_relations = $tag->get_relations( $post_id );
+		$tags = $this->tag_model()
+            ->get_all_tags();
+		$tag_dirty_relations = $this->tag_model()
+            ->get_relations( $post_id );
 
-		foreach ( $tag_dirty_relations as $tag_single ) {
+		foreach ( $tag_dirty_relations as $tag_single )
 			$tag_relations[] = $tag_single->name;
-		}
 
-		if ( isset( $tag_relations ) != '') {
+		if ( isset( $tag_relations ) != '')
 			$tag_relations = join(",", $tag_relations);
-		} else {
+		else
 			$tag_relations = null;
-		}
 
-		$get_post_meta = $post->get_meta( $post_id );
+		$get_post_meta = $this->content_model()
+            ->get_meta( $post_id );
 
 		load::view ('admin/content/edit_post', array(  'get_post'=>$get_post, 'get_post_meta'=>$get_post_meta, 'post_id' => $post_id, 'categories'=>$categories, 'category_relations'=>$category_relations, 'tags'=>$tags, 'tag_relations'=>$tag_relations) );
 	}
@@ -277,19 +290,15 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		$post = load::model( 'content' );
+		if ( $status )
+			$posts = $this->content_model()
+                ->type( 'post' )
+                ->get_by_status( $status );
+		else
+			$posts = $this->content_model()
+                ->type( 'post' )->get( );
 
-		if ( $status ):
-			$posts = $post->type( 'post' )->get_by_status( $status );
-		else:
-			$posts = $post->type( 'post' )->get( );
-		endif;
-
-		$category = load::model( 'category' );
-
-		$user = load::model('user');
-
-		load::view ('admin/content/manage_posts', array( 'posts'=>$posts, 'user'=>$user, 'category'=>$category ) );
+		load::view ('admin/content/manage_posts', array( 'posts'=>$posts, 'user'=>$this->user_model(), 'category'=>$this->category_model() ) );
 	}
 
 	/**
@@ -320,8 +329,8 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		$category = load::model( 'category' );
-		$categories = $category->get_all_categories();
+		$categories = $this->category_model()
+            ->get_all_categories();
 
 		load::view ('admin/content/manage_categories', array( 'categories'=>$categories ) );
 	}
@@ -333,8 +342,8 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		$category = load::model( 'category' );
-		$category_single = $category->get( $id );
+		$category_single = $this->category_model()
+            ->get( $id );
 
 		load::view ('admin/content/edit_category', array( 'category'=>$category_single, 'id'=>$id ) );
 	}
@@ -345,9 +354,9 @@ class admin_controller {
 	public function content_delete_category ( $id = '' )
 	{
 		tentacle::valid_user();
-		
-		$category = load::model( 'category' );
-		$category_single = $category->get( $id );
+
+		$category_single = $this->category_model()
+            ->get( $id );
 		
 		load::view ('admin/content/delete_category', array( 'category'=>$category_single, 'id'=>$id ) );	
 	}
@@ -401,8 +410,8 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		$media = load::model( 'media' );
-		$get_media = $media->get();
+		$get_media = $this->media_model()
+            ->get();
 
 		load::view ( 'admin/media/insert', array( 'media'=> $get_media ) );
 	}
@@ -424,8 +433,8 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		$media = load::model( 'media' );
-		$get_media = $media->get();
+		$get_media = $this->media_model()
+            ->get();
 		
 		load::view ('admin/media/manage', array( 'media'=> $get_media ) );
 	}
@@ -434,8 +443,8 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 
-		$media = load::model( 'media' );
-		$get_image = $media->get($id);
+		$get_image = $this->media_model()
+            ->get($id);
 
 		load::view ('admin/media/update', array( 'image'=> $get_image ) );
 	}
@@ -478,8 +487,8 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		$snippet = load::model( 'snippet' );
-		$snippets = $snippet->get( );
+		$snippets = $this->snippet_model()
+            ->get( );
 		
 		load::view ('admin/snippets/manage', array( 'snippets'=>$snippets ) );
 	}
@@ -491,8 +500,8 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		$snippet = load::model( 'snippet' );
-		$snippet_single = $snippet->get( $id );
+		$snippet_single = $this->snippet_model()
+            ->get( $id );
 		
 		load::view ('admin/snippets/edit', array( 'snippet'=>$snippet_single ) );
 	}
@@ -504,8 +513,8 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		$snippet = load::model( 'snippet' );
-		$snippet_single = $snippet->get( $id );
+		$snippet_single = $this->snippet_model()
+            ->get( $id );
 
 		load::view ('admin/snippets/delete', array( 'snippet'=>$snippet_single, 'id'=>$id ) );
 	}
@@ -551,11 +560,11 @@ class admin_controller {
 
 		$theme = load::helper ('theme');
 		
-		$options = load::model( 'settings' );
-		$get = $options->get( 'appearance' );
+		$get = $this->setting_model()
+            ->get( 'appearance' );
 		
-		$serpent = load::model( 'serpent' );
-		$themes = $serpent->get_theme( );
+		$themes = $this->serpent_model()
+            ->get_theme( );
 		
 		load::view ('admin/settings/appearance', array('theme'=>$theme ));
 	}
@@ -568,13 +577,14 @@ class admin_controller {
 	{
         tentacle::valid_user();
 
-		$serpent = load::model( 'serpent' );
 		// These will come from the Serpent API
-        $serpent_plugins = $serpent->get_plugin( );
+        $serpent_plugins = $this->serpent_model()
+            ->get_plugin( );
 		
-		$plugins = load::model( 'plugin' );
-		$plugin_raw = $plugins->navigation('plugin_navigation');
-		$get_plugin = $plugins->get();
+		$plugin_raw = $this->plugin_model()
+            ->navigation('plugin_navigation');
+		$get_plugin = $this->plugin_model()
+            ->get();
 
         if ( $plugin_view == true ) {
             
@@ -632,17 +642,19 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		$category = load::model( 'category' );
-		$categories = $category->get( );
+		$categories = $this->category_model()
+            ->get( );
 
-        $page = load::model( 'content' );
-        $pages = $page->type( 'page' )->get();
+        $pages = $this->content_model()
+            ->type( 'page' )->get();
 
-        $page_array = $page->type( 'page' )->get_page_children( 0, $pages, 0 );
+        $page_array = $this->content_model()
+            ->type( 'page' )->get_page_children( 0, $pages, 0 );
 
         $page_object = (object)$page_array;
 
-        $get_page_by_level = $page->type( 'page' )->get_page_by_level( $page_object, 0 );
+        $get_page_by_level = $this->content_model()
+            ->type( 'page' )->get_page_by_level( $page_object, 0 );
 
 		load::view ('admin/settings/general', array( 'categories'=>$categories, 'pages'=>$get_page_by_level ) );
 	}
@@ -714,8 +726,8 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 	
-		$category = load::model( 'category' );
-		$categories = $category->get( );
+		$categories = $this->category_model()
+            ->get( );
 	
 		load::view ('admin/settings/writing', array( 'categories'=>$categories ) );
 	}
@@ -758,9 +770,10 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		$user = load::model('user');
-		$user_single = $user->get($id);
-		$user_meta = $user->get_meta($id);
+		$user_single = $this->user_model()
+            ->get($id);
+		$user_meta = $this->user_model()
+            ->get_meta($id);
 
 		load::view ( 'admin/users/edit', array( 'user'=>$user_single, 'user_meta'=>$user_meta ) );
 	}
@@ -771,9 +784,9 @@ class admin_controller {
 	public function users_manage ( )
 	{
 		tentacle::valid_user( );
-		
-		$user = load::model( 'user' );
-		$users = $user->get( );
+
+		$users = $this->user_model()
+            ->get( );
 		
 		load::view ( 'admin/users/manage', array( 'users'=>$users ) );
 	}
@@ -787,9 +800,10 @@ class admin_controller {
 
 		$id = user::id( );
 
-		$user = load::model( 'user' );
-		$user_single = $user->get( $id );
-		$user_meta = $user->get_meta( $id );
+		$user_single = $this->user_model()
+            ->get( $id );
+		$user_meta = $this->user_model()
+            ->get_meta( $id );
 
 		load::view ( 'admin/users/profile', array( 'user'=>$user_single, 'user_meta'=>$user_meta ) );
 	}
@@ -801,8 +815,8 @@ class admin_controller {
 	{
 		tentacle::valid_user();
 		
-		$user = load::model( 'user' );
-		$user_meta = $user->get_meta( $id );
+		$user_meta = $this->user_model()
+            ->get_meta( $id );
 
 		load::view ('admin/users/delete', array( 'user_meta'=>$user_meta, 'id'=>$id ) );
 	}
