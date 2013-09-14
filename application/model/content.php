@@ -493,6 +493,20 @@ class content_model extends properties {
 
 
     /**
+     * Get an object based on its date ( year/month )
+     *
+     * @param string $date
+     * @return void
+     * @author Adam Patterson
+     *
+     */
+    public function get_by_date( $date )
+    {
+        return db::query("SELECT * FROM posts WHERE uri LIKE '%".$date."%'");
+    }
+
+
+    /**
      * Return all pages or one page by ID
      *
      * @author Adam Patterson

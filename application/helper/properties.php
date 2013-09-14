@@ -76,4 +76,29 @@ class properties
     {
         return $this->user_table = db ( 'users' );
     }
+
+    public $content_model;
+    public $user_model;
+    public $category_model;
+    public $tag_model;
+
+    public function content_model ( )
+    {
+        return $this->content_model = load::model( 'content' );
+    }
+
+    public function user_model ( )
+    {
+        return $this->user_model = load::model( 'user' );
+    }
+
+    public function category_model ( )
+    {
+        return $this->category_model = load::model( 'category' );
+    }
+
+    public function tag_model ( )
+    {
+        return $this->tag_model = load::model( 'tags' );
+    }
 }
