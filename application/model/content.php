@@ -601,6 +601,25 @@ class content_model extends properties {
     }
 
 
+    // Get Page by Quantity
+    //----------------------------------------------------------------------------------------------
+    public function get_quantity( $quantity=10 ){
+        $posts = db ( 'posts' );
+
+        $get_posts = $posts->select( '*' )
+            ->limit( $quantity )
+            ->where ( 'type', '=', 'post' )
+            ->order_by ( 'date', 'DESC' )
+            ->clause ('AND')
+            ->where ( 'status', '=', 'published' )
+            ->clause ('AND')
+            ->where ( 'date', '<=', time() )
+            ->execute();
+
+        return $get_posts;
+    }
+
+
     /**
      * Get the URI of a parent page
      *
