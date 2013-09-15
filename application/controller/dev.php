@@ -38,9 +38,9 @@ class dev_controller {
     }
 
     public function post_type () {
-        $post = load::model('post');
+        $post = load::model('content');
 
-        $posts = $post->get_by_type('video');
+        $posts = $post->type( 'post' )->get_by_type('video');
 
         var_dump($posts);
     }
@@ -100,13 +100,13 @@ class dev_controller {
 
 
     public function dispatcher(){
-        $pages = load::model('page')->get();
+        $pages = load::model( 'content' )->type( 'page' )->get();
 
-        dispatcher::set('pages', $pages);
+        dispatcher::set( 'pages', $pages );
 
         function test_function()
         {
-            return dispatcher::get('pages');
+            return dispatcher::get( 'pages' );
         }
 
         var_dump(test_function());
@@ -934,8 +934,8 @@ Test two
 		define ( 'FRONT'		,'true' );
         define ( 'IS_POST'      , FALSE );
 
-		$page = load::model( 'page' );
-		$pages = $page->get( );
+		$page = load::model( 'content' );
+		$pages = $page->type( 'page' )->get( );
 		// Current URI to be used with .current page
 		$uri = URI;
 
@@ -964,7 +964,7 @@ Test two
 
 		$get_flat_page_hierarchy = $page->get_flat_page_hierarchy( $pages );
 
-		$get_descendant_ids = $page->get_descendant_ids( 3 );
+		$get_descendant_ids = $page->get_page_descendant_ids( 3 );
 
 		$page_children = $page->get_page_children( 0, $pages );
 
@@ -990,7 +990,7 @@ Test two
         $parser = new WXR_Parser();
         $import = $parser->parse( $wordpress_xml );
 
-        $post           = load::model('post');
+        $post           = load::model('content');
         $categories     = load::model('category');
         $tags           = load::model('tags');
         $media          = load::model( 'media' );
@@ -1038,7 +1038,7 @@ Test two
                 }
 
                 # Import the post and return the new ID
-                $post_id = $post->add_by_import($import_post);
+                $post_id = $post->type( 'post' )->add_by_import($import_post);
 
                 # assosiate tags, and categories with the new post.
                 if(array_key_exists("terms", $import_post))
@@ -1179,5 +1179,22 @@ Test two
             (title,content,excerpt) AGAINST('portfolio') > 0 ORDER BY relevance DESC");
 
         var_dump($posts);
+    }
+
+    public function content_model () {
+
+        $page = load::model( 'content' );
+
+        $pages = $page->type('page')->get_by_parent_id( 0 );
+
+
+        $pages = $page->type( 'page' )->get_page_parent_ids( $parent_id );
+
+//        $get_post = $content->type('post')->get();
+//        var_dump($get_post);
+//
+//        $get_page = $content->type('page')->get();
+//        var_dump($get_page);
+
     }
 }

@@ -1,7 +1,10 @@
 <?php
-class page_controller {
+load::helper( 'data_properties' );
+
+class page_controller extends properties {
 
     public function index(  ){
+
         if( DEBUG ):
             load::library('benchmark');
             bench::mark('start');
@@ -14,7 +17,7 @@ class page_controller {
 
         $uri 			= URI;
 
-        $blog_uri       = get::option('blog_uri');
+        $blog_uri       = get::option( 'blog_uri' );
 
         if ( $uri == '' || $uri == 'home'):
             $uri 		= 'home';
@@ -24,8 +27,7 @@ class page_controller {
             define( 'IS_HOME'    , FALSE );
         endif;
 
-
-        $id = load::model('page')->get_by_uri(URI);
+        $id = $this->content_model()->get_by_uri(URI);
 
         if ( $id )
             define( 'ID'            , $id->id);
@@ -56,24 +58,18 @@ class page_controller {
             ':words/:words/:words'              => 'page.subpage',
         );
 
-        url_map::add($routs);
+        url_map::add( $routs );
 
-        logger::set('URI', $uri );
-        logger::set('Model Index', url_map::get( $uri ) );
+        logger::set( 'URI', $uri );
+        logger::set( 'Model Index', url_map::get( $uri ) );
 
-        load::library('pagination');
+        load::library( 'pagination' );
 
-        load::helper('template');
+        load::helper( 'template' );
 
         // load the functions.php file from the active theme.
         if (file_exists(THEME_URI.'/functions.php'))
             require_once( THEME_URI.'/functions.php' );
-
-        $post 		= load::model( 'post' );
-        $page 		= load::model( 'page' );
-        $category 	= load::model( 'category' );
-        $tag 		= load::model( 'tags' );
-        $author 	= load::model( 'user' );
 
         $uri_parts = explode('/', URI);
         $current_page = end( $uri_parts );
@@ -97,20 +93,20 @@ class page_controller {
                 if ($uri_count == 2)
                     $uri = $uri_parts[0];
 
-                $post 		= $page->get_by_uri( $uri );
+                $post = $this->content_model()->get_by_uri( $uri );
 
                 if ( !$post ):
                     tentacle::render ( '404' );
                     define ( 'IS_404'      , TRUE );
                 else:
                     logger::set('Page Template', $post->template);
-                    tentacle::render( $post->template, array ( 'post' => $post, 'page' => $page ) );
+                    tentacle::render( $post->template, array ( 'post' => $post, 'page' => $this->content_model() ) );
                 endif;
 
                 break;
             case 'short_url':
 
-                $post 		= $page->get_uri( $uri_parts[1] );
+                $post = $this->content_model()->get_uri( $uri_parts[1] );
 
                 url::redirect($post);
 
@@ -121,8 +117,8 @@ class page_controller {
                 define ( 'IS_SUB_PAGE'  , TRUE );
                 define ( 'IS_POST'      , FALSE );
 
-                $post 		= $page->get_by_uri( $uri );
-                $post_meta 	= $page->get_page_meta( $post->id );
+                $post       = $this->content_model()->get_by_uri( $uri );
+                $post_meta  = $this->content_model()->get_meta( $post->id );
 
                 if ( !$post ):
                     tentacle::render ( '404' );
@@ -136,7 +132,7 @@ class page_controller {
                 define ( 'IS_POST'      , FALSE );
                 define ( 'IS_BLOG'      , TRUE );
 
-                $post_total 		= $post->get( );
+                $post_total 		= $this->content_model()->get( );
 
                 $posts = new pagination($post_total, $current_page, $post_limit);
 
@@ -150,7 +146,7 @@ class page_controller {
                 }
 
                 logger::set('Page Template', 'template-blog');
-                tentacle::render( 'template-blog', array ( 'posts' => $posts->results(), 'author' => $author, 'category' => $category, 'tag' => $tag ) );
+                tentacle::render( 'template-blog', array ( 'posts' => $posts->results(), 'author' => $this->user_model(), 'category' => $this->category_model(), 'tag' => $this->tag_model() ) );
 
                 break;
             case 'blog_date':
@@ -158,14 +154,14 @@ class page_controller {
                 define ( 'IS_POST'      , FALSE );
                 define ( 'IS_BLOG'      , TRUE );
 
-                $posts 		= $post->get_by_date( $uri );
+                $posts 		= $this->content_model()->get_by_date( $uri );
 
                 logger::set('Post total', count($posts));
 
                 if ( !$posts )
                     tentacle::render ( '404' );
                 else
-                    tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
+                    tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author' => $this->user_model(), 'category' => $this->category_model(), 'tag' => $this->tag_model() ) );
 
                 break;
             case 'blog_date_slug':
@@ -173,18 +169,17 @@ class page_controller {
                 define ( 'IS_POST'      , TRUE );
                 define ( 'IS_BLOG'      , TRUE );
 
-                $post 		= $page->get_by_uri( $uri );
+                $post 		    = $this->content_model()->get_by_uri( $uri );
 
                 if ( !$post ):
                     tentacle::render ( '404' );
                 else:
-                    $post_meta 	= $page->get_page_meta( $post->id );
+                    $post_meta 	= $this->content_model()->get_meta( $post->id );
 
                     logger::set('Post total', count($post));
                     logger::set('Post Template', $post->template);
 
-                    tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta, 'author'=>$author, 'category'=>$category, 'tag'=>$tag  ) );
-                endif;
+                    tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta, 'author' => $this->user_model(), 'category' => $this->category_model(), 'tag' => $this->tag_model() ) );                endif;
 
                 break;
             case 'blog_paged':
@@ -192,7 +187,7 @@ class page_controller {
                 define ( 'IS_POST'      , FALSE );
                 define ( 'IS_BLOG'      , TRUE );
 
-                $post_total = $post->get( );
+                $post_total     = $this->content_model()->get( );
 
                 $posts = new pagination($post_total, $current_page, $post_limit);
 
@@ -205,7 +200,7 @@ class page_controller {
                     paginate::selectable_pages('7');
                 }
 
-                tentacle::render( 'template-blog', array ( 'posts' => $posts->results(), 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
+                tentacle::render( 'template-blog', array ( 'posts' => $posts->results(), 'author' => $this->user_model(), 'category'=>$this->category_model(), 'tag' => $this->tag_model() ) );
                 break;
             case 'category_slug':
 
@@ -214,14 +209,14 @@ class page_controller {
                 define ( 'IS_POST'      , FALSE );
 
                 if (URI == 'category')
-                    $posts 		= $post->get( );
+                    $posts 		= $this->content_model()->type( 'post' )->get( );
                 else
-                    $posts 	= $category->get_by_slug( $category_slug[1] );
+                    $posts 	    = $this->category_model()->get_by_slug( $category_slug[1] );
 
                 $post_total = count($posts);
                 logger::set('Category total', $post_total);
 
-                tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
+                tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author' => $this->user_model(), 'category'=>$this->category_model(), 'tag' => $this->tag_model() ) );
 
                 break;
             case 'tag_slug':
@@ -231,14 +226,16 @@ class page_controller {
                 define ( 'IS_POST'      , FALSE );
 
                 if (URI == 'category')
-                    $posts 		= $post->get( );
+                    $posts = $this->content_model()
+                        ->type( 'post' )
+                        ->get( );
                 else
-                    $posts 	= $tag->get_by_slug( $tag_slug[1] );
+                    $posts 	    = $this->tag_model()->get_by_slug( $tag_slug[1] );
 
                 $post_total = count($posts);
                 logger::set('Category total', $post_total);
 
-                tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author'=>$author, 'category'=>$category, 'tag'=>$tag ) );
+                tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author' => $this->user_model(), 'category'=>$this->category_model(), 'tag' => $this->tag_model() ) );
                 break;
             default:
                 tentacle::render ( '404' );
@@ -256,5 +253,4 @@ class page_controller {
         // Site stats are triggered in the admin bar if you are not logged in.
         tentacle::admin_bar();
     }
-
 }

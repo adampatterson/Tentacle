@@ -1,7 +1,9 @@
 <?
-class user_model
+load::helper( 'data_properties' );
+
+class user_model extends properties
 {
-	/**
+    /**
 	* Add User
 	* ----------------------------------------------------------------------------------------------*/
 	public function add () 
@@ -34,9 +36,8 @@ class user_model
 			->data('display_name',$display_name)
 			->save();
 
-		$users  = db( 'users' );
-		
-		$users->update(array(
+		$this->user_table()
+            ->update(array(
 				'registered'=> time()
 			))
 			->where( 'email', '=', $email )
@@ -61,8 +62,8 @@ class user_model
 
 		note::set('success','user_add','User Added!');
 	}
-	
-	
+
+
 	/**
 	* Update User
 	* ----------------------------------------------------------------------------------------------*/
@@ -73,16 +74,16 @@ class user_model
 		$old_email    = input::post( 'old_email' );
 		$new_email    = input::post( 'email' );
 		$type         = input::post( 'type' );
-		
+
 		$first_name   = input::post( 'first_name' );
 		$last_name    = input::post( 'last_name' );
 		$display_name = input::post( 'display_name' );
 		$url          = input::post( 'url' );
-		
+
 		$editor       = input::post( 'editor' );
-		
+
 		$profile      = input::post( 'profile' );
-		
+
 		// need to set the users old email address before you update it.
 
 		user::update($old_email)
@@ -95,8 +96,8 @@ class user_model
 			->data('editor',$editor)
 			->data('display_name',$display_name)
 			->save();
-		
-		if ($password != '') 
+
+		if ($password != '')
 		{
 			user::update($new_email)
 				->password($password)
@@ -112,48 +113,48 @@ class user_model
         }
 
 		note::set('success','user_updated','User Updated!');
-	
+
 		return TRUE;
 	}
-	
-	
+
+
 	/**
 	* Get User
 	* ----------------------------------------------------------------------------------------------*/
 	public function get ( $id='' )
 	{
-		$users_table = db ( 'users' );
-					
 		if ($id=='') {
 			// Get Comments Database
-			$users = $users_table->select( '*' )
+			$users = $this->user_table()
+                ->select( '*' )
 				->order_by ( 'username', 'DESC' )
 				->execute ();
-				
+
 			return $users;
-				
+
 		} else {
 			// Get Comments Database
-			$users = $users_table->select( '*' )
+			$users = $this->user_table()
+                ->select( '*' )
 				->where ( 'id', '=', $id)
-				->execute();				
-				
-			return $users[0];	
+				->execute();
+
+			return $users[0];
 		}
 	}
-	
+
 	public function set_password(  )
 	{
 		$user = self::get_hash( input::post('hash') );
-		
+
 		user::update($user->email)
 			->password( input::post('password') )
 			->data( 'activation_key', '' )
 			->save();
-			
+
 		return $user;
 	}
-	
+
 	/**
 	* Get from Hash
 	* ----------------------------------------------------------------------------------------------*/
@@ -162,25 +163,24 @@ class user_model
 		$user_hash = db::query("SELECT * FROM users WHERE
 			data LIKE '%".$hash."%'
 			ORDER BY id ASC");
-			
+
 		$total = count($user_hash);
-		
+
 		if ($total != 1) {
 			return false;
 		} else {
 			return $user_hash[0];
 		}
 	}
-	
-	
+
+
 	/**
 	* Get user Meta
 	* ----------------------------------------------------------------------------------------------*/
 	public function get_meta ( $id )
 	{
-		$user_meta = db ( 'users' );
-				
-		$user_meta = $user_meta->select( 'data' )
+	    $user_meta = $this->user_table()
+            ->select( 'data' )
 			->where ( 'id', '=', $id )
 			->execute();
 
@@ -199,7 +199,7 @@ class user_model
 	* ----------------------------------------------------------------------------------------------*/
 	public function delete ( $id  ) 
 	{
-		#@todo dont allow the user to delete all accounts! One must be left.
+		#@todo don't allow the user to delete all accounts! One must be left.
 		
 		user::delete( $id );
 		note::set('success','user_delete','User Deleted!');
@@ -213,10 +213,9 @@ class user_model
 	* ----------------------------------------------------------------------------------------------*/
 	public function unique ( $username )
 	{
-		if( user::unique( $username ) ):
+		if( user::unique( $username ) )
 			echo '0';
-		else:
+		else
 			echo '1';
-		endif;
 	}
 }

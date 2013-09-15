@@ -1,5 +1,8 @@
 <?php
-class action_controller {
+
+load::helper( 'data_properties' );
+
+class action_controller extends properties {
 	
 	/**
 	* Cut it Out
@@ -15,10 +18,7 @@ class action_controller {
 	* ----------------------------------------------------------------------------------------------*/
 	public function agree ()
 	{
-	
-		$setting = load::model( 'settings' );
-		
-		$update_agree = $setting->update( 'is_agree', 'true' );
+		$update_agree = $this->options_model()->update( 'is_agree', 'true' );
 
 		url::redirect('admin/dashboard');
 	}
@@ -42,7 +42,6 @@ class action_controller {
 	{
 		$username = input::post( 'username' );
 	    $password = input::post( 'password' );
-	
 		$history = input::post( 'history' );
 
 	    user::login($username, $password);
@@ -50,51 +49,38 @@ class action_controller {
         $user_data = user::get($username);
         $attempt = $user_data->data['login_attempt'];
 
-	    if(user::valid() and $attempt !== 3 and $attempt <= 3)
-		{
+	    if(user::valid() and $attempt !== 3 and $attempt <= 3):
             user::update($username)
                 ->data('login_attempt', 0 )
                 ->save();
 
             if ($history != '')
-			{
 				url::redirect($history);
-			} 
-			else 
-			{
+			else
 				url::redirect('admin/dashboard');
-			}
-	    } 
-		else
-		{
+		else:
             if( array_key_exists( 'login_attempt', $user_data->data ) )
-            {
                 $attempt = $attempt + 1;
-            }
             else
-            {
                 # Move into less than three strikes.
                 $attempt = '1';
-            }
 
             user::update($username)
                 ->data('login_attempt', $attempt )
                 ->save();
 
-            if ( $attempt >= 3)
-            {
-                $email = load::model( 'email' );
-
-                $locked = $email->locked_account( $user_data, 'Your account has been disabled for security reasons.' );
+            if ( $attempt >= 3):
+                $locked = $this->email_model()
+                    ->locked_account( $user_data, 'Your account has been disabled for security reasons.' );
 
                 note::set("error","login",'Your account has been disabled for security reasons.');
 
                 url::redirect('admin/logout');
-            } else {
+            else:
                 note::set("error","login",'Password Error');
                 url::redirect('admin/index');
-            }
-	    }
+            endif;
+	    endif;
 	}
 	
 
@@ -105,32 +91,28 @@ class action_controller {
 	{
  		$username = input::post('username');
 
-		$users_table = db('users');  
-
 		if ( strstr( $username, '@', true) ) {
-			$user = $users_table->select('*')
-		                    ->where('email','=',$username)
-		                    ->execute();
+			$user = $this->user_table()
+                ->select('*')
+                ->where('email','=',$username)
+                ->execute();
 		} else {
-			$user = $users_table->select('*')
-		                    ->where('username','=',$username)
-		                    ->execute();
+			$user = $this->user_table()
+                ->select('*')
+                ->where('username','=',$username)
+                ->execute();
 		}
 		           
 	    if ( isset($user[0]->email)) 
 		{
 	        // Generate a Hash from the users IP
-
-            $email = load::model( 'email' );
-
-            $locked = $email->lost( $user, 'Recover your password.' );
+            $locked = $this->email_model()->lost( $user, 'Recover your password.' );
 
 			note::set("success","sent_message",'An email has been sent with instructions.');
 
 			url::redirect('admin');
 			
 	    } else {
-	        // @todo set lost password error message for not match
 	        echo 'No match, Set an error message';
 	    }
 	
@@ -141,10 +123,9 @@ class action_controller {
 	/**
 	* Activate account
 	* ----------------------------------------------------------------------------------------------*/
-	public function activate( $hash='' ){
-
-		$user = load::model( 'user' );
-		$user_details = $user->get_hash( $hash );
+	public function activate( $hash='' )
+    {
+		$user_details = $this->user_model()->get_hash( $hash );
 		
 		if ($user_details != false) {
 			user::update($user_details->email)
@@ -165,9 +146,7 @@ class action_controller {
 	* ----------------------------------------------------------------------------------------------*/
 	public function do_core_upgrade()
 	{
-		$serpent = load::model( 'serpent' );
-
-		$core_update = $serpent->get_core();
+		$core_update = $this->serpent_model()->get_core();
 		
 		// Make sure some one did not rewquest this URL directly.
 		if ( is::update( TENTACLE_VERSION, $core_update->version ) )
@@ -203,8 +182,7 @@ class action_controller {
 	* ----------------------------------------------------------------------------------------------*/
 	public function set_password( )
 	{	
-		$user = load::model( 'user' );
-		$user_details = $user->set_password( );
+		$user_details = $this->user_model()->set_password( );
 
 		user::update( $user_details->email )
 		           ->data('activation_key','')
@@ -231,10 +209,7 @@ class action_controller {
 	* ----------------------------------------------------------------------------------------------*/
 	public function unique_user ()
 	{
-		$user = load::model( 'user' );
-		$unique = $user->unique( $_POST['username'] );
-	
-		return $unique;
+		return $this->user_model()->unique( $_POST['username'] );
 	}
 
 
@@ -254,7 +229,6 @@ class action_controller {
 	* ----------------------------------------------------------------------------------------------*/
 	public function render_admin ( $location, $template = ''/*, $id = null */ )
 	{
-		
 		if ( $template == 'default' ):
 			$delete = session::delete ( 'template' );
 		else:
@@ -266,13 +240,6 @@ class action_controller {
 		endif;
 		
 		url::redirect( 'admin/content_'.$location.'/' );
-		/*
-		if ( $id == null ) {
-			url::redirect( 'admin/content_'.$location.'/' );
-		} else {
-			url::redirect( 'admin/content_'.$location.'/'.$id );
-		}
-		*/
 	}
 
 
@@ -294,10 +261,11 @@ class action_controller {
  	{
 		tentacle::valid_user();
 
-		$page = load::model( 'page' );
-		$page_single = $page->add( );
+		$page_single = $this->content_model()
+            ->type('page')
+            ->add( );
 			
-		// Delete the selected tempalte from the session once the Page has been posted.
+		// Delete the selected template from the session once the Page has been posted.
 		session::delete ( 'template' );
 
 		/*
@@ -317,8 +285,9 @@ class action_controller {
  	{
 		tentacle::valid_user();
 
-		$page = load::model( 'page' );
-		$page_single = $page->update( $page_id );
+		$page_single = $this->content_model()
+            ->type('page')
+            ->update( $page_id );
 		
 		/*
 		$post_tags = input::post( 'tags' );
@@ -346,15 +315,14 @@ class action_controller {
 	* ----------------------------------------------------------------------------------------------*/	
 	public function trash_page ( $id )
  	{
-		$page = db('posts');
-
-		$page->update(array(
-			'status'=>'trash'
-		))
+		$this->post_table()
+            ->update( array(
+			    'status'=>'trash'
+		    ))
 			->where( 'id', '=', $id )
 			->execute();
 			
-		note::set('success','page_soft_delete','Moved to the trash.');
+		note::set( 'success','page_soft_delete','Moved to the trash.' );
 		
 		url::redirect( 'admin/content_manage_pages' );
 	}
@@ -377,24 +345,22 @@ class action_controller {
  	{
 		tentacle::valid_user();
 			
-		$post = load::model( 'post' );
-		$post_single = $post->add( );
+		$post_single = $this->post_table()->type( 'post' )->add( );
 		
 		$post_categories = input::post( 'post_category' );
-		$category = load::model( 'category' );
 
         foreach ( $post_categories as $post_category ) {
-            $category_relations = $category->relations( $post_single, $post_category );
+            $category_relations = $this->category_model()
+                ->relations( $post_single, $post_category );
         }
 
 		$post_tags = input::post( 'tags' );
 		$post_tags = explode(',', $post_tags );
-		$tags = load::model( 'tags' );
 
 		foreach ( $post_tags as $post_tag ) {
-			$tag_single = $tags->add( $post_tag );
+			$tag_single = $this->tag_model()->add( $post_tag );
 
-			$tag_relations = $tags->relations( $post_single, $tag_single );
+			$tag_relations = $this->tag_model()->relations( $post_single, $tag_single );
 		}
 		
 		url::redirect( 'admin/content_update_post/'.$post_single );
@@ -408,28 +374,26 @@ class action_controller {
  	{
 		tentacle::valid_user();
 
-		$post = load::model( 'post' );
-		$post_single = $post->update( $post_id );
+		$post_single = $this->content_model()
+            ->type( 'post' )
+            ->update( $post_id );
 
-        $post_categories = input::post( 'post_category' );
-        $category = load::model( 'category' );
+        $post_categories    = input::post( 'post_category' );
 
         # This clears all relations ( for tags as well )
-        $delete_relations = $category->delete_relations( $post_single );
+        $delete_relations   = $this->category_model()->delete_relations( $post_single );
 
-        foreach ( $post_categories as $post_category ) {
-            $category_relations = $category->relations( $post_single, $post_category );
-        }
+        foreach ( $post_categories as $post_category )
+            $category_relations = $this->category_model()->relations( $post_single, $post_category );
 
 		$post_tags = input::post( 'tags' );
 		$post_tags = explode(',', $post_tags );
-		$tags = load::model( 'tags' );
 
 		foreach ( $post_tags as $tag ) {
 
-			$tag_single = $tags->add( $tag );
+			$tag_single     = $this->tag_model()->add( $tag );
 
-			$tag_relations = $tags->relations( $post_single, $tag_single );
+			$tag_relations  = $this->tag_model()->relations( $post_single, $tag_single );
 		}
 
 		url::redirect( input::post( 'history' ) );
@@ -450,11 +414,10 @@ class action_controller {
 	* ----------------------------------------------------------------------------------------------*/	
 	public function trash_post ( $id )
  	{
-		$page = db('posts');
-
-		$page->update(array(
-			'status'=>'trash'
-		))
+        $this->content_model()
+            ->update(array(
+			    'status'=>'trash'
+		    ))
 			->where( 'id', '=', $id )
 			->execute();
 			
@@ -482,11 +445,9 @@ class action_controller {
 	{
 		tentacle::valid_user();
 				
-		$user = load::model( 'user' );
-		$user_single = $user->add();
+		$user_single = $this->user_model()->add();
 
 		if (input::post( 'send_password' ) == 'yes') {
-			$send_email = load::model( 'email' );
 
 			$user_name    = input::post( 'user_name' );
 			$password     = input::post( 'password' );
@@ -517,7 +478,7 @@ class action_controller {
 							<strong>From:</strong> <a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
 			}
 
-			$user_email = $send_email->send( 'Welcome to Tentacle CMS', $message, $email );	
+			$user_email = $this->email_model()->send( 'Welcome to Tentacle CMS', $message, $email );
 		}
 		
 		$history = input::post( 'history' );
@@ -533,12 +494,9 @@ class action_controller {
 	{
 		tentacle::valid_user();
 
-		$user 				= load::model( 'user' );
-		$user_single 		= $user->update();
+		$user_single = $this->user_model()->update();
 
-		$history = input::post( 'history' );
-
-		url::redirect($history);
+		url::redirect( input::post( 'history' ) );
 	}
 	
 
@@ -551,11 +509,9 @@ class action_controller {
 		
 		$confirm = input::post('delete_user');
 		
-		if ( $confirm == 'delete' ) {
-			$user = load::model( 'user' );
-			$user_delete = $user->delete( $id );
-		}
-		
+		if ( $confirm == 'delete' )
+			$user_delete = $this->user_model()->delete( $id );
+
 		url::redirect('admin/users_manage/');
 	}
 	
@@ -574,8 +530,7 @@ class action_controller {
 	
 	public function enable_plugin( $slug )
 	{
-		$plugins = load::model('plugin');
-		$activate = $plugins->activate( $slug );
+		$activate = $this->plugin_model()->activate( $slug );
 		
 		url::redirect('admin/settings_plugins/');
 	}
@@ -583,8 +538,7 @@ class action_controller {
 	
 	public function disable_plugin( $slug )
 	{
-		$plugins = load::model('plugin');
-		$deactivate = $plugins->deactivate( $slug );
+		$deactivate = $this->plugin_model()->deactivate( $slug );
 		
 		url::redirect('admin/settings_plugins/');
 	}
@@ -609,10 +563,8 @@ class action_controller {
 	{	
 		tentacle::valid_user();
 			
-		$snippet = load::model( 'snippet' );
-		$snippet_single = $snippet->add( );
+		$snippet_single = $this->snippet_model()->add( );
 
-		//$history = input::post( 'history' );
 		url::redirect('admin/snippets_manage/'); 
 	}
 
@@ -623,11 +575,8 @@ class action_controller {
 	public function update_snippet ( $id )
 	{
 		tentacle::valid_user();
-		
-		$snippet = load::model( 'snippet' );
-		$snippet_single = $snippet->update( $id  );
-		
-		
+
+		$snippet_single = $this->snippet_model()->update( $id  );
 
 		url::redirect('admin/snippets_manage/');
 	}
@@ -640,8 +589,7 @@ class action_controller {
 	{
 		tentacle::valid_user();
 		
-		$snippet = load::model( 'snippet' );
-		$snippet_delete = $snippet->delete( $id );
+		$snippet_delete = $this->snippet_model()->delete( $id );
 		
 		url::redirect('admin/snippets_manage/');
 	}
@@ -665,11 +613,10 @@ class action_controller {
  	public function add_category ()
  	{	
 		tentacle::valid_user();	
- 		$category = load::model( 'category' );
- 		$category_single = $category->add( );
+
+ 		$category_single = $this->category_model()->add( );
  
- 		//$history = input::post( 'history' );
- 		url::redirect('admin/content_manage_categories/'); 
+ 		url::redirect('admin/content_manage_categories/');
  	}
 
 
@@ -679,9 +626,8 @@ class action_controller {
  	public function update_category ( $id ) 
  	{
 		tentacle::valid_user();
-	
-		$category = load::model( 'category' );
-		$category_single = $category->update( $id  );
+
+		$category_single = $this->category_model()->update( $id  );
 
 		url::redirect('admin/content_manage_categories/'); 
  	}
@@ -692,10 +638,9 @@ class action_controller {
 	* ----------------------------------------------------------------------------------------------*/	
  	public function delete_category ( $id ) 
  	{
-		tentacle::valid_user()
-		;
- 		$category = load::model( 'category' );
- 		$category_delete = $category->delete( $id );
+		tentacle::valid_user();
+
+ 		$category_delete = $this->category_model()->delete( $id );
  		
  		url::redirect('admin/content_manage_categories/'); 
   	}
@@ -718,9 +663,9 @@ class action_controller {
 	* ----------------------------------------------------------------------------------------------*/
  	public function update_settings ( $key, $value, $autoload = 'yes' )
 	{
-		$setting = load::model( 'settings' );
-		
-		$update_appearance = $setting->update( $key, $value, $autoload );
+        tentacle::valid_user();
+
+        $update_appearance = $this->options_model()->update( $key, $value, $autoload );
 
 		url::redirect('admin/settings_appearance');	
 	}
@@ -730,9 +675,7 @@ class action_controller {
 	* Update Settings Post
 	* ----------------------------------------------------------------------------------------------*/
 	public function udpate_settings_post ( )
-	{	
-		$setting = load::model( 'settings' );
-		
+	{
 		$autoload = 'yes';
 		$keys = array_keys( $_POST );
 		$values = array_values( $_POST );
@@ -746,7 +689,7 @@ class action_controller {
 		) {
 			if ( $key != 'submit' && $key != 'history') 
 			{
-				$update_settings = $setting->update( $key, $value, $autoload );
+				$update_settings = $this->options_model()->update( $key, $value, $autoload );
 			}
 		}
 
@@ -796,8 +739,7 @@ class action_controller {
 
 			if(move_uploaded_file($pic['tmp_name'], $upload_dir.$file_meta['name']))
 			{
-				$media = load::model( 'media' );
-				$add_image = $media->add( $file_meta['name'] );
+				$add_image = $this->media_model()->add( $file_meta['name'] );
 				
 				load::helper('image');
                 chmod(IMAGE_DIR.$file_meta['name'], 0664);
@@ -815,9 +757,7 @@ class action_controller {
 
 	public function insert_media( $id )
 	{
-		$media = load::model( 'media' );
-
-		$update = $media->update( $id );
+		$update = $this->media_model()->update( $id );
 		
 		$title				    = input::post('title');
 		$alt_text				= input::post('alt_text');
@@ -855,11 +795,9 @@ win.send_to_editor('<?=$html?>');
 
 	public function update_media( $id )
 	{
-		$media = load::model( 'media' );
+    	$update = $this->media_model()->update( $id );
 
-		$update = $media->update( $id );
-
-		url::redirect(input::post( 'history' )); 
+		url::redirect( input::post( 'history' ) );
 	}
 
 	
@@ -903,22 +841,13 @@ win.send_to_editor('<?=$html?>');
         $parser = new WXR_Parser();
         $import = $parser->parse( $wordpress_xml );
 
-        $post           = load::model('post');
-        $categories     = load::model('category');
-        $tags           = load::model('tags');
-        $media          = load::model( 'media' );
-
         # import new categories
         foreach ($import['categories'] as $import_category )
-        {
-            $categories->add($import_category);
-        }
+            $this->category_model()->add($import_category);
 
         # import new tags
         foreach ($import['tags'] as $import_tag )
-        {
-            $tags->add($import_tag);
-        }
+            $this->tag_model()->add($import_tag);
 
         # Only work with post content, we don't want pages, file attachments, or empty posts.
         foreach ($import['posts'] as $import_post )
@@ -951,7 +880,7 @@ win.send_to_editor('<?=$html?>');
                 }
 
                 # Import the post and return the new ID
-                $post_id = $post->add_by_import($import_post);
+                $post_id = $this->content_model()->add_by_import( $import_post );
 
                 # assosiate tags, and categories with the new post.
                 if(array_key_exists("terms", $import_post))
@@ -960,15 +889,15 @@ win.send_to_editor('<?=$html?>');
                     {
                         if ( $term['domain'] == 'post_tag' )
                         {
-                            $tag_id = $tags->lookup($term['slug']);
+                            $tag_id = $this->tag_model()->lookup($term['slug']);
 
-                            $tag_relations = $tags->relations( $post_id, $tag_id );
+                            $tag_relations = $this->tag_model()->relations( $post_id, $tag_id );
                         }
                         elseif( $term['domain'] == 'category' )
                         {
-                            $category_id = $categories->lookup($term['slug']);
+                            $category_id = $this->category_model()->lookup($term['slug']);
 
-                            $category_relations = $categories->relations( $post_id, $category_id );
+                            $category_relations = $this->category_model()->relations( $post_id, $category_id );
                         }
                     }
                 }
@@ -987,7 +916,7 @@ win.send_to_editor('<?=$html?>');
                 if (!file_exists(STORAGE_DIR.'/images/'.$url_parts['name'])) {
                     file_put_contents(STORAGE_DIR.'/images/'.$url_parts['name'], $attachment_image);
 
-                    $add_image = $media->add( $url_parts['name'] );
+                    $add_image = $this->media_model()->add( $url_parts['name'] );
 
                     process_image( $url_parts['name'] );
                 }
@@ -1130,9 +1059,7 @@ win.send_to_editor('<?=$html?>');
 									('$email', '$user_name', '$encrypted_password', 'administrator', '{\"first_name\":\"$first_name\",\"last_name\":\"$last_name\",\"activity_key\":\"$hashed_ip\",\"url\":\"\",\"display_name\":\"$display_name\",\"editor\":\"wysiwyg\"}', '$registered', 1)" );
 		
 		
-		if (input::post( 'send_password' ) == 'yes') {
-			$send_email = load::model( 'email' );
-
+		if (input::post( 'send_password' ) == 'yes'):
 			load::helper('email');
 
 			$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].time());
@@ -1143,10 +1070,9 @@ win.send_to_editor('<?=$html?>');
 						<strong>Password</strong>: '.$password.'</p>
 						<a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
 
-			$user_email = $send_email->send( 'Welcome to Tentacle CMS', $message, $email );
-		}
-		
-		
+			$user_email = $this->email_model()->send( 'Welcome to Tentacle CMS', $message, $email );
+		endif;
+
 		url::redirect('install/done');
 	}
 }

@@ -1,17 +1,18 @@
 <?
-class settings_model  
+load::helper( 'data_properties' );
+
+class settings_model extends properties
+
 {
 	// Add Setting
 	//----------------------------------------------------------------------------------------------
 	public function add ( $key, $value, $autoload )	
 	{
-		$setting = db('options');
-		
 		$result = $this->look_up( $key );
 				
 		if ( $result == false ):
-		
-			$setting->insert( array(
+
+            $this->options_table()->insert( array(
 					'key' => $key,
 					'value' => $value,
 					'autoload' => $autoload
@@ -31,9 +32,9 @@ class settings_model
 		if ( $result == false ):
 			$this->add( $key, $value, $autoload );
 		else:
-			$setting = db('options');
 
-			$setting->update( array(
+            $this->options_table()
+                ->update( array(
 					'key' => $key,
 					'value' => $value,
 					'autoload' => $autoload
@@ -48,9 +49,8 @@ class settings_model
 	//----------------------------------------------------------------------------------------------	
 	public function get ( $key = '' )	
 	{
-		$setting = db ( 'options' );
-		
-		$get_settings = $setting->select( '*' )
+		$get_settings = $this->options_table()
+            ->select( '*' )
 			->where( 'key', '=', $key )
 			->execute();
 
@@ -65,12 +65,10 @@ class settings_model
 	//----------------------------------------------------------------------------------------------	
 	public function look_up( $key = '')	
 	{
-		$setting = db ( 'options' );
-		
-		$get_settings = $setting->select( '*' )
+		$get_settings = $this->options_table()
+            ->select( '*' )
 			->where( 'key', '=', $key )
 			->order_by ( 'id', 'DESC' )
-
 			->execute();
 
         if( empty( $get_settings)  )
@@ -84,8 +82,6 @@ class settings_model
 	//----------------------------------------------------------------------------------------------
 	public function delete ( $key = '' )	
 	{
-		$setting = db('options');
-
-		$setting->delete( 'key','=',$key );
+		$this->options_table()->delete( 'key','=',$key );
 	}	
-} // END setting_model
+}

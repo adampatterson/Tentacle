@@ -1,4 +1,5 @@
 <?
-    class error_controller {
+class error_controller
+{
 
-    }
+}

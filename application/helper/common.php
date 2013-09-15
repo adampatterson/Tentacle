@@ -1350,7 +1350,9 @@ function user_editor ( ) {
 
     $user_meta = $user->get_meta( $id );
 
-    return $user_meta->editor;
+    $editor = ( $user_meta->editor == false ? 'wysiwyg' : $user_meta->editor );
+
+    return $editor;
 }
 
 

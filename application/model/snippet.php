@@ -1,4 +1,6 @@
 <?
+load::helper( 'data_properties' );
+
 /*
     const TABLE_NAME = 'snippet';
     
@@ -13,9 +15,9 @@
     public $updated_by_id;
  */
 
-class snippet_model  
+class snippet_model extends properties
 {
-	// Add Snippet
+    // Add Snippet
 	//----------------------------------------------------------------------------------------------
 	public function add () 
 	{
@@ -27,15 +29,14 @@ class snippet_model
 		$slug            = string::camelize($name);
 		$slug            = string::underscore($slug);
 
-		$snippet = db('snippet');
-
-		$snippet->insert(array(
-			'name'=>$name,
-			'slug'=>$slug,
-			'created_by'=>$created_by,
-			'content'=>$snippet_content,
-			'filter'=>$filter
-		),FALSE);
+        $this->snippet_table()
+            ->insert(array(
+                'name'=>$name,
+                'slug'=>$slug,
+                'created_by'=>$created_by,
+                'content'=>$snippet_content,
+                'filter'=>$filter
+            ),FALSE);
 
 		note::set('success','snippet_add','Snippet Added!');
 	}
@@ -53,9 +54,8 @@ class snippet_model
 		$slug            = string::camelize( $name );
 		$slug            = string::underscore( $slug );
 		
-		$snippet = db('snippet');
-
-		$snippet->update(array(
+        $this->snippet_table()
+            ->update(array(
 				'name'=>$name,
 				'slug'=>$slug,
 				'updated_by'=>$updated_by,
@@ -73,16 +73,17 @@ class snippet_model
 	//----------------------------------------------------------------------------------------------
 	public function get ( $id='' )
 	{
-		$snippets = db ( 'snippet' );
 
 		if ( $id == '' ) {
-			$get_snippets = $snippets->select( '*' )
+			$get_snippets = $this->snippet_table()
+                ->select( '*' )
 				->order_by ( 'name', 'DESC' )
 				->execute();
 					
 			return $get_snippets;
 		} else {	
-			$get_snippets = $snippets->select( '*' )
+			$get_snippets = $this->snippet_table()
+                ->select( '*' )
 				->where ( 'id', '=', $id )
 				->execute();	
 			
@@ -95,9 +96,8 @@ class snippet_model
 	//----------------------------------------------------------------------------------------------
 	public function get_slug ( $slug='' )
 	{
-		$snippets = db ( 'snippet' );
-
-		$get_snippet = $snippets->select( '*' )
+		$get_snippet = $this->snippet_table()
+            ->select( '*' )
 			->where ( 'slug', '=', $slug )
 			->execute();
 
@@ -109,8 +109,6 @@ class snippet_model
 	//----------------------------------------------------------------------------------------------	
 	public function delete ( $id='' ) 
 	{
-		$snippet = db('snippet');
-
-		$snippet->delete( 'id','=',$id );
+        $this->snippet_table()->delete( 'id','=',$id );
 	}
-} // END setting_model
+}

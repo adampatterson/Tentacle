@@ -1,5 +1,7 @@
 <?
-class category_model {
+load::helper( 'data_properties' );
+
+class category_model extends properties {
 
 	// Add Category
 	//----------------------------------------------------------------------------------------------
@@ -15,17 +17,16 @@ class category_model {
 
         $term_slug = string::sanitize( $term_slug );
 
-        $category  = db( 'terms' );
-        $term_taxonomy  = db( 'term_taxonomy' );
-
         if ( !self::lookup( $term_slug ) )
         {
-            $category_id = $category->insert(array(
+            $category_id = $this->term_table()
+                    ->insert(array(
                     'name'=>$term_name,
                     'slug'=>$term_slug
                 ));
 
-            $term_taxonomy->insert(array(
+            $this->term_taxonomy_table()
+                    ->insert(array(
                     'taxonomy'=>'category',
                     'term_id'=>$category_id->id
                 ),FALSE);
@@ -48,10 +49,9 @@ class category_model {
 		
 		$term_slug = string::camelize( $term_slug );
 		$term_slug = string::underscore( $term_slug );
-		
-		$category  = db( 'terms' );
-		
-		$category->update( array(
+
+        $this->term_table()
+                ->update( array(
 				'name'=>$term_name,
 				'slug'=>$term_slug,
 			) )
@@ -66,20 +66,16 @@ class category_model {
     //----------------------------------------------------------------------------------------------
     public function lookup ( $slug='' )
     {
-        $tags = db ( 'terms' );
-
-        $get_category = $tags->select( '*' )
+        $get_category = $this->term_table()
+            ->select( '*' )
             ->where ( 'slug', '=', $slug )
             ->order_by ( 'id', 'DESC' )
             ->execute();
 
         if ($get_category)
-        {
             return $get_category[0]->id;
-
-        } else {
+        else
             return false;
-        }
     }
 
 
@@ -87,16 +83,15 @@ class category_model {
 	//----------------------------------------------------------------------------------------------
 	public function get( $id='' )
 	{
-		$categories = db( 'terms' );
-
 		if ( $id == '' ):
-            $get_categories = $categories->select( '*' )
+            return $this->term_table()
+                ->select( '*' )
                 ->order_by( 'id', 'DESC' )
                 ->execute();
 
-            return $get_categories;
 		elseif( is_string( $id ) && !is_numeric($id) ):
-            $get_categories = $categories->select( '*' )
+            $get_categories = $this->term_table()
+                ->select( '*' )
                 ->where( 'slug', '=', $id )
                 ->order_by( 'id', 'DESC' )
                 ->execute();
@@ -107,7 +102,8 @@ class category_model {
                 return $get_categories[0];
             }
         else:
-			$get_category = $categories->select( '*' )
+			$get_category = $this->term_table()
+                ->select( '*' )
 				->where( 'id', '=', $id )
 				->order_by( 'id', 'DESC' )
 				->execute();	
@@ -131,9 +127,7 @@ class category_model {
 	//----------------------------------------------------------------------------------------------
 	public function delete( $id ) 
 	{
-		$category = db( 'terms' );
-
-		$category->delete( 'id','=',$id );
+        $this->term_table()->delete( 'id','=',$id );
 	}
 	
 	
@@ -141,9 +135,7 @@ class category_model {
 	//----------------------------------------------------------------------------------------------	
 	public function relations( $post_id = '', $term_id = '' )
 	{	
-		$term         = db('term_relationships');
-
-        $term->insert( array(
+        $this->term_relationship_table()->insert( array(
             'page_id'		=> $post_id,
             'term_id'		=> $term_id,
         ), FALSE );
@@ -152,7 +144,7 @@ class category_model {
 	
     public function get_by_slug( $slug = '' ) {
 
-        $posts_by_slug = db::query("SELECT posts.*
+        return db::query("SELECT posts.*
                                     FROM
                                         term_relationships
                                     INNER JOIN posts
@@ -165,8 +157,8 @@ class category_model {
                                         term_taxonomy.taxonomy = 'category'
                                         AND terms.slug = '".$slug."'
                                         AND posts.status = 'published'");
-        return $posts_by_slug;
     }
+
 
     public function get_page_ids( $term_id = '' )
     {
@@ -188,8 +180,8 @@ class category_model {
 	// Get all other categories associated with this page.
 	//----------------------------------------------------------------------------------------------	
 	public function get_relations( $post_id = '' )
-	{	
-        $term_relations = db::query("SELECT
+	{
+        return db::query("SELECT
                                     terms.id,
                                     terms.name,
                                     terms.slug,
@@ -208,15 +200,12 @@ class category_model {
                                     terms.id = term_relationships.term_id AND
                                     term_taxonomy.taxonomy = 'category' AND
                                     term_relationships.page_id = ".$post_id );
-
-
-		return $term_relations;
 	}
 	
 	
 	public function get_all_categories( ) 
-	{	
-		$all_categories = db::query("SELECT term_taxonomy.taxonomy
+	{
+        return db::query("SELECT term_taxonomy.taxonomy
                                          , term_taxonomy.description
                                          , term_taxonomy.parent
                                          , term_taxonomy.count
@@ -229,7 +218,5 @@ class category_model {
                                     ON terms.id = term_taxonomy.term_id
                                     WHERE
                                       term_taxonomy.taxonomy = 'category'" );
-			
-		return $all_categories;
 	}
 }

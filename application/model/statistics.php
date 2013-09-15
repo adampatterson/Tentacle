@@ -1,17 +1,12 @@
 <?
-
-class statistics_model
+class statistics_model extends properties
 {
-
-/*
- * Top Content:
- * SELECT `uri_id`, COUNT(*) AS total FROM `statistics` WHERE `date` BETWEEN '1361920693' AND '1361924147' GROUP BY `uri_id` ORDER BY total DESC
- */
-
-
+    /*
+     * Top Content:
+     * SELECT `uri_id`, COUNT(*) AS total FROM `statistics` WHERE `date` BETWEEN '1361920693' AND '1361924147' GROUP BY `uri_id` ORDER BY total DESC
+     */
     public function count_by_chunks( $count = '6' )
     {
-
         $number_array   = array();
         $return         = array('total' => 0);
 
@@ -88,10 +83,9 @@ class statistics_model
     }
 
 
-    public  function add( $page_view ){
-        $statisitics = db('statistics');
-
-        $statisitics->insert( array(
+    public  function add( $page_view )
+    {
+        $this->statistics_table()->insert( array(
             'ip'            => $page_view['ip'],
             'date'          => time(),
             'uri_id'        => $page_view['uri_id'],
@@ -113,16 +107,16 @@ class statistics_model
 
     public function add_meta( $key, $value )
     {
-        $statistics_meta = db('statistics_meta');
-
         $result = $this->look_up( $value );
 
         if ( $result == false ):
 
-            $id = $statistics_meta->insert( array(
-                'key'           => $key,
-                'value'         => $value
-            ) );
+            $id = $this->statistics_table_meta()
+                ->insert( array(
+                    'key'           => $key,
+                    'value'         => $value
+                ) );
+
             return $id->id;
         else:
             return $result;
@@ -132,9 +126,8 @@ class statistics_model
 
     public function get_meta( $key )
     {
-        $statisitics = db ( 'statistics_meta' );
-
-        $get_statisitics = $statisitics->select( '*' )
+        $get_statisitics = $this->statistics_table_meta()
+            ->select( '*' )
             ->where( 'key', '=', $key )
             ->execute();
 
@@ -147,9 +140,8 @@ class statistics_model
 
     public function look_up( $value )
     {
-        $statisitics = db ( 'statistics_meta' );
-
-        $get_statisitics = $statisitics->select( '*' )
+        $get_statisitics = $this->statistics_meta_table()
+            ->select( '*' )
             ->where( 'value', '=', $value )
             ->execute();
 

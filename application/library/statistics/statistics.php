@@ -14,7 +14,6 @@ function build_stats( )
         $geo_meta                       = maybe_encoded( get::url_contents('http://geo.tentaclecms.com/'.$_SERVER['REMOTE_ADDR']) );
 
         $statistics                     = load::model('statistics');
-        $page                           = load::model('page');
         #$post_id 		                = $page->get_by_uri( URI );
 
         $meta                           = array();

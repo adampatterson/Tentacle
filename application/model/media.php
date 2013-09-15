@@ -1,6 +1,8 @@
 <?
 class media_model
 {
+
+
     # @todo: if the file name is the same do not add it to the databsdse.
 	public function add( $file )
     {
@@ -27,9 +29,8 @@ class media_model
         }
 
 		// Run content through HTMLawd and Samrty Text
-		$media          = db('media');
-
-		$row = $media->insert(array(
+		$row = $this->media_table()
+            ->insert(array(
 			'uri'			=> IMAGE_URI.$file,
 			'slug'			=> $slug,
 			'name'			=> $file_full,
@@ -47,13 +48,12 @@ class media_model
 	public function update( $id )
 	{
 		// Run content through HTMLawd and Samrty Text
-		$media          = db('media');
-
 		$title          = input::post('title');
 		$caption        = input::post('caption');
 		$alt            = input::post('alt_text');
 
-		$row = $media->update(array(
+		$row = $this->media_table()
+            ->update(array(
 			//'uri'			=> $uri,
 			//'slug'			=> $slug,
 			'title'			=> $title,
@@ -68,18 +68,14 @@ class media_model
 
 	public function get( $id = '' )
 	{
-		$media = db ( 'media' );
-		
 		if ( $id == '' ) {
-			$get_media = $media->select( '*' )
+            return $this->media_table()
+                ->select( '*' )
 				->where ( 'type', '=', 'image' )
 				->order_by ( 'id', 'DESC' )
 				->execute();
-					
-			return $get_media;
-			
 		} else {
-			$get_media = $media->select( '*' )
+			$get_media = $this->media_table()->select( '*' )
 				->where ( 'id', '=', $id )
 				->clause ('AND')
 				->where ( 'type', '=', 'image' )
