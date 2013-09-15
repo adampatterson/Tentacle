@@ -754,16 +754,12 @@ class content_model extends properties {
      */
     public function get_page_descendants( $id = null )
     {
-        $id_array[] = $id;
-
-        $children = $this->post_table()
+        return $this->post_table()
             ->select( '*' )
             ->where ( 'parent', '=', $id )
             ->clause ( 'AND' )
             ->where ( 'type', '=', 'page' )
             ->execute();
-
-        return $children;
     }
 
 
