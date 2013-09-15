@@ -199,6 +199,6 @@
 		</div>
 	</form>
 </div>
-<? load::view('admin/partials/media-modal'); ?>
 <!-- #wrap -->
+<? load::view('admin/partials/media-modal'); ?>
 <? load::view('admin/partials/template-footer', array( 'assets' => array( 'filedrop', user_editor() ) ) ); ?>

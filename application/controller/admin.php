@@ -81,9 +81,7 @@ class admin_controller extends properties {
 	public function activate( $hash='' )
     {
 		$hash_user = $this->user_model()->get_hash( $hash );
-		
-		die;
-		
+
 		note::set('success','sent_message','Your password has been reset.');
 		
 		url::redirect( 'admin/login' );
