@@ -228,7 +228,7 @@ class admin_controller extends properties {
 	{
 		tentacle::valid_user();
 
-		$categories = $this->content_model()->get_all_categories( );
+		$categories = $this->category_model()->get_all_categories( );
 
 		$tags = $this->tag_model()->get_all_tags();
 

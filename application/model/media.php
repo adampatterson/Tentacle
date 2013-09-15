@@ -1,8 +1,8 @@
 <?
-class media_model
+load::helper( 'data_properties' );
+
+class media_model extends properties
 {
-
-
     # @todo: if the file name is the same do not add it to the databsdse.
 	public function add( $file )
     {
@@ -69,19 +69,23 @@ class media_model
 	public function get( $id = '' )
 	{
 		if ( $id == '' ) {
-            return $this->media_table()
+            $get_media =  $this->media_table()
                 ->select( '*' )
 				->where ( 'type', '=', 'image' )
 				->order_by ( 'id', 'DESC' )
 				->execute();
+
+            //return $get_media;
 		} else {
-			$get_media = $this->media_table()->select( '*' )
+			$get_media = $this->media_table()
+                ->select( '*' )
 				->where ( 'id', '=', $id )
 				->clause ('AND')
 				->where ( 'type', '=', 'image' )
 				->execute();
 			
-			return $get_media[0];
+			//return $get_media[0];
 		}
+        var_Dump($get_media);
 	}
 }

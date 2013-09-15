@@ -1,6 +1,6 @@
 <? load::view('admin/partials/template-header', array('title' => 'Write a new page', 'assets' => array('application', 'filedrop', user_editor()) ) );?>
 
-    <div id="wrap">
+<div id="wrap">
     <!--
     <script type="text/javascript">
         $(function(){
