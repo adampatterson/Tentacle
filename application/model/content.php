@@ -724,7 +724,7 @@ class content_model extends properties {
      *
      * @author Adam Patterson
      */
-    public function get_page_descendant_ids( $id, $id_array = array() )
+    public function get_page_descendant_ids( $id = null, $id_array = array() )
     {
         $id_array[] = $id;
 
@@ -747,25 +747,23 @@ class content_model extends properties {
     }
 
 
-    public function get_page_parent_ids( $id, $id_array = array() )
+    /**
+     * Returns an array of pages ( one level deep )
+     *
+     * @author Adam Patterson
+     */
+    public function get_page_descendants( $id = null )
     {
         $id_array[] = $id;
 
-        $parents = $this->post_table()
-            ->select( 'parent', 'uri' )
-            ->where ( 'id', '=', $id )
+        $children = $this->post_table()
+            ->select( '*' )
+            ->where ( 'parent', '=', $id )
             ->clause ( 'AND' )
             ->where ( 'type', '=', 'page' )
             ->execute();
 
-        $has_parent = !empty($parents);
-
-        if ($has_parent)
-            // Loop through all of the children and run this function again
-            foreach ($parents as $parent)
-                $id_array = $this->get_page_parent_ids($parent->parent, $id_array);
-
-        return $id_array;
+        return $children;
     }
 
 
