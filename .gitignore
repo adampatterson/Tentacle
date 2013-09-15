@@ -32,3 +32,4 @@ tentacle/js/flot/README.txt
 .settings/
 /*.tmproj
 /.DS_Store
+codekit-config.json
