@@ -964,17 +964,20 @@ Test two
 
 		$get_flat_page_hierarchy = $page->get_flat_page_hierarchy( $pages );
 
-		$get_descendant_ids = $page->get_page_descendant_ids( 3 );
+		$get_descendant_ids = $page->get_page_descendant_ids(  );
+
+		$get_descendant_pages = $page->get_page_descendants( 2 );
 
 		$page_children = $page->get_page_children( 0, $pages );
 
         load::helper('template');
 
+        var_dump($get_descendant_pages);
 		// Generate the HTML output.
 		#echo nav_generate_new( $page_tree );
 
         #var_dump($page_tree);
-        menu( $page_tree );
+        #menu( $page_tree );
 
         #var_dump((array)$page_array);
 	}
@@ -1188,7 +1191,7 @@ Test two
         $pages = $page->type('page')->get_by_parent_id( 0 );
 
 
-        $pages = $page->type( 'page' )->get_page_parent_ids( $parent_id );
+        $pages = $page->type( 'page' )->get_parent_ids( $parent_id );
 
 //        $get_post = $content->type('post')->get();
 //        var_dump($get_post);
