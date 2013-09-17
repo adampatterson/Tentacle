@@ -113,7 +113,7 @@ class statistics_model extends properties
 
         if ( $result == false ):
 
-            $id = $this->statistics_table_meta()
+            $id = $this->statistics_meta_table()
                 ->insert( array(
                     'key'           => $key,
                     'value'         => $value
@@ -128,7 +128,7 @@ class statistics_model extends properties
 
     public function get_meta( $key )
     {
-        $get_statisitics = $this->statistics_table_meta()
+        $get_statisitics = $this->statistics_meta_table()
             ->select( '*' )
             ->where( 'key', '=', $key )
             ->execute();
