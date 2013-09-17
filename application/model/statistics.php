@@ -1,4 +1,6 @@
 <?
+load::helper( 'data_properties' );
+
 class statistics_model extends properties
 {
     /*
