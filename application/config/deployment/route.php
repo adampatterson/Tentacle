@@ -152,7 +152,8 @@ route::set('ajax/([-_a-zA-Z0-9]+)',array(
 	
 route::set('ajax/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)',array(
     'controller'=>'ajax',
-    'function'=>'$1'
+    'function'=>'$1',
+    'arguments'=>array('$2')
 	));
-			
+
 route::set('default_route','page/index');
