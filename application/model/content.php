@@ -470,6 +470,21 @@ class content_model extends properties {
     }
 
 
+    public function unique_uri ( $uri ) {
+
+        $get_posts = $this->post_table()
+            ->select( 'uri' )
+            ->where ( 'uri', '=', slash_it( $uri ) )
+            ->execute();
+
+        if ( empty($get_posts)):
+            return true;
+        else:
+            return false;
+        endif;
+    }
+
+
     public function get_breadcrumbs( )
     {
 
