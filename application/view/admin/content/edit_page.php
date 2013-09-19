@@ -81,9 +81,12 @@
 					<div class="tab-content tab-body">
 
 						<div id="content" class="active tab-pane">
-							<? //clean_out($get_page_meta ) ?>
-							<input type="text" name="title" placeholder='Title' value='<?= $get_page->title ?>' class='xlarge content_title' required='required' />
-							<!--<p>Permalink: http://www.sitename/com/path/ <a href="#">Edit</a></p>-->
+
+							<input type="text" name="title" placeholder='Title' value='<?= $get_page->title ?>' class='xlarge content_title' required='required' id="permalink" />
+                            <script type="text/javascript" charset="utf-8">
+                                var page_post = "page";
+                            </script>
+							<p class="permalink">Permalink: <?= BASE_URL.parent_page_slug( $get_page->parent ); ?><span id="permalink_landing"></span> <a href="#">Edit</a></p>
                             
                             <? if(user_editor() == 'wysiwyg'):?>
 								<p><a href="#" id="myButton" >Insert Media</a></p>

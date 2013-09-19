@@ -33,7 +33,6 @@
                     </div>
                 </div>
 
-
                 <div class="control-group">
                     <label for="parent_page" class="control-label">Parent page</label>
                     <div class="controls">
@@ -81,7 +80,14 @@
     <div class="tab-content tab-body">
 
     <div id="content" class="active tab-pane">
-        <input type="text" name="title" placeholder='Title' class='xlarge content_title' required='required' />
+
+        <input type="text" name="title" placeholder='Title' class='xlarge content_title' required='required' id="permalink" />
+
+        <script type="text/javascript" charset="utf-8">
+            var page_post = "page";
+        </script>
+
+        <p class="permalink">Permalink: <?= BASE_URL.parent_page_slug( $parent_page_id ); ?><span id="permalink_landing"></span> <a href="#">Edit</a></p>
 
         <? if(user_editor() == 'wysiwyg'): ?>
 			

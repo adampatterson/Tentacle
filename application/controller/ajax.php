@@ -20,6 +20,37 @@ class ajax_controller extends properties {
 
 
     /**
+     * Check for Unique user name
+     * ----------------------------------------------------------------------------------------------*/
+    public function unique_uri ( $type = null )
+    {
+        $clean_slug = array();
+
+        $uri_date = date('Y', time()).'/'.date('m', time());
+        $slug          = string::sanitize( $_POST['uri'] );
+
+        $clean_slug['type'] = $type;
+
+        if ( $type == 'post' ) # Post
+            $uri 		   = slash_it( get::option('blog_uri') ).$uri_date.'/'.$slug.'/';
+
+        else # Page
+            $uri 	    	= $slug.'/';
+
+        if ( $this->content_model()->unique_uri( $_POST['uri'] ) )
+        {
+            $clean_slug['slug'] = $uri;
+            $clean_slug['unique'] = false;
+        } else {
+            $clean_slug['slug'] = slash_it( un_slash( $uri ).'2' );
+            $clean_slug['unique'] = true;
+        }
+
+        echo json_encode( $clean_slug );
+    }
+
+
+    /**
      * Reorder page structure
      * ----------------------------------------------------------------------------------------------*/
     public function sortable ()

@@ -1,6 +1,13 @@
 $(document).ready(function(){
     template();
     dashboard_feed();
+
+    $('#username').keyup(username_check);
+
+    $('#useremail').keyup(useremail_check);
+
+    $('#permalink').keyup(permalink_check);
+
 });
 
 
@@ -153,4 +160,111 @@ function dashboard_feed()
 
         }
     });
+}
+
+
+function username_check() {
+    var username = $('#username').val();
+    if(username == "" || username.length < 4)
+    {
+        $('.tick').hide();
+    }
+    else
+    {
+        jQuery.ajax({
+            type: "POST",
+            url: base_url + "ajax/unique_user",
+            data: 'username='+ username,
+            cache: false,
+            success: function(response){
+                if(response == '1')
+                {
+                    $('#username').css('border', '1px #C33 solid');
+                    $('.user_tick').hide();
+                    $('.user_cross').fadeIn();
+                    $("#save").attr("disabled", "disabled");
+                }
+                else
+                {
+                    $('#username').css('border', '1px #090 solid');
+                    $('.user_cross').hide();
+                    $('.user_tick').fadeIn();
+                    $("#save").removeAttr("disabled");
+                }
+            }
+        });
+    }
+}
+
+function useremail_check() {
+    var username = $('#useremail').val();
+    if(username == "" || username.length < 4)
+    {
+        $('.email_tick').hide();
+    }
+    else
+    {
+        jQuery.ajax({
+            type: "POST",
+            url: base_url + "ajax/unique_user",
+            data: 'username='+ username,
+            cache: false,
+            success: function(response){
+                if(response == '1')
+                {
+                    $('#useremail').css('border', '1px #C33 solid');
+                    $('.email_tick').hide();
+                    $('.email_cross').fadeIn();
+                    $("#save").attr("disabled", "disabled");
+                }
+                else
+                {
+                    $('#useremail').css('border', '1px #090 solid');
+                    $('.email_cross').hide();
+                    $('.email_tick').fadeIn();
+                    $("#save").removeAttr("disabled");
+                }
+            }
+        });
+    }
+}
+
+
+function permalink_check() {
+    tentacle::valid_user();
+
+    $permalink = $('#permalink').val();
+
+    if( $permalink != "" )
+    {
+        console.info($permalink);
+        console.info(base_url + "ajax/unique_uri/" + page_post);
+
+        jQuery.ajax({
+            type: "POST",
+            dataType: "json",
+            url: base_url + "ajax/unique_uri/" + page_post,
+            data: 'uri='+ $permalink,
+            cache: false,
+            success: function( response ){
+
+                console.info( response );
+
+                if( response.unique === true )
+                {
+                    console.info('the URI is Taken');
+
+                    console.info( response.slug );
+                    $('#permalink_landing').html( response.slug );
+                }
+                else
+                {
+                    console.info('the URI is OK');
+
+                    console.info( response.slug );
+                    $('#permalink_landing').html( response.slug );
+                }
+            }
+        });
+    }
 }

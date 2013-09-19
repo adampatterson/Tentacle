@@ -108,10 +108,14 @@
 					<div class="tab-content tab-body">
 
 						<div id="content" class="active tab-pane">
-							<input type="text" name="title" placeholder='Title' class='xlarge content_title' />
-							<!--<p>
-								Permalink: http://www.sitename.com/path/ <a href="#">Edit</a>
-							</p>-->
+
+                            <input type="text" name="title" placeholder='Title' class='xlarge content_title' id="permalink" />
+
+                            <script type="text/javascript" charset="utf-8">
+                                var page_post = "post";
+                            </script>
+
+                            <p class="permalink">Permalink: <?= BASE_URL ?><span id="permalink_landing"></span> <a href="#">Edit</a></p>
 
 							<? if(user_editor() == 'wysiwyg'): ?>
 								<p><a href="#" id="myButton" >Insert Media</a></p>

@@ -1357,6 +1357,21 @@ function user_editor ( ) {
 
 
 /**
+ * Function: user_editor
+ * Returns what editor the user has chosen.
+ *
+ * Returns:
+ *     	string
+ */
+function parent_page_slug ( $id )
+{
+    $page = load::model( 'content' );
+
+    return $page->get_uri( $id );
+}
+
+
+/**
 * Function: self_url
 * builds the full URL for the current page.
 *
