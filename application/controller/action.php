@@ -345,7 +345,7 @@ class action_controller extends properties {
  	{
 		tentacle::valid_user();
 			
-		$post_single = $this->post_table()->type( 'post' )->add( );
+		$post_single = $this->content_model()->type( 'post' )->add( );
 		
 		$post_categories = input::post( 'post_category' );
 
