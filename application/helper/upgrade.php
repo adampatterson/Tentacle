@@ -117,7 +117,7 @@ class upgrade {
 				unlink(STORAGE_DIR.'/upgrade/update.zip');
 
 				load::helper('serverstats');
-				build_server_stats(0, '', 'utf8');
+				build_server_stats( false, '', 'utf8' );
 
 				note::set('success','upgrade_message','Tentacle has been successfully upgraded.');
 

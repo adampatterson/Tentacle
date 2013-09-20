@@ -123,7 +123,7 @@ class logger
                 $level = 'General';
         }
 
-        $fh = fopen(DEV_LOG.'/'.$log_file,'a');
+        $fh = fopen(DEV_LOG.$log_file,'a');
         flock($fh,LOCK_EX);
 
         if (is_array($message))

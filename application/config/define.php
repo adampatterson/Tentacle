@@ -40,7 +40,7 @@ define('GRAVATAR_SIZE' 	  , "60" );
 define('STORAGE_DIR'   	  , APP_ROOT.'/storage');
 define('STORAGE_URL'   	  , BASE_URL.'storage');
 
-define('DEV_LOG'          , APPLICATION.'/logs/');
+define('DEV_LOG'          , APP_ROOT.'/'.APPLICATION.'/logs/');
 define('ERROR_VIEW'       , APPLICATION.'/view/error/');
 
 define('TEMP'		   	  , STORAGE_DIR.'/temp/');

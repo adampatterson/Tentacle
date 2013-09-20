@@ -157,8 +157,7 @@ class action_controller extends properties {
 			// Migrate forward on the Database.
 			upgrade_db();
 
-			load::helper('serverstats');
-			build_server_stats(0);
+            load::model('statistics')->mixpanel_server( false );
 
 		} else {
 			note::set('success','upgrade_message','There was nothing to upgrade.');

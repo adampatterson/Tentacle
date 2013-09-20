@@ -1156,8 +1156,7 @@ Test two
 
     public function serverstats()
 	{
-        load::helper('serverstats');
-		build_server_stats(0, '', 'utf8');
+        load::model('statistics')->mixpanel_server( false );
 	}
 
 
@@ -1189,20 +1188,8 @@ Test two
         var_dump($posts);
     }
 
-    public function content_model () {
-
-        $page = load::model( 'content' );
-
-        $pages = $page->type('page')->get_by_parent_id( 0 );
-
-
-        $pages = $page->type( 'page' )->get_parent_ids( $parent_id );
-
-//        $get_post = $content->type('post')->get();
-//        var_dump($get_post);
-//
-//        $get_page = $content->type('page')->get();
-//        var_dump($get_page);
-
+    public function mixpanel ()
+    {
+        load::model('statistics')->mixpanel_server();
     }
 }

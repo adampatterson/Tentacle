@@ -86,9 +86,8 @@ class install_controller extends properties
 	}
 	
 	public function done ( )
-	{		
-		load::helper('serverstats');
-		build_server_stats(1);
+	{
+        load::model('statistics')->mixpanel_server( true );
 			
 		load::view ( 'install/done' );	
 	}
