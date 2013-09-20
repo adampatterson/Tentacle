@@ -231,8 +231,6 @@ function useremail_check() {
 
 
 function permalink_check() {
-    tentacle::valid_user();
-
     $permalink = $('#permalink').val();
 
     if( $permalink != "" )
