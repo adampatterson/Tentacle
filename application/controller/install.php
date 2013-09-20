@@ -41,7 +41,7 @@ class install_controller
 		// CREATE DATABASE database_name
 		load::library('db');
 		
-		$sql = $this->migration_model();
+		$sql = load::model('migration');
 		
 		$sql->get_100();
 		
