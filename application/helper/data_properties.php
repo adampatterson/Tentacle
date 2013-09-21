@@ -8,7 +8,10 @@
  * This needs to be cleaned up into something smarter, but it does the job for now.
  */
 
-load::library('db');
+
+if ( defined( 'SETUP' ) && strpos( BASE_URI,'install' ) == true ) {
+    load::library('db');
+}
 
 class properties
 {
