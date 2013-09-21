@@ -8,6 +8,8 @@
  * This needs to be cleaned up into something smarter, but it does the job for now.
  */
 
+load::library('db');
+
 class properties
 {
     public $post_table;
@@ -54,7 +56,7 @@ class properties
 
     public function options_table( )
     {
-        return $this->options_table = db ( 'options' );
+        return $this->options_table = db( 'options' );
     }
 
     public function snippet_table( )
