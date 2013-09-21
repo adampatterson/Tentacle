@@ -190,9 +190,7 @@ class statistics_model extends properties
             "server_software" => $stats['server_software'],
             "post_max_size" => $stats['post_max_size'],
             "upload_max_filesize" => $stats['upload_max_filesize'],
-            "safe_mode" => $stats['safe_mode'],
             "memory_limit" => $stats['memory_limit'],
-            "get_browser" => $stats['get_browser'],
             "short_open_tag" => $stats['short_open_tag'],
             "hostname" => $stats['hostname'],
             "hosturl" => $stats['hosturl'],
@@ -204,52 +202,15 @@ class statistics_model extends properties
             "sqlite" => $stats['sqlite']
         ));
 
-        $mp->track("Classes", array(
-            "DOMElement" => $stats['classes']['DOMElement'],
-            "SoapClient" => $stats['classes']['SoapClient'],
-            "XMLWriter" => $stats['classes']['XMLWriter']
-        ));
+        $mp->track("Classes", $stats['classes']);
 
-        $mp->track("Extensions", array(
-            "Zend Optimizer" => $stats['extensions']['Zend Optimizer'],
-            "XCache" => $stats['extensions']['XCache'],
-            "eAccelerator" => $stats['extensions']['eAccelerator'],
-            "eAccelerator" => $stats['extensions']['eAccelerator'],
-            "ionCube Loader" => $stats['extensions']['ionCube Loader'],
-            "PDO" => $stats['extensions']['PDO'],
-            "pdo_mysql" => $stats['extensions']['pdo_mysql'],
-            "pdo_pgsql" => $stats['extensions']['pdo_pgsql'],
-            "pdo_sqlite" => $stats['extensions']['pdo_sqlite'],
-            "pdo_oci" => $stats['extensions']['pdo_oci'],
-            "pdo_odbc" => $stats['extensions']['pdo_odbc']
-        ));
+        $mp->track("Extensions", $stats['extensions']);
 
-        $mp->track("PHP Info", array(
-            "mbstring" => $stats['phpinfo']['mbstring'],
-            "exif" => $stats['phpinfo']['exif'],
-            "zlib" => $stats['phpinfo']['zlib']
-        ));
+        $mp->track("PHP Info", $stats['phpinfo']);
 
-        $mp->track("Functions", array(
-            "fsockopen"             => $stats['functions']['fsockopen'],
-            "mcrypt_encrypt"        => $stats['functions']['mcrypt_encrypt'],
-            "simplexml_load_string" => $stats['functions']['simplexml_load_string'],
-            "ldap_connect"          => $stats['functions']['ldap_connect'],
-            "mysqli_connect"        => $stats['functions']['mysqli_connect'],
-            "imap_open"             => $stats['functions']['imap_open'],
-            "ftp_login"             => $stats['functions']['ftp_login'],
-            "apc_cache_info"        => $stats['functions']['apc_cache_info'],
-            "curl_init"             => $stats['functions']['curl_init'],
-            "iconv"                 => $stats['functions']['iconv']
-        ));
+        $mp->track("Functions", $stats['functions']);
 
-        $mp->track("User Agent", array(
-            "browser" => $stats['useragent']['browser'],
-            "browser_full" => $stats['useragent']['browser_full'],
-            "version" => $stats['useragent']['version'],
-            "os" => $stats['useragent']['os'],
-            "os_version" => $stats['useragent']['os_version']
-        ));
+        $mp->track("User Agent", $stats['useragent']);
 
 //        $mp->people->set($info['id'], array(
 //            '$first_name'       => "Adam",

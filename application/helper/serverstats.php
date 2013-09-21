@@ -262,6 +262,13 @@ function build_mixpanel_stats( $is_install = true, $prev_version='', $charset=''
     // Allow url fopen php.ini setting
     $info['allow_url_fopen'] = (ini_get('safe_mode') == 0 && ini_get('allow_url_fopen') ? 'true' : 'false' );
 
+    // Host URL & hostname
+    $info['hosturl'] = $info['hostname'] = "unknown/local";
+
+    if( $_SERVER['HTTP_HOST'] == 'localhost' )
+        $info['hosturl'] = $info['hostname'] = "localhost";
+
+
     // Check classes, extensions, php info, functions, and php ini settings
     $classes = array(
         'dom' 					=> 'DOMElement',
@@ -324,13 +331,7 @@ function build_mixpanel_stats( $is_install = true, $prev_version='', $charset=''
 
     foreach($php_ini as $name => $what)
         if ( ini_get($what) )
-            $info[$name][$what] = $what;
-
-    // Host URL & hostname
-    $info['hosturl'] = $info['hostname'] = "unknown/local";
-
-    if( $_SERVER['HTTP_HOST'] == 'localhost' )
-        $info['hosturl'] = $info['hostname'] = "localhost";
+            $info[$what] = $what;
 
 
     // Check the hosting company
