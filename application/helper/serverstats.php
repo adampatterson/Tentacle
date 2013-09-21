@@ -219,54 +219,54 @@ function build_mixpanel_stats( $is_install = true, $prev_version='', $charset=''
     $classe_string = '';
 
     // Is this an upgrade or an install?
-    $info['is_install'] = ( $is_install === true ? 'true' : false );
+    $info['server']['is_install'] = ( $is_install === true ? 'true' : 'false' );
 
     // If we are upgrading....
-    $info['prev_version'] = ( $info['is_install'] == 0 ? $prev_version : false );
+    $info['server']['prev_version'] = ( $info['server']['is_install'] == 0 ? $prev_version : 'false' );
 
     // What's our current version?
-    $info['current_version'] = TENTACLE_VERSION;
+    $info['server']['current_version'] = TENTACLE_VERSION;
 
     // What is our current charset?
-    $info['charset'] = $charset;
+    $info['server']['charset'] = $charset;
 
     // Parse phpinfo into array
     $phpinfo = parse_php_info();
 
     // PHP Version
-    $info['phpversion'] = phpversion();
+    $info['server']['phpversion'] = phpversion();
 
     // MySQL Version
-    $info['mysql'] = ( array_key_exists('mysql', $phpinfo ) ? $phpinfo['mysql']['Client API version'] : 'false' );
+    $info['database']['mysql'] = ( array_key_exists('mysql', $phpinfo ) ? $phpinfo['mysql']['Client API version'] : 'false' );
 
     // PostgreSQL Version
-    $info['pgsql'] = ( array_key_exists('pgsql', $phpinfo ) ? $phpinfo['pgsql']['PostgreSQL(libpq) Version'] : 'false' );
+    $info['database']['pgsql'] = ( array_key_exists('pgsql', $phpinfo ) ? $phpinfo['pgsql']['PostgreSQL(libpq) Version'] : 'false' );
 
     // SQLite Version
-    $info['sqlite'] = ( array_key_exists('sqlite', $phpinfo ) ? $phpinfo['sqlite']['SQLite Library'] : 'false' );
+    $info['database']['sqlite'] = ( array_key_exists('sqlite', $phpinfo ) ? $phpinfo['sqlite']['SQLite Library'] : 'false' );
 
     // Iconv Library Extension Version
-    $info['iconvlib'] = ( array_key_exists('iconv', $phpinfo ) ? $phpinfo['iconv']['iconv library version'] : 'false' );
+    $info['server']['iconvlib'] = ( array_key_exists('iconv', $phpinfo ) ? $phpinfo['iconv']['iconv library version'] : 'false' );
 
     // Check GD & Version
-    $info['gd'] = ( array_key_exists('gd', $phpinfo ) ? $phpinfo['gd']['GD Version'] : 'false' );
+    $info['server']['gd'] = ( array_key_exists('gd', $phpinfo ) ? $phpinfo['gd']['GD Version'] : 'false' );
 
     // CGI Mode
     $sapi_type = php_sapi_name();
 
-    $info['cgimode'] = (strpos($sapi_type, 'cgi') !== false ? 'true' : 'false' );
+    $info['server']['cgimode'] = (strpos($sapi_type, 'cgi') !== false ? 'true' : 'false' );
 
     // Server Software
-    $info['server_software'] = $_SERVER['SERVER_SOFTWARE'];
+    $info['server']['server_software'] = $_SERVER['SERVER_SOFTWARE'];
 
     // Allow url fopen php.ini setting
-    $info['allow_url_fopen'] = (ini_get('safe_mode') == 0 && ini_get('allow_url_fopen') ? 'true' : 'false' );
+    $info['server']['allow_url_fopen'] = (ini_get('safe_mode') == 0 && ini_get('allow_url_fopen') ? 'true' : 'false' );
 
     // Host URL & hostname
-    $info['hosturl'] = $info['hostname'] = "unknown/local";
+    $info['server']['hosturl'] = $info['server']['hostname'] = "unknown/local";
 
     if( $_SERVER['HTTP_HOST'] == 'localhost' )
-        $info['hosturl'] = $info['hostname'] = "localhost";
+        $info['server']['hosturl'] = $info['server']['hostname'] = "localhost";
 
 
     // Check classes, extensions, php info, functions, and php ini settings
@@ -331,7 +331,7 @@ function build_mixpanel_stats( $is_install = true, $prev_version='', $charset=''
 
     foreach($php_ini as $name => $what)
         if ( ini_get($what) )
-            $info[$what] = $what;
+            $info['server'][$what] = $what;
 
 
     // Check the hosting company
@@ -346,9 +346,9 @@ function build_mixpanel_stats( $is_install = true, $prev_version='', $charset=''
         {
             preg_match('#\<span class\="hoster"\>([^"]*)\<\/span\><\/span\>#ism', $hosting, $matches);
 
-            $info['hosturl'] = "unknown/no-url";
+            $info['server']['hosturl'] = "unknown/no-url";
 
-            $info['hostname'] = ( isset($matches[1]) ? $matches[1] : "unknown/no-name" );
+            $info['server']['hostname'] = ( isset($matches[1]) ? $matches[1] : "unknown/no-name" );
 
         }
     }

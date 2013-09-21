@@ -168,49 +168,29 @@ class statistics_model extends properties
         #var_dump( $stats );
 
         // get the Mixpanel class instance, replace with your project token
-        $mp = Mixpanel::getInstance("3e2c0144aadd3e7a622e1ce45ead49c4");
+        $mp = Mixpanel::getInstance("61fe4c362654aac9baed7970abecfc43");
 
         // associate a user id to subsequent events
         $mp->identify( $info['id'] );
 
         if ( $stats['is_install'] == 'true' )
-            $mp->track("Install");
+            $mp->track( "Install" );
         else
-            $mp->track("Update");
+            $mp->track( "Update" );
 
-        $mp->track("Server Stats", array(
-            "is_install" => $stats['is_install'],
-            "prev_version" => $stats['prev_version'],
-            "current_version" => $stats['current_version'],
-            "charset" => $stats['charset'],
-            "phpversion" => $stats['phpversion'],
-            "iconvlib" => $stats['iconvlib'],
-            "gd" => $stats['gd'],
-            "cgimode" => $stats['cgimode'],
-            "server_software" => $stats['server_software'],
-            "post_max_size" => $stats['post_max_size'],
-            "upload_max_filesize" => $stats['upload_max_filesize'],
-            "memory_limit" => $stats['memory_limit'],
-            "short_open_tag" => $stats['short_open_tag'],
-            "hostname" => $stats['hostname'],
-            "hosturl" => $stats['hosturl'],
-        ));
+        $mp->track( "Server Stats", $stats['server'] );
 
-        $mp->track("Database", array(
-            "mysql" => $stats['mysql'],
-            "pgsql" => $stats['pgsql'],
-            "sqlite" => $stats['sqlite']
-        ));
+        $mp->track( "Database", $stats['database'] );
 
-        $mp->track("Classes", $stats['classes']);
+        $mp->track( "Classes", $stats['classes'] );
 
-        $mp->track("Extensions", $stats['extensions']);
+        $mp->track( "Extensions", $stats['extensions'] );
 
-        $mp->track("PHP Info", $stats['phpinfo']);
+        $mp->track( "PHP Info", $stats['phpinfo'] );
 
-        $mp->track("Functions", $stats['functions']);
+        $mp->track( "Functions", $stats['functions'] );
 
-        $mp->track("User Agent", $stats['useragent']);
+        $mp->track( "User Agent", $stats['useragent'] );
 
 //        $mp->people->set($info['id'], array(
 //            '$first_name'       => "Adam",
