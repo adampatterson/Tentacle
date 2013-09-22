@@ -8,10 +8,10 @@ class install_controller
 {
 	public function step1 ( )
 	{	
-		if ( !file_exists( '.htaccess' ) ):
-			//write_htaccess();
-		endif;
-		
+		// Create a .htaccess file that is a bit more advanced with thins like Mod Defalte and proper routing for plugnis.
+        if ( !file_exists( '.htaccess' ) )
+			#write_htaccess();
+
 		if ( !file_exists( 'application/config/deployment/db.php' ) ):
 			load::view ('install/step1');
 		elseif(file_exists( 'application/config/deployment/db.php' ) && $this->migration_model()->touch_db() == false ):
