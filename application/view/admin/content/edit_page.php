@@ -86,7 +86,7 @@
                             <script type="text/javascript" charset="utf-8">
                                 var page_post = "page";
                             </script>
-							<p class="permalink">Permalink: <?= BASE_URL.parent_page_slug( $get_page->parent ); ?><span id="permalink_landing"></span> <a href="#">Edit</a></p>
+							<p class="permalink">Permalink: <?= BASE_URL.parent_page_slug( $get_page->parent ); ?><span id="permalink_landing"><?= $get_page->uri ?></span></p>
                             
                             <? if(user_editor() == 'wysiwyg'):?>
 								<p><a href="#" id="myButton" >Insert Media</a></p>
