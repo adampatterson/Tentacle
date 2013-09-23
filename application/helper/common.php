@@ -1367,7 +1367,8 @@ function parent_page_slug ( $id )
 {
     $page = load::model( 'content' );
 
-    return $page->get_uri( $id );
+    if ( $id != 0 )
+        return $page->get_uri( $id );
 }
 
 
