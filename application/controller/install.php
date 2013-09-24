@@ -6,7 +6,8 @@
 
 class install_controller
 {
-	public function step1 ( )
+
+    public function step1 ( )
 	{	
 		// Create a .htaccess file that is a bit more advanced with thins like Mod Defalte and proper routing for plugnis.
         //if ( !file_exists( '.htaccess' ) )
@@ -14,7 +15,7 @@ class install_controller
 
 		if ( !file_exists( 'application/config/deployment/db.php' ) ):
 			load::view ('install/step1');
-		elseif(file_exists( 'application/config/deployment/db.php' ) && $this->migration_model()->touch_db() == false ):
+		elseif(file_exists( 'application/config/deployment/db.php' ) && load::model('migration')->touch_db() == false ):
 			url::redirect('install/step5');
 		else:
 			load::view ('install/nothing');
@@ -100,9 +101,9 @@ class install_controller
         try {
             $this->con = new pdo("{$this->driver}:dbname={$this->database};host={$this->host}",$this->username,$this->password);
         } catch(PDOException $e) {
+            // @todo we cant log a dingo error since the config is not valid at this point.
             dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
         }
-
 
         // Setup the Temp db.php file
         $search = array ( 'fill_databasename', 'fill_username', 'fill_password', 'fill_host');
