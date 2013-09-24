@@ -173,7 +173,7 @@ class statistics_model extends properties
         // associate a user id to subsequent events
         $mp->identify( $info['id'] );
 
-        if ( $stats['is_install'] == 'true' )
+        if ( $is_install == 'true' )
             $mp->track( "Install" );
         else
             $mp->track( "Update" );
