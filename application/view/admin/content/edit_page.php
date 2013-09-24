@@ -90,7 +90,7 @@
                                 var uri = "<?= parent_page_slug( $get_page->parent ); ?>";
                             </script>
 
-							<p class="permalink">Permalink: <?= BASE_URL.parent_page_slug( $get_page->parent ); ?><span id="permalink_landing"><?= $get_page->uri ?></span></p>
+							<p class="permalink">Permalink: <?= BASE_URL.parent_page_slug( $get_page->parent ); ?><span id="permalink_landing"><?= $get_page->slug ?></span></p>
                             
                             <? if(user_editor() == 'wysiwyg'):?>
 								<p><a href="#" id="myButton" >Insert Media</a></p>

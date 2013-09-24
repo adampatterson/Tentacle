@@ -103,6 +103,7 @@ class content_model extends properties {
         $row = $posts->insert(array(
             'title'		=> $title,
             'slug'		=> $slug,
+            'parent'	=> $parent_page,
             'uri'		=> $uri,
             'content'	=> $content,
             'status'	=> $status,

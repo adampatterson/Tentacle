@@ -245,7 +245,7 @@ function permalink_check() {
 
                 console.info( response );
 
-                $('#permalink_landing').html( response.uri );
+                $('#permalink_landing').html( response.suggested );
                 $('#new_uri').val( response.suggested );
             }
         });
