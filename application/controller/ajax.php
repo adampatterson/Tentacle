@@ -27,24 +27,30 @@ class ajax_controller extends properties {
         $clean_slug = array();
 
         $uri_date = date('Y', time()).'/'.date('m', time());
-        $slug          = string::sanitize( $_POST['uri'] );
-
-        $clean_slug['type'] = $type;
+        $slug          = string::sanitize( $_POST['slug'] );
+        $uri          = $_POST['uri'];
 
         if ( $type == 'post' ) # Post
             $uri 		   = slash_it( get::option('blog_uri') ).$uri_date.'/'.$slug.'/';
 
         else # Page
-            $uri 	    	= $slug.'/';
+            $slug 	    	= $slug.'/';
 
-        if ( $this->content_model()->unique_uri( $_POST['uri'] ) )
+        if ( $this->content_model()->unique_uri( $uri.$slug ) )
         {
-            $clean_slug['slug'] = $uri;
+            $clean_slug['uri'] = $uri;
+            $clean_slug['slug'] = $slug;
+            $clean_slug['suggested'] = $slug;
             $clean_slug['unique'] = false;
         } else {
-            $clean_slug['slug'] = slash_it( un_slash( $uri ).'2' );
+            $clean_slug['uri'] = slash_it( un_slash( $slug ).'2' );
+            $clean_slug['slug'] = $slug;
+            $clean_slug['suggested'] = un_slash( $slug ).'2';
             $clean_slug['unique'] = true;
         }
+
+        $clean_slug['type'] = $type;
+        $clean_slug['lookup'] = $uri.$slug;
 
         echo json_encode( $clean_slug );
     }

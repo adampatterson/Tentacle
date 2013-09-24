@@ -82,9 +82,11 @@
     <div id="content" class="active tab-pane">
 
         <input type="text" name="title" placeholder='Title' class='xlarge content_title' required='required' id="permalink" />
+        <input type="hidden" name="permalink" id="new_uri" />
 
         <script type="text/javascript" charset="utf-8">
             var page_post = "page";
+            var uri = "<?= parent_page_slug( $parent_page_id ); ?>";
         </script>
 
         <p class="permalink">Permalink: <?= BASE_URL.parent_page_slug( $parent_page_id ); ?><span id="permalink_landing"></span></p>

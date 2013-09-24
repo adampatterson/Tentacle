@@ -83,9 +83,13 @@
 						<div id="content" class="active tab-pane">
 
 							<input type="text" name="title" placeholder='Title' value='<?= $get_page->title ?>' class='xlarge content_title' required='required' id="permalink" />
+							<input type="hidden" name="permalink" id="new_uri" />
+
                             <script type="text/javascript" charset="utf-8">
                                 var page_post = "page";
+                                var uri = "<?= parent_page_slug( $get_page->parent ); ?>";
                             </script>
+
 							<p class="permalink">Permalink: <?= BASE_URL.parent_page_slug( $get_page->parent ); ?><span id="permalink_landing"><?= $get_page->uri ?></span></p>
                             
                             <? if(user_editor() == 'wysiwyg'):?>

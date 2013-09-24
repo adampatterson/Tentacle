@@ -110,9 +110,11 @@
 						<div id="content" class="active tab-pane">
 
                             <input type="text" name="title" placeholder='Title' class='xlarge content_title' id="permalink" />
+                            <input type="hidden" name="permalink" id="new_uri" />
 
                             <script type="text/javascript" charset="utf-8">
                                 var page_post = "post";
+                                var uri = "";
                             </script>
 
                             <p class="permalink">Permalink: <?= BASE_URL ?><span id="permalink_landing"></span></p>

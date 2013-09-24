@@ -231,37 +231,22 @@ function useremail_check() {
 
 
 function permalink_check() {
-    $permalink = $('#permalink').val();
+    $slug = $('#permalink').val();
 
-    if( $permalink != "" )
+    if( $slug != "" )
     {
-        console.info($permalink);
-        console.info(base_url + "ajax/unique_uri/" + page_post);
-
         jQuery.ajax({
             type: "POST",
             dataType: "json",
             url: base_url + "ajax/unique_uri/" + page_post,
-            data: 'uri='+ $permalink,
+            data: 'uri='+ uri+'&slug='+ $slug,
             cache: false,
             success: function( response ){
 
                 console.info( response );
 
-                if( response.unique === true )
-                {
-                    console.info('the URI is Taken');
-
-                    console.info( response.slug );
-                    $('#permalink_landing').html( response.slug );
-                }
-                else
-                {
-                    console.info('the URI is OK');
-
-                    console.info( response.slug );
-                    $('#permalink_landing').html( response.slug );
-                }
+                $('#permalink_landing').html( response.uri );
+                $('#new_uri').val( response.suggested );
             }
         });
     }

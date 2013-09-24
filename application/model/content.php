@@ -31,11 +31,15 @@ class content_model extends properties {
     {
         $uri_date = date('Y', time()).'/'.date('m', time());
 
-        $title         = input::post( 'title' );
-        $content       = input::post( 'content' );
-        $status        = input::post( 'status' );
-        $publish       = input::post( 'publish' );
-        $slug          = string::sanitize($title);
+        $title          = input::post( 'title' );
+        $content        = input::post( 'content' );
+        $status         = input::post( 'status' );
+        $publish        = input::post( 'publish' );
+        $suggested_slug = input::post( 'permalink' );
+        $slug           = string::sanitize($title);
+
+        if ( $suggested_slug !== $slug )
+            $slug = $suggested_slug;
 
         $post_author   = user::id();
 
@@ -132,7 +136,7 @@ class content_model extends properties {
 
         $scaffold_data = $_POST;
 
-        $remove_keys = array( 'title', 'content', 'status', 'parent_page', 'page_template', 'page-or-post', 'history', 'tags', 'publish', 'year', 'month', 'day', 'hour', 'minute' );
+        $remove_keys = array( 'title', 'content', 'permalink', 'status', 'parent_page', 'page_template', 'page-or-post', 'history', 'tags', 'publish', 'year', 'month', 'day', 'hour', 'minute' );
 
         foreach ( $remove_keys as $remove_key ):
             unset( $scaffold_data[ $remove_key ] );
@@ -205,10 +209,15 @@ class content_model extends properties {
     {
         // create a new version of the content.
         $title         = input::post( 'title' );
-        $slug          = string::sanitize($title);
         $content       = input::post( 'content' );
         $status        = input::post( 'status' );
         $publish       = input::post( 'publish' );
+
+        $suggested_slug = input::post( 'permalink' );
+        $slug           = string::sanitize($title);
+
+        if ( $suggested_slug !== $slug )
+            $slug = $suggested_slug;
 
         $minute	= input::post( 'minute' );
         $hour	= input::post( 'hour' );
@@ -217,9 +226,8 @@ class content_model extends properties {
         $year	= input::post( 'year' );
 
         $composed_time = $year.'-'.$month.'-'.$day.' '.$hour.':'.$minute.':00';
-//      var_dump($composed_time);
-        $date_published = strtotime( $composed_time );
 
+        $date_published = strtotime( $composed_time );
 
         $history_date = input::post( 'date_history' );
 
@@ -230,7 +238,7 @@ class content_model extends properties {
         $history_year	    = date('Y', $history_date);
 
         $history_composed_time = $history_year.'-'.$history_month.'-'.$history_day.' '.$history_hour.':'.$history_minute.':00';
-//      var_dump($history_composed_time);
+
         $date_history = strtotime( $history_composed_time );
 
 
@@ -241,15 +249,7 @@ class content_model extends properties {
         $current_year           = date('Y', time());
 
         $current_composed_time = $current_year.'-'.$current_month.'-'.$current_day.' '.$current_hour.':'.$current_minute.':00';
-//      var_dump($current_composed_time);
         $date_current = strtotime( $current_composed_time );
-
-//        _s('Published Date');
-//        var_dump($date_published);
-//        _s('Date from Histroy');
-//        var_dump($date_history);
-//        _s('The current Date');
-//        var_dump($date_current);
 
         if ($date_history < $date_published){
 //            _p("The date is in the future");
