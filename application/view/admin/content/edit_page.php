@@ -45,7 +45,16 @@
 								</select>
 							</div>
 						</div>
-					
+
+                        <label for="page_template">Page template</label>
+
+                        <? $templates = get_templates( ACTIVE_THEME );
+
+                        foreach ( $templates as $template ):
+                            if ( $get_page->template == $template->template_id )
+                                echo $template->template_name;
+                        endforeach; ?>
+
 						<? /* 
 							@todo Figure out a way to change templates after one has been saved.
 						
