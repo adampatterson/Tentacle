@@ -243,7 +243,7 @@ function permalink_check() {
             cache: false,
             success: function( response ){
 
-                console.info( response );
+                //console.info( response );
 
                 $('#permalink_landing').html( response.suggested );
                 $('#new_uri').val( response.suggested );

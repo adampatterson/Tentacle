@@ -1220,6 +1220,8 @@ function selected( $val1, $val2, $return = false )
     	else:
             echo ' selected="selected"';
 		endif;
+    else:
+        return false;
 	endif;
 }
 
