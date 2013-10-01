@@ -531,10 +531,8 @@ class admin_controller extends properties {
 		tentacle::valid_user();
 
 		$theme = load::helper ('theme');
-		
-		$get = $this->setting_model()->get( 'appearance' );
-		
-		$themes = $this->serpent_model()->get_theme( );
+
+		//$themes = $this->serpent_model()->get_theme( );
 		
 		load::view ('admin/settings/appearance', array('theme'=>$theme ));
 	}
