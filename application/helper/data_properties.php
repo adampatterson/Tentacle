@@ -117,7 +117,7 @@ class properties
 
     public function options_model ( )
     {
-        return $this->tag_model = load::model( 'options' );
+        return $this->options_model = load::model( 'settings' );
     }
 
     public function email_model ( )
