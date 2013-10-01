@@ -40,7 +40,7 @@ class ajax_controller extends properties {
         {
             $clean_slug['uri'] = $uri;
             $clean_slug['slug'] = $slug;
-            $clean_slug['suggested'] = $slug;
+            $clean_slug['suggested'] = un_slash( $slug );
             $clean_slug['unique'] = false;
         } else {
             $clean_slug['uri'] = slash_it( un_slash( $slug ).'2' );
