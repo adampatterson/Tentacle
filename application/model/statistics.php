@@ -589,8 +589,8 @@ class statistics_model extends properties
 
         $stats = $this->build_mixpanel_stats( $is_install, '', 'utf8');
 
-        #var_dump( $stats );
-die;
+        //var_dump( $stats );
+
         // get the Mixpanel class instance, replace with your project token
         $mp = Mixpanel::getInstance("61fe4c362654aac9baed7970abecfc43");
 

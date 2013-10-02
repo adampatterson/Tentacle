@@ -45,7 +45,9 @@ class upgrade {
 
 
 	public static function core($update) {
-		
+
+        $prev_tentacle_version = TENTACLE_VERSION;
+
 		$filedata = get::url_contents($update);
 
 		if (!is_dir(STORAGE_DIR.'/upgrade/')) {
@@ -116,8 +118,7 @@ class upgrade {
 				delete_dir($update_path);
 				unlink(STORAGE_DIR.'/upgrade/update.zip');
 
-				load::helper('serverstats');
-				build_server_stats( false, '', 'utf8' );
+                load::model('serverstats')->mixpanel_server( false, $prev_tentacle_version );
 
 				note::set('success','upgrade_message','Tentacle has been successfully upgraded.');
 
