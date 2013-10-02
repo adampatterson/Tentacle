@@ -88,9 +88,7 @@ class analytics{
 
     static function page_view()
     {
-        load::library('statistics');
-
-        build_stats();
+        load::model('statistics')->build_stats();
     }
 
 }
