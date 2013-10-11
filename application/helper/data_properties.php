@@ -15,17 +15,17 @@ if ( defined( 'SETUP' ) && strpos( BASE_URI,'install' ) == true ) {
 
 class properties
 {
-    public $post_table;
-    public $post_meta_table;
-    public $term_table;
-    public $term_taxonomy_table;
-    public $term_relationships;
-    public $media_table;
-    public $options_table;
-    public $snippet_table;
-    public $statistics_table;
-    public $statistics_meta_table;
-    public $user_table;
+    private $post_table;
+    private $post_meta_table;
+    private $term_table;
+    private $term_taxonomy_table;
+    private $term_relationship_table;
+    private $media_table;
+    private $options_table;
+    private $snippet_table;
+    private $statistics_table;
+    private $statistics_meta_table;
+    private $user_table;
 
     public function post_table ( )
     {
