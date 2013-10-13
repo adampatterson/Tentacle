@@ -75,7 +75,7 @@ class media_model extends properties
 				->order_by ( 'id', 'DESC' )
 				->execute();
 
-            //return $get_media;
+            return $get_media;
 		} else {
 			$get_media = $this->media_table()
                 ->select( '*' )
@@ -84,8 +84,7 @@ class media_model extends properties
 				->where ( 'type', '=', 'image' )
 				->execute();
 			
-			//return $get_media[0];
+			return $get_media[0];
 		}
-        var_Dump($get_media);
 	}
 }
