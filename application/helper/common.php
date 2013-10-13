@@ -134,20 +134,40 @@ class date
     */
     public static function distance_of_time_in_words_to_now($from_time, $include_seconds=false)
     {
-        return date::time_ago_in_words($from_time, $include_seconds);
+        return self::time_ago_in_words($from_time, $include_seconds);
     }
 
 
-	/**
-	* Function: current
-	*
-	* Parameters:
-	*	$unit
-	*	$get_time 
-	*
-	* Returns:
-	*	String
-	*/
+    function time_ago($date)
+    {
+        $units = array(
+            31556926 => array('%s year ago', '%s years ago'),
+            2629744  => array('%s month ago', '%s months ago'),
+            604800   => array('%s week ago', '%s weeks ago'),
+            86400    => array('%s day ago',  '%s days ago'),
+            3600     => array('%s hour ago', '%s hours ago'),
+            60       => array('%s min ago',  '%s mins ago'),
+        ) ;
+
+        $diff = time() - $date;
+
+        foreach($units as $sec => $format)
+        {
+            if ($diff < $sec)
+                continue;
+
+            $units = floor($diff/$sec);
+
+            if ($units > 1)
+                $format = $format[1];
+            else
+                $format = $format[0];
+
+            return sprintf($format, $units);
+        }
+    }
+
+
 	public static function current( $unit, $html = false ){
 	
 		$time_stamp = time();
@@ -192,16 +212,7 @@ class date
 		}
 	}
 
-    /**
-     * Function: get
-     *
-     * Parameters:
-     *	$unit
-     *	$get_time
-     *
-     * Returns:
-     *	String
-     */
+
     public static function get($unit, $time_stamp ){
 
         switch ($unit) {
