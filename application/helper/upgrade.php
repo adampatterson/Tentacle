@@ -18,7 +18,7 @@ class upgrade {
 		$v = $serpent->get_core();
 		
 		if ( is::update( TENTACLE_VERSION, $v->version ) ):
-	        _e('<p class="well"><span class="label label-important">Important</span> Currently you have <strong>'.TENTACLE_VERSION.'</strong>, There is a newer version of Tentacle CMS available, Click <a href="'.ADMIN.'updates/'.'">here</a> and Upgrade to <strong>'. $v->version.'</strong></p>');
+	        _e('<p class="well"><span class="label label-important">Important</span> You currently have version <strong>'.TENTACLE_VERSION.'</strong>, There is a newer version of Tentacle CMS available, Click <a href="'.ADMIN.'updates/'.'">here</a> and Upgrade to <strong>'. $v->version.'</strong></p>');
 				return true;
 		endif;
 	}
@@ -44,7 +44,7 @@ class upgrade {
 	}
 
 
-	public static function core($update) {
+	public static function core( $update ) {
 
         $prev_tentacle_version = TENTACLE_VERSION;
 
@@ -118,9 +118,9 @@ class upgrade {
 				delete_dir($update_path);
 				unlink(STORAGE_DIR.'/upgrade/update.zip');
 
-                load::model('serverstats')->mixpanel_server( false, $prev_tentacle_version );
-
 				note::set('success','upgrade_message','Tentacle has been successfully upgraded.');
+
+                return $prev_tentacle_version;
 
 		} else {
 		    note::set('error','upgrade_message','Something went wrong!');
@@ -185,3 +185,79 @@ function upgrade_all() {
 
 	return true;
 }
+
+/*
+function rollback($back)
+{
+    foreach($back as $b)
+    {
+        $f = FCPATH . $b;
+        @rename($f, str_replace('.off', '', $f));
+    }
+}
+
+
+// Move these to off position in case we need to rollback
+$movers = array('admin', 'app', 'api.php', 'i.php', 'index.php', 'preview.php', 'dl.php');
+$moved = array();
+
+foreach($movers as $m) {
+    $path = FCPATH . $m;
+    $to = $path . '.off';
+    if (file_exists($to))
+    {
+        delete_files($to, true, 1);
+    }
+    if (file_exists($path))
+    {
+        if (rename($path, $to))
+        {
+            $moved[] = basename($to);
+        }
+        else
+        {
+            rollback($moved);
+            umask($old_mask);
+            fail();
+        }
+    }
+}
+
+$this->unzip->extract($core);
+
+@unlink($core);
+
+foreach($movers as $m)
+{
+    if (!file_exists($m))
+    {
+        rollback($moved);`
+        umask($old_mask);
+        fail('Koken did not update properly. Please refresh the page and try again. If you continue to have issues, contact support.');
+    }
+}
+
+foreach($moved as $m)
+{
+    $path = FCPATH . $m;
+    if (is_dir($path))
+    {
+        delete_files($path, true, 1);
+    }
+    else if (file_exists($to))
+    {
+        unlink($path);
+    }
+}
+
+die(
+    json_encode(
+        array('migrations' => array_values(
+            array_diff(
+                scandir($this->migrate_path), $migrations_before)
+            )
+        )
+    )
+);
+
+*/

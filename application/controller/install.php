@@ -11,7 +11,7 @@ class install_controller
 	{	
 		// Create a .htaccess file that is a bit more advanced with thins like Mod Defalte and proper routing for plugnis.
         //if ( !file_exists( '.htaccess' ) )
-			//write_htaccess();
+			//create_htaccess();
 
 		if ( !file_exists( 'application/config/deployment/db.php' ) ):
 			load::view ('install/step1');

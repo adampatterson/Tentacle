@@ -29,9 +29,6 @@ define('DEBUG_SQL', FALSE);
 # Turn Error Logging On?
 define('ERROR_LOGGING',TRUE);
 
-# Log File Location
-define('ERROR_LOG_FILE','log.txt');
-
 # Application Location
 define( 'APPLICATION'   ,'application' );
 
