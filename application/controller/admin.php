@@ -14,9 +14,12 @@ class admin_controller extends properties {
 	}
 
 	
-	public function updated ()
+	public function updated ( $prev_tentacle_version = null )
 	{	
 		tentacle::valid_user();
+
+        if ( isset( $prev_tentacle_version ) )
+            load::model('serverstats')->mixpanel_server( false, $prev_tentacle_version );
 
 		load::view ('admin/upgraded');
 	}

@@ -14,31 +14,7 @@
 				<a href="http://github.com/adampatterson">http://github.com/adampatterson</a><br/>
 				<a href="http://www.adampatterson.ca">http://www.adampatterson.ca</a><br/>
 			</p>
-			
-			<h3>Brendan Taylor</h3>
-			<p>
-				<a href="http://twitter.com/beect">http://twitter.com/beect</a><br/>
-				<a href="https://github.com/bct">https://github.com/bct</a><br/>
-				<a href="http://diffeq.com/bct">http://diffeq.com/bct</a><br/>
-			</p>
-			
-			<h2>Hommage</h2>
-			<hr />
-			<ul>
-				<li>jQuery</li>
-				<li>Dingo Framework</li>
-				<li>Bootstrap, from Twitter</li>
-				<li>CKEditor</li>
-				<li>Code Mirror</li>
-				<li>HTML5 Shive</li>
-				<li>Sisyphus</li>
-				<li>Spin</li>
-				<li>Modernizer</li>
-				<li>jQuery History</li>
-				<li>jQuery Validate</li>
-				<li>jQuery Input Tags</li>
-			</ul>
-			
+
 			<h2>Whats New</h2>
 			<hr />
 			Read the <a href="https://github.com/adampatterson/Tentacle/wiki/Changelog">release notes</a>.
