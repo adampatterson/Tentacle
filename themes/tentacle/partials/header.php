@@ -17,8 +17,6 @@
 <? render_shortlink( ); ?>
 <?
 /**
- * undocumented 
- *
  * @param comma,separated - located in the bundles folder
  * @author Adam Patterson
  */

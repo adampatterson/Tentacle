@@ -133,6 +133,20 @@ class theme {
         endif;
     }
 
+    public static function css($filename){
+        echo '<link rel="stylesheet" href="'.THEME.'/'.$filename.'" type="text/css" />';
+    }
+
+    public static function script($filename, $externanl = null){
+        if ( $externanl == null )
+            echo '<script type="text/javascript" src="'.THEME.'/'.$filename.'"></script>';
+        else
+            echo '<script type="text/javascript" src="'.$filename.'"></script>';
+    }
+
+    public static function img($filename, $alt='' ){
+        echo '<img src="'.THEME.'/'.$filename.'" alt="'.$alt.'" />';
+    }
 
     /**
      * Function: build

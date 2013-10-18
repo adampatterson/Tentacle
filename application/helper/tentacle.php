@@ -9,6 +9,7 @@
 /**
  * Create a URI ( anything after the domain/folder/ )
  */
+
 define ( 'URI'			, tentacle::get_request_url() );
 define ( 'ACTIVE_THEME' , get::option( 'appearance' ) );
 define ( 'THEME'	    , THEMES_URL.'/'.ACTIVE_THEME );
@@ -17,6 +18,7 @@ define ( 'HISTORY' 		, BASE_URL.URI.'/' );
 define ( 'IMAGE_T', get::option( 'image_thumb_size_w' ) );
 define ( 'IMAGE_M', get::option( 'image_medium_size_w' ) );
 define ( 'IMAGE_L', get::option( 'image_large_size_w' ) );
+
 
 // tentacle core loaders
 class tentacle 
