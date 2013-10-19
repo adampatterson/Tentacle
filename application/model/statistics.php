@@ -577,7 +577,7 @@ class statistics_model extends properties
         }
     }
 
-    public function mixpanel_server( $is_install = false )
+    public function mixpanel_server( $is_install = false, $previous_version = '' )
     {
         //load::helper('serverstats');
         load::library('mixpanel','Mixpanel');
@@ -587,7 +587,7 @@ class statistics_model extends properties
 
         $info['id'] = ( function_exists('sha1') ? sha1($id) : md5($id) );
 
-        $stats = $this->build_mixpanel_stats( $is_install, '', 'utf8');
+        $stats = $this->build_mixpanel_stats( $is_install, $previous_version, 'utf8');
 
         //var_dump( $stats );
 

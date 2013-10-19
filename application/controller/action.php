@@ -152,18 +152,16 @@ class action_controller extends properties {
 		if ( is::update( TENTACLE_VERSION, $core_update->version ) )
 		{
 			// Download and update Core Files.
-            $prev_tentacle_version = upgrade::core( $core_update->download );
+            upgrade::core( $core_update->download );
 
 			// Migrate forward on the Database.
 			upgrade_db();
-
-            load::model('statistics')->mixpanel_server( false );
 
 		} else {
 			note::set('success','upgrade_message','There was nothing to upgrade.');
 		}
 		
-		url::redirect( 'admin/updated/'.$prev_tentacle_version );
+		url::redirect( 'admin/updated/' );
 	}
 
 	public function do_db_upgrade()

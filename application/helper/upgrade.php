@@ -46,7 +46,7 @@ class upgrade {
 
 	public static function core( $update ) {
 
-        $prev_tentacle_version = TENTACLE_VERSION;
+        set::option('old_version', TENTACLE_VERSION );
 
 		$filedata = get::url_contents($update);
 
