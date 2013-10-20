@@ -466,17 +466,6 @@ Test two
 	 * http://richardneililagan.com/2010/06/accessing-google-analytics-using-php-via-gapi/
 	 */
 
-
-	public function script_cache()
-	{
-		load::helper('cache');
-
-		cache::css();
-		//cache::script();
-
-	}
-
-
 	public function system ()
 	{
         if (function_exists('fopen')) {
