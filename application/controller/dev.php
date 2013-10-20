@@ -1093,7 +1093,7 @@ Test two
 
     public function import_test(){
         load::library('import', 'wordpress');
-        load::library('SmartyPants', 'smartypants');
+        load::library('smartypants');
         load::helper('format');
 
         $wordpress_xml = TEMP.'tentaclecms.wordpress.2012-12-24.xml';

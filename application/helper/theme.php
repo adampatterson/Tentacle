@@ -474,7 +474,7 @@ function the_posts() {
 function the_content( $content='', $editor = false )
 {
     load::helper('format');
-    load::library('SmartyPants', 'smartypants');
+    load::library('smartypants');
 
     $content = stripslashes( $content );
 
