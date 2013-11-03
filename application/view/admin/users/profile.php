@@ -1,4 +1,4 @@
-<? load::view('admin/partials/template-header', array('title' => 'User Profile', 'assets' => array('application')));?>
+<? load::view('admin/partials/header', array('title' => 'User Profile', 'assets' => array('application')));?>
 
 <div id="wrap">
 	<div class="one-full">
@@ -96,4 +96,4 @@
 	</div>
 </div>
 <!-- #wrap -->
-<? load::view('admin/partials/template-footer', array( 'assets'=> array('') ) );?>
+<? load::view('admin/partials/footer', array( 'assets'=> array('') ) );?>

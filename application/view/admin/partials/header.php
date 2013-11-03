@@ -121,7 +121,7 @@
 
 	<header>
 		<nav>
-			<? load::view( 'admin/partials/template-navigation' ); ?>
+			<? load::view( 'admin/partials/navigation' ); ?>
 		</nav>
 	</header>
 	<div id="body-wrapper">

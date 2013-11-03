@@ -1,4 +1,4 @@
-<? load::view('admin/partials/template-header', array('title' => 'Manage menus', 'assets' => array('application')));?>
+<? load::view('admin/partials/header', array('title' => 'Manage menus', 'assets' => array('application')));?>
 
 <div id="wrap">
 	<div class="one-full">
@@ -36,4 +36,4 @@
 		</div>
 	</div>
 </div><!-- #wrap -->
-<? load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) ); ?>
+<? load::view('admin/partials/footer', array( 'assets' => array( '' ) ) ); ?>

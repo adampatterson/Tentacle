@@ -1,4 +1,4 @@
-<? load::view('admin/partials/template-header',array('title'=>'Notification Templates','assets'=>'application','assets'=>'application')); ?>
+<? load::view('admin/partials/header',array('title'=>'Notification Templates','assets'=>'application','assets'=>'application')); ?>
 <div id="wrap">
 	<div class="one-full">
 		<div class="title">
@@ -48,4 +48,4 @@
 		</table>
 	</div>
 </div><!-- #wrap -->
-<? load::view('admin/partials/template-footer'); ?>
+<? load::view('admin/partials/footer'); ?>

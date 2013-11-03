@@ -1,4 +1,4 @@
-<? load::view('admin/partials/template-header', array('title' => 'Manage media', 'assets' => array('filedrop') ) ); ?>
+<? load::view('admin/partials/header', array('title' => 'Manage media', 'assets' => array('filedrop') ) ); ?>
 <div id="wrap">
 	<div id="post-body">
 		<div id="post-body-content">
@@ -93,4 +93,4 @@
 		</div>
 	</div>
 </div>
-<? load::view('admin/partials/template-footer', array( 'assets'=> array( 'filedrop' ) ) );?>
+<? load::view('admin/partials/footer', array( 'assets'=> array( 'filedrop' ) ) );?>

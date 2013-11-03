@@ -1,4 +1,4 @@
-<? load::view('admin/partials/template-header',array('title'=>'404 Monitor','assets'=>'application')); ?>
+<? load::view('admin/partials/header',array('title'=>'404 Monitor','assets'=>'application')); ?>
 <div id="wrap">
 	<div class="full-content">
 		<div id="post-body">
@@ -24,4 +24,4 @@
 		</div><!-- #post-body -->
 	</div><!-- .full-content -->
 </div><!-- #wrap -->
-<? load::view('admin/partials/template-footer'); ?>
+<? load::view('admin/partials/footer'); ?>

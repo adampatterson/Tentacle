@@ -1,4 +1,4 @@
-<? load::view('admin/partials/template-header', array('title' => 'SEO settings', 'assets' => array('application')));?>
+<? load::view('admin/partials/header', array('title' => 'SEO settings', 'assets' => array('application')));?>
 
 <div id="wrap">
 	<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> SEO settings</h1>
@@ -69,4 +69,4 @@
 	</form>
 </div>
 <!-- #wrap -->
-<? load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) ); ?>
+<? load::view('admin/partials/footer', array( 'assets' => array( '' ) ) ); ?>

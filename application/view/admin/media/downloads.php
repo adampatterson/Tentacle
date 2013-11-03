@@ -1,4 +1,4 @@
-<? load::view('admin/partials/template-header', array('title' => 'Media downloads', 'assets' => array('application')));?>
+<? load::view('admin/partials/header', array('title' => 'Media downloads', 'assets' => array('application')));?>
 
 <div id="wrap">
 	<div id="post-body">
@@ -89,4 +89,4 @@
 		<!-- #post-body -->
 	</div>
 	<!-- #wrap -->
-	<? load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) ); ?>
+	<? load::view('admin/partials/footer', array( 'assets' => array( '' ) ) ); ?>

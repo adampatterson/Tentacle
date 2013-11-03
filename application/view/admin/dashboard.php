@@ -1,4 +1,4 @@
-<? load::view('admin/partials/template-header', array('title' => 'Dashboard', 'assets' => array('application','flot')));?>
+<? load::view('admin/partials/header', array('title' => 'Dashboard', 'assets' => array('application','flot')));?>
 
 <div id="wrap">
 	<div class="full-content">
@@ -77,4 +77,4 @@
 		</div><!-- .post-body -->
 	</div><!-- .full-content -->
 </div><!-- #wrap -->
-<? load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) ); ?>
+<? load::view('admin/partials/footer', array( 'assets' => array( '' ) ) ); ?>

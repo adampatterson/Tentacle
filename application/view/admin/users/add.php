@@ -1,4 +1,4 @@
-<?	load::view('admin/partials/template-header', array('title' => 'Add a new user', 'assets' => array('application')));?>
+<?	load::view('admin/partials/header', array('title' => 'Add a new user', 'assets' => array('application')));?>
 <div id="wrap">
 	<div class="one-full">
 		<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Add a new user</h1>
@@ -109,4 +109,4 @@
 	</div>
 </div>
 <!-- #wrap -->
-<?load::view('admin/partials/template-footer', array( 'assets'=> array('') ) );?>
+<?load::view('admin/partials/footer', array( 'assets'=> array('') ) );?>

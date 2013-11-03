@@ -1,4 +1,4 @@
-<? load::view('admin/partials/template-header',array('title'=>'Import settings','assets'=>'application')); ?>
+<? load::view('admin/partials/header',array('title'=>'Import settings','assets'=>'application')); ?>
 <div id="wrap">
 	<form action="post" class="form-stacked">
 		<div class="one-full">
@@ -16,4 +16,4 @@
 		</div>
 	</form>
 </div><!-- #wrap -->
-<? load::view('admin/partials/template-footer'); ?>
+<? load::view('admin/partials/footer'); ?>

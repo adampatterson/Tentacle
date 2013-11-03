@@ -1,5 +1,5 @@
 <? $file_meta = string_to_parts($image->name); ?>
-<? load::view('admin/partials/template-header', array('title' => 'Update '.$file_meta['file_name'], 'assets'=> array('') ) );?>
+<? load::view('admin/partials/header', array('title' => 'Update '.$file_meta['file_name'], 'assets'=> array('') ) );?>
 <div id="wrap">
 	<div class="one-full">
 		<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Update <?=$file_meta['file_name'] ?></h1>
@@ -65,4 +65,4 @@
 
 	</div>
 </div>
-<? load::view('admin/partials/template-footer', array( 'assets'=> array('') ) );?>
+<? load::view('admin/partials/footer', array( 'assets'=> array('') ) );?>

@@ -1,4 +1,4 @@
-<? load::view( 'admin/partials/template-header',array( 'title'=>'Appearance settings','assets'=>array( 'application' ) ) ); ?>
+<? load::view( 'admin/partials/header',array( 'title'=>'Appearance settings','assets'=>array( 'application' ) ) ); ?>
 <div id="wrap">
 	<div class="title">
 		<h1 class='align-left'><img src="<?=ADMIN_URL; ?>images/icons/icon_pages_32.png" alt="" /> Appearance settings</h1>
@@ -51,4 +51,4 @@
 		Links</p>*/?>
 	</div>
 </div><!-- #wrap -->
-<? load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) ); ?>
+<? load::view('admin/partials/footer', array( 'assets' => array( '' ) ) ); ?>

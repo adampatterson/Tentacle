@@ -1,4 +1,4 @@
-<? load::view('admin/partials/template-header', array('title' => 'Reading settings', 'assets' => array('application')));?>
+<? load::view('admin/partials/header', array('title' => 'Reading settings', 'assets' => array('application')));?>
 
 <div id="wrap">
 	<form action="<?= BASE_URL ?>action/udpate_settings_post/" method="post" class="form-stacked"> 
@@ -161,4 +161,4 @@
 	</form>
 </div>
 <!-- #wrap -->
-<? load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) ); ?>
+<? load::view('admin/partials/footer', array( 'assets' => array( '' ) ) ); ?>

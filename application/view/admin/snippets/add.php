@@ -1,4 +1,4 @@
-<? load::view('admin/partials/template-header', array('title' => 'Add a new snippet', 'assets' => array('application')));?>
+<? load::view('admin/partials/header', array('title' => 'Add a new snippet', 'assets' => array('application')));?>
 
 <div id="wrap">
 	<div class="has-right-sidebar">
@@ -43,4 +43,4 @@
 	</div><!-- .full-content -->
 </div>
 <!-- #wrap -->
-<? load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) ); ?>
+<? load::view('admin/partials/footer', array( 'assets' => array( '' ) ) ); ?>

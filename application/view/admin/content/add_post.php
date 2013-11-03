@@ -1,4 +1,4 @@
-<? load::view('admin/partials/template-header', array('title' => 'Write a new post', 'assets' => array('application', 'filedrop', user_editor()) ) );?>
+<? load::view('admin/partials/header', array('title' => 'Write a new post', 'assets' => array('application', 'filedrop', user_editor()) ) );?>
 
 <div id="wrap">
 	<!--
@@ -207,4 +207,4 @@
 </div>
 <!-- #wrap -->
 <? load::view('admin/partials/media-modal'); ?>
-<? load::view('admin/partials/template-footer', array( 'assets' => array( 'filedrop', user_editor() ) ) ); ?>
+<? load::view('admin/partials/footer', array( 'assets' => array( 'filedrop', user_editor() ) ) ); ?>

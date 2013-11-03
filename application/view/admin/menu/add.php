@@ -1,4 +1,4 @@
-<? load::view('admin/partials/template-header', array('title' => 'Create a new menu','assets'=>'application')); ?>
+<? load::view('admin/partials/header', array('title' => 'Create a new menu','assets'=>'application')); ?>
 
 <div id="wrap">
 	<div class="has-right-sidebar">
@@ -187,4 +187,4 @@
 	</div>
 </div>
 <!-- #wrap -->
-<? load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) ); ?>
+<? load::view('admin/partials/footer', array( 'assets' => array( '' ) ) ); ?>
