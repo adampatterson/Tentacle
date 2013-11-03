@@ -216,7 +216,8 @@ class get {
             curl_close( $ch );
 
             return $output;
-        } elseif ( file_get_contents( __FILE__ ) ){
+        } elseif ( file_get_contents( __FILE__ ) )
+        {
 
             $opts = array(
                 'http'=>array(
@@ -231,27 +232,8 @@ class get {
         } else {
             return false;
         }
-//        else {
-//            load::library('Snoopy','Snoopy.class');
-//
-//            $snoopy = new Snoopy;
-//
-//            $snoopy->agent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)";
-//            $snoopy->referer = BASE_URL;
-//
-//            $snoopy->rawheaders["Pragma"] = "no-cache";
-//
-//            $snoopy->maxredirs = 2;
-//            $snoopy->offsiteok = false;
-//            $snoopy->expandlinks = false;
-//
-//            if($snoopy->fetch($url)){
-//                return $snoopy->results;
-//            } else {
-//                return $snoopy->error;
-//            }
-//        }
     }
+
 
     /**
      * Function: get::snippet
