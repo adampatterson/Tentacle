@@ -556,7 +556,7 @@ class admin_controller extends properties {
 
         if ( $plugin_view == true ) {
             
-			load::view('admin/partials/template-header', array('title' => 'Dashboard', 'assets' => array('application')));
+			load::view('admin/partials/header', array('title' => 'Dashboard', 'assets' => array('application')));
 
             foreach ($plugin_raw as $plugin_subnav)
                 foreach ($plugin_subnav as $plugin) {
@@ -566,7 +566,7 @@ class admin_controller extends properties {
                     }
                 }
 
-            load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) );
+            load::view('admin/partials/footer', array( 'assets' => array( '' ) ) );
         } else {
             load::view ('admin/settings/plugins', array( 'serpent_plugins'=>$serpent_plugins, 'plugins'=>$get_plugin ) );
         }
