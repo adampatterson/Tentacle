@@ -10,7 +10,23 @@
                     </div>
 
                     <div class="row-fluid">
-                        <div class="span8 well">
+                        <div class="span4 well">
+                            <h2>Recent Posts</h2>
+                            <ul>
+                            <?
+                            $count = 1;
+                            foreach (load::model('content')->get() as $post ): ?>
+                                <li><a href="<?= ADMIN ?>content_update_post/<?= $post->id;?>"><?= $post->title;?></a></li>
+                            <?
+                                if ( $count == 10 )
+                                    break;
+
+                                $count++;
+                            endforeach; ?>
+                            </ul>
+                        </div>
+
+                        <div class="span4 well">
                             <h2>Tentacle News</h2>
 
                             <ul class="feed"></ul>
