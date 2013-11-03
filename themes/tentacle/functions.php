@@ -1,5 +1,16 @@
-<?
-/**
- * Functions functions
- * @todo plan out how and what this file should interact with the theme as well as the CMS.
-**/
+<?php
+event::on('shortcode', 'source::shortcode', 3);
+
+class source {
+
+    static function shortcode($tag='') {
+        add_shortcode( 'sourcecode', 'sourcecode' );
+
+        if (function_exists('do_shortcode'))
+            return do_shortcode( $tag );
+    }
+}
+
+function sourcecode ($tag, $content = null) {
+    return '<pre><code class="language-'.$tag['language'].'">'.$content.'</code></pre>';
+}
