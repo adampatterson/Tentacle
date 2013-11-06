@@ -502,6 +502,17 @@ function the_content( $content='', $editor = false )
 }
 
 
+function the_exerpt($content, $length = 300){
+
+    if (strlen($content) >= $length) {
+        return substr($content, 0, $length).'&hellip;';
+    } else {
+        return $content;
+    }
+
+}
+
+
 /**
  * Function: render_header
  *   Renders and plugins that would output HTML in the footer.
