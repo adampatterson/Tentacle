@@ -44,19 +44,19 @@ class disqus {
         <div id="disqus_thread"></div>
         <script type="text/javascript">
 
-        var disqus_shortname = '<?=get::option('disqus_account')?>';
+            var disqus_shortname = '<?=get::option('disqus_account')?>';
 
-        <? if (!empty($id)): ?>
-            var disqus_identifier = '<?= $id ?>';
-        <? endif ?>
+            <? if (!empty($id)): ?>
+                var disqus_identifier = '<?= $id ?>';
+            <? endif ?>
 
-        var disqus_url = '<?= BASE_URL.URI ?>';
+            var disqus_url = '<?= BASE_URL.URI ?>';
 
-        (function() {
-var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
     <? }
 }
