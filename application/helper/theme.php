@@ -2,6 +2,7 @@
 /**
  * File: Theme
  */
+load::helper('format');
 
 class theme {
 
@@ -137,8 +138,8 @@ class theme {
         echo '<link rel="stylesheet" href="'.THEME.'/'.$filename.'" type="text/css" />';
     }
 
-    public static function script($filename, $externanl = null){
-        if ( $externanl == null )
+    public static function script($filename, $external = null){
+        if ( $external == null )
             echo '<script type="text/javascript" src="'.THEME.'/'.$filename.'"></script>';
         else
             echo '<script type="text/javascript" src="'.$filename.'"></script>';
@@ -502,14 +503,13 @@ function the_content( $content='', $editor = false )
 }
 
 
-function the_exerpt($content, $length = 300){
+function the_exerpt( $content, $length = 60, $more = null ){
 
     if (strlen($content) >= $length) {
-        return substr($content, 0, $length).'&hellip;';
+        return trim_words($content, $length, $more);
     } else {
         return $content;
     }
-
 }
 
 

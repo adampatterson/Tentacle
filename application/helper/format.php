@@ -590,6 +590,25 @@ function normalize_whitespace( $str ) {
     return $str;
 }
 
+function trim_words( $text, $num_words = 55, $more = null ) {
+    if (  $more === null )
+        $more = '&hellip;';
+    $original_text = $text;
+    $text = strip_shortcodes( $text );
+    $text = strip_all_tags( $text );
+
+    $words_array = preg_split( "/[\n\r\t ]+/", $text, $num_words + 1, PREG_SPLIT_NO_EMPTY );
+    $sep = ' ';
+
+    if ( count( $words_array ) > $num_words ) {
+        array_pop( $words_array );
+        $text = implode( $sep, $words_array );
+        $text = $text . $more;
+    } else {
+        $text = implode( $sep, $words_array );
+    }
+    return $text;
+}
 
 /**
  * Properly strip all HTML tags including script and style
