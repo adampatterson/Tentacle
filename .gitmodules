@@ -1,9 +1,3 @@
-[subplugin "plugins/ipsum"]
-	path = plugins/ipsum
-	url = git@github.com:adampatterson/tentacle-ipsum.git
-[subplugin "plugins/ndoc"]
-	path = plugins/ndoc
-	url = git@github.com:adampatterson/tentacle-ndoc.git
 [subplugin "themes/immersion"]
 	path = themes/immersion
 	url = git@github.com:adampatterson/tentacle-immersion.git
@@ -13,15 +7,3 @@
 [subplugin "themes/tentacle"]
 	path = themes/tentacle
 	url = git@github.com:adampatterson/tentacle-default.git
-[submodule "plugins/ndoc"]
-	path = plugins/ndoc
-	url = git@github.com:tentaclecms/ndoc.git
-[submodule "plugins/ipsum"]
-	path = plugins/ipsum
-	url = git@github.com:tentaclecms/ipsum.git
-[submodule "plugins/social"]
-	path = plugins/social
-	url = git@github.com:tentaclecms/social.git
-[submodule "plugins/shorty"]
-	path = plugins/shorty
-	url = git@github.com:tentaclecms/shorty.git
