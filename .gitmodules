@@ -1,6 +1,0 @@
-[subplugin "themes/immersion"]
-	path = themes/immersion
-	url = git@github.com:adampatterson/tentacle-immersion.git
-[subplugin "themes/organic_structure"]
-	path = themes/organic_structure
-	url = git@github.com:adampatterson/tentacle-organic-structure.git
