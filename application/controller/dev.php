@@ -12,11 +12,11 @@ class dev_controller {
 
 	public function index()
 	{
+        load::model('statistics')->mixpanel_server( true );
+
+
         var_dump(load::model( 'media' )->get());
 
-
-
-        die;
         var_dump(get::option('missing_key', 'default') );
 
         var_dump(is::mobile());
