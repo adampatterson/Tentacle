@@ -411,8 +411,9 @@ class action_controller extends properties {
 	* ----------------------------------------------------------------------------------------------*/	
 	public function trash_post ( $id )
  	{
-        $this->content_model()
-            ->update(array(
+        $page = db('posts');
+
+        $page->update(array(
 			    'status'=>'trash'
 		    ))
 			->where( 'id', '=', $id )
