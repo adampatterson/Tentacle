@@ -100,6 +100,9 @@ class content_model extends properties {
 
         $posts          = db('posts');
 
+        if ( $this->type === 'post' )
+            $parent_page = null;
+
         $row = $posts->insert(array(
             'title'		=> $title,
             'slug'		=> $slug,
@@ -190,7 +193,7 @@ class content_model extends properties {
             'modified'	=>time()
         ));
 
-        $meta_value = serialize( '' );
+        $meta_value = 'a:5:{s:9:"post_type";s:9:"type-post";s:13:"post_category";a:1:{i:0;s:1:"1";}s:11:"bread_crumb";s:0:"";s:13:"meta_keywords";s:0:"";s:16:"meta_description";s:0:"";}';
 
         $posts_meta      = db('posts_meta');
 

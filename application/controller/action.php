@@ -877,7 +877,7 @@ win.send_to_editor('<?=$html?>');
                 }
 
                 # Import the post and return the new ID
-                $post_id = $this->content_model()->add_by_import( $import_post );
+                $post_id = $this->content_model()->type( 'post' )->add_by_import( $import_post );
 
                 # assosiate tags, and categories with the new post.
                 if(array_key_exists("terms", $import_post))

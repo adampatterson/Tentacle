@@ -136,12 +136,14 @@ class WXR_Parser {
                     );
             }
 
+
             foreach ( $wp->postmeta as $meta ) {
                 $post['postmeta'][] = array(
                     'key' => (string) $meta->meta_key,
                     'value' => (string) $meta->meta_value
                 );
             }
+
             /*
             foreach ( $wp->comment as $comment ) {
                 $meta = array();
