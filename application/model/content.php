@@ -22,6 +22,15 @@ class content_model extends properties {
         return $this;
     }
 
+    public function trash ( $id )
+    {
+        $this->post_table()->update(array(
+            'status'=>'trash'
+        ))
+            ->where( 'id', '=', $id )
+            ->execute();
+    }
+
 
     /**
      * Function: add

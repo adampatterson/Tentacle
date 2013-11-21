@@ -411,14 +411,8 @@ class action_controller extends properties {
 	* ----------------------------------------------------------------------------------------------*/	
 	public function trash_post ( $id )
  	{
-        $page = db('posts');
+        $this->content_model()->trash( $id );
 
-        $page->update(array(
-			    'status'=>'trash'
-		    ))
-			->where( 'id', '=', $id )
-			->execute();
-			
 		note::set('success','post_soft_delete','Moved to the trash.');
 		
 		url::redirect( 'admin/content_manage_posts' );
