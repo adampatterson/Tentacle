@@ -87,6 +87,15 @@ class statistics_model extends properties
 
     public  function add( $page_view )
     {
+
+        if ( empty($page_view['country']) ) {
+            $page_view['country'] = '';
+            $page_view['region'] = '';
+            $page_view['city'] = '';
+            $page_view['latitude'] = '';
+            $page_view['longitude'] = '';
+        }
+
         $this->statistics_table()->insert( array(
             'ip'            => $page_view['ip'],
             'date'          => time(),
