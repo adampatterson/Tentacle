@@ -1,26 +1,59 @@
-# os/app generated files
-Thumbs.db
+# OS or Editor folders
 .DS_Store
-*.esproj
-*.log
-*.gz
-.idea/
-.settings/
+._*
+Thumbs.db
+.cache
+.project
+.settings
 *.tmproj
+*.esproj
+nbproject
+*.sublime-project
+*.sublime-workspace
+.idea
+.settings
 codekit-config.json
-log.txt
+
+
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.zip
+*.gz
+*.vi
+*~
+
 
 # Development resources
 /application/config/development
 tentacle/themes/default/template-rfp.php
+log.txt
+
+
+# grunt-html-validation
+validation-status.json
+validation-report.json
+
+
+# Folders to ignore
+node_modules
+bower_components
+
 
 # Domain crap for tentacle
 googlec09c5f65801ea65d.html
 
+
 # Generated Config & Log files
-/application/config/deployment/db.php
+application/config/deployment/db.php
 application/config/setup/db.php
-/application/logs/*.php
+application/logs/*.php
+
 
 storage/images/*
 storage/temp/*
@@ -36,3 +69,4 @@ storage/upgrade/*
 !/plugins/core/
 !/plugins/discqus/
 !/plugins/bones/
+
