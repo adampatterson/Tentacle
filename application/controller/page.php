@@ -136,7 +136,7 @@ class page_controller extends properties {
 
                 $posts = new pagination($post_total, $current_page, $post_limit);
 
-                logger::set('Post total', count($posts));
+                logger::set('Post total', count($post_total));
 
                 if ( count($post_total) > $post_limit ) {
                     $paginate = new paginate($post_total, $current_page);
