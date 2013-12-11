@@ -30,7 +30,7 @@
 				<th>Author</th>
 				<th>ID</th>
 				<th>Status</th>
-				<th>Actions</th>
+				<th width="200">Actions</th>
 			</tr>
 		</thead>
 		<tbody>

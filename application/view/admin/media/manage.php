@@ -6,7 +6,7 @@
 				<h1 class='align-left'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Manage media</h1>
 			</div>
 
-		    <div class="one-full">
+		    <div class="row">
 	    		<div id="dropbox" class="well"><i class="icon-picture"></i></div>
 		    </div>
 
@@ -53,22 +53,22 @@
 									<fieldset>
 										<h3>&nbsp;</h3>
 
-										<div class="control-group">
-											<label class="control-label" for="title">Title</label>
+										<div class="form-group">
+											<label for="title">Title</label>
 											<div class="controls">
 												<input type="text" class="span5 post" data-image-id="<?= $image->id ?>" id="title" name="title" value="<?=$image->title ?>">
 											</div>
 										</div>
 
-										<div class="control-group">
-											<label class="control-label" for="alt_text">Alternate Text</label>
+										<div class="form-group">
+											<label for="alt_text">Alternate Text</label>
 											<div class="controls">
 												<input type="text" class="span5 post" data-image-id="<?= $image->id ?>" id="alt_text" name="alt_text" value="<?=$image->alt ?>" >
 											</div>
 										</div>
 
-										<div class="control-group">
-											<label class="control-label" for="caption">Caption</label>
+										<div class="form-group">
+											<label for="caption">Caption</label>
 											<div class="controls">
 												<input type="text" class="span5 post" data-image-id="<?= $image->id ?>" id="caption" name="caption" value="<?= $image->caption ?>">
 											</div>

@@ -3,9 +3,9 @@
 	<div class="full-content">
 		<div id="post-body">
 			<div id="post-body-content">
-				<div class="one-full">
+				<div class="row">
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Add a new user</h1>
-					<div class="one-half">
+					<div class="col-md-6">
 						<form action="<?= BASE_URL ?>action/delete_user/<?= $id ?>" method="post">
 							<fieldset>
 								<p>
@@ -25,7 +25,7 @@
 							</div>
 						</form>
 					</div>
-					<div class="one-half">
+					<div class="col-md-6">
 						&nbsp;
 					</div>
 				</div>

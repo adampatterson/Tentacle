@@ -58,29 +58,29 @@
 
                                                 <h3>&nbsp;</h3>
 
-                                                <div class="control-group">
-                                                    <label class="control-label" for="title">Title</label>
+                                                <div class="form-group">
+                                                    <label for="title">Title</label>
                                                     <div class="controls">
                                                         <input type="text" class="span5 title" name="title" value="<?=$image->title ?>">
                                                     </div>
                                                 </div>
 
-                                                <div class="control-group">
-                                                    <label class="control-label" for="alt_text">Alternate Text</label>
+                                                <div class="form-group">
+                                                    <label for="alt_text">Alternate Text</label>
                                                     <div class="controls">
                                                         <input type="text" class="span5 alt_text" name="alt_text" value="<?=$image->alt ?>" >
                                                     </div>
                                                 </div>
 
-                                                <div class="control-group">
-                                                    <label class="control-label" for="caption">Caption</label>
+                                                <div class="form-group">
+                                                    <label for="caption">Caption</label>
                                                     <div class="controls">
                                                         <input type="text" class="span5 caption" name="caption" value="<?= $image->caption ?>">
                                                     </div>
                                                 </div>
 
-                                                <div class="control-group">
-                                                    <label class="control-label" for="link_url">Link URL</label>
+                                                <div class="form-group">
+                                                    <label for="link_url">Link URL</label>
                                                     <div class="controls">
                                                         <div class="input-append">
                                                             <input type="text" class="span3 link_url" name="link_url" value="<?= $image->link ?>" ><button class="btn" type="button" id="none">None</button><button class="btn" type="button" id="file">File</button>
@@ -88,8 +88,8 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="control-group">
-                                                    <label class="control-label">Size</label>
+                                                <div class="form-group">
+                                                    <label>Size</label>
                                                     <div class="controls">
                                                         <label class="radio">
                                                             <input type="radio" name="image_size" class="image_size" value="<?= get::option('image_thumb_size_w'); ?>" checked />

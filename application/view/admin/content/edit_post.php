@@ -23,8 +23,8 @@
 				<div class="table-content">
 					<fieldset>
 						
-						<div class="control-group">
-							<label class="control-label" for="status">Status</label>
+						<div class="form-group">
+							<label for="status">Status</label>
 							<div class="controls">
 								<select id="status" name="status">
 									<option value="draft" <? selected( $get_post->status, 'draft' ); ?>>Draft</option>
@@ -34,8 +34,8 @@
 							</div>
 						</div>
 
-						<div class="control-group">
-							<label for="status" class="control-label">Publish on</label>
+						<div class="form-group">
+							<label for="status">Publish on</label>
                             <div class="controls">
 
                                 <input type="hidden" value="<?= $get_post->date ?>" name="date_history">
@@ -47,11 +47,11 @@
 							</div>
 						</div>
 			
-						<div class="control-group published-on">
+						<div class="form-group published-on">
 							<? date::get('month', $get_post->date ); ?>
 						</div>
 						
-						<div class="control-group published-on">
+						<div class="form-group published-on">
 		 					<div class="inline-inputs">
 								<input type="text" id="day" name="day" value="<? date::get( 'day', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
                                  - <input type="text" id="year" name="year" value="<? date::get( 'year', $get_post->date ) ?>" size="4" maxlength="4" tabindex="4" autocomplete="off" class="span1">
@@ -61,8 +61,8 @@
 							<a href="#" id="edit_publish" class="red button-secondary">Cancel</a>
 						</div>
 							
-						<div class="control-group">
-							<label class="control-label" >Post Type</label>
+						<div class="form-group">
+							<label >Post Type</label>
 
 							<div class="controls post-type-list">
 								<ul class="unstyled">
@@ -74,8 +74,8 @@
 							</div>
 						</div>
 
-						<div class="control-group">
-							<label class="control-label" for="page_category">Category</label>
+						<div class="form-group">
+							<label for="page_category">Category</label>
 							<div class="controls category-list">
 								<ul id="categorychecklist">
 								<? 
@@ -140,32 +140,32 @@
 						<div id="options" class="tab-pane">
 							<fieldset>
 								
-								<div class="control-group">
-									<label class="control-label" for='bread_crumb'>Breadcrumb title</label>
+								<div class="form-group">
+									<label for='bread_crumb'>Breadcrumb title</label>
 									<div class="controls">
 											<input type="text" placeholder="Edit title" name='bread_crumb' value='<?= $get_post_meta->bread_crumb ?>' />
 											<span class="help-block">This title will appear in the breadcrumb trail.</span>
 									</div>
 								</div>
 
-								<div class="control-group">
-									<label class="control-label" for="meta_keywords">Meta Keywords</label>
+								<div class="form-group">
+									<label for="meta_keywords">Meta Keywords</label>
 									<div class="controls">
 										<input type="text" placeholder="Keywords" name='meta_keywords' value='<?= $get_post_meta->meta_keywords ?>' />
 										<span class="help-block">Separate each keyword with a comma ( , )</span>
 									</div>
 								</div>
 
-								<div class="control-group">
-									<label class="control-label" for="meta_description">Meta Description</label>
+								<div class="form-group">
+									<label for="meta_description">Meta Description</label>
 									<div class="controls">
          								<textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'><?= $get_post_meta->meta_description ?></textarea>
 										<span class="help-block">A short summary of the page's content</span>
 									</div>
 								</div>
 
-								<div class="control-group">
-									<label class="control-label" for="tags">Tags</label>
+								<div class="form-group">
+									<label for="tags">Tags</label>
 									<div class="controls">
 										<input type="text" class="tags" name="tags" id="tags" value='<?= $tag_relations ?>' />
 										<span class="help-block">Separate each keyword with a comma ( , )</span>

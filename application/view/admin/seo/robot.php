@@ -3,9 +3,9 @@
 	<div class="full-content">
 		<div id="post-body">
 			<div id="post-body-content">
-				<div class="one-full">
+				<div class="row">
 					<h1><img src="<?=ADMIN_URL; ?>images/icons/icon_pages_32.png" alt="" /> Robots</h1>
-					<div class="one-half">
+					<div class="col-md-6">
 						<div class="table">
 							<label for="">Spider</label>
 							<input type="checkbox" value="1" id="noodp" name="noodp"> Don’t use this site’s Open Directory description in search results.<br />
@@ -13,7 +13,7 @@
 							<input type="checkbox" value="1" id="noarchive" name="noarchive"> Don’t cache or archive this site.<br />
 						</div>
 					</div>
-					<div class="one-half">
+					<div class="col-md-6">
 						<div class="table">
 							<label for="">Noindex</label>
 							<input type="checkbox" value="1" id="noindex_admin" name="noindex_admin"> Administration back-end pages<br />

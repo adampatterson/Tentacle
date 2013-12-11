@@ -4,8 +4,8 @@
 	<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Media settings</h1>
 	<form action="<?= BASE_URL ?>action/udpate_settings_post/" method="post" class="form-stacked">
 		<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
-		<div class="one-full">
-			<div class="one-half">
+		<div class="row">
+			<div class="col-md-6">
 				<h2>Image sizes</h2>
 				<hr />
 				<p>
@@ -56,7 +56,7 @@
 					</div>
 				</fieldset>
 			</div>
-			<div class="one-half">
+			<div class="col-md-6">
 
                 <h2>Embeded media sizes</h2>
                 <hr />
@@ -110,7 +110,7 @@
 */ ?>
 			</div>
 		</div>
-		<div class="one-full">
+		<div class="row">
 			<div class="actions">
                 <button class="btn btn-primary" type="submit">
                     Save Changes

@@ -4,7 +4,7 @@
 		<h1 class='align-left'><img src="<?=ADMIN_URL; ?>images/icons/icon_pages_32.png" alt="" /> Appearance settings</h1>
 		<a href="<?=ADMIN;?>content_add_page/" class="btn btn-primary">Install new Themes</a>
 	</div>
-	<div class="one-full">		
+	<div class="row">
 		<h2>Installed Themes</h2>
 		<ul class="theme-grid">
 			<? foreach (get_themes() as $theme):  

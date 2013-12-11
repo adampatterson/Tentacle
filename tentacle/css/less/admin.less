@@ -1,6 +1,6 @@
-@import 'src/bootstrap.less';
-
-@import 'application.less';
+@import 'src/bootstrap';
+@import 'extend/mixins';
+@import 'extend/application';
 
 * {
 	margin:0;
@@ -208,7 +208,7 @@ Topbar
 	overflow: visible;
 	
 	p {
-		padding-top: 10px;
+		padding-top: 15px;
 		margin: 0;
 	}
 }
@@ -651,41 +651,38 @@ Webtreats
 */
 
 .one-full {
-	width: 100%;
-	float: none;
-	clear: both;
-	display: block;
+  .makePercentage(1);
 }
 
 .one-half {
-	width: 50%;
-	float: left;
+  .makePercentage(0.5);
+  float: left;
 }
 .one-half:last-child {
-	float: right;
-	width: 47%;
+  .makePercentage(0.5);
+  float: right;
 }
 .one-half > table {
 	margin-top: 0;
 }
 /* @todo :last-child for padding */
 .one-third {
-	width: 33.333%;
+  .makePercentage(0.33333);
 	float: left;
 }
 
 .two-third {
-	width: 66.666%;
+  .makePercentage(0.66666);
 	float: left;
 }
 
 .one-quarter {
-	width: 25%;
+  .makePercentage(0.25);
 	float: left;
 }
 
 .three-quarter {
-	width: 75%;
+  .makePercentage(0.75);
 	float: left;
 }
 
@@ -751,7 +748,7 @@ Webtreats
 /*
 * Notifications
 * ------------------------------------------------------------------------------------------- */
-@import 'notifications.less';
+@import 'extend/notifications';
 
 
 /*
@@ -1439,8 +1436,3 @@ Nestable
     }
   }
 }
-
-/* 
-Debug CSS
-* ------------------------------------------------------------------------------------------- */
-

@@ -1,6 +1,6 @@
 <? load::view('admin/partials/header',array('title'=>'Notification Templates','assets'=>'application','assets'=>'application')); ?>
 <div id="wrap">
-	<div class="one-full">
+	<div class="row">
 		<div class="title">
 	    	<h1 class="align-left"><img src="<?=ADMIN_URL; ?>images/icons/icon_pages_32.png" alt="" /> Notification Templates</h1>
 			<a href="<?=ADMIN;?>settings_templates_add/" class="btn medium primary">Add new template</a>

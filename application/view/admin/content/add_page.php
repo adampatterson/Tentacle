@@ -23,8 +23,8 @@
         <div class="table-content">
             <fieldset>
 
-                <div class="control-group">
-                    <label for="status" class="control-label">Status</label>
+                <div class="form-group">
+                    <label for="status">Status</label>
                     <div class="controls">
                         <select name="status" id="status">
                             <option value="draft">Draft</option>
@@ -33,8 +33,8 @@
                     </div>
                 </div>
 
-                <div class="control-group">
-                    <label for="parent_page" class="control-label">Parent page</label>
+                <div class="form-group">
+                    <label for="parent_page">Parent page</label>
                     <div class="controls">
                         <select id="parent_page" name="parent_page">
                             <option value="0">None</option>
@@ -46,8 +46,8 @@
                     </div>
                 </div>
 
-                <div class="control-group">
-                    <label for="page_template" class="control-label">Page template</label>
+                <div class="form-group">
+                    <label for="page_template">Page template</label>
                     <div class="controls">
                         <select id="page_template" name="page_template" onchange="window.location = this.options[this.selectedIndex].value;">
                             <!--<option value="<?= BASE_URL ?>action/render_admin/add_page/default" selected='selected'>Default</option>-->

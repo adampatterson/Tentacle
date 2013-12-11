@@ -1,16 +1,16 @@
 <? load::view('admin/partials/header', array('title' => 'General settings', 'assets' => array('application')));?>
 
 <div id="wrap">
-	<form action="<?= BASE_URL ?>action/udpate_settings_post/" method="post" class="form-stacked">
+	<form action="<?= BASE_URL ?>action/udpate_settings_post/" method="post">
 		<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
-		<div class="one-full">
+		<div class="row">
 			<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> General settings</h1>
-			<div class="one-half">
+			<div class="col-md-6">
 				<fieldset>
-					<div class="control-group">
-						<label class="control-label" for="blogname">Site Title</label>
+					<div class="form-group">
+						<label for="blogname">Site Title</label>
 						<div class="controls">
-							<input type="text" value="<?= get::option('blogname'); ?>" name="blogname">
+							<input type="text" class="form-control" value="<?= get::option('blogname'); ?>" name="blogname">
 						</div>
 					</div>
 					
@@ -28,10 +28,10 @@
 						</div>
 					</div>
 */ ?>
-					<div class="control-group">
-						<label class="control-label" for="blogdescription">Tagline</label>
+					<div class="form-group">
+						<label for="blogdescription">Tagline</label>
 						<div class="controls">
-							<input type="text" value="<?= get::option('blogdescription'); ?>" name="blogdescription">
+							<input type="text" class="form-control" value="<?= get::option('blogdescription'); ?>" name="blogdescription">
 							<p class="help-block">In a few words, explain what this site is about.</p>
 						</div>
 					</div>
@@ -44,8 +44,8 @@
 						</div>
 					</div>
 */ ?>
-                    <div class="control-group">
-                        <label class="control-label" for="blog_uri">Blog Path</label>
+                    <div class="form-group">
+                        <label for="blog_uri">Blog Path</label>
                         <div class="controls">
                             <select class="postform" id="blog_uri" name="blog_uri">
                                 <? foreach ($pages as $page): ?>
@@ -55,36 +55,36 @@
                         </div>
                     </div>
 
-                    <div class="control-group">
-                        <label class="control-label" for="page_limit">Posts per page</label>
+                    <div class="form-group">
+                        <label for="page_limit">Posts per page</label>
                         <div class="controls">
-                            <input type="text" value="<?= get::option('page_limit', 5); ?>" name="page_limit">
+                            <input type="text" class="form-control" value="<?= get::option('page_limit', 5); ?>" name="page_limit">
                             <p class="help-block">How many blog posts would you like to see on a page?</p>
                         </div>
                     </div>
 
-                    <div class="control-group">
-						<label class="control-label" for="admin_email">Site E-mail address</label>
+                    <div class="form-group">
+						<label for="admin_email">Site E-mail address</label>
 						<div class="controls">
-							<input type="text" value="<?= get::option('admin_email'); ?>" name="admin_email">
+							<input type="text" class="form-control" value="<?= get::option('admin_email'); ?>" name="admin_email">
 							<span class="help-block">This address is used for admin purposes, like new user notification.</span>
 						</div>
 					</div>
 
-                    <div class="control-group">
-                        <label class="control-label" for="admin_email">Site author name</label>
+                    <div class="form-group">
+                        <label for="admin_email">Site author name</label>
                         <div class="controls">
-                            <input type="text" value="<?= get::option('admin_author'); ?>" name="admin_author">
+                            <input type="text" class="form-control" value="<?= get::option('admin_author'); ?>" name="admin_author">
                             <span class="help-block">This should be the site owners name, It will also show up in user emails.</span>
                         </div>
                     </div>
 				</fieldset>
 			</div>
-			<div class="one-half">
+			<div class="col-md-6">
 				<fieldset>
 					
-					<div class="control-group">
-						<label class="control-label" for="default_category">Default Post Category</label>
+					<div class="form-group">
+						<label for="default_category">Default Post Category</label>
 						<div class="controls">
 							<select class="postform" id="default_category" name="default_category">
 								<? foreach ($categories as $category): ?>
@@ -207,11 +207,11 @@
 */ ?>
 			</div>
 		</div>
-		<div class="one-full">
+		<div class="row">
 
 		</div>
-		<div class="one-full">
-			<div class="form-actions">
+		<div class="row">
+			<div class="actions">
 				<button class="btn btn-primary" type="submit">
 					Save Changes
 				</button>

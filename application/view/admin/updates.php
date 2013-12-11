@@ -1,7 +1,7 @@
 <? load::view('admin/partials/header', array('title' => 'Upgraded', 'assets' => array('application')));?>
 <div id="wrap">
 	<div class="full-content">
-	    <div class="one-full">
+	    <div class="row">
 	     	<h1 class='title'><img src="<?=ADMIN_URL; ?>images/icons/icon_pages_32.png" alt="" /> Updates available</h1>
 
 			<? if ( get::db_version() != get::current_db_version() ): ?>

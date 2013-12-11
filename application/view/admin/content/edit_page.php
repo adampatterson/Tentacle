@@ -23,8 +23,8 @@
 				</div>
 				<div class="table-content">
 					<fieldset>
-						<div class="control-group">
-							<label class="control-label" for="status">Status</label>
+						<div class="form-group">
+							<label for="status">Status</label>
 							<div class="controls">
 								<select name="status" id="status">
 									<option value="draft" <? selected( $get_page->status, 'draft' ); ?>>Draft</option>
@@ -33,8 +33,8 @@
 							</div>
 						</div>
 						
-						<div class="control-group">
-							<label class="control-label" for="parent_page">Parent Page</label>
+						<div class="form-group">
+							<label for="parent_page">Parent Page</label>
 							<div class="controls">
 								<select id="parent_page" name="parent_page">
 									<option value="0">None</option>
@@ -145,32 +145,32 @@
 						<div id="options" class="tab-pane">
 							<fieldset>
 								
-								<div class="control-group">
-									<label class="control-label" for='bread_crumb'>Breadcrumb title</label>
+								<div class="form-group">
+									<label for='bread_crumb'>Breadcrumb title</label>
 									<div class="controls">
                                         <input type="text" placeholder="Edit title" name='bread_crumb' value='<?= $get_page_meta->bread_crumb ?>' />
                                         <span class="help-block">This title will appear in the breadcrumb trail.</span>
 									</div>
 								</div>
 
-								<div class="control-group">
-									<label class="control-label" for="meta_keywords">Meta Keywords</label>
+								<div class="form-group">
+									<label for="meta_keywords">Meta Keywords</label>
 									<div class="controls">
 										<input type="text" placeholder="Keywords" name='meta_keywords' value='<?= $get_page_meta->meta_keywords ?>' />
 										<span class="help-block">Separate each keyword with a comma ( , )</span>
 									</div>
 								</div>
 
-								<div class="control-group">
-									<label class="control-label" for="meta_description">Meta Description</label>
+								<div class="form-group">
+									<label for="meta_description">Meta Description</label>
 									<div class="controls">
 										<textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'><?= $get_page_meta->meta_description ?></textarea>
 										<span class="help-block">A short summary of the page's content</span>
 									</div>
 								</div>
 
-								<div class="control-group">
-									<label class="control-label" for="tags">Tags</label>
+								<div class="form-group">
+									<label for="tags">Tags</label>
 									<div class="controls">
 										<input type="text" class="tags" name="tags" id="tags" value='<?= $tag_relations ?>' />
 										<span class="help-block">Separate each keyword with a comma ( , )</span>

@@ -2,9 +2,9 @@
 
 <div id="wrap">
 	<div id="post-body">
-		<div class="one-full">
+		<div class="row">
 			<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Media downloads</h1>
-			<div class="one-half">
+			<div class="col-md-6">
 				<table width="100%" border="0" cellspacing="0" cellpadding="0">
 					<thead>
 						<tr>
@@ -56,7 +56,7 @@
 					<input type="submit" value="Add download" class="btn medium secondary">
 				</div>
 			</div>
-			<div class="one-half">
+			<div class="col-md-6">
 				<form action="#" method="post" accept-charset="utf-8" class="form-stacked">
 					</form>
 					<div class="clearfix">

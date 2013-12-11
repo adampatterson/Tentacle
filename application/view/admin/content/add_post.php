@@ -21,8 +21,8 @@
 				</div>
 				<div class="table-content">
 					<fieldset>
-						<div class="control-group">
-								<label for="status" class="control-label">Status</label>
+						<div class="form-group">
+								<label for="status">Status</label>
 								<div class="controls">
 								<select id="status" name="status">
 									<option value="draft">Draft</option>
@@ -32,8 +32,8 @@
 							</div>
 						</div>
 
-						<div class="control-group">
-							<label for="status" class="control-label">Publish on</label>
+						<div class="form-group">
+							<label for="status">Publish on</label>
 							<div class="controls">
 
 								<select id="publish" name="publish">
@@ -43,18 +43,18 @@
 							</div>
 						</div>
 
-						<div class="control-group published-on">
+						<div class="form-group published-on">
 							<? date::current('month', true); ?>
 						</div>
 
-						<div class="control-group published-on">
+						<div class="form-group published-on">
 		 					<div class="form-inline">
 								<input type="text" id="day" name="day" value="<? date::current( 'day' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> - <input type="text" id="year" name="year" value="<? date::current( 'year' ) ?>" size="4" maxlength="4" tabindex="4" autocomplete="off" class="span1"> @ <input type="text" id="hour" name="hour" value="<? date::current( 'hour' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> : <input type="text" id="minute" name="minute" value="<? date::current( 'minute' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
 							</div>
 						</div>
 
-						<div class="control-group">
-							<label class="control-label">Post type</label>
+						<div class="form-group">
+							<label>Post type</label>
 							<div class="controls">
 								<div class="post-type-list">
 									<div class="input">
@@ -69,8 +69,8 @@
 							</div>
 						</div>
 
-						<div class="control-group">
-							<label for='page_category' class="control-label">Category</label>
+						<div class="form-group">
+							<label for='page_category'>Category</label>
 							<div class="controls">
 								<div class="category-list">
 									<ul id="categorychecklist">
