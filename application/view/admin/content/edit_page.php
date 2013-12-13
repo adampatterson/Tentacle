@@ -25,36 +25,32 @@
 					<fieldset>
 						<div class="form-group">
 							<label for="status">Status</label>
-							<div class="controls">
-								<select name="status" id="status">
-									<option value="draft" <? selected( $get_page->status, 'draft' ); ?>>Draft</option>
-									<option value="published" <? selected( $get_page->status, 'published' ); ?>>Published</option>
-								</select>
-							</div>
+                            <select name="status" id="status" class="form-control">
+                                <option value="draft" <? selected( $get_page->status, 'draft' ); ?>>Draft</option>
+                                <option value="published" <? selected( $get_page->status, 'published' ); ?>>Published</option>
+                            </select>
 						</div>
 						
 						<div class="form-group">
 							<label for="parent_page">Parent Page</label>
-							<div class="controls">
-								<select id="parent_page" name="parent_page">
-									<option value="0">None</option>
-									<? foreach ($pages as $page_array): 
-										$page = (object)$page_array; ?>
-										<option value="<?= $page->id?>" <? selected( $page->id, $get_page->parent  ); ?>><?= offset($page->level, 'list').$page->title;?></option>
-									<? endforeach;?>
-								</select>
-							</div>
+                            <select id="parent_page" name="parent_page" class="form-control">
+                                <option value="0">None</option>
+                                <? foreach ($pages as $page_array):
+                                    $page = (object)$page_array; ?>
+                                    <option value="<?= $page->id?>" <? selected( $page->id, $get_page->parent  ); ?>><?= offset($page->level, 'list').$page->title;?></option>
+                                <? endforeach;?>
+                            </select>
 						</div>
 
                         <label for="page_template">Page template</label>
-
+                        <p>
                         <? $templates = get_templates( ACTIVE_THEME );
 
                         foreach ( $templates as $template ):
                             if ( $get_page->template == $template->template_id )
                                 echo $template->template_name;
                         endforeach; ?>
-
+                        </p>
 						<? /* 
 							@todo Figure out a way to change templates after one has been saved.
 						
@@ -69,14 +65,19 @@
 									<? endforeach; ?>
 								</select>
 							*/?>
+
+                        <input type="hidden" value="admin/content_update_page/<?= $get_page->id ?>" name="history">
+
+                        <button type="submit" class="btn btn-large btn-primary">Save</button>
+                        <a class="red button-secondary" href="<?= BASE_URL ?>action/trash_page/<?= $get_page->id;?>">Move to trash</a><!--<a href="#review">Save for Review</a>-->
+
 					</fieldset>
-					<input type="hidden" value="admin/content_update_page/<?= $get_page->id ?>" name="history">
-					<div class="form-actions">
-						<button type="submit" class="btn btn-large btn-primary">Save</button>
-						<a class="red button-secondary" href="<?= BASE_URL ?>action/trash_page/<?= $get_page->id;?>">Move to trash</a><!--<a href="#review">Save for Review</a>-->
-					</div>
+
+
+
 				</div>
 			</div>
+
 			<div id="post-body">
 				<div id="post-body-content">
 
@@ -91,7 +92,7 @@
 
 						<div id="content" class="active tab-pane">
 
-							<input type="text" name="title" placeholder='Title' value='<?= $get_page->title ?>' class='xlarge content_title' required='required' id="permalink" />
+							<input type="text" name="title" placeholder='Title' value='<?= $get_page->title ?>' class='xlarge content_title form-control' required='required' id="permalink" />
 							<input type="hidden" name="permalink" id="new_uri" />
 
                             <script type="text/javascript" charset="utf-8">

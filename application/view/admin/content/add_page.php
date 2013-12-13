@@ -25,49 +25,42 @@
 
                 <div class="form-group">
                     <label for="status">Status</label>
-                    <div class="controls">
-                        <select name="status" id="status">
-                            <option value="draft">Draft</option>
-                            <option value="published">Published</option>
-                        </select>
-                    </div>
+                    <select name="status" id="status" class="form-control">
+                        <option value="draft">Draft</option>
+                        <option value="published">Published</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
                     <label for="parent_page">Parent page</label>
-                    <div class="controls">
-                        <select id="parent_page" name="parent_page">
-                            <option value="0">None</option>
-                            <? foreach ($pages as $page_array):
-                                $page = (object)$page_array; ?>
-                                <option value="<?= $page->id?>" <? selected( $page->id, $parent_page_id ); ?>><?= offset($page->level, 'list').$page->title;?></option>
-                            <? endforeach;?>
-                        </select>
-                    </div>
+                    <select id="parent_page" name="parent_page" class="form-control">
+                        <option value="0">None</option>
+                        <? foreach ($pages as $page_array):
+                            $page = (object)$page_array; ?>
+                            <option value="<?= $page->id?>" <? selected( $page->id, $parent_page_id ); ?>><?= offset($page->level, 'list').$page->title;?></option>
+                        <? endforeach;?>
+                    </select>
                 </div>
 
                 <div class="form-group">
                     <label for="page_template">Page template</label>
-                    <div class="controls">
-                        <select id="page_template" name="page_template" onchange="window.location = this.options[this.selectedIndex].value;">
-                            <!--<option value="<?= BASE_URL ?>action/render_admin/add_page/default" selected='selected'>Default</option>-->
-                            <? $templates = get_templates( ACTIVE_THEME );
-                            foreach ( $templates as $template ): ?>
-                                <option value="<?= BASE_URL ?>action/render_admin/add_page/<?= $template->template_id ?>" <? selected( session::get( 'template' ), $template->template_id ); ?>><?= $template->template_name ?></option>
-                            <? endforeach; ?>
-                        </select>
-                    </div>
+                    <select id="page_template" name="page_template" onchange="window.location = this.options[this.selectedIndex].value;" class="form-control">
+                        <!--<option value="<?= BASE_URL ?>action/render_admin/add_page/default" selected='selected'>Default</option>-->
+                        <? $templates = get_templates( ACTIVE_THEME );
+                        foreach ( $templates as $template ): ?>
+                            <option value="<?= BASE_URL ?>action/render_admin/add_page/<?= $template->template_id ?>" <? selected( session::get( 'template' ), $template->template_id ); ?>><?= $template->template_name ?></option>
+                        <? endforeach; ?>
+                    </select>
                 </div>
-                <!--<dt>
-                    <a href="#">Select a featured image.</a>
-                -->
+
+                <input type="hidden" value="admin/content_add_page" name="history">
+                <button type="submit" class="btn btn-large btn-primary" name='save'>Save</button><!--<a href="#review">Save for Review</a>-->
+
             </fieldset>
-            <input type="hidden" value="admin/content_add_page" name="history">
-            <div class="form-actions">
-                <button type="submit" class="btn btn-large btn-primary pull-right" name='save'>Save</button><!--<a href="#review">Save for Review</a>-->
-            </div>
+
         </div>
     </div>
+
     <div id="post-body">
     <div id="post-body-content">
     <h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Write a new page</h1>
@@ -81,7 +74,7 @@
 
     <div id="content" class="active tab-pane">
 
-        <input type="text" name="title" placeholder='Title' class='xlarge content_title' required='required' id="permalink" />
+        <input type="text" name="title" placeholder='Title' class='xlarge content_title form-control' required='required' id="permalink" />
         <input type="hidden" name="permalink" id="new_uri" />
 
         <script type="text/javascript" charset="utf-8">

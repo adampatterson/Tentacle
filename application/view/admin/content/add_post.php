@@ -22,25 +22,20 @@
 				<div class="table-content">
 					<fieldset>
 						<div class="form-group">
-								<label for="status">Status</label>
-								<div class="controls">
-								<select id="status" name="status">
-									<option value="draft">Draft</option>
-								<!--<option value="review">Pending Review</option>-->
-									<option value="published">Published</option>
-							    </select>
-							</div>
+                            <label for="status">Status</label>
+                            <select id="status" name="status" class="form-control">
+                                <option value="draft">Draft</option>
+                            <!--<option value="review">Pending Review</option>-->
+                                <option value="published">Published</option>
+                            </select>
 						</div>
 
 						<div class="form-group">
 							<label for="status">Publish on</label>
-							<div class="controls">
-
-								<select id="publish" name="publish">
-									<option value="immediately">Immediately</option>
-									<option value="published-on">Publish On</option>
-							    </select>
-							</div>
+                            <select id="publish" name="publish" class="form-control">
+                                <option value="immediately">Immediately</option>
+                                <option value="published-on">Publish On</option>
+                            </select>
 						</div>
 
 						<div class="form-group published-on">
@@ -53,47 +48,41 @@
 							</div>
 						</div>
 
-						<div class="form-group">
-							<label>Post type</label>
-							<div class="controls">
-								<div class="post-type-list">
-									<div class="input">
-										<ul class="unstyled">
-											<?  $post_types = get_post_type ( ACTIVE_THEME );
-												foreach ($post_types as $post_type ): ?>
-													<li><label class="radio"><input type="radio" name="post_type" class="post-format" value="<?= $post_type['part_id']; ?>" <? checked( $post_type['part_id'], 'type-post' ); ?>> <span><?= $post_type['part_name']; ?></span></label></li>
-											<?	endforeach; ?>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
 
-						<div class="form-group">
-							<label for='page_category'>Category</label>
-							<div class="controls">
-								<div class="category-list">
-									<ul id="categorychecklist">
-									<? foreach ($categories as $category): ?>
-										<li id="category-<?= $category->id  ?>"><label class="checkbox"><input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>" <? checked( $category->id, '1' ); ?>> <?= $category->name  ?></label></li>
-									<? endforeach;?>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<!--	<dt>
-								<a href="#">Select a featured image.</a>
-							</dt>
-							-->
+                        <label>Post type</label>
+                        <div class="post-type-list">
+
+
+                            <?  $post_types = get_post_type ( ACTIVE_THEME );
+                                foreach ($post_types as $post_type ): ?>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="post_type" class="post-format" value="<?= $post_type['part_id']; ?>" <? checked( $post_type['part_id'], 'type-post' ); ?>>
+                                            <?= $post_type['part_name']; ?>
+                                        </label>
+                                    </div>
+                            <?	endforeach; ?>
+                        </div>
+
+                        <label for="page_category">Category</label>
+                            <div class="category-list">
+                                <? foreach ($categories as $category): ?>
+                                <div class="checkbox">
+                                    <label class="selectit">
+                                        <input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>" <? checked( $category->id, '1' ); ?>> <?= $category->name  ?>
+                                    </label>
+                                </div>
+                            <? endforeach;?>
+                        </div>
+
+                        <input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
+
+                        <button type="submit" class="btn btn-large btn-primary">
+                            Save
+                        </button>
 
 					</fieldset>
-					<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
-					<div class="form-actions">
-						<button type="submit" class="btn btn-large btn-primary pull-right">
-							Save
-						</button>
-						<!--<a class="red button-secondary" href="">Move to trash</a><a href="#review">Save for Review</a>-->
-					</div>
+
 				</div>
 			</div>
 			<div id="post-body">
@@ -109,7 +98,7 @@
 
 						<div id="content" class="active tab-pane">
 
-                            <input type="text" name="title" placeholder='Title' class='xlarge content_title' id="permalink" />
+                            <input type="text" name="title" placeholder='Title' class='xlarge content_title form-control' id="permalink" />
                             <input type="hidden" name="permalink" id="new_uri" />
 
                             <script type="text/javascript" charset="utf-8">
