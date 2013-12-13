@@ -16,12 +16,12 @@
 				<div class="accordion-group">
 					<div class="accordion-heading">
 						<div class="row">
-							<div class="span1">
+							<div class="col-md-1">
 								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?=$image->id ?>" href="#collapse<?=$image->id ?>">
 									<img src="<?= IMAGE_URL.$file_meta[0].'_sq'.'.'.$file_meta[1]; ?>" class="thumbnail" width="30" height="30" />
 								</a>
 							</div>
-							<div class="span4">
+							<div class="col-md-4">
 								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?=$image->id ?>" href="#collapse<?=$image->id ?>"><?=$image->title ?></a>
 							</div>
 						</div>
@@ -30,10 +30,10 @@
 						<div class="accordion-inner">
 
 							<div class="row">
-								<div class="span3">
+								<div class="col-md-3">
 									<img src="<?= IMAGE_URL.$file_meta[0].'_sq'.'.'.$file_meta[1]; ?>" class="thumbnail"/>
 								</div>
-								<div class="span4 well">
+								<div class="col-md-4 well">
 									<dl class="dl-horizontal">
 										<dt>File name:</dt>
 										<dd><?=$image->name ?></dd>
@@ -56,21 +56,21 @@
 										<div class="form-group">
 											<label for="title">Title</label>
 											<div class="controls">
-												<input type="text" class="span5 post" data-image-id="<?= $image->id ?>" id="title" name="title" value="<?=$image->title ?>">
+												<input type="text" class="col-md-5 post" data-image-id="<?= $image->id ?>" id="title" name="title" value="<?=$image->title ?>">
 											</div>
 										</div>
 
 										<div class="form-group">
 											<label for="alt_text">Alternate Text</label>
 											<div class="controls">
-												<input type="text" class="span5 post" data-image-id="<?= $image->id ?>" id="alt_text" name="alt_text" value="<?=$image->alt ?>" >
+												<input type="text" class="col-md-5 post" data-image-id="<?= $image->id ?>" id="alt_text" name="alt_text" value="<?=$image->alt ?>" >
 											</div>
 										</div>
 
 										<div class="form-group">
 											<label for="caption">Caption</label>
 											<div class="controls">
-												<input type="text" class="span5 post" data-image-id="<?= $image->id ?>" id="caption" name="caption" value="<?= $image->caption ?>">
+												<input type="text" class="col-md-5 post" data-image-id="<?= $image->id ?>" id="caption" name="caption" value="<?= $image->caption ?>">
 											</div>
 										</div>
 
@@ -82,14 +82,14 @@
 										</div>
 									</fieldset>
 								</form>
-							</div>				
+							</div>
 
 						</div>
 					</div>
 				</div><!-- /#collapse<?=$image->id ?> -->
-				<? endforeach; ?>	
+				<? endforeach; ?>
 			</div>
-			
+
 		</div>
 	</div>
 </div>

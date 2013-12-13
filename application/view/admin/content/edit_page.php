@@ -9,7 +9,7 @@
 				//onRestoreCallback: function() {},
 				//onReleaseDataCallback: function() {}
 			});
-		}); 
+		});
 	</script>
 	-->
 	<form action="<?= BASE_URL ?>action/update_page/<?= $get_page->id ?>" method="post" class="form-stacked" id='edit_page'>
@@ -30,7 +30,7 @@
                                 <option value="published" <? selected( $get_page->status, 'published' ); ?>>Published</option>
                             </select>
 						</div>
-						
+
 						<div class="form-group">
 							<label for="parent_page">Parent Page</label>
                             <select id="parent_page" name="parent_page" class="form-control">
@@ -40,7 +40,7 @@
                                     <option value="<?= $page->id?>" <? selected( $page->id, $get_page->parent  ); ?>><?= offset($page->level, 'list').$page->title;?></option>
                                 <? endforeach;?>
                             </select>
-						</div>
+						          </div>
 
                         <label for="page_template">Page template</label>
                         <p>
@@ -51,20 +51,20 @@
                                 echo $template->template_name;
                         endforeach; ?>
                         </p>
-						<? /* 
-							@todo Figure out a way to change templates after one has been saved.
-						
-								<label for="page_template">Page template</label>
-					
-								<select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
-									<option value="<?= BASE_URL ?>action/render_admin/update_page/default/<?= $get_page->id ?>" <? if ($get_page->template == 'default') echo 'selected' ?>>Default</option>
-									<? $templates = get_templates( get::option( 'appearance' ) );
-									foreach ( $templates as $template ):
-									?>
-										<option value="<?= BASE_URL ?>action/render_admin/update_page/<?= $template->template_id ?>/<?= $get_page->id ?>" <? selected( $get_page->template, $template->template_id ); ?>><?= $template->template_name ?></option>
-									<? endforeach; ?>
-								</select>
-							*/?>
+                    <? /*
+                      @todo Figure out a way to change templates after one has been saved.
+
+                        <label for="page_template">Page template</label>
+
+                        <select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
+                          <option value="<?= BASE_URL ?>action/render_admin/update_page/default/<?= $get_page->id ?>" <? if ($get_page->template == 'default') echo 'selected' ?>>Default</option>
+                          <? $templates = get_templates( get::option( 'appearance' ) );
+                          foreach ( $templates as $template ):
+                          ?>
+                            <option value="<?= BASE_URL ?>action/render_admin/update_page/<?= $template->template_id ?>/<?= $get_page->id ?>" <? selected( $get_page->template, $template->template_id ); ?>><?= $template->template_name ?></option>
+                          <? endforeach; ?>
+                        </select>
+                      */?>
 
                         <input type="hidden" value="admin/content_update_page/<?= $get_page->id ?>" name="history">
 
@@ -73,8 +73,6 @@
 
 					</fieldset>
 
-
-
 				</div>
 			</div>
 
@@ -82,12 +80,12 @@
 				<div id="post-body-content">
 
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Update <small><?= $get_page->title ?></small></h1>
-					
+
 					<ul class="nav nav-tabs" id="content-tabs">
 						<li class="active"><a href="#content">Content</a></li>
 						<li class=""><a href="#options">Options</a></li>
 					</ul>
-					
+
 					<div class="tab-content tab-body">
 
 						<div id="content" class="active tab-pane">
@@ -101,19 +99,19 @@
                             </script>
 
 							<p class="permalink">Permalink: <?= BASE_URL.parent_page_slug( $get_page->parent ); ?><span id="permalink_landing"><?= $get_page->slug ?></span></p>
-                            
+
                             <? if(user_editor() == 'wysiwyg'):?>
 								<p><a href="#" id="myButton" >Insert Media</a></p>
 
 					            <p class="wysiwyg">
 					                <textarea cols="100" id="editor" name="content" rows="10" class="editor"><?= the_content( $get_page->content, true ) ?></textarea>
 					            </p>
-					
+
                             <? endif; ?>
 
 							<div id="scaffold">
                                 <? if ( $get_page->template != '' && $get_page->template != 'default' ):
-									
+
 									$template = THEMES_DIR.'/'.ACTIVE_THEME.'/'.$get_page->template.'.php';
 
 									// Load the saved template, then if the user changes override the saved template.
@@ -130,22 +128,22 @@
                                         endif;
 
 									else: ?>
-										
+
 										<br/><br/>
 										<div class="alert-message warning">
 											<p><strong>A template file appears to be a missing from your theme:</strong> <br />
 											<?= '/themes/'.ACTIVE_THEME.'/'.$get_page->template.'.php'?></p>
 										</div>
-										
+
 									<? endif;
                                 endif; ?>
 
 							</div>
 						</div>
-						
+
 						<div id="options" class="tab-pane">
 							<fieldset>
-								
+
 								<div class="form-group">
 									<label for='bread_crumb'>Breadcrumb title</label>
 									<div class="controls">
@@ -215,9 +213,9 @@
 */ ?>
 							</fieldset>
 						</div>
-						
+
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
