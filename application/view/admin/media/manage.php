@@ -30,7 +30,7 @@
 						<div class="accordion-inner">
 
 							<div class="row">
-								<div class="col-md-3">
+								<div class="col-md-2">
 									<img src="<?= IMAGE_URL.$file_meta[0].'_sq'.'.'.$file_meta[1]; ?>" class="thumbnail"/>
 								</div>
 								<div class="col-md-4 well">
@@ -48,46 +48,48 @@
 								</div>
 							</div>
 							<div class="row">
-								<form action="<?= BASE_URL ?>action/update_media/<?= $image->id ?>" method="post" class="form-horizontal" name="<?= $image->slug ?>">
-									<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
-									<fieldset>
-										<h3>&nbsp;</h3>
+								  <div class="col-md-12">
+                    <form action="<?= BASE_URL ?>action/update_media/<?= $image->id ?>" method="post" class="form-horizontal" name="<?= $image->slug ?>">
+                          <input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
+                          <fieldset>
+                            <h3>&nbsp;</h3>
 
-										<div class="form-group">
-											<label for="title">Title</label>
-											<div class="controls">
-												<input type="text" class="col-md-5 post" data-image-id="<?= $image->id ?>" id="title" name="title" value="<?=$image->title ?>">
-											</div>
-										</div>
+                            <div class="form-group">
+                              <label for="title">Title</label>
+                              <div class="controls">
+                                <input type="text" class="col-md-5 post" data-image-id="<?= $image->id ?>" id="title" name="title" value="<?=$image->title ?>">
+                              </div>
+                            </div>
 
-										<div class="form-group">
-											<label for="alt_text">Alternate Text</label>
-											<div class="controls">
-												<input type="text" class="col-md-5 post" data-image-id="<?= $image->id ?>" id="alt_text" name="alt_text" value="<?=$image->alt ?>" >
-											</div>
-										</div>
+                            <div class="form-group">
+                              <label for="alt_text">Alternate Text</label>
+                              <div class="controls">
+                                <input type="text" class="col-md-5 post" data-image-id="<?= $image->id ?>" id="alt_text" name="alt_text" value="<?=$image->alt ?>" >
+                              </div>
+                            </div>
 
-										<div class="form-group">
-											<label for="caption">Caption</label>
-											<div class="controls">
-												<input type="text" class="col-md-5 post" data-image-id="<?= $image->id ?>" id="caption" name="caption" value="<?= $image->caption ?>">
-											</div>
-										</div>
+                            <div class="form-group">
+                              <label for="caption">Caption</label>
+                              <div class="controls">
+                                <input type="text" class="col-md-5 post" data-image-id="<?= $image->id ?>" id="caption" name="caption" value="<?= $image->caption ?>">
+                              </div>
+                            </div>
 
-									</div>
-									<div class="row">
-										<div class="actions">
-											<input type="submit" name="update" value="Update" id="update" class="btn btn-success">
-											<!--<button class="btn btn-danger">Delete</button>-->
-										</div>
-									</fieldset>
-								</form>
+                          <div class="actions">
+                            <input type="submit" name="update" value="Update" id="update" class="btn btn-success">
+                            <!--<button class="btn btn-danger">Delete</button>-->
+                          </div>
+                      </fieldset>
+
+                    </form>
+                  </div>
 							</div>
 
 						</div>
 					</div>
 				</div><!-- /#collapse<?=$image->id ?> -->
 				<? endforeach; ?>
+        
 			</div>
 
 		</div>

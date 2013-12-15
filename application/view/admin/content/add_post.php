@@ -20,68 +20,68 @@
 <!--					<input type="button" value="Preview" class="btn btn-small btn-primary pull-right" />-->
 				</div>
 				<div class="table-content">
-					<fieldset>
-						<div class="form-group">
-                            <label for="status">Status</label>
-                            <select id="status" name="status" class="form-control">
-                                <option value="draft">Draft</option>
-                            <!--<option value="review">Pending Review</option>-->
-                                <option value="published">Published</option>
-                            </select>
-						</div>
+            <fieldset>
+              <div class="form-group">
+                  <label for="status">Status</label>
+                  <select id="status" name="status" class="form-control">
+                      <option value="draft">Draft</option>
+                  <!--<option value="review">Pending Review</option>-->
+                      <option value="published">Published</option>
+                  </select>
+              </div>
 
-						<div class="form-group">
-							<label for="status">Publish on</label>
-                            <select id="publish" name="publish" class="form-control">
-                                <option value="immediately">Immediately</option>
-                                <option value="published-on">Publish On</option>
-                            </select>
-						</div>
+              <div class="form-group">
+                <label for="status">Publish on</label>
+                <select id="publish" name="publish" class="form-control">
+                    <option value="immediately">Immediately</option>
+                    <option value="published-on">Publish On</option>
+                </select>
+              </div>
 
-						<div class="form-group published-on">
-							<? date::current('month', true); ?>
-						</div>
+              <div class="form-group published-on">
+                <? date::current('month', true); ?>
+              </div>
 
-						<div class="form-group published-on">
-		 					<div class="form-inline">
-								<input type="text" id="day" name="day" value="<? date::current( 'day' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> - <input type="text" id="year" name="year" value="<? date::current( 'year' ) ?>" size="4" maxlength="4" tabindex="4" autocomplete="off" class="span1"> @ <input type="text" id="hour" name="hour" value="<? date::current( 'hour' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> : <input type="text" id="minute" name="minute" value="<? date::current( 'minute' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
-							</div>
-						</div>
-
-
-                        <label>Post type</label>
-                        <div class="post-type-list">
+              <div class="form-group published-on">
+                <div class="form-inline">
+                  <input type="text" id="day" name="day" value="<? date::current( 'day' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> - <input type="text" id="year" name="year" value="<? date::current( 'year' ) ?>" size="4" maxlength="4" tabindex="4" autocomplete="off" class="span1"> @ <input type="text" id="hour" name="hour" value="<? date::current( 'hour' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1"> : <input type="text" id="minute" name="minute" value="<? date::current( 'minute' ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
+                </div>
+              </div>
 
 
-                            <?  $post_types = get_post_type ( ACTIVE_THEME );
-                                foreach ($post_types as $post_type ): ?>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="post_type" class="post-format" value="<?= $post_type['part_id']; ?>" <? checked( $post_type['part_id'], 'type-post' ); ?>>
-                                            <?= $post_type['part_name']; ?>
-                                        </label>
-                                    </div>
-                            <?	endforeach; ?>
+                <label>Post type</label>
+                <div class="post-type-list">
+
+
+                    <?  $post_types = get_post_type ( ACTIVE_THEME );
+                        foreach ($post_types as $post_type ): ?>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="post_type" class="post-format" value="<?= $post_type['part_id']; ?>" <? checked( $post_type['part_id'], 'type-post' ); ?>>
+                                    <?= $post_type['part_name']; ?>
+                                </label>
+                            </div>
+                    <?	endforeach; ?>
+                </div>
+
+                <label for="page_category">Category</label>
+                    <div class="category-list">
+                        <? foreach ($categories as $category): ?>
+                        <div class="checkbox">
+                            <label class="selectit">
+                                <input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>" <? checked( $category->id, '1' ); ?>> <?= $category->name  ?>
+                            </label>
                         </div>
+                    <? endforeach;?>
+                </div>
 
-                        <label for="page_category">Category</label>
-                            <div class="category-list">
-                                <? foreach ($categories as $category): ?>
-                                <div class="checkbox">
-                                    <label class="selectit">
-                                        <input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>" <? checked( $category->id, '1' ); ?>> <?= $category->name  ?>
-                                    </label>
-                                </div>
-                            <? endforeach;?>
-                        </div>
+                <input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
 
-                        <input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
+                <button type="submit" class="btn btn-large btn-primary">
+                    Save
+                </button>
 
-                        <button type="submit" class="btn btn-large btn-primary">
-                            Save
-                        </button>
-
-					</fieldset>
+            </fieldset>
 
 				</div>
 			</div>

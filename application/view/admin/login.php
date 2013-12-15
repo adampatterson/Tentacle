@@ -10,10 +10,10 @@
 	<form action="<?= BASE_URL ?>action/login/" method="post">
 		<dl>
 			<dd>
-				<input type='text' id='username' name='username' placeholder='Username' />
+				<input type='text' id='username' class="form-control" name='username' placeholder='Username' />
 			</dd>
 			<dd>
-				<input type='password' id='password' name='password' placeholder='Password' />
+				<input type='password' id='password' class="form-control"  name='password' placeholder='Password' />
 			</dd>
 			<dd>
 				<a href="<?= BASE_URL ?>admin/lost/" class="pull-left forgot secondary">Lost password</a><input type="submit" value="Sign in" class="btn btn-primary btn-large pull-right" />
