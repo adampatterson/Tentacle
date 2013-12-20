@@ -3,27 +3,29 @@
 	<a href="<?=BASE_URL;?>">← Back to site name</a>
 </div>
 
-<div id="login-content">
-	<div id="login-logo">
-		<a href="<?=BASE_URL;?>"><img src="<?=ADMIN_URL;?>images/tentacle_logo_large.png" width="258" height="63" alt="Tentacle" /></a>
-	</div>
-	<form action="<?= BASE_URL ?>action/login/" method="post">
-		<dl>
-			<dd>
-				<input type='text' id='username' class="form-control" name='username' placeholder='Username' />
-			</dd>
-			<dd>
-				<input type='password' id='password' class="form-control"  name='password' placeholder='Password' />
-			</dd>
-			<dd>
-				<a href="<?= BASE_URL ?>admin/lost/" class="pull-left forgot secondary">Lost password</a><input type="submit" value="Sign in" class="btn btn-primary btn-large pull-right" />
-			</dd>
-		</dl>
-		<?php if($note = note::get('session')): ?>
-			<input type='hidden' name='history' value="<?= $note['content'];?> " />
-		<?php endif;?>
-	</form>
+<div class="row">
+
+  <div id="login-logo">
+    <a href="<?=BASE_URL;?>"><img src="<?=ADMIN_URL;?>images/tentacle_logo_large.png" width="258" height="63" alt="Tentacle" /></a>
+  </div>
+
+  <div id="login-content">
+    <form action="<?= BASE_URL ?>action/login/" method="post" role="form">
+      <div class="form-group">
+        <input type='text' id='username' class="form-control" name='username' placeholder='Username' />
+      </div>
+      <div class="form-group">
+        <input type='password' id='password' class="form-control"  name='password' placeholder='Password' />
+      </div>
+      <div class="form-group">
+        <a href="<?= BASE_URL ?>admin/lost/" class="pull-left forgot secondary">Lost password</a><input type="submit" value="Sign in" class="btn btn-primary pull-right" />
+      </div>
+      <? if($note = note::get('session')): ?>
+      <input type='hidden' name='history' value="<?= $note['content'];?> " />
+      <? endif;?>
+    </form>
+
+  </div>
+
 </div>
-<!-- #login-content -->
-</div> <!-- #login-content -->
 <? load::view('admin/partials/login-footer');?>
