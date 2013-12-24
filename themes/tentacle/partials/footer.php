@@ -19,6 +19,6 @@
 	<? 
 	// Load assets in the footer.
 	theme::assets( $assets='' );
-    render_footer( ); ?>
+  render_footer( ); ?>
 	</body>
 </html>
