@@ -6456,10 +6456,7 @@ input[type="text"],
 input[type="password"],
 textarea {
   border: 1px solid #999999;
-  border-radius: 4px 4px 4px 4px;
-  font-size: 13px;
   margin: 0 0 5px;
-  padding: 5px 3px;
 }
 select {
   display: inline;

@@ -16,7 +16,7 @@
   <div id="login-content">
     <form action="<?= BASE_URL ?>action/lost/" method="post">
       <div class="form-group">
-          <input type='text' class="form-control" id='username' name='username' placeholder='Username or E-Mail' />
+          <input type='text' class="form-control input-lg" id='username' name='username' placeholder='Username or E-Mail' />
         </div>
       <div class="form-group">
           <input type="submit" value="Recover" class="btn btn-primary pull-right" />
