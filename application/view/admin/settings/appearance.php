@@ -26,16 +26,22 @@
 		</ul>
 		<h2>Broken themes.</h2>
 		<ul class="theme-grid well">
-			<? foreach (get_themes() as $theme):  
+
+			<? foreach (get_themes() as $theme):
+
 				if ($theme->index == ''): ?>
 				<li>
 					<strong><?= $theme->theme_name ?></strong> <span class="label label-important">Error</span>
+          
 					<? foreach (get_settings($theme->theme_id) as $setting): ?>
 						<p><?= $setting->theme_description; ?></p>
 					<? endforeach; ?>
+
 				</li>
 			 <? endif;
+
 			endforeach; ?>
+
 		</ul>
 		<? /* 
 		<h2>Appearance</h2>

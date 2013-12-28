@@ -6671,6 +6671,9 @@ body {
 #wrap h1.title {
   margin-bottom: 20px;
 }
+table.manage_content .label {
+  padding: 5px;
+}
 table.manage_content td:last-child {
   width: 150px;
   text-align: right;
@@ -7458,9 +7461,6 @@ Webtreats
   text-align: right;
   padding: 5px;
   margin: 10px 0;
-}
-.theme-grid li span.label {
-  padding: 4px 3px;
 }
 /*	--------------------------------------------------
 	Reveal Modals
