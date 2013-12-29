@@ -56,29 +56,29 @@ class install_controller
 		
 		$sql->get_104();
 
-        $sql->get_105();
+    $sql->get_105();
 
-        $sql->get_106();
+    $sql->get_106();
 
-        $sql->get_107();
+    $sql->get_107();
 
-        $sql->get_108();
+    $sql->get_108();
 
-        $sql->get_109();
+    $sql->get_109();
 
-        $sql->get_110();
+    $sql->get_110();
 
-        $sql->get_111();
+    $sql->get_111();
 
-        $sql->get_112();
+    $sql->get_112();
 
-        $sql->get_113();
+    $sql->get_113();
 
-        $sql->get_114();
+    $sql->get_114();
 
-        $sql->get_115();
+    $sql->get_115();
 
-        $sql->get_116();
+    $sql->get_116();
 
 		// Set the current Install version
 		$sql->set_db('116');
@@ -86,75 +86,75 @@ class install_controller
 		load::view ('install/step5');
 	}
 
-    /**
-     * Database
-     * ----------------------------------------------------------------------------------------------*/
-    public function database()
-    {
+  /**
+   * Database
+   * ----------------------------------------------------------------------------------------------*/
+  public function database()
+  {
 
-        $this->driver 		= 'mysql';
-        $this->host 		= input::post( 'db_host' );
-        $this->username 	= input::post( 'db_user' );
-        $this->password 	= input::post( 'db_password' );
-        $this->database 	= input::post( 'db_name' );
+    $this->driver 		= 'mysql';
+    $this->host 		= input::post( 'db_host' );
+    $this->username 	= input::post( 'db_user' );
+    $this->password 	= input::post( 'db_password' );
+    $this->database 	= input::post( 'db_name' );
 
-        try {
-            $this->con = new pdo("{$this->driver}:dbname={$this->database};host={$this->host}",$this->username,$this->password);
-        } catch(PDOException $e) {
-            // @todo we cant log a dingo error since the config is not valid at this point.
-            dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
-        }
-
-        // Setup the Temp db.php file
-        $search = array ( 'fill_databasename', 'fill_username', 'fill_password', 'fill_host');
-        $replace = array ( $this->database, $this->username, $this->password, $this->host );
-
-        $setup_handle = array (
-            "<? if(!defined('DINGO')){die('External Access to File Denied');} \n ",
-            "config::set('db',array(",
-            "		'default'=>array(",
-            "		'driver'=>'mysql',\n",
-            "		'host'=>'fill_host',\n",
-            "		'username'=>'fill_username', \n",
-            "		'password'=>'fill_password',  \n",
-            "		'database'=>'fill_databasename' \n",
-            "		)
-        ));
-    ?>" );
-
-        $source = array (
-            "<? if(!defined('DINGO')){die('External Access to File Denied');} \n ",
-            "config::set('db',array(",
-            "		'default'=>array(",
-            "		'driver'=>'mysql',\n",
-            "		'host'=>'fill_host',\n",
-            "		'username'=>'fill_username', \n",
-            "		'password'=>'fill_password',  \n",
-            "		'database'=>'fill_databasename' \n",
-            "		)
-        ));
-    ?>" );
-
-        $setup_handle = fopen('application/config/setup/db.php', 'w');
-
-        $setup_source = str_replace ( $search, $replace, $source );
-        foreach ( $setup_source as $str )
-            fwrite($setup_handle, $str);
-
-        // Setup the Deployment db.php file
-        $handle = fopen('application/config/deployment/db.php', 'w');
-
-        $source = str_replace ( $search, $replace, $source );
-        foreach ( $source as $str )
-            fwrite($handle, $str);
-
-        url::redirect('install/step4');
+    try {
+        $this->con = new pdo("{$this->driver}:dbname={$this->database};host={$this->host}",$this->username,$this->password);
+    } catch(PDOException $e) {
+        // @todo we cant log a dingo error since the config is not valid at this point.
+        dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
     }
 
+    // Setup the Temp db.php file
+    $search = array ( 'fill_databasename', 'fill_username', 'fill_password', 'fill_host');
+    $replace = array ( $this->database, $this->username, $this->password, $this->host );
 
-    public function done ( )
+    $setup_handle = array (
+        "<? if(!defined('DINGO')){die('External Access to File Denied');} \n ",
+        "config::set('db',array(",
+        "		'default'=>array(",
+        "		'driver'=>'mysql',\n",
+        "		'host'=>'fill_host',\n",
+        "		'username'=>'fill_username', \n",
+        "		'password'=>'fill_password',  \n",
+        "		'database'=>'fill_databasename' \n",
+        "		)
+    ));
+?>" );
+
+    $source = array (
+        "<? if(!defined('DINGO')){die('External Access to File Denied');} \n ",
+        "config::set('db',array(",
+        "		'default'=>array(",
+        "		'driver'=>'mysql',\n",
+        "		'host'=>'fill_host',\n",
+        "		'username'=>'fill_username', \n",
+        "		'password'=>'fill_password',  \n",
+        "		'database'=>'fill_databasename' \n",
+        "		)
+    ));
+?>" );
+
+    $setup_handle = fopen('application/config/setup/db.php', 'w');
+
+    $setup_source = str_replace ( $search, $replace, $source );
+    foreach ( $setup_source as $str )
+        fwrite($setup_handle, $str);
+
+    // Setup the Deployment db.php file
+    $handle = fopen('application/config/deployment/db.php', 'w');
+
+    $source = str_replace ( $search, $replace, $source );
+    foreach ( $source as $str )
+        fwrite($handle, $str);
+
+    url::redirect('install/step4');
+}
+
+
+  public function done ( )
 	{
-        load::model('statistics')->mixpanel_server( true );
+    load::model('statistics')->mixpanel_server( true );
 			
 		load::view ( 'install/done' );	
 	}

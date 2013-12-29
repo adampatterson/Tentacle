@@ -22,9 +22,7 @@
 				</thead>
 				<tbody>
 					<? foreach ($plugins['enabled_plugins'] as $plugin_array):
-					$plugin = (object)$plugin_array;
-
-					?>
+					$plugin = (object)$plugin_array; ?>
 					<tr>
 						<td>
 							<strong><?= $plugin->name ?></strong>

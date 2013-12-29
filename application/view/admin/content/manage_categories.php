@@ -29,12 +29,12 @@
 					</fieldset>
 				</div>
 
-                <div class="row">
-                    <div class="actions">
-                        <input type='submit' value='Add new category' class='btn btn-large btn-primary' />
-                        <a href="#" class="red">Cancel</a>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="actions">
+                <input type='submit' value='Add new category' class='btn btn-large btn-primary' />
+                <a href="#" class="red">Cancel</a>
+            </div>
+        </div>
 
 			</form>
 		</div>
