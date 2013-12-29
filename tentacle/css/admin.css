@@ -6780,15 +6780,6 @@ table.manage_content td:last-child {
 /*
 Topbar
 * ------------------------------------------------------------------------------------------- */
-.navbar {
-  height: 40px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10000;
-  overflow: visible;
-}
 .navbar p {
   padding-top: 15px;
   margin: 0;
