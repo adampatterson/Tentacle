@@ -16,7 +16,7 @@
 
     </script>
 
-    <script type="text/javascript" src="<?=ADMIN_JS; ?>application.login.js"></script>
+    <script type="text/javascript" src="<?=ADMIN_JS; ?>application.min.js"></script>
 
     <?= notification() ?>
 

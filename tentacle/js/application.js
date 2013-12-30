@@ -1,15 +1,33 @@
 $(document).ready(function(){
-    template();
-    dashboard_feed();
 
-    $('#username').keyup(username_check);
+  if ($('body').hasClass('login')){
+    setFocus();
+  }
 
-    $('#useremail').keyup(useremail_check);
+  template();
 
-    $('#permalink').keyup(permalink_check);
+  if ($('body').hasClass('content_add_post') || $('body').hasClass('content_update_post')){
+    publishedOn();
+  }
 
+  if ($('body').hasClass('dashboard')){
+    dashboardFeed();
+    sparkline();
+  }
+
+  if ($('body').hasClass('dashboard')){
+    $('#username').keyup(usernameCheck);
+
+    $('#useremail').keyup(useremailCheck);
+
+    $('#permalink').keyup(permalinkCheck);
+  }
 });
 
+
+function setFocus() {
+  document.getElementById("username").focus();
+}
 
 function template(){
     // Minimize Content Box
@@ -77,42 +95,39 @@ function template(){
     if ($('body').hasClass('alert-message')) {
         $('#my-modal').modal()
     }
-
-
-
-    /* Publish on */
-    // =============================
-
-    $(".published-on").hide();
-
-    $("#publish").change(function(){
-        var value = $("#publish option:selected").val();
-
-        if( value == 'published-on') {
-            $(".published-on").show();
-        } else {
-            $(".published-on").hide();
-        }
-    });
-
-    $("a#edit_publish").click(function(){
-        var value = $("#publish option:selected").val();
-
-        if( value == 'published-on') {
-            $(".published-on").show();
-        } else {
-            $(".published-on").hide();
-        }
-    });
-
-    $(".published-on").hide();
-    $("#edit_publish").show();
-
-    $('#edit_publish').click(function(){
-        $(".published-on").toggle();
-    })
 }
 
+
+function publishedOn() {
+  $(".published-on").hide();
+
+  $("#publish").change(function(){
+    var value = $("#publish option:selected").val();
+
+    if( value == 'published-on') {
+      $(".published-on").show();
+    } else {
+      $(".published-on").hide();
+    }
+  });
+
+  $("a#edit_publish").click(function(){
+    var value = $("#publish option:selected").val();
+
+    if( value == 'published-on') {
+      $(".published-on").show();
+    } else {
+      $(".published-on").hide();
+    }
+  });
+
+  $(".published-on").hide();
+  $("#edit_publish").show();
+
+  $('#edit_publish').click(function(){
+    $(".published-on").toggle();
+  })
+}
 
 function sparkline() {
 
@@ -137,7 +152,7 @@ function sparkline() {
 }
 
 
-function dashboard_feed()
+function dashboardFeed()
 {
     var surl =  "http://tentaclecms.com/api/feed/json/";
 
@@ -163,7 +178,7 @@ function dashboard_feed()
 }
 
 
-function username_check() {
+function usernameCheck() {
     var username = $('#username').val();
     if(username == "" || username.length < 4)
     {
@@ -196,7 +211,7 @@ function username_check() {
     }
 }
 
-function useremail_check() {
+function useremailCheck() {
     var username = $('#useremail').val();
     if(username == "" || username.length < 4)
     {
@@ -230,7 +245,7 @@ function useremail_check() {
 }
 
 
-function permalink_check() {
+function permalinkCheck() {
     $slug = $('#permalink').val();
 
     if( $slug != "" )

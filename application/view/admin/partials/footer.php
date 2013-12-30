@@ -25,8 +25,6 @@
 <? endif; ?>
 
 <script type="text/javascript" src="<?=ADMIN_JS; ?>application.js"></script>
-<script type="text/javascript" src="<?=ADMIN_JS; ?>helium/helium.js"></script>
-<script type="text/javascript" src="<?=ADMIN_JS; ?>helium/helium.js"></script>
 
 <?= notification() ?>
 
