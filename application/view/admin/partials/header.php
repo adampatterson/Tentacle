@@ -86,10 +86,6 @@
         var unique_views = [ <?= $cache_unique_views ?> ];
 
         var unique_view_total = <?= $cache_unique_views_total ?>;
-
-        $(document).ready(function(){
-            sparkline();
-        });
      </script>
 
     <? endif; ?>

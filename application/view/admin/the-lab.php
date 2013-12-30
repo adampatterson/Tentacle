@@ -37,7 +37,7 @@
 <div id="wrap">
     <div class="full-content">
         <div id="post-body">
-            <div class="one-full">
+            <div class="row">
                 <div class="title pad-right">
                     <h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Threaded</h1>
                     <hr />

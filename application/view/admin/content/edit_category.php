@@ -6,26 +6,28 @@
 
 		<form action="<?= BASE_URL ?>action/update_category/<?= $id;?>" method="post">
 			
-			<div class="control-group">
-				<label class="control-label" for="name">name</label>
+			<div class="form-group">
+				<label for="name">name</label>
 				<div class="controls">
 					<input type="text" name="name" id="name" value="<?= string::escape_string($category->name);?>" />
 				</div>
 			</div>
 			
-			<div class="control-group">
-				<label class="control-label" for="slug">Slug</label>
+			<div class="form-group">
+				<label for="slug">Slug</label>
 				<div class="controls">
 					<input type="text" name="slug" id='slug' value="<?= $category->slug ?>">
 				</div>
 			</div>
 		
 			<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
-			
-			<div class="form-actions">
-				<input type="submit" value="Save" class="btn btn-primary btn-large" />
-				<a href="#" class="red">Cancel</a>
-			</div>
+
+            <div class="row">
+                <div class="actions">
+                    <input type="submit" value="Save" class="btn btn-primary btn-large" />
+                    <a href="#" class="red">Cancel</a>
+                </div>
+            </div>
 		</form>
 	</div>
 </div>

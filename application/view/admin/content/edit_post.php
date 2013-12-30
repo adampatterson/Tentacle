@@ -12,7 +12,7 @@
 		}); 
 	</script>
 	-->
-	<form action="<?= BASE_URL ?>action/update_post/<?= $get_post->id ?>" method="post" class="form-stacked" id='edit_post'>
+	<form action="<?= BASE_URL ?>action/update_post/<?= $get_post->id ?>" method="post" role="form" id='edit_post'>
 		<input type="hidden" name="page-or-post" value='post' />
 		<div class="has-right-sidebar">
 			<div class="contet-sidebar has-tabs">
@@ -23,35 +23,26 @@
 				<div class="table-content">
 					<fieldset>
 						
-						<div class="control-group">
-							<label class="control-label" for="status">Status</label>
-							<div class="controls">
-								<select id="status" name="status">
-									<option value="draft" <? selected( $get_post->status, 'draft' ); ?>>Draft</option>
-									<option value="published" <? selected( $get_post->status, 'published' ); ?>>Published</option>
-								<!--<option value="review">Pending Review</option>-->
-							    </select>
-							</div>
+						<div class="form-group">
+							<label for="status">Status</label>
+                            <select id="status" name="status" class="form-control">
+                                <option value="draft" <? selected( $get_post->status, 'draft' ); ?>>Draft</option>
+                                <option value="published" <? selected( $get_post->status, 'published' ); ?>>Published</option>
+                            <!--<option value="review">Pending Review</option>-->
+                            </select>
 						</div>
 
-						<div class="control-group">
-							<label for="status" class="control-label">Publish on</label>
-                            <div class="controls">
-
-                                <input type="hidden" value="<?= $get_post->date ?>" name="date_history">
-
-                            </div>
-
-							<div class="controls">
-								<small><?= date('F dS\, Y \@ h:i:s A', $get_post->date ); ?></small> <a href="#" id="edit_publish" class="red button-secondary">edit</a>
-							</div>
+						<div class="form-group">
+							<label for="status">Publish on</label>
+                            <input type="hidden" value="<?= $get_post->date ?>" name="date_history">
+                            <small><?= date('F dS\, Y \@ h:i:s A', $get_post->date ); ?></small> <a href="#" id="edit_publish" class="red button-secondary">edit</a>
 						</div>
 			
-						<div class="control-group published-on">
+						<div class="form-group published-on">
 							<? date::get('month', $get_post->date ); ?>
 						</div>
 						
-						<div class="control-group published-on">
+						<div class="form-group published-on">
 		 					<div class="inline-inputs">
 								<input type="text" id="day" name="day" value="<? date::get( 'day', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
                                  - <input type="text" id="year" name="year" value="<? date::get( 'year', $get_post->date ) ?>" size="4" maxlength="4" tabindex="4" autocomplete="off" class="span1">
@@ -61,47 +52,46 @@
 							<a href="#" id="edit_publish" class="red button-secondary">Cancel</a>
 						</div>
 							
-						<div class="control-group">
-							<label class="control-label" >Post Type</label>
 
-							<div class="controls post-type-list">
-								<ul class="unstyled">
-									<? $post_types = get_post_type ( ACTIVE_THEME );
-										foreach ($post_types as $post_type ): ?>
-											<li><label><input type="radio" name="post_type" class="post-format" value="<?= $post_type['part_id']; ?>" <? checked( $get_post->template, $post_type['part_id'] ); ?>> <span><?= $post_type['part_name']; ?></span></label></li>
-									<? endforeach; ?>
-								</ul>
-							</div>
-						</div>
+                        <label >Post Type</label>
+                        <div class="post-type-list">
+                            <? $post_types = get_post_type ( ACTIVE_THEME );
+                                foreach ($post_types as $post_type ): ?>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="post_type" class="post-format" value="<?= $post_type['part_id']; ?>" <? checked( $get_post->template, $post_type['part_id'] ); ?>>
+                                            <?= $post_type['part_name']; ?>
+                                        </label>
+                                    </div>
+                            <? endforeach; ?>
+                        </div>
 
-						<div class="control-group">
-							<label class="control-label" for="page_category">Category</label>
-							<div class="controls category-list">
-								<ul id="categorychecklist">
-								<? 
-									foreach ($categories as $category): ?>
-										<li id="category-<?= $category->id  ?>">
-											<label class="selectit">
-											<input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>" <? checked( $category->id, (array)$category_relations ); ?>> <?= $category->name  ?>
-										</label>
-									</li>
-						        <? ?>
-								<? endforeach;?>
-								</ul>
-							</div>
-						</div>
 
-						<!--<dt>
-							<a href="#">Select a featured image.</a>
-						</dt>-->
+                        <label for="page_category">Category</label>
+                        <div class="category-list">
+
+                            <? foreach ($categories as $category): ?>
+                                <div class="checkbox">
+                                    <label class="selectit">
+                                        <input type="checkbox" id="in-category-<?= $category->id  ?>" name="post_category[]" value="<?= $category->id  ?>" <? checked( $category->id, (array)$category_relations ); ?>>
+                                        <?= $category->name  ?>
+                                    </label>
+                                </div>
+                            <? endforeach;?>
+                        </div>
+
+                        <input type="hidden" value="admin/content_update_post/<?= $get_post->id ?>" name="history">
+
+                        <button type="submit" class="btn btn-large btn-primary">Save</button>
+                        <a class="red button-secondary" href="<?= BASE_URL ?>action/trash_post/<?= $get_post->id;?>">Move to trash</a><!--<a href="#review">Save for Review</a>-->
+
 					</fieldset>
-					<input type="hidden" value="admin/content_update_post/<?= $get_post->id ?>" name="history">
-					<div class="form-actions">
-						<button type="submit" class="btn btn-large btn-primary">Save</button>
-						<a class="red button-secondary" href="<?= BASE_URL ?>action/trash_post/<?= $get_post->id;?>">Move to trash</a><!--<a href="#review">Save for Review</a>-->
-					</div>
+
+
+
 				</div>
 			</div>
+
 			<div id="post-body">
 				<div id="post-body-content">
 
@@ -116,23 +106,23 @@
 						
 						<div id="content" class="active tab-pane">
 
-                            <input type="text" name="title" placeholder='Title' value='<?= $get_post->title ?>' class='xlarge content_title' required='required' id="permalink" />
-                            <input type="hidden" name="permalink" id="new_uri" />
+              <input type="text" name="title" placeholder='Title' value='<?= $get_post->title ?>' class='xlarge content_title form-control' required='required' id="permalink" />
+              <input type="hidden" name="permalink" id="new_uri" />
 
-                            <script type="text/javascript" charset="utf-8">
-                                var page_post = "post";
-                                var uri = "";
-                            </script>
+              <script type="text/javascript" charset="utf-8">
+                  var page_post = "post";
+                  var uri = "";
+              </script>
 
-                            <p class="permalink">Permalink: <?= BASE_URL ?><span id="permalink_landing"><?= $get_post->uri ?></span></p>
+              <p class="permalink">Permalink: <?= BASE_URL ?><span id="permalink_landing"><?= $get_post->uri ?></span></p>
 
 							<? if(user_editor() == 'wysiwyg'):?>
 								<p><a href="#" id="myButton" >Insert Media</a></p>
 
-					            <p class="wysiwyg">
-					                <textarea cols="100" id="editor" name="content" rows="10" class="editor"><?= the_content( $get_post->content, true ) ?></textarea>
-					            </p>
-                            <? endif; ?>
+                  <p class="wysiwyg">
+                      <textarea cols="100" id="editor" name="content" rows="10" class="editor"><?= the_content( $get_post->content, true ) ?></textarea>
+                  </p>
+                        <? endif; ?>
 
 							<div class="clear"></div>
 						</div>
@@ -140,36 +130,28 @@
 						<div id="options" class="tab-pane">
 							<fieldset>
 								
-								<div class="control-group">
-									<label class="control-label" for='bread_crumb'>Breadcrumb title</label>
-									<div class="controls">
-											<input type="text" placeholder="Edit title" name='bread_crumb' value='<?= $get_post_meta->bread_crumb ?>' />
-											<span class="help-block">This title will appear in the breadcrumb trail.</span>
-									</div>
+								<div class="form-group">
+									<label for='bread_crumb'>Breadcrumb title</label>
+                  <input type="text" class="form-control" placeholder="Edit title" name='bread_crumb' value='<?= $get_post_meta->bread_crumb ?>' />
+                  <span class="help-block">This title will appear in the breadcrumb trail.</span>
 								</div>
 
-								<div class="control-group">
-									<label class="control-label" for="meta_keywords">Meta Keywords</label>
-									<div class="controls">
-										<input type="text" placeholder="Keywords" name='meta_keywords' value='<?= $get_post_meta->meta_keywords ?>' />
-										<span class="help-block">Separate each keyword with a comma ( , )</span>
-									</div>
+								<div class="form-group">
+									<label for="meta_keywords">Meta Keywords</label>
+                  <input type="text" class="form-control" placeholder="Keywords" name='meta_keywords' value='<?= $get_post_meta->meta_keywords ?>' />
+                  <span class="help-block">Separate each keyword with a comma ( , )</span>
 								</div>
 
-								<div class="control-group">
-									<label class="control-label" for="meta_description">Meta Description</label>
-									<div class="controls">
-         								<textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'><?= $get_post_meta->meta_description ?></textarea>
-										<span class="help-block">A short summary of the page's content</span>
-									</div>
+								<div class="form-group">
+									<label for="meta_description">Meta Description</label>
+                  <textarea name="meta_description" class="form-control" cols="40" rows="5" placeholder='Enter your comments here...'><?= $get_post_meta->meta_description ?></textarea>
+                  <span class="help-block">A short summary of the page's content</span>
 								</div>
 
-								<div class="control-group">
-									<label class="control-label" for="tags">Tags</label>
-									<div class="controls">
-										<input type="text" class="tags" name="tags" id="tags" value='<?= $tag_relations ?>' />
-										<span class="help-block">Separate each keyword with a comma ( , )</span>
-									</div>
+								<div class="form-group">
+									<label for="tags">Tags</label>
+                  <input type="text" class="tags form-control" name="tags" id="tags" value='<?= $tag_relations ?>' />
+                  <span class="help-block">Separate each keyword with a comma ( , )</span>
 								</div>
 
 <? /*

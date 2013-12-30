@@ -1,7 +1,7 @@
 <? load::view('admin/partials/header',array('title'=>'System Details', 'assets'=> array('application') ) );?>
 <div id="wrap">
 	<div class="full-content">
-	    <div class="one-full">
+	    <div class="row">
 	     <h1 class='title'><img src="<?=ADMIN_URL; ?>images/icons/icon_pages_32.png" alt="" /> System Details</h1>
 			<?
 				if (ini_get('safe_mode'))
@@ -71,7 +71,7 @@
 			</table>
 		</div>
 		<!--
-		<div class="one-full">
+		<div class="row">
 		<h2>Other Libraries used</h2>
 			<ul>
 				<li>jQuery</li>

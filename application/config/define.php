@@ -27,7 +27,7 @@ define('TENTACLE_URI'     , APP_ROOT.'/tentacle');
 define('ADMIN'            , BASE_URL.'admin/');
 define('ADMIN_URL'        , BASE_URL.'tentacle/');
 define('ADMIN_URI'        , APP_ROOT.'tentacle/');
-define('ADMIN_JS'   	  , BASE_URL.'tentacle/js/');
+define('ADMIN_JS'   	    , BASE_URL.'tentacle/js/');
 define('ADMIN_CSS'     	  , BASE_URL.'tentacle/css/');
 define('ADMIN_IMG'     	  , BASE_URL.'tentacle/images/');
 
@@ -70,7 +70,7 @@ define( 'ASSET_BOTH'  ,3 );
 # Serpent Timeout
 define( 'CHECK_TIMEOUT', 5 );
 
-define('TENTACLE_VERSION', 'v0.9.5.3');
+define('TENTACLE_VERSION', 'v0.9.5.4');
 
 # Holds the Tentacle DB revision, increments when changes are made to the Tentacle sql model.
 define('TENTACLE_DB_VERSION', '116');

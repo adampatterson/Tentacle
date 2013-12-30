@@ -1,26 +1,26 @@
 <? load::view('admin/partials/header', array('title' => 'Manage Categories', 'assets' => array('application')));?>
 
 <div id='wrap'>
-	<div class='one-full'>
+	<div class='row'>
 
 		<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Manage Categories</h1>
-		<div class='one-half'>
+		<div class='col-md-6'>
 			<form action='<?= BASE_URL ?>action/add_category/' method='post'>
 				<div class='table-heading'>
 					<h3 class='regular'>Add Categories</h3>
 				</div>
 				<div class='table-content'>
 					<fieldset>
-						
-						<div class="controlgroup">
-							<label for='name' class="control-label">Name</label>
+
+						<div class="form-group">
+							<label for='name'>Name</label>
 							<div class="controls">
 								<input type='text' name='name' id='name' required='required'>
 							</div>
 						</div>
 						
-						<div class="controlgroup">
-							<label for='slug' class="control-label">Slug</label>
+						<div class="form-group">
+							<label for='slug'>Slug</label>
 							<div class="controls">
 								<input type='text' name='slug' id='slug' required='required'>
 							</div>
@@ -28,12 +28,17 @@
 						
 					</fieldset>
 				</div>
-				<div class='form-actions'>
-					<input type='submit' value='Add new category' class='btn btn-large btn-primary' />
-				</div>
+
+        <div class="row">
+            <div class="actions">
+                <input type='submit' value='Add new category' class='btn btn-large btn-primary' />
+                <a href="#" class="red">Cancel</a>
+            </div>
+        </div>
+
 			</form>
 		</div>
-		<div class='one-half'>
+		<div class='col-md-6'>
 			<table width='100%' border='0' cellspacing='0' cellpadding='0' class='manage_content'>
 				<thead class='table-heading'>
 					<tr>
@@ -64,18 +69,7 @@
 					<? endforeach;?>
 				</tbody>
 			</table>
-			<!--
-			<div class='actions'>
-				<form name='form' id='form'>
-					<select name='jumpMenu' id='jumpMenu'>
-						<option>Actions</option>
-						<option>Delete</option>
-						<option>Edit</option>
-					</select>
-					<input type='button' value='Apply' class='btn medium secondary' />
-				</form>
-			</div>
-			-->
+
 		</div>
 	</div>
 </div>

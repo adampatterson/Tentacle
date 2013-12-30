@@ -4,7 +4,7 @@
 		<h1 class='align-left'><img src="<?=ADMIN_URL; ?>images/icons/icon_pages_32.png" alt="" /> Appearance settings</h1>
 		<a href="<?=ADMIN;?>content_add_page/" class="btn btn-primary">Install new Themes</a>
 	</div>
-	<div class="one-full">		
+	<div class="row">
 		<h2>Installed Themes</h2>
 		<ul class="theme-grid">
 			<? foreach (get_themes() as $theme):  
@@ -26,16 +26,22 @@
 		</ul>
 		<h2>Broken themes.</h2>
 		<ul class="theme-grid well">
-			<? foreach (get_themes() as $theme):  
+
+			<? foreach (get_themes() as $theme):
+
 				if ($theme->index == ''): ?>
 				<li>
 					<strong><?= $theme->theme_name ?></strong> <span class="label label-important">Error</span>
+          
 					<? foreach (get_settings($theme->theme_id) as $setting): ?>
 						<p><?= $setting->theme_description; ?></p>
 					<? endforeach; ?>
+
 				</li>
 			 <? endif;
+
 			endforeach; ?>
+
 		</ul>
 		<? /* 
 		<h2>Appearance</h2>

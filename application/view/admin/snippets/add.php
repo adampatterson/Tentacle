@@ -15,15 +15,15 @@
 
 				<form action="<?= BASE_URL ?>action/add_snippet/" method="post">
 					
-					<div class="control-group">
-						<label class="control-label" for="name">Snippet Name</label>
+					<div class="form-group">
+						<label for="name">Snippet Name</label>
 						<div class="controls">
 							<input type="text" name="name" value="" placeholder='Snippet name' />
 						</div>
 					</div>
 					
-					<div class="control-group">
-						<label class="control-label" for="content">Code Block</label>
+					<div class="form-group">
+						<label for="content">Code Block</label>
 						<div class="controls">
 							<textarea name="content" cols="40" rows="5" placeholder='Enter your snippet code here'></textarea>
 						</div>

@@ -1,7 +1,7 @@
 <? $file_meta = string_to_parts($image->name); ?>
 <? load::view('admin/partials/header', array('title' => 'Update '.$file_meta['file_name'], 'assets'=> array('') ) );?>
 <div id="wrap">
-	<div class="one-full">
+	<div class="row">
 		<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Update <?=$file_meta['file_name'] ?></h1>
 
 		<div class="row">
@@ -31,22 +31,22 @@
 				<fieldset>
 					<h3>&nbsp;</h3>
 
-					<div class="control-group">
-						<label class="control-label" for="title">Title</label>
+					<div class="form-group">
+						<label for="title">Title</label>
 						<div class="controls">
 							<input type="text" class="span5 title" name="title" value="<?=$image->title ?>">
 						</div>
 					</div>
 
-					<div class="control-group">
-						<label class="control-label" for="alt_text">Alternate Text</label>
+					<div class="form-group">
+						<label for="alt_text">Alternate Text</label>
 						<div class="controls">
 							<input type="text" class="span5 alt_text" name="alt_text" value="<?=$image->alt ?>" >
 						</div>
 					</div>
 
-					<div class="control-group">
-						<label class="control-label" for="caption">Caption</label>
+					<div class="form-group">
+						<label for="caption">Caption</label>
 						<div class="controls">
 							<input type="text" class="span5 caption" name="caption" value="<?= $image->caption ?>">
 						</div>

@@ -1,7 +1,7 @@
 <? load::view('admin/partials/header', array('title' => 'Plugins', 'assets' => array('application')));?>
 
 <div id="wrap">
-	<div class="one-full">
+	<div class="row">
 		<div class="title">
 			<h1 class="align-left"><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Plugins</h1>
 			<!--<a href="#" class="btn btn-primary">Install new Plugins</a>-->
@@ -22,9 +22,7 @@
 				</thead>
 				<tbody>
 					<? foreach ($plugins['enabled_plugins'] as $plugin_array):
-					$plugin = (object)$plugin_array;
-
-					?>
+					$plugin = (object)$plugin_array; ?>
 					<tr>
 						<td>
 							<strong><?= $plugin->name ?></strong>

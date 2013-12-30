@@ -2,11 +2,11 @@
 <div id="wrap">
 		<div id="post-body">
 				
-			<div class="one-full">
+			<div class="row">
 		    	
 				<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Delete "<?= $snippet->name; ?>" snippet</h1>
 				
-				<div class="one-half">
+				<div class="col-md-6">
 					<div class="table">
 						<form action="<?= BASE_URL ?>action/delete_snippet/<?= $id ?>" method="post">
 							
@@ -26,7 +26,7 @@
 					</div>
 				</div>
 				
-				<div class="one-half">
+				<div class="col-md-6">
 					<div class="table">
 						&nbsp;
 					</div>

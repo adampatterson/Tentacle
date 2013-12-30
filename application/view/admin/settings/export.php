@@ -3,9 +3,9 @@
 <div id="wrap">
 	<form action="<?= BASE_URL ?>action/udpate_settings_post/" method="post" class="form-stacked">
 		<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
-		<div class="one-full">
+		<div class="row">
 			<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Export</h1>
-			<div class="one-half">
+			<div class="col-md-6">
 				<p>
 					When you click the button below Tentacle will create an XML file for you to save to your computer.
 				</p>
@@ -36,9 +36,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="one-full">&nbsp;</div>
+			<div class="row">&nbsp;</div>
 		</div>
-		<div class="one-full">
+		<div class="row">
 			<div class="actions">
 				<input type="submit" value="Save Changes" class="btn primary medium" id="submit" name="submit">
 			</div>

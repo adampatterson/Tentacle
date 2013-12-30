@@ -4,7 +4,7 @@
 	<h1 class='title'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Privacy settings</h1>
 	<form action="<?= BASE_URL ?>action/udpate_settings_post/" method="post" class="form-stacked">
 		<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
-		<div class="one-half">
+		<div class="col-md-6">
 			<h2>Site Visibility</h2>
 			<hr />
 			<fieldset>
@@ -44,10 +44,10 @@
 				</div>
 			</fieldset>
 		</div>
-		<div class="one-half">
+		<div class="col-md-6">
 			&nbsp;
 		</div>
-		<div class="one-full">
+		<div class="row">
 			<div class="actions">
 				<input type="submit" value="Save Changes" class="btn primary medium" id="submit" name="submit">
 			</div>

@@ -6,7 +6,7 @@
 				<h1 class='align-left'><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Manage media</h1>
 			</div>
 
-		    <div class="one-full">
+		    <div class="row">
 	    		<div id="dropbox" class="well"><i class="icon-picture"></i></div>
 		    </div>
 
@@ -16,12 +16,12 @@
 				<div class="accordion-group">
 					<div class="accordion-heading">
 						<div class="row">
-							<div class="span1">
+							<div class="col-md-1">
 								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?=$image->id ?>" href="#collapse<?=$image->id ?>">
 									<img src="<?= IMAGE_URL.$file_meta[0].'_sq'.'.'.$file_meta[1]; ?>" class="thumbnail" width="30" height="30" />
 								</a>
 							</div>
-							<div class="span4">
+							<div class="col-md-4">
 								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?=$image->id ?>" href="#collapse<?=$image->id ?>"><?=$image->title ?></a>
 							</div>
 						</div>
@@ -30,10 +30,10 @@
 						<div class="accordion-inner">
 
 							<div class="row">
-								<div class="span3">
+								<div class="col-md-2">
 									<img src="<?= IMAGE_URL.$file_meta[0].'_sq'.'.'.$file_meta[1]; ?>" class="thumbnail"/>
 								</div>
-								<div class="span4 well">
+								<div class="col-md-4 well">
 									<dl class="dl-horizontal">
 										<dt>File name:</dt>
 										<dd><?=$image->name ?></dd>
@@ -48,48 +48,50 @@
 								</div>
 							</div>
 							<div class="row">
-								<form action="<?= BASE_URL ?>action/update_media/<?= $image->id ?>" method="post" class="form-horizontal" name="<?= $image->slug ?>">
-									<input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
-									<fieldset>
-										<h3>&nbsp;</h3>
+								  <div class="col-md-12">
+                    <form action="<?= BASE_URL ?>action/update_media/<?= $image->id ?>" method="post" class="form-horizontal" name="<?= $image->slug ?>">
+                          <input type="hidden" name="history" value="<?= CURRENT_PAGE ?>"/>
+                          <fieldset>
+                            <h3>&nbsp;</h3>
 
-										<div class="control-group">
-											<label class="control-label" for="title">Title</label>
-											<div class="controls">
-												<input type="text" class="span5 post" data-image-id="<?= $image->id ?>" id="title" name="title" value="<?=$image->title ?>">
-											</div>
-										</div>
+                            <div class="form-group">
+                              <label for="title">Title</label>
+                              <div class="controls">
+                                <input type="text" class="col-md-5 post" data-image-id="<?= $image->id ?>" id="title" name="title" value="<?=$image->title ?>">
+                              </div>
+                            </div>
 
-										<div class="control-group">
-											<label class="control-label" for="alt_text">Alternate Text</label>
-											<div class="controls">
-												<input type="text" class="span5 post" data-image-id="<?= $image->id ?>" id="alt_text" name="alt_text" value="<?=$image->alt ?>" >
-											</div>
-										</div>
+                            <div class="form-group">
+                              <label for="alt_text">Alternate Text</label>
+                              <div class="controls">
+                                <input type="text" class="col-md-5 post" data-image-id="<?= $image->id ?>" id="alt_text" name="alt_text" value="<?=$image->alt ?>" >
+                              </div>
+                            </div>
 
-										<div class="control-group">
-											<label class="control-label" for="caption">Caption</label>
-											<div class="controls">
-												<input type="text" class="span5 post" data-image-id="<?= $image->id ?>" id="caption" name="caption" value="<?= $image->caption ?>">
-											</div>
-										</div>
+                            <div class="form-group">
+                              <label for="caption">Caption</label>
+                              <div class="controls">
+                                <input type="text" class="col-md-5 post" data-image-id="<?= $image->id ?>" id="caption" name="caption" value="<?= $image->caption ?>">
+                              </div>
+                            </div>
 
-									</div>
-									<div class="row">
-										<div class="actions">
-											<input type="submit" name="update" value="Update" id="update" class="btn btn-success">
-											<!--<button class="btn btn-danger">Delete</button>-->
-										</div>
-									</fieldset>
-								</form>
-							</div>				
+                          <div class="actions">
+                            <input type="submit" name="update" value="Update" id="update" class="btn btn-success">
+                            <!--<button class="btn btn-danger">Delete</button>-->
+                          </div>
+                      </fieldset>
+
+                    </form>
+                  </div>
+							</div>
 
 						</div>
 					</div>
 				</div><!-- /#collapse<?=$image->id ?> -->
-				<? endforeach; ?>	
+				<? endforeach; ?>
+        
 			</div>
-			
+
 		</div>
 	</div>
 </div>

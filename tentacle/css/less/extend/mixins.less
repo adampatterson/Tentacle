@@ -1,0 +1,14 @@
+.makePercentage( @percentage ) {
+  float: left;
+  min-height: 1px;
+  .box-sizing(border-box);
+  .clearfix();
+  width: percentage(@percentage);
+}
+
+.border-radius(@radius){
+  .border-top-radius(@radius);
+  .border-right-radius(@radius);
+  .border-bottom-radius(@radius);
+  .border-left-radius(@radius);
+}

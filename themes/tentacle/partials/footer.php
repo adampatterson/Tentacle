@@ -2,6 +2,7 @@
 	    <p class="pull-left"><a href="http://tentaclecms.com"><img src="<?= THEME ?>/assets/img/tentacle_logo_footer.png" alt="Tentacle" /></a></p>
 
         <p class="pull-right">
+
             <ul class="unstyled pull-right">
                 <li><a href="https://twitter.com/tentaclecms" class="twitter-follow-button" data-show-count="false">Follow @tentaclecms</a></li>
                 <li><iframe src="http://ghbtns.com/github-btn.html?user=adampatterson&repo=tentacle&type=watch&count=true"
@@ -9,7 +10,6 @@
                 <li><iframe src="http://ghbtns.com/github-btn.html?user=adampatterson&repo=tentacle&type=fork&count=true"
                              allowtransparency="true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe></li>
             </ul>
-
 
         </p>
 
@@ -19,6 +19,6 @@
 	<? 
 	// Load assets in the footer.
 	theme::assets( $assets='' );
-    render_footer( ); ?>
+  render_footer( ); ?>
 	</body>
 </html>
