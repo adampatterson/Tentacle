@@ -25,51 +25,51 @@
 					<fieldset>
 						<div class="form-group">
 							<label for="status">Status</label>
-                            <select name="status" id="status" class="form-control">
-                                <option value="draft" <? selected( $get_page->status, 'draft' ); ?>>Draft</option>
-                                <option value="published" <? selected( $get_page->status, 'published' ); ?>>Published</option>
-                            </select>
+              <select name="status" id="status" class="form-control">
+                  <option value="draft" <? selected( $get_page->status, 'draft' ); ?>>Draft</option>
+                  <option value="published" <? selected( $get_page->status, 'published' ); ?>>Published</option>
+              </select>
 						</div>
 
 						<div class="form-group">
 							<label for="parent_page">Parent Page</label>
-                            <select id="parent_page" name="parent_page" class="form-control">
-                                <option value="0">None</option>
-                                <? foreach ($pages as $page_array):
-                                    $page = (object)$page_array; ?>
-                                    <option value="<?= $page->id?>" <? selected( $page->id, $get_page->parent  ); ?>><?= offset($page->level, 'list').$page->title;?></option>
-                                <? endforeach;?>
-                            </select>
-						          </div>
+              <select id="parent_page" name="parent_page" class="form-control">
+                  <option value="0">None</option>
+                  <? foreach ($pages as $page_array):
+                      $page = (object)$page_array; ?>
+                      <option value="<?= $page->id?>" <? selected( $page->id, $get_page->parent  ); ?>><?= offset($page->level, 'list').$page->title;?></option>
+                  <? endforeach;?>
+              </select>
+            </div>
 
-                        <label for="page_template">Page template</label>
-                        <p>
-                        <? $templates = get_templates( ACTIVE_THEME );
+            <label for="page_template">Page template</label>
+            <p>
+            <? $templates = get_templates( ACTIVE_THEME );
 
-                        foreach ( $templates as $template ):
-                            if ( $get_page->template == $template->template_id )
-                                echo $template->template_name;
-                        endforeach; ?>
-                        </p>
-                    <? /*
-                      @todo Figure out a way to change templates after one has been saved.
+            foreach ( $templates as $template ):
+                if ( $get_page->template == $template->template_id )
+                    echo $template->template_name;
+            endforeach; ?>
+            </p>
+          <? /*
+            @todo Figure out a way to change templates after one has been saved.
 
-                        <label for="page_template">Page template</label>
+              <label for="page_template">Page template</label>
 
-                        <select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
-                          <option value="<?= BASE_URL ?>action/render_admin/update_page/default/<?= $get_page->id ?>" <? if ($get_page->template == 'default') echo 'selected' ?>>Default</option>
-                          <? $templates = get_templates( get::option( 'appearance' ) );
-                          foreach ( $templates as $template ):
-                          ?>
-                            <option value="<?= BASE_URL ?>action/render_admin/update_page/<?= $template->template_id ?>/<?= $get_page->id ?>" <? selected( $get_page->template, $template->template_id ); ?>><?= $template->template_name ?></option>
-                          <? endforeach; ?>
-                        </select>
-                      */?>
+              <select id="page_template" name="page_template" onchange="location = this.options[this.selectedIndex].value;">
+                <option value="<?= BASE_URL ?>action/render_admin/update_page/default/<?= $get_page->id ?>" <? if ($get_page->template == 'default') echo 'selected' ?>>Default</option>
+                <? $templates = get_templates( get::option( 'appearance' ) );
+                foreach ( $templates as $template ):
+                ?>
+                  <option value="<?= BASE_URL ?>action/render_admin/update_page/<?= $template->template_id ?>/<?= $get_page->id ?>" <? selected( $get_page->template, $template->template_id ); ?>><?= $template->template_name ?></option>
+                <? endforeach; ?>
+              </select>
+            */?>
 
-                        <input type="hidden" value="admin/content_update_page/<?= $get_page->id ?>" name="history">
+              <input type="hidden" value="admin/content_update_page/<?= $get_page->id ?>" name="history">
 
-                        <button type="submit" class="btn btn-large btn-primary">Save</button>
-                        <a class="red button-secondary" href="<?= BASE_URL ?>action/trash_page/<?= $get_page->id;?>">Move to trash</a><!--<a href="#review">Save for Review</a>-->
+              <button type="submit" class="btn btn-large btn-primary">Save</button>
+              <a class="red button-secondary" href="<?= BASE_URL ?>action/trash_page/<?= $get_page->id;?>">Move to trash</a><!--<a href="#review">Save for Review</a>-->
 
 					</fieldset>
 
@@ -146,34 +146,26 @@
 
 								<div class="form-group">
 									<label for='bread_crumb'>Breadcrumb title</label>
-									<div class="controls">
-                                        <input type="text" placeholder="Edit title" name='bread_crumb' value='<?= $get_page_meta->bread_crumb ?>' />
-                                        <span class="help-block">This title will appear in the breadcrumb trail.</span>
-									</div>
+                  <input type="text" placeholder="Edit title" name='bread_crumb' value='<?= $get_page_meta->bread_crumb ?>' />
+                  <span class="help-block">This title will appear in the breadcrumb trail.</span>
 								</div>
 
 								<div class="form-group">
 									<label for="meta_keywords">Meta Keywords</label>
-									<div class="controls">
-										<input type="text" placeholder="Keywords" name='meta_keywords' value='<?= $get_page_meta->meta_keywords ?>' />
-										<span class="help-block">Separate each keyword with a comma ( , )</span>
-									</div>
+                  <input type="text" class="form-control" placeholder="Keywords" name='meta_keywords' value='<?= $get_page_meta->meta_keywords ?>' />
+                  <span class="help-block">Separate each keyword with a comma ( , )</span>
 								</div>
 
 								<div class="form-group">
 									<label for="meta_description">Meta Description</label>
-									<div class="controls">
-										<textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'><?= $get_page_meta->meta_description ?></textarea>
-										<span class="help-block">A short summary of the page's content</span>
-									</div>
+                  <textarea name="meta_description" class="form-control" cols="40" rows="5" placeholder='Enter your comments here...'><?= $get_page_meta->meta_description ?></textarea>
+                  <span class="help-block">A short summary of the page's content</span>
 								</div>
 
 								<div class="form-group">
 									<label for="tags">Tags</label>
-									<div class="controls">
-										<input type="text" class="tags" name="tags" id="tags" value='<?= $tag_relations ?>' />
-										<span class="help-block">Separate each keyword with a comma ( , )</span>
-									</div>
+                  <input type="text"  class="form-control tags" name="tags" id="tags" value='<?= $tag_relations ?>' />
+                  <span class="help-block">Separate each keyword with a comma ( , )</span>
 								</div>
 <? /*
 								<div class="clearfix">

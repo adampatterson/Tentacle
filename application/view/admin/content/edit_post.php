@@ -106,23 +106,23 @@
 						
 						<div id="content" class="active tab-pane">
 
-                            <input type="text" name="title" placeholder='Title' value='<?= $get_post->title ?>' class='xlarge content_title form-control' required='required' id="permalink" />
-                            <input type="hidden" name="permalink" id="new_uri" />
+              <input type="text" name="title" placeholder='Title' value='<?= $get_post->title ?>' class='xlarge content_title form-control' required='required' id="permalink" />
+              <input type="hidden" name="permalink" id="new_uri" />
 
-                            <script type="text/javascript" charset="utf-8">
-                                var page_post = "post";
-                                var uri = "";
-                            </script>
+              <script type="text/javascript" charset="utf-8">
+                  var page_post = "post";
+                  var uri = "";
+              </script>
 
-                            <p class="permalink">Permalink: <?= BASE_URL ?><span id="permalink_landing"><?= $get_post->uri ?></span></p>
+              <p class="permalink">Permalink: <?= BASE_URL ?><span id="permalink_landing"><?= $get_post->uri ?></span></p>
 
 							<? if(user_editor() == 'wysiwyg'):?>
 								<p><a href="#" id="myButton" >Insert Media</a></p>
 
-					            <p class="wysiwyg">
-					                <textarea cols="100" id="editor" name="content" rows="10" class="editor"><?= the_content( $get_post->content, true ) ?></textarea>
-					            </p>
-                            <? endif; ?>
+                  <p class="wysiwyg">
+                      <textarea cols="100" id="editor" name="content" rows="10" class="editor"><?= the_content( $get_post->content, true ) ?></textarea>
+                  </p>
+                        <? endif; ?>
 
 							<div class="clear"></div>
 						</div>
@@ -132,34 +132,26 @@
 								
 								<div class="form-group">
 									<label for='bread_crumb'>Breadcrumb title</label>
-									<div class="controls">
-											<input type="text" placeholder="Edit title" name='bread_crumb' value='<?= $get_post_meta->bread_crumb ?>' />
-											<span class="help-block">This title will appear in the breadcrumb trail.</span>
-									</div>
+                  <input type="text" class="form-control" placeholder="Edit title" name='bread_crumb' value='<?= $get_post_meta->bread_crumb ?>' />
+                  <span class="help-block">This title will appear in the breadcrumb trail.</span>
 								</div>
 
 								<div class="form-group">
 									<label for="meta_keywords">Meta Keywords</label>
-									<div class="controls">
-										<input type="text" placeholder="Keywords" name='meta_keywords' value='<?= $get_post_meta->meta_keywords ?>' />
-										<span class="help-block">Separate each keyword with a comma ( , )</span>
-									</div>
+                  <input type="text" class="form-control" placeholder="Keywords" name='meta_keywords' value='<?= $get_post_meta->meta_keywords ?>' />
+                  <span class="help-block">Separate each keyword with a comma ( , )</span>
 								</div>
 
 								<div class="form-group">
 									<label for="meta_description">Meta Description</label>
-									<div class="controls">
-         								<textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'><?= $get_post_meta->meta_description ?></textarea>
-										<span class="help-block">A short summary of the page's content</span>
-									</div>
+                  <textarea name="meta_description" class="form-control" cols="40" rows="5" placeholder='Enter your comments here...'><?= $get_post_meta->meta_description ?></textarea>
+                  <span class="help-block">A short summary of the page's content</span>
 								</div>
 
 								<div class="form-group">
 									<label for="tags">Tags</label>
-									<div class="controls">
-										<input type="text" class="tags" name="tags" id="tags" value='<?= $tag_relations ?>' />
-										<span class="help-block">Separate each keyword with a comma ( , )</span>
-									</div>
+                  <input type="text" class="tags form-control" name="tags" id="tags" value='<?= $tag_relations ?>' />
+                  <span class="help-block">Separate each keyword with a comma ( , )</span>
 								</div>
 
 <? /*
