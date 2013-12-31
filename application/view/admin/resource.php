@@ -1,4 +1,4 @@
-<? load::view('admin/partials/template-header', array('title' => 'Resource', 'assets' => array('filedrop')));?>
+<? load::view('admin/partials/header', array('title' => 'Resource', 'assets' => array('filedrop')));?>
 <div id="wrap">
 	<div class="full-content">
 		<div id="post-body">
@@ -10,8 +10,6 @@
 		</div>
 		<div class="row">
 
-
-        </div>
 	</div><!-- .full-content -->
 </div><!-- #wrap -->
-<? load::view('admin/partials/template-footer', array( 'assets' => array( '' ) ) ); ?>
+<? load::view('admin/partials/footer', array( 'assets' => array( '' ) ) ); ?>

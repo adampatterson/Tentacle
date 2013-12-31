@@ -42,11 +42,5 @@
 ?>
 -->
 
-<style type="text/css">
-    .repeater .repeater_block {
-        display: none;
-    }
-</style>
-
 </body>
 </html>
