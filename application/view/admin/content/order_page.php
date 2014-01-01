@@ -28,55 +28,6 @@
                         </div>
                     </div>"; ?>
 
-                    <script>
-
-                        $(document).ready(function()
-                        {
-                            $update_output = function(e)
-                            {
-                                var list   = e.length ? e : $(e.target),
-                                    output = list.data('output');
-                                if (window.JSON) {
-
-                                    $data = list.nestable('serialize')
-
-                                    $.post('<?= BASE_URL ?>/ajax/sortable',
-                                        { data: $data },
-                                        function(result){
-                                            console.log(result);
-                                        }
-                                    );
-                                } else {
-                                    output.val('JSON browser support required for this demo.');
-                                }
-                            };
-
-                            // activate Nestable for list menu
-                            $('#nestableMenu').nestable({
-                                group: 1
-                            })
-                                .on( 'change', $update_output) ;
-
-
-                            $( '#nestable-menu' ).on( 'click', function( e )
-                            {
-                                $target = $( e.$target ),
-                                    $action = $target.data( 'action' );
-                                if ( $action === 'expand-all' ) {
-                                    $('.dd').nestable('expandAll');
-                                }
-                                if ( $action === 'collapse-all' ) {
-                                    $('.dd').nestable('collapseAll');
-                                }
-                            });
-
-                            $('#nestable3').nestable();
-
-                        });
-
-                    </script>
-
-
                 </div><!-- .post-body-content -->
             </div><!-- #post-body -->
         </div><!-- .full-content -->

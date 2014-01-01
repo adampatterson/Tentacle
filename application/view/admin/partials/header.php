@@ -90,7 +90,6 @@
 
     <? endif; ?>
     <? if ( in_array('sortable', $assets ) ): ?>
-
         <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.nestable.js"></script>
     <? endif; ?>
 <!--[if lt IE 9]>

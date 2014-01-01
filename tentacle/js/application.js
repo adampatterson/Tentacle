@@ -10,20 +10,47 @@ $(document).ready(function(){
     publishedOn();
   }
 
-  if ($('body').hasClass('dashboard')){
+  if ($('body').hasClass('dashboard')) {
     dashboardFeed();
     sparkline();
   }
 
-  if ($('body').hasClass('dashboard')){
+  if ($('body').hasClass('dashboard')) {
     $('#username').keyup(usernameCheck);
 
     $('#useremail').keyup(useremailCheck);
 
     $('#permalink').keyup(permalinkCheck);
   }
+
+  if ($('body').hasClass('content_order_page')) {
+    $('#nestableMenu').nestable({
+      group: 1
+    })
+        .on( 'change', update_output) ;
+  }
+
 });
 
+
+function update_output(e)
+{
+  var list   = e.length ? e : $(e.target),
+      output = list.data('output');
+  if (window.JSON) {
+
+    $data = list.nestable('serialize')
+
+    $.post('<?= BASE_URL ?>/ajax/sortable',
+        { data: $data },
+        function(result){
+          console.log(result);
+        }
+    );
+  } else {
+    output.val('JSON browser support required for this demo.');
+  }
+};
 
 function setFocus() {
   document.getElementById("username").focus();
