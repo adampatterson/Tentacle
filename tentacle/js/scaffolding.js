@@ -2,47 +2,15 @@
 
   function makeSortable() {
 
-    var fixHelper = function(e, ui) {
-      ui.children().each(function() {
-        $(this).width($(this).width());
-      });
-      return ui;
+    var fixHelper = function($that) {
+      console.log($that);
     };
 
-    $("fieldset").sortable({
-      update: function(event, ui){
-        updateOrderNumbers();
-      },
-      helper: fixHelper
+    $('fieldset').sortable().bind('sortupdate', function() {
+      updateOrderNumbers();
+      fixHelper(this);
     });
   }
-
-
-  function _makeSortable() {
-
-    var fixHelper = function(e, ui) {
-      ui.children().each(function() {
-        $(this).width($(this).width());
-      });
-      return ui;
-    };
-
-    $(this).children('fieldset').children('.row').sortable({
-      update: function(event, ui){
-        $(this).updateOrderNumber();
-      },
-      handle: '.row',
-      helper: fixHelper,
-      start: function(event, ui)
-      {
-
-      },
-      stop: function(event, ui)
-      {
-        //ui.item.setup_wysiwyg();
-      }
-    });
-  };
 
   function updateOrderNumbers(){
     $('#blocks fieldset').each(function(){
@@ -57,15 +25,8 @@
 
     var blocks = {
 
-      _init : function( $that ){
-        $row = $($that);
-        $row_limit = parseInt($row.attr('data-block_limit'));
-        $row_count = $row.children('fieldset').children('div.row').length;
-
-        // sortable
-         if($row_limit > 1){
-           makeSortable();
-         }
+      _init : function( ){
+        makeSortable();
       },
 
       add : function ( $that ) {
@@ -124,7 +85,6 @@
       e.preventDefault();
       blocks.remove(this);
     });
-
   });
 
 })(jQuery);
