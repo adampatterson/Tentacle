@@ -1,11 +1,48 @@
 (function($){
 
   function makeSortable() {
-    $('.dd').nestable({
-      group: 1
-    }).on( 'change', updateOrderNumbers()) ;
-  };
 
+    var fixHelper = function(e, ui) {
+      ui.children().each(function() {
+        $(this).width($(this).width());
+      });
+      return ui;
+    };
+
+    $("fieldset").sortable({
+      update: function(event, ui){
+        updateOrderNumbers();
+      },
+      helper: fixHelper
+    });
+  }
+
+
+  function _makeSortable() {
+
+    var fixHelper = function(e, ui) {
+      ui.children().each(function() {
+        $(this).width($(this).width());
+      });
+      return ui;
+    };
+
+    $(this).children('fieldset').children('.row').sortable({
+      update: function(event, ui){
+        $(this).updateOrderNumber();
+      },
+      handle: '.row',
+      helper: fixHelper,
+      start: function(event, ui)
+      {
+
+      },
+      stop: function(event, ui)
+      {
+        //ui.item.setup_wysiwyg();
+      }
+    });
+  };
 
   function updateOrderNumbers(){
     $('#blocks fieldset').each(function(){
@@ -27,7 +64,7 @@
 
         // sortable
          if($row_limit > 1){
-           //makeSortable();
+           makeSortable();
          }
       },
 
@@ -77,13 +114,13 @@
     });
 
     // add field
-    $(document).on('click', '#blocks .repeater #add_field', function(e) {
+    $(document).on('click', '#blocks .repeater #add_block', function(e) {
       e.preventDefault();
       blocks.add(this);
     });
 
     // remove field
-    $(document).on('click', '#blocks .repeater a.remove_field', function(e) {
+    $(document).on('click', '#blocks .repeater a.remove_block', function(e) {
       e.preventDefault();
       blocks.remove(this);
     });
