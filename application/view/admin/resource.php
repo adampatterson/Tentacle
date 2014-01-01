@@ -47,7 +47,7 @@
             </div>
 
             <div class="row">
-              <label class=" col-md-1" for="field-3">4</label>
+              <label class="order col-md-1" for="field-3">4</label>
               <div class="col-md-4">
                 <input type="text" class="form-control" name="fields[3]" id="field-3" value="Aiden" placeholder="Name">
               </div>
