@@ -19,11 +19,9 @@
     <script type="text/javascript" src="<?=ADMIN_JS; ?>modernizr.min.js"></script>
     <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.min.js"></script>
     <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery-migrate-1.1.1.min.js"></script>
-    <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery-ui.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>jquery-ui.css">
-  <script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.sortable.min.js"></script>
+<!--    <script type="text/javascript" src="--><?//=ADMIN_JS; ?><!--bootstrap.min.js"></script>-->
     <script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-notify.js"></script>
-
     <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.reveal.js"></script>
     <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.inputtags.js"></script>
 
@@ -39,10 +37,6 @@
 
     <? if ( in_array('flot', $assets)): ?>
 
-    <script src="<?=ADMIN_JS;?>flot/jquery.flot.js"></script>
-    <script src="<?=ADMIN_JS;?>flot/jquery.flot.pie.js"></script>
-    <script src="<?=ADMIN_JS;?>flot/jquery.flot.stack.js"></script>
-    <script src="<?=ADMIN_JS;?>flot/jquery.flot.resize.js"></script>
     <script src="<?=ADMIN_JS;?>jquery.sparklines.js"></script>
     <script type="text/javascript">
         <?

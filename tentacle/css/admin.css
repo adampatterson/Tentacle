@@ -6613,6 +6613,12 @@ hr.space {
 section > .row {
   margin-bottom: 10px;
 }
+.sortable-placeholder {
+  display: block;
+  height: 40px;
+  border: dashed 1px #ff0000;
+  margin-bottom: 3px;
+}
 * {
   margin: 0;
   padding: 0;
@@ -7599,6 +7605,7 @@ Spark Lines
   line-height: 32px;
   padding-top: 3px;
   font-size: 12px;
+  list-style: none;
 }
 .sparkLineStats li .number {
   font-size: 17px;

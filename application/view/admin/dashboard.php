@@ -48,7 +48,7 @@
                                 <h2>Recent Statistics</h2>
                                 <div class="sparkLineStats">
 
-                                    <ul class="unstyled">
+                                    <ul class="list-unstyled">
 
                                         <li><col-md- class="page_view"></col-md->
                                             Pageviews:
