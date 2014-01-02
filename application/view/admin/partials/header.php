@@ -18,7 +18,6 @@
 
     <script type="text/javascript" src="<?=ADMIN_JS; ?>modernizr.min.js"></script>
     <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.min.js"></script>
-    <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery-migrate-1.1.1.min.js"></script>
     <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.sortable.min.js"></script>
 <!--    <script type="text/javascript" src="--><?//=ADMIN_JS; ?><!--bootstrap.min.js"></script>-->
     <script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-notify.js"></script>
