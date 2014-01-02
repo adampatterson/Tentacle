@@ -317,7 +317,7 @@ class content_model extends properties {
         else: # Page
             $parent_page   = input::post( 'parent_page' );
 
-            $dirty_template = session::get( 'template' );
+            $dirty_template = input::post('page_template' );
 
             if ( $dirty_template == '' ):
                 $post_template = 'default';
