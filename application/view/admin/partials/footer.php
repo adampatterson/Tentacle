@@ -24,7 +24,7 @@
     <script src="<?=ADMIN_JS; ?>filedrop.config.js"></script>
 <? endif; ?>
 
-<script type="text/javascript" src="<?=ADMIN_JS; ?>application.js"></script>
+<script type="text/javascript" src="<?=ADMIN_JS; ?>application.min.js"></script>
 
 <?= notification() ?>
 

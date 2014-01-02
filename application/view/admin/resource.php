@@ -81,8 +81,6 @@
           }
         </style>
 
-        <script type="text/javascript" src="<?=ADMIN_JS; ?>scaffolding.js"></script>
-
       </div>
 
     </div><!-- .full-content -->

@@ -397,16 +397,6 @@ class admin_controller extends properties {
 	}
 
 	/**
-	* Add Media
-	* ----------------------------------------------------------------------------------------------*/
-	public function media_add ()
-	{
-		tentacle::valid_user();
-		
-		load::view ('admin/media/add');
-	}
-	
-	/**
 	* Manage Media
 	* ----------------------------------------------------------------------------------------------*/
 	public function media_manage ()

@@ -16,13 +16,8 @@
 
 	======================================================================-->
 
-    <script type="text/javascript" src="<?=ADMIN_JS; ?>modernizr.min.js"></script>
-    <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.min.js"></script>
-    <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.sortable.min.js"></script>
-    <script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?=ADMIN_JS; ?>bootstrap-notify.js"></script>
-    <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.reveal.js"></script>
-    <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.inputtags.js"></script>
+
+    <script type="text/javascript" src="<?=ADMIN_JS; ?>payload.min.js"></script>
 
     <? if ( in_array('wysiwyg', $assets)): ?>
     <script type="text/javascript" src="<?=ADMIN_JS; ?>ckeditor/ckeditor.js"></script>
@@ -35,9 +30,7 @@
     <link type="text/css" rel="stylesheet" href="<?=ADMIN_CSS; ?>admin.css">
 
     <? if ( in_array('flot', $assets)): ?>
-
-    <script src="<?=ADMIN_JS;?>jquery.sparklines.js"></script>
-    <script type="text/javascript">
+      <script type="text/javascript">
         <?
         $statistics = load::model('statistics');
 
@@ -82,14 +75,12 @@
 
         var unique_view_total = <?= $cache_unique_views_total ?>;
      </script>
-
     <? endif; ?>
+
     <? if ( in_array('sortable', $assets ) ): ?>
         <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.nestable.js"></script>
     <? endif; ?>
-<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+
     <? if ( in_array('filedrop', $assets ) ): ?>
     <script type="text/javascript" src="<?=ADMIN_JS; ?>filedrop.js"></script>
     <? endif; ?>
