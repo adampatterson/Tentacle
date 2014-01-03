@@ -18,7 +18,6 @@
     <div class="contet-sidebar has-tabs">
         <div class="table-heading">
             <h3 class="regular">Page Settings</h3>
-            <!--					<input type="button" value="Preview" class="btn btn-small btn-primary pull-right" name='preview' />-->
         </div>
         <div class="table-content">
             <fieldset>
@@ -86,12 +85,12 @@
 
         <? if(user_editor() == 'wysiwyg'): ?>
 			
-			<p><a href="#" id="myButton" >Insert Media</a></p>
+			  <p><a href="#" id="myButton" >Insert Media</a></p>
 
-            <p class="wysiwyg">
-                <textarea cols="100" id="editor" name="content" rows="10" class="editor"></textarea>
-            </p>
-		
+        <p class="wysiwyg">
+            <textarea cols="100" id="editor" name="content" rows="10" class="editor"></textarea>
+        </p>
+
         <? endif; ?>
 
         <div id="scaffold">
@@ -99,14 +98,15 @@
 
                 $template = THEMES_DIR.'/'.ACTIVE_THEME.'/'.session::get('template').'.php';
 
-                if( file_exists( $template )):
-                    $data = get::yaml( $template );
+                if( file_exists( $template )): $data = get::yaml( $template );
 
                     if ( $data != null ):
                         $scaffold = new scaffold();
 
-                        $scaffold->process_this( $data );
+                        $scaffold->process( $data );
+                        $scaffold->render();
                     endif;
+
                 endif;
             endif;
             ?>
@@ -183,6 +183,7 @@
 */ ?>
         </fieldset>
     </div>
+
     <? /* 					<div id="revisions" class="">
 							<h4>Feb 7, 2011</h4>
 							<div class="small-row">

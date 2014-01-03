@@ -15,9 +15,15 @@ description:
   type: text
 blocks:
  title:
-  name: block title
+  name: Title Block
   type: text
  details:
-   name: block details
+   name: Detail Block
    type: text
+ something_else:
+   name: Another Block
+   type: text
+descriptions:
+  name: Description 2
+  type: text
 */

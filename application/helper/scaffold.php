@@ -1,30 +1,20 @@
 <?php
-/*
- * Process PHP Array and convert it to Forum Input fields.
- * @todo humanize the label name from the input name.
- */
-/*
-<div class="form-group">
-	<label for="default_role">{ NAME }</label>
-	<div class="input">
-		{ INPUT }
-	</div>
-</div>
-*/
-
-
 class  scaffold
 {
-  static public function construct_form()
-  {
-    echo '<form>';
+
+  static $return_data;
+
+  public function test () {
+    $builder = new builder();
+    $builder->test();
   }
 
-  static public function build_this( $input, $blocks = null, $data = null )
+  static public function build( $input, $blocks = null, $data = null )
   {
+    $builder = new builder();
     #var_dump($blocks);
 
-    $return_data = "";
+    $build_data = "";
 
     $input_name = string::underscore( string::camelize( $input['name']) );
 
@@ -36,86 +26,49 @@ class  scaffold
       $block_end_array = '';
     endif;
 
-
-    #var_dump($block_array);
-
-    if ( in_array( 'notes', $input ) )
+    if ( array_key_exists( 'notes', $input ) )
       $input_notes = $input['notes'];
     else
-      $input_notes = '';
+      $input_notes = null;
 
-    switch($input['type']) {
-      case 'text':
-        $return_data .= '<div class="form-group">
-                                    <label for="scaffold'.$input_name.'">'.$input['name'].'</label>
-                                    <input type="text" id="scaffold'.$input_name.'" class="form-control" name="'.$block_array.$input_name.$block_end_array.'" />
-                                    <span class="help-block">'.$input_notes.'</span>
-                                </div>';
-        break;
-      case 'password':
-        $return_data .= '<div class="form-group">
-                                    <label for="'.$input_name.'">'.$input['name'].'</label>
-                                    <input type="password" id="scaffold'.$input_name.'" class="form-control" name="'.$block_array.$input_name.$block_end_array.'" />
-                                    <span class="help-block">'.$input_notes.'</span>
-                                </div>';
-        break;
-      case 'button':
+    builder::$bd =  array(
+      'input_name'        => $input_name,
+      'input'             => $input,
+      'input_notes'       => $input_notes,
+      'block_array'       => $block_array,
+      'block_end_array'   => $block_end_array
+    );
 
-//                    if ( $scaffold_data[ 'display' ] != 'admin' )
-//                        $return_data .= self::create_button($input['button_name']);
-
-        break;
-      case 'option':
-        $return_data .= '<div class="form-group">
-                                    <label for="scaffold'.$input_name.'">'.$input['name'].'</label>
-                                    <select class="form-control" id="scaffold'.$input_name.'" name="'.$input_name.'">';
-        foreach ($input['options'] as $option) {
-          $return_data .= '<option value="'.$option.'">'.$option.'</option>';
-        }
-        $return_data .= '</select>
-                                </div>';
-        break;
-      case 'multiline':
-        $return_data .= '<div class="form-group">
-                                    <label for="'.$input_name.'">'.$input['name'].'</label>
-                                    <textarea cols="120" rows="15" name="'.$input_name.'" class="form-control"></textarea>
-                                    <span class="help-block">'.$input_notes.'</span>
-                                </div>';
-        break;
-      default:
-        break;
-    }
-
-    return $return_data;
+    return $builder->$input['type']();
   }
 
-  static public function process_this( $scaffold_data, $blocks = null )
+  static public function process( $scaffold_data, $blocks = null )
   {
-    $return_data = "";
-
-//        if ( $blocks )
-//            $return_data .= '<div class="scaffold-block well">';
+    if ( $blocks )
+      self::$return_data .= '<div class="scaffold-block well">';
 
     unset( $scaffold_data[ 'display' ] );
 
     foreach ($scaffold_data as $key => $input):
 
-      if( $key == 'blocks' ) {
-        $return_data .= self::process_this( $input, $blocks = true );
-      } else {
-        $return_data .= self::build_this($input, $blocks);
-      }
+      if( $key == 'blocks' )
+        self::$return_data .= self::process( $input, true );
+      else
+        self::$return_data .= self::build($input, $blocks);
 
     endforeach;
 
-//        if ( $blocks )
-//            $return_data .= '</div>';
-
-    echo $return_data;
+    if ( $blocks )
+      self::$return_data .= '</div>';
   }
 
 
-  static public function populate_this( $data, $get_page_meta )
+  static public function render() {
+    echo self::$return_data;
+  }
+
+
+  static public function populate( $data, $get_page_meta )
   {
     if ( $page_id = '' )
       return false;
@@ -137,10 +90,10 @@ class  scaffold
       if( $key == 'blocks' ) {
 
         echo '<br> Block';
-        $return_data .= self::populate_this( $input, $blocks = true );
+        $return_data .= self::populate( $input, $blocks = true );
       } else {
         echo '<br> No Block';
-        //$return_data .= self::build_this($input, $blocks, $data);
+        //$return_data .= self::build($input, $blocks, $data);
       }
 
     endforeach;
@@ -199,21 +152,100 @@ class  scaffold
    */
 
   }
+}
 
 
-  static public function create_button( $name = '' )
+class builder
+{
+
+  static $bd;
+
+  public function start ( $block = null )
   {
-    if (isset($name)):
-      $button =  '<input type="submit" value="'.$name.'" class="btn"><br />';
-    else:
-      $button =  '<input type="submit" value="Submit" class="btn"><br />';
-    endif;
-
-    return $button;
+    if( $block == true )
+      echo '<fieldset class="form-inline">';
+    else
+      echo '<div class="row">';
   }
 
 
-  static public function destruct_form() {
-    echo '</form>';
+  public function debug ()
+  {
+    var_dump( self::$bd );
+  }
+
+
+  public function text( )
+  {
+    return '<div class="form-group">
+                  <label for="scaffold'.self::$bd['input_name'].'">'.self::$bd['input']['name'].'</label>
+                  <input type="text" id="scaffold'.self::$bd['input_name'].'" class="form-control" name="'.self::$bd['block_array'].self::$bd['input_name'].self::$bd['block_end_array'].'" />'
+                  .self::set_helper().
+              '</div>';
+  }
+
+
+  public function password()
+  {
+    return null;
+  }
+
+
+  public function select()
+  {
+    return $this->option();
+  }
+
+
+  public function option()
+  {
+    return '<div class="form-group">
+              <label for="scaffold'.self::$bd['input_name'].'">'.self::$bd['input']['name'].'</label>
+              <select class="form-control" id="scaffold'.self::$bd['input_name'].'" name="'.self::$bd['input_name'].'">'
+                .self::option_loop(self::$bd['input']['options']).
+            '</select>'
+            .self::set_helper().
+          '</div>';
+  }
+
+  public function multiline(){
+    return $this->textarea();
+  }
+
+
+  public function textarea()
+  {
+    return '<div class="form-group">
+                <label for="'.self::$bd['input_name'].'">'.self::$bd['input']['name'].'</label>
+                <textarea cols="120" rows="15" name="'.self::$bd['input_name'].'" class="form-control"></textarea>'
+                .self::set_helper().
+            '</div>';
+  }
+
+
+  static function set_helper()
+  {
+    if( self::$bd['input_notes'] != null )
+      return '<span class="help-block">'.self::$bd['input_notes'].'</span>';
+  }
+
+
+  static function option_loop( $options = null ) {
+    $option_data = null;
+
+    foreach ($options as $option) {
+      $option_data .= '<option value="'.$option.'">'.$option.'</option>';
+    }
+
+    return $option_data;
+  }
+
+
+  public function end ( $block = null )
+  {
+    if( $block == true )
+      echo '</fieldset>';
+    else
+      echo  '</div>';
   }
 }
