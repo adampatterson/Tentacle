@@ -20,10 +20,4 @@ blocks:
  details:
    name: Detail Block
    type: text
- something_else:
-   name: Another Block
-   type: text
-descriptions:
-  name: Description 2
-  type: text
 */

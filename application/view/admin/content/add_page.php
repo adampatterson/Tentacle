@@ -88,7 +88,7 @@
 			  <p><a href="#" id="myButton" >Insert Media</a></p>
 
         <p class="wysiwyg">
-<!--            <textarea cols="100" id="editor" name="content" rows="10" class="editor"></textarea>-->
+            <textarea cols="100" id="editor" name="content" rows="10" class="editor"></textarea>
         </p>
 
         <? endif; ?>

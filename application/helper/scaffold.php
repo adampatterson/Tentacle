@@ -7,7 +7,6 @@ class  scaffold
   static public function build( $input, $blocks = null, $data = null )
   {
     $builder = new builder();
-    #var_dump($blocks);
 
     $build_data = "";
 
@@ -38,30 +37,32 @@ class  scaffold
     return $builder->$input['type']( $blocks );
   }
 
+
   static public function process( $scaffold_data, $blocks = null )
   {
-//    if ( $blocks )
-//      self::$return_data .= builder::start( $blocks );
-
     unset( $scaffold_data[ 'display' ] );
 
     foreach ($scaffold_data as $key => $input):
 
       if( $key == 'blocks' ):
+      // No forgroup wrapper
         self::$return_data .= builder::start( true );
-        self::$return_data .= self::process( $input, true );
-        self::$return_data .= builder::remove();
+
+          self::$return_data .= builder::block_start( );
+            self::$return_data .= self::process( $input, true );
+          self::$return_data .= builder::block_finish( );
+
+          self::$return_data .= builder::block_start( );
+            self::$return_data .= self::process( $input, true );
+            self::$return_data .= builder::block_finish( true );
+          self::$return_data .= builder::add_row( true );
         self::$return_data .= builder::finish( true );
+
       else:
-        self::$return_data .= builder::start( );
         self::$return_data .= self::build($input, $blocks);
-        self::$return_data .= builder::finish( );
       endif;
 
     endforeach;
-
-//    if ( $blocks )
-//      self::$return_data .= builder::finish( $blocks );
   }
 
 
@@ -90,7 +91,6 @@ class  scaffold
     foreach ($data as $key => $input):
 
       if( $key == 'blocks' ) {
-
         echo '<br> Block';
         $return_data .= self::populate( $input, $blocks = true );
       } else {
@@ -175,13 +175,16 @@ class builder
     if ( $block )
       $text_block .= '<div class="col-md-12">';
     else
-      $text_block .= '<div class="form-group">';
+      $text_block .= '<div class="row"><div class="col-md-12">';
 
     $text_block .= '<label for="scaffold'.self::$bd['input_name'].'">'.self::$bd['input']['name'].'</label>
                   <input type="text" id="scaffold'.self::$bd['input_name'].'" class="form-control" name="'.self::$bd['block_array'].self::$bd['input_name'].self::$bd['block_end_array'].'" />'
                   .self::set_helper();
 
-    $text_block .= '</div>';
+    if ( $block )
+      $text_block .= '</div>';
+    else
+      $text_block .= '</div></div>';
 
     return $text_block;
   }
@@ -210,10 +213,6 @@ class builder
           '</div>';
   }
 
-  public function multiline(){
-    return $this->textarea();
-  }
-
 
   public function textarea()
   {
@@ -222,6 +221,12 @@ class builder
                 <textarea cols="120" rows="15" name="'.self::$bd['input_name'].'" class="form-control"></textarea>'
                 .self::set_helper().
             '</div>';
+  }
+
+
+  public function multiline()
+  {
+    return $this->textarea();
   }
 
 
@@ -243,32 +248,56 @@ class builder
   }
 
 
-  static function remove()
+  static function remove_buttons()
   {
     return '<div class="remove col-md-2">
                 <a class="add_block_after btn btn-xs btn-success" href="#">Add</a> <a class="remove_block btn btn-xs btn-danger " href="#">Remove</a>
-            </div>
-            <div class="clearfix"></div>';
+            </div>';
   }
 
 
-  static function start ( $block = null )
+  static function block_start( )
+  {
+    return '<div class="row">';
+  }
+
+
+  static function block_finish( $add_buttons = null )
+  {
+    $block_finish = null;
+
+    if( $add_buttons )
+      $block_finish .= self::remove_buttons();
+
+    $block_finish .= '<div class="clearfix"></div>
+      </div>';
+
+    return $block_finish;
+  }
+
+
+  static function start( $block = null )
   {
     if( $block )
-      return '<div class="repeater" data-min_block="0" data-block_limit="999"><fieldset>';
+      return '<div class="repeater" data-min_block="0" data-block_limit="999">';
     else
       return '';
   }
 
 
-  static function finish ( $block = null )
+  static function finish( $block = null )
   {
     if( $block )
-      return '</fieldset>
-      <div class="repeater-footer actions row">
-            <a href="#" id="add_block" class="add-row-end btn btn-primary">Add Row</a>
-          </div></div>';
+      return '</div>';
     else
       return  '';
+  }
+
+
+  static function add_row ( $block = null )
+  {
+    return '<div class="repeater-footer actions row">
+            <a href="#" id="add_block" class="add-row-end btn btn-primary">Add Row</a>
+          </div>';
   }
 }

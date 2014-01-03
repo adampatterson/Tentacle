@@ -1,16 +1,11 @@
 (function($){
 
   function makeSortable() {
-
-    var fixHelper = function($that) {
-      console.log($that);
-    };
-
     $('fieldset').sortable().bind('sortupdate', function() {
-      updateOrderNumbers();
-      fixHelper(this);
+//      updateOrderNumbers();
     });
   }
+
 
   function updateOrderNumbers(){
     $('#blocks fieldset').each(function(){
@@ -43,7 +38,7 @@
         };
 
         blocks.createNewField( opt );
-        updateOrderNumbers();
+//        updateOrderNumbers();
       },
 
       createNewField : function ( $opt ) {
@@ -64,7 +59,7 @@
 
         $row.animate( {'opacity':'0', 'height' : '0px'}, 100,function() {
           $row.remove();
-          updateOrderNumbers();
+//          updateOrderNumbers();
         });
       }
     }
