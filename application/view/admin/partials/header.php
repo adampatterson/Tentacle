@@ -68,11 +68,8 @@
 ?>
 
         var page_views = [ <?= $cache_page_views ?> ];
-
         var page_view_total = <?= $cache_page_views_total ?>;
-
         var unique_views = [ <?= $cache_unique_views ?> ];
-
         var unique_view_total = <?= $cache_unique_views_total ?>;
      </script>
     <? endif; ?>

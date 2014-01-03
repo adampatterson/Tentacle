@@ -4,11 +4,6 @@ class  scaffold
 
   static $return_data;
 
-  public function test () {
-    $builder = new builder();
-    $builder->test();
-  }
-
   static public function build( $input, $blocks = null, $data = null )
   {
     $builder = new builder();
@@ -36,30 +31,37 @@ class  scaffold
       'input'             => $input,
       'input_notes'       => $input_notes,
       'block_array'       => $block_array,
-      'block_end_array'   => $block_end_array
+      'block_end_array'   => $block_end_array,
+      'is_block'          => $blocks
     );
 
-    return $builder->$input['type']();
+    return $builder->$input['type']( $blocks );
   }
 
   static public function process( $scaffold_data, $blocks = null )
   {
-    if ( $blocks )
-      self::$return_data .= '<div class="scaffold-block well">';
+//    if ( $blocks )
+//      self::$return_data .= builder::start( $blocks );
 
     unset( $scaffold_data[ 'display' ] );
 
     foreach ($scaffold_data as $key => $input):
 
-      if( $key == 'blocks' )
+      if( $key == 'blocks' ):
+        self::$return_data .= builder::start( true );
         self::$return_data .= self::process( $input, true );
-      else
+        self::$return_data .= builder::remove();
+        self::$return_data .= builder::finish( true );
+      else:
+        self::$return_data .= builder::start( );
         self::$return_data .= self::build($input, $blocks);
+        self::$return_data .= builder::finish( );
+      endif;
 
     endforeach;
 
-    if ( $blocks )
-      self::$return_data .= '</div>';
+//    if ( $blocks )
+//      self::$return_data .= builder::finish( $blocks );
   }
 
 
@@ -160,28 +162,28 @@ class builder
 
   static $bd;
 
-  public function start ( $block = null )
-  {
-    if( $block == true )
-      echo '<fieldset class="form-inline">';
-    else
-      echo '<div class="row">';
-  }
-
-
   public function debug ()
   {
     var_dump( self::$bd );
   }
 
 
-  public function text( )
+  public function text( $block )
   {
-    return '<div class="form-group">
-                  <label for="scaffold'.self::$bd['input_name'].'">'.self::$bd['input']['name'].'</label>
+    $text_block = null;
+
+    if ( $block )
+      $text_block .= '<div class="col-md-12">';
+    else
+      $text_block .= '<div class="form-group">';
+
+    $text_block .= '<label for="scaffold'.self::$bd['input_name'].'">'.self::$bd['input']['name'].'</label>
                   <input type="text" id="scaffold'.self::$bd['input_name'].'" class="form-control" name="'.self::$bd['block_array'].self::$bd['input_name'].self::$bd['block_end_array'].'" />'
-                  .self::set_helper().
-              '</div>';
+                  .self::set_helper();
+
+    $text_block .= '</div>';
+
+    return $text_block;
   }
 
 
@@ -241,11 +243,32 @@ class builder
   }
 
 
-  public function end ( $block = null )
+  static function remove()
   {
-    if( $block == true )
-      echo '</fieldset>';
+    return '<div class="remove col-md-2">
+                <a class="add_block_after btn btn-xs btn-success" href="#">Add</a> <a class="remove_block btn btn-xs btn-danger " href="#">Remove</a>
+            </div>
+            <div class="clearfix"></div>';
+  }
+
+
+  static function start ( $block = null )
+  {
+    if( $block )
+      return '<div class="repeater" data-min_block="0" data-block_limit="999"><fieldset>';
     else
-      echo  '</div>';
+      return '';
+  }
+
+
+  static function finish ( $block = null )
+  {
+    if( $block )
+      return '</fieldset>
+      <div class="repeater-footer actions row">
+            <a href="#" id="add_block" class="add-row-end btn btn-primary">Add Row</a>
+          </div></div>';
+    else
+      return  '';
   }
 }
