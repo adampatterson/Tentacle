@@ -48,14 +48,15 @@ class  scaffold
       // No forgroup wrapper
         self::$return_data .= builder::start( true );
 
-          self::$return_data .= builder::block_start( );
+          self::$return_data .= builder::block_start( true );
             self::$return_data .= self::process( $input, true );
-          self::$return_data .= builder::block_finish( );
+          self::$return_data .= builder::block_finish( true );
 
           self::$return_data .= builder::block_start( );
             self::$return_data .= self::process( $input, true );
-            self::$return_data .= builder::block_finish( true );
+            self::$return_data .= builder::block_finish( );
           self::$return_data .= builder::add_row( true );
+
         self::$return_data .= builder::finish( true );
 
       else:
@@ -251,24 +252,23 @@ class builder
   static function remove_buttons()
   {
     return '<div class="remove col-md-2">
-                <a class="add_block_after btn btn-xs btn-success" href="#">Add</a> <a class="remove_block btn btn-xs btn-danger " href="#">Remove</a>
+                <!--<a class="add_block_after btn btn-xs btn-success" href="#">Add</a> --><a class="remove_block btn btn-xs btn-danger " href="#">Remove</a>
             </div>';
   }
 
 
-  static function block_start( )
+  static function block_start( $hidden_row = null )
   {
-    return '<div class="row">';
+    if( $hidden_row )
+      return '<div class="repeater_row">';
+    else
+      return '<div class="row">';
   }
 
 
-  static function block_finish( $add_buttons = null )
+  static function block_finish( )
   {
-    $block_finish = null;
-
-    if( $add_buttons )
-      $block_finish .= self::remove_buttons();
-
+    $block_finish = self::remove_buttons();
     $block_finish .= '<div class="clearfix"></div>
       </div>';
 

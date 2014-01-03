@@ -70,13 +70,13 @@
     });
 
     // add field
-    $(document).on('click', '#blocks .repeater #add_block', function(e) {
+    $(document).on('click', '#scaffold .repeater #add_block', function(e) {
       e.preventDefault();
       blocks.add(this);
     });
 
     // remove field
-    $(document).on('click', '#blocks .repeater a.remove_block', function(e) {
+    $(document).on('click', '#scaffold .repeater a.remove_block', function(e) {
       e.preventDefault();
       blocks.remove(this);
     });

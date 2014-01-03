@@ -93,7 +93,8 @@
 
         <? endif; ?>
 
-        <div id="scaffold">
+        <div id="scaffold" class="field field_type-repeater">
+
             <? if ( session::get( 'template' ) != 'index' && session::get( 'template' ) != '' ):
 
                 $template = THEMES_DIR.'/'.ACTIVE_THEME.'/'.session::get('template').'.php';
@@ -108,8 +109,7 @@
                     endif;
 
                 endif;
-            endif;
-            ?>
+            endif; ?>
 
         </div>
 

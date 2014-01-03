@@ -10,7 +10,7 @@
     </div>
     <div class="row">
 
-      <div id="blocks" class="field field_type-repeater" data-field_name="repeater_test" data-field_key="field_525472e84c655" data-field_type="repeater">
+      <div id="blocks" class="field field_type-repeater">
 
         <div class="repeater" data-min_block="0" data-block_limit="5">
 
@@ -68,12 +68,6 @@
           </div>
 
         </div>
-
-        <style>
-          .repeater .repeater_row {
-            display: none;
-          }
-        </style>
 
       </div>
 
