@@ -7,7 +7,8 @@
   }
 
 
-  function updateOrderNumbers(){
+  function updateOrderNumbers()
+  {
     $('#blocks fieldset').each(function(){
       $(this).children('.row').each(function(i){
         $(this).children('label.order').html(i+1);
@@ -20,12 +21,13 @@
 
     var blocks = {
 
-      _init : function( ){
+      _init : function( )
+      {
         makeSortable();
       },
 
-      add : function ( $that ) {
-
+      add : function ( $that )
+      {
         $repeater = $($that).closest('.repeater');
         $row_limit = parseInt($repeater.attr('data-block_limit'));
         $row_count = $repeater.children('fieldset').children('div.row').length;
@@ -41,18 +43,20 @@
 //        updateOrderNumbers();
       },
 
-      createNewField : function ( $opt ) {
-        var new_block = $opt.repeater.children('fieldset').children('div.repeater_row').clone(false);
-        new_block.attr('class', 'row');
-        $opt.repeater.children('fieldset').append(new_block);
+        createNewField : function ( $opt )
+        {
+          var new_block = $opt.repeater.children('fieldset').children('div.repeater_row').clone(false);
+          new_block.attr('class', 'row');
+          $opt.repeater.children('fieldset').append(new_block);
 
-        // update names
-        new_block.find('[name]').each(function() {
-          var name = $(this).attr('name').replace('[999]','['+$opt.row_count+']');
-          $(this).attr('name', name);
-          $(this).attr('id', name);
-        });
-      },
+          // update names
+          new_block.find('[name]').each(function() {
+            var name = $(this).attr('name').replace('[999]','['+$opt.row_count+']');
+            $(this).attr('name', name);
+            $(this).attr('id', name);
+            console.log('success?')
+          });
+        },
 
       remove : function ( $that ) {
         $row = $($that).closest('.row');
@@ -65,18 +69,21 @@
     }
 
     // Events
-    $('#blocks .repeater').each(function() {
+    $('#blocks .repeater').each(function()
+    {
       blocks._init(this);
     });
 
     // add field
-    $(document).on('click', '#scaffold .repeater #add_block', function(e) {
+    $(document).on('click', '#scaffold .repeater a#add_block', function(e)
+    {
       e.preventDefault();
       blocks.add(this);
     });
 
     // remove field
-    $(document).on('click', '#scaffold .repeater a.remove_block', function(e) {
+    $(document).on('click', '#scaffold .repeater a.remove_block', function(e)
+    {
       e.preventDefault();
       blocks.remove(this);
     });

@@ -64,125 +64,125 @@
     <div id="post-body-content">
     <h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Write a new page</h1>
 
-    <ul class="nav nav-tabs" id="content-tabs">
-        <li class="active"><a href="#content">Content</a></li>
-        <li class=""><a href="#options">Options</a></li>
-    </ul>
+      <ul class="nav nav-tabs" id="content-tabs">
+          <li class="active"><a href="#content">Content</a></li>
+          <li class=""><a href="#options">Options</a></li>
+      </ul>
 
-    <div class="tab-content tab-body">
+      <div class="tab-content tab-body">
 
-    <div id="content" class="active tab-pane">
+        <div id="content" class="active tab-pane">
 
-        <input type="text" name="title" placeholder='Title' class='xlarge content_title form-control' required='required' id="permalink" />
-        <input type="hidden" name="permalink" id="new_uri" />
+            <input type="text" name="title" placeholder='Title' class='xlarge content_title form-control' required='required' id="permalink" />
+            <input type="hidden" name="permalink" id="new_uri" />
 
-        <script type="text/javascript" charset="utf-8">
-            var page_post = "page";
-            var uri = "<?= parent_page_slug( $parent_page_id ); ?>";
-        </script>
+            <script type="text/javascript" charset="utf-8">
+                var page_post = "page";
+                var uri = "<?= parent_page_slug( $parent_page_id ); ?>";
+            </script>
 
-        <p class="permalink">Permalink: <?= BASE_URL.parent_page_slug( $parent_page_id ) ?><span id="permalink_landing"></span></p>
+            <p class="permalink">Permalink: <?= BASE_URL.parent_page_slug( $parent_page_id ) ?><span id="permalink_landing"></span></p>
 
-        <? if(user_editor() == 'wysiwyg'): ?>
-			
-			  <p><a href="#" id="myButton" >Insert Media</a></p>
+            <? if(user_editor() == 'wysiwyg'): ?>
 
-        <p class="wysiwyg">
-            <textarea cols="100" id="editor" name="content" rows="10" class="editor"></textarea>
-        </p>
+            <p><a href="#" id="myButton" >Insert Media</a></p>
 
-        <? endif; ?>
+            <p class="wysiwyg">
+                <textarea cols="100" id="editor" name="content" rows="10" class="editor"></textarea>
+            </p>
 
-        <div id="scaffold" class="field field_type-repeater">
+            <? endif; ?>
 
-            <? if ( session::get( 'template' ) != 'index' && session::get( 'template' ) != '' ):
+            <div id="scaffold" class="blocks">
 
-                $template = THEMES_DIR.'/'.ACTIVE_THEME.'/'.session::get('template').'.php';
+                <? if ( session::get( 'template' ) != 'index' && session::get( 'template' ) != '' ):
 
-                if( file_exists( $template )): $data = get::yaml( $template );
+                    $template = THEMES_DIR.'/'.ACTIVE_THEME.'/'.session::get('template').'.php';
 
-                    if ( $data != null ):
-                        $scaffold = new scaffold();
+                    if( file_exists( $template )): $data = get::yaml( $template );
 
-                        $scaffold->process( $data );
-                        $scaffold->render();
+                        if ( $data != null ):
+                            $scaffold = new scaffold();
+
+                            $scaffold->process( $data );
+                            $scaffold->render();
+                        endif;
+
                     endif;
+                endif; ?>
 
-                endif;
-            endif; ?>
+            </div>
 
         </div>
 
-    </div>
-
-    <div id="options" class="tab-pane">
-        <fieldset>
-            <div class="clearfix">
-                <label>Breadcrumb title</label>
-                <div class="input">
-                    <input type="text" placeholder="Edit title" name='bread_crumb' />
-                    <span class="help-block">This title will appear in the breadcrumb trail.</span>
+        <div id="options" class="tab-pane">
+            <fieldset>
+                <div class="clearfix">
+                    <label>Breadcrumb title</label>
+                    <div class="input">
+                        <input type="text" placeholder="Edit title" name='bread_crumb' />
+                        <span class="help-block">This title will appear in the breadcrumb trail.</span>
+                    </div>
                 </div>
-            </div>
-            <div class="clearfix">
-                <label>Meta Keywords</label>
-                <div class="input">
-                    <input type="text" placeholder="Keywords" name='meta_keywords' />
-                    <span class="help-block">Separate each keyword with a comma ( , )</span>
+                <div class="clearfix">
+                    <label>Meta Keywords</label>
+                    <div class="input">
+                        <input type="text" placeholder="Keywords" name='meta_keywords' />
+                        <span class="help-block">Separate each keyword with a comma ( , )</span>
+                    </div>
                 </div>
-            </div>
-            <div class="clearfix">
-                <label>Meta Description</label>
-                <div class="input">
-                    <textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'></textarea>
-                    <span class="help-block">A short summary of the page's content</span>
+                <div class="clearfix">
+                    <label>Meta Description</label>
+                    <div class="input">
+                        <textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'></textarea>
+                        <span class="help-block">A short summary of the page's content</span>
+                    </div>
                 </div>
-            </div>
-            <div class="clearfix">
-                <label>Tags</label>
-                <div class="input">
-                    <input type="text" class="tags" name="tags" id="tags" />
-                    <span class="help-block">Separate each keyword with a comma ( , )</span>
+                <div class="clearfix">
+                    <label>Tags</label>
+                    <div class="input">
+                        <input type="text" class="tags" name="tags" id="tags" />
+                        <span class="help-block">Separate each keyword with a comma ( , )</span>
+                    </div>
                 </div>
-            </div>
-            <? /*
-								<div class="clearfix">
-									<label>Meta Robot Tags</label>
-									<div class="input">
-										<ul class="inputs-list">
-											<li>
-												<label>
-													<input type="checkbox" name='meta_robot[]' value='no_index'>
-													Noindex: Tell search engines not to index this webpage.</label>
-											</li>
-											<li>
-												<label>
-													<input type="checkbox" name='meta_robot[]' value='no_follow'>
-													Nofollow: Tell search engines not to spider this webpage.</label>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="clearfix">
-									<label>Discussion</label>
-									<div class="input">
-										<ul class="inputs-list">
-											<li>
-												<label>
-													<input type="checkbox" name='discussion[]' value='discussion'>
-													Allow comments</label>
-											</li>
-											<li>
-												<label>
-													<input type="checkbox" name='discussion[]' value='trackback'>
-													Allow trackbacks and pingbacks on this page.</label>
-											</li>
-										</ul>
-									</div>
-								</div>
-*/ ?>
-        </fieldset>
-    </div>
+                <? /*
+                    <div class="clearfix">
+                      <label>Meta Robot Tags</label>
+                      <div class="input">
+                        <ul class="inputs-list">
+                          <li>
+                            <label>
+                              <input type="checkbox" name='meta_robot[]' value='no_index'>
+                              Noindex: Tell search engines not to index this webpage.</label>
+                          </li>
+                          <li>
+                            <label>
+                              <input type="checkbox" name='meta_robot[]' value='no_follow'>
+                              Nofollow: Tell search engines not to spider this webpage.</label>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="clearfix">
+                      <label>Discussion</label>
+                      <div class="input">
+                        <ul class="inputs-list">
+                          <li>
+                            <label>
+                              <input type="checkbox" name='discussion[]' value='discussion'>
+                              Allow comments</label>
+                          </li>
+                          <li>
+                            <label>
+                              <input type="checkbox" name='discussion[]' value='trackback'>
+                              Allow trackbacks and pingbacks on this page.</label>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+    */ ?>
+            </fieldset>
+        </div>
 
     <? /* 					<div id="revisions" class="">
 							<h4>Feb 7, 2011</h4>

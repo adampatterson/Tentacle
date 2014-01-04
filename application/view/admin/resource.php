@@ -10,7 +10,32 @@
     </div>
     <div class="row">
 
-      <div id="blocks" class="field field_type-repeater">
+
+      <div id="scaffold" class="blocks">
+
+        <div class="row"><div class="col-md-12"><label for="scaffolddescription">Description</label>
+            <input type="text" id="scaffolddescription" class="form-control" name="description"></div></div>
+
+        <div class="repeater" data-min_block="0" data-block_limit="999">
+          <div class="repeater_row">
+            <div class="col-md-12"><label for="scaffoldtitle_block">Title Block</label>
+              <input type="text" id="scaffoldtitle_block" class="form-control" name="block[999][title_block]"></div><div class="col-md-12"><label for="scaffolddetail_block">Detail Block</label>
+              <input type="text" id="scaffolddetail_block" class="form-control" name="block[999][detail_block]"></div><div class="remove col-md-2">
+              <!--<a class="add_block_after btn btn-xs btn-success" href="#">Add</a> --><a class="remove_block btn btn-xs btn-danger " href="#">Remove</a>
+            </div><div class="clearfix"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-12"><label for="scaffoldtitle_block">Title Block</label>
+              <input type="text" id="scaffoldtitle_block" class="form-control" name="block[0][title_block]"></div><div class="col-md-12"><label for="scaffolddetail_block">Detail Block</label>
+              <input type="text" id="scaffolddetail_block" class="form-control" name="block[0][detail_block]"></div><div class="remove col-md-2">
+              <!--<a class="add_block_after btn btn-xs btn-success" href="#">Add</a> --><a class="remove_block btn btn-xs btn-danger " href="#">Remove</a>
+            </div><div class="clearfix"></div>
+          </div><div class="repeater-footer actions row">
+            <a href="#" id="add_block" class="add-row-end btn btn-primary">Add Row</a>
+          </div></div>
+      </div>
+
+      <div id="scaffold" class="blocks">
 
         <div class="repeater" data-min_block="0" data-block_limit="5">
 
