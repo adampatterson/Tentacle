@@ -87,7 +87,7 @@
 
             <p><a href="#" id="myButton" >Insert Media</a></p>
 
-            <p class="wysiwyg">
+            <p class="wysiwyg hidden">
                 <textarea cols="100" id="editor" name="content" rows="10" class="editor"></textarea>
             </p>
 
@@ -117,34 +117,26 @@
 
         <div id="options" class="tab-pane">
             <fieldset>
-                <div class="clearfix">
-                    <label>Breadcrumb title</label>
-                    <div class="input">
-                        <input type="text" placeholder="Edit title" name='bread_crumb' />
-                        <span class="help-block">This title will appear in the breadcrumb trail.</span>
-                    </div>
-                </div>
-                <div class="clearfix">
-                    <label>Meta Keywords</label>
-                    <div class="input">
-                        <input type="text" placeholder="Keywords" name='meta_keywords' />
-                        <span class="help-block">Separate each keyword with a comma ( , )</span>
-                    </div>
-                </div>
-                <div class="clearfix">
-                    <label>Meta Description</label>
-                    <div class="input">
-                        <textarea name="meta_description" cols="40" rows="5" placeholder='Enter your comments here...'></textarea>
-                        <span class="help-block">A short summary of the page's content</span>
-                    </div>
-                </div>
-                <div class="clearfix">
-                    <label>Tags</label>
-                    <div class="input">
-                        <input type="text" class="tags" name="tags" id="tags" />
-                        <span class="help-block">Separate each keyword with a comma ( , )</span>
-                    </div>
-                </div>
+              <div class="form-group">
+                <label>Breadcrumb title</label>
+                <input type="text" class="form-control" placeholder="Edit title" name='bread_crumb' />
+                <span class="help-block">This title will appear in the breadcrumb trail.</span>
+              </div>
+              <div class="form-group">
+                <label>Meta Keywords</label>
+                <input type="text" class="form-control" placeholder="Keywords" name='meta_keywords' />
+                <span class="help-block">Separate each keyword with a comma ( , )</span>
+              </div>
+              <div class="form-group">
+                <label>Meta Description</label>
+                <textarea name="meta_description" class="form-control" cols="40" rows="5" placeholder='Enter your comments here...'></textarea>
+                <span class="help-block">A short summary of the page's content</span>
+              </div>
+              <div class="form-group">
+                <label>Tags</label>
+                <input type="text" class="form-control" class="tags" name="tags" id="tags" />
+                <span class="help-block">Separate each keyword with a comma ( , )</span>
+              </div>
                 <? /*
                     <div class="clearfix">
                       <label>Meta Robot Tags</label>

@@ -25,17 +25,17 @@
 						
 						<div class="form-group">
 							<label for="status">Status</label>
-                            <select id="status" name="status" class="form-control">
-                                <option value="draft" <? selected( $get_post->status, 'draft' ); ?>>Draft</option>
-                                <option value="published" <? selected( $get_post->status, 'published' ); ?>>Published</option>
-                            <!--<option value="review">Pending Review</option>-->
-                            </select>
+              <select id="status" name="status" class="form-control">
+                  <option value="draft" <? selected( $get_post->status, 'draft' ); ?>>Draft</option>
+                  <option value="published" <? selected( $get_post->status, 'published' ); ?>>Published</option>
+              <!--<option value="review">Pending Review</option>-->
+              </select>
 						</div>
 
 						<div class="form-group">
 							<label for="status">Publish on</label>
-                            <input type="hidden" value="<?= $get_post->date ?>" name="date_history">
-                            <small><?= date('F dS\, Y \@ h:i:s A', $get_post->date ); ?></small> <a href="#" id="edit_publish" class="red button-secondary">edit</a>
+              <input type="hidden" value="<?= $get_post->date ?>" name="date_history">
+              <small><?= date('F dS\, Y \@ h:i:s A', $get_post->date ); ?></small> <a href="#" id="edit_publish" class="red button-secondary">edit</a>
 						</div>
 			
 						<div class="form-group published-on">

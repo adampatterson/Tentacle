@@ -49,7 +49,8 @@ class  scaffold
         self::$return_data .= builder::start( true );
 
         // @todo Need to set the [999] arrays
-        // @todo need to add the fieldset.
+        // @todo need to add the fieldset, removing this makes the script work but the new block ends up under the button
+        // @todo sortable is not working.
           self::$return_data .= builder::block_start( true );
             self::$return_data .= self::process( $input, true );
           self::$return_data .= builder::block_finish( true );
@@ -281,7 +282,7 @@ class builder
   static function start( $block = null )
   {
     if( $block )
-      return '<div class="repeater" data-min_block="0" data-block_limit="999">';
+      return '<div class="repeater" data-min_block="0" data-block_limit="999"><fieldset>';
     else
       return '';
   }
@@ -298,7 +299,7 @@ class builder
 
   static function add_row ( $block = null )
   {
-    return '<div class="repeater-footer actions row">
+    return '</fieldset><div class="repeater-footer actions row">
             <a href="#" id="add_block" class="add-row-end btn btn-primary">Add Row</a>
           </div>';
   }
