@@ -118,13 +118,13 @@ class page_controller extends properties {
                 define ( 'IS_POST'      , FALSE );
 
                 $post       = $this->content_model()->get_by_uri( $uri );
-                $post_meta  = $this->content_model()->get_meta( $post->id );
 
                 if ( !$post ):
-                    tentacle::render ( '404' );
+                  tentacle::render ( '404' );
                 else:
-                    logger::set('Page Template', $post->template);
-                    tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
+                  $post_meta  = $this->content_model()->get_meta( $post->id );
+                  logger::set('Page Template', $post->template);
+                  tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
                 endif;
                 break;
             case 'blog_index':
