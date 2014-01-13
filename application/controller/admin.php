@@ -600,21 +600,21 @@ class admin_controller extends properties {
 	{
 		tentacle::valid_user();
 		
-		$categories = $this->category_model()->get( );
+		  $categories = $this->category_model()->get_all_categories( );
 
-        $pages = $this->content_model()
-            ->type( 'page' )
-            ->get();
+      $pages = $this->content_model()
+          ->type( 'page' )
+          ->get();
 
-        $page_array = $this->content_model()
-            ->type( 'page' )
-            ->get_page_children( 0, $pages, 0 );
+      $page_array = $this->content_model()
+          ->type( 'page' )
+          ->get_page_children( 0, $pages, 0 );
 
-        $page_object = (object)$page_array;
+      $page_object = (object)$page_array;
 
-        $get_page_by_level = $this->content_model()
-            ->type( 'page' )
-            ->get_page_by_level( $page_object, 0 );
+      $get_page_by_level = $this->content_model()
+          ->type( 'page' )
+          ->get_page_by_level( $page_object, 0 );
 
 		load::view ('admin/settings/general', array( 'categories'=>$categories, 'pages'=>$get_page_by_level ) );
 	}

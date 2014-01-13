@@ -14,16 +14,12 @@
 
 						<div class="form-group">
 							<label for='name'>Name</label>
-							<div class="controls">
-								<input type='text' name='name' id='name' required='required'>
-							</div>
+              <input type='text' class="form-control" name='name' id='name' required='required'>
 						</div>
 						
 						<div class="form-group">
 							<label for='slug'>Slug</label>
-							<div class="controls">
-								<input type='text' name='slug' id='slug' required='required'>
-							</div>
+              <input type='text' class="form-control" name='slug' id='slug' required='required'>
 						</div>
 						
 					</fieldset>
