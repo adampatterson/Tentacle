@@ -13,7 +13,7 @@ class  scaffold
     $input_name = string::underscore( string::camelize( $input['name']) );
 
     if ( $blocks ):
-      $block_array = 'block[0][';
+      $block_array = 'block[][';
       $block_end_array = ']';
     else:
       $block_array = '';

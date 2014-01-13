@@ -38,6 +38,7 @@ class content_model extends properties {
      */
     public function add ( )
     {
+
         $uri_date = date('Y', time()).'/'.date('m', time());
 
         $title          = input::post( 'title' );
