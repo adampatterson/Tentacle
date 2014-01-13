@@ -43,6 +43,7 @@ class content_model extends properties {
 
         $title          = input::post( 'title' );
         $content        = input::post( 'content' );
+        $excerpt        = input::post( 'excerpt' );
         $status         = input::post( 'status' );
         $publish        = input::post( 'publish' );
         $suggested_slug = input::post( 'permalink' );
@@ -117,8 +118,9 @@ class content_model extends properties {
             'title'		=> $title,
             'slug'		=> $slug,
             'parent'	=> $parent_page,
-            'uri'		=> $uri,
+            'uri'		  => $uri,
             'content'	=> $content,
+            'excerpt'	=> $excerpt,
             'status'	=> $status,
             'author'	=> $post_author,
             'type'		=> $this->type,
@@ -224,6 +226,7 @@ class content_model extends properties {
         // create a new version of the content.
         $title         = input::post( 'title' );
         $content       = input::post( 'content' );
+        $excerpt       = input::post( 'excerpt' );
         $status        = input::post( 'status' );
         $publish       = input::post( 'publish' );
 
@@ -334,12 +337,13 @@ class content_model extends properties {
             'title'		=>$title,
             'slug'		=>$slug,
             'content'	=>$content,
+            'excerpt'	=>$excerpt,
             'status'	=>$status,
             'author'	=>$post_author,
-            'template'	=>$post_template,
-            'uri'		=>$uri,
+            'template'=>$post_template,
+            'uri'		  =>$uri,
             'date'		=>$date,
-            'modified'	=> time()
+            'modified'=> time()
         ))
             ->where( 'id', '=', $id )
             ->execute();

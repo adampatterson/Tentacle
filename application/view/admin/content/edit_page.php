@@ -100,16 +100,20 @@
 
 							<p class="permalink">Permalink: <?= BASE_URL.parent_page_slug( $get_page->parent ); ?><span id="permalink_landing"><?= $get_page->slug ?></span></p>
 
-                            <? if(user_editor() == 'wysiwyg'):?>
-								<p><a href="#" id="myButton" >Insert Media</a></p>
+              <? if(user_editor() == 'wysiwyg'):?>
+                <p><a href="#" id="myButton" >Insert Media</a></p>
 
-					            <p class="wysiwyg">
-					                <textarea cols="100" id="editor" name="content" rows="10" class="editor"><?= the_content( $get_page->content, true ) ?></textarea>
-					            </p>
+                <p class="wysiwyg">
+                <textarea cols="100" id="editor" name="content" rows="10" class="editor"><?= the_content( $get_page->content, true ) ?></textarea>
+                </p>
 
-                            <? endif; ?>
+              <? endif; ?>
 
-							<div id="scaffold">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Excerpt" value="<?=$get_page->excerpt?>" name='excerpt' />
+              </div>
+
+              <div id="scaffold">
                                 <? if ( $get_page->template != '' && $get_page->template != 'default' ):
 
 									$template = THEMES_DIR.'/'.ACTIVE_THEME.'/'.$get_page->template.'.php';
@@ -136,7 +140,7 @@
 										</div>
 
 									<? endif;
-                                endif; ?>
+                 endif; ?>
 
 							</div>
 						</div>

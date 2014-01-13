@@ -98,23 +98,28 @@
 
 						<div id="content" class="active tab-pane">
 
-                            <input type="text" name="title" placeholder='Title' class='xlarge content_title form-control' id="permalink" />
-                            <input type="hidden" name="permalink" id="new_uri" />
+              <input type="text" name="title" placeholder='Title' class='xlarge content_title form-control' id="permalink" />
+              <input type="hidden" name="permalink" id="new_uri" />
 
-                            <script type="text/javascript" charset="utf-8">
-                                var page_post = "post";
-                                var uri = "";
-                            </script>
+              <script type="text/javascript" charset="utf-8">
+                  var page_post = "post";
+                  var uri = "";
+              </script>
 
-                            <p class="permalink">Permalink: <?= BASE_URL ?><span id="permalink_landing"></span></p>
+              <p class="permalink">Permalink: <?= BASE_URL ?><span id="permalink_landing"></span></p>
 
 							<? if(user_editor() == 'wysiwyg'): ?>
 								<p><a href="#" id="myButton" >Insert Media</a></p>
 
-					            <p class="wysiwyg">
-					                <textarea cols="100" id="editor" name="content" rows="30" class="editor"></textarea>
-					            </p>
-                            <? endif; ?>
+                <p class="wysiwyg">
+                    <textarea cols="100" id="editor" name="content" rows="30" class="editor"></textarea>
+                </p>
+
+              <? endif; ?>
+
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Excerpt" name='excerpt' />
+              </div>
 
 							<div class="clear"></div>
 						</div>

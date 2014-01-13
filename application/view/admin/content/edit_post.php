@@ -122,8 +122,12 @@
                   <p class="wysiwyg">
                       <textarea cols="100" id="editor" name="content" rows="10" class="editor"><?= the_content( $get_post->content, true ) ?></textarea>
                   </p>
-                        <? endif; ?>
+               <? endif; ?>
 
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Excerpt" value="<?=$get_post->excerpt?>" name='excerpt' />
+              </div>
+              
 							<div class="clear"></div>
 						</div>
 						

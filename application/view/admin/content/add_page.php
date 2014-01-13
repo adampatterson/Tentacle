@@ -93,6 +93,10 @@
 
             <? endif; ?>
 
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Excerpt" name='excerpt' />
+            </div>
+
             <div id="scaffold" class="blocks">
 
                 <? if ( session::get( 'template' ) != 'index' && session::get( 'template' ) != '' ):
