@@ -15,7 +15,7 @@ $(document).ready(function(){
     sparkline();
   }
 
-  if ($('body').hasClass('dashboard')) {
+  if ($('body').hasClass('admin')) {
     $('#username').keyup(usernameCheck);
 
     $('#useremail').keyup(useremailCheck);

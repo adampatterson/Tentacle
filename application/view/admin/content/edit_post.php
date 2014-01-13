@@ -107,7 +107,7 @@
 						<div id="content" class="active tab-pane">
 
               <input type="text" name="title" placeholder='Title' value='<?= $get_post->title ?>' class='xlarge content_title form-control' required='required' id="permalink" />
-              <input type="hidden" name="permalink" id="new_uri" />
+              <input type="hidden" name="permalink" value="<?= $get_post->slug ?>" id="new_uri" />
 
               <script type="text/javascript" charset="utf-8">
                   var page_post = "post";
