@@ -542,7 +542,7 @@ class statistics_model extends properties
             $parser = new UAParser;
             $result = $parser->parse($ua);
 
-            $geo_meta                       = maybe_encoded( get::url_contents('http://geo.tentaclecms.com/'.$_SERVER['REMOTE_ADDR']) );
+//            $geo_meta                       = maybe_encoded( get::url_contents('http://geo.tentaclecms.com/'.$_SERVER['REMOTE_ADDR']) );
 
             $statistics                     = load::model('statistics');
             #$post_id 		                = $page->get_by_uri( URI );
@@ -553,13 +553,13 @@ class statistics_model extends properties
 
             // statistics_meta
             // Loop $meta and add the page_view ID
-            if (isset($geo_meta->countryName)) {
-                $meta['country'] 	        = $geo_meta->countryName;
-                $meta['region'] 	        = $geo_meta->regionName;
-                $meta['city'] 		        = $geo_meta->cityName;
-                $meta['latitude'] 		    = $geo_meta->latitude;
-                $meta['longitude'] 		    = $geo_meta->longitude;
-            }
+//            if (isset($geo_meta->countryName)) {
+//                $meta['country'] 	        = $geo_meta->countryName;
+//                $meta['region'] 	        = $geo_meta->regionName;
+//                $meta['city'] 		        = $geo_meta->cityName;
+//                $meta['latitude'] 		    = $geo_meta->latitude;
+//                $meta['longitude'] 		    = $geo_meta->longitude;
+//            }
 
             $meta['browser']                = $result->ua->family;
             $meta['browser_full']           = $result->ua->toString;
