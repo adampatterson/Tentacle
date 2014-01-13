@@ -65,7 +65,7 @@ storage/upgrade/*
 !/themes/tentacle/
 
 /plugins/*
-!/plugins/social/
+!/plugins/social-share/
 !/plugins/source/
 !/plugins/core/
 !/plugins/discqus/
