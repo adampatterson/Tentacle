@@ -1,3 +1,0 @@
-[submodule "plugins/social-share"]
-	path = plugins/social-share
-	url = git@github.com:tentaclecms/social.git
