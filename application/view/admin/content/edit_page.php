@@ -124,8 +124,8 @@
 										if ( $data != null ):
 											$scaffold = new scaffold();
 
-											$scaffold->populate_this( $data, $get_page_meta );
-                                        endif;
+											$scaffold->populate( $data, $get_page_meta );
+                    endif;
 
 									else: ?>
 

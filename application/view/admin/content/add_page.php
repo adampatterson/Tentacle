@@ -53,7 +53,7 @@
                 </div>
 
                 <input type="hidden" value="admin/content_add_page" name="history">
-                <button type="submit" class="btn btn-large btn-primary" name='save'>Save</button><!--<a href="#review">Save for Review</a>-->
+                <button type="submit" class="btn btn-large btn-primary">Save</button><!--<a href="#review">Save for Review</a>-->
 
             </fieldset>
 
