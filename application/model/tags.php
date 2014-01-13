@@ -219,6 +219,7 @@ class tags_model extends properties
                                     INNER JOIN term_taxonomy
                                     ON terms.id = term_taxonomy.term_id
                                     WHERE
-                                      term_taxonomy.taxonomy = 'tag'" );
+                                      term_taxonomy.taxonomy = 'tag'
+                                    ORDER BY terms.name ASC" );
 	}
 }
