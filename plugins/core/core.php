@@ -86,13 +86,13 @@ class analytics{
             echo get::option('seo_tracking_footer', '')."\n";
     }
 
+  
     static function page_view()
     {
         load::model('statistics')->build_stats();
     }
 
 }
-
 
 /*
 Shortcode
@@ -124,4 +124,53 @@ function oembed_content( $url )
     load::library('oembed');
 
     return oembed_cotnent( $url[0] );
+}
+
+
+event::on('add_page', 'generate_sitemap', 1);
+event::on('update_page', 'generate_sitemap', 1);
+event::on('trash_page', 'generate_sitemap', 1);
+event::on('add_post', 'generate_sitemap', 1);
+event::on('update_post', 'generate_sitemap', 1);
+event::on('trash_post', 'generate_sitemap', 1);
+
+function generate_sitemap()
+{
+    $uri = $_SERVER['REQUEST_URI'];
+
+    if (!stristr($uri, 'admin'))
+    {
+        $page = load::model('content');
+
+        $pages = $page->get();
+
+        $url = BASE_URL;
+
+        $sitemap = '<?xml version="1.0" encoding="UTF-8" ?>';
+        $sitemap .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
+
+//        foreach ($pages as $page)
+//        {
+//            $sitemap .= '<url>';
+//
+//            if ($page->rewrite == $homepage)
+//            {
+//                $sitemap .= "<loc>$url</loc>";
+//                $sitemap .= "<changefreq>daily</changefreq>";
+//                $sitemap .= "<priority>1</priority>";
+//            } else{
+//                $sitemap .= "<loc>$url{$page->rewrite}</loc>";
+//                $sitemap .= "<changefreq>daily</changefreq>";
+//                $sitemap .= "<priority>0.8</priority>";
+//            }
+//
+//            $sitemap .= '</url>';
+//        }
+
+        $sitemap .= '</urlset>';
+
+        $fp = fopen(BASE_URL.'sitemap.xml', 'w');
+        fwrite($fp, $sitemap);
+        fclose($fp);
+    }
 }

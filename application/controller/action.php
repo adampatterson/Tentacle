@@ -271,6 +271,7 @@ class action_controller extends properties {
 		$tag_relations = $tag->relations( $post_single, $post_tags );
 		*/
 
+        event::trigger('add_page');
 		url::redirect( 'admin/content_update_page/'.$page_single );
 	}
 	
@@ -294,6 +295,7 @@ class action_controller extends properties {
 		
 		session::delete ( 'template' );
 
+        event::trigger('update_page');
 		url::redirect( input::post( 'history' ) );
 	}
 
@@ -320,7 +322,8 @@ class action_controller extends properties {
 			->execute();
 			
 		note::set( 'success','page_soft_delete','Moved to the trash.' );
-		
+
+        event::trigger('trash_page');
 		url::redirect( 'admin/content_manage_pages' );
 	}
 	
@@ -359,7 +362,8 @@ class action_controller extends properties {
 
 			$tag_relations = $this->tag_model()->relations( $post_single, $tag_single );
 		}
-		
+
+        event::trigger('add_post');
 		url::redirect( 'admin/content_update_post/'.$post_single );
 	}	
 	
@@ -391,6 +395,7 @@ class action_controller extends properties {
 			$tag_relations  = $this->tag_model()->relations( $post_id, $tag_single );
 		}
 
+        event::trigger('update_post');
 		url::redirect( input::post( 'history' ) );
 	}
 	
@@ -412,7 +417,8 @@ class action_controller extends properties {
         $this->content_model()->trash( $id );
 
 		note::set('success','post_soft_delete','Moved to the trash.');
-		
+
+        event::trigger('trash_post');
 		url::redirect( 'admin/content_manage_posts' );
 	}
 	

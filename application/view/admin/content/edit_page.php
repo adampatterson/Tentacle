@@ -114,33 +114,31 @@
               </div>
 
               <div id="scaffold">
-                                <? if ( $get_page->template != '' && $get_page->template != 'default' ):
+                <? if ( $get_page->template != '' && $get_page->template != 'default' ):
 
-									$template = THEMES_DIR.'/'.ACTIVE_THEME.'/'.$get_page->template.'.php';
+                  $template = THEMES_DIR.'/'.ACTIVE_THEME.'/'.$get_page->template.'.php';
 
-									// Load the saved template, then if the user changes override the saved template.
-									if( file_exists( $template )):
+                  // Load the saved template, then if the user changes override the saved template.
+                  if( file_exists( $template )):
 
-                                        $data = get::yaml( $template );
+                    $data = get::yaml( $template );
 
-                                        #var_dump($data);
+                    if ( $data != null ):
+                      $scaffold = new scaffold();
 
-										if ( $data != null ):
-											$scaffold = new scaffold();
-
-											$scaffold->populate( $data, $get_page_meta );
+                      $scaffold->populate( $data, $get_page_meta );
                     endif;
 
-									else: ?>
+                  else: ?>
 
-										<br/><br/>
-										<div class="alert-message warning">
-											<p><strong>A template file appears to be a missing from your theme:</strong> <br />
-											<?= '/themes/'.ACTIVE_THEME.'/'.$get_page->template.'.php'?></p>
-										</div>
+                  <br/><br/>
+                  <div class="alert-message warning">
+                    <p><strong>A template file appears to be a missing from your theme:</strong> <br />
+                    <?= '/themes/'.ACTIVE_THEME.'/'.$get_page->template.'.php'?></p>
+                  </div>
 
-									<? endif;
-                 endif; ?>
+                <? endif;
+                endif; ?>
 
 							</div>
 						</div>

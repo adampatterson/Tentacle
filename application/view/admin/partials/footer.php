@@ -36,11 +36,6 @@
 </script><noscript><a href="https://www.olark.com/site/6479-579-10-4369/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
 <!-- end olark code -->
 
-<!--
-<?
-	echo shell_exec('git status');
-?>
--->
-
+<? //	echo shell_exec('git status'); ?>
 </body>
 </html>
