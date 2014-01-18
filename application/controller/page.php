@@ -250,6 +250,10 @@ class page_controller extends properties {
             logger::set('Execution Time', $speed);
         endif;
 
+        function add_class() {
+            return 'this';
+        }
+
         // Site stats are triggered in the admin bar if you are not logged in.
         tentacle::admin_bar();
     }

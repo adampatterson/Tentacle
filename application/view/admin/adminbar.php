@@ -1,5 +1,11 @@
 <? is_debugable(); ?>
+<? /*
+<link rel="stylesheet" href="<?=ADMIN_CSS; ?>/admin-bar.css"/>
 
+<div class="show-admin-bar">
+    <p>{ admin bar }</p>
+</div>
+*/ ?>
 <? /*
 <div class="navbar-fixed-bottom">
     <div class="navbar-inner">

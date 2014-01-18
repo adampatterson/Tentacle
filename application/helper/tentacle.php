@@ -122,6 +122,9 @@ class tentacle
 	}
 
     static function admin_bar(){
+
+        // Cue admin body_css() class from here.
+
         if(user::valid()) {
             event::trigger('page_view');
             load::view('admin/adminbar');

@@ -3,7 +3,7 @@
 * File: Template
 */
 
-
+/*
 // Include tempalte files
     function get_header () {echo 'get the header';}
     function get_sidebar () {echo 'get the sidebar';}
@@ -62,23 +62,33 @@
     function permalink_single_rss () {}
     function post_permalink () {}
     function the_permalink  () {}
+*/
     
 // Post
 
 // Render classes in the template
 //----------------------------------------------------------------------------------------------
-	
 	/**
 	 * Converts the URI into a list of classes
 	 *
 	 * @return string
 	 * @author Adam Patterson
 	 */
-	function body_class () {
-		// Separates classes with a single space, collates classes for body element
-		echo 'class="'.route::controller().' '. route::method().' '.join( ' ', explode("/", URI ) ).'"';
-		
-		//echo 'class="' . join( ' ', get_body_class( $class ) ) . '"';
+	function body_class()
+    {
+        $admin = '';
+        $classes = '';
+
+        if (user::valid())
+            $admin = 'logged-in admin-bar';
+
+        $classes = event::filter('body_class');
+
+        // Separates classes with a single space, collates classes for body element
+        $css = route::controller().' '. route::method().' '.join( ' ', explode("/", URI ) ).' '.$admin.' '.$classes;
+
+        //echo $css;
+		echo 'class="'.$css.'"';
 	}
 
 
@@ -282,7 +292,7 @@
 		return apply_filters( 'body_class', $classes, $class );
 		*/
 	}
-
+/*
     function next_image_link () {}
     function next_post_link () {}
     function next_posts_link () {}
@@ -368,3 +378,4 @@
     function add_header () {}
     function add_sidebar () {}
     function add_footer () {}
+*/
