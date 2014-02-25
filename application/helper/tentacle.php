@@ -62,7 +62,8 @@ class tentacle
         // If theme does not exist display error
         if(!file_exists(THEMES_DIR.ACTIVE_THEME."/$theme.php"))
         {
-			require(THEMES_DIR.ACTIVE_THEME."/404.php");
+            http_response_code(404);
+            require(THEMES_DIR.ACTIVE_THEME."/404.php");
 			           
 			echo '<!--';
 			dingo_error(E_USER_WARNING,'The requested theme ('.THEMES_DIR.ACTIVE_THEME."/$theme.php) could not be found.");
@@ -73,7 +74,7 @@ class tentacle
          elseif ( $theme == '404' ){
 
             define('ERROR_404', TRUE);
-
+            http_response_code(404);
             require(THEMES_DIR.ACTIVE_THEME."/$theme.php");
          }
         else
@@ -85,6 +86,7 @@ class tentacle
             }
 
             define('ERROR_404', FALSE);
+            http_response_code(404);
 
             require(THEMES_DIR.ACTIVE_THEME."/$theme.php");
             return FALSE;

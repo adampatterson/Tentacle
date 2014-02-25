@@ -340,8 +340,8 @@ class content_model extends properties {
             'excerpt'	=>$excerpt,
             'status'	=>$status,
             'author'	=>$post_author,
-            'template'=>$post_template,
-            'uri'		  =>$uri,
+            'template'  =>$post_template,
+            'uri'		=>$uri,
             'date'		=>$date,
             'modified'=> time()
         ))
@@ -350,7 +350,6 @@ class content_model extends properties {
 
         if ( $this->add_scaffold( $id ) ):
             note::set('success','post_add', $this->type.' Added!');
-
             return $id;
         else:
             return false;
