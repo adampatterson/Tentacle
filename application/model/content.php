@@ -345,6 +345,10 @@ class content_model extends properties {
 
         if ( $this->add_scaffold( $id ) ):
             note::set('success','post_add', $this->type.' Added!');
+<<<<<<< HEAD
+=======
+
+>>>>>>> Closes #197 #206 #198 Some naming issues broke the relations of taxonomies.
             return $id;
         else:
             return false;

@@ -408,10 +408,10 @@ class action_controller extends properties {
 	* ----------------------------------------------------------------------------------------------*/	
 	public function trash_post ( $id )
  	{
-    $this->content_model()->trash( $id );
+        $this->content_model()->trash( $id );
 		note::set('success','post_soft_delete','Moved to the trash.');
 
-    event::trigger('trash_post');
+        event::trigger('trash_post');
 		url::redirect( 'admin/content_manage_posts' );
 	}
 	
@@ -465,7 +465,7 @@ class action_controller extends properties {
 							<strong>Password</strong>: '.$password.'</p>
 							<p><strong>Click the link to activate your account.</strong><br /> '.BASE_URL.'action/activate/'.$hashed_ip.'</p>
 							<strong>From:</strong> <a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
-      endif;
+            endif;
 
 			$user_email = $this->email_model()->send( 'Welcome to Tentacle CMS', $message, $email );
 		endif;
@@ -706,7 +706,7 @@ class action_controller extends properties {
 				$add_image = $this->media_model()->add( $file_meta['name'] );
 				
 				load::helper('image');
-        chmod(IMAGE_DIR.$file_meta['name'], 0664);
+                chmod(IMAGE_DIR.$file_meta['name'], 0664);
 				process_image($file_meta['name'], TRUE);
 
 				echo json_encode('true');
@@ -920,11 +920,11 @@ win.send_to_editor('<?=$html?>');
 		$last_name    = input::post( 'last_name' );
 		$display_name = input::post( 'display_name' );
 
-    set::option('admin_email', $email);
+        set::option('admin_email', $email);
 
-    $hash_password = new PasswordHash(8, FALSE);
-    $encrypted_password = $hash_password->HashPassword($password );
-
+        $hash_password = new PasswordHash(8, FALSE);
+        $encrypted_password = $hash_password->HashPassword($password );
+		
 		$registered = time();
 		$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].$registered);
 		$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
