@@ -117,9 +117,7 @@ class category_model extends properties {
 	//----------------------------------------------------------------------------------------------
 	public function delete_relations( $post_id='' )
 	{
-		$term_relations = db::query("DELETE FROM term_relationships WHERE page_id=".$post_id );
-
-        return null;
+    return db::query("DELETE FROM term_relationships WHERE page_id=".$post_id );
 	}
 
 
@@ -134,8 +132,8 @@ class category_model extends properties {
 	// Set the Category relations for a blog post.
 	//----------------------------------------------------------------------------------------------	
 	public function relations( $post_id = '', $term_id = '' )
-	{	
-        $this->term_relationship_table()->insert( array(
+	{
+        return $this->term_relationship_table()->insert( array(
             'page_id'		=> $post_id,
             'term_id'		=> $term_id,
         ), FALSE );

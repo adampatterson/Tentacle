@@ -343,10 +343,10 @@ class content_model extends properties {
             ->where( 'id', '=', $id )
             ->execute();
 
-        if ( $this->add_scaffold( $row->id ) ):
+        if ( $this->add_scaffold( $id ) ):
             note::set('success','post_add', $this->type.' Added!');
 
-            return $row->id;
+            return $id;
         else:
             return false;
         endif;

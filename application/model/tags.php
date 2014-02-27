@@ -1,4 +1,6 @@
 <?
+load::helper( 'data_properties' );
+
 class tags_model extends properties
 {
     // Add tag
@@ -113,8 +115,8 @@ class tags_model extends properties
     //----------------------------------------------------------------------------------------------
     public function get_list ( $list = array() )
     {
-        foreach( $list as $item )
-				$get_tag[] = $this->term_table()->get( $item )->name;
+      foreach( $list as $item )
+      $get_tag[] = $this->term_table()->get( $item )->name;
 
 		  return $get_tag[0];
     }
@@ -124,9 +126,7 @@ class tags_model extends properties
 	//----------------------------------------------------------------------------------------------
 	public function delete_relations ( $post_id='' )
 	{
-		$term_relations = db::query("DELETE FROM term_relationships WHERE page_id=".$post_id );
-
-        return null;
+		return db::query("DELETE FROM term_relationships WHERE page_id=".$post_id );
 	}
 
 
@@ -141,8 +141,8 @@ class tags_model extends properties
 	// Set the tag relations for a blog post.
 	//----------------------------------------------------------------------------------------------	
 	public function relations ( $post_id = '', $term_id = '')
-	{	
-		$this->term_relationship_table()
+	{
+		return $this->term_relationship_table()
             ->insert(array(
                 'page_id'		=> $post_id,
                 'term_id'		=> $term_id,

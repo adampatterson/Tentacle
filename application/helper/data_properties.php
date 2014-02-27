@@ -49,7 +49,7 @@ class properties
 
     public function term_relationship_table ( )
     {
-        return $this->term_relationship_table = db ( 'term_relationship_table' );
+        return $this->term_relationship_table = db ( 'term_relationships' );
     }
 
     public function media_table ( )
