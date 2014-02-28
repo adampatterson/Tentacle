@@ -6,7 +6,7 @@
 *     v0.8.5
 *
 * License:
-*     Modified CPL (See COPYING)
+*     Modified GPL (See COPYING)
 *
 * Tentacle CMS Copyright:
 *     Copyright (c) 2012 Tentacle CMS - Adam Patterson

@@ -358,6 +358,9 @@ class tentacle
 	*/
 	function status_tag($value) {
 		switch ($value) {
+            case 'idea':
+                return '<span class="label label-info">'.$value.'</span>';
+                break;
 			case 'draft':
 				return '<span class="label label-info">'.$value.'</span>';
 				break;
