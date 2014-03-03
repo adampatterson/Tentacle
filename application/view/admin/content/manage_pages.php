@@ -4,7 +4,7 @@
 	<div class="title">
 		<h1 class="align-left"><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Manage pages</h1>
 		<a href="<?=ADMIN;?>content_add_page/" class="btn btn-primary">Add new page</a>
-		<div class="title-search alignright">
+		<div class="title-search alignright hidden">
 			<script type="text/javascript">     
 				function startSearch(event) {       
 					document.getElementById("searchform").submit();     
@@ -17,20 +17,15 @@
 		<div class="filter-links">
 			<a href="<?= BASE_URL ?>admin/content_manage_pages/">All</a> | <a href="<?= BASE_URL ?>admin/content_manage_pages/published/">Published</a> | <a href="<?= BASE_URL ?>admin/content_manage_pages/draft/">Drafts</a> | <a href="<?= BASE_URL ?>admin/content_manage_pages/trash">Trash</a>
 		</div>
-		<!--
-		<div class="pagination align-right textright">
-			<em><strong>Displaying 21–40 of 197</strong></em><a href="#">«</a><a href="#">1</a><a href="#" class="current">2</a><a href="#">3</a><a href="#">»</a>
-		</div>-->
 	</div>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="manage_content">
 		<thead>
 			<tr>
 				<th>Title</th>
-				<th>&nbsp;</th>
-				<th>Author</th>
-				<th>ID</th>
-				<th>Status</th>
-				<th width="200">Actions</th>
+                <th width="150">Date</th>
+                <th width="250">Author</th>
+				<th width="75">ID</th>
+				<th width="200"></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -43,15 +38,13 @@
 			<tr>
 				<td>
 					<div class="<? if ( isset( $page->level ) ) echo offset($page->level); ?>">
-					<img src="<?=ADMIN_URL;?>images/icons/24_paper.png" width="24" height="24" alt="Page" /><strong class="title"><a href="<?= ADMIN ?>content_update_page/<?= $page->id;?>"><?= $page->title ?></a></strong>
+					<strong class="title"><a href="<?= ADMIN ?>content_update_page/<?= $page->id;?>"><?= $page->title ?></a></strong> <?= status_tag( $page->status ) ?>
 					</div> 
 				</td>
-				<td ><!--img src="<?=ADMIN_URL; ?>images/icons/16_note-dis.png" width="16" height="16" alt="Notes" /--></td>
+                <td ><?= date::show($page->date, 'Y/m/d g:i a');?></td>
 				<td ><?= $user_meta->first_name?> <?= $user_meta->last_name?></td>
 				<td ><?= $page->id?></td>
-				<td><?= status_tag( $page->status ) ?></td>
 				<td><a href="<?= ADMIN ?>content_add_page/<?= $page->id;?>" class="btn btn-small">Add</a> <a href="<?= ADMIN ?>content_update_page/<?= $page->id;?>" class="btn btn-small">Edit</a> <!-- <a href="#" class="btn small">Duplicate</a> --> <a href="<?= BASE_URL ?>action/trash_page/<?= $page -> id;?>" class="btn btn-small btn-danger">Trash</a></td>
-				<!--<td><a href=""><img src="<?=ADMIN_URL;?>images/icons/16_edit.png" width="16" height="16" alt="Edit" /></a> <img src="<?=ADMIN_URL;?>images/icons/16_delete.png" width="16" height="16" alt="Delete" /> <a href="<?= ADMIN ?>content_add_page/<?= $page->id;?>" title="Add sub-page"><img src="<?=ADMIN_URL;?>images/icons/16_add.png" width="15" height="16" alt="Add" /></a></td>-->
 			</tr>
 			<? endforeach;?>
 			<!--

@@ -425,6 +425,7 @@ class content_model extends properties {
             $get_posts = $this->post_table()
                 ->select( '*' )
                 ->where ( 'id', '=', $id )
+                ->order_by ( 'date', 'DESC' )
                 ->execute();
 
             if( isset($get_posts[0]))
