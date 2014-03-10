@@ -181,7 +181,7 @@ class get {
 
             $scaffold_data = str_replace($replace, "", $scaffold);
 
-            $data = YAML::load( $scaffold_data );
+            $data = Spyc::YAMLLoad( $scaffold_data );
 
             return $data;
         } else {

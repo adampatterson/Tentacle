@@ -10,14 +10,8 @@ License URI: license.txt
 */
 /**
 display: admin
-description:
-  name: Description
-  type: text
+description: { name: Description, type: text }
 blocks:
- title:
-  name: Title Block
-  type: text
- details:
-   name: Detail Block
-   type: text
+  title: { name: Title Block, type: text }
+  details: { name: Detail Block, type: text }
 */

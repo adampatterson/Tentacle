@@ -154,13 +154,13 @@ class bootstrap
         // Check to see if we are installed so we dont explode.
         if (class_exists('get') && get::option('is_blog_installed')) {
 
-			define('ACTIVE_PLUGINS', get::option('active_plugins'));
+			    define('ACTIVE_PLUGINS', get::option('active_plugins'));
 
-			load::library('YAML');
-            load::library('event');
-            load::library('plugin');
+			    load::library('Spyc');
+          load::library('event');
+          load::library('plugin');
 
-            init_extensions();
+          init_extensions();
         }
 
         // Check to see if function exists

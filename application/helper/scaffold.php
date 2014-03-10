@@ -3,6 +3,7 @@ class  scaffold
 {
 
   static $return_data;
+  static $index_id;
 
   static public function build( $input, $blocks = null, $data = null )
   {
@@ -77,18 +78,6 @@ class  scaffold
 
   static public function populate( $data, $get_page_meta )
   {
-    if ( $page_id = '' )
-      return false;
-
-    $return_data = "";
-
-//        if ( $data[ 'display' ] == 'admin' ):
-
-    $return_data = "";
-
-    //        if ( $blocks )
-    //            $return_data .= '<div class="scaffold-block well">';
-
     // Remove the display key because it is not used for rendering the forms.
     unset($data[ 'display' ]);
 
@@ -96,21 +85,13 @@ class  scaffold
 
       if( $key == 'blocks' ) {
         echo '<br> Block';
-        $return_data .= self::populate( $input, $blocks = true );
+          self::$return_data .= self::populate( $input, $blocks = true );
       } else {
         echo '<br> No Block';
-        //$return_data .= self::build($input, $blocks, $data);
+          self::$return_data .= self::build($input, $blocks, $data);
       }
 
     endforeach;
-
-    //        if ( $blocks )
-    //            $return_data .= '</div>';
-
-    echo $return_data;
-
-//        endif;
-
     /*
        foreach ($data as $key => $input):
 
