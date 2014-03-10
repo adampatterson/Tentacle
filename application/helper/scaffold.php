@@ -8,7 +8,6 @@ class  scaffold
   static public function build( $input, $blocks = null, $data = null )
   {
     $builder = new builder();
-
     $build_data = "";
 
     $input_name = string::underscore( string::camelize( $input['name']) );
@@ -31,9 +30,11 @@ class  scaffold
       'input'             => $input,
       'input_notes'       => $input_notes,
       'block_array'       => $block_array,
+      'block_id'          =>  self::$index_id,
       'block_end_array'   => $block_end_array,
-      'is_block'          => $blocks
+      'is_block'          => $blocks,
     );
+    self::$index_id = self::$index_id + 1;
 
     return $builder->$input['type']( $blocks );
   }
@@ -42,11 +43,10 @@ class  scaffold
   static public function process( $scaffold_data, $blocks = null )
   {
     unset( $scaffold_data[ 'display' ] );
-
     foreach ($scaffold_data as $key => $input):
 
       if( $key == 'blocks' ):
-      // No forgroup wrapper
+        // No forgroup wrapper
         self::$return_data .= builder::start( true );
 
         // @todo Need to set the [999] arrays
