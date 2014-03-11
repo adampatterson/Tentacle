@@ -142,12 +142,70 @@ class  scaffold
 }
 
 
+class blocks
+{
+  static $return_data;
+
+  public static function process($blocks)
+  {
+    unset($blocks['display']);
+    foreach( $blocks as $key => $block ):
+      #$clean_block = self::clean($key, $block);
+      if(is_array($block)):
+        self::build_repeater($key, $block);
+      else:
+        self::build($key, $block);
+      endif;
+    endforeach;
+  }
+
+  /*
+  * Takes a data block and manipulates the value of an array
+  * to create the necessary elements for processing.
+   */
+  static function clean($key, $data)
+  {
+    return array($key => explode(':', $data));
+  }
+
+
+  /*
+   * Builds the necessary wrapper code for a repeater block.
+   */
+  public static function build_repeater($repeater_key, $repeater)
+  {
+    foreach( $repeater as $key => $block ):
+//      var_dump($key);
+//      var_dump($repeater);
+      var_dump(self::clean($key, $block));
+    endforeach;
+  }
+
+
+  /*
+   * Builds a single input for the form builder.
+   */
+  public static function build($key, $block)
+  {
+//    var_dump($key);
+//    var_dump($block);
+    var_dump(self::clean($key, $block));
+  }
+
+
+  public static function render()
+  {
+    echo self::$return_data;
+  }
+}
+
+
 class builder
 {
 
   static $bd;
 
-  public function debug ()
+  static function debug ()
   {
     var_dump( self::$bd );
   }
