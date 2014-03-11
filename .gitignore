@@ -72,3 +72,5 @@ storage/upgrade/*
 !/plugins/discqus/
 !/plugins/bones/
 
+
+config.codekit

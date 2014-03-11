@@ -28,6 +28,8 @@ class dev_controller {
 		var_dump(is::android());
 	}
 
+
+
     public function routs () {
         //route::dump_routs();
     }
@@ -69,11 +71,17 @@ class dev_controller {
     }
 
     public function scaffolding () {
-        echo '<h2>Scaffolding Test</h2>';
+      echo '<h2>Scaffolding Test</h2>';
 
-        $data = get::yaml( THEMES_DIR.'/'.ACTIVE_THEME.'/template-job-application.php' );
+      $data = get::yaml( THEMES_DIR.'/'.ACTIVE_THEME.'/template-job-application.php' );
+      echo '<h3>Raw Data</h3>';
+      var_dump( $data );
+      echo '<h3>Scaffold</h3>';
 
-        var_dump( $data );
+      $blocks = new blocks();
+
+      $blocks->process( $data );
+      $blocks->render();
     }
 
     public function url(){
