@@ -71,17 +71,14 @@ class dev_controller {
     }
 
     public function scaffolding () {
-      echo '<h2>Scaffolding Test</h2>';
+      echo '<div id="scaffold">';
+            $data = get::yaml( THEMES_DIR.'/'.ACTIVE_THEME.'/template-job-application.php' );
+            load::helper('blocks');
+            $blocks = new blocks();
 
-      $data = get::yaml( THEMES_DIR.'/'.ACTIVE_THEME.'/template-job-application.php' );
-      echo '<h3>Raw Data</h3>';
-      var_dump( $data );
-      echo '<h3>Scaffold</h3>';
-
-      $blocks = new blocks();
-
-      $blocks->process( $data );
-      $blocks->render();
+            $blocks->process( $data );
+            $blocks->render();
+          echo '</div>';
     }
 
     public function url(){

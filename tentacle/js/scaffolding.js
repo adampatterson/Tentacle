@@ -1,6 +1,7 @@
 (function($){
 
-  function makeSortable() {
+  function makeSortable()
+  {
     $('fieldset').sortable().bind('sortupdate', function() {
 //      updateOrderNumbers();
     });
@@ -17,7 +18,8 @@
   };
 
 
-  $(document).ready(function(){
+  $(document).ready(function()
+  {
 
     var blocks = {
 
@@ -28,7 +30,7 @@
 
       add : function ( $that )
       {
-        $repeater = $($that).closest('.repeater');
+        $repeater = $($that).closest('.repeaters');
         $row_limit = parseInt($repeater.attr('data-block_limit'));
         $row_count = $repeater.children('fieldset').children('div.row').length;
 
@@ -75,14 +77,14 @@
     });
 
     // add field
-    $(document).on('click', '#scaffold .repeater a#add_block', function(e)
+    $(document).on('click', '#scaffold .repeaters a#add_block', function(e)
     {
       e.preventDefault();
       blocks.add(this);
     });
 
     // remove field
-    $(document).on('click', '#scaffold .repeater a.remove_block', function(e)
+    $(document).on('click', '#scaffold .repeaters a.remove_block', function(e)
     {
       e.preventDefault();
       blocks.remove(this);

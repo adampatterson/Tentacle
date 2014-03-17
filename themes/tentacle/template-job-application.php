@@ -14,7 +14,7 @@ description: text:Description:Enter a short description.
 blocks:
   title: text:Title Block
   details: text:Detail Block
-repeater:
-  title: text:Repeater title block
-  details: text:Repeater detail block
 */
+//repeater:
+//  title: text:Repeater title block
+//  details: text:Repeater detail block

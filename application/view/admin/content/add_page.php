@@ -106,10 +106,11 @@
                     if( file_exists( $template )): $data = get::yaml( $template );
 
                         if ( $data != null ):
-                            $scaffold = new scaffold();
+                          load::helper('blocks');
+                          $blocks = new blocks();
 
-                            $scaffold->process( $data );
-                            $scaffold->render();
+                          $blocks->process( $data );
+                          $blocks->render();
                         endif;
 
                     endif;
