@@ -31,6 +31,7 @@ class blocks
     self::$return_data .= '</div>';
   }
 
+
   public static function build_row($repeater_key, $repeater, $id = null, $is_repeater = null )
   {
     $construct = new construct();
@@ -42,7 +43,6 @@ class blocks
 
     foreach( $repeater as $key => $block ):
       $data = self::clean($key, $block, $repeater_key, $is_repeater, $id);
-      construct::$bd = $data;
       self::$return_data .= $construct->$data['data'][0]( );
     endforeach;
 
@@ -58,8 +58,7 @@ class blocks
   {
     $construct = new construct();
     $data = self::clean($key, $block);
-    construct::$bd = $data;
-    self::$return_data .= $construct->$data['data'][0]( $data );  // Needs .row and .col
+    self::$return_data .= $construct->$data['data'][0]( );  // Needs .row and .col
   }
 
 
@@ -72,7 +71,21 @@ class blocks
     if( $is_repeater )
       $id = 999;
 
-    return array('key' => $key, 'repeater_key' => $repeater_key, 'id' => $id, 'data' => explode(':', $data));
+    $data = explode(':', $data);
+    $options_array = null;
+
+    if( strpos($data[0], 'options') !== false ):
+      $options = str_replace("options(", "", $data[0]);
+      $options = str_replace(")", "", $options);
+      $options_array = explode(',', $options);
+      $data[0] = 'option';
+    endif;
+
+    $clean_data = array('key' => $key, 'repeater_key' => $repeater_key, 'id' => $id, 'data' => $data, 'options' => $options_array);
+
+    construct::$bd = $clean_data;
+
+    return $clean_data;
   }
 
 
@@ -87,7 +100,7 @@ class construct
 {
   static $bd;
 
-  public function text( )
+  static function m()
   {
     if ( is_null( self::$bd['repeater_key'] ) )
       $id = self::$bd['key'];
@@ -99,43 +112,48 @@ class construct
     else
       $name = self::$bd['repeater_key'].'-'.self::$bd['key'].'['.self::$bd['id'].']';
 
+    return array('name' => 'name', 'id' => $id );
+  }
+
+  public function text( )
+  {
     return '<div class="col-md-12">
-          <label for="'.$id.'">'.self::$bd['data'][1].'</label>
-          <input type="text" id="'.$id.'" class="form-control" name="'/*self::$bd['block_array'].*/.$name./*self::$bd['block_end_array'].*/'" />'
+          <label for="'.self::m()['id'].'">'.self::$bd['data'][1].'</label>
+          <input type="text" id="'.self::m()['id'].'" class="form-control" name="'.self::m()['name'].'" />'
           .self::set_helper().
         '</div>';
   }
 
 
-  public function password( $is_scaffold = null )
+  public function password( )
   {
     return null;
   }
 
 
-  public function option( $is_scaffold = null )
+  public function option( )
   {
-    return '<div class="form-group">
-              <label for="'.self::$bd['key'].'">'.self::$bd['data']['1'].'</label>
-              <select class="form-control" id="scaffold'.self::$bd['key'].'" name="'.self::$bd['input_name'].'">'
-    .self::option_loop(self::$bd['input']['options']).
+    return '<div class="col-md-12">
+              <label for="'.self::m()['id'].'">'.self::$bd['data']['1'].'</label>
+              <select class="form-control" id="'.self::m()['id'].'" name="'.self::m()['name'].'">'
+    .self::option_loop(self::$bd['options']).
     '</select>'
     .self::set_helper().
     '</div>';
   }
 
 
-  public function textarea( $is_scaffold = null )
+  public function textarea( )
   {
-    return '<div class="form-group">
-                <label for="'.self::$bd['key'].'">'.self::$bd['data']['1'].'</label>
-                <textarea cols="120" rows="15" name="'.self::$bd['key'].'" class="form-control"></textarea>'
-    .self::set_helper().
-    '</div>';
+    return '<div class="col-md-12">
+              <label for="'.self::m()['id'].'">'.self::$bd['data']['1'].'</label>
+              <textarea cols="120" rows="15" name="'.self::m()['name'].'" class="form-control"></textarea>'
+              .self::set_helper().
+            '</div>';
   }
 
 
-  static function set_helper( $is_scaffold = null )
+  static function set_helper( )
   {
     if( array_key_exists(2, self::$bd['data']) )
       return '<span class="help-block">'.self::$bd['data'][2].'</span>';

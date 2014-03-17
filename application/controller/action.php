@@ -265,14 +265,8 @@ class action_controller extends properties {
 		// Delete the selected template from the session once the Page has been posted.
 		session::delete ( 'template' );
 
-		/*
-		$post_tags = input::post( 'tags' );
-		$tag = load::model( 'tags' );
-		$tag_relations = $tag->relations( $post_single, $post_tags );
-		*/
-
-        event::trigger('add_page');
-		url::redirect( 'admin/content_update_page/'.$page_single );
+    event::trigger('add_page');
+  	url::redirect( 'admin/content_update_page/'.$page_single );
 	}
 	
 
