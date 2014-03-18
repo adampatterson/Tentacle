@@ -289,7 +289,7 @@ class action_controller extends properties {
 		
 		session::delete ( 'template' );
 
-        event::trigger('update_page');
+    event::trigger('update_page');
 		url::redirect( input::post( 'history' ) );
 	}
 
@@ -317,7 +317,7 @@ class action_controller extends properties {
 			
 		note::set( 'success','page_soft_delete','Moved to the trash.' );
 
-        event::trigger('trash_page');
+    event::trigger('trash_page');
 		url::redirect( 'admin/content_manage_pages' );
 	}
 	
@@ -343,21 +343,21 @@ class action_controller extends properties {
 		
 		$post_categories = input::post( 'post_category' );
 
-        foreach ( $post_categories as $post_category ) {
-            $category_relations = $this->category_model()
-                ->relations( $post_single, $post_category );
-        }
+    foreach ( $post_categories as $post_category ):
+        $category_relations = $this->category_model()
+            ->relations( $post_single, $post_category );
+    endforeach;
 
 		$post_tags = input::post( 'tags' );
 		$post_tags = explode(',', $post_tags );
 
-		foreach ( $post_tags as $post_tag ) {
+		foreach ( $post_tags as $post_tag ):
 			$tag_single = $this->tag_model()->add( $post_tag );
 
 			$tag_relations = $this->tag_model()->relations( $post_single, $tag_single );
-		}
+    endforeach;
 
-        event::trigger('add_post');
+    event::trigger('add_post');
 		url::redirect( 'admin/content_update_post/'.$post_single );
 	}	
 	
@@ -389,7 +389,7 @@ class action_controller extends properties {
 			$tag_relations  = $this->tag_model()->relations( $post_id, $tag_single );
 		}
 
-        event::trigger('update_post');
+    event::trigger('update_post');
 		url::redirect( input::post( 'history' ) );
 	}
 	
@@ -408,11 +408,10 @@ class action_controller extends properties {
 	* ----------------------------------------------------------------------------------------------*/	
 	public function trash_post ( $id )
  	{
-        $this->content_model()->trash( $id );
-
+    $this->content_model()->trash( $id );
 		note::set('success','post_soft_delete','Moved to the trash.');
 
-        event::trigger('trash_post');
+    event::trigger('trash_post');
 		url::redirect( 'admin/content_manage_posts' );
 	}
 	
@@ -437,7 +436,7 @@ class action_controller extends properties {
 				
 		$user_single = $this->user_model()->add();
 
-		if (input::post( 'send_password' ) == 'yes') {
+		if (input::post( 'send_password' ) == 'yes'):
 
 			$user_name    = input::post( 'user_name' );
 			$password     = input::post( 'password' );
@@ -455,21 +454,21 @@ class action_controller extends properties {
 					   ->data('status','inactive')
 			           ->save();
 		
-			if ($password == '') {
+			if ($password == ''):
 				$message = '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
 							<p><strong>Username</strong>: '.$user_name.'<br />
 							<p><strong>Click the link to create a password.</strong><br /> '.BASE_URL.'admin/set_password/'.$hashed_ip.'</p>
 							<strong>From:</strong> <a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
-			} else {
+			else:
 				$message = '<p>Hello '.$first_name.' '.$last_name.',<br />Here are your account details.</p>
 							<p><strong>Username</strong>: '.$user_name.'<br />
 							<strong>Password</strong>: '.$password.'</p>
 							<p><strong>Click the link to activate your account.</strong><br /> '.BASE_URL.'action/activate/'.$hashed_ip.'</p>
 							<strong>From:</strong> <a href="'.BASE_URL.'admin/">'.BASE_URL.'admin/</a>';
-			}
+      endif;
 
 			$user_email = $this->email_model()->send( 'Welcome to Tentacle CMS', $message, $email );
-		}
+		endif;
 		
 		$history = input::post( 'history' );
 		
@@ -483,9 +482,7 @@ class action_controller extends properties {
 	public function update_user ( )
 	{
 		tentacle::valid_user();
-
 		$user_single = $this->user_model()->update();
-
 		url::redirect( input::post( 'history' ) );
 	}
 	
@@ -521,7 +518,6 @@ class action_controller extends properties {
 	public function enable_plugin( $slug )
 	{
 		$activate = $this->plugin_model()->activate( $slug );
-		
 		url::redirect('admin/settings_plugins/');
 	}
 	
@@ -529,7 +525,6 @@ class action_controller extends properties {
 	public function disable_plugin( $slug )
 	{
 		$deactivate = $this->plugin_model()->deactivate( $slug );
-		
 		url::redirect('admin/settings_plugins/');
 	}
 	
@@ -552,10 +547,8 @@ class action_controller extends properties {
 	public function add_snippet ()
 	{	
 		tentacle::valid_user();
-			
 		$snippet_single = $this->snippet_model()->add( );
-
-		url::redirect('admin/snippets_manage/'); 
+		url::redirect('admin/snippets_manage/');
 	}
 
 
@@ -565,9 +558,7 @@ class action_controller extends properties {
 	public function update_snippet ( $id )
 	{
 		tentacle::valid_user();
-
 		$snippet_single = $this->snippet_model()->update( $id  );
-
 		url::redirect('admin/snippets_manage/');
 	}
 	
@@ -578,9 +569,7 @@ class action_controller extends properties {
 	public function delete_snippet ( $id = '' )
 	{
 		tentacle::valid_user();
-		
 		$snippet_delete = $this->snippet_model()->delete( $id );
-		
 		url::redirect('admin/snippets_manage/');
 	}
 	
@@ -616,10 +605,8 @@ class action_controller extends properties {
  	public function update_category ( $id ) 
  	{
 		tentacle::valid_user();
-
 		$category_single = $this->category_model()->update( $id  );
-
-		url::redirect('admin/content_manage_categories/'); 
+		url::redirect('admin/content_manage_categories/');
  	}
  
 
@@ -629,10 +616,8 @@ class action_controller extends properties {
  	public function delete_category ( $id ) 
  	{
 		tentacle::valid_user();
-
  		$category_delete = $this->category_model()->delete( $id );
- 		
- 		url::redirect('admin/content_manage_categories/'); 
+ 		url::redirect('admin/content_manage_categories/');
   	}
 
 
@@ -653,11 +638,9 @@ class action_controller extends properties {
 	* ----------------------------------------------------------------------------------------------*/
  	public function update_settings ( $key, $value, $autoload = 'yes' )
 	{
-        tentacle::valid_user();
-
-        $update_appearance = $this->options_model()->update( $key, $value, $autoload );
-
-		url::redirect('admin/settings_appearance');	
+    tentacle::valid_user();
+    $update_appearance = $this->options_model()->update( $key, $value, $autoload );
+		url::redirect('admin/settings_appearance');
 	}
 	
 	
@@ -676,16 +659,13 @@ class action_controller extends properties {
 		     list(, $key ) = each( $keys ) ,
 		     list(, $value ) = each( $values )
 		     ;
-		) {
+		):
 			if ( $key != 'submit' && $key != 'history') 
-			{
 				$update_settings = $this->options_model()->update( $key, $value, $autoload );
-			}
-		}
+		endfor;
 
 		$history = input::post( 'history' );
 		url::redirect($history);
-		//unset($_POST);
 	}
 
 
@@ -704,17 +684,15 @@ class action_controller extends properties {
 	{
 		$upload_dir = STORAGE_DIR.'/images/';
 
-		if (!is_dir($upload_dir)) {
+		if (!is_dir($upload_dir))
 			exit_status('Folder path does not exist');
-		}
 
 		$allowed_ext = array('jpg','jpeg','png','gif');
 
-		if(strtolower($_SERVER['REQUEST_METHOD']) != 'post'){
+		if(strtolower($_SERVER['REQUEST_METHOD']) != 'post')
 			exit_status('Error! Wrong HTTP method!');
-		}
 
-		if(array_key_exists('pic',$_FILES) && $_FILES['pic']['error'] == 0 ){
+		if(array_key_exists('pic',$_FILES) && $_FILES['pic']['error'] == 0 ):
 			$pic = $_FILES['pic'];
 
 			if(!in_array(get_extension($pic['name']),$allowed_ext))
@@ -727,21 +705,18 @@ class action_controller extends properties {
 
 			$file_meta = string_to_parts($image);
 
-			if(move_uploaded_file($pic['tmp_name'], $upload_dir.$file_meta['name']))
-			{
+			if(move_uploaded_file($pic['tmp_name'], $upload_dir.$file_meta['name'])):
 				$add_image = $this->media_model()->add( $file_meta['name'] );
 				
 				load::helper('image');
-                chmod(IMAGE_DIR.$file_meta['name'], 0664);
+        chmod(IMAGE_DIR.$file_meta['name'], 0664);
 				process_image($file_meta['name'], TRUE);
 
 				echo json_encode('true');
-			}
-			else
-			{
+			else:
 				exit_status('Error! Unable to move the file.');
-			}
-		}
+			endif;
+    endif;
 	}
 
 
@@ -757,14 +732,13 @@ class action_controller extends properties {
 		$filename				= input::post('filename');
 		$extension				= input::post('extension');
 		
-        $size		          	= input::post('image_size');
+    $size		          	= input::post('image_size');
 		
-		if ( $size == 'full' ) {
+		if ( $size == 'full' )
 			$image_size			= '';
-		} else {
+		else
 			$image_size			= '_'.$size;
-		}
-		
+
 		$image_url				= IMAGE_URL.$filename.$image_size.'.'.$extension;
 		
 		if ( $link_url == '' ) {
@@ -811,17 +785,13 @@ win.send_to_editor('<?=$html?>');
             }
         }
 
-        if ($_FILES["xml_file"]["error"] > 0)
-        {
+        if ($_FILES["xml_file"]["error"] > 0):
             note::set("error","import",'You must choose a WordPress WXR file to upload.');
-
             url::redirect( input::post( 'history' ) );
-        }
-        elseif (!file_exists( TEMP. $_FILES["xml_file"]["name"] ))
-        {
+        elseif (!file_exists( TEMP. $_FILES["xml_file"]["name"] )):
             note::set("success","import",'You have succsssfully uploaded '.$_FILES["xml_file"]["name"]);
             move_uploaded_file($_FILES["xml_file"]["tmp_name"], TEMP.$_FILES["xml_file"]["name"]);
-        }
+        endif;
 
         load::library('import', 'wordpress');
         load::helper('image');
@@ -840,10 +810,8 @@ win.send_to_editor('<?=$html?>');
             $this->tag_model()->add($import_tag);
 
         # Only work with post content, we don't want pages, file attachments, or empty posts.
-        foreach ($import['posts'] as $import_post )
-        {
-            if ($import_post['post_type'] == 'post' && $import_post['post_content'] != '')
-            {
+        foreach ($import['posts'] as $import_post ):
+            if ($import_post['post_type'] == 'post' && $import_post['post_content'] != ''):
                 # This is  the base media upload URL from the old WordPress site.
                 $regexp_url = preg_quote($import['base_url'].'/wp-content/uploads/', "/");
 
@@ -854,7 +822,7 @@ win.send_to_editor('<?=$html?>');
 
                 $content_modified = null;
 
-                foreach ($remote_media[0] as $matched_url) {
+                foreach ($remote_media[0] as $matched_url):
                     $url_parts = string_to_parts($matched_url);
 
                     # download a copy of the old content ( because it might be sized differently than our newly processed images.
@@ -863,55 +831,43 @@ win.send_to_editor('<?=$html?>');
 
                     # Replace the old URL with our new URL
                     $content_modified = str_replace($matched_url, IMAGE_URL.$url_parts['name'], $import_post['post_content']);
-                }
+                endforeach;
 
-                if(!$content_modified == ''){
+                if(!$content_modified == '')
                     $import_post['post_content'] = $content_modified;
-                }
 
                 # Import the post and return the new ID
                 $post_id = $this->content_model()->type( 'post' )->add_by_import( $import_post );
 
                 # assosiate tags, and categories with the new post.
-                if(array_key_exists("terms", $import_post))
-                {
-                    foreach($import_post['terms'] as $term )
-                    {
-                        if ( $term['domain'] == 'post_tag' )
-                        {
+                if(array_key_exists("terms", $import_post)):
+                    foreach($import_post['terms'] as $term ):
+                        if ( $term['domain'] == 'post_tag' ):
                             $tag_id = $this->tag_model()->lookup($term['slug']);
-
                             $tag_relations = $this->tag_model()->relations( $post_id, $tag_id );
-                        }
-                        elseif( $term['domain'] == 'category' )
-                        {
+                        elseif( $term['domain'] == 'category' ):
                             $category_id = $this->category_model()->lookup($term['slug']);
-
                             $category_relations = $this->category_model()->relations( $post_id, $category_id );
-                        }
-                    }
-                }
-            }
-        }
+                        endif;
+                    endforeach;
+                endif;
+            endif;
+        endforeach;
 
         # Bring over all images that are attachments, This is independent of any content manipulation that takes place.
-        foreach ($import['posts'] as $import_post )
-        {
-            if ( $import_post['post_type'] == 'attachment' )
-            {
+        foreach ($import['posts'] as $import_post ):
+            if ( $import_post['post_type'] == 'attachment' ):
                 $url_parts = string_to_parts($import_post['attachment_url']);
 
                 $attachment_image = get::url_contents($import_post['attachment_url']);
 
-                if (!file_exists(STORAGE_DIR.'/images/'.$url_parts['name'])) {
+                if (!file_exists(STORAGE_DIR.'/images/'.$url_parts['name'])):
                     file_put_contents(STORAGE_DIR.'/images/'.$url_parts['name'], $attachment_image);
-
                     $add_image = $this->media_model()->add( $url_parts['name'] );
-
                     process_image( $url_parts['name'] );
-                }
-            }
-        }
+                endif;
+            endif;
+        endforeach;
 
         note::set("success","import",'Your content has been imported successfully.');
 
@@ -967,11 +923,11 @@ win.send_to_editor('<?=$html?>');
 		$last_name    = input::post( 'last_name' );
 		$display_name = input::post( 'display_name' );
 
-        set::option('admin_email', $email);
+    set::option('admin_email', $email);
 
-        $hash_password = new PasswordHash(8, FALSE);
-        $encrypted_password = $hash_password->HashPassword($password );
-		
+    $hash_password = new PasswordHash(8, FALSE);
+    $encrypted_password = $hash_password->HashPassword($password );
+
 		$registered = time();
 		$hashed_ip = sha1($_SERVER['REMOTE_ADDR'].$registered);
 		$hash_address = BASE_URL.'admin/activate/'.$hashed_ip;
