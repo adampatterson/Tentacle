@@ -38,7 +38,6 @@ class content_model extends properties {
      */
     public function add ( )
     {
-
         $uri_date = date('Y', time()).'/'.date('m', time());
 
         $title          = input::post( 'title' );
@@ -148,15 +147,13 @@ class content_model extends properties {
      * Returns:
      *	True
      */
-    public function add_scaffold ( $id = null ) {
-
+    public function add_scaffold ( $id = null )
+    {
         $scaffold_data = $_POST;
-
         $remove_keys = array( 'title', 'content', 'permalink', 'status', 'parent_page', 'page_template', 'page-or-post', 'history', 'tags', 'publish', 'year', 'month', 'day', 'hour', 'minute' );
 
-        foreach ( $remove_keys as $remove_key ):
+        foreach ( $remove_keys as $remove_key )
             unset( $scaffold_data[ $remove_key ] );
-        endforeach;
 
         $meta_value = serialize( $scaffold_data );
 

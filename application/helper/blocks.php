@@ -78,7 +78,7 @@ class blocks
       $options = str_replace("options(", "", $data[0]);
       $options = str_replace(")", "", $options);
       $options_array = explode(',', $options);
-      $data[0] = 'option';
+      $data[0] = 'options';
     endif;
 
     $clean_data = array('key' => $key, 'repeater_key' => $repeater_key, 'id' => $id, 'data' => $data, 'options' => $options_array);
@@ -110,9 +110,9 @@ class construct
     if ( is_null( self::$bd['repeater_key'] ) )
       $name = self::$bd['key'];
     else
-      $name = self::$bd['repeater_key'].'-'.self::$bd['key'].'['.self::$bd['id'].']';
+      $name = self::$bd['repeater_key'].'['.self::$bd['id'].']['.self::$bd['key'].']';
 
-    return array('name' => 'name', 'id' => $id );
+    return array('name' => $name, 'id' => $id );
   }
 
   public function text( )
@@ -131,7 +131,7 @@ class construct
   }
 
 
-  public function option( )
+  public function options( )
   {
     return '<div class="col-md-12">
               <label for="'.self::m()['id'].'">'.self::$bd['data']['1'].'</label>
@@ -163,7 +163,8 @@ class construct
   static function option_loop( $options = null ) {
     $option_data = null;
 
-    foreach ($options as $option) {
+    foreach ($options as $option)
+    {
       $option_data .= '<option value="'.$option.'">'.$option.'</option>';
     }
 
