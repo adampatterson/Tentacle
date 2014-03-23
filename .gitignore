@@ -69,7 +69,7 @@ storage/upgrade/*
 !/plugins/social-share/
 !/plugins/source/
 !/plugins/core/
-!/plugins/discqus/
+!/plugins/disqus/
 !/plugins/bones/
 
 

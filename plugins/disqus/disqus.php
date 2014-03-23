@@ -16,7 +16,7 @@ class disqus {
     static function settings_nav() {
         $nav[] = array(
             'title'     => 'Disqus Sharing',
-            'rout'      => 'disqus_settings',
+            'route'      => 'disqus_settings',
             'uri'       => 'disqus/view'
         );
 
