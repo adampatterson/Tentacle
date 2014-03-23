@@ -34,9 +34,11 @@ class blocks
 
   public function populate( $blocks, $data )
   {
+    unset($blocks['display']);
     $construct = new construct();
+    var_dump( $blocks );
     var_dump( $data );
-/*
+
     self::$return_data .= '<div id="scaffold">';
 
     $id = 0;
@@ -58,7 +60,6 @@ class blocks
     endforeach;
 
     self::$return_data .= '</div>';
-*/
   }
 
   public static function build_row($repeater_key, $repeater, $id = null, $is_repeater = null )
