@@ -22,6 +22,7 @@ class content_model extends properties {
         return $this;
     }
 
+
     public function trash ( $id )
     {
         $this->post_table()->update(array(
@@ -81,9 +82,7 @@ class content_model extends properties {
         if ( $this->type == 'page' ):
             $date = time();
         elseif ( $publish == 'published-on'):
-
             //$date = new date();
-
             $minute	= input::post( 'minute' );
             $hour	= input::post( 'hour' );
             $day 	= input::post( 'day' );
@@ -96,7 +95,6 @@ class content_model extends properties {
 
             $date = strtotime( $composed_time );
         else:
-
             $current_minute         = date('i', time());
             $current_hour           = date('H', time());
             $current_day            = date('d', time());

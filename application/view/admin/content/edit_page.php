@@ -116,23 +116,15 @@
                           <div id="scaffold">
                             <? if ( $get_page->template != '' && $get_page->template != 'default' ):
 
-                              $template = THEMES_DIR.'/'.ACTIVE_THEME.'/'.$get_page->template.'.php';
-
                               // Load the saved template, then if the user changes override the saved template.
-                              if( file_exists( $template )):
+                              $template = THEMES_DIR.'/'.ACTIVE_THEME.'/'.$get_page->template.'.php';
+                              if( file_exists( $template )): $raw_blocks = get::yaml( $template );
+                                if ( $raw_blocks != null ):
+                                    $blocks = new blocks();
 
-                                $data = get::yaml( $template );
-
-                                if ( $data != null ):
-                                    $scaffold = new scaffold();
-
-                                    var_dump($data);
-                                    var_dump($get_page_meta);
-
-                                    $scaffold->populate( $data, $get_page_meta );
-                                    $scaffold->render();
+                                    $blocks->populate( $raw_blocks, $get_page_meta->collection );
+                                    $blocks->render();
                                 endif;
-
                               else: ?>
 
                               <br/><br/>

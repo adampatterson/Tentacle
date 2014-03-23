@@ -42,12 +42,7 @@ function init_extensions() {
         }
 
         require TENTACLE_PLUGIN."/".$plugin."/".$plugin.".php";
-
-//        foreach (YAML::load(TENTACLE_PLUGIN."/".$plugin."/info.yaml") as $key => $val)
-//            event::$instances[$plugin]->$key = (is_string($val)) ? $val : $val ;
     }
-
-
 }
 
 

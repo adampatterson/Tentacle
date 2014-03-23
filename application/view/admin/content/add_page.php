@@ -102,11 +102,8 @@
                 <? if ( session::get( 'template' ) != 'index' && session::get( 'template' ) != '' ):
 
                     $template = THEMES_DIR.'/'.ACTIVE_THEME.'/'.session::get('template').'.php';
-
                     if( file_exists( $template )): $data = get::yaml( $template );
-
                         if ( $data != null ):
-                          load::helper('blocks');
                           $blocks = new blocks();
 
                           $blocks->process( $data );

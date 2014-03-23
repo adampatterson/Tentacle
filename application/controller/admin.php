@@ -551,8 +551,8 @@ class admin_controller extends properties {
             foreach ($plugin_raw as $plugin_subnav)
                 foreach ($plugin_subnav as $plugin) {
 
-                    if ($plugin['rout'] == $plugin_view) {
-                        load::plugin_view($plugin['uri'].'/'.$plugin['rout'], array('data'=> 'test'));
+                    if ($plugin['route'] == $plugin_view) {
+                        load::plugin_view($plugin['uri'].'/'.$plugin['route'], array('data'=> 'test'));
                     }
                 }
 

@@ -3,24 +3,24 @@
 class plugin_model
 {
     // Get all and acive plugins
-    public function get($active='') {
+    public function get($active='')
+    {
         $get_plugins = plugin::get_plugins();
 
-        if ($active == 'active') {
+        if ($active == 'active')
             return $get_plugins['enabled_plugins'];
-        } elseif ($active == 'inactive') {
+        elseif ($active == 'inactive')
             return $get_plugins['disabled_plugins'];
-		} else {
+		    else
             return $get_plugins;
-        }
     }
 
 
-    public function activate( $plugins ) {
+    public function activate( $plugins )
+    {
         $plugins = array($plugins);
 
         if (!plugin_enabled($plugins)):
-
             $updated_plugins = serialize(array_merge(enabled_plugin(), $plugins));
             $pluginss = load::model('settings')->update('active_plugins', $updated_plugins);
             return true;
@@ -30,18 +30,14 @@ class plugin_model
     }
 
 
-    public function deactivate ( $plugins ) {
-
+    public function deactivate ( $plugins )
+    {
         if (plugin_enabled($plugins)):
             $pluginss = enabled_plugin();
 
-            foreach ( $pluginss as $key => $value):
-
-                if ($plugins == $value):
+            foreach ( $pluginss as $key => $value)
+                if ($plugins == $value)
                    unset($pluginss[$key]);
-                endif;
-
-            endforeach;
 
             $updated_plugins = serialize($pluginss);
             $pluginss = load::model('settings')->update('active_plugins', $updated_plugins);

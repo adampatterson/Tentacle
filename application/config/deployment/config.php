@@ -9,7 +9,7 @@ config::set( 'autoload_library', array( 'logger', 'db', 'assets', 'session', 'us
 if ( strpos( BASE_URI,'install' ) == true )
 	config::set( 'autoload_helper', array(  ) ); 	
 else
-	config::set( 'autoload_helper', array( 'theme', 'dispatcher', 'scaffold', 'get_set', 'tentacle', 'upgrade', 'common', 'navigation', 'shortcode') );
+	config::set( 'autoload_helper', array( 'theme', 'dispatcher', 'blocks', 'get_set', 'tentacle', 'upgrade', 'common', 'navigation', 'shortcode') );
 
 /* Sessions */
 config::set('session',array(

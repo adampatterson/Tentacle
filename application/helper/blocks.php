@@ -3,7 +3,7 @@ class blocks
 {
   static $return_data;
 
-  public static function process($blocks)
+  public static function process( $blocks )
   {
     unset($blocks['display']);
     $construct = new construct();
@@ -32,6 +32,35 @@ class blocks
   }
 
 
+  public function populate( $blocks, $data )
+  {
+    $construct = new construct();
+    var_dump( $data );
+/*
+    self::$return_data .= '<div id="scaffold">';
+
+    $id = 0;
+    foreach( $blocks as $key => $block ):
+      if(is_array($block)):
+
+        self::$return_data .= '<div class="repeaters" data-min_block="0" data-block_limit="5"><fieldset>';
+        self::build_row($key, $block, $id, true);         // Build the repeater_row then
+        self::build_row($key, $block, $id );              // Build the row
+        self::$return_data .= '</fieldset>'.
+            $construct->add_row().      // Add Row
+            '</div>';
+        $id++;
+      else:
+        self::$return_data .= '<div class="row">';
+        self::build($key, $block);                        // Build a single input. Needs .row and .col
+        self::$return_data .= '</div>';
+      endif;
+    endforeach;
+
+    self::$return_data .= '</div>';
+*/
+  }
+
   public static function build_row($repeater_key, $repeater, $id = null, $is_repeater = null )
   {
     $construct = new construct();
@@ -47,7 +76,7 @@ class blocks
     endforeach;
 
     self::$return_data .= $construct->remove_buttons().   // Builds the buttons for adding and removing a row.
-                          '</div>';                       // .row / .repeater_row
+        '</div>';                                         // .row / .repeater_row
   }
 
 
@@ -66,7 +95,7 @@ class blocks
   * Takes a data block and manipulates the value of an array
   * to create the necessary elements for processing.
    */
-  static function clean($key, $data, $repeater_key = null, $is_repeater = null, $id = null )
+  static function clean( $key, $data, $repeater_key = null, $is_repeater = null, $id = null )
   {
     if( $is_repeater )
       $id = 999;
@@ -108,12 +137,13 @@ class construct
       $id = self::$bd['repeater_key'].'-'.self::$bd['key'].'-'.self::$bd['id'];
 
     if ( is_null( self::$bd['repeater_key'] ) )
-      $name = self::$bd['key'];
+      $name = 'collection['.self::$bd['key'].']';
     else
-      $name = self::$bd['repeater_key'].'['.self::$bd['id'].']['.self::$bd['key'].']';
+      $name = 'collection['.self::$bd['repeater_key'].']['.self::$bd['id'].']['.self::$bd['key'].']';
 
     return array('name' => $name, 'id' => $id );
   }
+
 
   public function text( )
   {

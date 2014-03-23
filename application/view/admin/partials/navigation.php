@@ -70,7 +70,7 @@
 
                         foreach ( $subnav_raw as $subnav )
                             foreach ( $subnav as $sub_page )
-                                echo '<li><a href="'.ADMIN.'settings_plugins/'.$sub_page['rout'].'">'.$sub_page['title'].'</a></li>';
+                                echo '<li><a href="'.ADMIN.'settings_plugins/'.$sub_page['route'].'">'.$sub_page['title'].'</a></li>';
 
                     endif;
                     ?>

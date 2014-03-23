@@ -7,10 +7,18 @@
  * @Project Page    http://www.dingoframework.com
  */
 
+
+/**
+ * Class: dingo
+ */
+class dingo{}
+
+
+
 /**
 * Class: bootstrap
 */
-class bootstrap
+class bootstrap extends dingo
 {
     // Get the requested URL, parse it, then clean it up
     // ---------------------------------------------------------------------------
@@ -46,17 +54,11 @@ class bootstrap
             $property = "autoload_$type";
 
             foreach(config::get($property) as $class)
-            {
                 load::$type($class);
-            }
 
             if(!empty($controller->$property) AND is_array($controller->$property))
-            {
                 foreach($controller->$property as $class)
-                {
                     load::$type($class);
-                }
-            }
         }
     }
 
@@ -77,11 +79,9 @@ class bootstrap
         set_error_handler('dingo_error');
         set_exception_handler('dingo_exception');
 
-
         config::set('system',APPLICATION);
         config::set('application',APPLICATION);
         config::set('config',CONFIG);
-
 
         // Load route configuration
         require_once(APPLICATION.'/'.CONFIG.'/'.CONFIGURATION.'/route.php');
@@ -96,20 +96,14 @@ class bootstrap
 
         // Validate
         if(!route::valid($uri))
-        {
             load::error('general','Invalid URL','The requested URL contains invalid characters.');
-        }
-
 
         // Load Controller
         //----------------------------------------------------------------------------------------------
 
         // If controller does not exist, give 404 error
         if(!file_exists(APPLICATION.'/'.config::get('folder_controllers')."/{$uri['controller']}.php"))
-        {
             load::error('404');
-        }
-
 
         // Include controller
         require_once(APPLICATION.'/'.config::get('folder_controllers')."/{$uri['controller']}.php");
@@ -152,8 +146,7 @@ class bootstrap
 
         // Load the plugins here so that we can set route's, and use the Hooks in all areas of the application.
         // Check to see if we are installed so we dont explode.
-        if (class_exists('get') && get::option('is_blog_installed')) {
-
+        if (class_exists('get') && get::option('is_blog_installed')):
 			    define('ACTIVE_PLUGINS', get::option('active_plugins'));
 
 			    load::library('Spyc');
@@ -161,45 +154,32 @@ class bootstrap
           load::library('plugin');
 
           init_extensions();
-        }
+        endif;
 
         // Check to see if function exists
-        if(!is_callable(array($controller,$uri['function'])))
-        {
+        if(!is_callable(array($controller,$uri['function']))):
             // Try replacing underscores with dashes
             $minus_function_name = str_replace('-', '_', $uri['function']);
 
             if(!is_callable(array($controller,$minus_function_name)))
-            {
                 load::error('404');
-            }
             else
-            {
                 $uri['function'] = $minus_function_name;
-            }
+        endif;
 
-        }
+      // Run Function
+      call_user_func_array(array($controller,$uri['function']),$uri['arguments']);
 
-        // Run Function
-        call_user_func_array(array($controller,$uri['function']),$uri['arguments']);
-
-
-        // Display echoed content
+      // Display echoed content
         ob_end_flush();
     }
 }
 
 
 /**
-* Class: dingo
-*/
-class dingo{}
-
-
-/**
 * Class: cookie
 */
-class cookie
+class cookie extends dingo
 {
     /**
     * Function: set
@@ -214,29 +194,26 @@ class cookie
     public static function set($settings)
     {
 
-        if(!isset($settings['path']))
-			$settings['path']='/';
+      if(!isset($settings['path']))
+			  $settings['path']='/';
 			
-        if(!isset($settings['domain']))
-			$settings['domain']=FALSE;
+      if(!isset($settings['domain']))
+			  $settings['domain']=FALSE;
 			
-        if(!isset($settings['secure']))
-			$settings['secure']=FALSE;
+      if(!isset($settings['secure']))
+			  $settings['secure']=FALSE;
 			
-        if(!isset($settings['httponly']))
-			$settings['httponly']=FALSE;
+      if(!isset($settings['httponly']))
+			  $settings['httponly']=FALSE;
 			
-        if(!isset($settings['expire']))
-        {
+        if(!isset($settings['expire'])):
             $ex = new DateTime();
             $time = $ex->format('U');
-        }
-        else
-        {
+        else:
             $ex = new DateTime();
             $ex->modify($settings['expire']);
             $time = $ex->format('U');
-        }
+        endif;
 
         return setcookie(
             $settings['name'],
@@ -262,21 +239,20 @@ class cookie
     */
     public static function delete($settings)
     {
-        if(!isset($settings['path']))
-			$settings['path']='/';
+      if(!isset($settings['path']))
+			  $settings['path']='/';
 			
-        if(!isset($settings['domain']))
-			$settings['domain']=FALSE;
+      if(!isset($settings['domain']))
+			  $settings['domain']=FALSE;
 			
-        if(!isset($settings['secure']))
-			$settings['secure']=FALSE;
+      if(!isset($settings['secure']))
+			  $settings['secure']=FALSE;
 			
-        if(!isset($settings['httponly']))
-			$settings['httponly']=FALSE;
+      if(!isset($settings['httponly']))
+			  $settings['httponly']=FALSE;
 
         // If given array of settings
-        if(is_array($settings))
-        {
+        if(is_array($settings)):
             return setcookie(
                 $settings['name'],
                 '',
@@ -286,12 +262,10 @@ class cookie
                 $settings['secure'],
                 $settings['httponly']
             );
-        }
         // Else, just the cookie name was given
-        else
-        {
+        else:
             return setcookie($settings,'',time()-3600);
-        }
+        endif;
     }
 }
 
@@ -299,10 +273,10 @@ class cookie
 /**
 * Class: config
 */
-class config
+class config extends dingo
 {
-    # Array: $x
-    # Hodls all of the configuratiuon settings.
+  # Array: $x
+  # Hodls all of the configuratiuon settings.
 	public static $x = array();
 
 
@@ -335,14 +309,10 @@ class config
     */
     public static function get($name)
     {
-        if(isset(self::$x[$name]))
-        {
-            return(self::$x[$name]);
-        }
-        else
-        {
-            return FALSE;
-        }
+      if(isset(self::$x[$name]))
+        return(self::$x[$name]);
+      else
+        return FALSE;
     }
 
 
@@ -355,10 +325,8 @@ class config
     */
     public static function remove($name)
     {
-        if(isset(self::$x[$name]))
-        {
-            unset(self::$x[$name]);
-        }
+      if(isset(self::$x[$name]))
+        unset(self::$x[$name]);
     }
 
 
@@ -424,7 +392,7 @@ class api
 /**
 * Class: route
 */
-class route
+class route extends dingo
 {
 	# Array: rout
     static $route = array();
@@ -444,15 +412,11 @@ class route
 	*/
     public static function valid($r)
     {
-        foreach($r['segments'] as $segment)
-        {
-            if(!preg_match(ALLOWED_CHARS,$segment))
-            {
-                return FALSE;
-            }
-        }
+      foreach($r['segments'] as $segment)
+        if(!preg_match(ALLOWED_CHARS,$segment))
+          return FALSE;
 
-        return TRUE;
+      return TRUE;
     }
 
 
@@ -680,7 +644,8 @@ class route
 /**
  * Class: new_rout
  */
-class new_rout {
+class new_rout extends dingo
+{
 
     static $route = array();
     static $current = array();
@@ -858,7 +823,8 @@ class new_rout {
 /**
  * Class: url_map
  */
-class url_map extends new_rout {
+class url_map extends new_rout
+{
 
     // Get
     // ---------------------------------------------------------------------------
@@ -952,7 +918,7 @@ class url_map extends new_rout {
 /**
 * Class: load
 */
-class load
+class load extends dingo
 {
 	/**
 	* Function: file
@@ -1301,7 +1267,7 @@ class load
 /**
 * Class: input
 */
-class input
+class input extends dingo
 {
     /**
     * Function: post
