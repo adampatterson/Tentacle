@@ -31,13 +31,13 @@ author:
 //    static function settings_nav() {
 //		$nav[] = array(
 //            'title'     => 'Barnacles',
-//            'rout'      => 'barnacle_settings',
+//            'route'      => 'barnacle_settings',
 //            'uri'       => 'barnacles/view'
 //        );
 //
 //		$nav[] = array(
 //            'title'     => 'Barnacles Two',
-//            'rout'      => 'barnacle_settings_two',
+//            'route'      => 'barnacle_settings_two',
 //            'uri'       => 'barnacles/view'
 //        );
 //
