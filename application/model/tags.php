@@ -7,31 +7,29 @@ class tags_model extends properties
 	//----------------------------------------------------------------------------------------------
 	public function add ( $post_tags )
 	{
-        if(is_array($post_tags)) {
-            $term_name = $post_tags['tag_name'];
-        } else {
-            $term_name = $post_tags;
-        }
+      if(is_array($post_tags))
+          $term_name = $post_tags['tag_name'];
+      else
+          $term_name = $post_tags;
 
-        $term_slug = string::sanitize( $term_name );
+      $term_slug = string::sanitize( $term_name );
 
-		if ( !self::lookup( $term_slug ) ) 
-		{
+		if ( !self::lookup( $term_slug ) ):
 			$tag_id = $this->term_table()
-                    ->insert(array(
-						'name'=>$term_name,
-						'slug'=>$term_slug
-					));
+          ->insert(array(
+          'name'=>$term_name,
+          'slug'=>$term_slug
+        ));
 
-            $this->term_taxonomy_table()->insert(array(
-                    'taxonomy'=>'tag',
-                    'term_id'=>$tag_id->id
-                ),FALSE);
-			
+      $this->term_taxonomy_table()->insert(array(
+            'taxonomy'=>'tag',
+            'term_id'=>$tag_id->id
+        ),FALSE);
+
 			return $tag_id->id;
-		} else {
-			return self::lookup( $term_slug );
-		}		
+		else:
+      return self::lookup( $term_slug );
+		endif;	
 	}
 	
 	
@@ -86,24 +84,24 @@ class tags_model extends properties
 				->order_by ( 'id', 'DESC' )
 				->execute();
 			return $get_tags;
-        elseif( is_string( $id ) && !is_numeric($id) ):
-            $get_tags = $this->term_table()
-                ->select( '*' )
-                ->where( 'slug', '=', $id )
-                ->order_by( 'id', 'DESC' )
-                ->execute();
+    elseif( is_string( $id ) && !is_numeric($id) ):
+        $get_tags = $this->term_table()
+            ->select( '*' )
+            ->where( 'slug', '=', $id )
+            ->order_by( 'id', 'DESC' )
+            ->execute();
 
-            if($get_tags == null ){
-                return false;
-            } else {
-                return $get_tags[0];
-            }
-        else:
-			$get_tag = $this->term_table()
-                ->select( '*' )
-				->where ( 'id', '=', $id )
-				->order_by ( 'id', 'DESC' )
-				->execute();	
+        if($get_tags == null ){
+            return false;
+        } else {
+            return $get_tags[0];
+        }
+    else:
+    $get_tag = $this->term_table()
+              ->select( '*' )
+      ->where ( 'id', '=', $id )
+      ->order_by ( 'id', 'DESC' )
+      ->execute();
 			
 			return $get_tag[0];
 		endif;

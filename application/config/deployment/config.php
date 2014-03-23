@@ -3,13 +3,13 @@
 date_default_timezone_set('UTC');
 
 /* Auto Load Libraries */
-config::set( 'autoload_library', array( 'logger', 'db', 'assets', 'session', 'user', 'cache', 'url', 'pagination', 'image', 'note', 'email' ) );
+config::set( 'autoload_library', array( 'logger', 'dispatcher', 'db', 'assets', 'session', 'user', 'cache', 'url', 'collections', 'pagination', 'image', 'note', 'email' ) );
 
 /* Auto Load Helpers */
 if ( strpos( BASE_URI,'install' ) == true )
 	config::set( 'autoload_helper', array(  ) ); 	
 else
-	config::set( 'autoload_helper', array( 'theme', 'dispatcher', 'blocks', 'get_set', 'tentacle', 'upgrade', 'common', 'navigation', 'shortcode') );
+	config::set( 'autoload_helper', array( 'theme', 'get_set', 'tentacle', 'upgrade', 'common', 'navigation', 'shortcode') );
 
 /* Sessions */
 config::set('session',array(

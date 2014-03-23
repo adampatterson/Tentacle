@@ -116,7 +116,8 @@ class dev_controller {
 
         function test_function()
         {
-            return dispatcher::get( 'pages' );
+          #dispatcher::set( 'test', 'string' );
+          return dispatcher::get( 'pages' );
         }
 
         var_dump(test_function());

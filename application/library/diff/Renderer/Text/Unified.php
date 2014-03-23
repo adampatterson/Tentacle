@@ -36,11 +36,11 @@
  * @author Chris Boulton <chris.boulton@interspire.com>
  * @copyright (c) 2009 Chris Boulton
  * @license New BSD License http://www.opensource.org/licenses/bsd-license.php
- * @version 1.0
- * @link http://github.com/chrisboulton/phpdiff
+ * @version 1.1
+ * @link http://github.com/chrisboulton/php-diff
  */
 
-require_once dirname(__FILE__) . '/../Abstract.php';
+require_once dirname(__FILE__).'/../Abstract.php';
 
 class Diff_Renderer_Text_Unified extends Diff_Renderer_Abstract
 {
@@ -49,7 +49,7 @@ class Diff_Renderer_Text_Unified extends Diff_Renderer_Abstract
 	 *
 	 * @return string The unified diff.
 	 */
-	public function Render()
+	public function render()
 	{
 		$diff = '';
 		$opCodes = $this->diff->getGroupedOpcodes();

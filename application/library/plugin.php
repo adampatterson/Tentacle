@@ -65,7 +65,6 @@ class plugin extends event {
 
         foreach ($plugin_path as $folder) {
 
-
             if (!file_exists(TENTACLE_PLUGIN."/".$folder."/".$folder.".php") ) continue;
 
             $info = get::yaml( TENTACLE_PLUGIN."/".$folder."/".$folder.".php" );

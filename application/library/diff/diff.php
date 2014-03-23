@@ -39,8 +39,8 @@
  * @author Chris Boulton <chris.boulton@interspire.com>
  * @copyright (c) 2009 Chris Boulton
  * @license New BSD License http://www.opensource.org/licenses/bsd-license.php
- * @version 1.0
- * @link http://github.com/chrisboulton/phpdiff
+ * @version 1.1
+ * @link http://github.com/chrisboulton/php-diff
  */
 
 class Diff
@@ -86,7 +86,10 @@ class Diff
 		$this->a = $a;
 		$this->b = $b;
 
-		$this->options = array_merge($this->defaultOptions, $options);
+		if (is_array($options))
+			$this->options = array_merge($this->defaultOptions, $options);
+		else
+			$this->options = $this->defaultOptions;
 	}
 
 	/**
@@ -98,7 +101,7 @@ class Diff
 	public function render(Diff_Renderer_Abstract $renderer)
 	{
 		$renderer->diff = $this;
-		return $renderer->Render();
+		return $renderer->render();
 	}
 
 	/**
@@ -168,9 +171,9 @@ class Diff
 			return $this->groupedCodes;
 		}
 
-		require_once dirname(__FILE__) . '/SequenceMatcher.php';
-		$sequenceMatcher = new Diff_SequenceMatcher($this->a, $this->b);
-		$this->groupedCodes = $sequenceMatcher->getGroupedOpcodes();
+		require_once dirname(__FILE__).'/SequenceMatcher.php';
+		$sequenceMatcher = new Diff_SequenceMatcher($this->a, $this->b, null, $this->options);
+		$this->groupedCodes = $sequenceMatcher->getGroupedOpcodes($this->options['context']);
 		return $this->groupedCodes;
 	}
 }

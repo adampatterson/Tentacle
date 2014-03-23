@@ -592,9 +592,7 @@ class action_controller extends properties {
  	public function add_category ()
  	{	
 		tentacle::valid_user();	
-
  		$category_single = $this->category_model()->add( );
- 
  		url::redirect('admin/content_manage_categories/');
  	}
 
@@ -657,8 +655,7 @@ class action_controller extends properties {
 		     reset($keys), 
 		     reset($values);
 		     list(, $key ) = each( $keys ) ,
-		     list(, $value ) = each( $values )
-		     ;
+		     list(, $value ) = each( $values );
 		):
 			if ( $key != 'submit' && $key != 'history') 
 				$update_settings = $this->options_model()->update( $key, $value, $autoload );

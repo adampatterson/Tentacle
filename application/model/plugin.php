@@ -1,5 +1,4 @@
 <?
-
 class plugin_model
 {
     // Get all and acive plugins

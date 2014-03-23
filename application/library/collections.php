@@ -41,6 +41,26 @@ class blocks
 
     self::$return_data .= '<div id="scaffold">';
 
+    //construct::$value;
+
+    /*
+    $autoload = 'yes';
+    $keys = array_keys( $_POST );
+    $values = array_values( $_POST );
+
+    for (
+      reset($keys),
+      reset($values);
+      list(, $key ) = each( $keys ) ,
+      list(, $value ) = each( $values );
+    ):
+      if ( $key != 'submit' && $key != 'history')
+        $update_settings = $this->options_model()->update( $key, $value, $autoload );
+    endfor;
+    */
+
+
+
     $id = 0;
     foreach( $blocks as $key => $block ):
       if(is_array($block)):
@@ -129,6 +149,7 @@ class blocks
 class construct
 {
   static $bd;
+  static $value = null;
 
   static function m()
   {
@@ -174,7 +195,7 @@ class construct
   }
 
 
-  public function textarea( )
+  public function textarea(  )
   {
     return '<div class="col-md-12">
               <label for="'.self::m()['id'].'">'.self::$bd['data']['1'].'</label>
@@ -191,7 +212,8 @@ class construct
   }
 
 
-  static function option_loop( $options = null ) {
+  # Selected
+  static function option_loop( $options = null, $selected = null ) {
     $option_data = null;
 
     foreach ($options as $option)
