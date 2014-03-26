@@ -93,48 +93,48 @@
 							<input type="text" name="title" placeholder='Title' value='<?= $get_page->title ?>' class='xlarge content_title form-control' required='required' id="permalink" />
 							<input type="hidden" name="permalink" id="new_uri" />
 
-                            <script type="text/javascript" charset="utf-8">
-                                var page_post = "page";
-                                var uri = "<?= parent_page_slug( $get_page->parent ); ?>";
-                            </script>
+              <script type="text/javascript" charset="utf-8">
+                var page_post = "page";
+                var uri = "<?= parent_page_slug( $get_page->parent ); ?>";
+              </script>
 
 							<p class="permalink">Permalink: <?= BASE_URL.parent_page_slug( $get_page->parent ); ?><span id="permalink_landing"><?= $get_page->slug ?></span></p>
 
-                          <? if(user_editor() == 'wysiwyg'):?>
-                            <p><a href="#" id="myButton" >Insert Media</a></p>
+              <? if(user_editor() == 'wysiwyg'):?>
+                <p><a href="#" id="myButton" >Insert Media</a></p>
 
-                            <p class="wysiwyg">
-                            <textarea cols="100" id="editor" name="content" rows="10" class="editor"><?= the_content( $get_page->content, true ) ?></textarea>
-                            </p>
+                <p class="wysiwyg">
+                <textarea cols="100" id="editor" name="content" rows="10" class="editor"><?= the_content( $get_page->content, true ) ?></textarea>
+                </p>
 
-                          <? endif; ?>
+              <? endif; ?>
 
-                          <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Excerpt" value="<?=$get_page->excerpt?>" name='excerpt' />
-                          </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Excerpt" value="<?=$get_page->excerpt?>" name='excerpt' />
+              </div>
 
-                          <div id="scaffold">
-                            <? if ( $get_page->template != '' && $get_page->template != 'default' ):
+              <div id="scaffold">
+                <? if ( $get_page->template != '' && $get_page->template != 'default' ):
 
-                              // Load the saved template, then if the user changes override the saved template.
-                              $template = THEMES_DIR.'/'.ACTIVE_THEME.'/'.$get_page->template.'.php';
-                              if( file_exists( $template )): $raw_blocks = get::yaml( $template );
-                                if ( $raw_blocks != null ):
-                                    $blocks = new blocks();
+                  // Load the saved template, then if the user changes override the saved template.
+                  $template = THEMES_DIR.'/'.ACTIVE_THEME.'/'.$get_page->template.'.php';
+                  if( file_exists( $template )): $raw_blocks = get::yaml( $template );
+                    if ( $raw_blocks != null ):
+                      $blocks = new blocks();
 
-                                    $blocks->populate( $raw_blocks, $get_page_meta->collection );
-                                    $blocks->render();
-                                endif;
-                              else: ?>
+                      $blocks->populate( $raw_blocks, $get_page_meta->collection );
+                      $blocks->render();
+                    endif;
+                  else: ?>
 
-                              <br/><br/>
-                              <div class="alert-message warning">
-                                <p><strong>A template file appears to be a missing from your theme:</strong> <br />
-                                <?= '/themes/'.ACTIVE_THEME.'/'.$get_page->template.'.php'?></p>
-                              </div>
+                  <br/><br/>
+                  <div class="alert-message warning">
+                    <p><strong>A template file appears to be a missing from your theme:</strong> <br />
+                    <?= '/themes/'.ACTIVE_THEME.'/'.$get_page->template.'.php'?></p>
+                  </div>
 
-                            <? endif;
-                            endif; ?>
+                <? endif;
+                endif; ?>
 
 							</div>
 						</div>

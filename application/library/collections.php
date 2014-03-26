@@ -36,43 +36,26 @@ class blocks
   {
     unset($blocks['display']);
     $construct = new construct();
-    var_dump( $blocks );
-    var_dump( $data );
+
+    construct::$data = $data;
+
+//    var_dump( $blocks );
+//    var_dump( $data );
 
     self::$return_data .= '<div id="scaffold">';
 
-    //construct::$value;
-
-    /*
-    $autoload = 'yes';
-    $keys = array_keys( $_POST );
-    $values = array_values( $_POST );
-
-    for (
-      reset($keys),
-      reset($values);
-      list(, $key ) = each( $keys ) ,
-      list(, $value ) = each( $values );
-    ):
-      if ( $key != 'submit' && $key != 'history')
-        $update_settings = $this->options_model()->update( $key, $value, $autoload );
-    endfor;
-    */
-
-
-
     $id = 0;
     foreach( $blocks as $key => $block ):
-      if(is_array($block)):
+      if(is_array($block)): // Lets build a repeater collection
 
         self::$return_data .= '<div class="repeaters" data-min_block="0" data-block_limit="5"><fieldset>';
         self::build_row($key, $block, $id, true);         // Build the repeater_row then
-        self::build_row($key, $block, $id );              // Build the row
+        self::build_row($key, $block, $id, false);              // Build the row
         self::$return_data .= '</fieldset>'.
             $construct->add_row().      // Add Row
             '</div>';
         $id++;
-      else:
+      else: // Builds a single row
         self::$return_data .= '<div class="row">';
         self::build($key, $block);                        // Build a single input. Needs .row and .col
         self::$return_data .= '</div>';
@@ -82,7 +65,8 @@ class blocks
     self::$return_data .= '</div>';
   }
 
-  public static function build_row($repeater_key, $repeater, $id = null, $is_repeater = null )
+  
+  public static function build_row($repeater_key, $repeater, $id = null, $is_repeater = null)
   {
     $construct = new construct();
 
@@ -91,7 +75,11 @@ class blocks
     else
       self::$return_data .= '<div class="row">';
 
+//    var_dump(construct::$data);
+
     foreach( $repeater as $key => $block ):
+//      var_dump($key);
+//      var_dump($repeater_key);
       $data = self::clean($key, $block, $repeater_key, $is_repeater, $id);
       self::$return_data .= $construct->$data['data'][0]( );
     endforeach;
@@ -149,7 +137,7 @@ class blocks
 class construct
 {
   static $bd;
-  static $value = null;
+  static $data = null;
 
   static function m()
   {
@@ -217,9 +205,7 @@ class construct
     $option_data = null;
 
     foreach ($options as $option)
-    {
       $option_data .= '<option value="'.$option.'">'.$option.'</option>';
-    }
 
     return $option_data;
   }
