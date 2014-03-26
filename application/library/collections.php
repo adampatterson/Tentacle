@@ -75,11 +75,12 @@ class blocks
     else
       self::$return_data .= '<div class="row">';
 
-//    var_dump(construct::$data);
+      if ( $is_repeater ):
+        unset(construct::$data[$repeater_key][999]);
+        //var_dump(construct::$data[$repeater_key]);
+      endif;
 
     foreach( $repeater as $key => $block ):
-//      var_dump($key);
-//      var_dump($repeater_key);
       $data = self::clean($key, $block, $repeater_key, $is_repeater, $id);
       self::$return_data .= $construct->$data['data'][0]( );
     endforeach;
@@ -120,7 +121,6 @@ class blocks
     endif;
 
     $clean_data = array('key' => $key, 'repeater_key' => $repeater_key, 'id' => $id, 'data' => $data, 'options' => $options_array);
-
     construct::$bd = $clean_data;
 
     return $clean_data;
@@ -155,11 +155,11 @@ class construct
   }
 
 
-  public function text( )
+  public function text( $data = null )
   {
     return '<div class="col-md-12">
           <label for="'.self::m()['id'].'">'.self::$bd['data'][1].'</label>
-          <input type="text" id="'.self::m()['id'].'" class="form-control" name="'.self::m()['name'].'" />'
+          <input type="text" id="'.self::m()['id'].'" class="form-control" name="'.self::m()['name'].'" value="'.$data.'"/>'
           .self::set_helper().
         '</div>';
   }
