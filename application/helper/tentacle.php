@@ -372,8 +372,8 @@ class tentacle
 			case 'published':
 				return '<span class="label label-success">'.$value.'</span>';
 				break;
-			case 'trashed':
-				return '<span class="label label-warning">'.$value.'</span>';
+			case 'trash':
+				return '<span class="label label-danger">'.$value.'</span>';
 				break;
 			default:
 				return '<span class="label">'.$value.'</span>';
