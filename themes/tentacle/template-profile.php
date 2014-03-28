@@ -10,23 +10,9 @@ License URI: license.txt
 */
 /**
 display: admin
-name:
-  name: Name
-  type: text
-  notes: Full Name
-country:
-  name: Country
-  notes: Option notes.
-  type: option
-  options:
-    - Canada
-    - USA
-    - UK
-    - Japan
-twitter:
-  name: Twitter
-  type: text
-  notes: Twitter username, without the @ symbol.
+name: text:Name:Full Name
+options: options(Canada,United States, Mexico):Select a country
+twitter: text:Twitter:Twitter username, without the @ symbol.
 */
 
 theme::part('partials/header',array('title'=>$post->title, 'assets'=>'default'));?>

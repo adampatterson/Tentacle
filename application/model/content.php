@@ -394,7 +394,7 @@ class content_model extends properties {
     //----------------------------------------------------------------------------------------------
     public function get ( $id='' )
     {
-        if( defined( 'FRONT' ) ) {
+        if( defined( 'FRONT' ) ):
             $get_posts = $this->post_table()
                 ->select( '*' )
                 ->where ( 'type', '=', $this->type )
@@ -406,7 +406,7 @@ class content_model extends properties {
                 ->execute();
 
             return $get_posts;
-        } elseif ( $id == '' ) {
+        elseif ( $id == '' ):
             $get_posts = $this->post_table()
                 ->select( '*' )
                 ->where ( 'type', '=', $this->type )
@@ -416,7 +416,7 @@ class content_model extends properties {
                 ->execute();
 
             return $get_posts;
-        } else {
+        else:
             $get_posts = $this->post_table()
                 ->select( '*' )
                 ->where ( 'id', '=', $id )
@@ -427,7 +427,7 @@ class content_model extends properties {
                 return $get_posts[0];
             else
                 return false;
-        }
+        endif;
     }
 
 
@@ -440,15 +440,14 @@ class content_model extends properties {
      */
     public function get_uri( $id='' )
     {
-        if ( $id != '' ) {
+        if ( $id != '' )
             $get_posts = $this->post_table()
                 ->select( 'uri' )
                 ->where ( 'id', '=', $id )
                 ->order_by ( 'id', 'DESC' )
                 ->execute();
 
-            return $get_posts[0]->uri;
-        }
+        return $get_posts[0]->uri;
     }
 
 

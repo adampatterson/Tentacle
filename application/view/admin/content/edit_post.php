@@ -17,7 +17,7 @@
 		<div class="has-right-sidebar">
 			<div class="contet-sidebar has-tabs">
 				<div class="table-heading">
-					<h3 class="regular">Page Settings</h3>
+					<h3 class="regular">Post Settings</h3>
 					<!--<input type="button" value="Preview" class="btn btn-small btn-primary pull-right" />-->
 				</div>
 				<div class="table-content">

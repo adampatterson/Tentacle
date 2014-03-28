@@ -9,18 +9,10 @@ License URI: license.txt
 */
 /**
 display: admin
-description:
-  name: Description
-  type: multiline
-github:
-  name: Github URL
-  type: text
-download:
-  name: Download
-  type: text
-support:
-  name: Support
-  type: text
+description: textarea:Description
+github: text:Github URL
+download: text:Download
+support: text:Support
  */
 
 theme::part('partials/header', array('title'=>'') ) ?>
