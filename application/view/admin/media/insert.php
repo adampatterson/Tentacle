@@ -78,7 +78,11 @@
 
                                                 <div class="form-group">
                                                   <label for="link_url">Link URL</label>
-                                                  <input type="text" class="form-control link_url" name="link_url" value="<?= $image->link ?>" ><button class="btn" type="button" id="none">None</button><button class="btn" type="button" id="file">File</button>
+                                                  <input type="text" class="form-control link_url" name="link_url" value="<?= $image->link ?>" >
+                                                    <div class="actions">
+                                                        <button class="btn" type="button" id="none">None</button>
+                                                        <button class="btn" type="button" id="file">File</button>
+                                                    </div>
                                                 </div>
 
                                                 <div class="form-group">
