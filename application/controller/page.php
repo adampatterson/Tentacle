@@ -3,7 +3,8 @@ load::helper( 'data_properties' );
 
 class page_controller extends properties {
 
-    public function index(  ){
+    public function index( )
+    {
 
         if( DEBUG ):
             load::library('benchmark');
@@ -103,16 +104,15 @@ class page_controller extends properties {
                     tentacle::render( $post->template, array ( 'post' => $post, 'page' => $this->content_model() ) );
                 endif;
 
-                break;
+            break;
             case 'short_url':
 
                 $post = $this->content_model()->get_uri( $uri_parts[1] );
 
                 url::redirect($post);
 
-                break;
+            break;
             case 'page_subpage':
-
                 define ( 'IS_PAGE'      , TRUE );
                 define ( 'IS_SUB_PAGE'  , TRUE );
                 define ( 'IS_POST'      , FALSE );
@@ -126,7 +126,7 @@ class page_controller extends properties {
                   logger::set('Page Template', $post->template);
                   tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta ) );
                 endif;
-                break;
+            break;
             case 'blog_index':
 
                 define ( 'IS_POST'      , FALSE );
@@ -148,8 +148,9 @@ class page_controller extends properties {
                 logger::set('Page Template', 'template-blog');
                 tentacle::render( 'template-blog', array ( 'posts' => $posts->results(), 'author' => $this->user_model(), 'category' => $this->category_model(), 'tag' => $this->tag_model() ) );
 
-                break;
+            break;
             case 'blog_date':
+            case 'blog_slug':
 
                 define ( 'IS_POST'      , FALSE );
                 define ( 'IS_BLOG'      , TRUE );
@@ -163,7 +164,7 @@ class page_controller extends properties {
                 else
                     tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author' => $this->user_model(), 'category' => $this->category_model(), 'tag' => $this->tag_model() ) );
 
-                break;
+            break;
             case 'blog_date_slug':
 
                 define ( 'IS_POST'      , TRUE );
@@ -181,7 +182,7 @@ class page_controller extends properties {
 
                     tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta, 'author' => $this->user_model(), 'category' => $this->category_model(), 'tag' => $this->tag_model() ) );                endif;
 
-                break;
+            break;
             case 'blog_paged':
 
                 define ( 'IS_POST'      , FALSE );
@@ -201,7 +202,7 @@ class page_controller extends properties {
                 }
 
                 tentacle::render( 'template-blog', array ( 'posts' => $posts->results(), 'author' => $this->user_model(), 'category'=>$this->category_model(), 'tag' => $this->tag_model() ) );
-                break;
+            break;
             case 'category_slug':
 
                 $category_slug = explode('/', $uri);
@@ -218,7 +219,7 @@ class page_controller extends properties {
 
                 tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author' => $this->user_model(), 'category'=>$this->category_model(), 'tag' => $this->tag_model() ) );
 
-                break;
+            break;
             case 'tag_slug':
 
                 $tag_slug = explode('/', $uri);
@@ -236,10 +237,10 @@ class page_controller extends properties {
                 logger::set('Category total', $post_total);
 
                 tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author' => $this->user_model(), 'category'=>$this->category_model(), 'tag' => $this->tag_model() ) );
-                break;
+            break;
             default:
                 tentacle::render ( '404' );
-                break;
+            break;
         }
 
         if( DEBUG ):
