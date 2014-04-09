@@ -29,5 +29,3 @@ Authors
 + http://twitter.com/adampatterson
 + http://github.com/adampatterson
 + http://www.adampatterson.ca
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/adampatterson/tentacle/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
