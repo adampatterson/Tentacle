@@ -9,10 +9,11 @@
 
                         <div class="span8 well">
                             <form action="<?= BASE_URL ?>action/import_wordpress/" method="post" enctype="multipart/form-data">
+                                <p>For help on exportying content from <a href="http://codex.wordpress.org/Tools_Export_Screen">WodPress, Please make sure that you do a full export</a>.</p>
                                 <p>Content imported will be added under the current logged in user ( <?= user_name() ?> )</p>
                                 <p></p>
                                 <div class="form-group">
-                                    <label for="xml_file">Choose a WXR (.xml) file to upload, then click "Upload and Import". <br />It should be no larger than <?= ini_get('post_max_size') ?></label>
+                                    <label for="xml_file">Choose a WXR (.xml) file to upload, <br />It should be no larger than <?= ini_get('post_max_size') ?></label>
                                     <div class="controls">
                                         <input type="file" name="xml_file" value="" id="xml_file">
                                     </div>
