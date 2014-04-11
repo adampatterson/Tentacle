@@ -201,7 +201,7 @@ class paginate {
 
     public function __construct( $total, $current_page )
     {
-        if ( '/'.get::option('blog_uri').'/' == BASE_URI or '/'.get::option('blog_uri') == BASE_URI  )
+         if ( '/'.get::option('blog_uri').'/' == BASE_URI or '/'.get::option('blog_uri') == BASE_URI  )
             $clean_uri = get::option('blog_uri').'/';
         else
             $clean_uri = preg_replace('/\/(\w+)\/(\w+)\/(\d+)/i', '${1}/', BASE_URI);
@@ -227,7 +227,6 @@ class paginate {
 
     static function pages( )
     {
-
         if (static::$settings['total_pages'] <= 1) return '';
 
         $output = '';
@@ -324,25 +323,29 @@ class paginate {
 
     static function next()
     {
-        echo '<li><a href="'.static::$settings['url'].'/'.static::$settings['next'].'" class="next">Next</a></li>';
+        if ( static::$settings['total_pages'] != null)
+            echo '<li><a href="'.static::$settings['url'].'/'.static::$settings['next'].'" class="next">Next</a></li>';
     }
 
 
     static function previous()
     {
-        echo '<li><a href="'.static::$settings['url'].'/'.static::$settings['previous'].'" class="previous">Previous</a></li>';
+        if ( static::$settings['total_pages'] != null)
+            echo '<li><a href="'.static::$settings['url'].'/'.static::$settings['previous'].'" class="previous">Previous</a></li>';
     }
 
 
     static function last()
     {
-        echo '<li '.( static::$settings['last'] == static::$settings['current_page'] ? 'class="active"' : '').'><a href="'.static::$settings['url'].'/'.static::$settings['last'].'" class=""last>Last</a></li>';
+        if ( static::$settings['total_pages'] != null)
+            echo '<li '.( static::$settings['last'] == static::$settings['current_page'] ? 'class="active"' : '').'><a href="'.static::$settings['url'].'/'.static::$settings['last'].'" class=""last>Last</a></li>';
     }
 
 
     static function first()
     {
-        echo '<li '.( static::$settings['current_page'] == 1 ? 'class="active"' : '').'><a href="'.static::$settings['url'].'/1" class="first">First</a></li>';
+        if ( static::$settings['total_pages'] != null)
+            echo '<li '.( static::$settings['current_page'] == 1 ? 'class="active"' : '').'><a href="'.static::$settings['url'].'/1" class="first">First</a></li>';
     }
 
 
