@@ -24,11 +24,11 @@
 				<div class="table-content">
 					<fieldset>
 						<div class="form-group">
-							<label for="status">Status</label>
-              <select name="status" id="status" class="form-control">
-                  <option value="draft" <? selected( $get_page->status, 'draft' ); ?>>Draft</option>
-                  <option value="published" <? selected( $get_page->status, 'published' ); ?>>Published</option>
-              </select>
+                            <label for="status">Status</label>
+                          <select name="status" id="status" class="form-control">
+                              <option value="draft" <? selected( $get_page->status, 'draft' ); ?>>Draft</option>
+                              <option value="published" <? selected( $get_page->status, 'published' ); ?>>Published</option>
+                          </select>
 						</div>
 
 						<div class="form-group">
@@ -90,13 +90,13 @@
 
 						<div id="content" class="active tab-pane">
 
-							<input type="text" name="title" placeholder='Title' value='<?= $get_page->title ?>' class='xlarge content_title form-control' required='required' id="permalink" />
+							<input type="text" name="title" placeholder='Title' value="<?= $get_page->title ?>" class='xlarge content_title form-control' required='required' id="permalink" />
 							<input type="hidden" name="permalink" id="new_uri" />
 
-              <script type="text/javascript" charset="utf-8">
-                var page_post = "page";
-                var uri = "<?= parent_page_slug( $get_page->parent ); ?>";
-              </script>
+                              <script type="text/javascript" charset="utf-8">
+                                var page_post = "page";
+                                var uri = "<?= parent_page_slug( $get_page->parent ); ?>";
+                              </script>
 
 							<p class="permalink">Permalink: <?= BASE_URL.parent_page_slug( $get_page->parent ); ?><span id="permalink_landing"><?= $get_page->slug ?></span></p>
 

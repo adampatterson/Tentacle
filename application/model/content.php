@@ -115,7 +115,7 @@ class content_model extends properties {
             'title'		=> $title,
             'slug'		=> $slug,
             'parent'	=> $parent_page,
-            'uri'		  => $uri,
+            'uri'		=> $uri,
             'content'	=> $content,
             'excerpt'	=> $excerpt,
             'status'	=> $status,

@@ -9,7 +9,7 @@
 				//onRestoreCallback: function() {},
 				//onReleaseDataCallback: function() {}
 			});
-		}); 
+		});
 	</script>
 	-->
 	<form action="<?= BASE_URL ?>action/update_post/<?= $get_post->id ?>" method="post" role="form" id='edit_post'>
@@ -22,7 +22,7 @@
 				</div>
 				<div class="table-content">
 					<fieldset>
-						
+
 						<div class="form-group">
 							<label for="status">Status</label>
               <select id="status" name="status" class="form-control">
@@ -37,11 +37,11 @@
               <input type="hidden" value="<?= $get_post->date ?>" name="date_history">
               <small><?= date('F dS\, Y \@ h:i:s A', $get_post->date ); ?></small> <a href="#" id="edit_publish" class="red button-secondary">edit</a>
 						</div>
-			
+
 						<div class="form-group published-on">
 							<? date::get('month', $get_post->date ); ?>
 						</div>
-						
+
 						<div class="form-group published-on">
 		 					<div class="inline-inputs">
 								<input type="text" id="day" name="day" value="<? date::get( 'day', $get_post->date ) ?>" size="2" maxlength="2" tabindex="4" autocomplete="off" class="span1">
@@ -51,7 +51,7 @@
 							</div>
 							<a href="#" id="edit_publish" class="red button-secondary">Cancel</a>
 						</div>
-							
+
 
                         <label >Post Type</label>
                         <div class="post-type-list">
@@ -96,17 +96,17 @@
 				<div id="post-body-content">
 
 					<h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Update <small><?= $get_post->title ?></small></h1>
-					
+
 					<ul class="nav nav-tabs" id="content-tabs">
 						<li class="active"><a href="#content">Content</a></li>
 						<li class=""><a href="#options">Options</a></li>
 					</ul>
-					
+
 					<div class="tab-content tab-body">
-						
+
 						<div id="content" class="active tab-pane">
 
-              <input type="text" name="title" placeholder='Title' value='<?= $get_post->title ?>' class='xlarge content_title form-control' required='required' id="permalink" />
+              <input type="text" name="title" placeholder='Title' value="<?= $get_post->title ?>" class='xlarge content_title form-control' required='required' id="permalink" />
               <input type="hidden" name="permalink" value="<?= $get_post->slug ?>" id="new_uri" />
 
               <script type="text/javascript" charset="utf-8">
@@ -127,13 +127,13 @@
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Excerpt" value="<?=$get_post->excerpt?>" name='excerpt' />
               </div>
-              
+
 							<div class="clear"></div>
 						</div>
-						
+
 						<div id="options" class="tab-pane">
 							<fieldset>
-								
+
 								<div class="form-group">
 									<label for='bread_crumb'>Breadcrumb title</label>
                   <input type="text" class="form-control" placeholder="Edit title" name='bread_crumb' value='<?= $get_post_meta->bread_crumb ?>' />
@@ -196,9 +196,9 @@
 */ ?>
 							</fieldset>
 						</div>
-						
+
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
