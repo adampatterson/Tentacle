@@ -4,51 +4,43 @@
       <h1>Install <small>Step 3</small></h1>
     </div>
 	<ul class="breadcrumb">
-		<li><a href='#'>Overview</a><span class="divider">/</span></li>
-		<li><a href='#'>System Check</a><span class="divider">/</span></li>
-		<li class="active"><a href='#'>Database Information</a><span class="divider">/</span></li>
-		<li>Testing the config file<span class="divider">/</span></li>
-		<li>Create User<span class="divider">/</span></li>
+		<li><a href='#'>Overview</a></li>
+		<li><a href='#'>System Check</a></li>
+		<li class="active"><a href='#'>Database Information</a></li>
+		<li>Testing the config file</li>
+		<li>Create User</li>
 		<li>Done</li>
 	</ul>
     <div class="row">
-      <div class="span12">
+      <div class="col-md-12">
         <h2>Database Information</h2>
-		<form method="post" action="<?= BASE_URL; ?>install/database" class="form-horizontal">
+		<form method="post" action="<?= BASE_URL; ?>install/database" role="form">
 		  <p>Below you should enter your database connection details. If you're not sure about these, contact your host.</p>
 		  	<div class="clearfix">
 		  		<div id="confirm_db"></div>
 		  	</div>
-			<div class="control-group">
-				<label for="db_name" class="control-label">Database Name</label>
-				<div class="controls">
-					<input name="db_name" type="text" size="25" value="" required='required' />
-					<span class="help-block">The name of the database you want to run your script in.</span>
-				</div>
+			<div class="form-group">
+				<label for="db_name">Database Name</label>
+                <input name="db_name" class="form-control" type="text" size="25" value="" required='required' />
+                <span class="help-block">The name of the database you want to run your script in.</span>
 			</div>
 			
 			<div class="control-group">
-				<label for="db_host" class="control-label">Database Host</label>
-				<div class="controls">
-					<input name="db_host" type="text" size="25" value="localhost" required='required' />
-					<span class="help-block">Most Likely  won't need to change this value.</span>
-				</div>
+				<label for="db_host">Database Host</label>
+                <input name="db_host" class="form-control" type="text" size="25" value="localhost" required='required' />
+                <span class="help-block">Most Likely  won't need to change this value.</span>
 			</div>
-			
+
 			<div class="control-group">
-				<label for="db_user" class="control-label">User Name</label>
-				<div class="controls">
-					<input name="db_user" type="text" size="25" value="root" required='required' />
-					<span class="help-block">Your MySQL username</span>
-				</div>
+				<label for="db_user">User Name</label>
+                <input name="db_user" class="form-control" type="text" size="25" value="root" required='required' />
+                <span class="help-block">Your MySQL username</span>
 			</div>
-			
+
 			<div class="control-group">
-				<label for="db_password" class="control-label">Password</label>
-				<div class="controls">
-					<input name="db_password" type="text" size="25" value="root" required='required' />
-					<span class="help-block">Your MySQL password.</span>
-				</div>
+				<label for="db_password">Password</label>
+                <input name="db_password" class="form-control" type="text" size="25" value="root" required='required' />
+                <span class="help-block">Your MySQL password.</span>
 			</div>
 			
 			<div class="row">

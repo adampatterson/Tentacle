@@ -4,15 +4,15 @@
       <h1>Install <small>Step 1</small></h1>
     </div>
 	<ul class="breadcrumb">
-		<li class="active"><a href='#'>Overview</a><span class="divider">/</span></li>
-		<li>System Check<span class="divider">/</span></li>
-		<li>Database Information<span class="divider">/</span></li>
-		<li>Testing the config file<span class="divider">/</span></li>
-		<li>Create User<span class="divider">/</span></li>
+		<li class="active"><a href='#'>Overview</a></li>
+		<li>System Check</li>
+		<li>Database Information</li>
+		<li>Testing the config file</li>
+		<li>Create User</li>
 		<li>Done</li>
 	</ul>
     <div class="row">
-      <div class="span12">
+      <div class="col-md-12">
         <h2>Overview</h2>
 	<p>Welcome to your install. Before getting started we need some information on the database. You will need to know the following items before proceeding.</p>
 	<ol>

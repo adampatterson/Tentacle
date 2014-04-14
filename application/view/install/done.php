@@ -12,7 +12,7 @@
 		<li class="active"><a href='#'>Done</a></li>
 	</ul>
     <div class="row">
-      <div class="span12">
+      <div class="col-md-12">
         <h2>Congratulations!</h2>
 		<div class="alert-message block-message success">
 			<h3>You have successfully installed Tentacle CMS.</h3>

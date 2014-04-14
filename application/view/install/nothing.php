@@ -4,7 +4,7 @@
       <h1>Already Installed </h1>
     </div>
     <div class="row">
-      <div class="span14">
+      <div class="col-md-12">
         <h2>Congratulations!</h2>
 		<div class="alert-message block-message success">
 			<p>It looks like Tentacle has already been installed!</p>
