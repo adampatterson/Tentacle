@@ -411,7 +411,7 @@ class content_model extends properties {
             $get_posts = $this->post_table()
                 ->select( '*' )
                 ->where ( 'type', '=', $this->type )
-                ->order_by ( 'id', 'DESC' )
+                ->order_by ( 'date', 'DESC' )
                 ->clause ('AND')
                 ->where ( 'status', '!=', 'trash' )
                 ->execute();
