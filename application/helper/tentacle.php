@@ -85,8 +85,8 @@ class tentacle
                 extract($data, EXTR_OVERWRITE);
             }
 
-            define('ERROR_404', FALSE);
-            http_response_code(404);
+//            define('ERROR_404', FALSE);
+//            http_response_code(404);
 
             require(THEMES_DIR.ACTIVE_THEME."/$theme.php");
             return FALSE;
