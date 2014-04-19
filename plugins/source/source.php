@@ -22,5 +22,5 @@ class source {
 }
 
 function sourcecode ($tag, $content = null) {
-    return '<pre><code class="language-'.$tag['language'].'">'.$content.'</code></pre>';
+    return '<pre data-pbcklang="'.$tag['language'].'" data-pbcktabsize="4" class="language-'.$tag['language'].'"><code class="language-'.$tag['language'].'">'.$content.'</code></pre>';
 }
