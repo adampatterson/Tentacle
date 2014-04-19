@@ -48,9 +48,23 @@ CKEDITOR.editorConfig = function( config ) {
     config.extraPlugins = 'pbckcode';
 
     config.pbckcode = {
-        highlighter : "PRETTIFY"
-    };
+        // An optional class to your pre tag.
+        cls : '',
 
+        // The syntax highlighter you will use in the output view
+        highlighter : 'PRISM',
+
+        // An array of the available modes for you plugin.
+        // The key corresponds to the string shown in the select tag.
+        // The value correspond to the loaded file for ACE Editor.
+        modes :  [ ['HTML', 'html'], ['CSS', 'css'], ['PHP', 'php'], ['JS', 'javascript'] ],
+
+        // The theme of the ACE Editor of the plugin.
+        theme : 'solarized_light',
+
+        // Tab indentation (in spaces)
+        tab_size : '4'
+    };
 
     // The default plugins included in the basic setup define some buttons that
 	// we don't want too have in a basic editor. We remove them here.
