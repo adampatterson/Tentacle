@@ -21,7 +21,6 @@
 
     <? if ( in_array('wysiwyg', $assets)): ?>
     <script type="text/javascript" src="<?=ADMIN_JS; ?>ckeditor/ckeditor.js"></script>
-    <script type="text/javascript" src="<?=ADMIN_JS; ?>ckeditor/config.js"></script>
     <link rel="stylesheet" href="<?=ADMIN_JS ?>ckeditor/contents.css"/>
     <script type="text/javascript" src="<?=ADMIN_JS; ?>ckeditor/styles.js"></script>
     <link rel="stylesheet" href="<?=ADMIN_CSS; ?>codemirror.css">
