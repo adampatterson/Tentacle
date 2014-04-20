@@ -6,9 +6,6 @@
           <h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Disqus Settings</h1>
         </div>
         <div class="col-md-8 well">
-          <? if ( input::post('author_profile') )
-            set::option('author_profile', input::post('author_profile')); ?>
-
           <form action="<?= BASE_URL ?>action/udpate_settings_post/" class="form-stacked" method="post" role="form">
             <input type="hidden" name="history" value="admin/settings_plugins/disqus_settings">
             <div class="form-group">
