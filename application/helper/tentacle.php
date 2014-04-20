@@ -134,6 +134,42 @@ class tentacle
             event::trigger('page_view');
         }
     }
+
+    static function generate_sitemap( $posts = array() )
+    {
+        $uri = BASE_URL;
+
+        $posts = $posts;
+        $url = BASE_URL;
+        $title = get::option('blogname');
+
+        $sitemap = '<?xml version="1.0" encoding="UTF-8" ?>';
+        $sitemap .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
+
+        $sitemap .= '<url>';
+        $sitemap .= "<loc>$url</loc>";
+        $sitemap .= "<changefreq>daily</changefreq>";
+        $sitemap .= "<priority>1</priority>";
+        $sitemap .= '</url>';
+
+        foreach ($posts as $post) {
+            $sitemap .= '<url>';
+            $sitemap .= "<loc>$url{$post->uri}</loc>";
+            $sitemap .= "<changefreq>daily</changefreq>";
+            $sitemap .= "<priority>0.8</priority>";
+
+            $sitemap .= '</url>';
+        }
+
+        $sitemap .= '</urlset>';
+
+        # Write the sitemap to sitemap file!
+        $fp = @fopen('./sitemap.xml', 'w');
+        fwrite($fp, $sitemap);
+        fclose($fp);
+
+        return true;
+    }
 }
 
 

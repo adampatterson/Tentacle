@@ -432,6 +432,24 @@ class content_model extends properties {
     }
 
 
+    // Get Post
+    //----------------------------------------------------------------------------------------------
+    public function get_sitemap ( $id='' )
+    {
+        $get_posts = $this->post_table()
+            ->select( 'uri','slug','title','modified' )
+            ->where ( 'type', '=', $this->type )
+            ->order_by ( 'date', 'DESC' )
+            ->clause ('AND')
+            ->where ( 'status', '=', 'published' )
+            ->clause ('AND')
+            ->where ( 'date', '<=', time() )
+            ->execute();
+
+        return $get_posts;
+    }
+
+
     // Get URI
     //----------------------------------------------------------------------------------------------
     /**

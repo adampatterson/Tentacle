@@ -343,21 +343,21 @@ class action_controller extends properties {
 		
 		$post_categories = input::post( 'post_category' );
 
-    foreach ( $post_categories as $post_category ):
-        $category_relations = $this->category_model()
-            ->relations( $post_single, $post_category );
-    endforeach;
+        foreach ( $post_categories as $post_category ):
+            $category_relations = $this->category_model()
+                ->relations( $post_single, $post_category );
+        endforeach;
 
-		$post_tags = input::post( 'tags' );
-		$post_tags = explode(',', $post_tags );
+            $post_tags = input::post( 'tags' );
+            $post_tags = explode(',', $post_tags );
 
-		foreach ( $post_tags as $post_tag ):
-			$tag_single = $this->tag_model()->add( $post_tag );
+            foreach ( $post_tags as $post_tag ):
+                $tag_single = $this->tag_model()->add( $post_tag );
 
-			$tag_relations = $this->tag_model()->relations( $post_single, $tag_single );
-    endforeach;
+                $tag_relations = $this->tag_model()->relations( $post_single, $tag_single );
+        endforeach;
 
-    event::trigger('add_post');
+        event::trigger('add_post');
 		url::redirect( 'admin/content_update_post/'.$post_single );
 	}	
 	
@@ -776,6 +776,8 @@ win.send_to_editor('<?=$html?>');
 
     public function import_wordpress ()
     {
+        tentacle::valid_user();
+
         if (!is_dir(TEMP)) {
             if (!mkdir(TEMP, 0755, true)) {
                 die('Failed to create folders...');
@@ -874,7 +876,9 @@ win.send_to_editor('<?=$html?>');
 
 	public function editor_file_upload()
 	{
-		copy($_FILES['file']['tmp_name'], STORAGE_DIR.'/files/'.$_FILES['file']['name']);
+        tentacle::valid_user();
+
+        copy($_FILES['file']['tmp_name'], STORAGE_DIR.'/files/'.$_FILES['file']['name']);
 
 		$array = array(
 			'filelink' => STORAGE_URL.'/files/'.$_FILES['file']['name'],
@@ -890,6 +894,17 @@ win.send_to_editor('<?=$html?>');
 		echo 'saved';
 	}
 
+
+    public function generate_sitemap()
+    {
+        $posts = $this->content_model()->type( 'post' )->get_sitemap( );
+
+        tentacle::generate_sitemap($posts);
+
+        note::set('success','sent_message','Generated sitemap.xml');
+
+        url::redirect( 'admin/settings_seo' );
+    }
 	
 	/**
 	 * 

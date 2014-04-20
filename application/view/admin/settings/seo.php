@@ -32,7 +32,7 @@
                         <div class="form-group">
                             <label for="blogname">Google Webmaster Tools</label>
                             <div class="controls">
-                                        <input type="text" class="form-control" value="<?= get::option('seo_google_webmaster', '') ?>" name="seo_google_webmaster">
+                                <input type="text" class="form-control" value="<?= get::option('seo_google_webmaster', '') ?>" name="seo_google_webmaster">
                                 <span class="help-block">
                                     Enter your meta key "content" value to verify your blog with <a href="https://www.google.com/webmasters/tools/">Google Webmaster Tools</a>
                                 </span>
@@ -41,6 +41,13 @@
 
 
                     </fieldset>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="well">
+                    <h2>Generate <em>sitemap.xml</em></h2>
+                    <a class="btn btn-lg btn-primary" href="<?= BASE_URL ?>action/generate_sitemap">Generate</a>
                 </div>
             </div>
             <div class="col-md-6">
