@@ -11,26 +11,24 @@
 				</div>
 				<div class='table-content'>
 					<fieldset>
-
 						<div class="form-group">
 							<label for='name'>Name</label>
-              <input type='text' class="form-control" name='name' id='name' required='required'>
+                            <input type='text' class="form-control" name='name' id='name' required='required'>
 						</div>
 						
 						<div class="form-group">
 							<label for='slug'>Slug</label>
-              <input type='text' class="form-control" name='slug' id='slug' required='required'>
+                            <input type='text' class="form-control" name='slug' id='slug' required='required'>
 						</div>
-						
 					</fieldset>
 				</div>
 
-        <div class="row">
-            <div class="actions">
-                <input type='submit' value='Add new category' class='btn btn-large btn-primary' />
-                <a href="#" class="red">Cancel</a>
-            </div>
-        </div>
+                <div class="row">
+                    <div class="actions">
+                        <input type='submit' value='Add new category' class='btn btn-large btn-primary' />
+                        <a href="#" class="red">Cancel</a>
+                    </div>
+                </div>
 
 			</form>
 		</div>
