@@ -29,3 +29,6 @@ Authors
 + http://twitter.com/adampatterson
 + http://github.com/adampatterson
 + http://www.adampatterson.ca
+
+
+[![I Love Open Source](http://www.iloveopensource.io/images/logo-lightbg.png)](http://www.iloveopensource.io/projects/53573a4587659fce66002056)
