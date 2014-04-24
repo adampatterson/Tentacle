@@ -10,7 +10,10 @@ License URI: license.txt
 /**
 display: admin
 description: textarea:Description
-github: text:Github URL
+via: text:Via
+via_title: text:Via Title
+view: text:view
+github_url: text:Github URL
 download: text:Download
 support: text:Support
  */
@@ -20,29 +23,23 @@ theme::part('partials/header', array('title'=>'') ) ?>
     <section class="content">
         <article>
             <div class="page-header">
-                <h2>Tentacle CMS - Marketing site</h2>
+                <h2><?= $post->title; ?></h2>
             </div>
 
             <div class="row">
-                <div class="span5">
-                    <p class="lead">Tentacle is an OpenSource Content Management System.</p>
-                    <p class="lead">It’s goal is to help web professionals and small businesses create fast and flexible websites with the user in mind. For more info, be sure to checkout out the official website
-                        <a href="http://tentaclecms.com">tentaclecms.com</a>.</p>
+                <div class="md-6 details">
+                    <?= $post_meta->description ?>
 
-                    <a href="#view" class="btn btn-large btn-block btn-promo">View on Github</a>
-                    <a href="#download" class="btn btn-large btn-block btn-promo">Download</a>
-                    <a href="#support" class="btn btn-large btn-block btn-promo">Get Support</a>
+                    <a href="<?= $post_meta->github_url ?>" class="btn btn-large btn-block btn-promo">View on Github</a>
+                    <a href="<?= $post_meta->download ?>" class="btn btn-large btn-block btn-promo">Download</a>
+                    <a href="<?= $post_meta->support ?>" class="btn btn-large btn-block btn-promo">Get Support</a>
                 </div>
-                <div class="span7">
-                    <p>
-                        <img src="/content/tentacle-01.jpg" alt="" />
-                    </p>
+                <div class="md-6 content">
 
-                    <p>
-                        <img src="/content/tentacle-update-this.png" alt="" />
-                    </p>
+                    <?= the_content( $post->content ); ?>
+                    <?= render_content(); ?>
 
-                    <a href="#estimate" class="btn btn-large btn-block  btn-promo">Like what you see?</a>
+                    <a href="/request-an-estimate" class="btn btn-large btn-block  btn-promo">Like what you see?</a>
                 </div>
             </div>
         </article>
