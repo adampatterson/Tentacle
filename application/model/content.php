@@ -500,6 +500,28 @@ class content_model extends properties {
         endif;
     }
 
+    /**
+     * Get a partial object based on its URI
+     *
+     * @param string $uri
+     * @return void
+     * @author Adam Patterson
+     *
+     */
+    public function get_by_partial_uri( $url )
+    {
+        $exists = $this->get_by_uri($url);
+
+        if ( $exists ):
+            return true;
+        else:
+            $post = db::query("SELECT uri, slug, id FROM posts WHERE uri LIKE '%$url%'" );
+            if( empty($post) )
+                return false;
+            else
+                return $post[0];
+        endif;
+    }
 
     public function unique_uri ( $uri ) {
 

@@ -478,7 +478,7 @@ class is {
      * @access  public
      * @return  bool
      */
-    public function ssl()
+    public static function ssl()
     {
         if ( isset($_SERVER['HTTPS']) ) {
             if ( 'on' == strtolower($_SERVER['HTTPS']) )
