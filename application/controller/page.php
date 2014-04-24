@@ -80,6 +80,15 @@ class page_controller extends properties {
 
         $post_limit = get::option( 'page_limit', 5 );
 
+        $redirect_uri = $this->content_model()->type( )->get_by_partial_uri( URI );
+
+        // True the page exists
+        // False the page is a 404
+        // Data then we found something and redirect
+
+//        if ( $redirect_uri === false )
+            //url::redirect($redirect_uri->uri);
+
         switch (url_map::get( $uri )) {
             case 'home_index':
             case 'page_index':
@@ -187,7 +196,7 @@ class page_controller extends properties {
 
                 define ( 'IS_POST'      , FALSE );
                 define ( 'IS_BLOG'      , TRUE );
-
+                define ( 'IS_PAGED'      , TRUE );
                 $post_total     = $this->content_model()->get( );
 
                 $posts = new pagination($post_total, $current_page, $post_limit);
