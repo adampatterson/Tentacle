@@ -35,7 +35,7 @@ class bootstrap extends dingo
       // Parse URL, check for PATH_INFO and ORIG_PATH_INFO server params respectively
       $url = (0 !== stripos($url, $script_name)) ? $url : substr($url, strlen($script_name));
       $url = (empty($_SERVER['PATH_INFO'])) ? $url : $_SERVER['PATH_INFO'];
-      $url = (empty($_SERVER['ORIG_PATH_INFO'])) ? $url : $_SERVER['ORIG_PATH_INFO'];
+      //$url = (empty($_SERVER['ORIG_PATH_INFO'])) ? $url : $_SERVER['ORIG_PATH_INFO'];
 
       // Check for GET __dingo_page
       $url = (input::get('__dingo_page')) ? input::get('__dingo_page') : $url;
@@ -198,16 +198,16 @@ class cookie extends dingo
 
       if(!isset($settings['path']))
 			  $settings['path']='/';
-			
+
       if(!isset($settings['domain']))
 			  $settings['domain']=FALSE;
-			
+
       if(!isset($settings['secure']))
 			  $settings['secure']=FALSE;
-			
+
       if(!isset($settings['httponly']))
 			  $settings['httponly']=FALSE;
-			
+
         if(!isset($settings['expire'])):
             $ex = new DateTime();
             $time = $ex->format('U');
@@ -243,13 +243,13 @@ class cookie extends dingo
     {
       if(!isset($settings['path']))
 			  $settings['path']='/';
-			
+
       if(!isset($settings['domain']))
 			  $settings['domain']=FALSE;
-			
+
       if(!isset($settings['secure']))
 			  $settings['secure']=FALSE;
-			
+
       if(!isset($settings['httponly']))
 			  $settings['httponly']=FALSE;
 
@@ -398,19 +398,19 @@ class route extends dingo
 {
 	# Array: rout
     static $route = array();
- 
+
 	# Array: current
     private static $current = array();
 
     /**
 	* Function: valid
-	*	Tests to see if the rout contains allowed characters, by default 'ALLOWED_CHARS' is set to '/^[ \!\,\~\&\.\:\+\@\-_a-zA-Z0-9]+$/' 
+	*	Tests to see if the rout contains allowed characters, by default 'ALLOWED_CHARS' is set to '/^[ \!\,\~\&\.\:\+\@\-_a-zA-Z0-9]+$/'
 	*
 	* Parameters:
 	*	$r - string - rout
 	*
 	* Returns:
-	*	Boolean 
+	*	Boolean
 	*/
     public static function valid($r)
     {
@@ -603,7 +603,7 @@ class route extends dingo
 	*	$path - String
 	*
 	* Returns:
-	*	
+	*
 	*/
     public static function controller($path=FALSE)
     {
@@ -616,10 +616,10 @@ class route extends dingo
 	*	Returns the loaded method for the current route.
 	*
 	* Parameters:
-	*	
+	*
 	*
 	* Returns:
-	*	
+	*
 	*/
     public static function method()
     {
@@ -632,10 +632,10 @@ class route extends dingo
 	*	Returns the arguments passed to the loaded method for the current route.
 	*
 	* Parameters:
-	*	
+	*
 	*
 	* Returns:
-	*	
+	*
 	*/
     public static function arguments()
     {
@@ -959,7 +959,7 @@ class load extends dingo
 
 	/**
 	* Function: controller
-	*	Controllers display pages, make database queries, and pass data to Views. 
+	*	Controllers display pages, make database queries, and pass data to Views.
 	*	Controllers provide the core functionality to the applications.
 	*
 	* Parameters:
@@ -999,7 +999,7 @@ class load extends dingo
 	/**
     * Function: model
     *	Used to load models for the app.
- 	*	If the model class does not exist then and if the model can be found it will be required. 
+ 	*	If the model class does not exist then and if the model can be found it will be required.
 	*	If not an error is returned.
 	*
 	*	If the model class exists then we create a new instance of it.
@@ -1039,14 +1039,14 @@ class load extends dingo
         return new $model_class();
     }
 
-	
+
 	/**
 	* Function: parent_model
-	*	In Dingo, it is possible to make model classes extend from other model classes. 
+	*	In Dingo, it is possible to make model classes extend from other model classes.
 	*	For example you may have a model that looks like this:
 	*
 	* Parameters:
-	*	
+	*
 	*
 	* Returns:
 	*	FALSE
@@ -1112,7 +1112,7 @@ class load extends dingo
     *	A wrapper for require_once, It loads a file from application/language
     *
     * Parameters:
-    *	$helper - string	
+    *	$helper - string
     */
     public static function language($language)
     {
@@ -1123,7 +1123,7 @@ class load extends dingo
 	/**
 	* Function: plugin_view
 	*	Used to load views that are located inside a plugin for the admin app.
-	* 
+	*
 	* Parameters:
 	*	$path - String
 	* 	$data - Mixed
@@ -1147,7 +1147,7 @@ class load extends dingo
 	        {
 	            extract($data, EXTR_OVERWRITE);
 	        }
-	
+
 	        require(TENTACLE_PLUGIN."/$path.php");
 	        return FALSE;
 	    } // else
@@ -1204,10 +1204,10 @@ class load extends dingo
 
         if( file_exists(APPLICATION.'/library/'.$folder.'/'.$file.'.php' ) ):
            return self::file(APPLICATION.'/library/'.$folder,$file,'library');
-		
+
 		elseif( file_exists(APPLICATION.'/library/'.$folder.'/'.$folder.'.php' ) ):
            return self::file(APPLICATION.'/library/'.$folder,$folder,'library');
-        
+
 		else:
            return self::file(APPLICATION.'/library',$folder,'library');
         endif;
@@ -1229,7 +1229,7 @@ class load extends dingo
     *	A wrapper for require_once, It loads a file from application/helper
     *
     * Parameters:
-    *	$helper - string	
+    *	$helper - string
     */
     public static function helper($helper)
     {
