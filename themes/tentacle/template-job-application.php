@@ -15,11 +15,3 @@ blocks:
   title: text:Title Block
   details: text:Detail Block
 */
-/*
-repeater:
-  title: text:Repeater title block
-  details: text:Repeater detail block
-  password: password:Enter your password
-options: options(Canada,United States, Mexico):Select a country
-textarea: textarea:This is a text area
- */

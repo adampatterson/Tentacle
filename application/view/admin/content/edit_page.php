@@ -120,7 +120,7 @@
                                     if ( $raw_blocks != null ):
                                         $blocks = new blocks();
 
-                                        if(is_object($get_page_meta))
+                                        if(!property_exists($get_page_meta, 'collection'))
                                             $get_page_meta->collection = (array)$get_page_meta;
 
                                         $blocks->populate( $raw_blocks, $get_page_meta->collection );

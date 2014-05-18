@@ -563,7 +563,9 @@ function render_meta( $location = null )
  */
 function render_canonical( $location = null )
 {
-        echo "<link rel='canonical' href='".BASE_URL.URI."' />\n";
+    //var_dump(IS_PAGED);
+    // Return blog path.
+    echo "<link rel='canonical' href='".BASE_URL.URI."' />\n";
 }
 
 
