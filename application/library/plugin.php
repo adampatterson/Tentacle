@@ -116,9 +116,6 @@ class plugin extends event {
             fallback($info["help"]);
 
             $info["description"] = $info["description"];
-            $info["description"] = preg_replace(array("/<code>(.+)<\/code>/se", "/<pre>(.+)<\/pre>/se"),
-                array("'<code>'.fix('\\1').'</code>'", "'<pre>'.fix('\\1').'</pre>'"),
-                $info["description"]);
 
             $info["author"]["link"] = !empty($info["author"]["url"]) ?
                 '<a href="'.string::fix($info["author"]["url"]).'">'.string::fix($info["author"]["name"]).'</a>' :
