@@ -42,7 +42,7 @@
 				<?php if (is_dir('storage/') AND is_writable('storage/')): ?>
 					<td class="pass">/storage/</td>
 				<?php else: $failed = TRUE ?>
-					<td class="fail">The <code>/tentacle/storage/</code> directory is not writable.</td>
+					<td class="fail">The <code>/storage/</code> directory is not writable.</td>
 				<?php endif; ?>
 			</tr>
 			<tr>
@@ -108,23 +108,23 @@
 				<p>Tentacle may not work correctly with your environment.</p>
 			</div>
 			<div class="row">
-				<div class="span6">
+				<div class="col-md-">
 					<a href="<?= BASE_URL; ?>/" class="btn btn-danger">Back</a>
 				</div>
-				<div class="span6 pull-right">
+				<div class="col-md- pull-right">
 					<a href="#" class="btn disabled pull-right">Next</a>
 				</div>
 			</div>
-		<?php else: 
+		<?php else:
 			url::redirect('install/step3');
 		?>
 			<div class="alert-message success">
 				<p><strong>✔</strong> Your environment passed all requirements.</p>
 			</div>
-			<div class="span6">
+			<div class="col-md-">
 				<a href="<?= BASE_URL; ?>install/step1" class="btn btn-danger">Back</a>
 			</div>
-			<div class="span6 pull-right">
+			<div class="col-md- pull-right">
 				<a href="<?= BASE_URL; ?>install/step3/" class="btn btn-primary pull-right">Next</a>
 			</div>
 		<?php endif; ?>

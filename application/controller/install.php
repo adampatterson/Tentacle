@@ -8,7 +8,7 @@ class install_controller
 {
 
     public function step1 ( )
-	{	
+	{
 		// Create a .htaccess file that is a bit more advanced with thins like Mod Defalte and proper routing for plugnis.
         //if ( !file_exists( '.htaccess' ) )
 			//create_htaccess();
@@ -21,68 +21,68 @@ class install_controller
 			load::view ('install/nothing');
 		endif;
 	}
-	
+
 	public function step2 ( )
 	{
 		load::view ('install/step2');
 	}
-	
+
 	public function step3 ( )
 	{
 		load::view ('install/step3');
 	}
-	
+
 	public function step4 ( )
 	{
 		load::view ('install/step4');
 	}
-	
+
 	public function step5 ( )
 	{
 		// CREATE DATABASE database_name
 		load::library('db');
-		
+
 		$sql = load::model('migration');
-		
+
 		$sql->get_100();
-		
+
 		// Seed data
 		$sql->get_101();
-				
+
 		// Set an option key for the blog being installed
 		$sql->get_102();
-		
+
 		$sql->get_103();
-		
+
 		$sql->get_104();
 
-    $sql->get_105();
+        $sql->get_105();
 
-    $sql->get_106();
+        $sql->get_106();
 
-    $sql->get_107();
+        $sql->get_107();
 
-    $sql->get_108();
+        $sql->get_108();
 
-    $sql->get_109();
+        $sql->get_109();
 
-    $sql->get_110();
+        $sql->get_110();
 
-    $sql->get_111();
+        $sql->get_111();
 
-    $sql->get_112();
+        $sql->get_112();
 
-    $sql->get_113();
+        $sql->get_113();
 
-    $sql->get_114();
+        $sql->get_114();
 
-    $sql->get_115();
+        $sql->get_115();
 
-    $sql->get_116();
+        $sql->get_116();
 
 		// Set the current Install version
 		$sql->set_db('116');
-								
+
 		load::view ('install/step5');
 	}
 
@@ -155,7 +155,7 @@ class install_controller
   public function done ( )
 	{
     load::model('statistics')->mixpanel_server( true );
-			
-		load::view ( 'install/done' );	
+
+		load::view ( 'install/done' );
 	}
 }

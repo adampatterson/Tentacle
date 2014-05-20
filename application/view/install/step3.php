@@ -44,11 +44,11 @@
 			</div>
 			
 			<div class="row">
-				<div class="span6">
+				<div class="col-md-">
 					<a href="<?= BASE_URL; ?>install/step2/" class="btn medium secondary">Back</a>
 				</div>
 			
-				<div class="span6 pull-right">
+				<div class="col-md- pull-right">
 					<input name="submit" id="submit" type="submit" value="Submit" class="btn btn-primary pull-right"/>
 				</div>
 			</div>
