@@ -494,21 +494,21 @@ class migration_model
     {
         $config = config::get('db');
 
-        $server = $config['default']['host'];
+        $driver = $config['default']['driver'];
+        $host = $config['default']['host'];
+        $table = $config['default']['database'];
         $username = $config['default']['username'];
         $password = $config['default']['password'];
 
-        $host = $server;
-
-        $link = @mysql_connect($host, $username, $password, TRUE);
-
-        if (!$link)
-        {
-            return false;
-        }
-        else
-        {
+        try{
+            $pdo = new pdo( $driver.':host='.$host.';dbname='.$table,
+                $username,
+                $password,
+                array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
             return true;
+        }
+        catch(PDOException $ex){
+            return false;
         }
     }
 
