@@ -539,17 +539,18 @@ class is {
      *	Bool
      */
     public static function blog_installed() {
-        $touch = load::model( 'migration' );
 
-        $touch_db = $touch->touch_db();
+        if ( ! get::option('is_blog_installed')) {
 
-        if ( $touch_db === false ) {
-            url::redirect('install/step5');
-        } else {
-            return true;
+            $touch = load::model('migration');
+
+            $touch_db = $touch->touch_db();
+
+            if ($touch_db === false)
+                url::redirect('install/step5');
         }
 
-		return true;
+        return true;
     }
 
 
