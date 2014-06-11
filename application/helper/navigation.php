@@ -42,7 +42,7 @@ function nav_menu ( $args = array() )
  *	Generate HTML output for Navigation
  *
  * Parameters:
- *	$tree - Tree data array
+ *	$items - Tree data array
  *	$args - Array
  *
  * Returns:

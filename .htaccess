@@ -59,7 +59,7 @@ DirectoryIndex index.php index.html
 
 ## Enable gzip.
 <IfModule mod_deflate.c>
-	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/json application/javascript application/x-javascript
+	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/json application/javascript application/x-javascript image/svg+xml
 </IfModule>
 
 ErrorDocument 401 default
