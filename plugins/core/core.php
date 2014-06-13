@@ -123,7 +123,7 @@ function oembed_content( $url )
 {
     load::library('oembed');
 
-    return oembed_cotnent( $url[0] );
+    return oembed_cotnent( $url['url'] );
 }
 
 
