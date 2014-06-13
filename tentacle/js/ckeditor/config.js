@@ -45,6 +45,8 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'tools' }
     ];
 
+    config.removePlugins = 'contextmenu,liststyle,tabletools';
+
     config.extraPlugins = 'pbckcode';
     config.allowedContent= 'pre[*]{*}(*)'; // add other rules here
     config.pbckcode = {
