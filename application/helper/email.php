@@ -55,8 +55,8 @@ function email_header( $subject='' )
 				-->
 				</style>
 				</head>
-				<body bgcolor="#dddddd" marginheight="0" topmargin="0" background="http://tentaclecms.com/tentacle/admin/tentacle_logo_large.png">
-				<table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#dddddd" background="http://tentaclecms.com/tentacle/images/bg_texturetastic_gray.png">
+				<body bgcolor="#dddddd" marginheight="0" topmargin="0">
+				<table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#dddddd">
 					<tr>
 						<td align="center"><table width="600" border="0" cellspacing="0" cellpadding="0">
 							<tr>
