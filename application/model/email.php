@@ -71,6 +71,8 @@ class email_model
 
         $message = '<p>A password reset has been issued for <strong>Username</strong>: '.$user_name.' </p>
 						<p><strong>Click the link to create a new password.</strong><br />'.BASE_URL.'admin/set_password/'.$hashed_ip.'</p>';
+
+        $deliver = $this->send( $subject, $message, $email );
     }
 
     public function admin_locked_account ( $user = '', $subject = '' )

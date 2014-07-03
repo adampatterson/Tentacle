@@ -36,7 +36,7 @@ class dev_controller extends properties {
 
             note::set("success","sent_message",'An email has been sent with instructions.');
 
-url::redirect('admin');
+            url::redirect('admin');
 
         } else {
             echo 'No match, Set an error message';
