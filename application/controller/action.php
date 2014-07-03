@@ -106,7 +106,7 @@ class action_controller extends properties {
 	    if ( isset($user[0]->email)) 
 		{
 	        // Generate a Hash from the users IP
-            $locked = $this->email_model()->lost( $user, 'Recover your password.' );
+            $locked = $this->email_model()->lost_password( $user, 'Recover your password.' );
 
 			note::set("success","sent_message",'An email has been sent with instructions.');
 
