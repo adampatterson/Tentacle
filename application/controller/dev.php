@@ -1,5 +1,6 @@
 <?php
 
+load::helper( 'data_properties' );
 class my
 {
     static function method_name ( $text = '' )
@@ -8,25 +9,41 @@ class my
     }
 }
 
-class dev_controller {
+class dev_controller extends properties {
 
 	public function index()
 	{
-        load::model('statistics')->mixpanel_server( true );
 
 
-        var_dump(load::model( 'media' )->get());
+        $username = 'adampatterson';
 
-        var_dump(get::option('missing_key', 'default') );
+        if ( strstr( $username, '@', true) ) {
+            $user = $this->user_table()
+                ->select('*')
+                ->where('email','=',$username)
+                ->execute();
+        } else {
+            $user = $this->user_table()
+                ->select('*')
+                ->where('username','=',$username)
+                ->execute();
+        }
 
-        var_dump(is::mobile());
-		var_dump(is::blackberry());
-		var_dump(is::ipad());
-		var_dump(is::ipod());
-		var_dump(is::iphone());
-		var_dump(is::palmpre());
-		var_dump(is::android());
-	}
+        if ( isset($user[0]->email))
+        {
+            // Generate a Hash from the users IP
+            $locked = $this->email_model()->lost_password( $user, 'Recover your password.' );
+
+            note::set("success","sent_message",'An email has been sent with instructions.');
+
+url::redirect('admin');
+
+        } else {
+            echo 'No match, Set an error message';
+        }
+
+
+    }
 
 
 

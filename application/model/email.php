@@ -47,11 +47,13 @@ class email_model
 
     public function lost_password ( $user = '', $subject = '' )
     {
+        $user_data = json_decode($user[0]->data);
+
         $user_name    = $user[0]->username;
         $email        = $user[0]->email;
 
-        $first_name   = $user[0]->first_name;
-        $last_name    = $user[0]->last_name;
+        $first_name   = $user_data->first_name;
+        $last_name    = $user_data->last_name;
 
         $registered = time();
         $hashed_ip = sha1($_SERVER['REMOTE_ADDR'].$registered);
