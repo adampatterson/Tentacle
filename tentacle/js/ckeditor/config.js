@@ -5,6 +5,8 @@
 
 CKEDITOR.editorConfig = function( config ) {
 
+    config.skin = 'bootstrapck';
+
     config.protectedSource.push(/<\?[\s\S]*?\?>/g); // PHP Code
     config.protectedSource.push(/<script [\s\S]*?>[\s\S]*?<\/script>/gi); // Code tags
 //    config.protectedSource.push(/<code>[\s\S]*?<\/code>/gi); // Code tags
@@ -24,11 +26,11 @@ CKEDITOR.editorConfig = function( config ) {
     config.fillEmptyBlocks = true;
     config.tabSpaces = 4;
 
-	// Define changes to default configuration here.
-	// For the complete reference:
-	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
+    // Define changes to default configuration here.
+    // For the complete reference:
+    // http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
-	// The toolbar groups arrangement, optimized for a single toolbar row.
+    // The toolbar groups arrangement, optimized for a single toolbar row.
     config.toolbarGroups = [
         { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
         { name: 'pbckcode' },
@@ -48,7 +50,7 @@ CKEDITOR.editorConfig = function( config ) {
     config.removePlugins = 'contextmenu,liststyle,tabletools';
 
     config.extraPlugins = 'pbckcode';
-    config.allowedContent= 'pre[*]{*}(*)'; // add other rules here
+//    config.allowedContent = 'pre[*]{*}(*)'; // add other rules here
     config.pbckcode = {
         // An optional class to your pre tag.
         cls : '',
@@ -59,8 +61,8 @@ CKEDITOR.editorConfig = function( config ) {
     };
 
     // The default plugins included in the basic setup define some buttons that
-	// we don't want too have in a basic editor. We remove them here.
-	config.removeButtons = 'Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript';
+    // we don't want too have in a basic editor. We remove them here.
+    config.removeButtons = 'Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript';
 
     // Considering that the basic setup doesn't provide pasting cleanup features,
     // it's recommended to force everything to be plain text.

@@ -76,7 +76,7 @@ $
 
 		//console.log( HtmlLink );
 		insert_media( HtmlLink );
-		
+
 		$('.insert_media').trigger('reveal:close');
 
 		return false;
