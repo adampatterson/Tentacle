@@ -437,7 +437,7 @@ class content_model extends properties {
     public function get_sitemap ( $id='' )
     {
         $get_posts = $this->post_table()
-            ->select( 'uri','slug','title','modified' )
+            ->select( 'id','uri','slug','title','excerpt','modified' )
             ->where ( 'type', '=', $this->type )
             ->order_by ( 'date', 'DESC' )
             ->clause ('AND')

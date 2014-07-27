@@ -265,8 +265,8 @@ class action_controller extends properties {
 		// Delete the selected template from the session once the Page has been posted.
 		session::delete ( 'template' );
 
-    event::trigger('add_page');
-  	url::redirect( 'admin/content_update_page/'.$page_single );
+        event::trigger('add_page');
+        url::redirect( 'admin/content_update_page/'.$page_single );
 	}
 	
 
@@ -289,7 +289,7 @@ class action_controller extends properties {
 		
 		session::delete ( 'template' );
 
-    event::trigger('update_page');
+        event::trigger('update_page');
 		url::redirect( input::post( 'history' ) );
 	}
 
@@ -373,24 +373,24 @@ class action_controller extends properties {
             ->type( 'post' )
             ->update( $post_id );
 
-    $post_categories    = input::post( 'post_category' );
+        $post_categories    = input::post( 'post_category' );
 
-    # This clears all relations ( for tags as well )
-    $delete_relations   = $this->category_model()->delete_relations( $post_id );
+        # This clears all relations ( for tags as well )
+        $delete_relations   = $this->category_model()->delete_relations( $post_id );
 
-    foreach ( $post_categories as $post_category )
-        $category_relations = $this->category_model()->relations( $post_id, $post_category );
+        foreach ( $post_categories as $post_category )
+            $category_relations = $this->category_model()->relations( $post_id, $post_category );
 
-		$post_tags = input::post( 'tags' );
-		$post_tags = explode(',', $post_tags );
+            $post_tags = input::post( 'tags' );
+            $post_tags = explode(',', $post_tags );
 
-		foreach ( $post_tags as $tag ) {
-			$tag_single     = $this->tag_model()->add( $tag );
-			$tag_relations  = $this->tag_model()->relations( $post_id, $tag_single );
-		}
+            foreach ( $post_tags as $tag ) {
+                $tag_single     = $this->tag_model()->add( $tag );
+                $tag_relations  = $this->tag_model()->relations( $post_id, $tag_single );
+            }
 
-    event::trigger('update_post');
-		url::redirect( input::post( 'history' ) );
+            event::trigger('update_post');
+            url::redirect( input::post( 'history' ) );
 	}
 	
 
@@ -905,7 +905,19 @@ win.send_to_editor('<?=$html?>');
 
         url::redirect( 'admin/settings_seo' );
     }
-	
+
+
+//    public function generate_rss()
+//    {
+//        $posts = $this->content_model()->type( 'post' )->get_sitemap( );
+//
+//        tentacle::generate_rss($posts);
+//
+//        note::set('success','sent_message','Generated sitemap.xml');
+//
+//        url::redirect( 'admin/settings_seo' );
+//    }
+
 	/**
 	 * 
 	 * 

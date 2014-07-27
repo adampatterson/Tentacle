@@ -46,6 +46,7 @@ class page_controller extends properties {
             'category'						    => 'category.index',
             'category/:words'		            => 'category.slug',
             'category/page/:int'			    => 'category.paged',
+            'feed'                              => 'feed.index',
             $blog_uri                           => 'blog.index',
             $blog_uri.'/:words' 			    => 'blog.slug',
             $blog_uri.'/page/:int'				=> 'blog.paged',
@@ -56,7 +57,7 @@ class page_controller extends properties {
             ':words/page/:int'		            => 'page.paged',
             ':words/:plugin'                    => 'page.plugin',
             ':words/:words'                     => 'page.subpage',
-            ':words/:words/:words'              => 'page.subpage',
+            ':words/:words/:words'              => 'page.subpage'
         );
 
         url_map::add( $routs );
@@ -90,6 +91,50 @@ class page_controller extends properties {
             //url::redirect($redirect_uri->uri);
 
         switch (url_map::get( $uri )) {
+            case 'feed_index':
+                define('FEED'            , TRUE);
+                header('Content-Type: application/rss+xml; charset=ISO-8859-1');
+
+                $content = load::model('content');
+                $posts = $content->get_sitemap( );
+
+                $uri = BASE_URL;
+
+                $posts = $posts;
+                $url = BASE_URL;
+                $title = get::option('blogname');
+                $description = get::option('blogdescription');
+
+                $rss = '<?xml version="1.0" encoding="UTF-8" ?>';
+                $rss .= '<rss version="2.0">';
+
+                $rss .= '<channel>';
+                    $rss .= "<title>$title</title>";
+                    $rss .= "<link>$url</link>";
+                    $rss .= "<description>$description</description>";
+
+                    foreach ($posts as $post) {
+                        $rss .= '<item>';
+                            $rss .= '<title>'.htmlspecialchars($post->title).'</title>';
+                            $rss .= "<link>$url{$post->uri}</link>";
+                            $rss .= "<description><![CDATA[
+                            $post->excerpt
+                            ]]></description>";
+                            $rss .= "<guid isPermaLink='false'>{$url}p/{$post->id}</guid>";
+                        $rss .= '</item>';
+                    }
+
+                $rss .= '</channel>';
+                $rss .= '</rss>';
+
+                # Write the sitemap to sitemap file!
+                $fp = @fopen('./rss.xml', 'w');
+                fwrite($fp, $rss);
+                fclose($fp);
+
+                echo file_get_contents('rss.xml');
+
+                break;
             case 'home_index':
             case 'page_index':
             case 'page_plugin':
@@ -252,19 +297,16 @@ class page_controller extends properties {
             break;
         }
 
-        if( DEBUG ):
+        if( DEBUG and !FEED):
             bench::mark('end');
             $speed = bench::time('start','end');
 
             logger::set('Memory', memory_usage());
             logger::set('Execution Time', $speed);
+
+            // Site stats are triggered in the admin bar if you are not logged in.
+            tentacle::admin_bar();
         endif;
 
-        function add_class() {
-            return 'this';
-        }
-
-        // Site stats are triggered in the admin bar if you are not logged in.
-        tentacle::admin_bar();
     }
 }

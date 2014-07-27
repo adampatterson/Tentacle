@@ -8,8 +8,6 @@ author:
   name: Adam Patterson
   url: http://adampatterson.ca
  */
-
-
 event::on('theme_header', 'analytics::tracking');
 event::on('theme_meta', 'analytics::author');
 event::on('theme_header', 'analytics::author_url');
@@ -133,44 +131,87 @@ event::on('trash_page', 'generate_sitemap', 1);
 event::on('add_post', 'generate_sitemap', 1);
 event::on('update_post', 'generate_sitemap', 1);
 event::on('trash_post', 'generate_sitemap', 1);
-
-function generate_sitemap()
+function generate_sitemap( $posts = array() )
 {
-    $uri = $_SERVER['REQUEST_URI'];
+    $content = load::model('content');
 
-    if (!stristr($uri, 'admin'))
-    {
-        $page = load::model('content');
+    $posts = $content->get_sitemap( );
 
-        $pages = $page->get();
+    $uri = BASE_URL;
 
-        $url = BASE_URL;
+    $posts = $posts;
+    $url = BASE_URL;
+    $title = get::option('blogname');
 
-        $sitemap = '<?xml version="1.0" encoding="UTF-8" ?>';
-        $sitemap .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
+    $sitemap = '<?xml version="1.0" encoding="UTF-8" ?>';
+    $sitemap .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
 
-//        foreach ($pages as $page)
-//        {
-//            $sitemap .= '<url>';
-//
-//            if ($page->rewrite == $homepage)
-//            {
-//                $sitemap .= "<loc>$url</loc>";
-//                $sitemap .= "<changefreq>daily</changefreq>";
-//                $sitemap .= "<priority>1</priority>";
-//            } else{
-//                $sitemap .= "<loc>$url{$page->rewrite}</loc>";
-//                $sitemap .= "<changefreq>daily</changefreq>";
-//                $sitemap .= "<priority>0.8</priority>";
-//            }
-//
-//            $sitemap .= '</url>';
-//        }
+    $sitemap .= '<url>';
+    $sitemap .= "<loc>$url</loc>";
+    $sitemap .= "<changefreq>daily</changefreq>";
+    $sitemap .= "<priority>1</priority>";
+    $sitemap .= '</url>';
 
-        $sitemap .= '</urlset>';
+    foreach ($posts as $post) {
+        $sitemap .= '<url>';
+        $sitemap .= "<loc>$url{$post->uri}</loc>";
+        $sitemap .= "<changefreq>daily</changefreq>";
+        $sitemap .= "<priority>0.8</priority>";
 
-        $fp = fopen(BASE_URL.'sitemap.xml', 'w');
-        fwrite($fp, $sitemap);
-        fclose($fp);
+        $sitemap .= '</url>';
     }
+
+    $sitemap .= '</urlset>';
+
+    # Write the sitemap to sitemap file!
+    $fp = @fopen('./sitemap.xml', 'w');
+    fwrite($fp, $sitemap);
+    fclose($fp);
+
+    return true;
+}
+
+event::on('add_page', 'generate_rss', 1);
+event::on('update_page', 'generate_rss', 1);
+event::on('trash_page', 'generate_rss', 1);
+event::on('add_post', 'generate_rss', 1);
+event::on('update_post', 'generate_rss', 1);
+event::on('trash_post', 'generate_rss', 1);
+function generate_rss() {
+    $content = load::model('content');
+
+    $posts = $content->get_sitemap( );
+
+    $uri = BASE_URL;
+
+    $posts = $posts;
+    $url = BASE_URL;
+    $title = get::option('blogname');
+
+    $rss = '<?xml version="1.0" encoding="UTF-8" ?>';
+    $rss .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
+
+    $rss .= '<url>';
+    $rss .= "<loc>$url</loc>";
+    $rss .= "<changefreq>daily</changefreq>";
+    $rss .= "<priority>1</priority>";
+    $rss .= '</url>';
+
+    foreach ($posts as $post) {
+        $rss .= '<url>';
+        $rss .= "<loc>$url{$post->uri}</loc>";
+        $rss .= "<changefreq>daily</changefreq>";
+        $rss .= "<priority>0.8</priority>";
+
+        $rss .= '</url>';
+    }
+
+    $rss .= '</urlset>';
+
+    # Write the sitemap to sitemap file!
+    $fp = @fopen('./rss.xml', 'w');
+    fwrite($fp, $rss);
+    fclose($fp);
+
+    return true;
 }
