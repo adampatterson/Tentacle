@@ -103,6 +103,7 @@ class page_controller extends properties {
             case 'page_plugin':
                 define ( 'IS_POST'      , FALSE );
                 define ( 'IS_PAGE'      , TRUE );
+                define('FEED'            , FALSE);
 
                 $uri_parts = explode( '/', $uri );
 
@@ -133,6 +134,7 @@ class page_controller extends properties {
                 define ( 'IS_PAGE'      , TRUE );
                 define ( 'IS_SUB_PAGE'  , TRUE );
                 define ( 'IS_POST'      , FALSE );
+                define('FEED'            , FALSE);
 
                 $post       = $this->content_model()->get_by_uri( $uri );
 
@@ -148,6 +150,7 @@ class page_controller extends properties {
 
                 define ( 'IS_POST'      , FALSE );
                 define ( 'IS_BLOG'      , TRUE );
+                define('FEED'            , FALSE);
 
                 $post_total 		= $this->content_model()->get( );
 
@@ -171,6 +174,7 @@ class page_controller extends properties {
 
                 define ( 'IS_POST'      , FALSE );
                 define ( 'IS_BLOG'      , TRUE );
+                define('FEED'            , FALSE);
 
                 $posts 		= $this->content_model()->get_by_date( $uri );
 
@@ -186,6 +190,7 @@ class page_controller extends properties {
 
                 define ( 'IS_POST'      , TRUE );
                 define ( 'IS_BLOG'      , TRUE );
+                define('FEED'            , FALSE);
 
                 $post 		    = $this->content_model()->get_by_uri( $uri );
 
@@ -205,6 +210,8 @@ class page_controller extends properties {
                 define ( 'IS_POST'      , FALSE );
                 define ( 'IS_BLOG'      , TRUE );
                 define ( 'IS_PAGED'      , TRUE );
+                define('FEED'            , FALSE);
+
                 $post_total     = $this->content_model()->get( );
 
                 $posts = new pagination($post_total, $current_page, $post_limit);
@@ -225,6 +232,7 @@ class page_controller extends properties {
                 $category_slug = explode('/', $uri);
 
                 define ( 'IS_POST'      , FALSE );
+                define('FEED'            , FALSE);
 
                 if (URI == 'category')
                     $posts 		= $this->content_model()->type( 'post' )->get( );
@@ -242,6 +250,7 @@ class page_controller extends properties {
                 $tag_slug = explode('/', $uri);
 
                 define ( 'IS_POST'      , FALSE );
+                define('FEED'            , FALSE);
 
                 if (URI == 'category')
                     $posts = $this->content_model()
@@ -256,6 +265,7 @@ class page_controller extends properties {
                 tentacle::render( 'template-blog', array ( 'posts' => $posts, 'author' => $this->user_model(), 'category'=>$this->category_model(), 'tag' => $this->tag_model() ) );
             break;
             default:
+                define('FEED'            , FALSE);
                 tentacle::render ( '404' );
             break;
         }
