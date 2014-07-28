@@ -95,43 +95,6 @@ class page_controller extends properties {
                 define('FEED'            , TRUE);
                 header('Content-Type: application/rss+xml; charset=ISO-8859-1');
 
-                $content = load::model('content');
-                $posts = $content->get_sitemap( );
-
-                $uri = BASE_URL;
-
-                $posts = $posts;
-                $url = BASE_URL;
-                $title = get::option('blogname');
-                $description = get::option('blogdescription');
-
-                $rss = '<?xml version="1.0" encoding="UTF-8" ?>';
-                $rss .= '<rss version="2.0">';
-
-                $rss .= '<channel>';
-                    $rss .= "<title>$title</title>";
-                    $rss .= "<link>$url</link>";
-                    $rss .= "<description>$description</description>";
-
-                    foreach ($posts as $post) {
-                        $rss .= '<item>';
-                            $rss .= '<title>'.htmlspecialchars($post->title).'</title>';
-                            $rss .= "<link>$url{$post->uri}</link>";
-                            $rss .= "<description><![CDATA[
-                            $post->excerpt
-                            ]]></description>";
-                            $rss .= "<guid isPermaLink='false'>{$url}p/{$post->id}</guid>";
-                        $rss .= '</item>';
-                    }
-
-                $rss .= '</channel>';
-                $rss .= '</rss>';
-
-                # Write the sitemap to sitemap file!
-                $fp = @fopen('./rss.xml', 'w');
-                fwrite($fp, $rss);
-                fclose($fp);
-
                 echo file_get_contents('rss.xml');
 
                 break;

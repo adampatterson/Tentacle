@@ -167,47 +167,43 @@ class tentacle
         $fp = @fopen('./sitemap.xml', 'w');
         fwrite($fp, $sitemap);
         fclose($fp);
-
-        return true;
     }
 
-    static function generate_rss_OFF( $posts = array() )
+    static function generate_rss( $posts = array() )
     {
         $uri = BASE_URL;
 
-        $content = load::model('content');
-
-        $posts = $content->get_sitemap( );
-
+        $posts = $posts;
         $url = BASE_URL;
         $title = get::option('blogname');
+        $description = get::option('blogdescription');
 
-        $sitemap = '<?xml version="1.0" encoding="UTF-8" ?>';
-        $sitemap .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
+        $rss = '<?xml version="1.0" encoding="UTF-8" ?>';
+        $rss .= '<rss version="2.0">';
 
-        $sitemap .= '<url>';
-        $sitemap .= "<loc>$url</loc>";
-        $sitemap .= "<changefreq>daily</changefreq>";
-        $sitemap .= "<priority>1</priority>";
-        $sitemap .= '</url>';
+        $rss .= '<channel>';
+        $rss .= "<title>$title</title>";
+        $rss .= "<link>$url</link>";
+        $rss .= "<description>$description</description>";
 
         foreach ($posts as $post) {
-            $sitemap .= '<url>';
-            $sitemap .= "<loc>$url{$post->uri}</loc>";
-            $sitemap .= "<changefreq>daily</changefreq>";
-            $sitemap .= "<priority>0.8</priority>";
-
-            $sitemap .= '</url>';
+            $rss .= '<item>';
+            $rss .= '<title>'.htmlspecialchars($post->title).'</title>';
+            $rss .= "<link>$url{$post->uri}</link>";
+            $rss .= "<description><![CDATA[
+                            $post->excerpt
+                            ]]></description>";
+            $rss .= "<guid isPermaLink='false'>{$url}p/{$post->id}</guid>";
+            $rss .= '</item>';
         }
 
-        $sitemap .= '</urlset>';
+        $rss .= '</channel>';
+        $rss .= '</rss>';
 
         # Write the sitemap to sitemap file!
-        $fp = @fopen('./sitemap.xml', 'w');
-        fwrite($fp, $sitemap);
+        $fp = @fopen('./rss.xml', 'w');
+        fwrite($fp, $rss);
         fclose($fp);
-
-        return true;
     }
 }
 

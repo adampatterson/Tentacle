@@ -348,13 +348,13 @@ class action_controller extends properties {
                 ->relations( $post_single, $post_category );
         endforeach;
 
-            $post_tags = input::post( 'tags' );
-            $post_tags = explode(',', $post_tags );
+        $post_tags = input::post( 'tags' );
+        $post_tags = explode(',', $post_tags );
 
-            foreach ( $post_tags as $post_tag ):
-                $tag_single = $this->tag_model()->add( $post_tag );
+        foreach ( $post_tags as $post_tag ):
+            $tag_single = $this->tag_model()->add( $post_tag );
 
-                $tag_relations = $this->tag_model()->relations( $post_single, $tag_single );
+            $tag_relations = $this->tag_model()->relations( $post_single, $tag_single );
         endforeach;
 
         event::trigger('add_post');
