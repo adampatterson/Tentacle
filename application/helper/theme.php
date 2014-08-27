@@ -553,6 +553,12 @@ function render_meta( $location = null )
 
 }
 
+function render_keywords ( )
+{
+
+    echo "<meta name='keywords' content='HTML,CSS,XML,JavaScript'>\n";
+}
+
 
 /**
  * Function: render_canonical

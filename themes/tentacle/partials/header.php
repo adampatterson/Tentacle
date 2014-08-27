@@ -13,6 +13,7 @@
 <meta property="og:description" content="<?= get::option('blogdescription'); ?>">
 
 <? render_meta( ); ?>
+<? render_keywords( ); ?>
 <? render_canonical( ); ?>
 <? render_shortlink( ); ?>
 <?
