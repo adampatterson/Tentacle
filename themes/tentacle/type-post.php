@@ -3,10 +3,9 @@
 Type: Post
 */
 
-theme::part('partials/header',array('title'=>$post->title,'assets'=>'default')); ?>
+theme::part('partials/header',array('title'=>$post->title, 'assets'=>'default', 'post'=>$post, 'post_meta'=> $post_meta)); ?>
 
 <div class="row">
-
     <div class="span9">
 
         <div class="post <?= $post->template; ?>">

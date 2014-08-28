@@ -553,11 +553,20 @@ function render_meta( $location = null )
 
 }
 
-function render_keywords ( )
+function render_keywords ( $keywords = null )
 {
+    if ( $keywords != null and event::exists("theme_keywords"))
+        return event::filter("theme_keywords", $keywords);
+ }
 
-    echo "<meta name='keywords' content='HTML,CSS,XML,JavaScript'>\n";
+function render_description ( $description = null )
+{
+    if ( $description != null and event::exists("theme_description"))
+        return event::filter("theme_description", $description);
+    else
+        return event::filter("theme_description");
 }
+
 
 
 /**

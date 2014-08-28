@@ -12,7 +12,8 @@ event::on('theme_header', 'analytics::tracking');
 event::on('theme_meta', 'analytics::author');
 event::on('theme_header', 'analytics::author_url');
 event::on('theme_meta', 'analytics::webmaster');
-event::on('theme_meta', 'analytics::meta_description');
+event::on('theme_description', 'analytics::meta_description');
+event::on('theme_keywords', 'analytics::meta_keywords');
 event::on('theme_header', 'analytics::seo_tracking_header');
 event::on('theme_footer', 'analytics::seo_tracking_footer');
 
@@ -66,12 +67,17 @@ class analytics{
             echo "<meta name='google-site-verification' content='".get::option('seo_google_webmaster', '')."' />\n";
     }
 
-
-    static function meta_description(){
-        if (get::option('seo_meta_description') != '' )
-            echo "<meta name='description' content='".get::option('seo_meta_description', '')."' />\n";
+    static function meta_keywords( $keywords ){
+        echo "<meta name='keywords' content='$keywords'>\n";
     }
 
+    static function meta_description( $description ){
+
+        if ( $description != null )
+            echo "<meta name='description' content='".$description."' />\n";
+        else
+             echo "<meta name='description' content='".get::option('seo_meta_description', '')."' />\n";
+    }
 
     static function seo_tracking_header(){
         if (get::option('seo_tracking_header') != '' )
