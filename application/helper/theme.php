@@ -555,7 +555,7 @@ function render_meta( $location = null )
 
 function render_keywords ( $keywords = null )
 {
-    if ( $keywords == null )
+    if ( $keywords == null and dispatcher::has('post_meta') )
         $keywords = dispatcher::get('post_meta')->meta_keywords;
 
     if ( event::exists("theme_keywords") )
@@ -564,10 +564,10 @@ function render_keywords ( $keywords = null )
 
 function render_description ( $description = null )
 {
-    if ( $description == null )
+    if ( $description == null and dispatcher::has('post_meta'))
         $description = dispatcher::get('post_meta')->meta_description;
 
-    if ( $description != '' )
+    if ( $description != '' and dispatcher::has('post_meta') )
         $description = dispatcher::get('post_meta')->excerpt;
 
     if ( event::exists("theme_description") )
