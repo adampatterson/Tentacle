@@ -202,7 +202,14 @@ class page_controller extends properties {
                     logger::set('Post total', count($post));
                     logger::set('Post Template', $post->template);
 
-                    tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta, 'author' => $this->user_model(), 'category' => $this->category_model(), 'tag' => $this->tag_model() ) );                endif;
+                    dispatcher::set('posts', $post);
+                    dispatcher::set('post_meta', $post_meta);
+                    dispatcher::set('author', $this->user_model());
+                    dispatcher::set('category', $this->category_model());
+                    dispatcher::set('tag', $this->tag_model());
+
+                    tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta, 'author' => $this->user_model(), 'category' => $this->category_model(), 'tag' => $this->tag_model() ) );
+                endif;
 
             break;
             case 'blog_paged':

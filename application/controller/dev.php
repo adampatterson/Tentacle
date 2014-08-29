@@ -131,9 +131,10 @@ class dev_controller extends properties {
 
         dispatcher::set( 'pages', $pages );
 
+        var_dump(dispatcher::has('pages'));
+
         function test_function()
         {
-          #dispatcher::set( 'test', 'string' );
           return dispatcher::get( 'pages' );
         }
 

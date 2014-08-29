@@ -14,12 +14,8 @@
 
 <? render_meta( );
 
-    if ( isset($post_meta)):
-        render_keywords( $post_meta->meta_keywords );
-        render_description( $post_meta->meta_description );
-    else:
-        render_description( );
-    endif;
+render_keywords( );
+render_description( );
 
 render_shortlink( );
 

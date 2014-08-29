@@ -1,5 +1,20 @@
 <?php
 
+/*
+    $pages = load::model( 'content' )->type( 'page' )->get();
+
+    dispatcher::set( 'pages', $pages );
+
+    var_dump(dispatcher::has('pages'));
+
+    function test_function()
+    {
+      return dispatcher::get( 'pages' );
+    }
+
+    var_dump(test_function());
+ */
+
 class dispatcher
 {
     private static $data = array();

@@ -555,19 +555,24 @@ function render_meta( $location = null )
 
 function render_keywords ( $keywords = null )
 {
-    if ( $keywords != null and event::exists("theme_keywords"))
+    if ( $keywords == null )
+        $keywords = dispatcher::get('post_meta')->meta_keywords;
+
+    if ( event::exists("theme_keywords") )
         return event::filter("theme_keywords", $keywords);
  }
 
 function render_description ( $description = null )
 {
-    if ( $description != null and event::exists("theme_description"))
+    if ( $description == null )
+        $description = dispatcher::get('post_meta')->meta_description;
+
+    if ( $description != '' )
+        $description = dispatcher::get('post_meta')->excerpt;
+
+    if ( event::exists("theme_description") )
         return event::filter("theme_description", $description);
-    else
-        return event::filter("theme_description");
 }
-
-
 
 /**
  * Function: render_canonical
