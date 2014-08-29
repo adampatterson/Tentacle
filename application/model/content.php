@@ -155,6 +155,8 @@ class content_model extends properties {
 
         $meta_value = serialize( $scaffold_data );
 
+        $this->post_meta_table()->delete( 'posts_id','=',$id );
+
         $this->post_meta_table()->insert(array(
             'posts_id'=>$id,
             'meta_key'=>'scaffold_data',
