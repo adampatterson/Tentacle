@@ -39,8 +39,33 @@
                             </div>
                         </div>
 
+                    </fieldset>
+                </div>
+
+                <div class="well">
+                    <h2>Social Media Settings</h2>
+
+                    <fieldset>
+
+                        <div class="form-group">
+                            <label for="blogname">Twitter </label>
+                            <div class="controls">
+                                <input type="text" class="form-control" value="<?= get::option('seo_social_twitter', '') ?>" placeholder="twitter" name="seo_social_twitter">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="blogname">Facebook </label>
+                            <div class="controls">
+                                <input type="text" class="form-control" value="<?= get::option('seo_social_facebook', '') ?>" placeholder="" name="seo_social_facebook">
+                            </div>
+                        </div>
+
+
+
 
                     </fieldset>
+
                 </div>
 
             </div>

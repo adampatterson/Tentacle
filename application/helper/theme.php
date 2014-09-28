@@ -562,17 +562,126 @@ function render_keywords ( $keywords = null )
         return event::filter("theme_keywords", $keywords);
  }
 
+
+function render_cards( )
+{
+    /*
+        http://moz.com/blog/meta-data-templates-123
+        <meta property="og:image" content="http://wildsau.ca/wp-content/uploads/2014/05/centre-stack1-493x740.jpg" />
+    */
+
+    render_card_basic();
+    echo "\n";
+    render_card_sitename();
+    echo "\n";
+    render_card_sitetitle();
+    echo "\n";
+    render_card_description();
+    echo "\n";
+    render_card_section();
+    echo "\n";
+    render_card_tags();
+    echo "\n";
+    render_card_twitter();
+    echo "\n";
+    render_card_facebook();
+
+    /*
+    // Large iamge card
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Parade of Fans for Houston’s Funeral">
+    <meta name="twitter:description" content="NEWARK - The guest list and parade of limousines with celebrities emerging from them seemed more suited to a red carpet event in Hollywood or New York than than a gritty stretch of Sussex Avenue near the former site of the James M. Baxter Terrace public housing project here.">
+    <meta name="twitter:image:src" content="http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg">
+
+    // Photo
+    <meta name="twitter:card" content="photo" />
+    <meta name="twitter:image" content="http://farm8.staticflickr.com/7334/11858349453_e3f18e5881_z.jpg" />
+    <meta name="twitter:url" content="https://www.flickr.com/photos/reza-sina/11858349453/" />
+    */
+}
+
+function render_card_basic()
+{
+echo "<meta property='article:published_time' content='".date::show(dispatcher::get('posts')->date, "c", true)."' />
+<meta property='og:url' content='".BASE_URL.URI."'>
+<meta property='og:type' content='article' />
+<meta property='og:locale' content='en_US' />";
+}
+
+
+function render_card_sitename()
+{
+    echo '<meta property="og:site_name" content="'.get::option('blogname').'"/>';
+}
+
+function render_card_sitetitle()
+{
+    echo '<meta property="og:title" content="'.dispatcher::get('posts')->title.'"/>';
+}
+
+function render_card_description( $description = null )
+{
+    if ( $description == null and dispatcher::has('post_meta'))
+        $description = dispatcher::get('post_meta')->meta_description;
+
+    elseif ( $description != '' and dispatcher::has('post_meta') )
+        $description = dispatcher::get('post_meta')->excerpt;
+
+    echo '<meta property="og:description" content="'.$description.'" />';
+}
+
 function render_description ( $description = null )
 {
     if ( $description == null and dispatcher::has('post_meta'))
         $description = dispatcher::get('post_meta')->meta_description;
 
-    if ( $description != '' and dispatcher::has('post_meta') )
+    elseif ( $description != '' and dispatcher::has('post_meta') )
         $description = dispatcher::get('post_meta')->excerpt;
 
     if ( event::exists("theme_description") )
         return event::filter("theme_description", $description);
+    else
+        return $description;
 }
+
+
+function render_card_twitter()
+{
+    if(get::option('seo_social_twitter') != null )
+    {
+    echo "<meta name='twitter:card' content='summary'/>
+<meta name='twitter:site' content='@" . get::option('seo_social_twitter') . "'/>
+<meta name='twitter:domain' content='Continue reading...'/>
+<meta name='twitter:creator' content='@" . get::option('seo_social_twitter') . "'/>";
+    }
+}
+
+
+function render_card_facebook()
+{
+    if ( get::option('seo_social_facebook') != null )
+    {
+echo "<meta property='article:publisher' content='" . get::option('seo_social_facebook') . "' />
+<meta property='article:author' content='" . get::option('seo_social_facebook') . "' />";
+    }
+}
+
+function render_card_tags()
+{
+    $tags = explode(',', dispatcher::get('post_meta')->meta_keywords);
+
+    if ( is_array( $tags ))
+        foreach( $tags as $tag )
+echo "<meta property='article:tag' content='".$tag."' />\n";
+}
+
+
+function render_card_section()
+{
+//    var_dump(dispatcher::get('post_meta')->post_category);
+//    <meta property="article:section" content="Featured" />
+}
+
 
 /**
  * Function: render_canonical

@@ -5,18 +5,14 @@
 <title><?= get::option('blogname').' - '.$title ?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta property="og:title" content="<?= get::option('blogname'); ?>">
-<meta property="og:type" content="website">
-<meta property="og:url" content="<?= BASE_URL.URI ?>">
+
 <meta property="og:image" content="<?= THEME ?>/assets/img/tentacle.png">
-<meta property="og:site_name" content="<?= get::option('blogname'); ?>">
-<meta property="og:description" content="<?= get::option('blogdescription'); ?>">
+
 
 <? render_meta( );
-
-render_keywords( );
 render_description( );
-
+render_keywords( );
+render_cards( );
 render_shortlink( );
 
 /**
