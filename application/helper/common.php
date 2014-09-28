@@ -410,7 +410,7 @@ class date
      * Returns:
      *      String - A formatted string depending on setting
      */
-    static function show($time=null, $pattern = null)
+    static function show($time=null, $pattern = null, $return = null)
     {
         if ($time == null)
             $time = time();
@@ -424,7 +424,10 @@ class date
         else
             $date = date("F jS, Y, g:i a", $time );
 
-        echo $date;
+        if($return == null)
+            echo $date;
+        else
+            return $date;
     }
 }
 
