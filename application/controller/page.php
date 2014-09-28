@@ -92,7 +92,8 @@ class page_controller extends properties {
 
         switch (url_map::get( $uri )) {
             case 'feed_index':
-                define('FEED'            , TRUE);
+                define('FEED'           , TRUE);
+                define ( 'IS_BLOG'      , FALSE );
                 header('Content-Type: application/rss+xml; charset=ISO-8859-1');
 
                 echo file_get_contents('rss.xml');
@@ -103,6 +104,7 @@ class page_controller extends properties {
             case 'page_plugin':
                 define ( 'IS_POST'      , FALSE );
                 define ( 'IS_PAGE'      , TRUE );
+                define ( 'IS_BLOG'      , FALSE );
                 define('FEED'            , FALSE);
 
                 $uri_parts = explode( '/', $uri );
@@ -134,6 +136,7 @@ class page_controller extends properties {
                 define ( 'IS_PAGE'      , TRUE );
                 define ( 'IS_SUB_PAGE'  , TRUE );
                 define ( 'IS_POST'      , FALSE );
+                define ( 'IS_BLOG'      , FALSE );
                 define('FEED'            , FALSE);
 
                 $post       = $this->content_model()->get_by_uri( $uri );

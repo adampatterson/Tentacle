@@ -602,8 +602,10 @@ function render_cards( )
 
 function render_card_basic()
 {
-echo "<meta property='article:published_time' content='".date::show(dispatcher::get('posts')->date, "c", true)."' />
-<meta property='og:url' content='".BASE_URL.URI."'>
+if ( IS_POST )
+echo "<meta property='article:published_time' content='".date::show(dispatcher::get('posts')->date, "c", true)."' />";
+
+echo "<meta property='og:url' content='".BASE_URL.URI."'>
 <meta property='og:type' content='article' />
 <meta property='og:locale' content='en_US' />";
 }
@@ -616,7 +618,8 @@ function render_card_sitename()
 
 function render_card_sitetitle()
 {
-    echo '<meta property="og:title" content="'.dispatcher::get('posts')->title.'"/>';
+if ( IS_POST )
+echo '<meta property="og:title" content="'.dispatcher::get('posts')->title.'"/>';
 }
 
 function render_card_description( $description = null )
@@ -668,11 +671,14 @@ echo "<meta property='article:publisher' content='" . get::option('seo_social_fa
 
 function render_card_tags()
 {
+if ( IS_POST )
+{
     $tags = explode(',', dispatcher::get('post_meta')->meta_keywords);
 
-    if ( is_array( $tags ))
-        foreach( $tags as $tag )
-echo "<meta property='article:tag' content='".$tag."' />\n";
+    if ( is_array($tags) )
+        foreach ( $tags as $tag )
+            echo "<meta property='article:tag' content='" . $tag . "' />\n";
+}
 }
 
 
