@@ -566,6 +566,7 @@ function render_keywords ( $keywords = null )
 function render_cards( )
 {
     /*
+        http://ogp.me/
         http://moz.com/blog/meta-data-templates-123
         <meta property="og:image" content="http://wildsau.ca/wp-content/uploads/2014/05/centre-stack1-493x740.jpg" />
     */
@@ -606,8 +607,12 @@ if ( IS_POST )
 echo "<meta property='article:published_time' content='".date::show(dispatcher::get('posts')->date, "c", true)."' />";
 
 echo "<meta property='og:url' content='".BASE_URL.URI."'>
-<meta property='og:type' content='article' />
-<meta property='og:locale' content='en_US' />";
+    <meta property='og:locale' content='en_US' />";
+
+if ( IS_POST )
+    echo "<meta property='og:type' content='article' />";
+else
+    echo "<meta property='og:type' content='website' />";
 }
 
 
