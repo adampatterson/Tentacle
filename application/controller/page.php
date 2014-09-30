@@ -119,7 +119,6 @@ class page_controller extends properties {
                 if ( !$post ):
                     tentacle::render ( '404' );
                     define ( 'IS_404'      , TRUE );
-                    define ( 'IS_POST'      , FALSE );
                 else:
                     logger::set('Page Template', $post->template);
                     tentacle::render( $post->template, array ( 'post' => $post, 'page' => $this->content_model() ) );
@@ -176,8 +175,8 @@ class page_controller extends properties {
             case 'blog_date':
             case 'blog_slug':
 
-                define ( 'IS_POST'      , FALSE );
-                define ( 'IS_BLOG'      , TRUE );
+                define ('IS_POST'      , FALSE);
+                define ('IS_BLOG'      , TRUE);
                 define('FEED'            , FALSE);
 
                 $posts 		= $this->content_model()->get_by_date( $uri );
@@ -277,6 +276,7 @@ class page_controller extends properties {
             break;
             default:
                 define('FEED'            , FALSE);
+                define ( 'IS_POST'      , FALSE );
                 tentacle::render ( '404' );
             break;
         }
