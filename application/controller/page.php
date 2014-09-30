@@ -93,7 +93,7 @@ class page_controller extends properties {
         switch (url_map::get( $uri )) {
             case 'feed_index':
                 define('FEED'           , TRUE);
-                define ( 'IS_BLOG'      , FALSE );
+                define('IS_BLOG'      , FALSE );
                 header('Content-Type: application/rss+xml; charset=ISO-8859-1');
 
                 echo file_get_contents('rss.xml');
@@ -119,6 +119,7 @@ class page_controller extends properties {
                 if ( !$post ):
                     tentacle::render ( '404' );
                     define ( 'IS_404'      , TRUE );
+                    define ( 'IS_POST'      , FALSE );
                 else:
                     logger::set('Page Template', $post->template);
                     tentacle::render( $post->template, array ( 'post' => $post, 'page' => $this->content_model() ) );

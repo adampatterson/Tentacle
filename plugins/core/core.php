@@ -67,9 +67,11 @@ class analytics{
             echo "<meta name='google-site-verification' content='".get::option('seo_google_webmaster', '')."' />\n";
     }
 
+
     static function meta_keywords( $keywords ){
         echo "<meta name='keywords' content='$keywords'>\n";
     }
+
 
     static function meta_description( $description ){
 
@@ -78,6 +80,7 @@ class analytics{
         else
              echo "<meta name='description' content='".get::option('seo_meta_description', '')."' />\n";
     }
+
 
     static function seo_tracking_header(){
         if (get::option('seo_tracking_header') != '' )
