@@ -69,7 +69,7 @@ ErrorDocument 500 default
 
 <IfModule mod_rewrite.c>
 
-    RewriteRule ^(.*)/$ /$1 [L,R=301]
+#    RewriteRule ^(.*)/$ /$1 [L,R=301]
 
     RewriteEngine on
     RewriteCond %{REQUEST_FILENAME} \.(gif|jpe?g|png|js|css|swf|ico|txt|pdf|xml)$ [OR]
