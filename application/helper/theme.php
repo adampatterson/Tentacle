@@ -682,7 +682,7 @@ if ( IS_POST )
 
     if ( is_array($tags) )
         foreach ( $tags as $tag )
-            echo "<meta property='article:tag' content='" . $tag . "' />\n";
+            echo "<meta property='article:tag' content='". $tag . "' />\n";
 }
 }
 
