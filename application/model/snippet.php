@@ -101,7 +101,10 @@ class snippet_model extends properties
 			->where ( 'slug', '=', $slug )
 			->execute();
 
-		return $get_snippet[0];
+		if (empty($get_snippet))
+			return false;
+		else
+			return $get_snippet[0];
 	}
 
 
