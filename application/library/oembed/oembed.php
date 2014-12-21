@@ -4,7 +4,7 @@
  */
 
 
-function oembed_cotnent( $url )
+function oembed_cotnent( $url, $raw=null )
 {
     $oembed_urls = array (
         'www.youtube.com' => 'http://www.youtube.com/oembed?url=$1&format=json',
@@ -27,7 +27,8 @@ function oembed_cotnent( $url )
         'www.xkcd.com' => 'http://www.oohembed.com/oohembed/?url=$1',
         'www.yfrog.com' => 'http://www.oohembed.com/oohembed/?url=$1',
         'yfrog.com' => 'http://www.oohembed.com/oohembed/?url=$1',
-        'www.flickr.com' => 'http://www.flickr.com/services/oembed?url=$1&format=json'
+        'www.flickr.com' => 'http://www.flickr.com/services/oembed?url=$1&format=json',
+        'instagram.com' => 'http://api.instagram.com/oembed?url=$1'
     );
 
     if (!empty($url)){
@@ -42,6 +43,9 @@ function oembed_cotnent( $url )
             $oembed_contents = @file_get_contents( str_replace( '$1', $url, $oembed_urls[$host] ) );
 
             $oembed_data = @json_decode( $oembed_contents );
+
+            if ($raw)
+                return $oembed_data;
 
             if ( $host == 'www.flickr.com' || $host == 'flickr.com' || $host == 'yfrog.com' )
                 return '<img src="'. $oembed_data->url .'" width="'.get::option( 'embed_size_w' ).'" />';

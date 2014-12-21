@@ -456,7 +456,7 @@ class admin_controller extends properties {
 		tentacle::valid_user();
 		
 		$snippets = $this->snippet_model()->get( );
-		
+
 		load::view ('admin/snippets/manage', array( 'snippets'=>$snippets ) );
 	}
 	
