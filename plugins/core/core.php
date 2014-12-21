@@ -127,11 +127,11 @@ function snippet( $slug, $html=false )
 }
 
 
-function oembed_content( $url )
+function oembed_content( $url, $raw=null )
 {
     load::library('oembed');
 
-    return oembed_cotnent( $url );
+    return oembed_cotnent( $url, $raw );
 }
 
 
