@@ -117,12 +117,13 @@ function shortcode( $content )
 }
 
 
-function snippet( $slug )
+function snippet( $slug, $html=false )
 {
     $snippet = load::model( 'snippet' );
-    $snippet_single = $snippet->get_slug( $slug[0] );
+    $snippet_single = $snippet->get_slug( $slug );
 
-    return $snippet_single->content;
+    if ($snippet_single)
+        return $snippet_single->content;
 }
 
 
@@ -130,7 +131,7 @@ function oembed_content( $url )
 {
     load::library('oembed');
 
-    return oembed_cotnent( $url['url'] );
+    return oembed_cotnent( $url );
 }
 
 
