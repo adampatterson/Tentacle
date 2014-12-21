@@ -140,9 +140,9 @@ class theme {
 
     public static function script($filename, $external = null){
         if ( $external == null )
-            echo '<script async type="text/javascript" src="'.THEME.'/'.$filename.'"></script>';
+            echo '<script type="text/javascript" src="'.THEME.'/'.$filename.'"></script>';
         else
-            echo '<script async type="text/javascript" src="'.$filename.'"></script>';
+            echo '<script type="text/javascript" src="'.$filename.'"></script>';
     }
 
     public static function img($filename, $alt='' ){
