@@ -47,7 +47,7 @@
                     <div class="form-group">
                         <label for="blog_uri">Blog Path</label>
                         <div class="controls">
-                            <select class="postform" id="blog_uri" name="blog_uri">
+                            <select class="postform form-control" id="blog_uri" name="blog_uri">
                                 <? foreach ($pages as $page): ?>
                                     <option id="page-<?= $page['id']  ?>" value="<?= $page['slug'] ?>" <? selected( get::option('blog_uri'), $page['slug']  ); ?>> <?= $page['title'] ?></option>
                                 <? endforeach;?>
@@ -86,7 +86,7 @@
 					<div class="form-group">
 						<label for="default_category">Default Post Category</label>
 						<div class="controls">
-							<select class="postform" id="default_category" name="default_category">
+							<select class="postform form-control" id="default_category" name="default_category">
 								<? foreach ($categories as $category): ?>
 									<option id="category-<?= $category->id  ?>" value="<?= $category->id  ?>" <? selected( get::option('default_category'), $category->id  ); ?>> <?= $category->name  ?></option>
 								<? endforeach;?>

@@ -7,6 +7,7 @@
       <h3>Tag to use this snippet</h3>
       <p>Just replace <strong>snippet</strong> by the snippet name you want to include.</p>
       <p>[snippet <strong>slug_name</strong>]</p>
+	  <p>snippet('<strong>slug_name</strong>')</p>
     </div>
 		<div id="post-body">
 			<div id="post-body-content">
