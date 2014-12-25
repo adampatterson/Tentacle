@@ -115,13 +115,14 @@ class page_controller extends properties {
                     $uri = $uri_parts[0];
 
                 $post = $this->content_model()->get_by_uri( $uri );
+                $post_meta  = $this->content_model()->get_meta( $post->id );
 
                 if ( !$post ):
                     tentacle::render ( '404' );
                     define ( 'IS_404'      , TRUE );
                 else:
                     logger::set('Page Template', $post->template);
-                    tentacle::render( $post->template, array ( 'post' => $post, 'page' => $this->content_model() ) );
+                    tentacle::render( $post->template, array ( 'post' => $post, 'page' => $this->content_model(), 'post_meta' => $post_meta ) );
                 endif;
 
             break;
