@@ -106,18 +106,18 @@
 
 						<div id="content" class="active tab-pane">
 
-              <input type="text" name="title" placeholder='Title' value="<?= $get_post->title ?>" class='xlarge content_title form-control' required='required' id="permalink" />
-              <input type="hidden" name="permalink" value="<?= $get_post->slug ?>" id="new_uri" />
+					<input type="text" name="title" placeholder='Title' value="<?= $get_post->title ?>" class='xlarge content_title form-control' required='required' id="permalink" />
+					<input type="hidden" name="permalink" value="<?= $get_post->slug ?>" id="new_uri" />
 
-              <script type="text/javascript" charset="utf-8">
-                  var page_post = "post";
-                  var uri = "";
-              </script>
+					<script type="text/javascript" charset="utf-8">
+						var page_post = "post";
+						var uri = "";
+					</script>
 
-              <p class="permalink">Permalink: <?= BASE_URL ?><span id="permalink_landing"><?= $get_post->uri ?></span></p>
+				  <p class="permalink">Permalink: <?= BASE_URL ?><span id="permalink_landing"><?= $get_post->uri ?></span></p>
 
-							<? if(user_editor() == 'wysiwyg'):?>
-								<p><a href="#" id="myButton" >Insert Media</a></p>
+				<? if(user_editor() == 'wysiwyg'):?>
+					<p><a href="#" id="myButton" >Insert Media</a></p>
 
                   <p class="wysiwyg">
                       <textarea cols="100" id="editor" name="content" rows="10" class="editor"><?= the_content( $get_post->content, true ) ?></textarea>
