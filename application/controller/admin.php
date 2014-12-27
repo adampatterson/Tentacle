@@ -19,7 +19,7 @@ class admin_controller extends properties {
 		tentacle::valid_user();
 
         if ( get::option('old_version') )
-            load::model('serverstats')->mixpanel_server( false, get::option('old_version') );
+            load::model('statistics')->mixpanel_server( false, get::option('old_version') );
 
 		load::view ('admin/upgraded');
 	}

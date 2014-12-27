@@ -70,7 +70,7 @@ define( 'ASSET_BOTH'  ,3 );
 # Serpent Timeout
 define( 'CHECK_TIMEOUT', 5 );
 
-define('TENTACLE_VERSION', 'v0.9.7');
+define('TENTACLE_VERSION', 'v0.9.7.2');
 
 # Holds the Tentacle DB revision, increments when changes are made to the Tentacle sql model.
 define('TENTACLE_DB_VERSION', '116');
