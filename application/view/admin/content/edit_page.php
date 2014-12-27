@@ -128,11 +128,11 @@
                                     endif;
                                 else: ?>
 
-                                <br/><br/>
-                                <div class="alert-message warning">
-                                    <p><strong>A template file appears to be a missing from your theme:</strong> <br />
-                                    <?= '/themes/'.ACTIVE_THEME.'/'.$get_page->template.'.php'?></p>
-                                </div>
+                                    <br/><br/>
+                                    <div class="alert-message warning">
+                                        <p><strong>A template file appears to be a missing from your theme:</strong> <br />
+                                        <?= '/themes/'.ACTIVE_THEME.'/'.$get_page->template.'.php'?></p>
+                                    </div>
 
                                 <? endif;
                                 endif; ?>

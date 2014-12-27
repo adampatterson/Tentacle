@@ -17,9 +17,7 @@ $(document).ready(function(){
 
   if ($('body').hasClass('admin')) {
     $('#username').keyup(usernameCheck);
-
     $('#useremail').keyup(useremailCheck);
-
     $('#permalink').keyup(permalinkCheck);
   }
 
@@ -29,7 +27,6 @@ $(document).ready(function(){
     })
         .on( 'change', update_output) ;
   }
-
 });
 
 
@@ -284,8 +281,6 @@ function permalinkCheck() {
             data: 'uri='+ uri+'&slug='+ $slug,
             cache: false,
             success: function( response ){
-
-                //console.info( response );
 
                 $('#permalink_landing').html( response.suggested );
                 $('#new_uri').val( response.suggested );
