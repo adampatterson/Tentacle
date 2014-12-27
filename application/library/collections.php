@@ -24,11 +24,11 @@ class blocks
     public static function handle_block($key, $block, $construct)
     {
         $id = 0;
-
+        
         if(is_array($block)): // Lets build a repeater collection
             self::$return_data .= '<div class="repeaters" data-min_block="0" data-block_limit="5"><fieldset>';
             self::build_row($key, $block, $id, true);         // Build the repeater_row then
-            self::build_data_row($key, $block, $id, false);              // Build the row
+            self::build_repeater_row($key, $block, $id, false);              // Build the row
             self::$return_data .= '</fieldset>'.
                                 $construct::add_row().      // Add Row
                                 '</div>';
@@ -63,7 +63,7 @@ class blocks
     }
 
 
-    public static function build_data_row($repeater_key, $repeater, $id = null, $is_repeater = null)
+    public static function build_repeater_row($repeater_key, $repeater, $id = null, $is_repeater = null)
     {
         $construct = new construct();
 
@@ -74,6 +74,7 @@ class blocks
             self::$return_data .= '<div class="row">';
 
             foreach( $repeater as $key => $block ):                                                       // Loops the builder row data and populates it.
+                ++$id;
                 $data = self::clean($key, $block, $repeater_key, $is_repeater, $id);                      // Process clena $data
                 self::$return_data .= $construct->$data['data'][0]( $building_block_data[$key] );         // Populate the fields from the DB
             endforeach;
