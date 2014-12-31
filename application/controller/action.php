@@ -636,8 +636,8 @@ class action_controller extends properties {
 	* ----------------------------------------------------------------------------------------------*/
  	public function update_settings ( $key, $value, $autoload = 'yes' )
 	{
-    tentacle::valid_user();
-    $update_appearance = $this->options_model()->update( $key, $value, $autoload );
+        tentacle::valid_user();
+        $update_appearance = $this->options_model()->update( $key, $value, $autoload );
 		url::redirect('admin/settings_appearance');
 	}
 	

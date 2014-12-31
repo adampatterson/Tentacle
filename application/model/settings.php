@@ -41,7 +41,11 @@ class settings_model extends properties
 				) )
 				->where( 'key', '=', $key )
 				->execute();			
-		endif;		
+		endif;
+
+//        if($key == "appearance")
+//            if (file_exists(THEME_URI.'/functions.php'))
+//                require_once( THEME_URI.'/functions.php' );
 	}
 	
 		
