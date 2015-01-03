@@ -32,6 +32,10 @@ function oembed_cotnent( $url, $raw=null )
     );
 
     if (!empty($url)){
+
+        if(is_array($url))
+            $url = $url['url'];
+
         $parts = parse_url($url);
 
         $host = $parts['host'];
