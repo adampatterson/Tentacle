@@ -378,20 +378,21 @@ class action_controller extends properties {
         # This clears all relations ( for tags as well )
         $delete_relations   = $this->category_model()->delete_relations( $post_id );
 
-        foreach ( $post_categories as $post_category )
-            $category_relations = $this->category_model()->relations( $post_id, $post_category );
+        if($post_categories != false)
+            foreach ( $post_categories as $post_category )
+                $category_relations = $this->category_model()->relations( $post_id, $post_category );
 
-            $post_tags = input::post( 'tags' );
-            $post_tags = explode(',', $post_tags );
+                $post_tags = input::post( 'tags' );
+                $post_tags = explode(',', $post_tags );
 
-            foreach ( $post_tags as $tag ) {
-                $tag_single     = $this->tag_model()->add( $tag );
-                $tag_relations  = $this->tag_model()->relations( $post_id, $tag_single );
-            }
+                foreach ( $post_tags as $tag ) {
+                    $tag_single     = $this->tag_model()->add( $tag );
+                    $tag_relations  = $this->tag_model()->relations( $post_id, $tag_single );
+                }
 
-            event::trigger('update_post');
-            url::redirect( input::post( 'history' ) );
-	}
+                event::trigger('update_post');
+                url::redirect( input::post( 'history' ) );
+        }
 	
 
 	/**

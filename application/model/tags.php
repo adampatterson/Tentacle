@@ -7,28 +7,28 @@ class tags_model extends properties
 	//----------------------------------------------------------------------------------------------
 	public function add ( $post_tags )
 	{
-      if(is_array($post_tags))
-          $term_name = $post_tags['tag_name'];
-      else
-          $term_name = $post_tags;
+        if(is_array($post_tags))
+            $term_name = $post_tags['tag_name'];
+        else
+            $term_name = $post_tags;
 
-      $term_slug = string::sanitize( $term_name );
+        $term_slug = string::sanitize( $term_name );
 
-		if ( !self::lookup( $term_slug ) ):
-			$tag_id = $this->term_table()
-          ->insert(array(
-          'name'=>$term_name,
-          'slug'=>$term_slug
-        ));
+        if ( !self::lookup( $term_slug ) and $post_tags != '' ):
+            $tag_id = $this->term_table()
+                ->insert(array(
+                'name'=>$term_name,
+                'slug'=>$term_slug
+            ));
 
-      $this->term_taxonomy_table()->insert(array(
-            'taxonomy'=>'tag',
-            'term_id'=>$tag_id->id
-        ),FALSE);
+            $this->term_taxonomy_table()->insert(array(
+                'taxonomy'=>'tag',
+                'term_id'=>$tag_id->id
+            ),FALSE);
 
 			return $tag_id->id;
 		else:
-      return self::lookup( $term_slug );
+            return self::lookup( $term_slug );
 		endif;	
 	}
 	
