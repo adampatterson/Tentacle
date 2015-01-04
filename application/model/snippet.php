@@ -23,7 +23,7 @@ class snippet_model extends properties
 	{
 		$name            = input::post( 'name' );
 		$created_by      = user::id();
-		$snippet_content = input::post( 'content' );
+		$content         = input::post( 'content' );
 		$filter          = input::post( 'filter' );
 		
 		$slug            = string::camelize($name);
@@ -34,13 +34,32 @@ class snippet_model extends properties
                 'name'=>$name,
                 'slug'=>$slug,
                 'created_by'=>$created_by,
-                'content'=>$snippet_content,
+                'content'=>$content,
                 'filter'=>$filter
             ),FALSE);
 
 		note::set('success','snippet_add','Snippet Added!');
 	}
-	
+
+    public function add_by_theme ($name = '', $content = '')
+    {
+        $created_by      = user::id();
+        $filter          = input::post( 'filter' );
+
+        $slug            = string::camelize($name);
+        $slug            = string::underscore($slug);
+
+        $this->snippet_table()
+            ->insert(array(
+                'name'=>$name,
+                'slug'=>$slug,
+                'created_by'=>$created_by,
+                'content'=>$content,
+                'filter'=>$filter
+            ),FALSE);
+
+        note::set('success','snippet_add','Snippet Added!');
+    }
 
 	// Update Snippet
 	//----------------------------------------------------------------------------------------------

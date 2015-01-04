@@ -39,7 +39,7 @@ class settings_model extends properties
 				->where( 'key', '=', $key )
 				->execute();			
 		endif;
-	}
+    }
 	
 		
 	// Get Setting

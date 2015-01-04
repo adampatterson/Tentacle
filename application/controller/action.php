@@ -638,10 +638,14 @@ class action_controller extends properties {
  	public function update_settings ( $key, $value, $autoload = 'yes' )
 	{
         tentacle::valid_user();
-        $update_appearance = $this->options_model()->update( $key, $value, $autoload );
+        $this->options_model()->update( $key, $value, $autoload );
 
-        if($key == "appearance" and file_exists(THEME_URI.'/functions.php'))
-            require_once( THEME_URI.'/functions.php' );
+        if($key == "appearance" and file_exists(THEMES_DIR.$value.'/functions.php')):
+            require_once( THEMES_DIR.$value.'/functions.php' );
+            if(function_exists('init_theme') and !get::option( 'theme_'.$value, false)):
+                event::trigger('init_theme', $value);
+            endif;
+        endif;
 
 		url::redirect('admin/settings_appearance');
 	}
@@ -953,6 +957,7 @@ win.send_to_editor('<?=$html?>');
 		$display_name = input::post( 'display_name' );
 
         set::option('admin_email', $email);
+        set::option('admin_name', $display_name);
 
         $hash_password = new PasswordHash(8, FALSE);
         $encrypted_password = $hash_password->HashPassword($password );

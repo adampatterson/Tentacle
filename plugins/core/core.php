@@ -159,3 +159,8 @@ function generate_rss() {
     $posts = $content->get_sitemap( );
     tentacle::generate_rss($posts);
 }
+
+event::on('init_theme', 'core_theme_init', 10);
+function core_theme_init($theme) {
+    set::option('theme_'.$theme, 'true');
+}
