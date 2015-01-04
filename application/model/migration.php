@@ -1,9 +1,8 @@
-<?
-class migration_model
-{
+<?php
 
-    public function get_100 ()
-    {
+class migration_model {
+
+    public function get_100(){
         $config = config::get('db');
 
         try {
@@ -14,7 +13,6 @@ class migration_model
 
         # Build Schema
         # ------------------------------------------------------------
-
         $build = $pdo->exec( "CREATE TABLE IF NOT EXISTS `comments` (
 		 						 `id` bigint(20) NOT NULL AUTO_INCREMENT,
 								  `post_id` bigint(20) NOT NULL DEFAULT '0',
@@ -235,8 +233,7 @@ class migration_model
 
     }
 
-    public function get_101 ()
-    {
+    public function get_101(){
         $config = config::get('db');
 
         try {
@@ -262,8 +259,7 @@ class migration_model
 				(58, 112, 'scaffold_data', 'a:6:{s:9:\"post_type\";s:9:\"type-post\";s:13:\"post_category\";a:1:{i:0;s:1:\"1\";}s:11:\"bread_crumb\";s:0:\"\";s:13:\"meta_keywords\";s:0:\"\";s:16:\"meta_description\";s:27:\"Enter your comments here...\";s:4:\"tags\";s:0:\"\";}')" );
     }
 
-    public function get_102 ()
-    {
+    public function get_102(){
 
         $config = config::get('db');
 
@@ -279,8 +275,7 @@ class migration_model
 
     }
 
-    public function get_103 ()
-    {
+    public function get_103(){
         $config = config::get('db');
 
         try {
@@ -293,8 +288,7 @@ class migration_model
 		ADD  `description` TEXT NULL AFTER  `caption" );
     }
 
-    public function get_104 ()
-    {
+    public function get_104(){
         $config = config::get('db');
 
         try {
@@ -308,8 +302,7 @@ class migration_model
 			(NULL, 'is_agree', '', 'yes')" );
     }
 
-    public function get_105 ()
-    {
+    public function get_105(){
         $config = config::get('db');
 
         try {
@@ -321,8 +314,7 @@ class migration_model
         $build = $pdo->exec( "UPDATE  `options` SET  `value` =  'tentacle' WHERE  `options`.`key` = 'appearance" );
     }
 
-    public function get_106 ()
-    {
+    public function get_106(){
         $config = config::get('db');
 
         try {
@@ -334,8 +326,7 @@ class migration_model
         $build = $pdo->exec( "ALTER TABLE  `media` ADD  `slug` VARCHAR( 200 ) NOT NULL AFTER  `path`" );
     }
 
-    public function get_107 ()
-    {
+    public function get_107(){
         $config = config::get('db');
 
         try {
@@ -347,8 +338,7 @@ class migration_model
         $build = $pdo->exec( "ALTER TABLE  `media` CHANGE  `path`  `uri` VARCHAR( 255 )" );
     }
 
-    public function get_108 ()
-    {
+    public function get_108(){
         $config = config::get('db');
 
         try {
@@ -360,8 +350,7 @@ class migration_model
         $build = $pdo->exec( "ALTER TABLE  `media` ADD  `author` BIGINT( 20 ) NOT NULL" );
     }
 
-    public function get_109 ()
-    {
+    public function get_109(){
         $config = config::get('db');
 
         try {
@@ -373,8 +362,7 @@ class migration_model
         $build = $pdo->exec( "ALTER TABLE  `media` ADD  `name` VARCHAR( 250 ) NOT NULL AFTER  `slug`" );
     }
 
-    public function get_110 ()
-    {
+    public function get_110(){
         $config = config::get('db');
 
         try {
@@ -386,8 +374,7 @@ class migration_model
         $build = $pdo->exec( "ALTER TABLE  `media` ADD  `link` VARCHAR( 250 ) NOT NULL AFTER  `date`" );
     }
 
-    public function get_111 ()
-    {
+    public function get_111(){
         $config = config::get('db');
 
         try {
@@ -399,8 +386,7 @@ class migration_model
         $build = $pdo->exec( "INSERT INTO `options` (`key`, `value`, `autoload`) VALUES('active_modules', 'a:1:{i:0;s:5:\"ipsum\";}', 'yes');" );
     }
 
-    public function get_112 ()
-    {
+    public function get_112(){
         $config = config::get('db');
 
         try {
@@ -412,8 +398,7 @@ class migration_model
         $build = $pdo->exec( "ALTER TABLE `posts` ADD FULLTEXT(title, content);" );
     }
 
-    public function get_113 ()
-    {
+    public function get_113(){
         $config = config::get('db');
 
         try {
@@ -438,8 +423,7 @@ class migration_model
         $build = $pdo->exec( "UPDATE  `options` SET  `key` =  'active_plugins' WHERE  `options`.`key` ='active_modules';" );
     }
 
-    public function get_115 ()
-    {
+    public function get_115(){
         $config = config::get('db');
 
         try {
@@ -451,8 +435,7 @@ class migration_model
         $build = $pdo->exec( "INSERT INTO `options` (`key`, `value`, `autoload`) VALUES('blog_uri', 'blog', 'yes');" );
     }
 
-    public function get_116 ()
-    {
+    public function get_116(){
         $config = config::get('db');
 
         try {
@@ -490,8 +473,32 @@ class migration_model
             ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;" );
     }
 
-    public function touch_db()
-    {
+    public function get_117(){
+        $config = config::get('db');
+
+        try {
+            $pdo = new pdo("{$config['default']['driver']}:dbname={$config['default']['database']};host={$config['default']['host']}",$config['default']['username'],$config['default']['password']);
+        } catch(PDOException $e) {
+            dingo_error(E_USER_ERROR,'DB Connection Failed. '.$e->getMessage());
+        }
+
+        $build = $pdo->exec( "ALTER TABLE  `comments` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci" );
+        $build = $pdo->exec( "ALTER TABLE  `download_tracking` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci" );
+        $build = $pdo->exec( "ALTER TABLE  `media` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci" );
+        $build = $pdo->exec( "ALTER TABLE  `options` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci" );
+        $build = $pdo->exec( "ALTER TABLE  `pings` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci" );
+        $build = $pdo->exec( "ALTER TABLE  `posts` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci" );
+        $build = $pdo->exec( "ALTER TABLE  `posts_meta` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci" );
+        $build = $pdo->exec( "ALTER TABLE  `snippet` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci" );
+        $build = $pdo->exec( "ALTER TABLE  `statistics` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci" );
+        $build = $pdo->exec( "ALTER TABLE  `statistics_meta` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci" );
+        $build = $pdo->exec( "ALTER TABLE  `term_relationships` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci" );
+        $build = $pdo->exec( "ALTER TABLE  `term_taxonomy` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci" );
+        $build = $pdo->exec( "ALTER TABLE  `terms` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci" );
+        $build = $pdo->exec( "ALTER TABLE  `users` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci" );
+    }
+
+    public function touch_db(){
         $config = config::get('db');
 
         $driver = $config['default']['driver'];

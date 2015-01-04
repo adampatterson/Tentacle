@@ -1,4 +1,5 @@
-<?
+<?php
+
 load::helper('file');
 
 /**
@@ -185,79 +186,3 @@ function upgrade_all() {
 
 	return true;
 }
-
-/*
-function rollback($back)
-{
-    foreach($back as $b)
-    {
-        $f = FCPATH . $b;
-        @rename($f, str_replace('.off', '', $f));
-    }
-}
-
-
-// Move these to off position in case we need to rollback
-$movers = array('admin', 'app', 'api.php', 'i.php', 'index.php', 'preview.php', 'dl.php');
-$moved = array();
-
-foreach($movers as $m) {
-    $path = FCPATH . $m;
-    $to = $path . '.off';
-    if (file_exists($to))
-    {
-        delete_files($to, true, 1);
-    }
-    if (file_exists($path))
-    {
-        if (rename($path, $to))
-        {
-            $moved[] = basename($to);
-        }
-        else
-        {
-            rollback($moved);
-            umask($old_mask);
-            fail();
-        }
-    }
-}
-
-$this->unzip->extract($core);
-
-@unlink($core);
-
-foreach($movers as $m)
-{
-    if (!file_exists($m))
-    {
-        rollback($moved);`
-        umask($old_mask);
-        fail('Koken did not update properly. Please refresh the page and try again. If you continue to have issues, contact support.');
-    }
-}
-
-foreach($moved as $m)
-{
-    $path = FCPATH . $m;
-    if (is_dir($path))
-    {
-        delete_files($path, true, 1);
-    }
-    else if (file_exists($to))
-    {
-        unlink($path);
-    }
-}
-
-die(
-    json_encode(
-        array('migrations' => array_values(
-            array_diff(
-                scandir($this->migrate_path), $migrations_before)
-            )
-        )
-    )
-);
-
-*/

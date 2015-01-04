@@ -80,8 +80,10 @@ class install_controller
 
         $sql->get_116();
 
+        $sql->get_117();
+
 		// Set the current Install version
-		$sql->set_db('116');
+		$sql->set_db('117');
 
 		load::view ('install/step5');
 	}
