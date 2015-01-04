@@ -639,6 +639,10 @@ class action_controller extends properties {
 	{
         tentacle::valid_user();
         $update_appearance = $this->options_model()->update( $key, $value, $autoload );
+
+        if($key == "appearance" and file_exists(THEME_URI.'/functions.php'))
+            require_once( THEME_URI.'/functions.php' );
+
 		url::redirect('admin/settings_appearance');
 	}
 	
