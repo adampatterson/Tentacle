@@ -1,5 +1,4 @@
-<?
-load::helper( 'data_properties' );
+<?php
 
 class media_model extends properties
 {
