@@ -120,6 +120,7 @@ class page_controller extends properties {
                     $post_meta  = $this->content_model()->get_meta( $post->id );
 
                 if ( !$post ):
+//                    $this->content_model()->get_by_partial_uri( $uri );
                     tentacle::render ( '404' );
                     define ( 'IS_404'      , TRUE );
                 else:
