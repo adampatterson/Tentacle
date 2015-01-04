@@ -520,7 +520,7 @@ class content_model extends properties {
         if ( $exists ):
             return true;
         else:
-            $post = db::query("SELECT uri, slug, id FROM posts WHERE uri LIKE '%$url%'" );
+            $post = db::query("SELECT uri, slug, id FROM posts WHERE uri LIKE '%$url%' and status = 'published'" );
             if( empty($post) )
                 return false;
             else
