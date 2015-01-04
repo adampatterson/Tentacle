@@ -81,15 +81,6 @@ class page_controller extends properties {
 
         $post_limit = get::option( 'page_limit', 5 );
 
-        $redirect_uri = $this->content_model()->type( )->get_by_partial_uri( URI );
-
-        // True the page exists
-        // False the page is a 404
-        // Data then we found something and redirect
-
-//        if ( $redirect_uri === false )
-            //url::redirect($redirect_uri->uri);
-
         switch (url_map::get( $uri )) {
             case 'feed_index':
                 define('FEED'           , TRUE);
