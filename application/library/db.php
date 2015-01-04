@@ -715,7 +715,7 @@ class pdo_db_connection
 
         try
         {
-            $this->con = new pdo("{$this->driver}:dbname={$this->database};host={$this->host}",$this->username,$this->password);
+            $this->con = new pdo("{$this->driver}:dbname={$this->database};charset=utf8mb4;host={$this->host}",$this->username,$this->password);
         }
         catch(PDOException $e)
         {
