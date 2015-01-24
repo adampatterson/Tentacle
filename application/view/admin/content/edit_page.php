@@ -117,16 +117,16 @@
                                     // Load the saved template, then if the user changes override the saved template.
                                     $template = THEMES_DIR.'/'.ACTIVE_THEME.'/'.$get_page->template.'.php';
                                     if( file_exists( $template )): $raw_blocks = get::yaml( $template );
-                                    if ( $raw_blocks != null ):
-                                        $blocks = new blocks();
+                                        if ( $raw_blocks != null ):
+                                            $blocks = new blocks();
 
-                                        if(!property_exists($get_page_meta, 'collection'))
-                                            $get_page_meta->collection = (array)$get_page_meta;
+                                            if(!property_exists($get_page_meta, 'collection'))
+                                                $get_page_meta->collection = (array)$get_page_meta;
 
-                                        $blocks->populate( $raw_blocks, $get_page_meta->collection );
-                                        $blocks->render();
-                                    endif;
-                                else: ?>
+                                            $blocks->populate( $raw_blocks, $get_page_meta->collection );
+                                            $blocks->render();
+                                        endif;
+                                    else: ?>
 
                                     <br/><br/>
                                     <div class="alert-message warning">

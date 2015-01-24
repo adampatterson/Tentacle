@@ -3,14 +3,13 @@ class blocks
 {
     static $return_data;
 
-    public function populate( $blocks, $data )
+    public function populate( $blocks, $data=null )
     {
         unset($blocks['display']);
         $construct = new construct();
 
         construct::$data = $data;
 
-        $id = 0;
         foreach( $blocks as $key => $block ):
             if(is_array($block)):
                 self::handle_block($key, $block, $construct);
@@ -67,21 +66,23 @@ class blocks
     {
         $construct = new construct();
 
-        if ( $is_repeater )
+        if( $is_repeater )
             unset(construct::$data[$repeater_key][999]);
 
-        foreach( construct::$data[$repeater_key] as $building_block_data ):                               // Loops the data brought back form the DB
-            self::$return_data .= '<div class="row">';
+        if(construct::$data[$repeater_key] != null ):
+            foreach( construct::$data[$repeater_key] as $building_block_data ):                               // Loops the data brought back form the DB
+                self::$return_data .= '<div class="row">';
 
-            foreach( $repeater as $key => $block ):                                                       // Loops the builder row data and populates it.
-                ++$id;
-                $data = self::clean($key, $block, $repeater_key, $is_repeater, $id);                      // Process clena $data
-                self::$return_data .= $construct->$data['data'][0]( $building_block_data[$key] );         // Populate the fields from the DB
+                foreach( $repeater as $key => $block ):                                                       // Loops the builder row data and populates it.
+                    ++$id;
+                    $data = self::clean($key, $block, $repeater_key, $is_repeater, $id);                      // Process clena $data
+                    self::$return_data .= $construct->$data['data'][0]( $building_block_data[$key] );         // Populate the fields from the DB
+                endforeach;
+
+                self::$return_data .= $construct->remove_buttons().   // Builds the buttons for adding and removing a row.
+                    '</div>';                                         // .row / .repeater_row
             endforeach;
-
-            self::$return_data .= $construct->remove_buttons().   // Builds the buttons for adding and removing a row.
-                '</div>';                                         // .row / .repeater_row
-        endforeach;
+        endif;
     }
 
 
