@@ -7,7 +7,6 @@
     });
   }
 
-
   function updateOrderNumbers()
   {
     $('#blocks fieldset').each(function(){
@@ -38,9 +37,9 @@
           that: $that,
           repeater: $repeater,
           row_limit: $row_limit,
-          row_count: $row_count
+          row_count: $row_count+1
         };
-
+        console.log(opt);
         blocks.createNewField( opt );
 //        updateOrderNumbers();
       },
