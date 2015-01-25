@@ -55,7 +55,6 @@
             var name = $(this).attr('name').replace('[999]','['+$opt.row_count+']');
             $(this).attr('name', name);
             $(this).attr('id', name);
-            console.log('success?')
           });
         },
 
