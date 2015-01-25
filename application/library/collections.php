@@ -3,7 +3,7 @@ class blocks
 {
     static $return_data;
 
-    public function populate( $blocks, $data=null )
+    public function populate( $blocks, $data = null )
     {
         unset($blocks['display']);
         $construct = new construct();
@@ -17,21 +17,21 @@ class blocks
                 self::handle_single($key, $block);
             endif;
         endforeach;
-
     }
 
     public static function handle_block($key, $block, $construct)
     {
         $id = 0;
-        
-        if(is_array($block)): // Lets build a repeater collection
-            self::$return_data .= '<div class="repeaters" data-min_block="0" data-block_limit="5"><fieldset>';
-            self::build_row($key, $block, $id, true);         // Build the repeater_row then
-            self::build_repeater_row($key, $block, $id, false);              // Build the row
-            self::$return_data .= '</fieldset>'.
-                                $construct::add_row().      // Add Row
-                                '</div>';
-        endif;
+
+        self::$return_data .= '<div class="repeaters" data-min_block="0" data-block_limit="5"><fieldset>';
+
+        self::build_row($key, $block, $id, true);         // Build the build_row then
+
+        self::build_repeater_row($key, $block, $id, false);              // Build the row
+        self::$return_data .= '</fieldset>'.
+                            $construct::add_row().      // Add Row
+                            '</div>';
+
     }
 
     public static function handle_single($key, $block) {
@@ -71,7 +71,7 @@ class blocks
 
         if(construct::$data[$repeater_key] != null ):
             foreach( construct::$data[$repeater_key] as $building_block_data ):                               // Loops the data brought back form the DB
-                self::$return_data .= '<div class="row">';
+                 self::$return_data .= '<div class="row">';
 
                 foreach( $repeater as $key => $block ):                                                       // Loops the builder row data and populates it.
                     ++$id;
@@ -82,18 +82,18 @@ class blocks
                 self::$return_data .= $construct->remove_buttons().   // Builds the buttons for adding and removing a row.
                     '</div>';                                         // .row / .repeater_row
             endforeach;
+        else:
+            self::$return_data .= '<div class="row">';
+
+            foreach( $repeater as $key => $block ):                                                       // Loops the builder row data and populates it.
+                ++$id;
+                $data = self::clean($key, $block, $repeater_key, $is_repeater, $id);                      // Process clena $data
+                self::$return_data .= $construct->$data['data'][0](  );
+            endforeach;
+
+            self::$return_data .= $construct->remove_buttons().   // Builds the buttons for adding and removing a row.
+                '</div>';
         endif;
-    }
-
-
-    /*
-    * Builds a single input for the form builder, Not repeatable.
-    */
-    public static function build( $key, $block )
-    {
-        $construct = new construct();
-        $data = self::clean($key, $block);
-        self::$return_data .= $construct->$data['data'][0]( );  // Needs .row and .col
     }
 
 
