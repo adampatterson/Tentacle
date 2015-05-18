@@ -436,6 +436,58 @@ class content_model extends properties {
         endif;
     }
 
+    public function get_by_id($id = null) {
+        $post = $this->post_table()
+            ->select( '*' )
+            ->where ( 'id', '=', $id )
+            ->execute();
+
+        return $post;
+    }
+
+    public function get_next_post ($current_id=null){
+        $posts = db( 'posts' );
+
+        $current_post = $this->get_by_id($current_id);
+
+        $get_posts = $posts->select( '*' )
+            ->limit( 1 )
+            ->where ( 'type', '=', 'post' )
+            ->clause ('AND')
+            ->where ( 'date', '>', $current_post[0]->date )
+            ->clause ('AND')
+            ->where ( 'status', '=', 'published' )
+            ->execute();
+
+        if(empty($get_posts)){
+           return false;
+        } else {
+            echo "<a href='/".$get_posts[0]->uri."'>".$get_posts[0]->title." ".$get_posts[0]->id."</a>";
+            return $get_posts[0];
+        }
+    }
+
+    public function get_previous_post ($current_id=null){
+        $posts = db( 'posts' );
+
+        $current_post = $this->get_by_id($current_id);
+
+        $get_posts = $posts->select( '*' )
+            ->limit( 1 )
+            ->where ( 'type', '=', 'post' )
+            ->clause ('AND')
+            ->where ( 'date', '<', $current_post[0]->date )
+            ->clause ('AND')
+            ->where ( 'status', '=', 'published' )
+            ->execute();
+
+        if(empty($get_posts)){
+            return false;
+        } else {
+            echo "<a href='/".$get_posts[0]->uri."'>".$get_posts[0]->title." ".$get_posts[0]->id."</a>";
+            return $get_posts[0];
+        }
+    }
 
     // Get Post
     //----------------------------------------------------------------------------------------------
