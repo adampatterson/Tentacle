@@ -188,7 +188,6 @@ class page_controller extends properties {
 
             break;
             case 'blog_date_slug':
-
                 define ( 'IS_POST'      , TRUE );
                 define ( 'IS_BLOG'      , TRUE );
                 define('FEED'            , FALSE);
@@ -208,7 +207,25 @@ class page_controller extends properties {
                     dispatcher::set('author', $this->user_model());
                     dispatcher::set('category', $this->category_model());
                     dispatcher::set('tag', $this->tag_model());
+/*
+                    echo "<ul>
+                        <li>Four Not published <strong>1426</strong></li>
+                        <li>More <strong>1424</strong></li>
+                        <li>One more <strong>1425</strong></li>
+                        <li>Test <strong>1419</strong></li>
+                    </ul>";
 
+                    $post_navigation = load::model('content');
+
+                    echo "<h3>Next</h3>";
+                    $post_navigation->get_next_post($post->id);
+
+                    echo "<h3>Current ID</h3>";
+                    var_dump($post->id);
+
+                    echo "<h3>Previous</h3>";
+                    $post_navigation->get_previous_post($post->id);
+*/
                     tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta, 'author' => $this->user_model(), 'category' => $this->category_model(), 'tag' => $this->tag_model() ) );
                 endif;
 
