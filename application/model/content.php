@@ -479,6 +479,7 @@ class content_model extends properties {
             ->where ( 'date', '<', $current_post[0]->date )
             ->clause ('AND')
             ->where ( 'status', '=', 'published' )
+            ->order_by ( 'date', 'DESC' )
             ->execute();
 
         if(empty($get_posts)){
