@@ -64,12 +64,12 @@
     <div id="post-body-content">
     <h1><img src="<?=ADMIN_URL;?>images/icons/icon_pages_32.png" alt="" /> Write a new page</h1>
 
-      <ul class="nav nav-tabs" id="content-tabs">
-          <li class="active"><a href="#content">Content</a></li>
-          <li class=""><a href="#options">Options</a></li>
-      </ul>
+    <ul class="nav nav-tabs" id="content-tabs">
+        <li class="active"><a href="#content">Content</a></li>
+        <li class=""><a href="#options">Options</a></li>
+    </ul>
 
-      <div class="tab-content tab-body">
+    <div class="tab-content tab-body">
 
         <div id="content" class="active tab-pane">
 
@@ -94,11 +94,10 @@
             <? endif; ?>
 
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Excerpt" name='excerpt' />
+                <input type="text" class="form-control" placeholder="Excerpt" name='excerpt' />
             </div>
 
             <div id="scaffold" class="blocks">
-
                 <? if ( session::get( 'template' ) != 'index' && session::get( 'template' ) != '' ):
 
                     $template = THEMES_DIR.'/'.ACTIVE_THEME.'/'.session::get('template').'.php';
@@ -112,33 +111,32 @@
 
                     endif;
                 endif; ?>
-
             </div>
 
         </div>
 
         <div id="options" class="tab-pane">
             <fieldset>
-              <div class="form-group">
-                <label>Breadcrumb title</label>
-                <input type="text" class="form-control" placeholder="Edit title" name='bread_crumb' />
-                <span class="help-block">This title will appear in the breadcrumb trail.</span>
-              </div>
-              <div class="form-group">
-                <label>Meta Keywords</label>
-                <input type="text" class="form-control" placeholder="Keywords" name='meta_keywords' />
-                <span class="help-block">Separate each keyword with a comma ( , )</span>
-              </div>
-              <div class="form-group">
-                <label>Meta Description</label>
-                <textarea name="meta_description" class="form-control" cols="40" rows="5" placeholder='Enter your comments here...'></textarea>
-                <span class="help-block">A short summary of the page's content</span>
-              </div>
-              <div class="form-group">
-                <label>Tags</label>
-                <input type="text" class="form-control" class="tags" name="tags" id="tags" />
-                <span class="help-block">Separate each keyword with a comma ( , )</span>
-              </div>
+                <div class="form-group">
+                    <label>Breadcrumb title</label>
+                    <input type="text" class="form-control" placeholder="Edit title" name='bread_crumb' />
+                    <span class="help-block">This title will appear in the breadcrumb trail.</span>
+                </div>
+                <div class="form-group">
+                    <label>Meta Keywords</label>
+                    <input type="text" class="form-control" placeholder="Keywords" name='meta_keywords' />
+                    <span class="help-block">Separate each keyword with a comma ( , )</span>
+                </div>
+                <div class="form-group">
+                    <label>Meta Description</label>
+                    <textarea name="meta_description" class="form-control" cols="40" rows="5" placeholder='Enter your comments here...'></textarea>
+                    <span class="help-block">A short summary of the page's content</span>
+                </div>
+                <div class="form-group">
+                    <label>Tags</label>
+                    <input type="text" class="form-control" class="tags" name="tags" id="tags" />
+                    <span class="help-block">Separate each keyword with a comma ( , )</span>
+                </div>
                 <? /*
                     <div class="clearfix">
                       <label>Meta Robot Tags</label>
