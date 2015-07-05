@@ -79,9 +79,8 @@
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a class="<? current_page('admin/settings_appearance'); ?>" href="<?= ADMIN ?>settings_appearance/">Manage Themes</a></li>
-                    <li><a href="#">Add a new Theme</a></li>
                     <li class="divider"></li>
-                    <li><a href="#">Theme Settings</a></li>
+                    <li><a class="<? current_page('admin/settings_appearance_options'); ?>" href="<?= ADMIN ?>settings_appearance_options/">Theme Options</a></li>
                 </ul>
             </li>
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>

@@ -24,6 +24,7 @@
 			 <? endif;
 			endforeach; ?>
 		</ul>
+		<? /*
 		<h2>Broken themes.</h2>
 		<ul class="theme-grid well">
 
@@ -43,18 +44,7 @@
 			endforeach; ?>
 
 		</ul>
-		<? /* 
-		<h2>Appearance</h2>
-		<hr />
-		<p>Font type</p>
-		<h2>Header</h2>
-		<hr />
-		<p>Title<br />
-		Logo</p>
-		<h2>Footer</h2>
-		<hr />
-		<p>Copyright<br />
-		Links</p>*/?>
+		*/ ?>
 	</div>
 </div><!-- #wrap -->
 <? load::view('admin/partials/footer', array( 'assets' => array( '' ) ) ); ?>

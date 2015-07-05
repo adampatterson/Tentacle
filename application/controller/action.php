@@ -663,7 +663,7 @@ class action_controller extends properties {
 		for (
 		     reset($keys), 
 		     reset($values);
-		     list(, $key ) = each( $keys ) ,
+		     list(, $key ) = each( $keys ),
 		     list(, $value ) = each( $values );
 		):
 			if ( $key != 'submit' && $key != 'history') 
