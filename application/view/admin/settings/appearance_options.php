@@ -10,16 +10,19 @@
                 <div id="scaffold" class="blocks">
 
                     <?
-                        $template = THEMES_DIR.'/'.ACTIVE_THEME.'/options.php';
-                        if( file_exists( $template )): $raw_blocks = get::yaml( $template );
-                            if ( $raw_blocks != null ):
-                                $blocks = new blocks();
+                    $template = THEMES_DIR.'/'.ACTIVE_THEME.'/options.php';
+                    if( file_exists( $template )): $raw_blocks = get::yaml( $template );
+                        if ( $raw_blocks != null ):
+                            $blocks = new blocks();
 
-                                $blocks->populate( $raw_blocks );
-                                $blocks->render();
-                            endif;
+                            $blocks->populate( $raw_blocks );
+                            $blocks->render();
+                        endif;
 
-                    endif; ?>
+                    endif;
+
+                    get::option('theme_options');
+                    ?>
 
                 </div>
             </div>
