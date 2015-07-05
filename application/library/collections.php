@@ -199,6 +199,16 @@ class construct
     }
 
 
+    public function heading()
+    {
+        return '<div class="col-md-12">
+                    <h2>'.self::$bd['data']['1'].'</h2>
+                    <hr />'
+                    .self::set_helper().
+                '</div>';
+    }
+
+
     static function set_helper( )
     {
         if( array_key_exists(2, self::$bd['data']) )
