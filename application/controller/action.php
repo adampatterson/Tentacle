@@ -660,13 +660,22 @@ class action_controller extends properties {
 		$keys = array_keys( $_POST );
 		$values = array_values( $_POST );
 
+
+
 		for (
-		     reset($keys), 
+		     reset($keys),
 		     reset($values);
 		     list(, $key ) = each( $keys ),
 		     list(, $value ) = each( $values );
 		):
-			if ( $key != 'submit' && $key != 'history') 
+			// if collection set as options
+			if (is_array($value))
+				$value = serialize($value);
+
+			if ($key == 'collection')
+				$key = 'theme_options';
+
+			if ( $key != 'submit' && $key != 'history')
 				$update_settings = $this->options_model()->update( $key, $value, $autoload );
 		endfor;
 
