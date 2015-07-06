@@ -150,9 +150,6 @@ class content_model extends properties {
         $scaffold_data = $_POST;
         $remove_keys = array( 'title', 'content', 'permalink', 'status', 'parent_page', 'page_template', 'page-or-post', 'history', 'tags', 'publish', 'year', 'month', 'day', 'hour', 'minute' );
 
-//        var_dump($_POST);
-//        die;
-
         foreach ( $remove_keys as $remove_key )
             unset( $scaffold_data[ $remove_key ] );
 

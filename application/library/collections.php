@@ -14,7 +14,12 @@ class blocks
             if(is_array($block)):
                 self::handle_block($key, $block, $construct);
             else:
-                self::handle_single($key, $block);
+                if(is_null($data)):
+                    var_dump($key);
+                    self::handle_single($key, $block);
+                else:
+                    self::handle_single($key, $block);
+                endif;
             endif;
         endforeach;
     }
@@ -104,6 +109,7 @@ class blocks
     {
         $construct = new construct();
         $data = self::clean($key, $block);
+//        if(is_null(construct::$data[$key]))
         self::$return_data .= $construct->$data['data'][0]( construct::$data[$key] );  // Needs .row and .col
     }
 
@@ -199,7 +205,7 @@ class construct
     }
 
 
-    public function heading()
+    public function heading( $data = null)
     {
         return '<div class="col-md-12">
                     <h2>'.self::$bd['data']['1'].'</h2>

@@ -42,6 +42,9 @@ class get {
 
     public static function theme_options() {
         $options = self::option('theme_options');
+
+        // work with collection array
+
         if ( is_serialized($options))
             return unserialize($options);
     }

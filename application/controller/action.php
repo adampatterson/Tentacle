@@ -660,8 +660,6 @@ class action_controller extends properties {
 		$keys = array_keys( $_POST );
 		$values = array_values( $_POST );
 
-
-
 		for (
 		     reset($keys),
 		     reset($values);
