@@ -190,7 +190,6 @@ class page_controller extends properties {
 
             break;
             case 'blog_date_slug':
-
                 define ( 'IS_POST'      , TRUE );
                 define ( 'IS_BLOG'      , TRUE );
                 define('FEED'            , FALSE);

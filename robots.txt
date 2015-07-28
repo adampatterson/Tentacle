@@ -1,5 +1,3 @@
 User-agent: *
 Disallow: /admin/
-Disallow: /themes/
 Disallow: /plugins/
-Disallow: /storage/
