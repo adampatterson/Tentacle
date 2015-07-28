@@ -378,20 +378,21 @@ class action_controller extends properties {
         # This clears all relations ( for tags as well )
         $delete_relations   = $this->category_model()->delete_relations( $post_id );
 
-        foreach ( $post_categories as $post_category )
-            $category_relations = $this->category_model()->relations( $post_id, $post_category );
+        if($post_categories != false)
+            foreach ( $post_categories as $post_category )
+                $category_relations = $this->category_model()->relations( $post_id, $post_category );
 
-            $post_tags = input::post( 'tags' );
-            $post_tags = explode(',', $post_tags );
+                $post_tags = input::post( 'tags' );
+                $post_tags = explode(',', $post_tags );
 
-            foreach ( $post_tags as $tag ) {
-                $tag_single     = $this->tag_model()->add( $tag );
-                $tag_relations  = $this->tag_model()->relations( $post_id, $tag_single );
-            }
+                foreach ( $post_tags as $tag ) {
+                    $tag_single     = $this->tag_model()->add( $tag );
+                    $tag_relations  = $this->tag_model()->relations( $post_id, $tag_single );
+                }
 
-            event::trigger('update_post');
-            url::redirect( input::post( 'history' ) );
-	}
+                event::trigger('update_post');
+                url::redirect( input::post( 'history' ) );
+        }
 	
 
 	/**
@@ -636,8 +637,16 @@ class action_controller extends properties {
 	* ----------------------------------------------------------------------------------------------*/
  	public function update_settings ( $key, $value, $autoload = 'yes' )
 	{
-    tentacle::valid_user();
-    $update_appearance = $this->options_model()->update( $key, $value, $autoload );
+        tentacle::valid_user();
+        $this->options_model()->update( $key, $value, $autoload );
+
+        if($key == "appearance" and file_exists(THEMES_DIR.$value.'/functions.php')):
+            require_once( THEMES_DIR.$value.'/functions.php' );
+            if(function_exists('init_theme') and !get::option( 'theme_'.$value, false)):
+                event::trigger('init_theme', $value);
+            endif;
+        endif;
+
 		url::redirect('admin/settings_appearance');
 	}
 	
@@ -652,12 +661,18 @@ class action_controller extends properties {
 		$values = array_values( $_POST );
 
 		for (
-		     reset($keys), 
+		     reset($keys),
 		     reset($values);
-		     list(, $key ) = each( $keys ) ,
+		     list(, $key ) = each( $keys ),
 		     list(, $value ) = each( $values );
 		):
-			if ( $key != 'submit' && $key != 'history') 
+			if ($key == 'collection')
+				$key = 'theme_options';
+
+			if (is_array($value))
+				$value = serialize($value);
+
+			if ( $key != 'submit' && $key != 'history')
 				$update_settings = $this->options_model()->update( $key, $value, $autoload );
 		endfor;
 
@@ -948,6 +963,7 @@ win.send_to_editor('<?=$html?>');
 		$display_name = input::post( 'display_name' );
 
         set::option('admin_email', $email);
+        set::option('admin_name', $display_name);
 
         $hash_password = new PasswordHash(8, FALSE);
         $encrypted_password = $hash_password->HashPassword($password );

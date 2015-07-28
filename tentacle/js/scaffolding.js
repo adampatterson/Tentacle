@@ -7,7 +7,6 @@
     });
   }
 
-
   function updateOrderNumbers()
   {
     $('#blocks fieldset').each(function(){
@@ -38,9 +37,9 @@
           that: $that,
           repeater: $repeater,
           row_limit: $row_limit,
-          row_count: $row_count
+          row_count: $row_count+1
         };
-
+        console.log(opt);
         blocks.createNewField( opt );
 //        updateOrderNumbers();
       },
@@ -56,7 +55,6 @@
             var name = $(this).attr('name').replace('[999]','['+$opt.row_count+']');
             $(this).attr('name', name);
             $(this).attr('id', name);
-            console.log('success?')
           });
         },
 

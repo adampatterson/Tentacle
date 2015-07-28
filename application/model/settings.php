@@ -10,20 +10,18 @@ class settings_model extends properties
 	{
 		$result = $this->look_up( $key );
 				
-		if ( $result == false ):
-
+		if ( $result == false )
             $this->options_table()->insert( array(
 					'key' => $key,
 					'value' => $value,
 					'autoload' => $autoload
 				), FALSE );
-		endif;	
 	}
 	
 	
 	// Update Setting
 	//----------------------------------------------------------------------------------------------
-	public function update ( $key = '', $value = '' )	
+	public function update( $key = '', $value = '' )
 	{	
 		$autoload = 'yes';
 			
@@ -32,7 +30,6 @@ class settings_model extends properties
 		if ( $result == false ):
 			$this->add( $key, $value, $autoload );
 		else:
-
             $this->options_table()
                 ->update( array(
 					'key' => $key,
@@ -41,8 +38,8 @@ class settings_model extends properties
 				) )
 				->where( 'key', '=', $key )
 				->execute();			
-		endif;		
-	}
+		endif;
+    }
 	
 		
 	// Get Setting

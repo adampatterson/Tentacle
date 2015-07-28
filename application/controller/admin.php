@@ -19,7 +19,7 @@ class admin_controller extends properties {
 		tentacle::valid_user();
 
         if ( get::option('old_version') )
-            load::model('serverstats')->mixpanel_server( false, get::option('old_version') );
+            load::model('statistics')->mixpanel_server( false, get::option('old_version') );
 
 		load::view ('admin/upgraded');
 	}
@@ -456,7 +456,7 @@ class admin_controller extends properties {
 		tentacle::valid_user();
 		
 		$snippets = $this->snippet_model()->get( );
-		
+
 		load::view ('admin/snippets/manage', array( 'snippets'=>$snippets ) );
 	}
 	
@@ -525,11 +525,14 @@ class admin_controller extends properties {
 
 		$theme = load::helper ('theme');
 
-		//$themes = $this->serpent_model()->get_theme( );
-		
 		load::view ('admin/settings/appearance', array('theme'=>$theme ));
 	}
-	
+
+	public function settings_appearance_options() {
+		tentacle::valid_user();
+
+		load::view ('admin/settings/appearance_options');
+	}
 	
 	/**
 	* Plugin Settings

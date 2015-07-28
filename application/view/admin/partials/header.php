@@ -74,7 +74,7 @@
     <? endif; ?>
 
     <? if ( in_array('sortable', $assets ) ): ?>
-        <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.nestable.js"></script>
+        <script type="text/javascript" src="<?=ADMIN_JS; ?>jquery.nestable.min.js"></script>
     <? endif; ?>
 
     <? if ( in_array('filedrop', $assets ) ): ?>

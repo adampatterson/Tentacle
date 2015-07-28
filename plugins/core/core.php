@@ -117,20 +117,21 @@ function shortcode( $content )
 }
 
 
-function snippet( $slug )
+function snippet( $slug, $html=false )
 {
     $snippet = load::model( 'snippet' );
-    $snippet_single = $snippet->get_slug( $slug[0] );
+    $snippet_single = $snippet->get_slug( $slug );
 
-    return $snippet_single->content;
+    if ($snippet_single)
+        return $snippet_single->content;
 }
 
 
-function oembed_content( $url )
+function oembed_content( $url, $raw=null )
 {
     load::library('oembed');
 
-    return oembed_cotnent( $url['url'] );
+    return oembed_cotnent( $url, $raw );
 }
 
 
@@ -157,4 +158,9 @@ function generate_rss() {
     $content = load::model('content');
     $posts = $content->get_sitemap( );
     tentacle::generate_rss($posts);
+}
+
+event::on('init_theme', 'core_theme_init', 10);
+function core_theme_init($theme) {
+    set::option('theme_'.$theme, 'true');
 }

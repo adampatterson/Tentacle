@@ -90,7 +90,7 @@
                         <div id="content" class="active tab-pane">
 
                             <input type="text" name="title" placeholder='Title' value="<?= $get_page->title ?>" class='xlarge content_title form-control' required='required' id="permalink" />
-                            <input type="hidden" name="permalink" id="new_uri" />
+                            <input type="hidden" name="permalink"  value="<?= $get_page->slug ?>" id="new_uri" />
 
                             <script type="text/javascript" charset="utf-8">
                             var page_post = "page";
@@ -117,22 +117,22 @@
                                     // Load the saved template, then if the user changes override the saved template.
                                     $template = THEMES_DIR.'/'.ACTIVE_THEME.'/'.$get_page->template.'.php';
                                     if( file_exists( $template )): $raw_blocks = get::yaml( $template );
-                                    if ( $raw_blocks != null ):
-                                        $blocks = new blocks();
+                                        if ( $raw_blocks != null ):
+                                            $blocks = new blocks();
 
-                                        if(!property_exists($get_page_meta, 'collection'))
-                                            $get_page_meta->collection = (array)$get_page_meta;
+                                            if(!property_exists($get_page_meta, 'collection'))
+                                                $get_page_meta->collection = (array)$get_page_meta;
 
-                                        $blocks->populate( $raw_blocks, $get_page_meta->collection );
-                                        $blocks->render();
-                                    endif;
-                                else: ?>
+                                            $blocks->populate( $raw_blocks, $get_page_meta->collection );
+                                            $blocks->render();
+                                        endif;
+                                    else: ?>
 
-                                <br/><br/>
-                                <div class="alert-message warning">
-                                    <p><strong>A template file appears to be a missing from your theme:</strong> <br />
-                                    <?= '/themes/'.ACTIVE_THEME.'/'.$get_page->template.'.php'?></p>
-                                </div>
+                                    <br/><br/>
+                                    <div class="alert-message warning">
+                                        <p><strong>A template file appears to be a missing from your theme:</strong> <br />
+                                        <?= '/themes/'.ACTIVE_THEME.'/'.$get_page->template.'.php'?></p>
+                                    </div>
 
                                 <? endif;
                                 endif; ?>

@@ -74,8 +74,8 @@ class category_model extends properties {
 
         if ($get_category)
             return $get_category[0]->id;
-        else
-            return false;
+
+        return false;
     }
 
 

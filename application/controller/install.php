@@ -37,24 +37,23 @@ class install_controller
 		load::view ('install/step4');
 	}
 
-	public function step5 ( )
-	{
-		// CREATE DATABASE database_name
-		load::library('db');
+    public function db(){
+        // CREATE DATABASE database_name
+        load::library('db');
 
-		$sql = load::model('migration');
+        $sql = load::model('migration');
 
-		$sql->get_100();
+        $sql->get_100();
 
-		// Seed data
-		$sql->get_101();
+        // Seed data
+        $sql->get_101();
 
-		// Set an option key for the blog being installed
-		$sql->get_102();
+        // Set an option key for the blog being installed
+        $sql->get_102();
 
-		$sql->get_103();
+        $sql->get_103();
 
-		$sql->get_104();
+        $sql->get_104();
 
         $sql->get_105();
 
@@ -80,9 +79,16 @@ class install_controller
 
         $sql->get_116();
 
-		// Set the current Install version
-		$sql->set_db('116');
+        $sql->get_117();
 
+        // Set the current Install version
+        $sql->set_db('117');
+
+        url::redirect('install/step5');
+    }
+
+	public function step5 ( )
+	{
 		load::view ('install/step5');
 	}
 

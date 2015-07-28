@@ -81,15 +81,6 @@ class page_controller extends properties {
 
         $post_limit = get::option( 'page_limit', 5 );
 
-        $redirect_uri = $this->content_model()->type( )->get_by_partial_uri( URI );
-
-        // True the page exists
-        // False the page is a 404
-        // Data then we found something and redirect
-
-//        if ( $redirect_uri === false )
-            //url::redirect($redirect_uri->uri);
-
         switch (url_map::get( $uri )) {
             case 'feed_index':
                 define('FEED'           , TRUE);
@@ -116,12 +107,19 @@ class page_controller extends properties {
 
                 $post = $this->content_model()->get_by_uri( $uri );
 
+                if($post != false)
+                    $post_meta  = $this->content_model()->get_meta( $post->id );
+
                 if ( !$post ):
+                    $cleanup_url = $this->content_model()->get_by_partial_uri( $uri );
+                    if ($cleanup_url)
+                        url::redirect($cleanup_url->uri);
+
                     tentacle::render ( '404' );
                     define ( 'IS_404'      , TRUE );
                 else:
                     logger::set('Page Template', $post->template);
-                    tentacle::render( $post->template, array ( 'post' => $post, 'page' => $this->content_model() ) );
+                    tentacle::render( $post->template, array ( 'post' => $post, 'page' => $this->content_model(), 'post_meta' => $post_meta ) );
                 endif;
 
             break;
@@ -209,7 +207,22 @@ class page_controller extends properties {
                     dispatcher::set('author', $this->user_model());
                     dispatcher::set('category', $this->category_model());
                     dispatcher::set('tag', $this->tag_model());
+/*
+                      echo "<ul>
+                          <li>Four Not published <strong>1426</strong></li>
+                          <li>More <strong>1424</strong></li>
+                          <li>One more <strong>1425</strong></li>
+                          <li>Test <strong>1419</strong></li>
+                      </ul>";
 
+                      $post_navigation = load::model('content');
+
+                      echo "<h3>Next</h3>";
+                      $post_navigation->get_next_post($post->id);
+
+                      echo "<h3>Previous</h3>";
+                      $post_navigation->get_previous_post($post->id);
+*/
                     tentacle::render( $post->template, array ( 'post' => $post, 'post_meta' => $post_meta, 'author' => $this->user_model(), 'category' => $this->category_model(), 'tag' => $this->tag_model() ) );
                 endif;
 

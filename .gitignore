@@ -74,3 +74,4 @@ storage/upgrade/*
 
 
 config.codekit
+tentacle/vendor
