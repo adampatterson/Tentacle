@@ -645,7 +645,6 @@ class action_controller extends properties {
 
             if(function_exists('init_theme'))
 				init_theme();
-			die;
         endif;
 
 		url::redirect('admin/settings_appearance');
