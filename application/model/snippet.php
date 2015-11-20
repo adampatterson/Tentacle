@@ -49,16 +49,15 @@ class snippet_model extends properties
         $slug            = string::camelize($name);
         $slug            = string::underscore($slug);
 
-        $this->snippet_table()
-            ->insert(array(
-                'name'=>$name,
-                'slug'=>$slug,
-                'created_by'=>$created_by,
-                'content'=>$content,
-                'filter'=>$filter
-            ),FALSE);
-
-        note::set('success','snippet_add','Snippet Added!');
+		if ($this->get_slug($slug) == false)
+			$this->snippet_table()
+				->insert(array(
+					'name'=>$name,
+					'slug'=>$slug,
+					'created_by'=>$created_by,
+					'content'=>$content,
+					'filter'=>$filter
+				),FALSE);
     }
 
 	// Update Snippet

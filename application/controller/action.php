@@ -642,9 +642,9 @@ class action_controller extends properties {
 
         if($key == "appearance" and file_exists(THEMES_DIR.$value.'/functions.php')):
             require_once( THEMES_DIR.$value.'/functions.php' );
-            if(function_exists('init_theme') and !get::option( 'theme_'.$value, false)):
-                event::trigger('init_theme', $value);
-            endif;
+
+            if(function_exists('init_theme'))
+				init_theme();
         endif;
 
 		url::redirect('admin/settings_appearance');

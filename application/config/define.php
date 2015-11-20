@@ -13,11 +13,18 @@ else:
     $directory = dirname($_SERVER['PHP_SELF']);
 endif;
 
+function base_protcol(){
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    return $protocol;
+}
+
+define('BASE_PROTOCOL', base_protcol());
+
 define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port );
 
 # @todo BASE_URL may need some testing in other environments
 //define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.$directory.'/' );
-define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$directory.'/' );
+define('BASE_URL'      ,BASE_PROTOCOL.$_SERVER["SERVER_NAME"].$directory.'/' );
 
 # Application's Base Application URL
 define('TENTACLE_URL'     , BASE_URL.'tentacle/');
