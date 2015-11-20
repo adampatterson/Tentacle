@@ -12,7 +12,7 @@
 
 define ( 'URI'			, tentacle::get_request_url() );
 define ( 'ACTIVE_THEME' , get::option( 'appearance' ) );
-define ( 'THEME'	    , THEMES_URL.'/'.ACTIVE_THEME );
+define ( 'THEME'	    , '/themes/'.ACTIVE_THEME );
 define ( 'THEME_URI'  	, THEMES_DIR.ACTIVE_THEME );
 define ( 'HISTORY' 		, BASE_URL.URI.'/' );
 define ( 'IMAGE_T', get::option( 'image_thumb_size_w' ) );
