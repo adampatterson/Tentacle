@@ -25,6 +25,7 @@ define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port );
 # @todo BASE_URL may need some testing in other environments
 //define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.$directory.'/' );
 define('BASE_URL'      ,BASE_PROTOCOL.$_SERVER["SERVER_NAME"].$directory.'/' );
+define('BASE_URL_NO_PROTOCOL'      ,'//'.$_SERVER["SERVER_NAME"].$directory.'/' );
 
 # Application's Base Application URL
 define('TENTACLE_URL'     , BASE_URL.'tentacle/');
@@ -54,6 +55,7 @@ define('TEMP'		   	  , STORAGE_DIR.'/temp/');
 
 define('THEMES_DIR'    	  , APP_ROOT.'/themes/');
 define('THEMES_URL'    	  , BASE_URL.'themes');
+define('THEMES_URL_SOURCE'    	  , BASE_URL_NO_PROTOCOL.'themes');
 
 define('TENTACLE_PLUGIN'  , APP_ROOT.'/plugins');
 
