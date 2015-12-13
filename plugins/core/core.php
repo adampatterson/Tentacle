@@ -136,7 +136,7 @@ function oembed_content( $url, $raw=null )
     $path = str_replace('/', '-', $parts['path']);
 
     if ( $cache->look_up('oEmbed_'.$path) == false):
-        $oembed_data = $cache->set( 'oEmbed_'.$path, oembed_cotnent( $url, $raw ), '+6 hours' );
+        $oembed_data = $cache->set( 'oEmbed_'.$path, oembed_cotnent( $url, $raw ), '+7 days' );
     else:
         $oembed_data = $cache->get( 'oEmbed_'.$path );
     endif;
