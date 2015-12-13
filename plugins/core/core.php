@@ -132,6 +132,10 @@ function oembed_content( $url, $raw=null )
     load::library('oembed');
     $cache = new cache();
 
+    if(is_array($url)) {
+        $url = $url['url'];
+    }
+    
     $parts = parse_url($url);
     $path = str_replace('/', '-', $parts['path']);
 
