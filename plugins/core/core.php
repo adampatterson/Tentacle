@@ -130,8 +130,18 @@ function snippet( $slug, $html=false )
 function oembed_content( $url, $raw=null )
 {
     load::library('oembed');
+    $cache = new cache();
 
-    return oembed_cotnent( $url, $raw );
+    $parts = parse_url($url);
+    $path = str_replace('/', '-', $parts['path']);
+
+    if ( $cache->look_up('oEmbed_'.$path) == false):
+        $oembed_data = $cache->set( 'oEmbed_'.$path, oembed_cotnent( $url, $raw ), '+6 hours' );
+    else:
+        $oembed_data = $cache->get( 'oEmbed_'.$path );
+    endif;
+
+    return $oembed_data;
 }
 
 
