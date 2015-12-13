@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /admin/
 Disallow: /plugins/
-Disallow: /storage/
+
