@@ -29,7 +29,6 @@ $(document).ready(function(){
   }
 });
 
-
 function update_output(e)
 {
   var list   = e.length ? e : $(e.target),
