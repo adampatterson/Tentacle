@@ -449,10 +449,10 @@ function _cleanup_header_comment($str)
  *     Object - Post related content
  */
 function the_posts() {
-    var_dump(URI);
+//    var_dump(URI);
 
     $parts = explode('/', URI);
-    var_dump($parts);
+//    var_dump($parts);
 
     # Get by date year/month
     # return load::model( 'post' )->get_by_date('1353');

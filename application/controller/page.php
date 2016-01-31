@@ -5,7 +5,6 @@ class page_controller extends properties {
 
     public function index( )
     {
-
         if( DEBUG ):
             load::library('benchmark');
             bench::mark('start');

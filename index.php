@@ -57,6 +57,7 @@ if ( !defined( 'SETUP' ) && strpos( BASE_URI,'install' ) !== true ) {
 	define( 'CONFIGURATION' ,'setup' );	
 }
 
+
 // End of configuration
 //----------------------------------------------------------------------------------------------
 define('DINGO',1);

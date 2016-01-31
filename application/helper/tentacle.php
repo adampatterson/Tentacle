@@ -9,7 +9,6 @@
 /**
  * Create a URI ( anything after the domain/folder/ )
  */
-
 define ( 'URI'			, tentacle::get_request_url() );
 define ( 'ACTIVE_THEME' , get::option( 'appearance' ) );
 define ( 'THEME'	    , '/themes/'.ACTIVE_THEME );
