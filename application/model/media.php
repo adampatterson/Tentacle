@@ -11,7 +11,7 @@ class media_model extends properties
 		$file_name      = $file_meta['file_name'];
 		$file_extension = $file_meta['extension'];
 
-		$slug			= string::sanitize($file_name);
+		$slug			= text::sanitize($file_name);
 		$author 		= user::id();
 
         $image = IMAGE_DIR.$file_meta['name'];

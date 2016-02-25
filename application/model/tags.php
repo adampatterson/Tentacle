@@ -12,7 +12,7 @@ class tags_model extends properties
         else
             $term_name = $post_tags;
 
-        $term_slug = string::sanitize( $term_name );
+        $term_slug = text::sanitize( $term_name );
 
         if ( !self::lookup( $term_slug ) and $post_tags != '' ):
             $tag_id = $this->term_table()
@@ -40,8 +40,8 @@ class tags_model extends properties
 		$term_name = input::post( 'name' );
 		$term_slug = input::post( 'slug' );
 		
-		$term_slug = string::camelize( $term_slug );
-		$term_slug = string::underscore( $term_slug );
+		$term_slug = text::camelize( $term_slug );
+		$term_slug = text::underscore( $term_slug );
 
         $this->term_table()
             ->update(array(

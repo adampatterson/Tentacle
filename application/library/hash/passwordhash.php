@@ -2,10 +2,10 @@
 #
 # Portable PHP password hashing framework.
 #
-# Version 0.3 / Tentacle CMS.
+# Version 0.1 / genuine.
 #
 # Written by Solar Designer <solar at openwall.com> in 2004-2006 and placed in
-# the public domain.  Revised in subsequent years, still public domain.
+# the public domain.
 #
 # There's absolutely no warranty.
 #
@@ -25,12 +25,12 @@
 # requirements (there can be none), but merely suggestions.
 #
 class PasswordHash {
-	var $itoa64;
-	var $iteration_count_log2;
-	var $portable_hashes;
-	var $random_state;
+	public $itoa64;
+	public $iteration_count_log2;
+	public $portable_hashes;
+	public $random_state;
 
-	function PasswordHash($iteration_count_log2, $portable_hashes)
+	public function __construct($iteration_count_log2, $portable_hashes)
 	{
 		$this->itoa64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
@@ -40,16 +40,13 @@ class PasswordHash {
 
 		$this->portable_hashes = $portable_hashes;
 
-		$this->random_state = microtime();
-		if (function_exists('getmypid'))
-			$this->random_state .= getmypid();
+		$this->random_state = microtime() . getmypid();
 	}
 
-	function get_random_bytes($count)
+	public function get_random_bytes($count)
 	{
 		$output = '';
-		if (is_readable('/dev/urandom') &&
-		    ($fh = @fopen('/dev/urandom', 'rb'))) {
+		if (($fh = @fopen('/dev/urandom', 'rb'))) {
 			$output = fread($fh, $count);
 			fclose($fh);
 		}
@@ -58,9 +55,9 @@ class PasswordHash {
 			$output = '';
 			for ($i = 0; $i < $count; $i += 16) {
 				$this->random_state =
-				    md5(microtime() . $this->random_state);
+					md5(microtime() . $this->random_state);
 				$output .=
-				    pack('H*', md5($this->random_state));
+					pack('H*', md5($this->random_state));
 			}
 			$output = substr($output, 0, $count);
 		}
@@ -68,7 +65,7 @@ class PasswordHash {
 		return $output;
 	}
 
-	function encode64($input, $count)
+	public function encode64($input, $count)
 	{
 		$output = '';
 		$i = 0;
@@ -91,7 +88,7 @@ class PasswordHash {
 		return $output;
 	}
 
-	function gensalt_private($input)
+	public function gensalt_private($input)
 	{
 		$output = '$P$';
 		$output .= $this->itoa64[min($this->iteration_count_log2 +
@@ -101,15 +98,13 @@ class PasswordHash {
 		return $output;
 	}
 
-	function crypt_private($password, $setting)
+	public function crypt_private($password, $setting)
 	{
 		$output = '*0';
 		if (substr($setting, 0, 2) == $output)
 			$output = '*1';
 
-		$id = substr($setting, 0, 3);
-		# We use "$P$", phpBB3 uses "$H$" for the same thing
-		if ($id != '$P$' && $id != '$H$')
+		if (substr($setting, 0, 3) != '$P$')
 			return $output;
 
 		$count_log2 = strpos($this->itoa64, $setting[3]);
@@ -146,7 +141,7 @@ class PasswordHash {
 		return $output;
 	}
 
-	function gensalt_extended($input)
+	public function gensalt_extended($input)
 	{
 		$count_log2 = min($this->iteration_count_log2 + 8, 24);
 		# This should be odd to not reveal weak DES keys, and the
@@ -164,13 +159,13 @@ class PasswordHash {
 		return $output;
 	}
 
-	function gensalt_blowfish($input)
+	public function gensalt_blowfish($input)
 	{
 		# This one needs to use a different order of characters and a
 		# different encoding scheme from the one in encode64() above.
-		# We care because the last character in our encoded string will
+		# We care because the last character in our encoded text will
 		# only represent 2 bits.  While two known implementations of
-		# bcrypt will happily accept and correct a salt string which
+		# bcrypt will happily accept and correct a salt text which
 		# has the 4 unused bits set to non-zero, we do not want to take
 		# chances and we also do not want to waste an additional byte
 		# of entropy.
@@ -205,14 +200,14 @@ class PasswordHash {
 		return $output;
 	}
 
-	function HashPassword($password)
+	public function HashPassword($password)
 	{
 		$random = '';
 
 		if (CRYPT_BLOWFISH == 1 && !$this->portable_hashes) {
 			$random = $this->get_random_bytes(16);
 			$hash =
-			    crypt($password, $this->gensalt_blowfish($random));
+				crypt($password, $this->gensalt_blowfish($random));
 			if (strlen($hash) == 60)
 				return $hash;
 		}
@@ -221,7 +216,7 @@ class PasswordHash {
 			if (strlen($random) < 3)
 				$random = $this->get_random_bytes(3);
 			$hash =
-			    crypt($password, $this->gensalt_extended($random));
+				crypt($password, $this->gensalt_extended($random));
 			if (strlen($hash) == 20)
 				return $hash;
 		}
@@ -229,8 +224,8 @@ class PasswordHash {
 		if (strlen($random) < 6)
 			$random = $this->get_random_bytes(6);
 		$hash =
-		    $this->crypt_private($password,
-		    $this->gensalt_private($random));
+			$this->crypt_private($password,
+				$this->gensalt_private($random));
 		if (strlen($hash) == 34)
 			return $hash;
 
@@ -240,7 +235,7 @@ class PasswordHash {
 		return '*';
 	}
 
-	function CheckPassword($password, $stored_hash)
+	public function CheckPassword($password, $stored_hash)
 	{
 		$hash = $this->crypt_private($password, $stored_hash);
 		if ($hash[0] == '*')

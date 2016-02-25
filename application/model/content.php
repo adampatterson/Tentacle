@@ -47,7 +47,7 @@ class content_model extends properties {
         $status         = input::post( 'status' );
         $publish        = input::post( 'publish' );
         $suggested_slug = input::post( 'permalink' );
-        $slug           = string::sanitize($title);
+        $slug           = text::sanitize($title);
 
         if ( $suggested_slug !== $slug )
             $slug = $suggested_slug;
@@ -177,7 +177,7 @@ class content_model extends properties {
         $uri_date = $uri_date->format('Y').'/'.$uri_date->format('m');
 
         $title         = $import['post_title'];
-        $slug          = string::sanitize($title);
+        $slug          = text::sanitize($title);
         $uri 		   = slash_it( get::option('blog_uri') ).$uri_date.'/'.$slug.'/';
         $content       = $import['post_content'];
         $status        = $import['status'];
@@ -228,7 +228,7 @@ class content_model extends properties {
         $publish       = input::post( 'publish' );
 
         $suggested_slug = input::post( 'permalink' );
-        $slug           = string::sanitize($title);
+        $slug           = text::sanitize($title);
 
         if ( $suggested_slug !== $slug )
             $slug = $suggested_slug;

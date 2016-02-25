@@ -27,19 +27,19 @@ class date
                 $mins = 1;
             }
             /* translators: min=minute */
-            $since = sprintf( string::plural( $mins, '%s min', '%s mins' ), $mins );
+            $since = sprintf( text::plural( $mins, '%s min', '%s mins' ), $mins );
         } elseif ( ( $diff <= DAY_IN_SECONDS ) && ( $diff > HOUR_IN_SECONDS ) ) {
             $hours = round( $diff / HOUR_IN_SECONDS );
             if ( $hours <= 1 ) {
                 $hours = 1;
             }
-            $since = sprintf( string::plural( $hours, '%s hour', '%s hours' ), $hours );
+            $since = sprintf( text::plural( $hours, '%s hour', '%s hours' ), $hours );
         } elseif ( $diff >= DAY_IN_SECONDS ) {
             $days = round( $diff / DAY_IN_SECONDS );
             if ( $days <= 1 ) {
                 $days = 1;
             }
-            $since = sprintf( string::plural( $days, '%s day', '%s days' ), $days );
+            $since = sprintf( text::plural( $days, '%s day', '%s days' ), $days );
         }
 
         return $since;
@@ -676,20 +676,20 @@ class number
 
 
 /*
-* Class: string
+* Class: text
 */
-class string 
+class text
 {
 	/**
 	 * Function: camelize
-	 * Converts a given string to camel-case.
+	 * Converts a given text to camel-case.
 	 *
 	 * Parameters:
-	 *     $string - The string to camelize.
+	 *     $text - The text to camelize.
 	 *     $keep_spaces - Whether or not to convert underscores to spaces or remove them.
 	 *
 	 * Returns:
-	 *     A CamelCased string.
+	 *     A CamelCased text.
 	 *
 	 * See Also:
 	 *     <decamelize>

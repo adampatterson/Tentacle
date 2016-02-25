@@ -824,7 +824,7 @@ function get_themes()
                 $themes[$file]['index'] = $theme_index[0];
                 $themes[$file]['screenshot'] = $theme_screenshot[0];
                 $themes[$file]['style'] = $theme_style[0];
-                $themes[$file]['theme_name'] = string::humanize($file);
+                $themes[$file]['theme_name'] = text::humanize($file);
                 $themes[$file]['theme_id'] = $file;
             }
         }

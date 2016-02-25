@@ -26,8 +26,8 @@ class snippet_model extends properties
 		$content         = input::post( 'content' );
 		$filter          = input::post( 'filter' );
 		
-		$slug            = string::camelize($name);
-		$slug            = string::underscore($slug);
+		$slug            = text::camelize($name);
+		$slug            = text::underscore($slug);
 
         $this->snippet_table()
             ->insert(array(
@@ -46,8 +46,8 @@ class snippet_model extends properties
         $created_by      = user::id();
         $filter          = input::post( 'filter' );
 
-        $slug            = string::camelize($name);
-        $slug            = string::underscore($slug);
+        $slug            = text::camelize($name);
+        $slug            = text::underscore($slug);
 
 		if ($this->get_slug($slug) == false)
 			$this->snippet_table()
@@ -69,8 +69,8 @@ class snippet_model extends properties
 		$snippet_content = input::post( 'content' );
 		$filter          = input::post( 'filter' );
 		
-		$slug            = string::camelize( $name );
-		$slug            = string::underscore( $slug );
+		$slug            = text::camelize( $name );
+		$slug            = text::underscore( $slug );
 		
         $this->snippet_table()
             ->update(array(

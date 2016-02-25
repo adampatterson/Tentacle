@@ -27,7 +27,7 @@ class ajax_controller extends properties {
         $clean_slug = array();
 
         $uri_date = date('Y', time()).'/'.date('m', time());
-        $slug          = string::sanitize( $_POST['slug'] );
+        $slug          = text::sanitize( $_POST['slug'] );
         $uri          = $_POST['uri'];
 
         if ( $type == 'post' ) # Post

@@ -118,7 +118,7 @@ class plugin extends event {
             $info["description"] = $info["description"];
 
             $info["author"]["link"] = !empty($info["author"]["url"]) ?
-                '<a href="'.string::fix($info["author"]["url"]).'">'.string::fix($info["author"]["name"]).'</a>' :
+                '<a href="'.text::fix($info["author"]["url"]).'">'.text::fix($info["author"]["name"]).'</a>' :
                 $info["author"]["name"] ;
 
             $category = (plugin_enabled($folder)) ? "enabled_plugins" : "disabled_plugins" ;

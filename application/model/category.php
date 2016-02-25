@@ -15,7 +15,7 @@ class category_model extends properties {
             $term_slug = input::post( 'slug' );
         }
 
-        $term_slug = string::sanitize( $term_slug );
+        $term_slug = text::sanitize( $term_slug );
 
         if ( !self::lookup( $term_slug ) )
         {
@@ -47,8 +47,8 @@ class category_model extends properties {
 		$term_name = input::post( 'name' );
 		$term_slug = input::post( 'slug' );
 		
-		$term_slug = string::camelize( $term_slug );
-		$term_slug = string::underscore( $term_slug );
+		$term_slug = text::camelize( $term_slug );
+		$term_slug = text::underscore( $term_slug );
 
         $this->term_table()
                 ->update( array(

@@ -25,7 +25,7 @@ class api_controller extends properties
         {
              if(strlen($post->content) > 50 ) {
                 $json_feed[$key]['title'] = $post->title;
-                $json_feed[$key]['content'] = string::truncate(strip_tags($post->content), 300);
+                $json_feed[$key]['content'] = text::truncate(strip_tags($post->content), 300);
                 $json_feed[$key]['url'] = BASE_URL.$post->uri;
             }
         }

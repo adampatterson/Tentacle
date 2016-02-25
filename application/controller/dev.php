@@ -798,7 +798,7 @@ Test two
 	}// END inflector
 
 	/**
-	 * string function
+	 * text function
 	 *
 	 * @return void
 	 * @author Adam Patterson
@@ -812,16 +812,16 @@ Test two
 		$html_string = '<strong>Strings & Stuff</strong>';
 		$san_string = '&lt;strong&gt;Strings &amp; Stuff&lt;/strong&gt;';
 		$slash_string = 'Is your name O\'reilly?';
-		echo '<h4>truncate()</h4> '.string::truncate($long_string, 30).'<br />';
-		echo '<h4>truncate_middle()</h4> '.string::truncate_middle($long_string, 30).'<br />';
-		echo '<h4>fix()</h4> '.string::fix($html_string, true).'<br />';
-		echo '<h4>unfix()</h4> '.string::unfix($san_string).'<br />';
-		echo '<h4>sanitize()</h4> '.string::sanitize($string).'<br />';
-		echo '<h4>random()</h4> '.string::random(20, true).'<br />';
-		echo '<h4>normalize()</h4> '.string::normalize($string).'<br />';
-		echo '<h4>pluralize()</h4>'.string::pluralize(3, 'bean','beans');
-		echo '<h4>string::escape_string()</h4> '.string::escape_string($slash_string).'<br />';
-		echo '<h4>widont()</h4> '.string::widont($long_string).'<br />';
+		echo '<h4>truncate()</h4> '.text::truncate($long_string, 30).'<br />';
+		echo '<h4>truncate_middle()</h4> '.text::truncate_middle($long_string, 30).'<br />';
+		echo '<h4>fix()</h4> '.text::fix($html_string, true).'<br />';
+		echo '<h4>unfix()</h4> '.text::unfix($san_string).'<br />';
+		echo '<h4>sanitize()</h4> '.text::sanitize($string).'<br />';
+		echo '<h4>random()</h4> '.text::random(20, true).'<br />';
+		echo '<h4>normalize()</h4> '.text::normalize($string).'<br />';
+		echo '<h4>pluralize()</h4>'.text::pluralize(3, 'bean','beans');
+		echo '<h4>text::escape_string()</h4> '.text::escape_string($slash_string).'<br />';
+		echo '<h4>widont()</h4> '.text::widont($long_string).'<br />';
 		echo '<h4>highlight()</h4>'.highlight($long_string, 'faucibus').'<br />';
 
 	}// END Function

@@ -8,7 +8,7 @@
 			
 			<div class="form-group">
 				<label for="name">name</label>
-                <input type="text" name="name" id="name" class="form-control" value="<?= string::escape_string($category->name);?>" />
+                <input type="text" name="name" id="name" class="form-control" value="<?= text::escape_string($category->name);?>" />
 			</div>
 			
 			<div class="form-group">
