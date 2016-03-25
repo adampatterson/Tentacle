@@ -9,35 +9,28 @@
  * @docs            http://www.dingoframework.com/docs/user-library
  */
 
-load::library('hash','passwordhash');
-
 class user
 {
 	public static $table;
 	public static $types = array();
-	
+
 	public static $_id;
 	public static $_email;
 	public static $_username;
 	public static $_password;
 	public static $_type;
 	public static $_data;
-	
+
 	public static $_valid = FALSE;
-	
-	
-	public static function passwordhash(){
-		return new PasswordHash(8, FALSE);
-	}
-	
+
 	// Valid
 	// ---------------------------------------------------------------------------
 	public static function valid()
 	{
 		return self::$_valid;
 	}
-	
-	
+
+
 	// Is Type
 	// ---------------------------------------------------------------------------
 	public static function is_type($t)
@@ -53,8 +46,8 @@ class user
 			return FALSE;
 		}
 	}
-	
-	
+
+
 	// Banned
 	// ---------------------------------------------------------------------------
 	public static function banned()
@@ -62,14 +55,14 @@ class user
 		// Return TRUE is banned, FALSE otherwise
 		return(self::$types[self::$_type] === self::$types['banned']);
 	}
-	
-	
+
+
 	// Check
 	// ---------------------------------------------------------------------------
 	public static function check($i,$password)
 	{
 		$valid = FALSE;
-		
+
 		// Get information about current user
 		if($i AND $password)
 		{
@@ -81,7 +74,7 @@ class user
 									->limit(1)
 									->execute();
 			}
-			
+
 			// Find by Username
 			elseif(preg_match('/^([\-_ a-z0-9]+)$/is',$i))
 			{
@@ -90,7 +83,7 @@ class user
 									->limit(1)
 									->execute();
 			}
-			
+
 			// Find by E-mail
 			else
 			{
@@ -99,9 +92,9 @@ class user
 									->limit(1)
 									->execute();
 			}
-			
+
 			$user = $user[0];
-			if (self::passwordhash()->CheckPassword($password, $user->password) ) {
+			if (password_verify($password, $user->password) ) {
 				// If valid login credentials
 				if(!empty($user))
 				{
@@ -113,11 +106,11 @@ class user
 				}
 			}
 		}
-		
+
 		return $valid;
 	}
-	
-	
+
+
 	// Get
 	// ---------------------------------------------------------------------------
 	public static function get($i)
@@ -130,7 +123,7 @@ class user
 								->limit(1)
 								->execute();
 		}
-		
+
 		// Find by Username
 		elseif(preg_match('/^([\-_ a-z0-9]+)$/is',$i))
 		{
@@ -139,7 +132,7 @@ class user
 								->limit(1)
 								->execute();
 		}
-		
+
 		// Find by E-mail
 		else
 		{
@@ -148,28 +141,28 @@ class user
 								->limit(1)
 								->execute();
 		}
-		
+
 		// If user is found
 		if(!empty($user[0]))
 		{
 			$user[0]->data = json_decode($user[0]->data,true);
 			return $user[0];
 		}
-		
+
 		// Otherwise return FALSE
 		else
 		{
 			return FALSE;
 		}
 	}
-	
-	
+
+
 	// Log In
 	// ---------------------------------------------------------------------------
 	public static function login($i,$password)
 	{
 		self::$_valid = FALSE;
-		
+
 		// Try to log in
 		if($i AND $password)
 		{
@@ -181,7 +174,7 @@ class user
 									->limit(1)
 									->execute();
 			}
-		
+
 			// Find by Username
 			elseif(preg_match('/^([\-_ a-z0-9]+)$/is',$i))
 			{
@@ -190,7 +183,7 @@ class user
 									->limit(1)
 									->execute();
 			}
-		
+
 			// Find by E-mail
 			else
 			{
@@ -199,14 +192,17 @@ class user
 									->limit(1)
 									->execute();
 			}
-		
+
 			$user = $user[0];
-	
-			if (self::passwordhash()->CheckPassword($password, $user->password) ) {
+
+
+
+
+			if (password_verify($password, $user->password) ) {
 				// If valid login credentials
 				if(!empty($user))
 				{
-				
+
 					self::$_id = $user->id;
 					self::$_email = $user->email;
 					self::$_username = $user->username;
@@ -227,19 +223,19 @@ class user
 			return self::$_valid;
 		}
 	}
-	
-	
+
+
 	// Log Out
 	// ---------------------------------------------------------------------------
 	public static function logout()
 	{
 		session::delete('user_email');
 		session::delete('user_password');
-		
+
 		self::$_valid = FALSE;
 	}
-	
-	
+
+
 	// Create
 	// ---------------------------------------------------------------------------
 	public static function create($user)
@@ -249,14 +245,14 @@ class user
 		{
 			$user['data'] = array();
 		}
-		
+
 		$user['data'] = json_encode($user['data']);
-		$user['password'] = self::hash($user['password']);
-		
+		$user['password'] = password_hash($user['passowrd'], PASSWORD_DEFAULT);
+
 		return self::$table->insert($user);
 	}
-	
-	
+
+
 	// Update
 	// ---------------------------------------------------------------------------
 	public static function update($i=FALSE)
@@ -266,11 +262,11 @@ class user
 		{
 			$i = self::$_id;
 		}
-		
+
 		return new user_update($i,self::$table);
 	}
-	
-	
+
+
 	// Delete
 	// ---------------------------------------------------------------------------
 	public static function delete($i)
@@ -280,21 +276,21 @@ class user
 		{
 			self::$table->delete('id','=',$i);
 		}
-		
+
 		// Find by Username
 		elseif(preg_match('/^([\-_ a-z0-9]+)$/is',$i))
 		{
 			self::$table->delete('username','=',$i);
 		}
-		
+
 		// Find by E-mail
 		else
 		{
 			self::$table->delete('email','=',$i);
 		}
 	}
-	
-	
+
+
 	// Ban
 	// ---------------------------------------------------------------------------
 	public static function ban($i)
@@ -306,7 +302,7 @@ class user
 			            ->where('id','=',$i)
 			            ->execute();
 		}
-		
+
 		// Find by Username
 		elseif(preg_match('/^([\-_ a-z0-9]+)$/is',$i))
 		{
@@ -314,7 +310,7 @@ class user
 			            ->where('username','=',$i)
 			            ->execute();
 		}
-		
+
 		// Find by E-mail
 		else
 		{
@@ -323,8 +319,8 @@ class user
 			            ->execute();
 		}
 	}
-	
-	
+
+
 	// Unique
 	// ---------------------------------------------------------------------------
 	public static function unique($i)
@@ -337,7 +333,7 @@ class user
 			                    ->limit(1)
 			                    ->execute();
 		}
-		
+
 		// Find by Username
 		elseif(preg_match('/^([\-_ a-z0-9]+)$/i',$i))
 		{
@@ -346,7 +342,7 @@ class user
 			                    ->limit(1)
 			                    ->execute();
 		}
-		
+
 		// Find by E-mail
 		else
 		{
@@ -355,64 +351,56 @@ class user
 			                    ->limit(1)
 			                    ->execute();
 		}
-		
+
 		return (!isset($user[0]));
 	}
-	
-	
+
+
 	// ID
 	// ---------------------------------------------------------------------------
 	public static function id()
 	{
 		return self::$_id;
 	}
-	
-	
+
+
 	// E-mail
 	// ---------------------------------------------------------------------------
 	public static function email()
 	{
 		return self::$_email;
 	}
-	
-	
+
+
 	// Username
 	// ---------------------------------------------------------------------------
 	public static function username()
 	{
 		return self::$_username;
 	}
-	
-	
+
+
 	// Type
 	// ---------------------------------------------------------------------------
 	public static function type()
 	{
 		return self::$_type;
 	}
-	
-	
+
+
 	// Password
 	// ---------------------------------------------------------------------------
 	public static function password()
 	{
 		return self::$_password;
 	}
-	
-	
+
+
 	// Data
 	// ---------------------------------------------------------------------------
 	public static function data($key)
 	{
 		return (isset(self::$_data[$key])) ? self::$_data[$key] : NULL;
-	}
-	
-	
-	// Hash
-	// ---------------------------------------------------------------------------
-	public static function hash($i)
-	{	
-		return self::passwordhash()->HashPassword($i);
 	}
 }
 
@@ -428,21 +416,21 @@ class user_update
 {
 	private $table;
 	private $exists = TRUE;
-	
+
 	public $id;
 	public $email;
 	public $username;
 	public $password;
 	public $type;
 	public $data;
-	
-	
+
+
 	// Construct
 	// ---------------------------------------------------------------------------
 	public function __construct($i,$table)
 	{
 		$this->table = $table;
-		
+
 		// Find by ID
 		if(preg_match('/^([0-9]+)$/',$i))
 		{
@@ -451,7 +439,7 @@ class user_update
 			                    ->limit(1)
 			                    ->execute();
 		}
-		
+
 		// Find by Username
 		elseif(preg_match('/^([\-_ a-z0-9]+)$/i',$i))
 		{
@@ -460,7 +448,7 @@ class user_update
 			                    ->limit(1)
 			                    ->execute();
 		}
-		
+
 		// Find by E-mail
 		else
 		{
@@ -469,7 +457,7 @@ class user_update
 			                    ->limit(1)
 			                    ->execute();
 		}
-		
+
 		if(isset($user[0]))
 		{
 			$this->id = $user[0]->id;
@@ -484,11 +472,7 @@ class user_update
 			$this->exists = FALSE;
 		}
 	}
-	
-	public static function passwordhash(){
-		return new PasswordHash(8, FALSE);
-	}
-	
+
 	// ID
 	// ---------------------------------------------------------------------------
 	public function id($id)
@@ -496,8 +480,8 @@ class user_update
 		$this->id = $id;
 		return $this;
 	}
-	
-	
+
+
 	// E-mail
 	// ---------------------------------------------------------------------------
 	public function email($email)
@@ -505,8 +489,8 @@ class user_update
 		$this->email = $email;
 		return $this;
 	}
-	
-	
+
+
 	// Username
 	// ---------------------------------------------------------------------------
 	public function username($username)
@@ -514,17 +498,17 @@ class user_update
 		$this->username = $username;
 		return $this;
 	}
-	
-	
+
+
 	// Password
 	// ---------------------------------------------------------------------------
 	public function password($password)
 	{
-		$this->password = $this->hash($password);
+		$this->password = password_hash($password, PASSWORD_DEFAULT);
 		return $this;
 	}
-	
-	
+
+
 	// Type
 	// ---------------------------------------------------------------------------
 	public function type($type)
@@ -532,8 +516,8 @@ class user_update
 		$this->type = $type;
 		return $this;
 	}
-	
-	
+
+
 	// Data
 	// ---------------------------------------------------------------------------
 	public function data($key,$value)
@@ -541,8 +525,8 @@ class user_update
 		$this->data[$key] = $value;
 		return $this;
 	}
-	
-	
+
+
 	// Save
 	// ---------------------------------------------------------------------------
 	public function save()
@@ -557,16 +541,8 @@ class user_update
 					))
 		            ->where('id','=',$this->id)
 		            ->execute();
-		
+
 		return $this;
-	}
-	
-	
-	// Hash
-	// ---------------------------------------------------------------------------
-	public function hash($i)
-	{
-		return self::passwordhash()->HashPassword($i);
 	}
 }
 
@@ -592,7 +568,7 @@ if(user::$_email AND user::$_password)
 						->where('password','=',user::$_password)
 						->limit(1)
 						->execute();
-	
+
 	// If valid login credentials
 	if(!empty($user[0]))
 	{
@@ -603,7 +579,7 @@ if(user::$_email AND user::$_password)
 		user::$_password = $user->password;
 		user::$_type = $user->type;
 		user::$_data = json_decode($user->data,true);
-		
+
 		// If not banned, mark as valid
 		if(user::$_type != 'banned')
 		{
