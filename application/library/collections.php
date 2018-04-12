@@ -1,118 +1,114 @@
 <?
 
-class blocks
-{
+class blocks {
+
     static $return_data;
 
-    public function populate($blocks, $data = null)
-    {
-        unset($blocks['display']);
+    public function populate( $blocks, $data = null ) {
+
+        unset( $blocks['display'] );
         $construct = new construct();
 
         construct::$data = $data;
 
-        foreach ($blocks as $key => $block):
-            if (is_array($block)):
-                self::handle_block($key, $block, $construct);
+        foreach ( $blocks as $key => $block ):
+            if ( is_array( $block ) ):
+                self::handle_block( $key, $block, $construct );
             else:
-                if (is_null($data)):
-                    var_dump($key);
-                    self::handle_single($key, $block);
-                else:
-                    self::handle_single($key, $block);
-                endif;
+                self::handle_single( $key, $block );
             endif;
         endforeach;
     }
 
-    public static function handle_block($key, $block, $construct)
-    {
+    public static function handle_block( $key, $block, $construct ) {
         $id = 0;
 
         self::$return_data .= '<div class="repeaters" data-min_block="0" data-block_limit="5"><fieldset>';
 
-        self::build_row($key, $block, $id, true);         // Build the build_row then
+        self::build_row( $key, $block, $id, true );         // Build the build_row then
 
-        self::build_repeater_row($key, $block, $id, false);              // Build the row
-        self::$return_data .= '</fieldset>' .
-            $construct::add_row() .      // Add Row
-            '</div>';
+        self::build_repeater_row( $key, $block, $id, false );              // Build the row
+        self::$return_data .= '</fieldset>' . $construct::add_row() .      // Add Row
+                              '</div>';
 
     }
 
-    public static function handle_single($key, $block)
-    {
+    public static function handle_single( $key, $block ) {
         self::$return_data .= '<div class="row">';
-        self::build_data($key, $block);                        // Build a single input. Needs .row and .col
+        self::build_data( $key, $block );                        // Build a single input. Needs .row and .col
         self::$return_data .= '</div>';
     }
 
-    public static function build_row($repeater_key, $repeater, $id = null, $is_repeater = null)
-    {
+    public static function build_row( $repeater_key, $repeater, $id = null, $is_repeater = null ) {
         $construct = new construct();
 
-        if ($is_repeater)
+        if ( $is_repeater ) {
             self::$return_data .= '<div class="repeater_row">';
-        else
+        } else {
             self::$return_data .= '<div class="row">';
+        }
 
-        if ($is_repeater)
-            unset(construct::$data[$repeater_key][999]);
+        if ( $is_repeater ) {
+            unset( construct::$data[ $repeater_key ][999] );
+        }
 
-        foreach ($repeater as $key => $block):                                       // Loops the builder row data and populates it.
-            $data = self::clean($key, $block, $repeater_key, $is_repeater, $id);      // Process clena $data
-            self::$return_data .= $construct->$data['data'][0]();                    // Populate the fields from the DB
+        foreach ( $repeater as $key => $block ):                                       // Loops the builder row data and populates it.
+            $data = self::clean( $key, $block, $repeater_key, $is_repeater, $id );      // Process clean $data
+
+            $block_type        = (string) $data['data'][0];
+            self::$return_data .= $construct->$block_type();                    // Populate the fields from the DB
         endforeach;
 
         self::$return_data .= $construct::remove_buttons() .   // Builds the buttons for adding and removing a row.
-            '</div>';                                         // .row / .repeater_row
+                              '</div>';                                         // .row / .repeater_row
     }
 
 
-    public static function build_repeater_row($repeater_key, $repeater, $id = null, $is_repeater = null)
-    {
+    public static function build_repeater_row( $repeater_key, $repeater, $id = null, $is_repeater = null ) {
         $construct = new construct();
 
-        if ($is_repeater)
-            unset(construct::$data[$repeater_key][999]);
+        if ( $is_repeater ) {
+            unset( construct::$data[ $repeater_key ][999] );
+        }
 
-        if (construct::$data[$repeater_key] != null):
-            foreach (construct::$data[$repeater_key] as $building_block_data):                               // Loops the data brought back form the DB
+        if ( construct::$data[ $repeater_key ] != null ):
+            foreach ( construct::$data[ $repeater_key ] as $building_block_data ):                               // Loops the data brought back form the DB
                 self::$return_data .= '<div class="row">';
 
-                foreach ($repeater as $key => $block):                                                       // Loops the builder row data and populates it.
-                    ++$id;
-                    $data = self::clean($key, $block, $repeater_key, $is_repeater, $id);                      // Process clena $data
-                    self::$return_data .= $construct->$data['data'][0]($building_block_data[$key]);         // Populate the fields from the DB
+                foreach ( $repeater as $key => $block ):                                                       // Loops the builder row data and populates it.
+                    ++ $id;
+                    $data              = self::clean( $key, $block, $repeater_key, $is_repeater, $id );                      // Process clean $data
+                    $block_type        = (string) $data['data'][0];
+                    self::$return_data .= $construct->$block_type( $building_block_data[ $key ] );         // Populate the fields from the DB
                 endforeach;
 
                 self::$return_data .= $construct->remove_buttons() .   // Builds the buttons for adding and removing a row.
-                    '</div>';                                         // .row / .repeater_row
+                                      '</div>';                                         // .row / .repeater_row
             endforeach;
         else:
             self::$return_data .= '<div class="row">';
 
-            foreach ($repeater as $key => $block):                                                       // Loops the builder row data and populates it.
-                ++$id;
-                $data = self::clean($key, $block, $repeater_key, $is_repeater, $id);                      // Process clena $data
-                self::$return_data .= $construct->$data['data'][0]();
+            foreach ( $repeater as $key => $block ):                                                       // Loops the builder row data and populates it.
+                ++ $id;
+                $data              = self::clean( $key, $block, $repeater_key, $is_repeater, $id );
+                $block_type        = (string) $data['data'][0];// Process clean $data
+                self::$return_data .= $construct->$block_type();
             endforeach;
 
             self::$return_data .= $construct->remove_buttons() .   // Builds the buttons for adding and removing a row.
-                '</div>';
+                                  '</div>';
         endif;
     }
-
 
     /*
      * Builds a single input for the form builder, Not repeatable and with data
      */
-    public static function build_data($key, $block)
-    {
+    public static function build_data( $key, $block ) {
         $construct = new construct();
-        $data = self::clean($key, $block);
-//        if(is_null(construct::$data[$key]))
-        self::$return_data .= $construct->$data['data'][0](construct::$data[$key]);  // Needs .row and .col
+        $data      = self::clean( $key, $block );      // Process clean $data
+
+        $block_type        = (string) $data['data'][0];
+        self::$return_data .= $construct->$block_type( construct::$data[ $key ] );
     }
 
 
@@ -120,124 +116,109 @@ class blocks
     * Takes a data block and manipulates the value of an array
     * to create the necessary elements for processing.
      */
-    static function clean($key, $data, $repeater_key = null, $is_repeater = null, $id = null)
-    {
-        if ($is_repeater)
+    static function clean( $key, $data, $repeater_key = null, $is_repeater = null, $id = null ) {
+        if ( $is_repeater ) {
             $id = 999;
+        }
 
-        $data = explode(':', $data);
+        $data          = explode( ':', $data );
         $options_array = null;
 
-        if (strpos($data[0], 'options') !== false):
-            $options = str_replace("options(", "", $data[0]);
-            $options = str_replace(")", "", $options);
-            $options_array = explode(',', $options);
-            $data[0] = 'options';
+        if ( strpos( $data[0], 'options' ) !== false ):
+            $options       = str_replace( "options(", "", $data[0] );
+            $options       = str_replace( ")", "", $options );
+            $options_array = explode( ',', $options );
+            $data[0]       = 'options';
         endif;
 
-        $clean_data = array('key' => $key, 'repeater_key' => $repeater_key, 'id' => $id, 'data' => $data, 'options' => $options_array);
+        $clean_data    = array( 'key' => $key, 'repeater_key' => $repeater_key, 'id' => $id, 'data' => $data, 'options' => $options_array );
         construct::$bd = $clean_data;
 
         return $clean_data;
     }
 
-    public static function render()
-    {
+    public static function render() {
         echo self::$return_data;
     }
 }
 
 
-class construct
-{
+class construct {
+
     static $bd;
     static $data = null;
 
-    static function m()
-    {
-        if (is_null(self::$bd['repeater_key']))
+    public $blockTypes = [ 'text', 'password', 'options', 'textarea', 'heading' ];
+
+    static function m() {
+        if ( is_null( self::$bd['repeater_key'] ) ) {
             $id = self::$bd['key'];
-        else
+        } else {
             $id = self::$bd['repeater_key'] . '-' . self::$bd['key'] . '-' . self::$bd['id'];
+        }
 
-        if (is_null(self::$bd['repeater_key']))
+        if ( is_null( self::$bd['repeater_key'] ) ) {
             $name = 'collection[' . self::$bd['key'] . ']';
-        else
+        } else {
             $name = 'collection[' . self::$bd['repeater_key'] . '][' . self::$bd['id'] . '][' . self::$bd['key'] . ']';
+        }
 
-        return array('name' => $name, 'id' => $id);
+        return array( 'name' => $name, 'id' => $id );
     }
 
-
-    public function text($data = null)
-    {
+    public function text( $data = null ) {
         return '<div class="col-md-12">
               <label for="' . self::m()['id'] . '">' . self::$bd['data'][1] . '</label>
-              <input type="text" id="' . self::m()['id'] . '" class="form-control" name="' . self::m()['name'] . '" value="' . $data . '"/>'
-        . self::set_helper() .
-        '</div>';
+              <input type="text" id="' . self::m()['id'] . '" class="form-control" name="' . self::m()['name'] . '" value="' . $data . '"/>' . self::set_helper() . '</div>';
     }
 
 
-    public function password()
-    {
+    public function password() {
         return null;
     }
 
 
-    public function options()
-    {
+    public function options() {
         return '<div class="col-md-12">
                   <label for="' . self::m()['id'] . '">' . self::$bd['data']['1'] . '</label>
-                  <select class="form-control" id="' . self::m()['id'] . '" name="' . self::m()['name'] . '">'
-        . self::option_loop(self::$bd['options']) .
-        '</select>'
-        . self::set_helper() .
-        '</div>';
+                  <select class="form-control" id="' . self::m()['id'] . '" name="' . self::m()['name'] . '">' . self::option_loop( self::$bd['options'] ) . '</select>' . self::set_helper() . '</div>';
     }
 
 
-    public function textarea()
-    {
+    public function textarea() {
         return '<div class="col-md-12">
                   <label for="' . self::m()['id'] . '">' . self::$bd['data']['1'] . '</label>
-                  <textarea cols="120" rows="15" name="' . self::m()['name'] . '" class="form-control"></textarea>'
-        . self::set_helper() .
-        '</div>';
+                  <textarea cols="120" rows="15" name="' . self::m()['name'] . '" class="form-control"></textarea>' . self::set_helper() . '</div>';
     }
 
 
-    public function heading($data = null)
-    {
+    public function heading( $data = null ) {
         return '<div class="col-md-12">
                     <h2>' . self::$bd['data']['1'] . '</h2>
-                    <hr />'
-        . self::set_helper() .
-        '</div>';
+                    <hr />' . self::set_helper() . '</div>';
     }
 
 
-    static function set_helper()
-    {
-        if (array_key_exists(2, self::$bd['data']))
+    static function set_helper() {
+        if ( array_key_exists( 2, self::$bd['data'] ) ) {
             return '<span class="help-block">' . self::$bd['data'][2] . '</span>';
+        }
     }
 
 
     # Selected
-    static function option_loop($options = null, $selected = null)
-    {
+    static function option_loop( $options = null, $selected = null ) {
         $option_data = null;
 
-        foreach ($options as $option)
+        foreach ( $options as $option ) {
             $option_data .= '<option value="' . $option . '">' . $option . '</option>';
+        }
 
         return $option_data;
     }
 
 
-    static function remove_buttons()
-    {
+    static function remove_buttons() {
         return '
             <div class="remove col-md-2">
                 <!--<a class="add_block_after btn btn-xs btn-success" href="#">Add</a> -->
@@ -245,8 +226,7 @@ class construct
             </div>';
     }
 
-    static function add_row()
-    {
+    static function add_row() {
         return '
             <div class="repeater-footer actions row">
                 <a href="#" id="add_block" class="add-row-end btn btn-primary">Add Row</a>
