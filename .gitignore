@@ -75,3 +75,5 @@ storage/upgrade/*
 
 config.codekit
 tentacle/vendor
+/tentacle/js/pickadate/source/min
+/tentacle/js/bootstrap-markdown-editor
