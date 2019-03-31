@@ -18,7 +18,7 @@ class bench
 	// ---------------------------------------------------------------------------
 	public static function mark($name)
 	{
-		self::$markers[$name] = microtime();
+		self::$markers[$name] = microtime(true);
 	}
 	
 	
