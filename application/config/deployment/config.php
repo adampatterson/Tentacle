@@ -6,9 +6,8 @@ date_default_timezone_set('UTC');
 config::set( 'autoload_library', array( 'logger', 'dispatcher', 'db', 'assets', 'session', 'user', 'cache', 'url', 'collections', 'pagination', 'image', 'note', 'email' ) );
 
 /* Auto Load Helpers */
-//if ( strpos( BASE_URI,'/install' ) == true )
-if ( CONFIGURATION != 'deployment' )
-	config::set( 'autoload_helper', array(  ) );
+if ( strpos( BASE_URI,'install' ) == true )
+	config::set( 'autoload_helper', array(  ) ); 	
 else
 	config::set( 'autoload_helper', array( 'theme', 'get_set', 'tentacle', 'upgrade', 'common', 'navigation', 'shortcode') );
 
