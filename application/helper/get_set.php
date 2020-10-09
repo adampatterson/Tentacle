@@ -101,7 +101,7 @@ class get {
         $url = '';
         foreach ($params as $param) {
             if (strlen($param)) {
-                $url .= $param{0} == '#' ? $param: '/'. $param;
+                $url .= $param[0] == '#' ? $param: '/'. $param;
             }
         }
         return BASE_URL . preg_replace('/^\/(.*)$/', '$1', $url);
